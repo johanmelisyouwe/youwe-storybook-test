@@ -1,55 +1,51 @@
-# Sync report — 9 November 2026 (batch 9)
+# Sync report — 9 November 2026 (batch 10)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: no Figma changes to these blocks since the inventory (signatures unchanged). Step 4 for the last content blocks. Templates (step 5) are not part of this run.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2, step 5 (templates). No component or token changes in this run.
 
-Batch 8 decisions: Case carousel keeps the swipe row; the Tech partners group-label text style is on BACKLOG.md.
+## Step 5: templates
 
-## Step 4: content blocks
-
-| Block | Story | Variants |
-|---|---|---|
-| Accordion list | Content blocks/Accordion list | 12 of 12 (Layout × Mode × Device) |
-| Build your stack | Content blocks/Build your stack | all (Mode × Device) |
-| Offices | Content blocks/Offices | all (Mode × Device) |
-| Leadership | Content blocks/Leadership | all (Mode × Device) |
-| Awards | Content blocks/Awards | all (Device) |
-| Contact CTA | Content blocks/Contact CTA | 6 of 6 (Variant × Device) |
-| Filter bar | Content blocks/Filter bar | 3 of 3 (Desktop, Mobile, Mobile Open) |
+| Template | Story | Figma | Signature | Placeholders |
+|---|---|---|---|---|
+| Home | Templates/Home → Desktop | 26584:5280 | 1dkipj1 | Frame 6 (ACI Weave · videos + snippet) |
+| Home | Templates/Home → Mobile | 26805:3646 | ckt2vh | ACI Weave · video + nudge |
+| Services | Templates/Services → Desktop | 26586:8230 | 100svzb | none |
+| Services | Templates/Services → Mobile | 26809:28 | 19ze3px | none |
 
 How they were built:
-- **Accordion list**: Stacked, Split and Split list (header with bullets) layouts; Plus-Minus accordions with the first item open; "More questions?" CTA. Copy: the ACI Weave FAQ from the templates (the Figma component has placeholder labels).
-- **Build your stack**: goal tabs (Tab group) switch a panel with the goal intro, four partner Technology Cards and a full-width Case Card. Copy from Figma ("Sell B2B online": Alumio, Adobe, Hyvä, Pimcore and the XXL Nutrition case).
-- **Offices**: header ("Eight offices, one team") and the eight Locations with live local clocks.
-- **Leadership**: section intro and ten Person Cards (name and role) in four columns, two on mobile.
-- **Awards**: title and four award badges.
-- **Contact CTA**: Form (First/Last name, Business email, Phone, Country, Message, opt-in checkbox, Send message; phone link in brand red), Sub-footer split (image half with a clip reveal) and Sub-footer background (image with a gradient overlay). Built from the existing form components and buttons.
-- **Filter bar**: desktop system tiles (toggle, `aria-pressed`) and five dropdowns that show "All" until set; mobile system pills, a Filters button with the active count and "9 cases", and a bottom sheet (Clear all, five dropdowns, "Show 9 cases") that slides up.
+- Every section is the real component with the props, copy and nested items from `figma/templates.js`, in the Figma order, without extra spacing between blocks. Dark and light sections follow the Figma Mode per block.
+- **Home**: Hero (client logos bar), Vertical slider "What we do" (dark, background image), Stats (client, light), Case carousel (Scroll, the eight Figma cases), Vertical slider "In their words" (light, Index left), ACI Weave section (placeholder), Technology logos (Default, twelve logos), Contact CTA (sub-footer background) and Footer.
+- **Services**: Hero (stats bar), three Services splits (dark / light / dark) with their Service Cards and Ask Youwe snippets, Case carousel (Full width 3), Contact CTA and Footer.
+- Desktop and mobile take their own copy where Figma differs. For example, the Home sub-footer is "Work with us" on desktop and "Where does growth get stuck?" on mobile, the mobile Services practices have longer descriptions and a second snippet, and the footer's Youwe links differ per frame.
+- Shared template pieces (header, footer columns, Mode sections, placeholder) are in `src/templates/shared.tsx`.
+- **Kit fix**: `figma/templates.js` failed when a slot held a bare text node; it now reads those too.
 
-Visual comparison with Figma: every block compared at desktop and mobile. Fixed in this run: Contact CTA inputs show the Figma placeholders, mobile form keeps the two-column rows and a full-width button, the split image sits above the text on mobile; Filter bar arrows sit next to the tile label and the result count is right-aligned.
+Visual comparison (full-page capture vs Figma at 1440 / 360):
+- Services desktop and mobile: same structure and heights (5377 vs 5237, 10213 vs 10247). Fixed: the hero title now breaks onto two lines with the second line in red, as in Figma.
+- Home desktop: same structure (7751 vs 7230); the difference comes from the Technology logos giant rows and the Case carousel being slightly taller.
+- Home mobile: taller than Figma (10406 vs 7965) because the mobile Vertical slider stacks all chapters, while the Figma frame shows only chapter 1.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
-- `check-coverage`: clean (74 complete, 1 missing = Pagination, 54 internal; 19 templates missing)
+- `check-coverage`: clean (74 complete, 1 missing = Pagination; templates: 4 complete, 15 missing)
 
 ## Could not match exactly
 
-- **Images, logos and badges** are placeholders (images not imported yet): partner logos show the name, case/office/contact images and award badges show the placeholder.
-- **Build your stack**: Figma only has content for "Sell B2B online"; the other four goals have placeholder panels (same structure, placeholder copy) until the content is written.
-- **Person Card** (Figma 26763:60) is used by Leadership but is not in the inventory, so it has no own story entry; it is exported from Leadership.
-
-## Figma updates (9 November)
-
-- **Filter bar**: the selected tile now shows a selected state (2px shared/border/brand-1 border, State Rest) instead of the Focused state; code matches.
-- **Leadership**: "Board or Directors" corrected to "Board of Directors" in the four Steve Hulmes Person Cards.
+- **Images and logos** are placeholders (not imported yet).
+- **Vertical slider "What we do"**: Figma only fills chapter 1. Chapters 2 and 3 use the practice name, intro and services from the Services template.
+- **Vertical slider "In their words"**: Figma has one quote (BunzlOne). Chadwicks Group, Thomas Telford and Symson show "Quote to follow".
+- **Sliders are not pinned** in the templates, so the page height matches Figma. The pinned scroll behaviour is in Content blocks/Vertical slider → Pinned.
+- **ACI Weave section** (Home) is a hand-built frame in Figma: shown as a placeholder with the Figma height.
 
 ## Open questions for the design team
 
-1. Content for the other four Build your stack goals (placeholders for now).
-2. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. ACI Weave section on Home: make it a component (Text + media with videos and a snippet?) so the template can use it.
+2. Copy for "What we do" chapters 2–3 and the three missing client quotes.
+3. Should the Home sub-footer and the footer's Youwe links be the same on desktop and mobile? They differ in Figma now.
+4. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 10: the templates (including the new Industries design). Pagination last.
+Batch 11: About Us, Work and Work detail. Then Industries (new design), Industries detail, Insights, Tech Partners and Services detail; Pagination last.
