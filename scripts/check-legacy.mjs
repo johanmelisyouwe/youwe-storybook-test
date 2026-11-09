@@ -75,7 +75,10 @@ for (const f of files) {
   // 5. old story titles
   if (/\.stories\.(js|jsx|ts|tsx|mdx)$/.test(f) && titles.size) {
     const src = lines.join('\n');
-    const m = src.match(/title\s*:\s*['"`]([^'"`]+)['"`]/) || src.match(/<Meta[^>]*title=["']([^"']+)["']/);
+    // The Storybook title is the meta's `title:`; story data can also have `title:` keys (card titles), so
+    // prefer the first value that looks like a Storybook path (contains "/").
+    const all = [...src.matchAll(/title\s*:\s*['"`]([^'"`]+)['"`]/g)];
+    const m = all.find((x) => x[1].includes('/')) || all[0] || src.match(/<Meta[^>]*title=["']([^"']+)["']/);
     if (m && !titles.has(m[1]) && !ALLOWED_TITLE_PREFIX.some((p) => m[1].startsWith(p) || m[1] === p.replace(/\/$/, ''))) add('story title not in figma-sync.json (old naming)', f, 1, m[1]);
   }
 }

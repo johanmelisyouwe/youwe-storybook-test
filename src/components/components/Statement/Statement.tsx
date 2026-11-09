@@ -38,22 +38,27 @@ function useDrift(enabled: boolean) {
   return ref;
 }
 
+/** Giant decorative rows that drift in opposite directions on scroll (also used by Technology logos). */
+export function GiantRows({ rows, className }: { rows: GiantRow[]; className?: string }) {
+  const giant = useDrift(rows.length > 0);
+  return (
+    <div ref={giant} className={['yw-statement__giant', className].filter(Boolean).join(' ')} aria-hidden="true">
+      {rows.map((r, i) => {
+        const style = r.style ?? (i % 2 ? 'outline' : 'image');
+        return (
+          <span key={i} className={['yw-statement__row', style !== 'solid' && `yw-statement__row--${style}`].filter(Boolean).join(' ')} style={r.image ? ({ ['--img' as string]: `url('${r.image}')` } as CSSProperties) : undefined}>
+            {r.text}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 export function Statement({ text, rows }: StatementProps) {
-  const giant = useDrift(!!rows?.length);
   return (
     <section className="yw-block yw-statement">
-      {rows && rows.length > 0 && (
-        <div ref={giant} className="yw-statement__giant" aria-hidden="true">
-          {rows.map((r, i) => {
-            const style = r.style ?? (i % 2 ? 'outline' : 'image');
-            return (
-              <span key={i} className={['yw-statement__row', style !== 'solid' && `yw-statement__row--${style}`].filter(Boolean).join(' ')} style={r.image ? ({ ['--img' as string]: `url('${r.image}')` } as CSSProperties) : undefined}>
-                {r.text}
-              </span>
-            );
-          })}
-        </div>
-      )}
+      {rows && rows.length > 0 && <GiantRows rows={rows} />}
       <div className="yw-block__inner">
         <p className="yw-statement__text yw-heading-xl">{text}</p>
       </div>

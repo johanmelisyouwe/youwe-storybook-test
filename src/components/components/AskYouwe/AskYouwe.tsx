@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { Icon } from '../../icons/Icon';
 import { CardMedia } from '../../shared/CardMedia';
 import '../../shared/focus-ring.css';
+import '../../shared/block.css';
 import './AskYouwe.css';
 
 /*

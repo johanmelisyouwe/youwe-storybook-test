@@ -53,5 +53,6 @@
   /* Background media frames (Hero, Testimonial, Vertical slider): no placeholder icon when there is no image */
   .yw-hero__media .yw-card-media__placeholder,
   .yw-testimonial__image .yw-card-media__placeholder,
-  .yw-vslider__bg .yw-card-media__placeholder { display: none; }
+  .yw-vslider__bg .yw-card-media__placeholder,
+  .yw-ask-snippet__image .yw-card-media__placeholder { display: none; }
 }

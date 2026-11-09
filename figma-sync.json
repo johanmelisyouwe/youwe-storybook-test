@@ -1175,12 +1175,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 9 layouts; cells take any card.",
+      "code": [
+        "src/components/components/CardGrid/CardGrid.tsx",
+        "src/components/components/CardGrid/CardGrid.css",
+        "src/components/components/CardGrid/CardGrid.stories.tsx",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "wk8tzt",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1213,12 +1219,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Snapping scroller with prev/next and counter; pinned reel not built (see report).",
+      "code": [
+        "src/components/components/CaseCarousel/CaseCarousel.tsx",
+        "src/components/components/CaseCarousel/CaseCarousel.css",
+        "src/components/components/CaseCarousel/CaseCarousel.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "17cyy9v",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1329,12 +1340,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Grid and Split; styles in StatsBlock.css.",
+      "code": [
+        "src/components/components/FeatureList/FeatureList.tsx",
+        "src/components/components/FeatureList/FeatureList.stories.tsx",
+        "src/components/shared/block.css",
+        "src/components/components/StatsBlock/StatsBlock.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "uw00hg",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1691,12 +1707,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "SplitIntro shared with Tech partners split.",
+      "code": [
+        "src/components/components/ServicesSplit/ServicesSplit.tsx",
+        "src/components/components/ServicesSplit/ServicesSplit.css",
+        "src/components/components/ServicesSplit/ServicesSplit.stories.tsx",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1a6ul6r",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1727,12 +1749,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Partner logos shown as names.",
+      "code": [
+        "src/components/components/TechPartnersSplit/TechPartnersSplit.tsx",
+        "src/components/components/TechPartnersSplit/TechPartnersSplit.stories.tsx",
+        "src/components/shared/block.css",
+        "src/components/components/ServicesSplit/ServicesSplit.css",
+        "src/components/components/ServicesSplit/ServicesSplit.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1g9sth0",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1771,12 +1800,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Default uses the shared GiantRows; logos as names.",
+      "code": [
+        "src/components/components/TechnologyLogos/TechnologyLogos.tsx",
+        "src/components/components/TechnologyLogos/TechnologyLogos.css",
+        "src/components/components/TechnologyLogos/TechnologyLogos.stories.tsx",
+        "src/components/shared/block.css",
+        "src/components/components/Statement/Statement.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "38mon3",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1922,12 +1958,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Image placeholders.",
+      "code": [
+        "src/components/components/SolutionsGrid/SolutionsGrid.tsx",
+        "src/components/components/SolutionsGrid/SolutionsGrid.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1niwz1h",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1999,12 +2039,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Retitled story stays Content blocks/Stats; the single Stat is Components/Stat.",
+      "code": [
+        "src/components/components/StatsBlock/StatsBlock.tsx",
+        "src/components/components/StatsBlock/StatsBlock.css",
+        "src/components/components/StatsBlock/StatsBlock.stories.tsx",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "fo854p",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
