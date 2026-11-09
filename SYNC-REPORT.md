@@ -1,58 +1,60 @@
-# Sync report — 9 November 2026 (batch 12)
+# Sync report — 9 November 2026 (batch 13)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2, step 5 (templates), plus one small component addition.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2, step 5 (templates). This batch completes the templates: **19 of 19**.
 
-Batch 11 decisions: Work detail shows Quooker throughout; the Testimonial keeps the stand-in quote.
+Batch 12 decisions: Insights overview on BACKLOG.md; Industries detail intro uses Text + media; Industries mobile follows desktop (cards).
 
 ## Step 5: templates
 
 | Template | Story | Figma | Signature | Placeholders |
 |---|---|---|---|---|
-| Industries (new design) | Templates/Industries → Desktop | 26657:16750 | 974if1 | none |
-| Industries (new design) | Templates/Industries → Mobile | 26814:197 | 9j0b0p | none |
-| Industries detail | Templates/Industries detail → Desktop | 26926:34632 | 1ukya6e | none |
-| Insights | Templates/Insights → Desktop | 26661:7306 | k6b9g9 | Insights · content (Latest + All insights) |
-| Insights | Templates/Insights → Mobile | 26816:3024 | pk0eyr | All insights (type filters + grid + Show more) |
-
-Industries detail has no mobile frame in Figma, so it only has a Desktop story.
+| Tech Partners | Templates/Tech Partners → Desktop | 26661:7114 | 1wjiwfx | none |
+| Tech Partners | Templates/Tech Partners → Mobile | 26816:2055 | 5yz4d5 | none |
+| Services detail | Templates/Services detail → Desktop | 26875:18627 | kiz47u | none |
+| Services detail | Templates/Services detail → Mobile | 26920:28 | xfy70r | none |
 
 How they were built (real components, Figma props, copy and order; no extra spacing between blocks):
-- **Industries**:
-  - Hero with the client logo bar.
-  - Industry overview: Section intro + 14 industry Case Cards (One quarter, rows of four on desktop). Mobile uses the same cards in their mobile variant, following the desktop design (decided 9 November). The Figma mobile frame still uses the parked Industry List (BACKLOG.md).
-  - "In focus" grid (three Case Cards, light), "What connects them" grid (three System Cards), Contact CTA and Footer.
-- **Industries detail (Manufacturing)**: Hero with breadcrumb and client logos, the industry intro (Text + media 8/4 with the Unipart Case Card as its media, decided 9 November), a full-width XXL Nutrition Case Card, the quote-only Testimonial, "Related services" (six Service Cards), "Manufacturing case studies" (Full width 3), the contact form and Footer.
-- **Insights**: Hero, then on mobile the "Latest" Card grid (Wide + 1: featured Insight Card + Upcoming events). The insight overview (type filters, card grid, Show more) is hand-built in Figma on both devices, so it is a placeholder.
-- **Sub-footer**: desktop "Work with us" copy on both devices, as decided.
+- **Tech Partners**:
+  - Hero with the client logo bar, then Build your stack (same copy as its component story, now shared in `buildYourStack.copy.ts`).
+  - "All partners" Section intro, then three Tech partners splits (light): Systems that scale, Systems that optimize, Systems that drive revenue.
+  - Contact CTA and Footer.
+  - In Figma, "optimize" and "drive revenue" are hand-built frames with the same structure as Tech partners split. They are built with that component, as decided for the Industries detail intro, with the Figma partner cards, groups, levels and snippets.
+- **Services detail (B2B Enterprise Commerce)**: Hero with breadcrumb and the client stats bar.
+  - Desktop: Feature list (why), building blocks (Feature + 4 and a row of three), challenges (AI cards), proof (Case Card + Quote Card), client stats, more cases, Platforms (Technology logos Grid 4) and related services.
+  - The Figma mobile frame is a longer composition with extra sections: a building-block case with an Ask Youwe snippet, How we work (five steps), a second proof (Chadwicks), and FAQ with a snippet. Each device follows its own frame.
+- **Section spacing**: where Figma continues a block with a second grid or the stats row directly underneath, the template removes the section padding between them (`src/templates/templates.css`, `Section flush`).
+- **Sub-footer**: the desktop "Work with us" copy on both devices, as decided. Mobile Figma has page-specific copy: "Which platform fits?" and "Where does B2B ordering get stuck?"
 
-**Component changes:**
-- **Contact CTA**: the form's submit label is now a prop (`submit`, default "Send message"). The Industries detail template uses "Get in touch", as in Figma.
-- **Text + media**: an optional `media` slot (for example a Case Card) in place of the image, for the Industries detail intro.
-
-Visual comparison (full-page capture vs Figma at 1440 / 360): every template compared. Heights are close (Industries desktop 6159 vs 5967; Industries mobile is now 13133 vs 7199 because the fourteen cards stack in one column, Industries detail 5944 vs 5934, Insights 6459 vs 6409 and 10882 vs 10932). Fixed in this run:
-- **Industries hero**: added the client logo bar.
-- **"In focus" intro**: now stacked, with the title on one line.
-- **Insights mobile hero**: shows the logo bar, as in Figma.
+Visual comparison (full-page capture vs Figma at 1440 / 360): every template compared. Heights: Tech Partners 7701 vs 7413 and 11275 vs 11433; Services detail 7732 vs 7785 and 18135 vs 17111. Fixed in this run:
+- **Services detail hero**: two-line title with the second line in red.
+- **Building blocks**: the second row now sits directly under the first.
+- **Stats**: sit directly under the proof grid.
+- **Challenges grid**: no longer starts with an empty cell (a zero-width text in Figma).
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
-- `check-legacy`: clean
-- `check-coverage`: clean (74 complete, 1 missing = Pagination; templates: 15 complete, 4 missing)
+- `check-legacy`: clean (one `legacy-ok`: the Tech Partners hero body is stand-in copy in Figma)
+- `check-coverage`: clean (74 complete, 1 missing = Pagination; templates: 19 complete, 0 missing)
 
 ## Could not match exactly
 
 - **Images and logos** are placeholders (not imported yet).
-- **Contact form country list** is an example list (Figma shows only the placeholder).
-- **Industry tiles**: Figma uses Case Cards (One quarter) with an industry as the title and the clients as the client line.
+
+## Found in Figma
+
+- **Tech Partners hero body** is stand-in copy: "Intro text missing, lorem ipsum dolor sit amet…".
+- **Services detail**: desktop and mobile have different content. Mobile has How we work, a second proof and FAQ; desktop doesn't.
+- **Sub-footer**: the mobile frames have page-specific copy; the code uses the desktop "Work with us".
 
 ## Open questions for the design team
 
-Decisions (9 November): Insights overview → BACKLOG.md; Industries detail intro uses Text + media; Industries mobile follows desktop (cards).
-
-1. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Services detail: should desktop get the mobile-only sections (How we work, the Chadwicks proof, FAQ)?
+2. Sub-footer: the mobile frames now use page-specific titles ("Where does B2B ordering get stuck?", "Which platform fits?"). Keep "Work with us" everywhere, or use page-specific titles on desktop too?
+3. Tech Partners hero intro copy.
+4. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 13: Tech Partners and Services detail (desktop and mobile), the last templates. Then Pagination.
+Batch 14: Pagination (the last component), then the step 6 docs (Foundations motion demos, Page guidelines) if wanted.
