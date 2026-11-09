@@ -1,0 +1,83 @@
+/*
+  Button/Filter (Figma 7375:5158). Values read per variant from Figma on 2026-11-09.
+  Size  height  padding-inline   gap      icon (filter-tune)  counter box  text style
+  L     52      16 (spacing/sm)  8 (2xs)  24                  24           body/lg/med
+  M     44      12 (spacing/xs)  8 (2xs)  24                  24           body/md/med
+  S     36      12 (spacing/xs)  4 (3xs)  20                  20           body/sm/med
+  Fill/border: neutral-mid/1, hover /2, pressed /3 (1px border in the same colour).
+  Counter: 20px circle component/brand-red/2, number in shared/content/fixed/light (12px).
+  Focus: shared Focus Ring. Disabled: disabled surface/border/content.
+*/
+@layer components {
+  .yw-filter-button {
+    --_bg: var(--color-component-neutral-mid-1);
+    --_counter: 24px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2xs);
+    height: 44px;
+    padding-inline: var(--spacing-xs);
+    border-radius: var(--component-radius-button);
+    background: var(--_bg);
+    box-shadow: inset 0 0 0 var(--shared-width-1) var(--_bg);
+    color: var(--color-shared-content-primary);
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color var(--motion-duration-fast) var(--motion-ease-standard),
+      box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+  }
+
+  .yw-filter-button--l {
+    height: 52px;
+    padding-inline: var(--spacing-sm);
+  }
+
+  .yw-filter-button--s {
+    --_counter: 20px;
+    gap: var(--spacing-3xs);
+    height: 36px;
+  }
+
+  .yw-filter-button:hover {
+    --_bg: var(--color-component-neutral-mid-2);
+  }
+
+  .yw-filter-button:active {
+    --_bg: var(--color-component-neutral-mid-3);
+  }
+
+  .yw-filter-button__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .yw-filter-button__counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--_counter);
+    height: var(--_counter);
+  }
+
+  .yw-filter-button__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding-inline: var(--spacing-3xs);
+    border-radius: var(--component-radius-pill);
+    background: var(--color-component-brand-red-2);
+    color: var(--color-shared-content-fixed-light);
+  }
+
+  .yw-filter-button:disabled {
+    --_bg: var(--color-component-disabled-surface-1);
+    box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-disabled-border-default);
+    color: var(--color-component-disabled-content-default);
+    cursor: not-allowed;
+  }
+}

@@ -9,7 +9,7 @@
   Heights are fixed in Figma, so they are set explicitly.
   Motion (Figma description): background/colour duration/fast ease/standard; the
   trailing icon nudges in its direction (distance/xs) duration/base ease/emphasized. No scaling.
-  Focus ring: 2px shared/border/system/focus, 4px outside the button (Focus Ring layer at -4).
+  Focus ring: shared Focus Ring building block (2px shared/border/system/focus 4px outside + shadow/outer/md/focus).
 */
 @layer components {
   .yw-button {
@@ -137,11 +137,7 @@
     transform: translateX(calc(var(--motion-distance-xs) * -1));
   }
 
-  /* ---- Focus (Figma Focused = Rest look + focus ring) ---- */
-  .yw-button:focus-visible {
-    outline: var(--shared-width-2) solid var(--color-shared-border-system-focus);
-    outline-offset: var(--shared-width-2);
-  }
+  /* Focus: Rest look + the shared Focus Ring (src/components/shared/focus-ring.css) */
 
   /* ---- Disabled ---- */
   .yw-button:disabled,

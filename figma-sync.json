@@ -575,12 +575,13 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "All 240 variants. States are real CSS. Icon nudge uses motion/distance/xs (added in Figma 9 Nov).",
+      "note": "All 240 variants. States are real CSS. Icon nudge uses motion/distance/xs (added in Figma 9 Nov). Focus Ring now matches Figma incl. the shadow/outer/md/focus glow (batch 2).",
       "code": [
         "src/components/components/Button/Button.tsx",
         "src/components/components/Button/Button.css",
         "src/components/components/Button/Button.stories.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/components/icons/Icon.tsx",
+        "src/components/shared/focus-ring.css"
       ],
       "locked": false,
       "lastSyncedSignature": "1q20mrn",
@@ -616,12 +617,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 6 variants. Focus ring on the button itself, as in Figma.",
+      "code": [
+        "src/components/components/ButtonUtility/ButtonUtility.tsx",
+        "src/components/components/ButtonUtility/ButtonUtility.css",
+        "src/components/components/ButtonUtility/ButtonUtility.stories.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "b69hft",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -656,12 +662,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 15 variants. Counter = Active Filter; screen readers hear \"1 active\".",
+      "code": [
+        "src/components/components/ButtonFilter/ButtonFilter.tsx",
+        "src/components/components/ButtonFilter/ButtonFilter.css",
+        "src/components/components/ButtonFilter/ButtonFilter.stories.tsx",
+        "src/components/icons/Icon.tsx",
+        "src/components/shared/focus-ring.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1c3m8ze",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -688,12 +700,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 3 sizes. Figma has no hover state; the chevron nudge (distance/xs) follows Button/Basic. lg uses 20px regular (no text style in Figma).",
+      "code": [
+        "src/components/components/ButtonLink/ButtonLink.tsx",
+        "src/components/components/ButtonLink/ButtonLink.css",
+        "src/components/components/ButtonLink/ButtonLink.stories.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1r2ba38",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -821,12 +838,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 30 variants. Native input; indeterminate via the DOM property.",
+      "code": [
+        "src/components/components/Checkbox/Checkbox.tsx",
+        "src/components/components/Checkbox/Checkbox.css",
+        "src/components/components/Checkbox/Checkbox.stories.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "7aosoq",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -866,12 +888,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 27 variants (CheckboxLabel). L label is 24px regular in Figma → body/xl/reg.",
+      "code": [
+        "src/components/components/Checkbox/Checkbox.tsx",
+        "src/components/components/Checkbox/Checkbox.css",
+        "src/components/components/Checkbox/Checkbox.stories.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "7tzdks",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -904,12 +931,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 8 variants.",
+      "code": [
+        "src/components/components/Chip/Chip.tsx",
+        "src/components/components/Chip/Chip.css",
+        "src/components/components/Chip/Chip.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "ljz4ah",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3061,12 +3092,13 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "All 60 variants. Toggle button with aria-pressed for filter use.",
+      "note": "All 60 variants. Toggle button with aria-pressed for filter use. Focus Ring now matches Figma incl. the shadow/outer/md/focus glow (batch 2).",
       "code": [
         "src/components/components/Pills/Pills.tsx",
         "src/components/components/Pills/Pills.css",
         "src/components/components/Pills/Pills.stories.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/components/icons/Icon.tsx",
+        "src/components/shared/focus-ring.css"
       ],
       "locked": false,
       "lastSyncedSignature": "gc1kqn",
@@ -3178,12 +3210,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 18 variants. Native input.",
+      "code": [
+        "src/components/components/Radio/Radio.tsx",
+        "src/components/components/Radio/Radio.css",
+        "src/components/components/Radio/Radio.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "fx31mh",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3216,12 +3252,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 9 variants (RadioLabel, size M).",
+      "code": [
+        "src/components/components/Radio/Radio.tsx",
+        "src/components/components/Radio/Radio.css",
+        "src/components/components/Radio/Radio.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "gi9uhy",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3322,12 +3362,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 5 variants.",
+      "code": [
+        "src/components/components/Tabs/Tabs.tsx",
+        "src/components/components/Tabs/Tabs.css",
+        "src/components/components/Tabs/Tabs.stories.tsx",
+        "src/components/shared/focus-ring.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1384huj",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3352,12 +3397,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "WAI-ARIA tabs, roving tabindex, Arrow/Home/End, sliding ink (duration/slow, ease/emphasized). Trailing action = Button/Basic Outline S icon-only; its options panel (_Dropdown/Options) arrives with the dropdowns.",
+      "code": [
+        "src/components/components/Tabs/Tabs.tsx",
+        "src/components/components/Tabs/Tabs.css",
+        "src/components/components/Tabs/Tabs.stories.tsx",
+        "src/components/components/Button/Button.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "wlin8t",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3570,12 +3620,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 14 variants incl. _Handle. role=\"switch\".",
+      "code": [
+        "src/components/components/Toggle/Toggle.tsx",
+        "src/components/components/Toggle/Toggle.css",
+        "src/components/components/Toggle/Toggle.stories.tsx",
+        "src/components/icons/Icon.tsx",
+        "src/components/shared/focus-ring.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "zm6evj",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
