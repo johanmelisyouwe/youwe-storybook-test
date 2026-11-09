@@ -1,65 +1,68 @@
-# Sync report — 9 November 2026 (batch 4)
+# Sync report — 9 November 2026 (batch 5)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: one Figma change since batch 3 (Text Input/Static Labels, the Disabled placeholder now uses body/sm/reg, which matches the code; signature updated). Step 4 for the components below. Templates (step 5) are not part of this run.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: no Figma changes to the components in this batch since the inventory (signatures unchanged). Step 4 for the cards and list components below. Templates (step 5) are not part of this run.
 
-Batch 3 decisions applied: Dropdown/Quantity stays `not-needed`; hint/error stand-in copy stays for now; floating-label motion stays `duration/fast` + `ease/standard`.
+Batch 4 follow-ups: breadcrumb links have a Hover state in code; BACKLOG.md added (Pagination last, Breadcrumbs back button variant, Figma hover state for `_breadcrumb-link`).
 
 ## Step 4: components
 
 | Component | Story | Variants |
 |---|---|---|
-| Accordion | Components/Accordion | 12 of 12 (Style × Expanded × State) |
-| Tooltip | Components/Tooltip | 2 of 2 (Size) |
-| Icon tooltip | Components/Tooltip | 6 of 6 (State × Size) |
-| Toaster | Components/Toaster | 8 of 8 (Variant × Shadow) |
-| Progress Bar | Components/Progress Bar | 5 of 5 (Progress) |
-| Breadcrumbs/Desktop (+ _breadcrumb-link) | Components/Breadcrumbs | link states Rest / Active / Focused (+ Hover, code only) |
-| Breadcrumbs/Mobile | Components/Breadcrumbs | Filter button on / off |
-| Action List Item (+ _Leading / _Trailing element) | Components/Action list | 4 of 4 (State); elements Icon, Checkbox, Toggle, Radio button |
-| List Item | Components/List Item | 4 of 4 (Device × Icon) |
-| Cookie Banner | Components/Cookie Banner | 2 of 2 (Device) |
-| Pagination | — | moved to the last batch (BACKLOG.md) |
+| Case Card (+ _Case Card/Stat) | Components/Case Card | 20 of 20 (5 sizes incl. Mobile × Mode × State); stat Type × Size 10 of 10 |
+| Insight Card | Components/Insight Card | 16 of 16 (Variant × Device × Mode × State) |
+| Service Card | Components/Service Card | 4 of 4 (Mode × State) |
+| System Card | Components/Service Card | 4 of 4 (Mode × State) |
+| Technology Card (+ logo placeholder) | Components/Technology Card | 8 of 8 (Layout × Mode × State) |
+| Feature Card | Components/Feature Card | 12 of 12 (Device × Variant × Mode) |
+| Quote Card | Components/Quote Card | 4 of 4 (Mode × Device) |
+| Image Card | Components/Image Card | 2 of 2 (Mode) |
+| Stat | Components/Stat | 8 of 8 (Type × Size × Mode) |
+| Location + Clock | Components/Location | 4 of 4 + 2 of 2 |
+| Industry List Item | Components/Industry List Item | built, then **parked** (new Industries design) |
 
 How they were built:
-- **Accordion**: native `<details>`/`<summary>`, so it opens with the keyboard and works without JavaScript. Header 52 high, label body/lg/med, content body/md/reg secondary. Opening animates the height (`duration/slow`, `ease/emphasized`); the caret rotates (`duration/base`). Optional `name` makes a group where one item is open at a time. Content: the ACI Weave FAQ from the Figma templates.
-- **Tooltip / Icon tooltip**: the bubble is `surface/base-2` with radius 4, `shadow/outer/sm/drop` and the 10px point. The info icon (`content/tertiary`, 24 / 16) shows the tooltip on hover and on keyboard focus, linked with `aria-describedby`. It fades in with a 4px rise (`duration/fast`, `ease/standard`).
-- **Toaster**: 400 wide, system colours per variant, two-tone icons exported from Figma, and the Figma titles and messages. Error and Warning use `role="alert"`, the others `role="status"`. It enters with a fade and an 8px rise (`duration/base`, `ease/emphasized`) and leaves with a fade (`duration/fast`, `ease/exit`); see the Motion story.
-- **Progress Bar**: the five Figma steps, plus any value from 0 to 100. Built as `role="progressbar"`.
-- **Breadcrumbs**: Desktop is an ordered list with `aria-current="page"` on the current page. Mobile is a back button to the parent page plus the optional Filter button, as in Figma. Path from the Figma Hero: Home / Work / JC-Electronics.
-- **Action List Item**: a link or button by default. With a Checkbox, Toggle or Radio button element the whole row is the label of that control. Hover `surface/base-3`, Pressed `surface/base-2`, Focus Ring 6px inside the row.
-- **List Item**: bullet or check in `content/brand`, label body/lg/reg secondary, stacked with `List` (gap 2xs, as the Figma description says). Copy from the event page and the Accordion list content block.
-- **Cookie Banner**: Figma copy; Accept = Primary, Cookie settings = Solid, the same size. It enters from the bottom (`distance/md`, `duration/slow`, `ease/emphasized`). `autoFocus` moves focus into the banner (Figma interaction note); `fixed` places it bottom-right (desktop) or full width (mobile).
-- New icons exported from Figma: chevron-right, chevron-left, account-circle.
+- **One shared red reveal** (`src/components/shared/card-reveal.css`, `CardReveal`) for Case, Insight, Service, System and Technology Card, as the Figma descriptions say "same red reveal". The red panel wipes up from the bottom (clip-path), its text slides in 40px from the right and fades in, `duration/card` + `ease/card`. Keyboard focus plays it too, with the focus ring on top. Service and System Card add the "lift": the card text slides up `distance/card` and fades; the arrow stays straight.
+- **Each linked card is one link** (Figma: "Whole card is one link"). Tags and "Read more" inside a linked card are drawn as text, not separate links, so there are no links inside links.
+- **Mode** (Dark / Light) is the theme: every card uses the Figma tokens, and the stories show both modes side by side.
+- **Case Card**: the sizes keep the Figma image proportions; the client logo sits top-right over the legibility gradient; the result stat (`_Case Card/Stat`, all five types in L and M) sits bottom-left. Copy from the Figma Case carousel ("How a Design System strengthened G-Star's brand consistency", +43% marketable catalog uplift).
+- **Insight Card**: Default and Featured (heading/lg title plus "Read more"). Copy from the Figma Insights page.
+- **Service / System / Technology Card**: copy from the Services split block, the Card hover example and the partners overview (Databricks, Microsoft Fabric, Pimcore, Shopify Plus).
+- **Feature Card**: Card, Plain (top divider) and AI (Ask Youwe surface and aura). Optional image, arrow, tags, button and link are props. Scroll reveal (`reveal`) uses CSS scroll-driven animation where the browser supports it.
+- **Quote Card**: the Bunzl quote from the Figma Vertical slider (Frank Daamen). Built as `figure` / `blockquote` / `figcaption`.
+- **Stat**: Client and Plain, L and M; optional count-up on scroll (1.6 s ease-out, once), as in the Figma description. Values from the Figma Stats block. The story is titled **Components/Stat**, so "Content blocks/Stats" stays free for the block itself.
+- **Location + Clock**: the eight offices from the Offices block; the clock shows the live local time per office and the digits flip on change (520 ms, `ease/emphasized`).
+- **Industry List Item**: the 14 industries from Figma. `IndustryList` makes the first row active and the active row follows hover and keyboard focus (Figma interaction note). The subtitle opens with `duration/slow` + `ease/emphasized`; the desktop preview fades and slides in.
+- New icons from Figma: arrow-forward, arrow-upward, image. New: the G-Star client logo as SVG.
 
-Visual comparison with Figma: every variant compared with the Figma component sets. Fixed in this run: tooltip line height and icon colour, the toaster close button (top-aligned as in Figma), and the breadcrumb focus ring (now wraps chevron and text, like `_breadcrumb-link`).
+Visual comparison with Figma: every variant compared. Fixed in this run: the reveal arrow on short cards (Technology Card), and the strength of the AI aura.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
-- `check-coverage`: clean (32 complete, 44 missing, 54 internal, 1 not needed; 19 templates missing)
+- `check-coverage`: clean (43 complete, 32 missing, 54 internal, 1 not needed, 1 parked; 19 templates missing)
 
 ## Could not match exactly
 
-- **Action List Item copy.** Figma only has default copy and no template uses the component. The stories use stand-in industry rows ("Manufacturing", "Retail", "Wholesale" with counts).
-- **_Leading element, Element=Image** is not built: it has no image spec yet.
-- **Breadcrumbs/Desktop "Show back button"** is not connected to any layer in Figma. The back button variant is on the backlog.
-- **Breadcrumb links have no Hover state** in Figma. Approved by the team: code turns the text `content/primary` on hover (`duration/fast`). Design to add it to Figma (BACKLOG.md).
-- **Cookie Banner "Privacy Policy"** is plain text in Figma. Code makes it an underlined link so it is recognisable as a link.
-- **Progress Bar motion**: no Figma Motion line. Code animates the width with `duration/base` + `ease/standard`.
+- **Case photos and most client logos are not in the repo.** This session cannot download images from Figma (figma.com is not on the network allow list), and the photos are too large to pass through the Figma connection. The image frames show the Figma placeholder (`surface/base-3` + image icon). Only the G-Star logo is exported (small SVG). Partner logos on the Technology Card show the partner name in the white tile.
+- **Technology Card logo tile**: the description says the tile is white in both modes; the Figma placeholder has no fill. Code uses a white tile.
+- **Insight Card mobile image heights** are derived from the card heights (Figma does not name them).
+- **Feature Card copy**: Figma only has default copy; stories use the services from the Services split block.
+- **AI aura** (Feature Card) is drawn with CSS gradients and blur, close to the Figma aura but not identical.
+- **Quote mark** uses the heading/2xl size (64px on desktop, smaller on mobile); Figma uses a fixed 64px with no text style.
 
 ## Decisions (9 November 2026)
 
-- Pagination is built in the last batch (BACKLOG.md).
-- Action List Item stand-in copy is fine for now.
-- Breadcrumbs need a back button variant: added to BACKLOG.md, built once it is in Figma.
-- Breadcrumb links get a Hover state: built in code, design to add it to Figma.
+- `www.figma.com` is now allowed, but **images are not imported yet**. The cards keep the Figma image placeholder (BACKLOG.md).
+- Service / System Card: the arrow **stays straight** on hover (as in the Figma Hover variant; the description's −45° is dropped). Design to update the description.
+- Industry List Item: the chevron **stays still**. The component is **parked**: the Industries template has a new design. Code and story are kept for reference (BACKLOG.md).
 
 ## Open questions for the design team
 
-1. Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Service Card / System Card: update the Motion description (no arrow rotation).
+2. Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 5: the cards (Case, Feature, Image, Insight, Quote, Service, System, Technology Card), Stat, Location, Clock and Industry List Item. Then Header/Corporate, Footer/Corporate and the content blocks; Pagination last.
+Batch 6: Header/Corporate (+ nav links, mega menu), Footer/Corporate, Ask Youwe (+ snippet and its parts), Upcoming events, Vertical slider. Then the content blocks and templates (including the new Industries design); Pagination last.

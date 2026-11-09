@@ -1,0 +1,79 @@
+/*
+  Industry List Item (Figma 25019:679). Numbered list row; stack rows 80px apart (Figma description).
+  Row: number (40 wide; desktop body/xl/reg, mobile body/lg/reg with 4px top) | text (gap 16) | chevron 24, gap 16.
+  Collapsed: number, title (heading/lg) and chevron in content/placeholder.
+  Expanded: number content/secondary, title and chevron content/primary, subtitle body/md/reg tertiary,
+  and on desktop a floating preview (520×260, radius 4, image + gradient to 50% black, customer name
+  body/sm/reg bottom-left) to the right, 95px above the row. Mobile rows: padding 16/0.
+  Motion (Figma): subtitle max-height duration/slow ease/emphasized; preview fades/slides duration/slow.
+*/
+@layer components {
+  .yw-industry-list { display: flex; flex-direction: column; gap: var(--spacing-4xl); margin: 0; padding: 0; list-style: none; }
+  .yw-industry-list--mobile { gap: 0; }
+
+  .yw-industry {
+    --_ring-radius: var(--shared-radius-4);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--color-shared-content-placeholder);
+    text-decoration: none;
+    transition: color var(--motion-duration-base) var(--motion-ease-standard);
+  }
+
+  .yw-industry--mobile { padding-block: var(--spacing-sm); }
+
+  .yw-industry__content { display: flex; flex: 1; gap: var(--spacing-sm); min-width: 0; }
+  .yw-industry__number { flex-shrink: 0; width: 40px; }
+  .yw-industry--mobile .yw-industry__number { padding-top: var(--spacing-3xs); }
+  .yw-industry__text { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+  .yw-industry__chevron { display: flex; flex-shrink: 0; }
+
+  .yw-industry__sub {
+    display: grid;
+    grid-template-rows: 0fr;
+    color: var(--color-shared-content-tertiary);
+    transition:
+      grid-template-rows var(--motion-duration-slow) var(--motion-ease-emphasized),
+      margin-top var(--motion-duration-slow) var(--motion-ease-emphasized);
+  }
+
+  .yw-industry__sub > span { overflow: hidden; }
+
+  .yw-industry.is-expanded { color: var(--color-shared-content-primary); }
+  .yw-industry.is-expanded .yw-industry__number { color: var(--color-shared-content-secondary); }
+  .yw-industry.is-expanded .yw-industry__sub { grid-template-rows: 1fr; margin-top: var(--spacing-sm); }
+
+  /* Desktop preview */
+  .yw-industry--desktop.is-expanded .yw-industry__content { padding-right: 520px; }
+
+  .yw-industry__preview {
+    position: absolute;
+    z-index: 1;
+    top: -95px;
+    right: 40px;
+    display: flex !important;
+    align-items: flex-end;
+    width: 520px;
+    height: 260px;
+    padding: var(--spacing-sm);
+    color: var(--color-shared-content-fixed-light);
+    opacity: 0;
+    transform: translateY(var(--motion-distance-sm));
+    pointer-events: none;
+    transition:
+      opacity var(--motion-duration-slow) var(--motion-ease-emphasized),
+      transform var(--motion-duration-slow) var(--motion-ease-emphasized);
+  }
+
+  .yw-industry__preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, var(--color-neutral-900-50));
+  }
+
+  .yw-industry__preview > .yw-industry__customer { position: relative; z-index: 1; }
+  .yw-industry.is-expanded .yw-industry__preview { opacity: 1; transform: none; }
+}
