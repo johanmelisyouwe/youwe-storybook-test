@@ -10,7 +10,7 @@ const COPY = {
   body: 'We’re a driven collective of over 270 specialists. Big enough to cover every digital discipline, yet close enough to truly understand the specifics of your business. Together, we create digital ecosystems that drive lasting growth.',
 };
 type Args = Pick<TextMediaProps, 'Device' | 'Media position' | 'Split' | 'Theme'>;
-const W = { Desktop: 1440, Tablet: 768, Mobile: 360 };
+const W = { Desktop: '100%', Tablet: 768, Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Text + media',

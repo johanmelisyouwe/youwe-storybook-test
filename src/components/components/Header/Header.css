@@ -18,7 +18,8 @@
   .yw-header {
     position: relative;
     z-index: 50;
-    padding: var(--spacing-lg);
+    /* Fluid container: the bar sits 56px outside the content edge (Figma 24 vs 80) and centres with it on wide screens */
+    padding: var(--spacing-lg) max(var(--spacing-lg), calc((100% - var(--yw-container-max)) / 2 - var(--spacing-3xl) + var(--spacing-2xs)));
     color: var(--color-shared-content-primary);
     transition: transform var(--motion-duration-slow) var(--motion-ease-emphasized);
   }

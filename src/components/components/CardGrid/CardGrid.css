@@ -18,8 +18,8 @@
   .yw-card-grid--feature-4 .yw-card-grid__grid > :first-child,
   .yw-card-grid--feature-2 .yw-card-grid__grid > :first-child { grid-column: span 2; grid-row: span 2; }
 
-  .yw-card-grid--scroll .yw-block__inner { max-width: none; padding-right: 0; margin-left: max(0px, calc((100% - 1280px - 2 * var(--_pad)) / 2)); }
-  .yw-card-grid--scroll .yw-card-grid__intro { padding-right: var(--_pad); max-width: calc(1280px + var(--_pad)); }
+  .yw-card-grid--scroll .yw-block__inner { max-width: none; padding-right: 0; margin-left: max(0px, calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)); }
+  .yw-card-grid--scroll .yw-card-grid__intro { padding-right: var(--_pad); max-width: calc(var(--yw-container-max) + var(--_pad)); }
   .yw-card-grid--scroll .yw-card-grid__grid {
     display: flex;
     overflow-x: auto;

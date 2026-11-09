@@ -22,7 +22,7 @@ const COPY: Omit<AccordionListProps, 'Layout' | 'Device'> = {
   cta: { title: 'More questions?', body: 'Get in touch and we’ll connect you to one of our experts.', button: { label: 'Get in touch', href: '#' } },
 };
 type Args = Pick<AccordionListProps, 'Layout' | 'Device'> & { Mode: Mode };
-const W = { Desktop: 1440, Mobile: 390 };
+const W = { Desktop: '100%', Mobile: 390 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Accordion list',

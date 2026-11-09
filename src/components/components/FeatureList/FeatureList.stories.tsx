@@ -16,7 +16,7 @@ const ITEMS = [
   { Title: 'Cloud Architecture', Description: 'Scalable cloud architectures for your applications and machine learning workloads.' },
 ];
 type Args = Pick<FeatureListProps, 'Layout' | 'Device'>;
-const W = { Desktop: 1440, Mobile: 390 };
+const W = { Desktop: '100%', Mobile: 390 };
 const items = (l: FeatureListProps['Layout']) => (l === 'Split' ? ITEMS.slice(0, 4) : ITEMS);
 
 const meta: Meta<Args> = {

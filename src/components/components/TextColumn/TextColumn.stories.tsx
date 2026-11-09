@@ -5,7 +5,7 @@ import { TEXT_COLUMN } from '../TextColumn/longform.copy';
 /* Content blocks/Text column — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-596 (Figma copy) */
 
 type Args = Pick<TextColumnProps, 'Alignment' | 'Device'>;
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Text column',

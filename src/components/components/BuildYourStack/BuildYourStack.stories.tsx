@@ -11,7 +11,7 @@ import { ModeFrame, type Mode } from '../../shared/ModeFrame';
 
 const COPY = BUILD_YOUR_STACK;
 type Args = Pick<BuildYourStackProps, 'Device'> & { Mode: Mode };
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Build your stack',

@@ -25,7 +25,7 @@ const COPY: Omit<ServicesSplitProps, 'Device'> = {
   ].map(([e, t, d]) => ({ Eyebrow: e, Title: t, Description: d, 'Hover CTA': 'Explore the service', href: '#' })),
 };
 type Args = Pick<ServicesSplitProps, 'Device'> & { Mode: Mode };
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Services split',

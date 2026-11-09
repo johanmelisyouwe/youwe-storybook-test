@@ -11,7 +11,8 @@ import './templates.css';
 */
 
 export type Device = 'Desktop' | 'Mobile';
-export const WIDTH: Record<Device, number> = { Desktop: 1440, Mobile: 360 };
+/** Story frame width: desktop is fluid (full viewport), mobile 360 as in Figma. */
+export const WIDTH: Record<Device, number | string> = { Desktop: '100%', Mobile: 360 };
 
 export const NAV: HeaderProps['nav'] = ['Services', 'Work', 'Industries', 'Tech Partners', 'Insights', 'About Us'].map((label) => ({ label, href: '#' }));
 export const header = (Device: Device) => <Header Device={Device} nav={NAV} />;

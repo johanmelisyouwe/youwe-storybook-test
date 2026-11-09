@@ -1,6 +1,7 @@
 import { Icon } from '../../icons/Icon';
 import { Button } from '../Button/Button';
 import '../../shared/focus-ring.css';
+import '../../shared/block.css';
 import './Footer.css';
 
 /* Footer/Corporate — Figma 25022:751; _Footer link — 25034:672 (page "Footer"). */
