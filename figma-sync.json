@@ -1249,12 +1249,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Styles in TextColumn.css.",
+      "code": [
+        "src/components/components/CaseIntro/CaseIntro.tsx",
+        "src/components/components/CaseIntro/CaseIntro.stories.tsx",
+        "src/components/components/TextColumn/TextColumn.tsx",
+        "src/components/components/TextColumn/TextColumn.css",
+        "src/components/components/TextColumn/longform.copy.ts",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "8vccav",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1358,12 +1365,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Gradient and Title + image; title line mask reveal; optional scroll recede; bar marquee. Background image not imported.",
+      "code": [
+        "src/components/components/Hero/Hero.tsx",
+        "src/components/components/Hero/Hero.css",
+        "src/components/components/Hero/Hero.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "3lpt5u",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1395,11 +1407,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "HeroBar: Logos (only G-Star exported; others as text) and Stats.",
+      "code": [
+        "src/components/components/Hero/Hero.tsx",
+        "src/components/components/Hero/Hero.css",
+        "src/components/components/Hero/Hero.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "p3aekr",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1431,11 +1448,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "HeroLabel: Subtitle or Breadcrumb.",
+      "code": [
+        "src/components/components/Hero/Hero.tsx",
+        "src/components/components/Hero/Hero.css",
+        "src/components/components/Hero/Hero.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1mk8ev0",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1504,12 +1526,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Clip reveal on scroll. Image placeholders.",
+      "code": [
+        "src/components/components/Media/Media.tsx",
+        "src/components/components/Media/Media.stories.tsx",
+        "src/components/components/TextMedia/TextMedia.css",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "vrfzw6",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1576,12 +1603,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Word-rise title reveal.",
+      "code": [
+        "src/components/components/SectionHeader/SectionHeader.tsx",
+        "src/components/components/SectionHeader/SectionHeader.css",
+        "src/components/components/SectionHeader/SectionHeader.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "27isn",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1617,12 +1649,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Word reveal + scroll highlight body.",
+      "code": [
+        "src/components/components/SectionHeader/SectionHeader.tsx",
+        "src/components/components/SectionHeader/SectionHeader.css",
+        "src/components/components/SectionHeader/SectionIntro.stories.tsx",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "7ebnjt",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1915,12 +1953,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Optional drifting decorative rows (not drawn in Figma).",
+      "code": [
+        "src/components/components/Statement/Statement.tsx",
+        "src/components/components/Statement/Statement.css",
+        "src/components/components/Statement/Statement.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1bihdg0",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2054,12 +2097,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Container-query layout; Dark / Deep blue / Light. Image placeholder.",
+      "code": [
+        "src/components/components/TextMedia/TextMedia.tsx",
+        "src/components/components/TextMedia/TextMedia.css",
+        "src/components/components/TextMedia/TextMedia.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "8xjat0",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2085,12 +2133,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Auto-advance 7s with View Transition when several quotes; pauses on hover/focus/off-screen.",
+      "code": [
+        "src/components/components/Testimonial/Testimonial.tsx",
+        "src/components/components/Testimonial/Testimonial.css",
+        "src/components/components/Testimonial/Testimonial.stories.tsx",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "18pitnd",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2121,12 +2174,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Long-form lead + body.",
+      "code": [
+        "src/components/components/TextColumn/TextColumn.tsx",
+        "src/components/components/TextColumn/TextColumn.css",
+        "src/components/components/TextColumn/longform.copy.ts",
+        "src/components/shared/block.css",
+        "src/components/components/TextColumn/TextColumn.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1w8kjpd",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2157,12 +2216,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Styles in TextColumn.css.",
+      "code": [
+        "src/components/components/TwoColumnText/TwoColumnText.tsx",
+        "src/components/components/TwoColumnText/TwoColumnText.stories.tsx",
+        "src/components/components/TextColumn/TextColumn.tsx",
+        "src/components/components/TextColumn/TextColumn.css",
+        "src/components/components/TextColumn/longform.copy.ts",
+        "src/components/shared/block.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1uy218e",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2309,9 +2375,9 @@
             "Yes"
           ]
         },
-        "props": "Show Ask Youwe:B",
+        "props": "",
         "variantCount": 4,
-        "signature": "1am53ky"
+        "signature": "19yt4ak"
       },
       "storybook": {
         "title": "Components/Header/Corporate",
@@ -2319,7 +2385,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Mega menu on hover/keyboard (300ms close delay); mobile sheet with scroll lock; fixed: glass + hide on scroll down.",
+      "note": "Mega menu on hover/keyboard (300ms close delay); mobile sheet with scroll lock; fixed: glass + hide on scroll down. Ask Youwe removed from the header in Figma and code (2026-11-09): the site uses the sticky docked bar.",
       "code": [
         "src/components/components/Header/Header.tsx",
         "src/components/components/Header/Header.css",
@@ -2327,7 +2393,7 @@
         "src/components/logos/YouweLogo.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "1am53ky",
+      "lastSyncedSignature": "19yt4ak",
       "lastSynced": "2026-11-09"
     },
     {

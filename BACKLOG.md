@@ -4,6 +4,7 @@ Work agreed with the team that is not part of a sync batch yet. Newest first.
 
 | Item | Why | Status |
 |---|---|---|
+| Statement giant rows in Figma | Built in code after the v2 site (image-filled + outlined rows, drift ±9%). Leave the Figma component for now (decided 2026-11-09). | Later |
 | Theme toggle (light/dark) | In the Figma mobile menu as loose layers, not a component (desktop has a hidden copy). Fine for now (decided 2026-11-09). | Later |
 | Industry List Item | Parked: the Industries template has a new design. Code and story are kept; revisit when that template is synced. | Parked |
 | Case photos and client logos | figma.com is now allowed, but images are not imported yet (decided 2026-11-09). Cards show the Figma image placeholder. | Later |

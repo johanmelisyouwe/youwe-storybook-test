@@ -1,56 +1,61 @@
-# Sync report — 9 November 2026 (batch 6)
+# Sync report — 9 November 2026 (batch 7)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: no Figma changes to these components since the inventory (signatures unchanged). Step 4 for the site chrome, Ask Youwe, Upcoming events and the Vertical slider. Templates (step 5) are not part of this run.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: no Figma changes to these blocks since the inventory (signatures unchanged). Step 4 for the text and media content blocks. Templates (step 5) are not part of this run.
 
-Batch 5 decisions applied: card arrow stays straight; Industry List Item parked; images not imported (BACKLOG.md).
+Batch 6 decisions applied: theme toggle on the backlog; the duplicate "Digital Experience" footer link is removed in Figma (all four Footer/Corporate variants).
 
-## Step 4: components
+**Header update (9 November):** Ask Youwe is removed from Header/Corporate, because the site uses the sticky docked Ask Youwe bar. Removed in Figma (the Ask Youwe layers in all four variants and the "Show Ask Youwe" property) and in code (desktop pill, mobile orb button and the bar in the mobile menu). The Ask Youwe feature column of the mega menu stays.
 
-| Component | Story | Variants |
+**Vertical slider update (9 November):** the pinned desktop behaviour now follows the v2 site's "What we do" section, as the team pointed to: 140vh of scroll per chapter; scroll progress picks the chapter; the title rises in a mask (past titles leave upwards) and the rest fades up after 220ms; each chapter can have its own background that opens with a circular wipe at 72% 50% and settles from scale 1.15 to 1, under the site's scrim; the index bars fill as you scroll and a click on an index item scrolls to that chapter (hover/focus still switch slides when not pinned); the optional progress bar fills along the bottom edge. Figma text styles are kept (the site uses a larger fluid title size).
+
+## Step 4: content blocks
+
+| Block | Story | Variants |
 |---|---|---|
-| Header/Corporate (+ _Nav link, _Utility link, _Mega menu) | Components/Header/Corporate | 4 of 4 (Device × Expanded); nav link 6 of 6; mega menu 2 of 2 |
-| Footer/Corporate (+ _Footer link) | Components/Footer/Corporate | 4 of 4 (Variant × Device); footer link 2 of 2 |
-| Ask Youwe | Components/Ask Youwe | 12 of 12 (State × Mode × Device) |
-| Ask Youwe/Snippet | Components/Ask Youwe | 12 of 12 (Type × Device × Mode) |
-| _Ask Youwe/Orb, Aura, Button, Chip, Label | Components/Ask Youwe (Parts) | all variants |
-| Upcoming events (+ row) | Components/Upcoming events | 4 of 4 (Mode × Device); row Rest/Hover |
-| Vertical slider (+ index item, slides) | Content blocks/Vertical slider | 8 of 8 (Index × Mode × Device); 5 slide types; index item 3 states |
+| Hero (+ _Hero/Bar, _Hero/Label) | Content blocks/Hero | 4 of 4 (Device × Variant); bar Logos/Stats; label Subtitle/Breadcrumb |
+| Section header | Content blocks/Section header | 4 of 4 (Device × Alignment) |
+| Section intro | Content blocks/Section intro | 8 of 8 (Layout × Mode × Device) |
+| Statement | Content blocks/Statement | 2 of 2 (Device) |
+| Text column | Content blocks/Text column | 4 of 4 (Device × Alignment) |
+| Two-column text | Content blocks/Two-column text | 4 of 4 (Device × Split) |
+| Case intro | Content blocks/Case intro | 4 of 4 (Device × Meta position) |
+| Text + media | Content blocks/Text + media | 30 of 30 (Device incl. Tablet × Media position × Split × Theme) |
+| Media | Content blocks/Media | 8 of 8 (Device × Layout) |
+| Testimonial | Content blocks/Testimonial | 2 of 2 (Device), with/without image |
 
 How they were built:
-- **Header**: the logo is the Figma SVG (mark in `content/brand`, wordmark follows the mode). Desktop has the centred menu, the Ask Youwe pill, Careers and Contact. The Services mega menu follows the Figma interaction note: it opens on hover straight away and closes 300ms after the pointer leaves; Enter or ArrowDown opens it, Esc closes it; it opens with a clip reveal (`duration/slow`). Mobile: logo, Ask Youwe orb and menu button; the menu is a full-screen sheet that locks page scroll and closes with Esc. With `fixed`, the bar turns to glass once scrolled and hides on scroll down, returning on scroll up (`duration/slow`, `ease/emphasized`).
-- **Footer**: Sitemap and Newsletter, desktop and mobile, with the Figma links, legal links, Instagram/LinkedIn icons (Figma SVG) and the language pill.
-- **Ask Youwe**: the bar (Default), Contextual (the bar widens over 640ms, then the page question fades in) and Active (answer panel with question, answer, source, follow-up, CTA and composer; opens from the bar with a clip reveal, `duration/cinematic`). ⌘K focuses the bar and Esc closes the panel. The aura breathes on a ~6s loop. Glass uses the Figma `ask/glass` effect tokens. The Interactive story shows the flow; the answer is the Figma copy (no AI service is connected; `onAsk` is the hook for it).
-- **Snippets**: Question, Nudge and Case with the Figma copy (Kingspan, Quooker).
-- **Upcoming events**: the four Figma events; each card is one link with the shared red reveal. Story titled Components/Upcoming events (the inventory title was the Insight Card's).
-- **Vertical slider**: the five slide types (Service, Quote, Stat, Case, Content) with the Figma copy. On desktop the section can pin and the active item follows scroll (Pinned story); index items are buttons and hover/focus switch slides too. Slide text rolls in line by line (`duration/zoom`, staggered); the case image opens with a circular wipe and settles from scale 1.15. Mobile is stacked with step bars and "01 / 03 · …", no pinning.
-- New icons from Figma: hamburger-menu, language. New: Youwe logo, social icons.
+- **One block frame** (`src/components/shared/block.css`) for all content blocks: the Figma 1280 container with 80px gutters and 120px vertical padding, 32/80 on tablet and 12/64 on mobile. The layout switches use container queries, so a block in a 360px frame lays out as mobile (the stories show desktop and mobile side by side). Text sizes follow the viewport tokens.
+- **Motion** from the Figma descriptions, with CSS scroll-driven animations where the browser supports them (static otherwise, and off with reduced motion):
+  - Hero: title lines rise in a mask (`duration/cinematic`, +120ms per line); optional recede over the first 860px of scroll; the logo/stat bar is a 40s marquee that pauses on hover.
+  - Section header and Section intro: title words rise in a mask (`duration/reveal`, half a stagger per word). The Section intro body lights up word by word as you scroll (28% → 100%, never fades back).
+  - Text column, Two-column text, Case intro, Text + media: block reveal. Media and the Text + media image: clip reveal (inset 18%/8% → 0, scale 0.96 → 1).
+  - Statement: optional giant decorative rows, rebuilt after the v2 site's partners section (the team's reference): oversized headline type, one image-filled row and one outlined row, drifting (p − 0.5) × 18% in opposite directions as the block scrolls through the viewport (aria-hidden; off with reduced motion). The image fill falls back to the Ask Youwe glow colours until images are imported.
+  - Testimonial: with several quotes it auto-advances every 7s using a View Transition (old quote blurs 6px and lifts, new one rises in) and pauses on hover, focus and when off-screen.
+- **Accessibility**: word-split headings keep the plain text for screen readers; the Hero marquee duplicates its items for the loop but hides the copy from screen readers; Case intro meta is a definition list; Testimonial is a `figure` with `blockquote`.
+- **Copy** from Figma: Hero ("Complex products. Clear platforms."), the Quooker case texts (Text column, Two-column text, Case intro, Statement), Section header/intro, Text + media ("Global thinking, global understanding"). The Testimonial uses the Bunzl quote (Figma has default copy there).
 
-Visual comparison with Figma: header (both devices, mega menu open), footer, Ask Youwe (all states), events and the slider compared. Fixed in this run: the mega menu feature link is underlined as in Figma.
+Visual comparison with Figma: every block compared. Fixed in this run: background media (Hero, Testimonial, Vertical slider) no longer shows the placeholder icon.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
-- `check-legacy`: clean (two marked exceptions: the Orb's raw gradient colours, which Figma does not tokenise, and the 6s aura loop, which has no motion token)
-- `check-coverage`: clean (49 complete, 26 missing, 54 internal, 1 not needed, 1 parked; 19 templates missing)
+- `check-legacy`: clean (marked exception: the Hero's +120ms per title line, which has no motion token)
+- `check-coverage`: clean (59 complete, 16 missing, 54 internal, 1 not needed, 1 parked; 19 templates missing)
 
 ## Could not match exactly
 
-- **Theme toggle** in the mobile menu (light/dark sun/moon switch at the bottom) is not built: it is loose layers in Figma, not a component, and the site theme is set per section ("Theme follows the section beneath"). Desktop has a hidden copy of it as well.
-- **Ask Youwe Orb** colours are raw values in Figma, not tokens (`legacy-ok` in code).
-- **Images** (mega menu feature, case snippet, slider case image and background) show the Figma placeholder; images are on the backlog.
-- **Ask Youwe docked bar** (after the hero the bar docks to the bottom centre) belongs to the templates ("Templates › Docked bar") and is not part of this run.
-- **Mobile Ask Youwe Contextual** shows the full prompt next to the chip; Figma shortens it to "Ask".
-
-## Decisions (9 November 2026)
-
-- Mobile menu theme toggle: fine for now, added to BACKLOG.md.
-- Footer: the duplicate "Digital Experience" link is removed in Figma (all four Footer/Corporate variants); code already used the six links.
+- **Images and video** (Hero background, Title + image, Media, Text + media, Testimonial photo) show the empty Figma image frame; images are on the backlog.
+- **Client logos** in the Hero bar: only G-Star is exported; the other seven show the client name until the logos are exported.
+- **Statement giant rows** are described in Figma but not drawn; code follows the v2 site (size clamp(72px, 15vw, 260px), line-height 0.92, letter-spacing −0.04em, 1.5px outline), marked `legacy-ok` because Figma has no text style for it.
+- **Section header** has a hidden "Eyebrow" layer in the Centered variant; code only shows the kicker on Left, as in Figma.
+- **Mobile text sizes** in the side-by-side story frames follow the desktop viewport; the Mobile stories (mobile viewport) show the real mobile sizes.
 
 ## Open questions for the design team
 
-1. Service Card / System Card: update the Motion description (no arrow rotation). Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Statement giant rows: leave the Figma component for now (decided 9 November; on BACKLOG.md).
+2. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 7: the content blocks (Hero, Section header/intro, Statement, Stats, Card grid, Case carousel, Contact CTA, Offices, Testimonial and the rest). Then the templates (including the new Industries design); Pagination last.
+Batch 8: the grid blocks — Card grid, Case carousel, Stats, Feature list, Services split, Tech partners split, Technology logos, Solutions grid, Build your stack, Accordion list, Offices, Leadership, Awards, Contact CTA, Filter bar. Then the templates; Pagination last.

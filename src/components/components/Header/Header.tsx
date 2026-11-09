@@ -3,7 +3,7 @@ import { Icon } from '../../icons/Icon';
 import { YouweLogo } from '../../logos/YouweLogo';
 import { Button } from '../Button/Button';
 import { ButtonUtility } from '../ButtonUtility/ButtonUtility';
-import { AskOrb, AskYouwe } from '../AskYouwe/AskYouwe';
+import { AskYouwe } from '../AskYouwe/AskYouwe';
 import { CardMedia } from '../../shared/CardMedia';
 import '../../shared/focus-ring.css';
 import './Header.css';
@@ -78,8 +78,6 @@ export type HeaderProps = {
   Device?: 'Desktop' | 'Mobile';
   /** Figma: Expanded (desktop: mega menu open; mobile: menu sheet open) */
   Expanded?: 'No' | 'Yes';
-  /** Figma: Show Ask Youwe */
-  'Show Ask Youwe'?: boolean;
   nav: NavItem[];
   /** Label of the current page */
   current?: string;
@@ -88,7 +86,6 @@ export type HeaderProps = {
   cta?: { label: string; href: string };
   /** Fixed to the top with scroll behaviour (glass, hide on scroll down) */
   fixed?: boolean;
-  onAsk?: () => void;
   /** Story helper: render the open sheet / mega menu in the flow instead of fixed */
   inline?: boolean;
 };
@@ -110,8 +107,8 @@ function useScrollState(enabled: boolean) {
 }
 
 export function Header({
-  Device = 'Desktop', Expanded = 'No', 'Show Ask Youwe': showAsk = true, nav, current, utility = [{ label: 'Careers', href: '#' }],
-  language = 'The Netherlands', cta = { label: 'Contact', href: '#' }, fixed = false, onAsk, inline = false,
+  Device = 'Desktop', Expanded = 'No', nav, current, utility = [{ label: 'Careers', href: '#' }],
+  language = 'The Netherlands', cta = { label: 'Contact', href: '#' }, fixed = false, inline = false,
 }: HeaderProps) {
   const id = useId();
   const megaItem = nav.find((n) => n.mega);
@@ -141,7 +138,6 @@ export function Header({
           <a href="/" className="yw-header__logo yw-focus-ring"><YouweLogo /></a>
           <ButtonUtility Size="M" label="Close menu" onClick={() => setOpen(false)} />
         </div>
-        {showAsk && <AskYouwe Device="Mobile" {...{ 'Show shortcut': false }} />}
         <ul className="yw-sheet__links">{nav.map((n) => <li key={n.label}><NavLink Size="L" label={n.label} href={n.href} active={n.label === current} /></li>)}</ul>
         <div className="yw-sheet__divider" />
         <div className="yw-sheet__utility">
@@ -157,7 +153,6 @@ export function Header({
           <div className="yw-header__top">
             <a href="/" className="yw-header__logo yw-focus-ring"><YouweLogo /></a>
             <div className="yw-header__mright">
-              {showAsk && <button type="button" className="yw-header__ask yw-header__ask--icon yw-focus-ring" aria-label="Ask Youwe" onClick={onAsk}><AskOrb /></button>}
               <button type="button" className="yw-header__menu-btn yw-focus-ring" aria-label="Open menu" aria-expanded={open} aria-controls={`${id}-sheet`} onClick={() => setOpen(true)}>
                 <Icon name="hamburger-menu" size={24} />
               </button>
@@ -190,7 +185,6 @@ export function Header({
           ) : <li key={n.label}><NavLink label={n.label} href={n.href} active={n.label === current} /></li>)}
         </ul>
         <div className="yw-header__right">
-          {showAsk && <button type="button" className="yw-header__ask yw-focus-ring" onClick={onAsk}><AskOrb /><span className="yw-body-sm-med">Ask Youwe</span></button>}
           {utility.map((u) => <a key={u.label} href={u.href} className="yw-nav-link yw-nav-link--plain yw-focus-ring yw-body-md-med">{u.label}</a>)}
           <Button Variant="Primary" Size="S" label={cta.label} href={cta.href} />
         </div>
