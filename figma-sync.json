@@ -1135,7 +1135,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Goal tabs with partner Technology Cards and a full Case Card; Figma has content for one goal only (Sell B2B online).",
+      "note": "Goal tabs with partner Technology Cards and a full Case Card; Figma content for \"Sell B2B online\", placeholder panels for the other four goals.",
       "code": [
         "src/components/components/BuildYourStack/BuildYourStack.tsx",
         "src/components/components/BuildYourStack/BuildYourStack.stories.tsx",
@@ -1524,7 +1524,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Section intro and Person Cards (Figma Person Card 26763:60, not an inventory component); photos are placeholders.",
+      "note": "Section intro and Person Cards (Figma Person Card 26763:60, not an inventory component); photos are placeholders. \"Board of Directors\" typo fixed in Figma.",
       "code": [
         "src/components/components/Leadership/Leadership.tsx",
         "src/components/components/Leadership/Leadership.stories.tsx",
@@ -4263,7 +4263,7 @@
         },
         "props": "",
         "variantCount": 3,
-        "signature": "1eweuic"
+        "signature": "13hibo3"
       },
       "storybook": {
         "title": "Content blocks/Filter bar",
@@ -4271,7 +4271,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Desktop tiles + dropdowns; mobile pills, Filters button and bottom sheet. Selected tile uses a brand border (Figma shows the Focused look).",
+      "note": "Desktop tiles + dropdowns; mobile pills, Filters button and bottom sheet. Selected tile: brand border (Figma updated 9 November, was Focused).",
       "code": [
         "src/components/components/FilterBar/FilterBar.tsx",
         "src/components/components/FilterBar/FilterBar.css",
@@ -4279,7 +4279,7 @@
         "src/components/shared/ModeFrame.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "1eweuic",
+      "lastSyncedSignature": "13hibo3",
       "lastSynced": "2026-11-09"
     },
     {

@@ -37,17 +37,18 @@ Visual comparison with Figma: every block compared at desktop and mobile. Fixed 
 ## Could not match exactly
 
 - **Images, logos and badges** are placeholders (images not imported yet): partner logos show the name, case/office/contact images and award badges show the placeholder.
-- **Build your stack**: Figma only has content for "Sell B2B online"; the other four goals are tabs without panel content.
+- **Build your stack**: Figma only has content for "Sell B2B online"; the other four goals have placeholder panels (same structure, placeholder copy) until the content is written.
 - **Person Card** (Figma 26763:60) is used by Leadership but is not in the inventory, so it has no own story entry; it is exported from Leadership.
-- **Filter bar selected tile**: Figma shows the selected tile with the Focused look; code uses a brand border for the selected state so it is not confused with keyboard focus.
-- **Leadership copy**: Figma has "Board or Directors" for Steve Hulmes; code uses "Board of Directors".
+
+## Figma updates (9 November)
+
+- **Filter bar**: the selected tile now shows a selected state (2px shared/border/brand-1 border, State Rest) instead of the Focused state; code matches.
+- **Leadership**: "Board or Directors" corrected to "Board of Directors" in the four Steve Hulmes Person Cards.
 
 ## Open questions for the design team
 
-1. Should the selected Filter bar tile get its own Selected state in Figma (instead of Focused)?
-2. Content for the other four Build your stack goals.
-3. Fix the "Board or Directors" typo in Figma?
-4. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Content for the other four Build your stack goals (placeholders for now).
+2. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 

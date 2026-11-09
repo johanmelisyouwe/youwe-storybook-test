@@ -4,8 +4,8 @@ import { ModeFrame, type Mode } from '../../shared/ModeFrame';
 
 /*
   Content blocks/Build your stack — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26851-1491
-  Figma has the content for one goal ("Sell B2B online"); the other four goals only have their tab label,
-  so their panels only show the label until design adds them (see SYNC-REPORT.md).
+  Figma has the content for one goal ("Sell B2B online"); the other four goals use placeholder panels
+  (same structure, placeholder copy) until the content is written (decided 9 November).
 */
 
 const SELL: StackGoal = {
@@ -20,7 +20,21 @@ const SELL: StackGoal = {
   ],
   case: { Title: 'Accelerating Growth with a Digital Pioneer in Sports Supplements', Client: 'XXL Nutrition', tags: ['Magento', 'Adobe Commerce'], href: '#' },
 };
-const GOALS: StackGoal[] = [{ label: 'Connect your systems' }, { label: 'Build a data foundation' }, { label: 'Put AI agents to work' }, { label: 'Sharpen your pricing' }, SELL];
+/* Placeholder panel: same structure as the Figma goal, copy to follow. */
+const placeholder = (label: string, n: number): StackGoal => ({
+  label,
+  system: `0${n}  System`,
+  intro: 'Goal intro to follow: which platforms we combine for this goal and how they work together.',
+  partners: [1, 2, 3, 4].map((i) => ({ Name: `Partner ${i}`, Level: 'Partner level', Description: 'One line on the role of this partner.', href: '#' })),
+  case: { Title: 'Case title to follow', Client: 'Client', tags: ['Platform', 'Technology'], href: '#' },
+});
+const GOALS: StackGoal[] = [
+  placeholder('Connect your systems', 1),
+  placeholder('Build a data foundation', 2),
+  placeholder('Put AI agents to work', 3),
+  placeholder('Sharpen your pricing', 4),
+  SELL,
+];
 const COPY: Omit<BuildYourStackProps, 'Device'> = { kicker: 'Build your stack', title: 'Start with what you need.', body: 'Pick a goal. See the partners we usually combine for it, and a client who runs that stack today.', goals: GOALS, selected: 4 };
 type Args = Pick<BuildYourStackProps, 'Device'> & { Mode: Mode };
 const W = { Desktop: 1440, Mobile: 360 };
