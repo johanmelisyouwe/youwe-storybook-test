@@ -18,10 +18,10 @@ Batch 4 follow-ups: breadcrumb links have a Hover state in code; BACKLOG.md adde
 | Image Card | Components/Image Card | 2 of 2 (Mode) |
 | Stat | Components/Stat | 8 of 8 (Type × Size × Mode) |
 | Location + Clock | Components/Location | 4 of 4 + 2 of 2 |
-| Industry List Item | Components/Industry List Item | 8 of 8 (Device × Expanded × Mode) |
+| Industry List Item | Components/Industry List Item | built, then **parked** (new Industries design) |
 
 How they were built:
-- **One shared red reveal** (`src/components/shared/card-reveal.css`, `CardReveal`) for Case, Insight, Service, System and Technology Card, as the Figma descriptions say "same red reveal". The red panel wipes up from the bottom (clip-path), its text slides in 40px from the right and fades in, `duration/card` + `ease/card`. Keyboard focus plays it too, with the focus ring on top. Service and System Card add the "lift": the card text slides up `distance/card` and fades, and the arrow turns.
+- **One shared red reveal** (`src/components/shared/card-reveal.css`, `CardReveal`) for Case, Insight, Service, System and Technology Card, as the Figma descriptions say "same red reveal". The red panel wipes up from the bottom (clip-path), its text slides in 40px from the right and fades in, `duration/card` + `ease/card`. Keyboard focus plays it too, with the focus ring on top. Service and System Card add the "lift": the card text slides up `distance/card` and fades; the arrow stays straight.
 - **Each linked card is one link** (Figma: "Whole card is one link"). Tags and "Read more" inside a linked card are drawn as text, not separate links, so there are no links inside links.
 - **Mode** (Dark / Light) is the theme: every card uses the Figma tokens, and the stories show both modes side by side.
 - **Case Card**: the sizes keep the Figma image proportions; the client logo sits top-right over the legibility gradient; the result stat (`_Case Card/Stat`, all five types in L and M) sits bottom-left. Copy from the Figma Case carousel ("How a Design System strengthened G-Star's brand consistency", +43% marketable catalog uplift).
@@ -41,31 +41,28 @@ Visual comparison with Figma: every variant compared. Fixed in this run: the rev
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
-- `check-coverage`: clean (44 complete, 32 missing, 54 internal, 1 not needed; 19 templates missing)
+- `check-coverage`: clean (43 complete, 32 missing, 54 internal, 1 not needed, 1 parked; 19 templates missing)
 
 ## Could not match exactly
 
 - **Case photos and most client logos are not in the repo.** This session cannot download images from Figma (figma.com is not on the network allow list), and the photos are too large to pass through the Figma connection. The image frames show the Figma placeholder (`surface/base-3` + image icon). Only the G-Star logo is exported (small SVG). Partner logos on the Technology Card show the partner name in the white tile.
-- **Service / System Card arrow**: the Figma description says the arrow rotates −45° on hover, but the Figma Hover variant shows it unrotated. Code follows the description.
 - **Technology Card logo tile**: the description says the tile is white in both modes; the Figma placeholder has no fill. Code uses a white tile.
-- **Industry List Item chevron**: the description says it rotates, but both Figma variants show the same chevron. Code does not rotate it.
-- **Industry subtitles**: Figma only has one (Retail: "eCommerce Infrastructures for Modern Retail"). The other industries have no subtitle.
 - **Insight Card mobile image heights** are derived from the card heights (Figma does not name them).
 - **Feature Card copy**: Figma only has default copy; stories use the services from the Services split block.
 - **AI aura** (Feature Card) is drawn with CSS gradients and blur, close to the Figma aura but not identical.
 - **Quote mark** uses the heading/2xl size (64px on desktop, smaller on mobile); Figma uses a fixed 64px with no text style.
 
-## To unblock images (needs you)
+## Decisions (9 November 2026)
 
-Either add `www.figma.com` to the allowed domains for this workspace (Settings → Capabilities), so the sync can download the case photos and client logos from Figma, or put the photos in `public/images/cases/` and the logos in `public/images/clients/`, and the next sync wires them into the cards.
+- `www.figma.com` is now allowed, but **images are not imported yet**. The cards keep the Figma image placeholder (BACKLOG.md).
+- Service / System Card: the arrow **stays straight** on hover (as in the Figma Hover variant; the description's −45° is dropped). Design to update the description.
+- Industry List Item: the chevron **stays still**. The component is **parked**: the Industries template has a new design. Code and story are kept for reference (BACKLOG.md).
 
 ## Open questions for the design team
 
-1. Service / System Card: should the arrow rotate −45° on hover (description) or stay (Hover variant)?
-2. Industry List Item: should the chevron rotate when a row opens?
-3. Subtitles for the other 13 industries.
-4. Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Service Card / System Card: update the Motion description (no arrow rotation).
+2. Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 6: Header/Corporate (+ nav links, mega menu), Footer/Corporate, Ask Youwe (+ snippet and its parts), Upcoming events, Vertical slider. Then the content blocks; Pagination last.
+Batch 6: Header/Corporate (+ nav links, mega menu), Footer/Corporate, Ask Youwe (+ snippet and its parts), Upcoming events, Vertical slider. Then the content blocks and templates (including the new Industries design); Pagination last.

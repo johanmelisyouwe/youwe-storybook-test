@@ -2432,8 +2432,8 @@
         "current": null
       },
       "internal": false,
-      "status": "complete",
-      "note": "IndustryList: first item active, follows hover and focus.",
+      "status": "parked",
+      "note": "Parked 2026-11-09: the Industries template has a new design. Code and story kept for reference (BACKLOG.md).",
       "code": [
         "src/components/components/IndustryListItem/IndustryListItem.tsx",
         "src/components/components/IndustryListItem/IndustryListItem.css",

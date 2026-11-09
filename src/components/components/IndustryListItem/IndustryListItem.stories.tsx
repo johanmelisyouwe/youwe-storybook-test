@@ -21,7 +21,7 @@ const W = { Desktop: 1280, Mobile: 336 };
 
 const meta: Meta<Args> = {
   title: 'Components/Industry List Item',
-  parameters: { layout: 'padded', docs: { description: { component: 'Numbered list row for industries. Collapsed: dimmed title. Expanded (hover/focus): white title, subtitle and, on desktop, a floating preview image. In `IndustryList` the first item is active and the active row follows hover and focus.' } } },
+  parameters: { layout: 'padded', docs: { description: { component: '**Parked (9 November 2026):** the Industries template has a new design; this component is kept for reference and will be revisited with that template. Numbered list row for industries. Collapsed: dimmed title. Expanded (hover/focus): white title, subtitle and, on desktop, a floating preview image. In `IndustryList` the first item is active and the active row follows hover and focus.' } } },
   argTypes: {
     Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
     Expanded: { control: 'inline-radio', options: ['No', 'Yes'] },

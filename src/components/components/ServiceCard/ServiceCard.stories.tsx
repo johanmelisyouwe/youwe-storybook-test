@@ -25,7 +25,7 @@ const SYSTEM = {
 
 const meta: Meta<Args> = {
   title: 'Components/Service Card',
-  parameters: { layout: 'centered', docs: { description: { component: 'Text-led card for services (Service Card) and the three systems (System Card). The whole card is one link. Hover/focus: red reveal, card text slides up and fades (duration/card, ease/card).' } } },
+  parameters: { layout: 'centered', docs: { description: { component: 'Text-led card for services (Service Card) and the three systems (System Card). The whole card is one link. Hover/focus: red reveal, card text slides up and fades, the arrow stays straight (duration/card, ease/card).' } } },
   argTypes: {
     Mode: { control: 'inline-radio', options: ['Dark', 'Light'] },
     State: { control: 'inline-radio', options: ['Rest', 'Hover'] },

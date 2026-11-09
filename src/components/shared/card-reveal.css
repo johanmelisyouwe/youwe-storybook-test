@@ -4,8 +4,8 @@
   (surface/fixed/light, arrow content/brand); bottom: CTA heading/sm + context body/sm/reg, fixed light, gap 8.
   Motion (Figma descriptions): the red panel wipes up from the bottom (clip-path), its text slides in
   40px from the right and fades in; duration/card + ease/card. Keyboard focus triggers it too.
-  `yw-reveal--lift` (Service/System): the card text slides up distance/card and fades, the arrow rotates -45°
-  (per the Figma description; the Figma Hover variant still shows it at 0°).
+  `yw-reveal--lift` (Service/System): the card text slides up distance/card and fades. The arrow stays
+  straight (decided 2026-11-09, as in the Figma Hover variant).
 */
 @layer components {
   .yw-reveal {
@@ -82,8 +82,6 @@
       transform var(--motion-duration-card) var(--motion-ease-card);
   }
 
-  .yw-reveal--lift:hover .yw-reveal__arrow ,
-  .yw-reveal--lift:focus-visible .yw-reveal__arrow { transform: rotate(-45deg); }
   .yw-reveal--lift:hover .yw-reveal__lift ,
   .yw-reveal--lift:focus-visible .yw-reveal__lift { opacity: 0; transform: translateY(calc(var(--motion-distance-card) * -1)); }
 
