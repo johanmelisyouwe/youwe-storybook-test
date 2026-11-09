@@ -53,7 +53,7 @@ Visual comparison with Figma: every block compared. Fixed in this run: backgroun
 
 ## Open questions for the design team
 
-1. Statement: add the giant rows to the Figma component (as on the v2 site), with a text style for the giant size?
+1. Statement giant rows: leave the Figma component for now (decided 9 November; on BACKLOG.md).
 2. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
