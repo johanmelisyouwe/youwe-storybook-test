@@ -7,6 +7,7 @@ import { CaseCard } from '../components/components/CaseCard/CaseCard';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import '../components/shared/block.css';
 import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { abstract, clientPhoto } from '../media/media';
 
 /*
   Templates/Work — Figma "Page / Work": Desktop 26588:9829, Mobile 26809:1150. Copy, props and order from
@@ -42,6 +43,7 @@ function WorkPage({ Device }: { Device: Device }) {
     <Page Device={Device}>
       <Hero
         Device={Device}
+        image={abstract('001')}
         title={['Work that scales,', 'optimizes and drives revenue.']}
         body="We build the commerce and product data platforms, the AI workflows and the integrations behind them. For companies with a large catalog, many processes and data that has to be right."
         label={{ Type: 'Subtitle', Subtitle: 'Work' }}
@@ -58,10 +60,10 @@ function WorkPage({ Device }: { Device: Device }) {
           Layout="3 columns"
           Device={Device}
           label="Cases"
-          cells={CASES.map(([Title, Client, tags]) => <CaseCard key={Title} Device={Device} Title={Title} Client={Client} logo={logo(Client === 'G-Star RAW' ? 'G-Star' : Client)} tags={tags} href="#" />)}
+          cells={CASES.map(([Title, Client, tags]) => <CaseCard key={Title} Device={Device} Title={Title} Client={Client} logo={logo(Client === 'G-Star RAW' ? 'G-Star' : Client)} tags={tags} image={clientPhoto(Client)} href="#" />)}
         />
       </Section>
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} image={abstract('016')} />
       {footer(Device)}
     </Page>
   );

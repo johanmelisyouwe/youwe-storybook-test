@@ -7,6 +7,7 @@ import { TechnologyLogos } from '../components/components/TechnologyLogos/Techno
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
 import { CLIENT_LOGOS, NotAComponent, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { abstract, clientPhoto } from '../media/media';
 
 /*
   Templates/Home — Figma "Page / Home": Desktop 26584:5280, Mobile 26805:3646. Copy, props and order from
@@ -60,7 +61,7 @@ const STATS = [
   { Value: '+93%', Label: 'Average match score', logo: logo('Symson'), href: '#' },
 ];
 
-const c = (Title: string, Client: string, stat?: [string, string]): CaseCardProps => ({ Title, Client, logo: logo(Client), stat: stat && { value: stat[0], label: stat[1] }, href: '#' });
+const c = (Title: string, Client: string, stat?: [string, string]): CaseCardProps => ({ Title, Client, logo: logo(Client), image: clientPhoto(Client), stat: stat && { value: stat[0], label: stat[1] }, href: '#' });
 const CASES: CaseCardProps[] = [
   c('From 60+ OpCos to one smart platform', 'BunzlOne', ['800+', 'categories active']),
   c('Scaling product data with Pimcore & AI', 'Chadwicks Group', ['+43%', 'marketable catalog uplift']),
@@ -72,7 +73,7 @@ const CASES: CaseCardProps[] = [
   c('Adobe Commerce Headless implementation', 'PostNL', ['41%', 'IT cost reduction']),
 ];
 
-const TECH = ['Pimcore', 'Adobe', 'Commercetools', 'HubSpot', 'Shopify', 'Hyvä', 'Alumio', 'Storyblok', 'Drupal', 'Symson', 'AWS', 'ACI Weave'].map((name) => ({ name }));
+const TECH = ['Pimcore', 'Adobe', 'Commercetools', 'HubSpot', 'Shopify', 'Hyvä', 'Alumio', 'Storyblok', 'Drupal', 'Symson', 'AWS', 'ACI Weave'].map((name) => ({ name, logo: logo(name, 110) }));
 
 
 function HomePage({ Device }: { Device: Device }) {
@@ -81,6 +82,7 @@ function HomePage({ Device }: { Device: Device }) {
     <Page Device={Device}>
       <Hero
         Device={Device}
+        image={abstract('016')}
         title={['Complex products.', 'Clear platforms.']}
         body="Digital transformation is about reshaping how platforms, processes, data and people work together. We design connected digital ecosystems and help teams adopt new ways of working, so change leads to lasting performance."
         label={{ Type: 'Subtitle', Subtitle: 'Business improvement agency' }}
@@ -89,7 +91,7 @@ function HomePage({ Device }: { Device: Device }) {
         header={header(Device)}
       />
       <Section Mode="Dark">
-        <VerticalSlider Device={Device} Index="Right" Kicker="What we do" Tagline="Three kinds of work, built to fit together." items={WHAT_WE_DO} backgroundImage={mobile ? undefined : true} {...{ 'Show progress': !mobile }} />
+        <VerticalSlider Device={Device} Index="Right" Kicker="What we do" Tagline="Three kinds of work, built to fit together." items={WHAT_WE_DO} backgroundImage={mobile ? undefined : abstract('001')} {...{ 'Show progress': !mobile }} />
       </Section>
       <Section Mode="Light">
         <StatsBlock Type="Client" Device={Device} intro={{ kicker: 'What changed for our clients', title: 'Most of our clients have a large catalog, more than one market and an ERP that is staying put. We work with that.' }} stats={STATS} />
@@ -106,7 +108,7 @@ function HomePage({ Device }: { Device: Device }) {
       <Section Mode="Light">
         <TechnologyLogos Layout="Default" Device={Device} Title="The technology we build on" Body="We pick the platform that fits your business, then connect it to the rest of your landscape." rows={['We pick the platforms', 'that fit your business']} logos={TECH} button={{ label: 'All tech partners', href: '#' }} />
       </Section>
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} image={abstract('008')} />
       {footer(Device)}
     </Page>
   );

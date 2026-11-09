@@ -5,6 +5,7 @@ import { InsightCard } from '../components/components/InsightCard/InsightCard';
 import { UpcomingEvents, type EventItem } from '../components/components/UpcomingEvents/UpcomingEvents';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import { CLIENT_LOGOS, NotAComponent, Page, logo, Section, WORK_WITH_US, footer, header, type Device } from './shared';
+import { abstract } from '../media/media';
 
 /*
   Templates/Insights — Figma "Page / Insights": Desktop 26661:7306, Mobile 26816:3024. Copy, props and
@@ -27,6 +28,7 @@ function InsightsPage({ Device }: { Device: Device }) {
     <Page Device={Device}>
       <Hero
         Device={Device}
+        image={abstract('005')}
         title={['Stay ahead.', 'Go beyond.']}
         body="Blogs, whitepapers, events, videos, news and landing pages from Youwe."
         label={{ Type: 'Subtitle', Subtitle: 'Insights' }}
@@ -52,7 +54,7 @@ function InsightsPage({ Device }: { Device: Device }) {
       ) : (
         <NotAComponent name="Insights · content (Latest + All insights)" height={4630} uses={USES} />
       )}
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} image={abstract('009')} />
       {footer(Device)}
     </Page>
   );

@@ -12,6 +12,7 @@ import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import { CASE_INTRO, TEXT_COLUMN, TWO_COLUMN } from '../components/components/TextColumn/longform.copy';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
 import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { abstract, caseImage, clientPhoto } from '../media/media';
 
 /*
   Templates/Work detail — Figma "Page / Work detail": Desktop 26829:20476, Mobile 26924:2198. Copy, props
@@ -22,7 +23,7 @@ import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from '
   desktop copy on both devices.
 */
 
-const c = (Title: string, Client: string, stat?: [string, string]): CaseCardProps => ({ Title, Client, logo: logo(Client), stat: stat && { value: stat[0], label: stat[1] }, href: '#' });
+const c = (Title: string, Client: string, stat?: [string, string]): CaseCardProps => ({ Title, Client, logo: logo(Client), image: clientPhoto(Client), stat: stat && { value: stat[0], label: stat[1] }, href: '#' });
 const RELATED: CaseCardProps[] = [
   c('From 60+ OpCos to one smart platform', 'BunzlOne', ['800+', 'categories active']),
   c('Scaling product data with Pimcore & AI', 'Chadwicks Group', ['+43%', 'marketable catalog uplift']),
@@ -43,13 +44,14 @@ function WorkDetailPage({ Device }: { Device: Device }) {
         Device={Device}
         title={['Scaling Smart: Quooker’s Expansion to 17 Countries']}
         label={{ Type: 'Breadcrumb', crumbs: [{ label: 'Home', href: '#' }, { label: 'Work', href: '#' }, { label: 'Quooker' }] }}
-        logo={logo('Quooker')}
+        logo={logo('Quooker', 140)}
+        image={caseImage('quooker-1', 'wide')}
       />
       <Section Mode="Dark">
         <CaseIntro Device={Device} {...{ 'Meta position': 'Left' as const }} meta={CASE_INTRO.meta} lead={CASE_INTRO.lead} body={CASE_INTRO.body} />
-        <Media Layout="Contained" Device={Device} />
+        <Media Layout="Contained" Device={Device} image={caseImage('fairphone', 'wide')} />
         <SectionHeader Alignment="Centered" Device={Device} kicker={TWO_COLUMN.label} heading={TWO_COLUMN.lead} body={TWO_COLUMN.body.join('\n')} />
-        <Media Layout="Full bleed" Device={Device} />
+        <Media Layout="Full bleed" Device={Device} image={caseImage('fairphone', 'wide')} />
         <TextColumn Alignment="Centered" Device={Device} lead={TEXT_COLUMN.lead} body={TEXT_COLUMN.body} />
       </Section>
       <TextMedia
@@ -57,21 +59,22 @@ function WorkDetailPage({ Device }: { Device: Device }) {
         Theme="Dark"
         Split="6/6"
         {...{ 'Media position': 'Right' as const }}
+        image={abstract('009')}
         heading={'Global thinking,\nglobal understanding'}
         body="We’re a driven collective of over 270 specialists. Big enough to cover every digital discipline, yet close enough to truly understand the specifics of your business. Together, we create digital ecosystems that drive lasting growth."
       />
       <Section Mode="Dark">
-        <Testimonial Device={Device} image quotes={[{ Quote: '“Quote from the client goes here, ideally one or two sentences about the result.”', Name: 'Client name', Role: 'Role, company', logo: logo('Quooker') }]} /> {/* legacy-ok: the Figma template itself has this stand-in quote; reported in SYNC-REPORT.md */}
+        <Testimonial Device={Device} image={abstract('006')} quotes={[{ Quote: '“Quote from the client goes here, ideally one or two sentences about the result.”', Name: 'Client name', Role: 'Role, company', logo: logo('Quooker') }]} /> {/* legacy-ok: the Figma template itself has this stand-in quote; reported in SYNC-REPORT.md */}
         <StatsBlock
           Type="Plain"
           Device={Device}
           intro={{ kicker: 'The results', title: 'From the Netherlands and Belgium to the Nordics, Germany, the UK, Hong Kong and the United Arab Emirates.' }}
           stats={[{ Value: '17', Label: 'Markets supported' }, { Value: '110,000+', Label: 'Units sold every year' }]}
         />
-        <Media Layout="Two-up" Device={Device} />
+        <Media Layout="Two-up" Device={Device} image={caseImage('fairphone')} image2={caseImage('g-star')} />
         <CaseCarousel Layout="Scroll" Device={Device} Kicker="Proven in practice" Title="Related work" button={{ label: 'All cases', href: '#' }} cases={RELATED} />
       </Section>
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} image={abstract('005')} />
       {footer(Device)}
     </Page>
   );

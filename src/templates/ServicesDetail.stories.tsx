@@ -12,6 +12,7 @@ import { TechnologyLogos } from '../components/components/TechnologyLogos/Techno
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { Mode } from '../components/shared/ModeFrame';
 import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { abstract, caseImage, clientPhoto } from '../media/media';
 
 /*
   Templates/Services detail (B2B Enterprise Commerce) — Figma "Page / Services detail": Desktop 26875:18627,
@@ -70,7 +71,7 @@ const RELATED: [string, string, string][] = [
   ['03 · Data & Integrations', 'Data Engineering & API', 'Pipelines, APIs and the integration layer.'],
   ['03 · Data & Integrations', 'ACI Weave', 'Our own platform for governed AI agents on your systems.'],
 ];
-const TECH = ['Adobe', 'Hyvä', 'Commercetools', 'Shopify', 'Pimcore', 'Alumio', 'Symson', 'Storyblok'].map((name) => ({ name }));
+const TECH = ['Adobe', 'Hyvä', 'Commercetools', 'Shopify', 'Pimcore', 'Alumio', 'Symson', 'Storyblok'].map((name) => ({ name, logo: logo(name, 110) }));
 
 const fc = (p: FeatureCardProps) => <FeatureCard key={p.Title} {...p} />;
 type Flush = 'top' | 'bottom' | 'both';
@@ -78,14 +79,14 @@ const grid = (Mode: Mode, props: Omit<CardGridProps, 'cells'> & { cells: ReactNo
 const num = (i: number) => String(i + 1).padStart(2, '0');
 
 const UNIPART = (Device: Device, Size: 'Two thirds' | 'One third') => (
-  <CaseCard key="unipart" Size={Size} Device={Device} Title="A Magento platform for motorists and partner garages, linked to SAP" Client="Unipart Autoparts" logo={logo('Unipart Autoparts')} stat={{ value: '75%', label: 'Increase in online orders' }} tags={['Automotive', 'Magento · SAP']} href="#" />
+  <CaseCard key="unipart" Size={Size} Device={Device} Title="A Magento platform for motorists and partner garages, linked to SAP" Client="Unipart Autoparts" logo={logo('Unipart Autoparts')} stat={{ value: '75%', label: 'Increase in online orders' }} tags={['Automotive', 'Magento · SAP']} image={caseImage('unipart', Size === 'Two thirds' ? 'wide' : 'portrait')} href="#" />
 );
 const UNIPART_QUOTE = <QuoteCard key="quote" Quote="“Garage owners can easily search parts, have a look at the available stock and spread out their ordering throughout the day.”" Name="James Billington" Role="eCommerce Consultant, Unipart Autoparts" />;
 
 function Shared({ Device }: { Device: Device }) {
   return (
     <>
-      {grid('Dark', { Layout: '4 columns', Device, cells: MORE_CASES.map(([Title, Client]) => <CaseCard key={Title} Size="One quarter" Device={Device} Title={Title} Client={Client} logo={logo(Client)} href="#" />) }, 'top')}
+      {grid('Dark', { Layout: '4 columns', Device, cells: MORE_CASES.map(([Title, Client]) => <CaseCard key={Title} Size="One quarter" Device={Device} Title={Title} Client={Client} logo={logo(Client)} image={clientPhoto(Client)} href="#" />) }, 'top')}
       <Section Mode="Light">
         <TechnologyLogos Layout="Grid 4" Device={Device} Title="Platforms we build B2B on." logos={TECH} />
       </Section>
@@ -107,7 +108,7 @@ function Body({ Device }: { Device: Device }) {
       {grid('Light', {
         Layout: 'Feature + 4', Device,
         intro: { Layout: 'Split', Kicker: 'What we build', Title: 'B2B commerce building blocks', Body: 'Open a tile for the detail and the client it runs for.' },
-        cells: BLOCKS.slice(0, 5).map(([Title, Description], i) => fc({ Variant: 'Card', Title, Description, 'Show arrow': true, image: i === 0 || undefined, link: i === 2 ? { label: 'View case study', href: '#' } : undefined })),
+        cells: BLOCKS.slice(0, 5).map(([Title, Description], i) => fc({ Variant: 'Card', Title, Description, 'Show arrow': true, image: i === 0 ? caseImage('bunzl') : undefined, link: i === 2 ? { label: 'View case study', href: '#' } : undefined })),
       }, 'bottom')}
       {grid('Light', { Layout: '3 columns', Device, cells: BLOCKS.slice(5).map(([Title, Description]) => fc({ Variant: 'Card', Title, Description, 'Show arrow': true })) }, 'top')}
       {grid('Dark', {
@@ -131,6 +132,7 @@ function ServicesDetailPage({ Device }: { Device: Device }) {
     <Page Device={Device}>
       <Hero
         Device={Device}
+        image={abstract('008')}
         title={['B2B commerce, built', 'for how buyers order.']}
         body="B2B commerce for manufacturers, wholesalers and distributors: accounts, contract pricing, quotes, reorders, dealer portals and ERP and PIM integration."
         label={{ Type: 'Breadcrumb', crumbs: [{ label: 'Home', href: '#' }, { label: 'Services', href: '#' }, { label: 'B2B Enterprise Commerce' }] }}
@@ -139,7 +141,7 @@ function ServicesDetailPage({ Device }: { Device: Device }) {
         header={header(Device)}
       />
       <Body Device={Device} />
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} image={abstract('005')} />
       {footer(Device)}
     </Page>
   );

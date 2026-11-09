@@ -2,12 +2,13 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { CaseCard, CaseStat, type CaseCardSize, type CaseStatProps } from './CaseCard';
 import { ClientLogo } from '../../logos/ClientLogo';
 import { ModeFrame, type Mode } from '../../shared/ModeFrame';
+import { caseImage } from '../../../media/media';
 
 /*
   Case Card — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24984-520
   _Case Card/Stat — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26708-88
   Titles, clients and stats from the Figma Case carousel and "Case Card — stat options".
-  Case photos are not in the repo yet (see SYNC-REPORT.md), so the image shows the Figma placeholder.
+  Case photo and logo exported from Figma (src/media).
 */
 
 type State = 'Rest' | 'Hover';
@@ -19,6 +20,7 @@ const GSTAR = {
   Title: 'How a Design System strengthened G-Star’s brand consistency',
   Client: 'G-Star RAW',
   logo: <ClientLogo name="G-Star" />,
+  image: caseImage('g-star'),
   stat: { Type: 'Single', value: '+43%', label: 'marketable catalog uplift' } as CaseStatProps,
   tags: ['Design System', 'Commerce'],
   'Hover context': 'How G-Star kept its brand consistent',

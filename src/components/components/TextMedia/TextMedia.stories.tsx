@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { TextMedia, type TextMediaProps } from './TextMedia';
+import { abstract } from '../../../media/media';
 
 /* Content blocks/Text + media — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24985-702 (Figma copy; image placeholder) */
 
 const COPY = {
+  image: abstract('009'),
   heading: 'Global thinking,\nglobal understanding',
   body: 'We’re a driven collective of over 270 specialists. Big enough to cover every digital discipline, yet close enough to truly understand the specifics of your business. Together, we create digital ecosystems that drive lasting growth.',
 };

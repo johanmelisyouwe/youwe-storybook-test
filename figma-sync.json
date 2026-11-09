@@ -1142,7 +1142,7 @@
         "src/components/components/AccordionList/AccordionList.css",
         "src/components/shared/block.css",
         "src/components/shared/ModeFrame.tsx",
-        "src/components/components/BuildYourStack/buildYourStack.copy.ts"
+        "src/components/components/BuildYourStack/buildYourStack.copy.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "17xlig1",
