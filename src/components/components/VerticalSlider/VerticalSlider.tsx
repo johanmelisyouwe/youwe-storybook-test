@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button } from '../Button/Button';
 import { CardMedia } from '../../shared/CardMedia';
 import '../../shared/focus-ring.css';
+import '../../shared/block.css';
 import './VerticalSlider.css';
 
 /*
