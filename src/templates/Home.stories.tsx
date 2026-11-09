@@ -6,19 +6,21 @@ import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel
 import { TechnologyLogos } from '../components/components/TechnologyLogos/TechnologyLogos';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
-import { NotAComponent, OFFICES, Page, Section, YOUWE_SITEMAP, footer, header, logo, type Device } from './shared';
+import { NotAComponent, Page, Section, footer, header, logo, type Device } from './shared';
 
 /*
   Templates/Home — Figma "Page / Home": Desktop 26584:5280, Mobile 26805:3646. Copy, props and order from
   figma/templates.js. Images are placeholders (not imported yet).
-  Vertical slider "What we do": Figma only fills chapter 1; chapters 2 and 3 use the practice copy from the
-  Services template. "In their words": Figma has one quote; the other chapters show "Quote to follow".
+  Vertical slider "What we do": Figma only fills chapter 1; chapters 2 and 3 use the copy from the v2 site
+  screenshots (titles, bodies, pills), with the Figma index labels. "In their words": Figma has one quote; the
+  other chapters show "Quote to follow" until the copy is supplied.
+  Sub-footer and footer: the desktop copy is the correct one (decided 9 November) and is used on mobile too.
 */
 
 const HERO_LOGOS = ['Exigent', 'G-Star', 'GoCardless', 'ING', 'LaSalle', 'Munich Re', 'Newland', 'Subway'].map((n) => logo(n, 118));
 
-const practice = (n: string, name: string, body: string, pills: string[]): SlideData => ({
-  Type: 'Service', eyebrow: `${n} · ${name}`, Title: name, body, pills, button: { label: `Explore ${name}`, href: '#' },
+const practice = (n: string, name: string, Title: string, body: string, pills: string[]): SlideData => ({
+  Type: 'Service', eyebrow: `${n} · ${name}`, Title, body, pills, button: { label: `Explore ${name}`, href: '#' },
 });
 const WHAT_WE_DO: VerticalSliderProps['items'] = [
   {
@@ -32,13 +34,15 @@ const WHAT_WE_DO: VerticalSliderProps['items'] = [
   },
   {
     label: 'Operational Optimization & Intelligence',
-    slide: practice('02', 'Operational Optimization & Intelligence', 'We help businesses improve how they operate, from faster processes to stronger profitability.',
+    slide: practice('02', 'Operational Optimization & Intelligence', 'Keep it running.',
+      'AI agents, process mining and pricing tools that take repeat work off your teams. We automate the steps worth automating, and people approve the ones that matter.',
       ['Pricing Intelligence', 'Agentic AI', 'AI Process Intelligence', 'Contract & Supply Chain', 'Product Lifecycle Management (PLM)', 'Sustainability & ESG']),
   },
   {
     label: 'Foundation for Data & Integrations',
-    slide: practice('03', 'Foundation for Data & Integrations', 'We help businesses build strong data and integration foundations that enable growth at scale.',
-      ['Enterprise Data Architecture', 'Data Compliance & Security', 'Data Engineering & API', 'AI & Analytics', 'ACI Weave']),
+    slide: practice('03', 'Foundation for Data & Integrations', 'Connect it.',
+      'Data architecture, APIs and governance, so your platforms, processes and AI all work from the same data.',
+      ['Enterprise Data Architecture', 'Data Compliance & Security', 'Data Engineering & API', 'AI & Analytics']),
   },
 ];
 const quote = (client: string): SlideData => ({ Type: 'Quote', quote: '“Quote to follow.”', name: client, button: { label: 'Read the case', href: '#' } });
@@ -70,11 +74,8 @@ const CASES: CaseCardProps[] = [
 
 const TECH = ['Pimcore', 'Adobe', 'Commercetools', 'HubSpot', 'Shopify', 'Hyvä', 'Alumio', 'Storyblok', 'Drupal', 'Symson', 'AWS', 'ACI Weave'].map((name) => ({ name }));
 
-/* The sub-footer copy differs between the Figma desktop and mobile templates. */
-const SUB_FOOTER = {
-  Desktop: { title: 'Work with us', body: 'Tell us what you want to achieve and we will think along with you.', primary: { label: 'Get in touch', href: '#' }, offices: ['Rotterdam', 'Groningen', 'London', 'Shrewsbury', 'Leeds', 'Stockholm', 'Kyiv', 'Bandung'] },
-  Mobile: { title: 'Where does growth get stuck?', body: 'Tell us where orders, product data or processes slow you down. We’ll come back with an honest view of what to fix first.', primary: { label: 'Get in touch', href: '#' }, secondary: { label: 'See our work', href: '#' }, offices: OFFICES },
-};
+/* Desktop sub-footer copy, also on mobile (the Figma mobile frame still has older copy). */
+const SUB_FOOTER = { title: 'Work with us', body: 'Tell us what you want to achieve and we will think along with you.', primary: { label: 'Get in touch', href: '#' }, offices: ['Rotterdam', 'Groningen', 'London', 'Shrewsbury', 'Leeds', 'Stockholm', 'Kyiv', 'Bandung'] };
 
 function HomePage({ Device }: { Device: Device }) {
   const mobile = Device === 'Mobile';
@@ -107,8 +108,8 @@ function HomePage({ Device }: { Device: Device }) {
       <Section Mode="Light">
         <TechnologyLogos Layout="Default" Device={Device} Title="The technology we build on" Body="We pick the platform that fits your business, then connect it to the rest of your landscape." rows={['We pick the platforms', 'that fit your business']} logos={TECH} button={{ label: 'All tech partners', href: '#' }} />
       </Section>
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...SUB_FOOTER[Device]} />
-      {footer(Device, mobile ? YOUWE_SITEMAP : undefined)}
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...SUB_FOOTER} />
+      {footer(Device)}
     </Page>
   );
 }

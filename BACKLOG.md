@@ -13,3 +13,6 @@ Work agreed with the team that is not part of a sync batch yet. Newest first.
 | Breadcrumbs: back button variant | The desktop Breadcrumbs need a back button variant. The Figma property "Show back button" exists but is not connected to a layer. Design adds the variant, then we build it. | Waiting for Figma |
 | Breadcrumb link: Hover state in Figma | Built in code (text to `content/primary`, `duration/fast`). Design to add State=Hover to `_breadcrumb-link` so Figma and code match. | Waiting for Figma |
 | Action List Item copy | Stand-in copy is fine for now (decided 2026-11-09). | Won't do for now |
+- **ACI Weave section (Home)**: hand-built frame in Figma (videos + Ask Youwe snippet). Make it a component so the Home template can use it instead of the placeholder.
+- **Client quotes (Home "In their words")**: copy for Chadwicks Group, Thomas Telford and Symson to follow (screenshots from Johan).
+- **Home mobile frame in Figma**: sub-footer copy and the footer's Youwe links still differ from desktop (desktop is correct).

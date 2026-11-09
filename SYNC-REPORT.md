@@ -15,7 +15,7 @@ How they were built:
 - Every section is the real component with the props, copy and nested items from `figma/templates.js`, in the Figma order, without extra spacing between blocks. Dark and light sections follow the Figma Mode per block.
 - **Home**: Hero (client logos bar), Vertical slider "What we do" (dark, background image), Stats (client, light), Case carousel (Scroll, the eight Figma cases), Vertical slider "In their words" (light, Index left), ACI Weave section (placeholder), Technology logos (Default, twelve logos), Contact CTA (sub-footer background) and Footer.
 - **Services**: Hero (stats bar), three Services splits (dark / light / dark) with their Service Cards and Ask Youwe snippets, Case carousel (Full width 3), Contact CTA and Footer.
-- Desktop and mobile take their own copy where Figma differs. For example, the Home sub-footer is "Work with us" on desktop and "Where does growth get stuck?" on mobile, the mobile Services practices have longer descriptions and a second snippet, and the footer's Youwe links differ per frame.
+- Desktop and mobile take their own copy where Figma differs on purpose (the mobile Services practices have longer descriptions and a second snippet). On Home, the desktop sub-footer and footer copy is correct (decided 9 November) and is used on mobile too; the Figma mobile frame is on BACKLOG.md.
 - Shared template pieces (header, footer columns, Mode sections, placeholder) are in `src/templates/shared.tsx`.
 - **Kit fix**: `figma/templates.js` failed when a slot held a bare text node; it now reads those too.
 
@@ -34,17 +34,16 @@ Visual comparison (full-page capture vs Figma at 1440 / 360):
 ## Could not match exactly
 
 - **Images and logos** are placeholders (not imported yet).
-- **Vertical slider "What we do"**: Figma only fills chapter 1. Chapters 2 and 3 use the practice name, intro and services from the Services template.
-- **Vertical slider "In their words"**: Figma has one quote (BunzlOne). Chadwicks Group, Thomas Telford and Symson show "Quote to follow".
+- **Vertical slider "What we do"**: Figma only fills chapter 1. Chapters 2 and 3 use the copy from the v2 site screenshots ("Keep it running.", "Connect it.") with the Figma index labels and order. The v2 site uses shorter labels (Data & integrations, Operations & AI) and puts Data second.
+- **Vertical slider "In their words"**: Figma has one quote (BunzlOne). Chadwicks Group, Thomas Telford and Symson show "Quote to follow" until the copy arrives.
 - **Sliders are not pinned** in the templates, so the page height matches Figma. The pinned scroll behaviour is in Content blocks/Vertical slider → Pinned.
 - **ACI Weave section** (Home) is a hand-built frame in Figma: shown as a placeholder with the Figma height.
 
 ## Open questions for the design team
 
-1. ACI Weave section on Home: make it a component (Text + media with videos and a snippet?) so the template can use it.
-2. Copy for "What we do" chapters 2–3 and the three missing client quotes.
-3. Should the Home sub-footer and the footer's Youwe links be the same on desktop and mobile? They differ in Figma now.
-4. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+Decisions (9 November): ACI Weave section → BACKLOG.md; chapter copy from the v2 site screenshots; quotes to follow; Home desktop copy is correct.
+
+1. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
