@@ -798,6 +798,9 @@
   "--motion-ease-linear": {
     "Value": "linear"
   },
+  "--motion-distance-xs": {
+    "Value": "4px"
+  },
   "--motion-distance-sm": {
     "Value": "8px"
   },
