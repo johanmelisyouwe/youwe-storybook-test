@@ -9,30 +9,18 @@ import { Testimonial } from '../components/components/Testimonial/Testimonial';
 import { StatsBlock } from '../components/components/StatsBlock/StatsBlock';
 import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
+import { CASE_INTRO, TEXT_COLUMN, TWO_COLUMN } from '../components/components/TextColumn/longform.copy';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
 import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
 
 /*
   Templates/Work detail — Figma "Page / Work detail": Desktop 26829:20476, Mobile 26924:2198. Copy, props
   and order from figma/templates.js. The header is its own section (Header/Corporate); the hero is
-  Title + image. Note: Figma pairs the Quooker title with the JC-Electronics case copy, and the
-  Testimonial in the Figma template still has stand-in quote copy (reported). Sub-footer: the
+  Title + image. Figma pairs the Quooker title with JC-Electronics body copy; the template shows Quooker
+  throughout (decided 9 November), using the Quooker case copy from the Figma long-form components. The
+  Testimonial keeps the stand-in quote from the Figma template (decided 9 November). Sub-footer: the
   desktop copy on both devices.
 */
-
-const META = [
-  { label: 'Platforms', value: 'Full Hyvä Suite: Hyvä Theme, Hyvä Enterprise, Hyvä Checkout.\nAdobe Commerce: Adobe Commerce for B2B\nModule by JCE: Exact Order Synchronisation to Magento' },
-  { label: 'Role', value: 'Strategy, UX Research & Design, Implementation in collaboration with development at JC-Electronics' },
-  { label: 'Solution', value: 'Youwe\'s solution involved creating a personalized dashboard within the My Account portal, leveraging Hyvä, to enhance B2B user engagement by centralizing user needs. Additionally, improvements were made to the Product Detail Page (PDP) and checkout process to further boost user engagement.' },
-];
-const LEAD = 'JC-Electronics are a world player in the industrial electronics industry. Discover how they improved their online sales channel by being the first webshop ever implementing the entire Hyvä Suite. From accelerated page loading times to enhanced user experiences, learn how this partnership with Youwe propelled JC-Electronics into a new era of digital commerce.';
-const BODY = [
-  'JC-Electronics boasts a robust history in supplying intricate electronic devices to factories worldwide. Previously, Youwe have helped JC-Electronics with establishing an online sales channel alongside its existing distributor model ( read all about it here). They embraced a Magento Commerce Cloud shop, enabling direct international sales to end-users.',
-  'This move ushered in a new revenue stream, significantly increasing online sales and affording the back-office and sales departments more time for client service and relationship maintenance, as orders transitioned from phone-based to online platforms.',
-  'While some clients continued traditional ordering methods, the focus shifted towards enhancing traction on the my-account portal to bolster online orders, reducing the need for manual order processing by account managers.',
-  'Recognizing the significance of digitalization in enhancing service delivery, JC-Electronics embarked on improving the my-account portal, followed by enhancements to the checkout and Product Detail Page (PDP). After immersive design workshop sessions, implementing the complete Hyvä suite turned out to be the optimal solution for streamlining the sales flow.',
-];
-const HYVA = 'Hyvä simplifies complexity by significantly reducing the required code. While a standard Magento theme loads over 1.5 megabytes, Hyvä loads only 0.2 megabytes. This reduction in the amount of shipped code to the user, enhances overall performance by minimizing user load times.\nThe implementation of Hyvä was executed gradually, offering a smoother development process compared to the previous Luma theme. Its fallback system facilitated phased implementation. The frontend transition prioritized the creation of an immersive, personalized dashboard within the my-account portal, serving as a centralized hub for user needs.';
 
 const c = (Title: string, Client: string, stat?: [string, string]): CaseCardProps => ({ Title, Client, logo: logo(Client), stat: stat && { value: stat[0], label: stat[1] }, href: '#' });
 const RELATED: CaseCardProps[] = [
@@ -58,16 +46,11 @@ function WorkDetailPage({ Device }: { Device: Device }) {
         logo={logo('Quooker')}
       />
       <Section Mode="Dark">
-        <CaseIntro Device={Device} {...{ 'Meta position': 'Left' as const }} meta={META} lead={LEAD} body={BODY} />
+        <CaseIntro Device={Device} {...{ 'Meta position': 'Left' as const }} meta={CASE_INTRO.meta} lead={CASE_INTRO.lead} body={CASE_INTRO.body} />
         <Media Layout="Contained" Device={Device} />
-        <SectionHeader Alignment="Centered" Device={Device} heading="Implementing Hyvä for the my-account portal" body={HYVA} />
+        <SectionHeader Alignment="Centered" Device={Device} kicker={TWO_COLUMN.label} heading={TWO_COLUMN.lead} body={TWO_COLUMN.body.join('\n')} />
         <Media Layout="Full bleed" Device={Device} />
-        <TextColumn
-          Alignment="Centered"
-          Device={Device}
-          lead="To enhance the sales channel, it was essential to improve the usability of the my-account portal. As a result, we conducted a series of design workshop sessions centered on optimizing the User Experience of the portal."
-          body={['These sessions yielded numerous enhancements aimed at transforming the my-account section into a more personalized and user-friendly portal. The proposed redesign emphasized improved navigation, simplified access to primary tasks, streamlined order processes, loyalty incentives, support requests, and more.']}
-        />
+        <TextColumn Alignment="Centered" Device={Device} lead={TEXT_COLUMN.lead} body={TEXT_COLUMN.body} />
       </Section>
       <TextMedia
         Device={Device}
@@ -82,8 +65,8 @@ function WorkDetailPage({ Device }: { Device: Device }) {
         <StatsBlock
           Type="Plain"
           Device={Device}
-          intro={{ kicker: 'The results', title: 'Choosing Hyvä, renowned for its strong performance on core web vitals and developer-friendly nature, was a natural fit to implement these changes effectively.' }}
-          stats={[{ Value: '4.5x', Label: 'Faster PDP Loading Time' }, { Value: '5.7x', Label: 'Faster Checkout Full Page Load' }]}
+          intro={{ kicker: 'The results', title: 'From the Netherlands and Belgium to the Nordics, Germany, the UK, Hong Kong and the United Arab Emirates.' }}
+          stats={[{ Value: '17', Label: 'Markets supported' }, { Value: '110,000+', Label: 'Units sold every year' }]}
         />
         <Media Layout="Two-up" Device={Device} />
         <CaseCarousel Layout="Scroll" Device={Device} Kicker="Proven in practice" Title="Related work" button={{ label: 'All cases', href: '#' }} cases={RELATED} />

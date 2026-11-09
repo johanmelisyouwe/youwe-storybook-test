@@ -18,7 +18,7 @@ Batch 10 decisions: ACI Weave section on BACKLOG.md; "What we do" chapters use t
 How they were built (real components, Figma props, copy and order; no extra spacing between blocks):
 - **About Us**: Hero (no bar), Card grid with the three System Cards, Stats (Plain), Offices with live clocks, Leadership, then "Trusted by industry leaders": Stats intro, the client logo bar, Stats with three client stats and Awards. Then Contact CTA and Footer.
 - **Work**: Hero, the "Our work" wrapper (Section intro Split + Filter bar, eCommerce selected on desktop), Card grid with the nine tagged Case Cards, Contact CTA and Footer.
-- **Work detail**: Header as its own section, Hero Title + image with breadcrumb and client logo, Case intro, Media (Contained), Section header (centered), Media (Full bleed), Text column, Text + media, Testimonial, Stats (results), Media (Two-up), Case carousel "Related work", Contact CTA and Footer.
+- **Work detail** (Quooker throughout, decided 9 November): Header as its own section, Hero Title + image with breadcrumb and client logo, Case intro, Media (Contained), Section header (centered), Media (Full bleed), Text column, Text + media, Testimonial, Stats (results), Media (Two-up), Case carousel "Related work", Contact CTA and Footer.
 - **Sub-footer**: the desktop "Work with us" copy on both devices (shared as `WORK_WITH_US` in `src/templates/shared.tsx`). The mobile frames have different copy ("It might just be the best decision you make.", "Your system could be next.", "Could this be your system?").
 
 Visual comparison (full-page capture vs Figma at 1440 / 360): every template compared. Fixed in this run:
@@ -40,6 +40,10 @@ Heights are close (About 6390 vs 6482, Work 4604 vs 4575, Work detail 10082 vs 1
 - **Images and logos** are placeholders (not imported yet).
 - **Filter options** (Work) are not in Figma; the dropdowns show "All" with example options.
 
+## Work detail: Quooker copy
+
+Figma pairs the Quooker hero with JC-Electronics body copy. The template now uses the Quooker case copy from the Figma long-form components (Case intro, Two-column text → Section header, Text column). The results block is built from those facts: "The results" with 17 markets supported and 110,000+ units a year. The Figma template frame itself still has the JC-Electronics copy. The Testimonial keeps the stand-in quote (decided 9 November).
+
 ## Found in Figma
 
 - **Work detail**: the hero is the Quooker case ("Scaling Smart: Quooker’s Expansion to 17 Countries"), while the case intro and section copy are JC-Electronics.
@@ -48,8 +52,7 @@ Heights are close (About 6390 vs 6482, Work 4604 vs 4575, Work detail 10082 vs 1
 
 ## Open questions for the design team
 
-1. Which case should the Work detail template show: Quooker (hero) or JC-Electronics (body)? And the real testimonial for it.
-2. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
