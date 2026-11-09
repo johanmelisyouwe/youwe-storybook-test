@@ -9,8 +9,8 @@
   }
 
   body {
-    background: var(--surface-base-1);
-    color: var(--content-primary);
+    background: var(--color-shared-surface-base-1);
+    color: var(--color-shared-content-primary);
     font-family: var(--font-family-body);
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-body-md);

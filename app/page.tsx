@@ -3,9 +3,9 @@
 export default function Home() {
   return (
     <main className="container" style={{ paddingBlock: 'var(--layout-section-padding)' }}>
-      <p className="text-body-sm-med" style={{ color: 'var(--content-brand)' }}>Youwe</p>
-      <h1 className="text-heading-2xl">Design system test project</h1>
-      <p className="text-body-lg-reg" style={{ color: 'var(--content-secondary)', marginTop: 'var(--space-lg)' }}>
+      <p className="yw-body-sm-med" style={{ color: 'var(--color-shared-content-brand)' }}>Youwe</p>
+      <h1 className="yw-heading-2xl">Design system test project</h1>
+      <p className="yw-body-lg-reg" style={{ color: 'var(--color-shared-content-secondary)', marginTop: 'var(--spacing-lg)' }}>
         Components live in Storybook (npm run storybook). Pages will be built from them.
       </p>
     </main>

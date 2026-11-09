@@ -31,7 +31,7 @@ const preview: Preview = {
         document.documentElement.setAttribute('data-theme', theme);
       }
       return (
-        <div data-theme={theme} style={{ background: 'var(--surface-base-1)', color: 'var(--content-primary)', minHeight: '100%' }}>
+        <div data-theme={theme} style={{ background: 'var(--color-shared-surface-base-1)', color: 'var(--color-shared-content-primary)', minHeight: '100%' }}>
           <Story />
         </div>
       );

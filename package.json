@@ -7,10 +7,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "tokens": "node scripts/build-tokens.mjs",
+    "tokens": "node scripts/build-tokens.mjs tokens/figma-variables.json src/tokens",
     "storybook": "npm run tokens && storybook dev -p 6006",
     "build-storybook": "npm run tokens && storybook build -o storybook-static",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check": "node scripts/check-legacy.mjs && node scripts/check-coverage.mjs"
   },
   "dependencies": {
     "next": "16.4.5",

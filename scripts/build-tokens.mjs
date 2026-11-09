@@ -1,128 +1,139 @@
 #!/usr/bin/env node
-// Turns tokens/figma-variables.json (exported from Figma, the source of truth)
-// into src/styles/tokens.css (CSS custom properties + text style classes).
-// Never edit tokens.css by hand: re-export from Figma and run `npm run tokens`.
-import { readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+// Builds CSS custom properties from tokens/figma-variables.json (exported from Figma).
+// Deterministic: same input → same output. No network, no dependencies (Node 18+).
+//
+//   node scripts/build-tokens.mjs [input] [outDir]
+//   defaults: tokens/figma-variables.json → src/tokens/
+//
+// Writes:
+//   tokens.css          custom properties, modes, text-style classes, reduced motion
+//   tokens.resolved.json every token with its final value per mode (for docs / Storybook)
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const src = JSON.parse(readFileSync(resolve(root, 'tokens/figma-variables.json'), 'utf8'));
-const C = src.collections;
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 
-const slug = (s) => s.replace(/[/\s:]+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').replace(/-+/g, '-').toLowerCase();
+const input = process.argv[2] || 'tokens/figma-variables.json';
+const outDir = process.argv[3] || 'src/tokens';
+const src = JSON.parse(readFileSync(input, 'utf8'));
 
-// Figma variable name -> CSS custom property name, per collection.
-const naming = {
-  color_primitives: (n) => `--color-${slug(n)}`,
-  color_semantics: (n) => `--${slug(n.replace(/^shared\//, ''))}`,
-  spacing: (n) => `--space-${slug(n)}`,
-  font_semantics: (n) => `--font-size-${slug(n)}`,
-  font_primitives: (n) => `--font-${slug(n)}`,
-  border: (n) => `--${slug(n.replace(/^shared\//, '').replace(/^component\/radius\//, 'radius/').replace(/^width\//, 'border-width/'))}`,
-  layout: (n) => `--layout-${slug(n)}`,
-  motion: (n) => `--motion-${slug(n)}`,
+// ---- Naming: Figma collection → CSS prefix (matches the website kit names) ----
+const PREFIX = {
+  color_primitives: 'color',
+  color_semantics: 'color',
+  spacing: 'spacing',
+  font_semantics: 'font-size',
+  font_primitives: 'font',
+  border: '',           // names already start with shared/… or component/…
+  layout: 'layout',
+  motion: 'motion',
+};
+// ---- Modes: which Figma mode is the default, and how the others apply ----
+const MODES = {
+  color_semantics: { default: 'dark', selectors: { dark: '[data-theme="dark"]', light: '[data-theme="light"]' } },
+  font_semantics: { default: 'desktop', media: { tablet: '(max-width: 1023px)', mobile: '(max-width: 767px)' } },
+  layout: { default: 'desktop-md', media: { 'desktop-lg': '(min-width: 1920px)', tablet: '(max-width: 1023px)', mobile: '(max-width: 767px)' } },
+};
+const WEIGHT = { Thin: 100, Light: 300, Regular: 400, Medium: 500, 'Semi Bold': 600, SemiBold: 600, Bold: 700, Black: 900 };
+const UNITLESS = new Set(['font_primitives']);
+
+const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const cssName = (col, name) => {
+  const p = PREFIX[col] ?? slug(col);
+  return '--' + [p, slug(name)].filter(Boolean).join('-');
+};
+const isAlias = (v) => typeof v === 'string' && /^\{[^}]+\}$/.test(v);
+const aliasTarget = (v) => {
+  const inner = v.slice(1, -1);
+  const i = inner.indexOf('.');
+  return { col: inner.slice(0, i), name: inner.slice(i + 1) };
 };
 
-// Skip tokens that Figma marks as internal.
-const skip = (n) => /_hack|^_browserUI/.test(n);
-
-// Index every variable name -> css var, to resolve {aliases}.
-const index = {};
-for (const [col, { vars }] of Object.entries(C)) {
-  for (const name of Object.keys(vars)) if (!index[name]) index[name] = naming[col](name);
-}
-
-const weights = { Regular: 400, Medium: 500, Bold: 700 };
-const unitFor = (col, name) => {
-  if (col === 'motion' && name.startsWith('duration')) return 'ms';
-  if (col === 'motion' && name.startsWith('ease')) return '';
-  if (col === 'font_primitives') return '';
-  return 'px';
-};
-const fmt = (col, name, type, v) => {
-  if (typeof v === 'string' && /^\{.+\}$/.test(v)) {
-    const ref = v.slice(1, -1);
-    if (!index[ref]) throw new Error(`Unresolved alias {${ref}} in ${col}/${name}`);
-    return `var(${index[ref]})`;
+const fmt = (col, name, v) => {
+  if (v === null || v === undefined) return null;
+  if (isAlias(v)) { const t = aliasTarget(v); return `var(${cssName(t.col, t.name)})`; }
+  if (typeof v === 'number') {
+    if (col === 'motion') return name.startsWith('duration') || name === 'stagger' ? `${v}ms` : `${v}px`;
+    if (col === 'layout' && name === 'breakpoint') return `${v}px`;
+    if (UNITLESS.has(col)) return String(v);
+    return `${v}px`;
   }
-  if (type === 'C') return v;
-  if (col === 'font_primitives' && name.startsWith('weight')) return weights[v] ?? v;
-  if (col === 'font_primitives' && name.startsWith('family')) return `"${v}", "aktiv-grotesk", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif`;
-  if (typeof v === 'number') return v === 0 ? '0' : `${v}${unitFor(col, name)}`;
-  return v;
+  if (col === 'font_primitives' && name.startsWith('weight/')) return String(WEIGHT[v] ?? v);
+  if (col === 'font_primitives' && name.startsWith('family/')) return `'${v}', '${slug(v)}', system-ui, sans-serif`; // second name = Adobe Fonts / Typekit family id (e.g. aktiv-grotesk)
+  return String(v);
 };
 
-const block = (sel, lines) => (lines.length ? `${sel} {\n${lines.map((l) => `  ${l}`).join('\n')}\n}\n` : '');
-const decls = (col, modeIdx) =>
-  Object.entries(C[col].vars)
-    .filter(([n]) => !skip(n))
-    .map(([n, [type, ...vals]]) => `${naming[col](n)}: ${fmt(col, n, type, vals[modeIdx] ?? vals[0])};`);
+// ---- Build blocks ----
+const root = [];                       // :root default values
+const sel = {};                        // selector → lines
+const media = {};                      // media query → lines
+const resolved = {};
+const add = (bucket, key, line) => { (bucket[key] = bucket[key] || []).push(line); };
 
-let css = `/* GENERATED by scripts/build-tokens.mjs from tokens/figma-variables.json. Do not edit. */\n@layer tokens {\n`;
-
-// Single-mode collections
-const single = ['color_primitives', 'spacing', 'border', 'font_primitives', 'motion'];
-css += block(':root', single.flatMap((c) => decls(c, 0)));
-
-// Colour themes: dark is the default (Figma default mode), light via data-theme
-const sm = C.color_semantics.modes;
-css += block(':root,\n[data-theme="dark"]', decls('color_semantics', sm.indexOf('dark')));
-css += block('[data-theme="light"]', decls('color_semantics', sm.indexOf('light')));
-
-// Responsive collections. Figma modes -> breakpoints.
-const lm = C.layout.modes; // desktop-lg, desktop-md, tablet, mobile
-const fm = C.font_semantics.modes; // desktop, tablet, mobile
-css += block(':root', [...decls('layout', lm.indexOf('desktop-md')), ...decls('font_semantics', fm.indexOf('desktop'))]);
-css += `@media (min-width: 1920px) {\n${block(':root', decls('layout', lm.indexOf('desktop-lg')))}}\n`;
-css += `@media (max-width: 1279px) {\n${block(':root', [...decls('layout', lm.indexOf('tablet')), ...decls('font_semantics', fm.indexOf('tablet'))])}}\n`;
-css += `@media (max-width: 767px) {\n${block(':root', [...decls('layout', lm.indexOf('mobile')), ...decls('font_semantics', fm.indexOf('mobile'))])}}\n`;
-
-// Effects -> shadow / blur tokens
-const fx = src.effects.map(([name, effects]) => {
-  const shadows = effects.filter((e) => e.t === 'DROP_SHADOW' || e.t === 'INNER_SHADOW')
-    .map((e) => `${e.t === 'INNER_SHADOW' ? 'inset ' : ''}${e.x}px ${e.y}px ${e.b}px ${e.s}px ${e.c}`);
-  const blur = effects.find((e) => e.t === 'BACKGROUND_BLUR');
-  const out = [];
-  if (shadows.length) out.push(`--effect-${slug(name)}: ${shadows.join(', ')};`);
-  if (blur) out.push(`--effect-${slug(name)}-blur: ${blur.r}px;`);
-  return out;
-}).flat();
-css += block(':root', fx);
-css += `}\n\n`;
-
-// Text styles -> classes (.text-heading-xl, .text-body-md-reg ...)
-css += `@layer typography {\n`;
-for (const [name, , style, size, lh, ls, bound] of src.textStyles) {
-  const sizeVar = bound.fontSize ? `var(${index[bound.fontSize]})` : `${size}px`;
-  const family = bound.fontFamily ? `var(${index[bound.fontFamily]})` : 'inherit';
-  const weight = bound.fontStyle ? `var(${index[bound.fontStyle]})` : weights[style];
-  const letter = ls.endsWith('%') ? `${parseFloat(ls) / 100}em` : ls;
-  const line = lh === 'auto' ? 'normal' : lh.endsWith('%') ? String(Math.round(parseFloat(lh)) / 100) : lh;
-  css += block(`.text-${slug(name)}`, [
-    `font-family: ${family};`,
-    `font-weight: ${weight};`,
-    `font-size: ${sizeVar};`,
-    `line-height: ${line};`,
-    `letter-spacing: ${letter === '0px' ? '0' : letter};`,
-  ]);
+for (const [col, data] of Object.entries(src)) {
+  if (col.startsWith('_')) continue;
+  const m = MODES[col];
+  const modes = data.modes;
+  const defIdx = m ? Math.max(0, modes.indexOf(m.default)) : 0;
+  for (const [name, values] of Object.entries(data.vars)) {
+    const prop = cssName(col, name);
+    const def = fmt(col, name, values[defIdx]);
+    if (def !== null) root.push(`  ${prop}: ${def};`);
+    resolved[prop] = Object.fromEntries(modes.map((md, i) => [md, fmt(col, name, values[i])]));
+    if (!m) continue;
+    modes.forEach((md, i) => {
+      if (i === defIdx && !(m.selectors && m.selectors[md])) return;
+      const v = fmt(col, name, values[i]);
+      if (v === null) return;
+      if (m.selectors && m.selectors[md]) add(sel, m.selectors[md], `  ${prop}: ${v};`);
+      if (m.media && m.media[md]) add(media, m.media[md], `  ${prop}: ${v};`);
+    });
+  }
 }
-css += `}\n`;
 
-writeFileSync(resolve(root, 'src/styles/tokens.css'), css);
+// Effects → shadows / blur
+for (const s of src._effectStyles || []) {
+  const shadows = s.effects.filter((e) => e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW')
+    .map((e) => `${e.type === 'INNER_SHADOW' ? 'inset ' : ''}${e.offset?.x ?? 0}px ${e.offset?.y ?? 0}px ${e.radius ?? 0}px ${e.spread ?? 0}px ${e.color}`);
+  const blur = s.effects.find((e) => e.type === 'BACKGROUND_BLUR');
+  const base = '--effect-' + slug(s.name);
+  if (shadows.length) { root.push(`  ${base}-shadow: ${shadows.join(', ')};`); resolved[base + '-shadow'] = { Value: shadows.join(', ') }; }
+  if (blur) { root.push(`  ${base}-blur: ${blur.radius}px;`); resolved[base + '-blur'] = { Value: blur.radius + 'px' }; }
+}
 
-// Small machine-readable map for the Foundations stories
-const map = {
-  colors: {
-    primitives: Object.entries(C.color_primitives.vars).map(([n, [, v]]) => ({ name: n, css: index[n], value: v })),
-    semantic: Object.entries(C.color_semantics.vars).filter(([n]) => !skip(n)).map(([n, [, dark, light]]) => ({ name: n, css: naming.color_semantics(n), dark, light })),
-  },
-  spacing: Object.entries(C.spacing.vars).map(([n, [, v]]) => ({ name: n, css: index[n], value: v })),
-  radius: Object.entries(C.border.vars).filter(([n]) => n.includes('radius')).map(([n, [, v]]) => ({ name: n, css: naming.border(n), value: v })),
-  motion: Object.entries(C.motion.vars).map(([n, [, v]]) => ({ name: n, css: index[n], value: v })),
-  textStyles: src.textStyles.map(([name, family, style, size, lh, ls]) => ({ name, className: `text-${slug(name)}`, family, style, size, lh, ls })),
-  effects: src.effects.map(([name]) => ({ name, css: `--effect-${slug(name)}` })),
-};
-writeFileSync(resolve(root, 'src/styles/tokens.json'), JSON.stringify(map, null, 2) + '\n');
+// Text styles → classes (.yw-heading-xl, .yw-body-sm-bold …)
+const classes = [];
+const val = (v) => (isAlias(v) ? fmt(aliasTarget(v).col, aliasTarget(v).name, v) : v);
+for (const t of src._textStyles || []) {
+  const fam = isAlias(t.family) ? val(t.family) : `'${t.family}', system-ui, sans-serif`;
+  const w = isAlias(t.weight) ? val(t.weight) : (WEIGHT[t.weight] ?? 400);
+  const size = isAlias(t.size) ? val(t.size) : `${t.size}px`;
+  const lh = isAlias(t.lineHeight) ? val(t.lineHeight) : t.lineHeight;
+  classes.push(`.yw-${slug(t.name)} {\n  font-family: ${fam};\n  font-weight: ${w};\n  font-size: ${size};\n  line-height: ${lh};\n  letter-spacing: ${t.letterSpacing};\n}`);
+}
 
-console.log(`tokens.css written (${css.length.toLocaleString()} bytes, ${Object.keys(index).length} variables, ${src.textStyles.length} text styles)`);
+// Reduced motion: every duration becomes 1ms, reveals do not move
+const motionCol = src.motion?.vars || {};
+const reduce = Object.keys(motionCol)
+  .filter((n) => n.startsWith('duration') || n === 'stagger' || n.startsWith('distance'))
+  .map((n) => `  ${cssName('motion', n)}: ${n.startsWith('distance') ? '0px' : '1ms'};`);
+
+// ---- Write ----
+const meta = src._meta || {};
+// Cascade layers. The project's entry stylesheet must declare the order once:
+//   @layer reset, tokens, components, typography, utilities;
+// Tokens sit low; the .yw-* text classes sit ABOVE components, so a text style
+// put on an element always wins over a component's base font rules
+// (this was the `.yw-btn { font: inherit }` bug).
+let css = `/* Generated by scripts/build-tokens.mjs from Figma (${meta.fileKey || 'unknown file'}, exported ${meta.exportedAt || 'unknown'}).\n   Do not edit by hand: change Figma, re-export, rebuild. */\n\n@layer tokens {\n`;
+css += `:root {\n${root.join('\n')}\n}\n\n`;
+for (const [s, lines] of Object.entries(sel)) css += `${s} {\n${lines.join('\n')}\n}\n\n`;
+// media blocks: wide first, then tablet, then mobile so smaller wins
+const order = (q) => (q.includes('min-width') ? 0 : -parseInt(q.match(/\d+/)[0], 10));
+for (const q of Object.keys(media).sort((a, b) => order(a) - order(b))) css += `@media ${q} {\n  :root {\n${media[q].map((l) => '  ' + l).join('\n')}\n  }\n}\n\n`;
+if (reduce.length) css += `@media (prefers-reduced-motion: reduce) {\n  :root {\n${reduce.map((l) => '  ' + l).join('\n')}\n  }\n}\n\n`;
+css += `}\n\n@layer typography {\n${classes.join('\n\n')}\n}\n`;
+
+mkdirSync(outDir, { recursive: true });
+writeFileSync(join(outDir, 'tokens.css'), css);
+writeFileSync(join(outDir, 'tokens.resolved.json'), JSON.stringify(resolved, null, 2) + '\n');
+console.log(`tokens.css: ${root.length} properties, ${Object.keys(sel).length} theme blocks, ${Object.keys(media).length} breakpoints, ${classes.length} text styles → ${outDir}`);

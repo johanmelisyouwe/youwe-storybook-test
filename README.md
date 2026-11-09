@@ -23,31 +23,44 @@ npm run dev            # Next.js app on http://localhost:3000
 ## Project structure
 
 ```
-tokens/figma-variables.json   Figma export (variables, text styles, effects). Never edit by hand.
-scripts/build-tokens.mjs      Turns the export into src/styles/tokens.css + tokens.json
-src/styles/
-  globals.css                 Entry point; declares the layer order
-  reset.css                   Base reset (box-sizing, links, form fonts) in @layer reset
-  tokens.css                  GENERATED: CSS variables + .text-* classes
-  base.css                    Body defaults, .container
-src/foundations/              Colour, type, spacing, radius, motion, effects pages (from tokens.json)
-src/components/               Components and content blocks, one folder each, filled by the sync
-app/                          Next.js app (pages built from the components)
-.storybook/                   Storybook config (Mode toolbar = Figma dark/light, Figma viewports)
-.github/workflows/            Builds Storybook and deploys it to GitHub Pages
+AGENTS.md / CLAUDE.md          Entry point for AI tools → FIGMA-SYNC.md
+FIGMA-SYNC.md                  The Figma → Storybook sync instructions (v2)
+figma-sync.json                Sync record: every Figma component/template, status, code path, signature
+figma/                         Read-only Figma snippets: export-figma-variables.js, inventory.js, templates.js
+scripts/
+  build-tokens.mjs             Figma export → src/tokens/tokens.css + tokens.resolved.json
+  check-legacy.mjs             Fails on non-Figma values, placeholder copy, missing reset, layer problems
+  check-coverage.mjs           Fails when "complete" components/templates miss Figma variants or stories
+tokens/figma-variables.json    Figma export (variables, text styles, effects). Never edit by hand.
+src/tokens/                    GENERATED tokens.css + tokens.resolved.json
+src/styles/                    globals.css (layer order), reset.css, base.css
+src/foundations/               Colour, type, spacing, radius, motion, effects pages (from the tokens)
+src/components/                Components, filled by the sync (components/, content-blocks/, site/)
+src/templates/                 Page template stories, filled by the sync
+public/figma-assets/           Images exported from Figma by the sync
+app/                           Next.js app (pages built from the components)
 ```
 
 ## Updating from Figma
 
-1. Re-export the Figma variables into `tokens/figma-variables.json`
-2. `npm run tokens`
-3. Components and templates: run the Figma → Storybook sync described in `FIGMA-SYNC.md`
+Connect the Figma MCP server (see the appendix in `FIGMA-SYNC.md`), then ask your AI assistant:
+
+> Run the sync described in FIGMA-SYNC.md.
+
+It exports the tokens, works through the components and templates, compares them with Figma, runs the checks and opens a pull request with `SYNC-REPORT.md`. To update only the tokens by hand: re-export into `tokens/figma-variables.json` and run `npm run tokens`.
+
+Checks (also run in CI on every push):
+
+```bash
+npm run check          # check-legacy + check-coverage
+```
 
 ## Styling rules
 
-- Use **semantic tokens** only (`var(--surface-base-2)`, `var(--content-secondary)`, `var(--space-lg)`), never raw hex or px values from Figma.
-- Use the **text style classes** (`.text-heading-xl`, `.text-body-md-reg`) for typography.
-- Component CSS goes in `@layer components` so the reset and tokens never fight it.
+- Use **semantic tokens** only (`var(--color-shared-surface-base-2)`, `var(--color-shared-content-secondary)`, `var(--spacing-lg)`), never raw hex or px values.
+- Use the **text style classes** (`.yw-heading-xl`, `.yw-body-md-reg`) for typography. They sit above components in the cascade, so they always win.
+- Component CSS goes in `@layer components`.
+- All copy and images come from Figma; no placeholder text.
 - Dark is the default mode. Light is `data-theme="light"` on any wrapper.
 
 ## Fonts

@@ -1,0 +1,2578 @@
+{
+  "figmaFile": {
+    "key": "IP237ISXsaciooPrSykYMh",
+    "name": "Youwe Tools Design System: Corporate",
+    "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/"
+  },
+  "generated": "2026-11-09",
+  "note": "Sync record for this repo. The agent updates code, status, note, lastSyncedSignature and lastSynced on every run (FIGMA-SYNC.md step 4). Set locked: true to protect a hand-built component.",
+  "components": [
+    {
+      "figma": {
+        "name": "Accordion",
+        "page": "Accordion",
+        "nodeId": "18830:12898",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18830-12898",
+        "variantAxes": [
+          "Expanded(2)",
+          "State(3)",
+          "Style(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Accordion",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Action List Item",
+        "page": "Action list",
+        "nodeId": "18788:17600",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18788-17600",
+        "variantAxes": [
+          "State(4)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Action list",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Leading element",
+        "page": "Action list",
+        "nodeId": "18788:19034",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18788-19034",
+        "variantAxes": [
+          "Element(5)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Trailing element",
+        "page": "Action list",
+        "nodeId": "18788:19074",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18788-19074",
+        "variantAxes": [
+          "Element(4)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Ask Youwe",
+        "page": "Ask Youwe",
+        "nodeId": "27019:3067",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27019-3067",
+        "variantAxes": [
+          "State(3)",
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Ask Youwe",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Ask Youwe/Snippet",
+        "page": "Ask Youwe",
+        "nodeId": "26692:106",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26692-106",
+        "variantAxes": [
+          "Type(3)",
+          "Device(2)",
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Ask Youwe",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Ask Youwe/Button",
+        "page": "Ask Youwe",
+        "nodeId": "26689:70",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26689-70",
+        "variantAxes": [
+          "Type(2)",
+          "Variant(3)",
+          "Size(2)",
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Ask Youwe/Chip",
+        "page": "Ask Youwe",
+        "nodeId": "26709:1124",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26709-1124",
+        "variantAxes": [
+          "Type(3)",
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Ask Youwe/Label",
+        "page": "Ask Youwe",
+        "nodeId": "26709:1128",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26709-1128",
+        "variantAxes": [
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Ask Youwe/Aura",
+        "page": "Ask Youwe",
+        "nodeId": "26709:1121",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26709-1121",
+        "variantAxes": [
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Ask Youwe/Orb",
+        "page": "Ask Youwe",
+        "nodeId": "26669:34",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26669-34",
+        "variantAxes": [
+          "Size(3)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "List Item",
+        "page": "List Item",
+        "nodeId": "26533:21001",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26533-21001",
+        "variantAxes": [
+          "Device(2)",
+          "Icon(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/List Item",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_breadcrumb-link",
+        "page": "Breadcrumbs",
+        "nodeId": "15409:8869",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15409-8869",
+        "variantAxes": [
+          "State(3)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Breadcrumbs/Desktop",
+        "page": "Breadcrumbs",
+        "nodeId": "18846:21440",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18846-21440",
+        "variantAxes": []
+      },
+      "storybook": {
+        "title": "Components/Breadcrumbs",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Breadcrumbs/Mobile",
+        "page": "Breadcrumbs",
+        "nodeId": "18703:12478",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18703-12478",
+        "variantAxes": []
+      },
+      "storybook": {
+        "title": "Components/Breadcrumbs",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Button/Basic",
+        "page": "Buttons",
+        "nodeId": "6284:4476",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-4476",
+        "variantAxes": [
+          "Variant(3)",
+          "Icon(4)",
+          "State(5)",
+          "Size(4)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Buttons",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Button/Utility",
+        "page": "Buttons",
+        "nodeId": "6464:5164",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6464-5164",
+        "variantAxes": [
+          "State(3)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Buttons",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Button/Filter",
+        "page": "Buttons",
+        "nodeId": "7375:5158",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=7375-5158",
+        "variantAxes": [
+          "State(5)",
+          "Size(3)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Buttons",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Button/Link",
+        "page": "Buttons",
+        "nodeId": "20540:33000",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=20540-33000",
+        "variantAxes": [
+          "Size(3)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Buttons",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Case Card",
+        "page": "Case Card",
+        "nodeId": "24984:520",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24984-520",
+        "variantAxes": [
+          "Size(4)",
+          "Device(2)",
+          "Mode(2)",
+          "State(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Case Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Case Card/Stat",
+        "page": "Case Card",
+        "nodeId": "26708:88",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26708-88",
+        "variantAxes": [
+          "Type(5)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Checkbox",
+        "page": "Checkbox",
+        "nodeId": "15432:8660",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15432-8660",
+        "variantAxes": [
+          "Active(2)",
+          "State(6)",
+          "Size(3)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Checkbox",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Checkbox label",
+        "page": "Checkbox",
+        "nodeId": "15432:8734",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15432-8734",
+        "variantAxes": [
+          "Active(2)",
+          "State(5)",
+          "Size(3)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Checkbox",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Chip",
+        "page": "Chips",
+        "nodeId": "24519:4237",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24519-4237",
+        "variantAxes": [
+          "Variant(4)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Chips",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Cookie Banner",
+        "page": "Cookie Banner",
+        "nodeId": "26536:71",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26536-71",
+        "variantAxes": [
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Cookie Banner",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Accordion list",
+        "page": "Content blocks/Accordion list",
+        "nodeId": "26534:21312",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26534-21312",
+        "variantAxes": [
+          "Layout(3)",
+          "Device(2)",
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Accordion list",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Build your stack",
+        "page": "Content blocks/Build your stack",
+        "nodeId": "26851:1491",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26851-1491",
+        "variantAxes": [
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Build your stack",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Card grid",
+        "page": "Content blocks/Card grid",
+        "nodeId": "26897:1361",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26897-1361",
+        "variantAxes": [
+          "Layout(9)",
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Card grid",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Case carousel",
+        "page": "Content blocks/Case carousel",
+        "nodeId": "24985:700",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24985-700",
+        "variantAxes": [
+          "Layout(4)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Case carousel",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Case intro",
+        "page": "Content blocks/Case intro",
+        "nodeId": "24988:571",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-571",
+        "variantAxes": [
+          "Device(2)",
+          "Meta position(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Case intro",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Contact CTA",
+        "page": "Content blocks/Contact CTA",
+        "nodeId": "26535:451",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26535-451",
+        "variantAxes": [
+          "Device(2)",
+          "Variant(3)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Contact CTA",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Feature list",
+        "page": "Content blocks/Feature list",
+        "nodeId": "26534:132",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26534-132",
+        "variantAxes": [
+          "Layout(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Feature list",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Hero",
+        "page": "Content blocks/Hero",
+        "nodeId": "24985:698",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24985-698",
+        "variantAxes": [
+          "Device(2)",
+          "Variant(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Hero",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Hero/Bar",
+        "page": "Content blocks/Hero",
+        "nodeId": "26880:273",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26880-273",
+        "variantAxes": [
+          "Type(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Hero/Label",
+        "page": "Content blocks/Hero",
+        "nodeId": "26882:927",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26882-927",
+        "variantAxes": [
+          "Type(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Leadership",
+        "page": "Content blocks/Leadership",
+        "nodeId": "26848:385",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26848-385",
+        "variantAxes": [
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Leadership",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Media",
+        "page": "Content blocks/Media",
+        "nodeId": "24988:606",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-606",
+        "variantAxes": [
+          "Device(2)",
+          "Layout(4)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Media",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Offices",
+        "page": "Content blocks/Offices",
+        "nodeId": "26799:617",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26799-617",
+        "variantAxes": [
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Offices",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Section header",
+        "page": "Content blocks/Section header",
+        "nodeId": "24985:699",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24985-699",
+        "variantAxes": [
+          "Device(2)",
+          "Alignment(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Section header",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Section intro",
+        "page": "Content blocks/Section intro",
+        "nodeId": "26847:85",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26847-85",
+        "variantAxes": [
+          "Layout(2)",
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Section intro",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Services split",
+        "page": "Content blocks/Services split",
+        "nodeId": "26849:946",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26849-946",
+        "variantAxes": [
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Services split",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Tech partners split",
+        "page": "Content blocks/Tech partners split",
+        "nodeId": "26851:911",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26851-911",
+        "variantAxes": [
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Tech partners split",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Technology logos",
+        "page": "Content blocks/Technology logos",
+        "nodeId": "26851:1733",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26851-1733",
+        "variantAxes": [
+          "Layout(5)",
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Technology logos",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Vertical slider",
+        "page": "Content blocks/Vertical slider",
+        "nodeId": "26715:410",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26715-410",
+        "variantAxes": [
+          "Index(2)",
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Vertical slider",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Vertical slider/Index item",
+        "page": "Content blocks/Vertical slider",
+        "nodeId": "26713:47",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26713-47",
+        "variantAxes": [
+          "State(3)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Vertical slider/Slide",
+        "page": "Content blocks/Vertical slider",
+        "nodeId": "26713:174",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26713-174",
+        "variantAxes": [
+          "Type(5)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Solutions grid",
+        "page": "Content blocks/Solutions grid",
+        "nodeId": "24984:21277",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24984-21277",
+        "variantAxes": []
+      },
+      "storybook": {
+        "title": "Content blocks/Solutions grid",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Statement",
+        "page": "Content blocks/Statement",
+        "nodeId": "26543:21679",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26543-21679",
+        "variantAxes": [
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Statement",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Stats",
+        "page": "Content blocks/Stats",
+        "nodeId": "24985:701",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24985-701",
+        "variantAxes": [
+          "Type(2)",
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Stats",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Stat",
+        "page": "Content blocks/Stats",
+        "nodeId": "26795:73",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26795-73",
+        "variantAxes": [
+          "Type(2)",
+          "Size(2)",
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Stats",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Text + media",
+        "page": "Content blocks/Text + media",
+        "nodeId": "24985:702",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24985-702",
+        "variantAxes": [
+          "Device(3)",
+          "Media position(2)",
+          "Split(3)",
+          "Theme(3)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Text + media",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Testimonial",
+        "page": "Content blocks/Testimonial",
+        "nodeId": "26535:238",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26535-238",
+        "variantAxes": [
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Testimonial",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Text column",
+        "page": "Content blocks/Text column",
+        "nodeId": "24988:596",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-596",
+        "variantAxes": [
+          "Device(2)",
+          "Alignment(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Text column",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Two-column text",
+        "page": "Content blocks/Two-column text",
+        "nodeId": "24988:587",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-587",
+        "variantAxes": [
+          "Device(2)",
+          "Split(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Content blocks/Two-column text",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Feature Card",
+        "page": "Feature Card",
+        "nodeId": "26533:129",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26533-129",
+        "variantAxes": [
+          "Device(2)",
+          "Variant(3)",
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Feature Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Footer/Corporate",
+        "page": "Footer/Corporate",
+        "nodeId": "25022:751",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=25022-751",
+        "variantAxes": [
+          "Variant(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Footer/Corporate",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Footer link",
+        "page": "Footer/Corporate",
+        "nodeId": "25034:672",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=25034-672",
+        "variantAxes": [
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Header/Corporate",
+        "page": "Header/Corporate",
+        "nodeId": "24999:631",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24999-631",
+        "variantAxes": [
+          "Device(2)",
+          "Expanded(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Header/Corporate",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Nav link",
+        "page": "Header/Corporate",
+        "nodeId": "24998:575",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24998-575",
+        "variantAxes": [
+          "Size(2)",
+          "State(3)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Utility link",
+        "page": "Header/Corporate",
+        "nodeId": "24998:583",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24998-583",
+        "variantAxes": []
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Mega menu",
+        "page": "Header/Corporate",
+        "nodeId": "26977:1552",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26977-1552",
+        "variantAxes": [
+          "Feature(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Image Card",
+        "page": "Image Card",
+        "nodeId": "26904:35",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26904-35",
+        "variantAxes": [
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Image Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Industry List Item",
+        "page": "Industry List Item",
+        "nodeId": "25019:679",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=25019-679",
+        "variantAxes": [
+          "Device(2)",
+          "Expanded(2)",
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Industry List Item",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Insight Card",
+        "page": "Insight Card",
+        "nodeId": "26733:125",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26733-125",
+        "variantAxes": [
+          "Variant(2)",
+          "Device(2)",
+          "Mode(2)",
+          "State(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Insight Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Upcoming events",
+        "page": "Insight Card",
+        "nodeId": "26740:42",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26740-42",
+        "variantAxes": [
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Insight Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Upcoming events/Row",
+        "page": "Insight Card",
+        "nodeId": "26887:988",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26887-988",
+        "variantAxes": [
+          "State(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Dropdown/Floating Labels",
+        "page": "Input/Dropdown",
+        "nodeId": "18505:21072",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18505-21072",
+        "variantAxes": [
+          "State(9)",
+          "Placeholder(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Dropdown",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Dropdown/Static Labels",
+        "page": "Input/Dropdown",
+        "nodeId": "18505:20713",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18505-20713",
+        "variantAxes": [
+          "State(9)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Dropdown",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Dropdown/Quantity",
+        "page": "Input/Dropdown",
+        "nodeId": "18597:11473",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18597-11473",
+        "variantAxes": [
+          "State(9)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Dropdown",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Dropdown/Options",
+        "page": "Input/Dropdown",
+        "nodeId": "18505:21645",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18505-21645",
+        "variantAxes": [
+          "State(3)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Phone Input/Static Labels",
+        "page": "Input/Phone",
+        "nodeId": "18709:10372",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18709-10372",
+        "variantAxes": [
+          "State(8)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Phone",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Phone Input/Floating Labels",
+        "page": "Input/Phone",
+        "nodeId": "18709:10502",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18709-10502",
+        "variantAxes": [
+          "State(8)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Phone",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Locale select",
+        "page": "Input/Phone",
+        "nodeId": "18781:13057",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18781-13057",
+        "variantAxes": [
+          "Active(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Text Input/Floating Labels",
+        "page": "Input/Text",
+        "nodeId": "6394:3683",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6394-3683",
+        "variantAxes": [
+          "State(9)",
+          "Placeholder(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Text",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Text Input/Static Labels",
+        "page": "Input/Text",
+        "nodeId": "6284:6276",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-6276",
+        "variantAxes": [
+          "State(9)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Text",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Text Area/Static Label",
+        "page": "Input/Text Area",
+        "nodeId": "18505:19110",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18505-19110",
+        "variantAxes": [
+          "State(9)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Text Area",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Text Area/Floating Labels",
+        "page": "Input/Text Area",
+        "nodeId": "18505:19469",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18505-19469",
+        "variantAxes": [
+          "State(9)",
+          "Placeholder(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Input/Text Area",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Location",
+        "page": "Location",
+        "nodeId": "26797:116",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26797-116",
+        "variantAxes": [
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Location",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Clock",
+        "page": "Location",
+        "nodeId": "26797:51",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26797-51",
+        "variantAxes": [
+          "Mode(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Location",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Pagination",
+        "page": "Pagination",
+        "nodeId": "6284:7106",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-7106",
+        "variantAxes": [
+          "Variant(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Pagination",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Pagination buttons",
+        "page": "Pagination",
+        "nodeId": "7496:8631",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=7496-8631",
+        "variantAxes": [
+          "State(5)",
+          "Variant(5)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Pills",
+        "page": "Pill",
+        "nodeId": "6285:1970",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6285-1970",
+        "variantAxes": [
+          "Variant(2)",
+          "State(5)",
+          "Icon(3)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Pill",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Progress Bar",
+        "page": "Progress Bar",
+        "nodeId": "6284:7241",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-7241",
+        "variantAxes": [
+          "Progress(5)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Progress Bar",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Quote Card",
+        "page": "Quote Card",
+        "nodeId": "26895:260",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26895-260",
+        "variantAxes": [
+          "Mode(2)",
+          "Device(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Quote Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Radio button",
+        "page": "Radio Button",
+        "nodeId": "14649:9792",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=14649-9792",
+        "variantAxes": [
+          "State(9)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Radio Button",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Radio button label",
+        "page": "Radio Button",
+        "nodeId": "14649:9859",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=14649-9859",
+        "variantAxes": [
+          "State(9)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Radio Button",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Service Card",
+        "page": "Service Card",
+        "nodeId": "26763:51",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26763-51",
+        "variantAxes": [
+          "Mode(2)",
+          "State(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Service Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "System Card",
+        "page": "Service Card",
+        "nodeId": "26751:66",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26751-66",
+        "variantAxes": [
+          "Mode(2)",
+          "State(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Service Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Tab",
+        "page": "Tabs",
+        "nodeId": "15713:6093",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15713-6093",
+        "variantAxes": [
+          "State(5)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Tabs",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Tab group",
+        "page": "Tabs",
+        "nodeId": "15715:6340",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15715-6340",
+        "variantAxes": [
+          "State(1)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Tabs",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Trailing action",
+        "page": "Tabs",
+        "nodeId": "15797:7280",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15797-7280",
+        "variantAxes": [
+          "State(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Tag",
+        "page": "Tag",
+        "nodeId": "6284:7265",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-7265",
+        "variantAxes": [
+          "Variant(2)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Tag",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Technology Card",
+        "page": "Technology Card",
+        "nodeId": "26721:87",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26721-87",
+        "variantAxes": [
+          "Layout(2)",
+          "Mode(2)",
+          "State(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Technology Card",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Technology Card/Logo placeholder",
+        "page": "Technology Card",
+        "nodeId": "26721:29",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26721-29",
+        "variantAxes": []
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Toaster",
+        "page": "Toaster",
+        "nodeId": "6284:7291",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-7291",
+        "variantAxes": [
+          "Variant(4)",
+          "Shadow(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Toaster",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Toggle",
+        "page": "Toggle",
+        "nodeId": "15416:13125",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15416-13125",
+        "variantAxes": [
+          "State(4)",
+          "Size(2)",
+          "Active(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Toggle",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "_Handle",
+        "page": "Toggle",
+        "nodeId": "15416:13163",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15416-13163",
+        "variantAxes": [
+          "Variant(3)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Building block: render inside its parent, no own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Tooltip",
+        "page": "Tooltip",
+        "nodeId": "14683:4523",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=14683-4523",
+        "variantAxes": [
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Tooltip",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Icon tooltip",
+        "page": "Tooltip",
+        "nodeId": "6284:7455",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-7455",
+        "variantAxes": [
+          "State(3)",
+          "Size(2)"
+        ]
+      },
+      "storybook": {
+        "title": "Components/Tooltip",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    }
+  ],
+  "templates": [
+    {
+      "figma": {
+        "name": "Page / Home",
+        "device": "Desktop",
+        "nodeId": "26584:5280",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26584-5280"
+      },
+      "storybook": {
+        "title": "Templates/Home",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Home",
+        "device": "Mobile",
+        "nodeId": "26805:3646",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26805-3646"
+      },
+      "storybook": {
+        "title": "Templates/Home",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Services",
+        "device": "Desktop",
+        "nodeId": "26586:8230",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26586-8230"
+      },
+      "storybook": {
+        "title": "Templates/Services",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Services",
+        "device": "Mobile",
+        "nodeId": "26809:28",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26809-28"
+      },
+      "storybook": {
+        "title": "Templates/Services",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Services detail",
+        "device": "Desktop",
+        "nodeId": "26875:18627",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26875-18627"
+      },
+      "storybook": {
+        "title": "Templates/Services detail",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Services detail",
+        "device": "Mobile",
+        "nodeId": "26920:28",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26920-28"
+      },
+      "storybook": {
+        "title": "Templates/Services detail",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Industries",
+        "device": "Desktop",
+        "nodeId": "26657:16750",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26657-16750"
+      },
+      "storybook": {
+        "title": "Templates/Industries",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Industries",
+        "device": "Mobile",
+        "nodeId": "26814:197",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26814-197"
+      },
+      "storybook": {
+        "title": "Templates/Industries",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Industries detail",
+        "device": "Desktop",
+        "nodeId": "26926:34632",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26926-34632"
+      },
+      "storybook": {
+        "title": "Templates/Industries detail",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Work",
+        "device": "Desktop",
+        "nodeId": "26588:9829",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26588-9829"
+      },
+      "storybook": {
+        "title": "Templates/Work",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Work",
+        "device": "Mobile",
+        "nodeId": "26809:1150",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26809-1150"
+      },
+      "storybook": {
+        "title": "Templates/Work",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Work detail",
+        "device": "Desktop",
+        "nodeId": "26829:20476",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26829-20476"
+      },
+      "storybook": {
+        "title": "Templates/Work detail",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Work detail",
+        "device": "Mobile",
+        "nodeId": "26924:2198",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26924-2198"
+      },
+      "storybook": {
+        "title": "Templates/Work detail",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Tech Partners",
+        "device": "Desktop",
+        "nodeId": "26661:7114",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26661-7114"
+      },
+      "storybook": {
+        "title": "Templates/Tech Partners",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Tech Partners",
+        "device": "Mobile",
+        "nodeId": "26816:2055",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26816-2055"
+      },
+      "storybook": {
+        "title": "Templates/Tech Partners",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Insights",
+        "device": "Desktop",
+        "nodeId": "26661:7306",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26661-7306"
+      },
+      "storybook": {
+        "title": "Templates/Insights",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / Insights",
+        "device": "Mobile",
+        "nodeId": "26816:3024",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26816-3024"
+      },
+      "storybook": {
+        "title": "Templates/Insights",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / About Us",
+        "device": "Desktop",
+        "nodeId": "26661:7478",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26661-7478"
+      },
+      "storybook": {
+        "title": "Templates/About Us",
+        "story": "Desktop"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Page / About Us",
+        "device": "Mobile",
+        "nodeId": "26815:1094",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26815-1094"
+      },
+      "storybook": {
+        "title": "Templates/About Us",
+        "story": "Mobile"
+      },
+      "status": "missing",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    }
+  ],
+  "migrated": "not needed: fresh repo, no old Storybook"
+}

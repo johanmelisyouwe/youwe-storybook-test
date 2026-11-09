@@ -86,7 +86,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--border-system-focus);
+    outline: 2px solid var(--color-shared-border-system-focus);
     outline-offset: 2px;
   }
 
@@ -94,9 +94,9 @@
     *,
     *::before,
     *::after {
-      animation-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important; /* legacy-ok: reduced-motion safety net in the reset */
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important; /* legacy-ok: reduced-motion safety net in the reset */
       scroll-behavior: auto !important;
     }
   }
