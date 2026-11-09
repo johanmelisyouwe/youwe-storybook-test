@@ -1,0 +1,175 @@
+/*
+  Header/Corporate (Figma 24999:631), _Nav link (24998:575), _Utility link (24998:583), _Mega menu (26977:1552).
+  Desktop: transparent wrapper, padding 24; main bar surface/tint-1, radius 4, padding 16/24, logo left,
+  menu centred (_Nav link M: body/md/med, padding 8/16; Rest content/primary, Active and Hover content/link),
+  right: Ask Youwe pill (36 high, ask surface + border, orb + body/sm/med), "Careers" (body/md/med), Get in touch (Button Primary S).
+  Mega menu (Expanded=Yes): 4px below the bar, surface/base-1, radius 4, padding 32/32/64/32, gap 24,
+  three link columns (heading body/xs/med tertiary, gap 16; links gap 12) + a feature column.
+  Mobile: logo + Ask Youwe orb button (44) + menu button (Solid M, icon only, tint-1). Expanded: full-screen
+  sheet on surface/base-1: top bar with close, Ask Youwe bar, nav links L (body/xl/med; Active content/brand),
+  divider, utility links, language, Get in touch (Primary M, full width).
+  Motion (Figma): glass background once scrolled; hides on scroll down, returns on scroll up
+  (duration/slow, ease/emphasized); mega menu clip reveal duration/slow.
+  Interaction: mega menu opens on hover immediately, closes 300ms after the pointer leaves; Enter/ArrowDown
+  opens, Esc closes. Mobile: full-screen sheet, page scroll locked.
+*/
+@layer components {
+  .yw-header {
+    position: relative;
+    z-index: 50;
+    padding: var(--spacing-lg);
+    color: var(--color-shared-content-primary);
+    transition: transform var(--motion-duration-slow) var(--motion-ease-emphasized);
+  }
+
+  .yw-header--fixed { position: fixed; top: 0; right: 0; left: 0; }
+  .yw-header.is-hidden { transform: translateY(-100%); }
+
+  .yw-header__bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--shared-radius-4);
+    background: var(--color-shared-surface-tint-1);
+    transition: backdrop-filter var(--motion-duration-slow) var(--motion-ease-emphasized);
+  }
+
+  .yw-header.is-scrolled .yw-header__bar { backdrop-filter: blur(var(--effect-blur-background-blur-blur)); }
+
+  .yw-header__logo { display: flex; color: var(--color-shared-content-primary); border-radius: var(--shared-radius-4); }
+
+  .yw-header__menu {
+    position: absolute;
+    left: 50%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transform: translateX(-50%);
+  }
+
+  .yw-header__right { display: flex; align-items: center; gap: var(--spacing-lg); }
+
+  /* _Nav link */
+  .yw-nav-link {
+    --_ring-radius: var(--shared-radius-4);
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-2xs) var(--spacing-sm);
+    border: 0;
+    background: none;
+    color: var(--color-shared-content-primary);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color var(--motion-duration-fast) var(--motion-ease-standard);
+  }
+
+  .yw-nav-link:hover,
+  .yw-nav-link[aria-current='page'],
+  .yw-nav-link[aria-expanded='true'] { color: var(--color-shared-content-link); }
+
+  .yw-nav-link--plain { padding: 0; }
+  .yw-nav-link--l { padding: 0; }
+  .yw-nav-link--l:hover,
+  .yw-nav-link--l[aria-current='page'] { color: var(--color-shared-content-brand); }
+
+  /* _Utility link */
+  .yw-utility-link { color: var(--color-shared-content-primary); text-decoration: none; }
+  .yw-utility-link:hover { text-decoration: underline; }
+
+  /* Ask Youwe pill */
+  .yw-header__ask {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+    height: 36px;
+    padding: 7px 14px 7px 10px; /* legacy-ok: Figma pill padding 7/14/7/10 */
+    border: 0;
+    border-radius: var(--component-radius-ask-control);
+    background: var(--color-component-ask-surface);
+    box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border);
+    color: var(--color-shared-content-primary);
+    cursor: pointer;
+  }
+
+  .yw-header__ask--icon { justify-content: center; width: 44px; height: 44px; padding: 0; }
+
+  /* Mega menu */
+  @keyframes yw-mega-reveal {
+    from { clip-path: inset(0 0 100% 0 round var(--shared-radius-4)); }
+    to { clip-path: inset(0 0 0 0 round var(--shared-radius-4)); }
+  }
+
+  .yw-mega {
+    position: absolute;
+    top: calc(100% - var(--spacing-lg) + var(--spacing-3xs));
+    right: var(--spacing-lg);
+    left: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-3xl);
+    border-radius: var(--shared-radius-4);
+    background: var(--color-shared-surface-base-1);
+    animation: yw-mega-reveal var(--motion-duration-slow) var(--motion-ease-emphasized);
+  }
+
+  .yw-mega--static { position: static; margin-top: var(--spacing-3xs); }
+  .yw-mega__col { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+  .yw-mega__heading { color: var(--color-shared-content-tertiary); }
+  .yw-mega__links { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-xs); margin: 0; padding: 0; list-style: none; }
+  .yw-mega__feature { display: flex; flex-direction: column; gap: var(--spacing-xs); color: inherit; text-decoration: none; border-radius: var(--shared-radius-4); }
+  .yw-mega__feature-text { display: flex; flex-direction: column; gap: var(--spacing-2xs); }
+  .yw-mega__eyebrow { color: var(--color-shared-content-tertiary); }
+  .yw-mega__more { color: var(--color-shared-content-link); text-decoration: underline; }
+
+  /* Mobile */
+  .yw-header--mobile { padding: 0 var(--spacing-xs); }
+  .yw-header--mobile .yw-header__top { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+  .yw-header__mright { display: flex; align-items: center; gap: var(--spacing-2xs); }
+
+  .yw-header__menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: var(--component-radius-button);
+    background: var(--color-shared-surface-tint-1);
+    box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-neutral-mid-1);
+    color: var(--color-shared-content-primary);
+    cursor: pointer;
+  }
+
+  @keyframes yw-sheet-in { from { opacity: 0; transform: translateY(calc(var(--motion-distance-md) * -1)); } to { opacity: 1; transform: none; } }
+
+  .yw-sheet {
+    position: fixed;
+    z-index: 60;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    overflow-y: auto;
+    padding: 0 var(--spacing-xs) var(--spacing-2xl);
+    background: var(--color-shared-surface-base-1);
+    color: var(--color-shared-content-primary);
+    animation: yw-sheet-in var(--motion-duration-slow) var(--motion-ease-emphasized);
+  }
+
+  .yw-sheet--static { position: relative; inset: auto; min-height: 780px; }
+  .yw-sheet__top { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+  .yw-sheet__links { display: flex; flex-direction: column; gap: var(--spacing-lg); margin: 0; padding: 0; list-style: none; }
+  .yw-sheet__divider { height: 1px; background: var(--color-shared-border-2); }
+  .yw-sheet__utility { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+  .yw-sheet__lang { display: inline-flex; align-items: center; gap: var(--spacing-3xs); }
+  .yw-sheet__cta > * { width: 100%; }
+}
+
+@layer components {
+  .yw-header--mobile .yw-sheet--static { margin-inline: calc(var(--spacing-xs) * -1); }
+}

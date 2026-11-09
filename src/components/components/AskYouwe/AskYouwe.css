@@ -1,0 +1,210 @@
+/*
+  Ask Youwe (Figma 27019:3067), Ask Youwe/Snippet (26692:106) and parts:
+  _Ask Youwe/Orb (26669:34), /Aura (26709:1121), /Button (26689:70), /Chip (26709:1124), /Label (26709:1128).
+  Glass: component/ask/surface + 1px component/ask/border + effect ask/glass (blur 32 + drop shadow);
+  snippets use ask/glass-flat (blur 24). Aura: glow-1 and glow-2 ellipses, layer blur 72/80, behind content.
+  Bar: 56 high, padding 8/20/8/8, gap 12, radius 4; prompt body/md/reg secondary; ⌘K key chip.
+  Contextual: bar widens (640ms ease/emphasized), then the suggestion chip fades in.
+  Active: panel 560 wide, padding 32, gap 24; opens from the bar with a clip reveal (duration/cinematic).
+  Default: the aura breathes on a ~6s loop.
+*/
+@layer components {
+  /* Orb: brand gradient sphere (Figma raw gradient colours, not tokens) */
+  .yw-ask-orb {
+    display: inline-block;
+    flex-shrink: 0;
+    width: var(--_orb, 20px);
+    height: var(--_orb, 20px);
+    border-radius: var(--shared-radius-circular);
+    background: radial-gradient(circle at 30% 30%, #ff9e73 0%, #ff2e5e 30%, #c40040 62%, #4a144f 84%, var(--color-blue-500) 100%); /* legacy-ok: Figma Orb uses raw gradient stops */
+    box-shadow: inset 0 0 calc(var(--_orb, 20px) / 4) rgb(255 255 255 / 0.35), 0 0 calc(var(--_orb, 20px) / 2) color-mix(in srgb, var(--color-component-ask-glow-1) 50%, transparent); /* legacy-ok: Figma Orb inner highlight */
+  }
+
+  .yw-ask-orb--m { --_orb: 32px; }
+  .yw-ask-orb--l { --_orb: 48px; }
+
+  /* Aura */
+  @keyframes yw-ask-breathe {
+    0%, 100% { transform: scale(1); opacity: var(--_aura-op, 0.6); }
+    50% { transform: scale(1.08); opacity: calc(var(--_aura-op, 0.6) * 0.75); }
+  }
+
+  .yw-ask-aura {
+    position: absolute;
+    z-index: 0;
+    top: -40px;
+    left: -60px;
+    width: 320px;
+    height: 120px;
+    opacity: var(--_aura-op, 0.6);
+    pointer-events: none;
+    animation: yw-ask-breathe 6s ease-in-out infinite; /* legacy-ok: Figma "~6s loop", no motion token for it */
+  }
+
+  .yw-ask-aura::before,
+  .yw-ask-aura::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(36px);
+  }
+
+  .yw-ask-aura::before { top: 10%; left: 0; width: 54%; height: 64%; background: var(--color-component-ask-glow-1); }
+  .yw-ask-aura::after { top: 20%; left: 40%; width: 62%; height: 72%; background: var(--color-component-ask-glow-2); }
+
+  /* Glass surfaces */
+  .yw-ask-glass {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: var(--component-radius-ask-panel);
+    background: var(--color-component-ask-surface);
+    box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border), var(--effect-ask-glass-shadow);
+    backdrop-filter: blur(var(--effect-ask-glass-blur));
+    color: var(--color-shared-content-primary);
+  }
+
+  .yw-ask-glass--flat {
+    box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border);
+    backdrop-filter: blur(var(--effect-ask-glass-flat-blur));
+  }
+
+  .yw-ask-glass > :not(.yw-ask-aura) { position: relative; z-index: 1; }
+
+  /* Buttons and chips */
+  .yw-ask-btn,
+  .yw-ask-chip {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: var(--spacing-2xs);
+    padding: var(--spacing-2xs) var(--spacing-sm);
+    border: 0;
+    border-radius: var(--component-radius-ask-control);
+    background: var(--color-component-ask-surface-raised);
+    box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border);
+    color: var(--color-shared-content-primary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--motion-duration-fast) var(--motion-ease-standard), box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+  }
+
+  .yw-ask-btn--primary { background: var(--color-shared-surface-fixed-brand-red); box-shadow: none; color: var(--color-shared-content-fixed-light); }
+  .yw-ask-btn--primary:hover { background: var(--color-component-brand-red-3); }
+  .yw-ask-btn--glass:hover,
+  .yw-ask-chip--suggestion:hover { background: var(--color-component-ask-border); }
+  .yw-ask-btn--disabled { box-shadow: none; color: var(--color-shared-content-tertiary); cursor: not-allowed; }
+  .yw-ask-btn--icon { justify-content: center; width: 40px; height: 40px; padding: 0; }
+  .yw-ask-btn--icon.yw-ask-btn--s { width: 32px; height: 32px; }
+
+  .yw-ask-chip--context { gap: var(--spacing-3xs); padding: var(--spacing-3xs) var(--spacing-xs); cursor: default; }
+  .yw-ask-chip--context .yw-ask-chip__meta { color: var(--color-shared-content-tertiary); }
+  .yw-ask-chip--key { padding: 2px var(--spacing-2xs); box-shadow: none; color: var(--color-shared-content-secondary); cursor: default; } /* 2px: Figma padding */
+
+  .yw-ask-label { display: inline-flex; align-items: center; gap: var(--spacing-2xs); color: var(--color-component-ask-meta); }
+
+  /* Bar */
+  .yw-ask-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    width: 100%;
+    max-width: 480px;
+    min-height: 56px;
+    padding: var(--spacing-2xs) var(--spacing-md) var(--spacing-2xs) var(--spacing-2xs);
+    transition: max-width 640ms var(--motion-ease-emphasized);
+    cursor: text;
+  }
+
+  .yw-ask-bar--contextual { max-width: 716px; }
+  .yw-ask-bar__prompt { flex: 1; min-width: 0; color: var(--color-shared-content-secondary); }
+
+  .yw-ask-bar__input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-shared-content-primary);
+    outline: none;
+  }
+
+  .yw-ask-bar__input::placeholder { color: var(--color-shared-content-secondary); }
+  .yw-ask-bar:focus-within { box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border), 0 0 0 var(--shared-width-2) var(--color-shared-border-system-focus); }
+
+  @keyframes yw-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  .yw-ask-bar__context { animation: yw-fade-in var(--motion-duration-base) var(--motion-ease-standard) 640ms both; }
+
+  /* Active panel */
+  @keyframes yw-ask-open {
+    from { clip-path: inset(calc(100% - 56px) 0 0 0 round var(--component-radius-ask-panel)); }
+    to { clip-path: inset(0 0 0 0 round var(--component-radius-ask-panel)); }
+  }
+
+  .yw-ask-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    width: 100%;
+    max-width: 560px;
+    padding: var(--spacing-xl);
+    animation: yw-ask-open var(--motion-duration-cinematic) var(--motion-ease-emphasized);
+  }
+
+  .yw-ask-panel--mobile { padding: var(--spacing-lg); }
+  .yw-ask-panel .yw-ask-aura { --_aura-op: 0.55; top: -150px; left: -140px; width: 520px; height: 300px; }
+  .yw-ask-panel__header { display: flex; align-items: center; gap: var(--spacing-2xs); }
+  .yw-ask-panel__header > .yw-body-md-bold { flex: 1; }
+  .yw-ask-panel__question { display: flex; justify-content: flex-end; }
+
+  .yw-ask-panel__bubble {
+    max-width: 80%;
+    margin: 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--component-radius-ask-card);
+    background: var(--color-component-ask-surface-raised);
+  }
+
+  .yw-ask-panel__answer { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+  .yw-ask-panel__answer p { margin: 0; }
+  .yw-ask-panel__source { color: var(--color-shared-content-tertiary); }
+  .yw-ask-panel__followups { display: flex; flex-wrap: wrap; gap: var(--spacing-2xs); }
+
+  .yw-ask-panel__composer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-2xs) var(--spacing-2xs) var(--spacing-2xs) var(--spacing-md);
+    border-radius: var(--component-radius-ask-panel);
+    background: var(--color-component-ask-surface-raised);
+    box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border);
+  }
+
+  /* Snippets */
+  .yw-ask-snippet { display: flex; align-items: center; gap: var(--spacing-xs); width: 100%; max-width: 600px; padding: var(--spacing-lg); }
+  .yw-ask-snippet .yw-ask-aura { --_aura-op: 0.45; top: -60px; left: -90px; width: 280px; height: 140px; animation: none; }
+  .yw-ask-snippet__text { display: flex; flex: 1; flex-direction: column; gap: var(--spacing-3xs); min-width: 0; }
+  .yw-ask-snippet--nudge .yw-ask-snippet__text { flex-direction: row; align-items: center; gap: var(--spacing-xs); }
+
+  .yw-ask-snippet--case {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    min-height: 340px;
+    color: var(--color-shared-content-fixed-light);
+  }
+
+  .yw-ask-snippet--case.yw-ask-snippet--mobile { min-height: 380px; }
+  .yw-ask-snippet__image { position: absolute !important; z-index: 0 !important; inset: 0; border-radius: 0 !important; }
+
+  .yw-ask-snippet__image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--color-neutral-900) 5%, transparent) 0%, color-mix(in srgb, var(--color-neutral-900) 35%, transparent) 25%, color-mix(in srgb, var(--color-neutral-900) 82%, transparent) 50%, color-mix(in srgb, var(--color-neutral-900) 96%, transparent) 100%);
+  }
+
+  .yw-ask-snippet__content { display: flex; flex-direction: column; gap: var(--spacing-2xs); }
+  .yw-ask-snippet--case .yw-ask-label { color: var(--color-shared-content-fixed-light); }
+  .yw-ask-snippet__actions { display: flex; flex-wrap: wrap; gap: var(--spacing-2xs); padding-top: var(--spacing-2xs); }
+}
