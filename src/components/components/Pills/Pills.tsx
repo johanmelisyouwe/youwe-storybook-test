@@ -1,4 +1,5 @@
 import { Icon, type IconName } from '../../icons/Icon';
+import '../../shared/focus-ring.css';
 import './Pills.css';
 
 /*
@@ -48,7 +49,7 @@ export function Pills({
   return (
     <button
       type="button"
-      className={['yw-pill', `yw-pill--${Variant.toLowerCase()}`, `yw-pill--${Size.toLowerCase()}`, className].filter(Boolean).join(' ')}
+      className={['yw-pill', 'yw-focus-ring', `yw-pill--${Variant.toLowerCase()}`, `yw-pill--${Size.toLowerCase()}`, className].filter(Boolean).join(' ')}
       aria-pressed={pressed}
       disabled={disabled}
       onClick={onClick}

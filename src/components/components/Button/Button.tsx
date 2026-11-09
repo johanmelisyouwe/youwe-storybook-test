@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Icon, type IconName } from '../../icons/Icon';
+import '../../shared/focus-ring.css';
 import './Button.css';
 
 /* Button/Basic — Figma node 6284:4476 (page "– Buttons"). Axis and prop names match Figma. */
@@ -52,6 +53,7 @@ export function Button({
 }: ButtonProps) {
   const classes = [
     'yw-button',
+    'yw-focus-ring',
     `yw-button--${Variant.toLowerCase()}`,
     `yw-button--${Size.toLowerCase()}`,
     iconPos !== 'Off' && `yw-button--${iconPos.toLowerCase()}`,

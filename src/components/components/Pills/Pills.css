@@ -5,7 +5,7 @@
   S     24      12 (spacing/xs)  4 (3xs)  12    body/xs/reg
   Radius component/radius/pill. Border 1px, 2px when pressed.
   Motion (Figma description): background and colour duration/fast ease/standard.
-  Focus ring: 2px shared/border/system/focus, 4px outside (Focus Ring layer at -4).
+  Focus ring: shared Focus Ring building block.
 */
 @layer components {
   .yw-pill {
@@ -71,10 +71,7 @@
     --_fg: var(--color-shared-content-inverse-1);
   }
 
-  .yw-pill:focus-visible {
-    outline: var(--shared-width-2) solid var(--color-shared-border-system-focus);
-    outline-offset: var(--shared-width-2);
-  }
+  /* Focus: Rest look + the shared Focus Ring (src/components/shared/focus-ring.css) */
 
   .yw-pill:disabled {
     --_bg: var(--color-component-disabled-surface-1);
