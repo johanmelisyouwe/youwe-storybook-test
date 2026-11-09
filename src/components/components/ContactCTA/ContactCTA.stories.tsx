@@ -22,7 +22,7 @@ const SUB: ContactCTAProps = {
 };
 const copy = (v: ContactCTAVariant) => (v === 'Form' ? FORM : SUB);
 type Args = Pick<ContactCTAProps, 'Variant' | 'Device'>;
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 const VARIANTS: ContactCTAVariant[] = ['Form', 'Sub-footer split', 'Sub-footer background'];
 
 const meta: Meta<Args> = {

@@ -1,10 +1,13 @@
 /*
   Content block frame shared by the Content blocks (Figma: 1440 frame, 1280 container, 80px gutters,
-  120px vertical padding; tablet 32/80; mobile 12/64). Layout switches use container queries on the
+  120px vertical padding; tablet 32/80; mobile 12/64). Fluid container (decided 9 November): backgrounds
+  are full width, content grows with the screen (80px gutters) up to --yw-container-max, then centres. Layout switches use container queries on the
   block, so a block shown in a 360px frame lays out as mobile. Text sizes follow the viewport (tokens).
   Motion (Figma "block reveal"): fade + distance/md up, duration/reveal, ease/emphasized, on scroll.
 */
 @layer components {
+  :root { --yw-container-max: 1760px; } /* legacy-ok: fluid content max (1920 screen minus gutters), not a Figma token */
+
   .yw-block {
     container-type: inline-size;
     position: relative;
@@ -16,7 +19,7 @@
     --_pad: var(--spacing-4xl);
     --_py: var(--spacing-5xl);
     width: 100%;
-    max-width: calc(1280px + 2 * var(--_pad));
+    max-width: calc(var(--yw-container-max) + 2 * var(--_pad));
     margin-inline: auto;
     padding: var(--_py) var(--_pad);
   }

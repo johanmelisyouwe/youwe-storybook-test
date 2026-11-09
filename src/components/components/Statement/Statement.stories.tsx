@@ -5,7 +5,7 @@ import { Statement, type StatementProps } from './Statement';
 
 const TEXT = 'Customers can access product info, locate stores, and order accessories to keep their Quooker products running smoothly.';
 type Args = Pick<StatementProps, 'Device'>;
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Statement',

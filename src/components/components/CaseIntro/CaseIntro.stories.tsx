@@ -5,7 +5,7 @@ import { CASE_INTRO } from '../TextColumn/longform.copy';
 /* Content blocks/Case intro — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-571 (Figma copy) */
 
 type Args = Pick<CaseIntroProps, 'Meta position' | 'Device'>;
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Case intro',

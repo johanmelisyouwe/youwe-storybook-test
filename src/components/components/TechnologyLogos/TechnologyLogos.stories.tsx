@@ -13,7 +13,7 @@ const N: Record<Layout, number> = { Default: 6, 'Grid 4': 4, 'Grid 5': 5, 'Grid 
 const props = (l: Layout) => ({ ...(l === 'Default' ? DEFAULT : GRID), logos: logos(N[l]) });
 
 type Args = Pick<TechnologyLogosProps, 'Layout' | 'Device'> & { Mode: Mode };
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Technology logos',

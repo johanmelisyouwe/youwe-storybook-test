@@ -16,7 +16,7 @@ const OFFICES: OfficesProps['offices'] = [
 ];
 const HEAD = { Kicker: 'Our offices', Title: 'Eight offices, one team', Body: 'Live local time in every Youwe office. Whatever the hour, someone on the team is at work.' };
 type Args = Pick<OfficesProps, 'Device'> & { Mode: Mode; 'Show header': boolean };
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Offices',

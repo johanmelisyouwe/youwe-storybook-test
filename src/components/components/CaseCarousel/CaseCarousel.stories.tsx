@@ -21,7 +21,7 @@ CASES.splice(0, CASES.length, ...WITH_MEDIA);
 const SHORT = { Title: 'Selected case studies', body: 'Explore how we’ve helped organizations build and scale their digital infrastructure, from custom commerce platforms to high-performing cloud environments. Each case highlights the impact of smart architecture and design choices.' };
 const WIDE = { Kicker: 'Selected work', Title: 'Commerce, portals and AI in production', button: { label: 'All work', href: '#' } };
 type Args = Pick<CaseCarouselProps, 'Layout' | 'Device'>;
-const W = { Desktop: 1440, Mobile: 390 };
+const W = { Desktop: '100%', Mobile: 390 };
 const props = (l: CaseCarouselProps['Layout']) => (l === 'Short' ? SHORT : WIDE);
 const count = (l: CaseCarouselProps['Layout']) => (l === 'Full width 3' ? 3 : l === 'Full width 4' ? 4 : 8);
 

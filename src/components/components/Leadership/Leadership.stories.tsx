@@ -13,7 +13,7 @@ const PEOPLE = [
   ['Nathalie Seffinga', 'Operations manager NL'], ['Steve Hoyle', 'Operations manager UK'],
 ].map(([name, role]) => ({ name, role }));
 type Args = Pick<LeadershipProps, 'Device'> & { Mode: Mode };
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Leadership',

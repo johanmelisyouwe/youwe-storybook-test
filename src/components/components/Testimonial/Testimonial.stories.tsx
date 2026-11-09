@@ -14,7 +14,7 @@ const QUOTES: Quote[] = [
   { Quote: '“How a Design System strengthened G-Star’s brand consistency.”', Name: 'G-Star RAW', Role: 'Case · Design System', logo: <ClientLogo name="G-Star" width={190} /> },
 ];
 type Args = Pick<TestimonialProps, 'Device' | 'Show logo'> & { 'Show image': boolean };
-const W = { Desktop: 1440, Mobile: 390 };
+const W = { Desktop: '100%', Mobile: 390 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Testimonial',

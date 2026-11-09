@@ -5,7 +5,7 @@ import { TWO_COLUMN } from '../TextColumn/longform.copy';
 /* Content blocks/Two-column text — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-587 (Figma copy) */
 
 type Args = Pick<TwoColumnTextProps, 'Split' | 'Device'>;
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Two-column text',

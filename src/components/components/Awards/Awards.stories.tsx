@@ -5,7 +5,7 @@ import { Awards, type AwardsProps } from './Awards';
 
 const BADGES = [{ name: 'Northern Digital Award' }, { name: 'LRQA certificate' }, { name: 'Award-winning B2B implementation' }, { name: 'Great Place To Work' }];
 type Args = Pick<AwardsProps, 'Device'>;
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Awards',

@@ -6,6 +6,7 @@ import { ButtonUtility } from '../ButtonUtility/ButtonUtility';
 import { AskYouwe } from '../AskYouwe/AskYouwe';
 import { CardMedia } from '../../shared/CardMedia';
 import '../../shared/focus-ring.css';
+import '../../shared/block.css';
 import './Header.css';
 
 /* Header/Corporate — Figma 24999:631; _Nav link 24998:575; _Utility link 24998:583; _Mega menu 26977:1552. */

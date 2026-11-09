@@ -9,7 +9,7 @@ const COPY = {
   body: 'Explore how we’ve helped organizations build and scale their digital infrastructure, from custom commerce platforms to high-performing cloud environments. Each case highlights the impact of smart architecture and design choices.',
 };
 type Args = Pick<SectionHeaderProps, 'Alignment' | 'Device'> & { Kicker: boolean };
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Section header',

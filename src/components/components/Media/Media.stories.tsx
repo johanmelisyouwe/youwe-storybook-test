@@ -5,7 +5,7 @@ import { caseImage } from '../../../media/media';
 /* Content blocks/Media — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-606 (case photos exported from Figma, src/media) */
 
 type Args = Pick<MediaProps, 'Layout' | 'Device' | 'image' | 'image2'>;
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 const meta: Meta<Args> = {
   title: 'Content blocks/Media',
   parameters: { layout: 'fullscreen', docs: { description: { component: 'Image or video: Contained, Full bleed, Two-up or Two-up staggered. Motion: media clip reveal on scroll (inset 18%/8% → 0, scale 0.96 → 1).' } } },

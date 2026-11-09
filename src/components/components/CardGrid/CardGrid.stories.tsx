@@ -41,7 +41,7 @@ const LAYOUTS = Object.keys(CELLS) as CardGridLayout[];
 const cellsFor = (l: CardGridLayout) => (l === 'Overflow scroll' ? Array.from({ length: 6 }, (_, i) => <CaseCard key={i} {...GSTAR} />) : features(CELLS[l]));
 
 type Args = Pick<CardGridProps, 'Layout' | 'Device'> & { Mode: Mode; 'Show intro': boolean };
-const W = { Desktop: 1440, Mobile: 390 };
+const W = { Desktop: '100%', Mobile: 390 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Card grid',

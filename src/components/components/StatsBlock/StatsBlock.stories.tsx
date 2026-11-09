@@ -25,7 +25,7 @@ const PLAIN = {
   ],
 };
 type Args = Pick<StatsBlockProps, 'Type' | 'Device'> & { Mode: Mode };
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 const copy = (t: StatsBlockProps['Type']) => (t === 'Plain' ? PLAIN : CLIENT);
 
 const meta: Meta<Args> = {

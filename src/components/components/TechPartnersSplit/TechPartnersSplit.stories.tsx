@@ -23,7 +23,7 @@ const COPY: Omit<TechPartnersSplitProps, 'Device'> = {
   ],
 };
 type Args = Pick<TechPartnersSplitProps, 'Device'> & { Mode: Mode };
-const W = { Desktop: 1440, Mobile: 360 };
+const W = { Desktop: '100%', Mobile: 360 };
 
 const meta: Meta<Args> = {
   title: 'Content blocks/Tech partners split',
