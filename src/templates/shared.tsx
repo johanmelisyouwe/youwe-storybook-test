@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Header, type HeaderProps } from '../components/components/Header/Header';
 import { Footer, type FooterColumn } from '../components/components/Footer/Footer';
-import { ClientLogo } from '../components/logos/ClientLogo';
+import { Logo } from '../components/logos/Logo';
 import type { Mode } from '../components/shared/ModeFrame';
 import './templates.css';
 
@@ -16,8 +16,8 @@ export const WIDTH: Record<Device, number> = { Desktop: 1440, Mobile: 360 };
 export const NAV: HeaderProps['nav'] = ['Services', 'Work', 'Industries', 'Tech Partners', 'Insights', 'About Us'].map((label) => ({ label, href: '#' }));
 export const header = (Device: Device) => <Header Device={Device} nav={NAV} />;
 
-/** Logos and names as text until the logo files are exported (G-Star is the only exported client logo). */
-export const logo = (name: string, width = 96) => (name === 'G-Star' ? <ClientLogo name="G-Star" width={width} /> : <span className="yw-body-md-bold">{name}</span>);
+/** Client and technology logos exported from Figma (name as text when there is no logo yet). */
+export const logo = (name: string, width = 96) => <Logo name={name} box={[width, Math.round(width / 3)]} />;
 
 export const OFFICES = ['Rotterdam', 'Groningen', 'London', 'Leeds', 'Shrewsbury', 'Stockholm', 'Bandung', 'Kyiv'];
 

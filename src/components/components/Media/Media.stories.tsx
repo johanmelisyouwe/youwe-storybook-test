@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Media, type MediaProps } from './Media';
+import { caseImage } from '../../../media/media';
 
-/* Content blocks/Media — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-606 (image placeholders; images not imported yet) */
+/* Content blocks/Media — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24988-606 (case photos exported from Figma, src/media) */
 
-type Args = Pick<MediaProps, 'Layout' | 'Device'>;
+type Args = Pick<MediaProps, 'Layout' | 'Device' | 'image' | 'image2'>;
 const W = { Desktop: 1440, Mobile: 360 };
 const meta: Meta<Args> = {
   title: 'Content blocks/Media',
@@ -12,7 +13,7 @@ const meta: Meta<Args> = {
     Layout: { control: 'inline-radio', options: ['Contained', 'Full bleed', 'Two-up staggered', 'Two-up'] },
     Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
   },
-  args: { Layout: 'Contained', Device: 'Desktop' },
+  args: { Layout: 'Contained', Device: 'Desktop', image: caseImage('fairphone', 'wide'), image2: caseImage('g-star', 'wide') },
   render: (args) => <div style={{ maxWidth: W[args.Device ?? 'Desktop'] }}><Media {...args} /></div>,
 };
 export default meta;
@@ -28,8 +29,8 @@ export const AllVariants: Story = {
     <div style={{ display: 'grid', gap: 'var(--spacing-lg)' }}>
       {(['Contained', 'Full bleed', 'Two-up staggered', 'Two-up'] as const).map((l) => (
         <div key={l} style={{ display: 'flex', gap: 'var(--spacing-lg)', alignItems: 'start' }}>
-          <div style={{ width: 1440 }}><Media Layout={l} /></div>
-          <div style={{ width: 360 }}><Media Layout={l} /></div>
+          <div style={{ width: 1440 }}><Media image={caseImage('fairphone', 'wide')} image2={caseImage('g-star', 'wide')} Layout={l} /></div>
+          <div style={{ width: 360 }}><Media image={caseImage('fairphone', 'wide')} image2={caseImage('g-star', 'wide')} Layout={l} /></div>
         </div>
       ))}
     </div>

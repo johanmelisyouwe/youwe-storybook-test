@@ -9,6 +9,7 @@ import { AskSnippet } from '../components/components/AskYouwe/AskYouwe';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import '../components/shared/block.css';
 import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { abstract, logoFor } from '../media/media';
 
 /*
   Templates/Tech Partners — Figma "Page / Tech Partners": Desktop 26661:7114, Mobile 26816:2055. Copy,
@@ -19,7 +20,7 @@ import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type D
 */
 
 type Card = [name: string, level?: string, description?: string, button?: boolean];
-const cards = (list: Card[]): TechnologyCardProps[] => list.map(([Name, Level, Description, b]) => ({ Name, Level, Description, 'Show button': b, 'Hover CTA': 'Go to partner page', 'Hover context': `${Name} at Youwe`, href: '#' }));
+const cards = (list: Card[]): TechnologyCardProps[] => list.map(([Name, Level, Description, b]) => ({ Name, Level, Description, 'Show button': b, logo: logoFor(Name) ? logo(Name, 100) : undefined, 'Hover CTA': 'Go to partner page', 'Hover context': `${Name} at Youwe`, href: '#' }));
 
 const SPLITS: (Omit<TechPartnersSplitProps, 'Device'> & { key: string })[] = [
   {
@@ -71,6 +72,7 @@ function TechPartnersPage({ Device }: { Device: Device }) {
     <Page Device={Device}>
       <Hero
         Device={Device}
+        image={abstract('007')}
         title={['Systems that scale', 'and optimize.']}
         body="Intro text missing, lorem ipsum dolor sit amet. For consistency we should put something relevant for industry section here." /* legacy-ok: stand-in copy in the Figma template, reported */
         label={{ Type: 'Subtitle', Subtitle: 'Tech Partners' }}
@@ -89,7 +91,7 @@ function TechPartnersPage({ Device }: { Device: Device }) {
         </section>
         {SPLITS.map(({ key, ...s }) => <TechPartnersSplit key={key} Device={Device} {...s} />)}
       </Section>
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} image={abstract('004')} />
       {footer(Device)}
     </Page>
   );

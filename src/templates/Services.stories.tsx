@@ -6,6 +6,7 @@ import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
 import { OFFICES, Page, Section, footer, header, logo, type Device } from './shared';
+import { abstract, caseImage, clientPhoto } from '../media/media';
 
 /*
   Templates/Services — Figma "Page / Services": Desktop 26586:8230, Mobile 26809:28. Copy, props and order
@@ -22,7 +23,7 @@ const STATS = [
 
 const services = (items: [string, string][]): ServicesSplitProps['services'] =>
   items.map(([Title, Description], i) => ({ Eyebrow: String(i + 1).padStart(2, '0'), Title, Description, 'Hover CTA': 'Explore the service', href: '#' }));
-const snippet = <AskSnippet Type="Case" Title="Scaling smart: Quooker’s expansion to 17 countries" Meta="Case · Quooker" />;
+const snippet = <AskSnippet Type="Case" Title="Scaling smart: Quooker’s expansion to 17 countries" Meta="Case · Quooker" image={caseImage('quooker-1')} />;
 const snippets = <>{snippet}<AskSnippet Type="Question" Title="How did Kingspan connect its systems with AI agents?" /></>;
 type Practice = Omit<ServicesSplitProps, 'Device'> & { Mode: 'Dark' | 'Light' };
 const PRACTICES: Practice[] = [
@@ -106,7 +107,7 @@ const CASES: CaseCardProps[] = [
   ['Schneider Electric: a Magento store for direct sales to consumers', 'Schneider Electric'],
   ['Crafting a Scalable Design System for an Iconic Brand', 'G-Star'],
   ['Seamless replatforming for Fairphone commerce platform', 'Fairphone'],
-].map(([Title, Client]) => ({ Title, Client: Client === 'G-Star' ? 'G-Star RAW' : Client, logo: logo(Client), href: '#' }));
+].map(([Title, Client]) => ({ Title, Client: Client === 'G-Star' ? 'G-Star RAW' : Client, logo: logo(Client), image: clientPhoto(Client), href: '#' }));
 
 function ServicesPage({ Device }: { Device: Device }) {
   const mobile = Device === 'Mobile';
@@ -114,6 +115,7 @@ function ServicesPage({ Device }: { Device: Device }) {
     <Page Device={Device}>
       <Hero
         Device={Device}
+        image={abstract('003')}
         title={['Platforms, processes', 'and data, connected.']}
         body="Digital transformation is about reshaping how platforms, processes, data and people work together. We design connected digital ecosystems and help teams adopt new ways of working, so change leads to lasting performance."
         label={{ Type: 'Subtitle', Subtitle: 'Services' }}
@@ -133,6 +135,7 @@ function ServicesPage({ Device }: { Device: Device }) {
         primary={{ label: 'Contact us', href: '#' }}
         secondary={{ label: 'Submit an RFP', href: '#' }}
         offices={OFFICES}
+        image={abstract('005')}
       />
       {footer(Device)}
     </Page>

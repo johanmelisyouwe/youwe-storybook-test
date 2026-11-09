@@ -2,16 +2,16 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Hero, HeroBar, HeroLabel, type HeroProps, type HeroStat } from './Hero';
 import { Header, type HeaderProps } from '../Header/Header';
 import { ClientLogo } from '../../logos/ClientLogo';
+import { abstract, caseImage } from '../../../media/media';
 
 /*
   Content blocks/Hero — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24985-698
-  _Hero/Bar 26880:273, _Hero/Label 26882:927. Copy from Figma. The background image/video is not imported
-  yet (empty Figma image frame); other client logos are shown as text until they are exported.
+  _Hero/Bar 26880:273, _Hero/Label 26882:927. Copy from Figma. Background image and client logos exported from Figma (src/media).
 */
 
 const KICKER = 'Business improvement agency';
 const CLIENTS = ['Exigent', 'G-Star', 'GoCardless', 'ING', 'LaSalle', 'Munich Re', 'Newland', 'Subway'];
-const LOGOS = CLIENTS.map((c) => (c === 'G-Star' ? <ClientLogo name="G-Star" width={118} /> : <span className="yw-body-md-bold">{c}</span>));
+const LOGOS = CLIENTS.map((c) => <ClientLogo key={c} name={c} width={118} />);
 const STATS: HeroStat[] = [
   { value: '17', label: 'markets supported', client: 'Quooker' },
   { value: '−86%', label: 'response time', client: 'De Heus Animal Nutrition' },
@@ -21,6 +21,7 @@ const STATS: HeroStat[] = [
 ];
 const NAV: HeaderProps['nav'] = ['Services', 'Work', 'Industries', 'Tech Partners', 'Insights', 'About Us'].map((l) => ({ label: l, href: '#' }));
 const GRADIENT: HeroProps = {
+  image: abstract('016'),
   title: ['Complex products.', 'Clear platforms.'],
   body: 'Digital transformation is about reshaping how platforms, processes, data and people work together. We design connected digital ecosystems and help teams adopt new ways of working, so change leads to lasting performance.',
   label: { Type: 'Subtitle', Subtitle: KICKER },
@@ -28,10 +29,11 @@ const GRADIENT: HeroProps = {
   bar: { Type: 'Logos', logos: LOGOS },
 };
 const CASE: HeroProps = {
+  image: caseImage('quooker-1', 'wide'),
   Variant: 'Title + image',
   title: ['Scaling Smart: Quooker’s Expansion to 17 Countries'],
   label: { Type: 'Breadcrumb', crumbs: [{ label: 'Home', href: '#' }, { label: 'Work', href: '#' }, { label: 'Quooker' }] },
-  logo: <span className="yw-heading-md">Quooker</span>,
+  logo: <ClientLogo name="Quooker" width={150} />,
 };
 
 type Args = Pick<HeroProps, 'Variant' | 'Device'> & { Bar: 'Logos' | 'Stats' | 'None'; 'Show header': boolean };

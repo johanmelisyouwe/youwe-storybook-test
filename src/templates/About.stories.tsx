@@ -8,6 +8,7 @@ import { Leadership } from '../components/components/Leadership/Leadership';
 import { Awards } from '../components/components/Awards/Awards';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { abstract, caseImage } from '../media/media';
 
 /*
   Templates/About Us — Figma "Page / About Us": Desktop 26661:7478, Mobile 26815:1094. Copy, props and order
@@ -20,6 +21,8 @@ const SYSTEMS = [
   ['02', 'Systems that optimize', 'Complex workflows turned into intelligent, efficient systems: less manual work, less risk.', 'Proven at Kingspan Insulated Panels · AI order intake into SAP', 'Operational Optimization & Intelligence'],
   ['03', 'Systems that scale', 'Data architectures and integration layers that connect systems, improve data quality and enable analytics and AI.', 'Proven at Quooker · 17 markets supported', 'Foundation for Data & Integrations'],
 ];
+
+const SYSTEM_PHOTO: Record<string, string> = { '01': caseImage('bunzl'), '02': caseImage('kingspan-1'), '03': caseImage('quooker-1') };
 
 const OFFICES: OfficesProps['offices'] = [
   { City: 'Rotterdam', Country: 'The Netherlands', Timezone: 'GMT+1', timeZone: 'Europe/Amsterdam' },
@@ -45,6 +48,7 @@ function AboutPage({ Device }: { Device: Device }) {
     <Page Device={Device}>
       <Hero
         Device={Device}
+        image={abstract('015')}
         title={['Youwe, an international full service digital agency']}
         body="At Youwe, we build intelligent digital platforms that connect data, optimize processes, and integrate AI. We help businesses create digital ecosystems for sustainable growth."
         label={{ Type: 'Subtitle', Subtitle: 'About Us' }}
@@ -57,7 +61,7 @@ function AboutPage({ Device }: { Device: Device }) {
           Device={Device}
           intro={{ Layout: 'Split', Kicker: 'What we build', Title: 'Three practices,\nevery industry.', Body: 'Everything we do comes down to three systems. Most clients run more than one.' }}
           cells={SYSTEMS.map(([Eyebrow, Title, Description, Caption, link]) => (
-            <SystemCard key={Title} Eyebrow={Eyebrow} Title={Title} Description={Description} Caption={Caption} link={link} {...{ 'Hover CTA': 'Explore the system', 'Hover context': link }} href="#" />
+            <SystemCard key={Title} image={SYSTEM_PHOTO[Eyebrow]} Eyebrow={Eyebrow} Title={Title} Description={Description} Caption={Caption} link={link} {...{ 'Hover CTA': 'Explore the system', 'Hover context': link }} href="#" />
           ))}
         />
       </Section>
@@ -89,7 +93,7 @@ function AboutPage({ Device }: { Device: Device }) {
         />
         <Awards Device={Device} Title="Trusted by industry leaders" badges={BADGES} />
       </Section>
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} image={abstract('005')} />
       {footer(Device)}
     </Page>
   );

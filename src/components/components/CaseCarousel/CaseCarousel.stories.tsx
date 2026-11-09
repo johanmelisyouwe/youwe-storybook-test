@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { CaseCarousel, type CaseCarouselProps } from './CaseCarousel';
 import type { CaseCardProps } from '../CaseCard/CaseCard';
 import { ClientLogo } from '../../logos/ClientLogo';
+import { clientPhoto } from '../../../media/media';
 
 /* Content blocks/Case carousel — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24985-700 (cases from the Figma carousel; image placeholders) */
 
@@ -15,6 +16,8 @@ const CASES: CaseCardProps[] = [
   { Title: 'From inbox to SAP: AI order intake', Client: 'Kingspan Insulated Panels', href: '#' },
   { Title: 'Seamless replatforming for Fairphone commerce platform', Client: 'Fairphone', href: '#' },
 ];
+const WITH_MEDIA = CASES.map((c) => ({ ...c, image: clientPhoto(c.Client), logo: <ClientLogo name={c.Client} /> }));
+CASES.splice(0, CASES.length, ...WITH_MEDIA);
 const SHORT = { Title: 'Selected case studies', body: 'Explore how we’ve helped organizations build and scale their digital infrastructure, from custom commerce platforms to high-performing cloud environments. Each case highlights the impact of smart architecture and design choices.' };
 const WIDE = { Kicker: 'Selected work', Title: 'Commerce, portals and AI in production', button: { label: 'All work', href: '#' } };
 type Args = Pick<CaseCarouselProps, 'Layout' | 'Device'>;

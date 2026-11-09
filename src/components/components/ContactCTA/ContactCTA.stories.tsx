@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { ContactCTA, type ContactCTAProps, type ContactCTAVariant } from './ContactCTA';
 import { ModeFrame } from '../../shared/ModeFrame';
+import { abstract } from '../../../media/media';
 
 /* Content blocks/Contact CTA — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26535-451 (Figma copy) */
 
@@ -16,6 +17,7 @@ const SUB: ContactCTAProps = {
   body: 'Tell us what you want to achieve and we will think along with you.',
   primary: { label: 'Contact us', href: '#' },
   secondary: { label: 'Submit an RFP', href: '#' },
+  image: abstract('005'),
   offices: ['Rotterdam', 'Groningen', 'London', 'Leeds', 'Shrewsbury', 'Stockholm', 'Bandung', 'Kyiv'],
 };
 const copy = (v: ContactCTAVariant) => (v === 'Form' ? FORM : SUB);
