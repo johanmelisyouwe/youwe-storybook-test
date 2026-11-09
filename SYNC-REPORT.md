@@ -1,63 +1,53 @@
-# Sync report — 9 November 2026 (batch 1)
+# Sync report — 9 November 2026 (batch 2)
 
-Figma file: `IP237ISXsaciooPrSykYMh` (Youwe Tools Design System: Corporate). Instructions: FIGMA-SYNC.md v2. Step 0 skipped (`"migrated"`: fresh repo).
-
-## Scope of this run
-
-Steps 1–3 completely, step 4 for the first batch of building blocks: **Button/Basic, Pills, Tag**. Templates (step 5) are not part of this run.
-
-## Step 2: inventory
-
-- 130 entries read from the `– ` component pages (paged, `figma/inventory.js`).
-- **New since the 6 Nov record (32):** `Content blocks/Awards`, `Content blocks/Filter bar`, and 30 logo assets (`Logos/…`, recorded as internal assets for Technology Card and logo strips).
-- **Not found on a component page (1):** `Industry List Item` (25019:679). Now moved to its own page in Figma (see decisions).
-- Every component now has its full variant options (`figma.axes`) and current signature in `figma-sync.json`.
-- Story titles: `Button/Basic`, `Button/Utility`, `Button/Filter` and `Button/Link` all had the title `Components/Buttons`. A title must be unique per component, so they're now `Components/Buttons/Basic` (and `/Utility`, `/Filter`, `/Link`).
-
-## Step 3: tokens
-
-One addition after the design answers: `motion/distance/xs` = 4px. Otherwise the export matches (232 variables, 24 text styles, 10 effect styles).
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3 unchanged since batch 1 (no new Figma changes; tokens identical). Step 4 for the next set of building blocks. Templates (step 5) are not part of this run.
 
 ## Step 4: components
 
-| Component | Status | Story | Variants |
-|---|---|---|---|
-| Button/Basic | complete | Components/Buttons/Basic | 240 of 240 (Variant × Icon × State × Size) |
-| Pills | complete | Components/Pill | 60 of 60 (Variant × State × Icon × Size) |
-| Tag | complete | Components/Tag | 4 of 4 (Variant × Size) + Show icon |
+| Component | Story | Variants |
+|---|---|---|
+| Button/Filter | Components/Buttons/Filter | 15 of 15 (State × Size) + Active Filter |
+| Button/Utility | Components/Buttons/Utility | 6 of 6 (State × Size) |
+| Button/Link | Components/Buttons/Link | 3 of 3 (Size) |
+| Chip | Components/Chips | 8 of 8 (Variant × Size) |
+| Toggle (+ _Handle) | Components/Toggle | 14 of 14 (State × Size × Active) |
+| Checkbox | Components/Checkbox | 30 of 30 (Active × State × Size) |
+| Checkbox label | Components/Checkbox | 27 of 27 |
+| Radio button | Components/Radio Button | 18 of 18 (State × Size) |
+| Radio button label | Components/Radio Button | 9 of 9 |
+| Tab | Components/Tabs | 5 of 5 (State) |
+| Tab group (+ _Trailing action) | Components/Tabs | 1 of 1, with and without trailing action |
 
-How they were built:
-- Geometry, colours and text styles read **per variant** from Figma (sizes, padding per side, gaps, radius, icon sizes, fills, strokes, text fills, focus ring). Heights are fixed in Figma (Button L 56 / M 48 / S 36 / XS 24, Pills M 36 / S 24, Tag M 24 / S 20) and set explicitly. XS buttons have 8px padding on the icon side, as in Figma.
-- All values are tokens; text uses the `.yw-*` classes; CSS is in `@layer components`.
-- States are real CSS (`:hover`, `:active`, `:focus-visible`, `:disabled`). The stories preview them with storybook-addon-pseudo-states (installed in this run).
-- Focus ring: 2px `shared/border/system/focus`, 4px outside, like the Figma Focus Ring layer.
-- Motion (from each Figma description): background/colour transitions with `duration/fast` + `ease/standard`; on the button the trailing icon nudges forward and the leading icon back by `distance/xs` (`duration/base` + `ease/emphasized`).
-- Icons (shopping-basket, show-password, info, star-full) exported from the Figma icon components as SVG, recoloured with `currentColor`.
-- Each component has `Default`, one story per Variant and `AllVariants`; Pills also has `FilterRow` (as used in the Figma Filter bar).
+How they were built (same method as batch 1):
+- Geometry, colours, strokes, effects and text styles read per variant from Figma; heights fixed where Figma fixes them (Filter L 52 / M 44 / S 36, Utility 44 / 24, Tab 44, Toggle 42×24 / 58×32, Checkbox 18 / 24 / 44, Radio 18 / 24).
+- Real controls and ARIA: native checkbox and radio inputs (indeterminate supported), Toggle as `role="switch"`, Tab group as WAI-ARIA tabs with roving tabindex and Arrow/Home/End (Figma Interaction line; tested in the browser).
+- Motion from the Figma descriptions: Toggle knob slides (duration/base, ease/emphasized) and track colour (duration/base, ease/standard); the Tab group ink slides between tabs (duration/slow, ease/emphasized); hover colours duration/fast.
+- New Figma icons exported as SVG: filter-tune, close (two sizes), check, remove, more-settings-horizontal and the Button/Link chevron.
+- Only combinations that exist in Figma: Toggle has no disabled-on; Checkbox has Indeterminate only checked and Disabled only unchecked. Those cells stay empty in the AllVariants grids.
 
-Visual comparison with Figma (component set screenshots vs. the `AllVariants` stories at 1440px):
-- Button/Basic: every Variant × State × Size × Icon row compared. Sizes measured in the browser match Figma (for example L 56, icon + gap adds 32px; XS leading adds 16px, as in Figma).
-- Pills: all 60 compared. One difference found and fixed: Figma uses the *show-password* icon on Primary pills and *info* on Neutral pills in both positions.
-- Tag: all 4 compared, on the same `surface/base-3` backdrop as the Figma set.
+**Focus Ring, now shared and exact.** Reading the Focus Ring layer showed it also carries the effect style `shadow/outer/md/focus` (a dark blue glow around the light ring), which batch 1 missed. There's now one shared Focus Ring (`src/components/shared/focus-ring.css`): 2px `shared/border/system/focus`, 4px outside the control, with the glow and a transparent gap. Button/Basic, Pills, Button/Filter and Toggle use it; Checkbox (radius 4) and Radio (circle) follow the same values; Tab places it 4px inside, as in Figma; Button/Utility has its ring on the button itself, as in Figma.
+
+Visual comparison with Figma (component set screenshots vs. the AllVariants stories): every variant of every component in this batch compared. One story-only artefact found and fixed: a square outline in the focus preview of Checkbox and Radio, caused by the preview class landing on the wrapper.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
-- `check-legacy`: clean (no exemptions added)
-- `check-coverage`: clean (3 complete, 74 missing, 54 internal; 19 templates missing)
+- `check-legacy`: clean
+- `check-coverage`: clean (14 complete, 63 missing, 54 internal; 19 templates missing)
 
-## Design decisions (answered 9 Nov)
+## Could not match exactly
 
-1. **Destructive variant** in the Button/Basic description: ignore, it doesn't exist.
-2. **Tag copy**: replaced in Figma. Defaults are now "Featured" (Info) and "Case study" (Neutral); there are no web-shop components.
-3. **Nudge token**: added in Figma as `motion/distance/xs` = 4px ("Icon nudges on hover"). Exported into `tokens/figma-variables.json`; Button uses `var(--motion-distance-xs)`.
-4. **Industry List Item**: moved in Figma to its own page `– Industry List Item`, so the inventory finds it. Status `missing`, ready for a later batch.
+- **Button/Link** has no hover state in Figma. I gave the chevron the same nudge as Button/Basic (`distance/xs`) so the link reacts to hover. Remove it if design prefers no hover.
+- **Button/Link lg** and **Checkbox label L** use a plain 20px / 24px regular font in Figma instead of a text style. Code uses the matching size (`font-size/body-lg`, `.yw-body-xl-reg`).
+- **Tab group's trailing action** opens an options panel (`_Dropdown/Options`) in Figma. That panel comes with the dropdowns in batch 3.
 
-5. **Second text layer** in Button/Basic: not used. Removed in Figma (layer and the `Show second text element` property) and from the code.
+## Open questions for the design team
 
-No open questions left for this batch.
+1. Button/Link: keep the hover nudge, or no hover?
+2. Attach text styles to Button/Link lg and Checkbox label L?
+3. Tab labels in Figma are "Label"; the stories use the three practice names. Any specific default?
 
 ## Next batch (suggested)
 
-Button/Filter, Button/Utility, Button/Link, Chip, Toggle, Checkbox, Radio button, Tab, then the inputs; after those the cards.
+Batch 3: the inputs (Text Input, Text Area, Dropdown incl. options panel, Phone Input, Locale select), then Accordion, Tooltip, Toaster, Pagination, Progress Bar, Breadcrumbs.
