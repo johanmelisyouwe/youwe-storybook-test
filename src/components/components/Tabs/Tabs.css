@@ -6,7 +6,8 @@
        Active: line 2px border/brand-1, label body/sm/bold content/primary.
        Disabled: disabled/surface/1, label disabled content. Focus Ring 4px INSIDE the tab (radius 4).
   Tab group: full-width row on surface/base-1 with a 1px border/2 bottom line; tabs left, optional
-       trailing action right (Button/Basic Outline S icon-only "more", 8px right padding).
+       trailing action right (Button/Basic Outline S icon-only "more", 8px right padding) that opens
+       the _Dropdown/Options menu (191 wide).
   Motion (Figma): hover colour duration/fast; the selected ink slides between tabs duration/slow ease/emphasized.
   Interaction (Figma): WAI-ARIA tabs with roving tabindex and Arrow/Home/End keys.
 */
@@ -89,9 +90,17 @@
   }
 
   .yw-tab-group__trailing {
+    position: relative;
     display: flex;
     align-items: center;
     padding-right: var(--spacing-2xs);
+  }
+
+  /* _Trailing action menu: 191 wide, aligned to the right edge of the action */
+  .yw-tab-group__trailing .yw-options {
+    left: auto;
+    right: var(--spacing-2xs);
+    min-width: 191px;
   }
 
   .yw-tab-panel:focus-visible {

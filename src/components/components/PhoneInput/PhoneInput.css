@@ -1,0 +1,60 @@
+/*
+  Phone Input (Figma "Phone Input/Static Labels" 18709:10372, "Phone Input/Floating Labels" 18709:10502)
+  with _Locale select (18781:13057). Row: locale select (22×16 flag, 24 arrow, country code body/md/reg
+  in content/tertiary) and the number body/md/reg, gap 4. Floating: the label is always up
+  (body/xs/reg) with the row below, 4px bottom padding — as in every Figma floating variant.
+  Locale open: the arrow points up and the options panel lists flags + codes.
+*/
+@layer components {
+  .yw-phone__row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3xs);
+    width: 100%;
+  }
+
+  .yw-phone .yw-field__input {
+    height: auto;
+    opacity: 1;
+  }
+
+  .yw-phone.yw-field--floating .yw-field__stack {
+    gap: var(--spacing-3xs);
+    padding-bottom: var(--spacing-3xs);
+  }
+
+  .yw-phone.yw-field--floating .yw-field__float-label {
+    font-size: var(--font-size-body-xs);
+  }
+
+  .yw-locale {
+    position: static;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-shared-content-primary);
+    cursor: pointer;
+    border-radius: var(--shared-radius-2);
+  }
+
+  .yw-locale:focus-visible {
+    outline: var(--shared-width-2) solid var(--color-shared-border-system-focus);
+    outline-offset: var(--shared-width-2);
+  }
+
+  .yw-locale__flag {
+    display: block;
+    width: 22px;
+    height: 16px;
+  }
+
+  .yw-locale__code {
+    color: var(--color-shared-content-tertiary);
+  }
+
+  .yw-phone.is-disabled .yw-locale { cursor: not-allowed; }
+}

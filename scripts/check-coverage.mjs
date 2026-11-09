@@ -28,13 +28,15 @@ for (const c of sync.components) {
   const stories = read(storyFiles(c.code));
   if (!stories) { problems.push(`${name}: no story file listed in "code"`); continue; }
   if (c.status === 'complete' && !/export\s+const\s+AllVariants\b/.test(stories)) problems.push(`${name}: no "AllVariants" story (FIGMA-SYNC.md rule 5)`);
+  // args and options may also live in shared story helpers listed in "code"
+  const all = read(allFiles(c.code));
 
   // Axes: prefer the full option lists (figma.axes, written by the sync), else axis names.
   const axes = c.figma.axes || Object.fromEntries((c.figma.variantAxes || []).map((a) => [a.replace(/\(\d+\)$/, ''), null]));
   for (const [axis, options] of Object.entries(axes)) {
-    if (!new RegExp(`['"\`]?${axis}['"\`]?\\s*:`).test(stories)) { problems.push(`${name}: variant axis "${axis}" is not an arg`); continue; }
+    if (!new RegExp(`['"\`]?${axis}['"\`]?\\s*:`).test(all)) { problems.push(`${name}: variant axis "${axis}" is not an arg`); continue; }
     if (c.status !== 'complete' || !options) continue;
-    const missing = options.filter((o) => !stories.includes(`'${o}'`) && !stories.includes(`"${o}"`) && !stories.includes(`\`${o}\``));
+    const missing = options.filter((o) => !all.includes(`'${o}'`) && !all.includes(`"${o}"`) && !all.includes(`\`${o}\``));
     if (missing.length) problems.push(`${name}: ${axis} options missing from the stories: ${missing.join(', ')}`);
   }
 }

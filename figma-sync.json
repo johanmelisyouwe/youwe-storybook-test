@@ -2516,12 +2516,23 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 13 variants.",
+      "code": [
+        "src/components/components/Dropdown/Dropdown.tsx",
+        "src/components/components/Dropdown/Dropdown.css",
+        "src/components/components/Dropdown/Dropdown.stories.tsx",
+        "src/components/components/Field/Field.tsx",
+        "src/components/components/Field/Field.css",
+        "src/components/components/Field/fieldStory.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.css",
+        "src/components/components/OptionsPanel/useListbox.ts",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1ijdmm3",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2554,12 +2565,23 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 9 states (Active = open). Select-only combobox with keyboard support and the Figma options panel.",
+      "code": [
+        "src/components/components/Dropdown/Dropdown.tsx",
+        "src/components/components/Dropdown/Dropdown.css",
+        "src/components/components/Dropdown/Dropdown.stories.tsx",
+        "src/components/components/Field/Field.tsx",
+        "src/components/components/Field/Field.css",
+        "src/components/components/Field/fieldStory.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.css",
+        "src/components/components/OptionsPanel/useListbox.ts",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1isfzol",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2597,8 +2619,8 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
+      "status": "not-needed",
+      "note": "Web-shop component (quantity in product/cart). Youwe has no web-shop components (design, 9 Nov), so it is not built. Ask design whether to remove it from Figma.",
       "code": null,
       "locked": false,
       "lastSyncedSignature": null,
@@ -2666,12 +2688,23 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 8 states with _Locale select (5 Figma flags/codes).",
+      "code": [
+        "src/components/components/PhoneInput/PhoneInput.tsx",
+        "src/components/components/PhoneInput/PhoneInput.css",
+        "src/components/components/PhoneInput/PhoneInput.stories.tsx",
+        "src/components/components/Field/Field.tsx",
+        "src/components/components/Field/Field.css",
+        "src/components/components/Field/fieldStory.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.css",
+        "src/components/components/OptionsPanel/useListbox.ts",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "ogo0bo",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2703,12 +2736,23 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 8 states. Label always up, as in Figma.",
+      "code": [
+        "src/components/components/PhoneInput/PhoneInput.tsx",
+        "src/components/components/PhoneInput/PhoneInput.css",
+        "src/components/components/PhoneInput/PhoneInput.stories.tsx",
+        "src/components/components/Field/Field.tsx",
+        "src/components/components/Field/Field.css",
+        "src/components/components/Field/fieldStory.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.css",
+        "src/components/components/OptionsPanel/useListbox.ts",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "9ea031",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2777,12 +2821,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 13 variants (State × Placeholder). Label floats on focus/value; Placeholder=Yes keeps it up.",
+      "code": [
+        "src/components/components/TextInput/TextInput.tsx",
+        "src/components/components/TextInput/TextInput.stories.tsx",
+        "src/components/components/Field/Field.tsx",
+        "src/components/components/Field/Field.css",
+        "src/components/components/Field/fieldStory.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "10glfpo",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2815,12 +2866,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 9 states. Hover/Focused/Active real CSS; Filled = value; Success/Error = status. Suffix = search icon.",
+      "code": [
+        "src/components/components/TextInput/TextInput.tsx",
+        "src/components/components/TextInput/TextInput.stories.tsx",
+        "src/components/components/Field/Field.tsx",
+        "src/components/components/Field/Field.css",
+        "src/components/components/Field/fieldStory.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1h1l6vp",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2853,12 +2911,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 9 states. Native resize handle instead of the drawn Figma corner.",
+      "code": [
+        "src/components/components/TextArea/TextArea.tsx",
+        "src/components/components/TextArea/TextArea.css",
+        "src/components/components/TextArea/TextArea.stories.tsx",
+        "src/components/components/Field/Field.tsx",
+        "src/components/components/Field/Field.css",
+        "src/components/components/Field/fieldStory.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "5jnhfn",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2896,12 +2961,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 13 variants.",
+      "code": [
+        "src/components/components/TextArea/TextArea.tsx",
+        "src/components/components/TextArea/TextArea.css",
+        "src/components/components/TextArea/TextArea.stories.tsx",
+        "src/components/components/Field/Field.tsx",
+        "src/components/components/Field/Field.css",
+        "src/components/components/Field/fieldStory.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "g0yoo8",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3398,12 +3470,15 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "WAI-ARIA tabs, roving tabindex, Arrow/Home/End, sliding ink (duration/slow, ease/emphasized). Trailing action = Button/Basic Outline S icon-only; its options panel (_Dropdown/Options) arrives with the dropdowns.",
+      "note": "WAI-ARIA tabs, roving tabindex, Arrow/Home/End, sliding ink. Trailing action opens the _Dropdown/Options menu (batch 3).",
       "code": [
         "src/components/components/Tabs/Tabs.tsx",
         "src/components/components/Tabs/Tabs.css",
         "src/components/components/Tabs/Tabs.stories.tsx",
-        "src/components/components/Button/Button.tsx"
+        "src/components/components/Button/Button.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.tsx",
+        "src/components/components/OptionsPanel/OptionsPanel.css",
+        "src/components/components/OptionsPanel/useListbox.ts"
       ],
       "locked": false,
       "lastSyncedSignature": "wlin8t",

@@ -86,7 +86,9 @@ for (const f of files) {
   if (!/\.(tsx|jsx|ts|js|mdx|html|vue|svelte)$/.test(f) || /\.d\.ts$/.test(f) || f.includes('scripts/')) continue;
   readFileSync(f, 'utf8').split('\n').forEach((l, i) => {
     if (l.includes('legacy-ok')) return;
-    if (PLACEHOLDER.test(l) || /(['">])Placeholder\1|>Placeholder</.test(l)) add('placeholder copy (use the texts from Figma)', f, i + 1, l);
+    // Figma property NAMES (e.g. the prop 'Hint text') are allowed; only copy is checked
+    const copy = l.replace(/['"]Hint text['"]\??\s*:/g, '').replace(/Figma:\s*Hint text/g, '');
+    if (PLACEHOLDER.test(copy) || /(['">])Placeholder\1|>Placeholder</.test(copy)) add('placeholder copy (use the texts from Figma)', f, i + 1, l);
   });
 }
 // 7. reset: some stylesheet must set box-sizing and make links inherit their colour
