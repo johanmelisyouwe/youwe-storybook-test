@@ -10,13 +10,13 @@ Steps 1–3 completely, step 4 for the first batch of building blocks: **Button/
 
 - 130 entries read from the `– ` component pages (paged, `figma/inventory.js`).
 - **New since the 6 Nov record (32):** `Content blocks/Awards`, `Content blocks/Filter bar`, and 30 logo assets (`Logos/…`, recorded as internal assets for Technology Card and logo strips).
-- **Not found on a component page (1):** `Industry List Item` (25019:679). It is still used in the Industries template, so it's kept as `missing` with a note rather than `removed-in-figma`. Question for design: should it move to a `– ` page?
+- **Not found on a component page (1):** `Industry List Item` (25019:679). Now moved to its own page in Figma (see decisions).
 - Every component now has its full variant options (`figma.axes`) and current signature in `figma-sync.json`.
 - Story titles: `Button/Basic`, `Button/Utility`, `Button/Filter` and `Button/Link` all had the title `Components/Buttons`. A title must be unique per component, so they're now `Components/Buttons/Basic` (and `/Utility`, `/Filter`, `/Link`).
 
 ## Step 3: tokens
 
-No changes. The export of 9 Nov matches `tokens/figma-variables.json` (231 variables, 24 text styles, 10 effect styles).
+One addition after the design answers: `motion/distance/xs` = 4px. Otherwise the export matches (232 variables, 24 text styles, 10 effect styles).
 
 ## Step 4: components
 
@@ -31,7 +31,7 @@ How they were built:
 - All values are tokens; text uses the `.yw-*` classes; CSS is in `@layer components`.
 - States are real CSS (`:hover`, `:active`, `:focus-visible`, `:disabled`). The stories preview them with storybook-addon-pseudo-states (installed in this run).
 - Focus ring: 2px `shared/border/system/focus`, 4px outside, like the Figma Focus Ring layer.
-- Motion (from each Figma description): background/colour transitions with `duration/fast` + `ease/standard`; on the button the trailing icon nudges forward and the leading icon back (`duration/base` + `ease/emphasized`).
+- Motion (from each Figma description): background/colour transitions with `duration/fast` + `ease/standard`; on the button the trailing icon nudges forward and the leading icon back by `distance/xs` (`duration/base` + `ease/emphasized`).
 - Icons (shopping-basket, show-password, info, star-full) exported from the Figma icon components as SVG, recoloured with `currentColor`.
 - Each component has `Default`, one story per Variant and `AllVariants`; Pills also has `FilterRow` (as used in the Figma Filter bar).
 
@@ -47,17 +47,14 @@ Visual comparison with Figma (component set screenshots vs. the `AllVariants` st
 - `check-legacy`: clean (no exemptions added)
 - `check-coverage`: clean (3 complete, 74 missing, 54 internal; 19 templates missing)
 
-## Could not match exactly
+## Design decisions (answered 9 Nov)
 
-- **Icon nudge distance.** Figma says the arrow "nudges" but there is no token for a small distance. I used half of `motion/distance/sm` (4px). Design: is a `distance/xs` token wanted?
-- **Second text element.** Button/Basic has a hidden "Second text" layer (same text style, colour not bound to a variable). It's available as `Show second text element` + `secondText`, but its purpose isn't clear from Figma.
+1. **Destructive variant** in the Button/Basic description: ignore, it doesn't exist.
+2. **Tag copy**: replaced in Figma. Defaults are now "Featured" (Info) and "Case study" (Neutral); there are no web-shop components.
+3. **Nudge token**: added in Figma as `motion/distance/xs` = 4px ("Icon nudges on hover"). Exported into `tokens/figma-variables.json`; Button uses `var(--motion-distance-xs)`.
+4. **Industry List Item**: moved in Figma to its own page `– Industry List Item`, so the inventory finds it. Status `missing`, ready for a later batch.
 
-## Open questions for the design team
-
-1. Button/Basic description mentions a **Destructive** variant that doesn't exist in the component set. Remove it from the description, or add the variant?
-2. **Tag default copy** ("Very popular", "Only 3 left") reads like web-shop placeholder text. Is there real copy for Youwe (for example case tags)?
-3. Button/Basic default label is "Default". The stories use "Get in touch" (from the templates).
-4. `Industry List Item` is not on a `– ` component page (see step 2).
+Still open: the hidden "Second text" layer in Button/Basic (same text style, colour not bound to a variable). It's available as `Show second text element` + `secondText`.
 
 ## Next batch (suggested)
 

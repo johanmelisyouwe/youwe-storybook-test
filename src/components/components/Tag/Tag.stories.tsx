@@ -4,8 +4,7 @@ import { iconNames } from '../../icons/Icon';
 
 /*
   Tag — Figma: https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-7265
-  Labels are the Figma component defaults ("Very popular", "Only 3 left").
-  These read as shop placeholders; flagged in SYNC-REPORT.md as an open question.
+  Labels are the Figma component defaults ("Featured", "Case study"; updated 9 Nov).
   The Neutral tag is translucent (surface/tint-1 + background blur), so stories show it on the same surface the Figma component set uses.
 */
 
@@ -22,7 +21,7 @@ const meta: Meta<typeof Tag> = {
     'Show icon': { control: 'boolean' },
     iconName: { control: 'select', options: iconNames },
   },
-  args: { Variant: 'Info', Size: 'S', 'Show icon': true, label: 'Very popular' },
+  args: { Variant: 'Info', Size: 'S', 'Show icon': true, label: 'Featured' },
 };
 export default meta;
 type Story = StoryObj<typeof Tag>;
@@ -43,9 +42,9 @@ const Backdrop = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const Default: Story = {};
-export const Info: Story = { args: { Variant: 'Info', label: 'Very popular' } };
+export const Info: Story = { args: { Variant: 'Info', label: 'Featured' } };
 export const Neutral: Story = {
-  args: { Variant: 'Neutral', label: 'Only 3 left' },
+  args: { Variant: 'Neutral', label: 'Case study' },
   decorators: [(S) => <Backdrop><S /></Backdrop>],
 };
 
@@ -57,8 +56,8 @@ export const AllVariants: Story = {
       {(['Info', 'Neutral'] as const).flatMap((v) =>
         (['S', 'M'] as const).map((z) => (
           <div key={`${v}${z}`} style={{ display: 'grid', gap: 'var(--spacing-2xs)', justifyItems: 'start' }}>
-            <Tag Variant={v} Size={z} label={v === 'Info' ? 'Very popular' : 'Only 3 left'} />
-            <Tag Variant={v} Size={z} label={v === 'Info' ? 'Very popular' : 'Only 3 left'} {...{ 'Show icon': false }} />
+            <Tag Variant={v} Size={z} label={v === 'Info' ? 'Featured' : 'Case study'} />
+            <Tag Variant={v} Size={z} label={v === 'Info' ? 'Featured' : 'Case study'} {...{ 'Show icon': false }} />
           </div>
         )),
       )}

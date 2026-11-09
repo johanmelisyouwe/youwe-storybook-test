@@ -575,7 +575,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "All 240 variants. States are real CSS. Icon nudge uses half of motion/distance/sm (no 4px token). Destructive variant is mentioned in the Figma description but does not exist in the set.",
+      "note": "All 240 variants. States are real CSS. Icon nudge uses motion/distance/xs (added in Figma 9 Nov).",
       "code": [
         "src/components/components/Button/Button.tsx",
         "src/components/components/Button/Button.css",
@@ -2305,7 +2305,24 @@
           "Device(2)",
           "Expanded(2)",
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Expanded": [
+            "No",
+            "Yes"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Number:T,Title:T,Subtitle:T,Show preview image:B",
+        "variantCount": 8,
+        "signature": "1m34l0r"
       },
       "storybook": {
         "title": "Components/Industry List Item",
@@ -2313,7 +2330,7 @@
       },
       "internal": false,
       "status": "missing",
-      "note": "Not found on a \"– \" component page in the 9 Nov inventory (the component set may live on another page). Check with design before syncing.",
+      "note": "Moved to its own page \"– Industry List Item\" in Figma on 9 Nov.",
       "code": null,
       "locked": false,
       "lastSyncedSignature": null,
@@ -3395,7 +3412,7 @@
         },
         "props": "Show icon:B",
         "variantCount": 4,
-        "signature": "xejs82"
+        "signature": "k3t3ff"
       },
       "storybook": {
         "title": "Components/Tag",
@@ -3403,7 +3420,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "All 4 variants plus Show icon. Figma default copy (\"Very popular\", \"Only 3 left\") kept; open question in SYNC-REPORT.",
+      "note": "All 4 variants plus Show icon. Default copy updated in Figma to \"Featured\" / \"Case study\".",
       "code": [
         "src/components/components/Tag/Tag.tsx",
         "src/components/components/Tag/Tag.css",
@@ -3411,7 +3428,7 @@
         "src/components/icons/Icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "xejs82",
+      "lastSyncedSignature": "k3t3ff",
       "lastSynced": "2026-11-09"
     },
     {

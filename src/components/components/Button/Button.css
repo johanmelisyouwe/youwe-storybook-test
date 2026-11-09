@@ -8,7 +8,7 @@
   Icon only: square (L 56, M 48, S 36, XS 24).
   Heights are fixed in Figma, so they are set explicitly.
   Motion (Figma description): background/colour duration/fast ease/standard; the
-  trailing icon nudges in its direction duration/base ease/emphasized. No scaling.
+  trailing icon nudges in its direction (distance/xs) duration/base ease/emphasized. No scaling.
   Focus ring: 2px shared/border/system/focus, 4px outside the button (Focus Ring layer at -4).
 */
 @layer components {
@@ -130,11 +130,11 @@
 
   /* Trailing icon nudges forward, leading icon nudges back (Figma Motion line) */
   .yw-button--trailing:hover .yw-button__icon {
-    transform: translateX(calc(var(--motion-distance-sm) / 2));
+    transform: translateX(var(--motion-distance-xs));
   }
 
   .yw-button--leading:hover .yw-button__icon {
-    transform: translateX(calc(var(--motion-distance-sm) / -2));
+    transform: translateX(calc(var(--motion-distance-xs) * -1));
   }
 
   /* ---- Focus (Figma Focused = Rest look + focus ring) ---- */
