@@ -27,7 +27,7 @@ How they were built:
   - Hero: title lines rise in a mask (`duration/cinematic`, +120ms per line); optional recede over the first 860px of scroll; the logo/stat bar is a 40s marquee that pauses on hover.
   - Section header and Section intro: title words rise in a mask (`duration/reveal`, half a stagger per word). The Section intro body lights up word by word as you scroll (28% → 100%, never fades back).
   - Text column, Two-column text, Case intro, Text + media: block reveal. Media and the Text + media image: clip reveal (inset 18%/8% → 0, scale 0.96 → 1).
-  - Statement: optional giant decorative rows that drift ±9% on scroll (aria-hidden).
+  - Statement: optional giant decorative rows, rebuilt after the v2 site's partners section (the team's reference): oversized headline type, one image-filled row and one outlined row, drifting (p − 0.5) × 18% in opposite directions as the block scrolls through the viewport (aria-hidden; off with reduced motion). The image fill falls back to the Ask Youwe glow colours until images are imported.
   - Testimonial: with several quotes it auto-advances every 7s using a View Transition (old quote blurs 6px and lifts, new one rises in) and pauses on hover, focus and when off-screen.
 - **Accessibility**: word-split headings keep the plain text for screen readers; the Hero marquee duplicates its items for the loop but hides the copy from screen readers; Case intro meta is a definition list; Testimonial is a `figure` with `blockquote`.
 - **Copy** from Figma: Hero ("Complex products. Clear platforms."), the Quooker case texts (Text column, Two-column text, Case intro, Statement), Section header/intro, Text + media ("Global thinking, global understanding"). The Testimonial uses the Bunzl quote (Figma has default copy there).
@@ -45,13 +45,13 @@ Visual comparison with Figma: every block compared. Fixed in this run: backgroun
 
 - **Images and video** (Hero background, Title + image, Media, Text + media, Testimonial photo) show the empty Figma image frame; images are on the backlog.
 - **Client logos** in the Hero bar: only G-Star is exported; the other seven show the client name until the logos are exported.
-- **Statement drifting rows** are described in Figma but not drawn; code has them as an option (`rows`) with an assumed 4% opacity.
+- **Statement giant rows** are described in Figma but not drawn; code follows the v2 site (size clamp(72px, 15vw, 260px), line-height 0.92, letter-spacing −0.04em, 1.5px outline), marked `legacy-ok` because Figma has no text style for it.
 - **Section header** has a hidden "Eyebrow" layer in the Centered variant; code only shows the kicker on Left, as in Figma.
 - **Mobile text sizes** in the side-by-side story frames follow the desktop viewport; the Mobile stories (mobile viewport) show the real mobile sizes.
 
 ## Open questions for the design team
 
-1. Statement: should the drifting decorative rows be drawn in Figma (words, size, opacity)?
+1. Statement: add the giant rows to the Figma component (as on the v2 site), with a text style for the giant size?
 2. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
