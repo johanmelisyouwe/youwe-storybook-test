@@ -1,0 +1,29 @@
+/*
+  Aktiv Grotesk, the family Figma uses (font_primitives: family/headings, family/body).
+  Only the weights the Figma text styles use: Regular 400, Medium 500, Bold 700.
+  Files: public/fonts/aktiv-grotesk/ (Youwe-licensed, converted to woff2).
+  The family name matches the token, so var(--font-family-*) picks these up.
+*/
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('/fonts/aktiv-grotesk/aktiv-grotesk-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('/fonts/aktiv-grotesk/aktiv-grotesk-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('/fonts/aktiv-grotesk/aktiv-grotesk-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

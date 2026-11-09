@@ -8,9 +8,6 @@ next-env.d.ts
 .env*.local
 .DS_Store
 *.log
-# Licensed font files must never be committed to this public repo
-public/fonts/
-*.woff
-*.woff2
+# Fonts: only the web files in public/fonts/ are committed (Youwe-licensed). Never the source .ttf/.otf
 *.otf
 *.ttf

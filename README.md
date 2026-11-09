@@ -65,4 +65,4 @@ npm run check          # check-legacy + check-coverage
 
 ## Fonts
 
-Aktiv Grotesk is licensed and must **not** be committed (font files are git-ignored). To load it, set `STORYBOOK_ADOBE_FONTS_KIT` to an Adobe Fonts project id that includes *aktiv-grotesk*: locally in `.env`, or on GitHub under Settings → Secrets and variables → Actions → Variables.
+Aktiv Grotesk, the family Figma uses, is loaded from `public/fonts/aktiv-grotesk/` (Regular 400, Medium 500, Bold 700: the weights the Figma text styles use) and declared in `src/styles/fonts.css`. The files are Youwe-licensed web versions (woff2). Never commit the source `.ttf`/`.otf` files, and don't add weights or cuts Figma doesn't use (such as Aktiv Grotesk Ex).

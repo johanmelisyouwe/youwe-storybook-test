@@ -1,9 +1,8 @@
 import type { StorybookConfig } from '@storybook/nextjs-vite';
 
-// Aktiv Grotesk is a licensed font, so the files are NOT in this public repo.
-// Set STORYBOOK_ADOBE_FONTS_KIT to an Adobe Fonts (Typekit) project id that
-// includes "aktiv-grotesk" to load it; otherwise the system fallback is used.
-const adobeKit = process.env.STORYBOOK_ADOBE_FONTS_KIT;
+// Aktiv Grotesk (Youwe-licensed) is served from public/fonts and declared in
+// src/styles/fonts.css. Preload the three weights the Figma text styles use.
+const weights = ['regular', 'medium', 'bold'];
 
 const config: StorybookConfig = {
   framework: { name: '@storybook/nextjs-vite', options: {} },
@@ -13,8 +12,13 @@ const config: StorybookConfig = {
   ],
   addons: ['@storybook/addon-docs', '@storybook/addon-a11y'],
   staticDirs: ['../public'],
+  // Keep the published Storybook out of search engines (GitHub Pages can't send
+  // X-Robots-Tag headers, and a robots.txt only counts at the domain root).
+  managerHead: (head) => `${head}
+    <meta name="robots" content="noindex, nofollow, noarchive">`,
   previewHead: (head) => `${head}
-    ${adobeKit ? `<link rel="stylesheet" href="https://use.typekit.net/${adobeKit}.css">` : ''}`,
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    ${weights.map((w) => `<link rel="preload" href="./fonts/aktiv-grotesk/aktiv-grotesk-${w}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n    ')}`,
   core: { disableTelemetry: true },
 };
 

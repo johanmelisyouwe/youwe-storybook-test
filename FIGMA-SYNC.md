@@ -27,7 +27,7 @@ Everything below refers to these paths. If you use this kit in another repo, upd
 | Templates | `src/templates/<Name>.stories.tsx`, title `Templates/<Name>`, exports `Desktop` and `Mobile` |
 | Foundations docs | `src/foundations/` (rendered from `tokens.resolved.json`) |
 | Exported images | `public/figma-assets/<group>/<name>.<ext>`, referenced as `/figma-assets/…` |
-| Fonts | from tokens only. Licensed files are never committed; loaded through `STORYBOOK_ADOBE_FONTS_KIT` |
+| Fonts | family from tokens; files in `public/fonts/aktiv-grotesk/` (Regular, Medium, Bold woff2, Youwe-licensed), declared in `src/styles/fonts.css` |
 | Run / build / check | `npm run storybook` · `npm run build-storybook` · `npm run typecheck` · `npm run check` |
 | Old Storybook to migrate | none (`figma-sync.json` has `"migrated"`), so step 0 is skipped |
 
@@ -55,7 +55,7 @@ Names starting with `_` (for example `_Ask Youwe/Chip`) are **building blocks**.
 
 1. **No hard-coded design values.** Colours, sizes, spacing, radii, shadows, font families, durations and easings come from the generated `src/tokens/tokens.css` custom properties. If a value has no token, report it in the sync report.
 2. **Never edit generated token files by hand.** They come from step 3.
-3. **Fonts** come from the tokens (`--font-family-headings`, `--font-family-body`). Remove any `@font-face` or `font-family` that Figma does not use, for example *Aktiv Grotesk Ex*. Never commit licensed font files.
+3. **Fonts** come from the tokens (`--font-family-headings`, `--font-family-body`). Remove any `@font-face` or `font-family` that Figma does not use, for example *Aktiv Grotesk Ex*. Only the weights the Figma text styles use are loaded (see section 0); commit licensed font files only where the license allows it.
 4. **Names match Figma.**
    - Story title: the `storybook.title` in `figma-sync.json` (`Components/<page>` or `Content blocks/<name>`).
    - Each Figma **variant axis** becomes an arg with the same name and options (`Mode`, `Device`, `Size`, `State`, `Layout` …).
