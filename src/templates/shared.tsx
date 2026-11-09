@@ -3,6 +3,7 @@ import { Header, type HeaderProps } from '../components/components/Header/Header
 import { Footer, type FooterColumn } from '../components/components/Footer/Footer';
 import { ClientLogo } from '../components/logos/ClientLogo';
 import type { Mode } from '../components/shared/ModeFrame';
+import './templates.css';
 
 /*
   Shared pieces for the page templates (FIGMA-SYNC.md step 5). Copy comes from the Figma templates.
@@ -48,8 +49,9 @@ export const footer = (Device: Device, youwe: string[] = YOUWE_PAGES) => (
 );
 
 /** A section in a Figma Mode (Dark / Light); blocks take their surface from data-theme. */
-export function Section({ Mode = 'Dark', children }: { Mode?: Mode; children: ReactNode }) {
-  return <div data-theme={Mode.toLowerCase()} style={{ background: 'var(--color-shared-surface-base-1)', color: 'var(--color-shared-content-primary)' }}>{children}</div>;
+export function Section({ Mode = 'Dark', flush, children }: { Mode?: Mode; flush?: 'top' | 'bottom' | 'both'; children: ReactNode }) {
+  const cls = flush ? [flush !== 'bottom' && 'yw-flush-top', flush !== 'top' && 'yw-flush-bottom'].filter(Boolean).join(' ') : undefined;
+  return <div className={cls} data-theme={Mode.toLowerCase()} style={{ background: 'var(--color-shared-surface-base-1)', color: 'var(--color-shared-content-primary)' }}>{children}</div>;
 }
 
 /** A hand-built Figma frame that is not a component (step 5.4): same height, clearly marked. */

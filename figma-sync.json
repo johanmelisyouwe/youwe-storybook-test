@@ -1141,7 +1141,8 @@
         "src/components/components/BuildYourStack/BuildYourStack.stories.tsx",
         "src/components/components/AccordionList/AccordionList.css",
         "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/components/shared/ModeFrame.tsx",
+        "src/components/components/BuildYourStack/buildYourStack.copy.ts"
       ],
       "locked": false,
       "lastSyncedSignature": "17xlig1",
@@ -5099,10 +5100,15 @@
         "title": "Templates/Services detail",
         "story": "Desktop"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "kiz47u",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/ServicesDetail.stories.tsx",
+        "src/templates/shared.tsx",
+        "src/templates/templates.css"
+      ]
     },
     {
       "figma": {
@@ -5115,10 +5121,15 @@
         "title": "Templates/Services detail",
         "story": "Mobile"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "xfy70r",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/ServicesDetail.stories.tsx",
+        "src/templates/shared.tsx",
+        "src/templates/templates.css"
+      ]
     },
     {
       "figma": {
@@ -5271,10 +5282,15 @@
         "title": "Templates/Tech Partners",
         "story": "Desktop"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1wjiwfx",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/TechPartners.stories.tsx",
+        "src/templates/shared.tsx",
+        "src/templates/templates.css"
+      ]
     },
     {
       "figma": {
@@ -5287,10 +5303,15 @@
         "title": "Templates/Tech Partners",
         "story": "Mobile"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "5yz4d5",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/TechPartners.stories.tsx",
+        "src/templates/shared.tsx",
+        "src/templates/templates.css"
+      ]
     },
     {
       "figma": {

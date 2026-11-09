@@ -1,0 +1,8 @@
+/*
+  Template-only spacing: in Figma some sections continue the block above (a second card grid row, the stats
+  under a proof grid) with no section padding between them.
+*/
+@layer components {
+  .yw-flush-top .yw-block__inner { padding-top: var(--spacing-sm); }
+  .yw-flush-bottom .yw-block__inner { padding-bottom: 0; }
+}
