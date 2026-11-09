@@ -17,7 +17,25 @@
           "Expanded(2)",
           "State(3)",
           "Style(2)"
-        ]
+        ],
+        "axes": {
+          "Expanded": [
+            "No",
+            "Yes"
+          ],
+          "State": [
+            "Rest",
+            "Hover",
+            "Focused"
+          ],
+          "Style": [
+            "Caret",
+            "Plus-Minus"
+          ]
+        },
+        "props": "Content slot:S",
+        "variantCount": 10,
+        "signature": "s94f1w"
       },
       "storybook": {
         "title": "Components/Accordion",
@@ -39,7 +57,18 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18788-17600",
         "variantAxes": [
           "State(4)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Pressed",
+            "Focused"
+          ]
+        },
+        "props": "Show divider:B,Supporting Text:T,Show supporting text:B,Show results counter:B,Show trailing element:B,Show leading element:B",
+        "variantCount": 4,
+        "signature": "1844y7i"
       },
       "storybook": {
         "title": "Components/Action list",
@@ -61,7 +90,19 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18788-19034",
         "variantAxes": [
           "Element(5)"
-        ]
+        ],
+        "axes": {
+          "Element": [
+            "Checkbox",
+            "Icon",
+            "Image",
+            "Radio button",
+            "Toggle"
+          ]
+        },
+        "props": "",
+        "variantCount": 5,
+        "signature": "1ax4bj6"
       },
       "storybook": {
         "title": null,
@@ -83,7 +124,18 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18788-19074",
         "variantAxes": [
           "Element(4)"
-        ]
+        ],
+        "axes": {
+          "Element": [
+            "Checkbox",
+            "Icon",
+            "Radio button",
+            "Toggle"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "1s7dx7f"
       },
       "storybook": {
         "title": null,
@@ -107,7 +159,25 @@
           "State(3)",
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Default",
+            "Contextual",
+            "Active"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Prompt:T,Show shortcut:B,Question:T,Answer:T,Source:T",
+        "variantCount": 12,
+        "signature": "7oqovh"
       },
       "storybook": {
         "title": "Components/Ask Youwe",
@@ -131,7 +201,25 @@
           "Type(3)",
           "Device(2)",
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Question",
+            "Nudge",
+            "Case"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Title:T,Meta:T,Show meta:B,Show second button:B",
+        "variantCount": 12,
+        "signature": "1k92i53"
       },
       "storybook": {
         "title": "Components/Ask Youwe",
@@ -156,7 +244,29 @@
           "Variant(3)",
           "Size(2)",
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Label",
+            "Icon"
+          ],
+          "Variant": [
+            "Primary",
+            "Glass",
+            "Disabled"
+          ],
+          "Size": [
+            "M",
+            "S"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Label:T",
+        "variantCount": 16,
+        "signature": "11pwy90"
       },
       "storybook": {
         "title": null,
@@ -179,7 +289,21 @@
         "variantAxes": [
           "Type(3)",
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Suggestion",
+            "Context",
+            "Key"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Label:T",
+        "variantCount": 6,
+        "signature": "1hndm7k"
       },
       "storybook": {
         "title": null,
@@ -201,7 +325,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26709-1128",
         "variantAxes": [
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Label:T",
+        "variantCount": 2,
+        "signature": "4ge688"
       },
       "storybook": {
         "title": null,
@@ -223,7 +356,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26709-1121",
         "variantAxes": [
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "",
+        "variantCount": 2,
+        "signature": "14f24jy"
       },
       "storybook": {
         "title": null,
@@ -245,7 +387,17 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26669-34",
         "variantAxes": [
           "Size(3)"
-        ]
+        ],
+        "axes": {
+          "Size": [
+            "S",
+            "M",
+            "L"
+          ]
+        },
+        "props": "",
+        "variantCount": 3,
+        "signature": "1pn26sn"
       },
       "storybook": {
         "title": null,
@@ -268,7 +420,20 @@
         "variantAxes": [
           "Device(2)",
           "Icon(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Icon": [
+            "Bullet",
+            "Check"
+          ]
+        },
+        "props": "Label:T",
+        "variantCount": 4,
+        "signature": "1oudc23"
       },
       "storybook": {
         "title": "Components/List Item",
@@ -290,7 +455,17 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15409-8869",
         "variantAxes": [
           "State(3)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Active",
+            "Focused"
+          ]
+        },
+        "props": "",
+        "variantCount": 3,
+        "signature": "12kvzjw"
       },
       "storybook": {
         "title": null,
@@ -310,7 +485,11 @@
         "page": "Breadcrumbs",
         "nodeId": "18846:21440",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18846-21440",
-        "variantAxes": []
+        "variantAxes": [],
+        "axes": {},
+        "props": "Show back button:B,Breadcrumb slot:S",
+        "variantCount": 1,
+        "signature": "18m0or7"
       },
       "storybook": {
         "title": "Components/Breadcrumbs",
@@ -330,7 +509,11 @@
         "page": "Breadcrumbs",
         "nodeId": "18703:12478",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18703-12478",
-        "variantAxes": []
+        "variantAxes": [],
+        "axes": {},
+        "props": "Filter button:B",
+        "variantCount": 1,
+        "signature": "167z9ou"
       },
       "storybook": {
         "title": "Components/Breadcrumbs",
@@ -355,19 +538,53 @@
           "Icon(4)",
           "State(5)",
           "Size(4)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "Primary",
+            "Outline",
+            "Solid"
+          ],
+          "Icon": [
+            "Off",
+            "Leading",
+            "Trailing",
+            "Only"
+          ],
+          "State": [
+            "Rest",
+            "Hover",
+            "Pressed",
+            "Focused",
+            "Disabled"
+          ],
+          "Size": [
+            "XS",
+            "S",
+            "M",
+            "L"
+          ]
+        },
+        "props": "Show second text element:B",
+        "variantCount": 240,
+        "signature": "1an1gcp"
       },
       "storybook": {
-        "title": "Components/Buttons",
+        "title": "Components/Buttons/Basic",
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 240 variants. States are real CSS. Icon nudge uses half of motion/distance/sm (no 4px token). Destructive variant is mentioned in the Figma description but does not exist in the set.",
+      "code": [
+        "src/components/components/Button/Button.tsx",
+        "src/components/components/Button/Button.css",
+        "src/components/components/Button/Button.stories.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1an1gcp",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -378,10 +595,24 @@
         "variantAxes": [
           "State(3)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Focused"
+          ],
+          "Size": [
+            "M",
+            "S"
+          ]
+        },
+        "props": "",
+        "variantCount": 6,
+        "signature": "b69hft"
       },
       "storybook": {
-        "title": "Components/Buttons",
+        "title": "Components/Buttons/Utility",
         "current": null
       },
       "internal": false,
@@ -401,10 +632,27 @@
         "variantAxes": [
           "State(5)",
           "Size(3)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Disabled",
+            "Focused",
+            "Hover",
+            "Pressed"
+          ],
+          "Size": [
+            "M",
+            "S",
+            "L"
+          ]
+        },
+        "props": "Active Filter:B",
+        "variantCount": 15,
+        "signature": "1c3m8ze"
       },
       "storybook": {
-        "title": "Components/Buttons",
+        "title": "Components/Buttons/Filter",
         "current": null
       },
       "internal": false,
@@ -423,10 +671,20 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=20540-33000",
         "variantAxes": [
           "Size(3)"
-        ]
+        ],
+        "axes": {
+          "Size": [
+            "lg",
+            "md",
+            "sm"
+          ]
+        },
+        "props": "",
+        "variantCount": 3,
+        "signature": "1r2ba38"
       },
       "storybook": {
-        "title": "Components/Buttons",
+        "title": "Components/Buttons/Link",
         "current": null
       },
       "internal": false,
@@ -448,7 +706,30 @@
           "Device(2)",
           "Mode(2)",
           "State(2)"
-        ]
+        ],
+        "axes": {
+          "Size": [
+            "One third",
+            "Two thirds",
+            "Full",
+            "One quarter"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "State": [
+            "Rest",
+            "Hover"
+          ]
+        },
+        "props": "Title:T,Client:T,Client logo:I,Show stat:B,Show tags:B,Hover CTA:T,Hover context:T,Image:I,Use case image:B",
+        "variantCount": 20,
+        "signature": "1eh8kc2"
       },
       "storybook": {
         "title": "Components/Case Card",
@@ -471,7 +752,23 @@
         "variantAxes": [
           "Type(5)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Single",
+            "Trend",
+            "Before-after",
+            "Stacked",
+            "Pair"
+          ],
+          "Size": [
+            "L",
+            "M"
+          ]
+        },
+        "props": "",
+        "variantCount": 10,
+        "signature": "1kn0i6p"
       },
       "storybook": {
         "title": null,
@@ -495,7 +792,29 @@
           "Active(2)",
           "State(6)",
           "Size(3)"
-        ]
+        ],
+        "axes": {
+          "Active": [
+            "No",
+            "Yes"
+          ],
+          "State": [
+            "Rest",
+            "Hover",
+            "Pressed",
+            "Focused",
+            "Disabled",
+            "Indeterminate"
+          ],
+          "Size": [
+            "S",
+            "M",
+            "L"
+          ]
+        },
+        "props": "",
+        "variantCount": 30,
+        "signature": "7aosoq"
       },
       "storybook": {
         "title": "Components/Checkbox",
@@ -519,7 +838,28 @@
           "Active(2)",
           "State(5)",
           "Size(3)"
-        ]
+        ],
+        "axes": {
+          "Active": [
+            "No",
+            "Yes"
+          ],
+          "State": [
+            "Hover",
+            "Disabled",
+            "Focused",
+            "Pressed",
+            "Rest"
+          ],
+          "Size": [
+            "S",
+            "M",
+            "L"
+          ]
+        },
+        "props": "",
+        "variantCount": 27,
+        "signature": "7tzdks"
       },
       "storybook": {
         "title": "Components/Checkbox",
@@ -542,7 +882,22 @@
         "variantAxes": [
           "Variant(4)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "Positive",
+            "Caution",
+            "Negative",
+            "Info"
+          ],
+          "Size": [
+            "M",
+            "S"
+          ]
+        },
+        "props": "",
+        "variantCount": 8,
+        "signature": "ljz4ah"
       },
       "storybook": {
         "title": "Components/Chips",
@@ -564,7 +919,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26536-71",
         "variantAxes": [
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Message:T",
+        "variantCount": 2,
+        "signature": "1l0wvut"
       },
       "storybook": {
         "title": "Components/Cookie Banner",
@@ -588,7 +952,25 @@
           "Layout(3)",
           "Device(2)",
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Layout": [
+            "Stacked",
+            "Split",
+            "Split list"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Show CTA:B,Show item 5:B,Show item 6:B,Show item 7:B,Show item 8:B,Show bullet 4:B,Show bullet 5:B,Show item 9:B,Show item 10:B,Accordion title:T,Show accordion title:B",
+        "variantCount": 12,
+        "signature": "1eag45g"
       },
       "storybook": {
         "title": "Content blocks/Accordion list",
@@ -611,7 +993,20 @@
         "variantAxes": [
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "17xlig1"
       },
       "storybook": {
         "title": "Content blocks/Build your stack",
@@ -635,7 +1030,31 @@
           "Layout(9)",
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Layout": [
+            "2 columns",
+            "3 columns",
+            "4 columns",
+            "5 columns",
+            "Wide + 1",
+            "1 + Wide",
+            "Feature + 4",
+            "Feature + 2",
+            "Overflow scroll"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Cell 1:S,Cell 2:S,Cell 3:S,Cell 4:S,Cell 5:S,Cell 6:S,Cell 7:S,Cell 8:S,Cell 9:S,Cell 10:S,Show intro:B,Show row 2:B,Show row 3:B,Show row 4:B,Cell 11:S,Cell 12:S,Cards:S",
+        "variantCount": 36,
+        "signature": "wk8tzt"
       },
       "storybook": {
         "title": "Content blocks/Card grid",
@@ -658,7 +1077,22 @@
         "variantAxes": [
           "Layout(4)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Layout": [
+            "Short",
+            "Full width 3",
+            "Full width 4",
+            "Scroll"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Kicker:T,Show kicker:B,Title:T,Show button:B",
+        "variantCount": 8,
+        "signature": "17cyy9v"
       },
       "storybook": {
         "title": "Content blocks/Case carousel",
@@ -681,7 +1115,20 @@
         "variantAxes": [
           "Device(2)",
           "Meta position(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Meta position": [
+            "Left",
+            "Right"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "8vccav"
       },
       "storybook": {
         "title": "Content blocks/Case intro",
@@ -704,7 +1151,21 @@
         "variantAxes": [
           "Device(2)",
           "Variant(3)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Variant": [
+            "Form",
+            "Sub-footer split",
+            "Sub-footer background"
+          ]
+        },
+        "props": "Image:I",
+        "variantCount": 6,
+        "signature": "13pzsxt"
       },
       "storybook": {
         "title": "Content blocks/Contact CTA",
@@ -727,7 +1188,20 @@
         "variantAxes": [
           "Layout(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Layout": [
+            "Grid",
+            "Split"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "uw00hg"
       },
       "storybook": {
         "title": "Content blocks/Feature list",
@@ -750,7 +1224,20 @@
         "variantAxes": [
           "Device(2)",
           "Variant(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Variant": [
+            "Gradient",
+            "Title + image"
+          ]
+        },
+        "props": "Show label:B,Show header:B,Show buttons:B,Show second button:B,Show bar:B,Image:I",
+        "variantCount": 4,
+        "signature": "3lpt5u"
       },
       "storybook": {
         "title": "Content blocks/Hero",
@@ -773,7 +1260,20 @@
         "variantAxes": [
           "Type(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Logos",
+            "Stats"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "p3aekr"
       },
       "storybook": {
         "title": null,
@@ -796,7 +1296,20 @@
         "variantAxes": [
           "Type(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Subtitle",
+            "Breadcrumb"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Subtitle:T",
+        "variantCount": 4,
+        "signature": "1mk8ev0"
       },
       "storybook": {
         "title": null,
@@ -819,7 +1332,20 @@
         "variantAxes": [
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "1szr7md"
       },
       "storybook": {
         "title": "Content blocks/Leadership",
@@ -842,7 +1368,22 @@
         "variantAxes": [
           "Device(2)",
           "Layout(4)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Layout": [
+            "Contained",
+            "Full bleed",
+            "Two-up staggered",
+            "Two-up"
+          ]
+        },
+        "props": "Image:I,Image 2:I",
+        "variantCount": 8,
+        "signature": "vrfzw6"
       },
       "storybook": {
         "title": "Content blocks/Media",
@@ -865,7 +1406,20 @@
         "variantAxes": [
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Kicker:T,Title:T,Body:T,Show header:B",
+        "variantCount": 4,
+        "signature": "1731v0b"
       },
       "storybook": {
         "title": "Content blocks/Offices",
@@ -888,7 +1442,20 @@
         "variantAxes": [
           "Device(2)",
           "Alignment(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Alignment": [
+            "Left",
+            "Centered"
+          ]
+        },
+        "props": "Kicker:B",
+        "variantCount": 4,
+        "signature": "27isn"
       },
       "storybook": {
         "title": "Content blocks/Section header",
@@ -912,7 +1479,24 @@
           "Layout(2)",
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Layout": [
+            "Split",
+            "Stacked"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Kicker:T,Show kicker:B,Title:T,Body:T,Show body:B",
+        "variantCount": 8,
+        "signature": "7ebnjt"
       },
       "storybook": {
         "title": "Content blocks/Section intro",
@@ -935,7 +1519,20 @@
         "variantAxes": [
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "1a6ul6r"
       },
       "storybook": {
         "title": "Content blocks/Services split",
@@ -958,7 +1555,20 @@
         "variantAxes": [
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "1g9sth0"
       },
       "storybook": {
         "title": "Content blocks/Tech partners split",
@@ -982,7 +1592,27 @@
           "Layout(5)",
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Layout": [
+            "Default",
+            "Grid 6",
+            "Grid 4",
+            "Grid 5",
+            "Grid 8"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Title:T,Body:T,Show body:B,Show button:B,Show row 2:B,Show row 3:B",
+        "variantCount": 20,
+        "signature": "38mon3"
       },
       "storybook": {
         "title": "Content blocks/Technology logos",
@@ -1006,7 +1636,24 @@
           "Index(2)",
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Index": [
+            "Right",
+            "Left"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Kicker:T,Tagline:T,Show tagline:B,Show background image:B,Show progress:B,Show item 4:B,Show steps:B,Background image:I",
+        "variantCount": 8,
+        "signature": "1k4ziwt"
       },
       "storybook": {
         "title": "Content blocks/Vertical slider",
@@ -1028,7 +1675,17 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26713-47",
         "variantAxes": [
           "State(3)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Active",
+            "Rest",
+            "Hover"
+          ]
+        },
+        "props": "Label:T",
+        "variantCount": 3,
+        "signature": "1nw0p3a"
       },
       "storybook": {
         "title": null,
@@ -1051,7 +1708,23 @@
         "variantAxes": [
           "Type(5)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Service",
+            "Quote",
+            "Stat",
+            "Case",
+            "Content"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 10,
+        "signature": "1c9gdds"
       },
       "storybook": {
         "title": null,
@@ -1071,7 +1744,11 @@
         "page": "Content blocks/Solutions grid",
         "nodeId": "24984:21277",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24984-21277",
-        "variantAxes": []
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1niwz1h"
       },
       "storybook": {
         "title": "Content blocks/Solutions grid",
@@ -1093,7 +1770,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26543-21679",
         "variantAxes": [
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 2,
+        "signature": "1bihdg0"
       },
       "storybook": {
         "title": "Content blocks/Statement",
@@ -1117,7 +1803,24 @@
           "Type(2)",
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Client",
+            "Plain"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Show stat 3:B,Show stat 4:B,Show intro:B",
+        "variantCount": 8,
+        "signature": "fo854p"
       },
       "storybook": {
         "title": "Content blocks/Stats",
@@ -1141,7 +1844,24 @@
           "Type(2)",
           "Size(2)",
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Type": [
+            "Client",
+            "Plain"
+          ],
+          "Size": [
+            "L",
+            "M"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Value:T,Label:T,Logo:I,Show button:B",
+        "variantCount": 8,
+        "signature": "mbed16"
       },
       "storybook": {
         "title": "Content blocks/Stats",
@@ -1166,7 +1886,31 @@
           "Media position(2)",
           "Split(3)",
           "Theme(3)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile",
+            "Tablet"
+          ],
+          "Media position": [
+            "Right",
+            "Left"
+          ],
+          "Split": [
+            "6/6",
+            "4/8",
+            "8/4"
+          ],
+          "Theme": [
+            "Dark",
+            "Deep blue",
+            "Light"
+          ]
+        },
+        "props": "",
+        "variantCount": 30,
+        "signature": "8xjat0"
       },
       "storybook": {
         "title": "Content blocks/Text + media",
@@ -1188,7 +1932,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26535-238",
         "variantAxes": [
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Show image:B,Show logo:B,Quote:T,Name:T,Role:T,Client logo:I,Show name:B,Show role:B",
+        "variantCount": 2,
+        "signature": "18pitnd"
       },
       "storybook": {
         "title": "Content blocks/Testimonial",
@@ -1211,7 +1964,20 @@
         "variantAxes": [
           "Device(2)",
           "Alignment(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Alignment": [
+            "Centered",
+            "Left"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "1w8kjpd"
       },
       "storybook": {
         "title": "Content blocks/Text column",
@@ -1234,7 +2000,20 @@
         "variantAxes": [
           "Device(2)",
           "Split(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Split": [
+            "6/6",
+            "4/8"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "1uy218e"
       },
       "storybook": {
         "title": "Content blocks/Two-column text",
@@ -1258,7 +2037,25 @@
           "Device(2)",
           "Variant(3)",
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Variant": [
+            "Card",
+            "Plain",
+            "AI"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Show number:B,Number:T,Title:T,Description:T,Show image:B,Show tags:B,Show tag 3:B,Show arrow:B,Show button:B,Show link:B",
+        "variantCount": 12,
+        "signature": "c8gbil"
       },
       "storybook": {
         "title": "Components/Feature Card",
@@ -1281,7 +2078,20 @@
         "variantAxes": [
           "Variant(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "Sitemap",
+            "Newsletter"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 4,
+        "signature": "1oqepok"
       },
       "storybook": {
         "title": "Components/Footer/Corporate",
@@ -1303,7 +2113,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=25034-672",
         "variantAxes": [
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "Size": [
+            "M",
+            "S"
+          ]
+        },
+        "props": "Label:T",
+        "variantCount": 2,
+        "signature": "1kvt1lk"
       },
       "storybook": {
         "title": null,
@@ -1326,7 +2145,20 @@
         "variantAxes": [
           "Device(2)",
           "Expanded(2)"
-        ]
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Expanded": [
+            "No",
+            "Yes"
+          ]
+        },
+        "props": "Show Ask Youwe:B",
+        "variantCount": 4,
+        "signature": "1am53ky"
       },
       "storybook": {
         "title": "Components/Header/Corporate",
@@ -1349,7 +2181,21 @@
         "variantAxes": [
           "Size(2)",
           "State(3)"
-        ]
+        ],
+        "axes": {
+          "Size": [
+            "M",
+            "L"
+          ],
+          "State": [
+            "Rest",
+            "Active",
+            "Hover"
+          ]
+        },
+        "props": "Label:T",
+        "variantCount": 6,
+        "signature": "1j7xckt"
       },
       "storybook": {
         "title": null,
@@ -1369,7 +2215,11 @@
         "page": "Header/Corporate",
         "nodeId": "24998:583",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=24998-583",
-        "variantAxes": []
+        "variantAxes": [],
+        "axes": {},
+        "props": "Label:T",
+        "variantCount": 1,
+        "signature": "11qvedu"
       },
       "storybook": {
         "title": null,
@@ -1391,7 +2241,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26977-1552",
         "variantAxes": [
           "Feature(2)"
-        ]
+        ],
+        "axes": {
+          "Feature": [
+            "ACI Weave",
+            "Ask Youwe"
+          ]
+        },
+        "props": "Eyebrow:T,Title:T,Link:T",
+        "variantCount": 2,
+        "signature": "hsor5"
       },
       "storybook": {
         "title": null,
@@ -1413,7 +2272,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26904-35",
         "variantAxes": [
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Caption:T,Show caption:B",
+        "variantCount": 2,
+        "signature": "1otdyox"
       },
       "storybook": {
         "title": "Components/Image Card",
@@ -1445,7 +2313,7 @@
       },
       "internal": false,
       "status": "missing",
-      "note": "Not in Storybook yet.",
+      "note": "Not found on a \"– \" component page in the 9 Nov inventory (the component set may live on another page). Check with design before syncing.",
       "code": null,
       "locked": false,
       "lastSyncedSignature": null,
@@ -1462,7 +2330,28 @@
           "Device(2)",
           "Mode(2)",
           "State(2)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "Default",
+            "Featured"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "State": [
+            "Rest",
+            "Hover"
+          ]
+        },
+        "props": "Type:T,Show type:B,Title:T,Meta:T,Show meta:B,Hover CTA:T,Hover context:T",
+        "variantCount": 16,
+        "signature": "18hmdjb"
       },
       "storybook": {
         "title": "Components/Insight Card",
@@ -1485,7 +2374,20 @@
         "variantAxes": [
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Show event 3:B,Show event 4:B",
+        "variantCount": 4,
+        "signature": "1vo02ro"
       },
       "storybook": {
         "title": "Components/Insight Card",
@@ -1507,7 +2409,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26887-988",
         "variantAxes": [
           "State(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover"
+          ]
+        },
+        "props": "Day:T,Month:T,Title:T,Place:T,Hover CTA:T,Hover context:T",
+        "variantCount": 2,
+        "signature": "fgb6gy"
       },
       "storybook": {
         "title": null,
@@ -1530,7 +2441,27 @@
         "variantAxes": [
           "State(9)",
           "Placeholder(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Disabled",
+            "Focused",
+            "Error",
+            "Success"
+          ],
+          "Placeholder": [
+            "No",
+            "Yes"
+          ]
+        },
+        "props": "Required:B,Hint:B,Label:T,Hint text:T",
+        "variantCount": 13,
+        "signature": "1ijdmm3"
       },
       "storybook": {
         "title": "Components/Input/Dropdown",
@@ -1552,7 +2483,23 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18505-20713",
         "variantAxes": [
           "State(9)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Disabled",
+            "Focused",
+            "Success",
+            "Error"
+          ]
+        },
+        "props": "Required:B,Placeholder:B,Hint:B,Label:T,Hint text:T",
+        "variantCount": 9,
+        "signature": "1isfzol"
       },
       "storybook": {
         "title": "Components/Input/Dropdown",
@@ -1575,7 +2522,27 @@
         "variantAxes": [
           "State(9)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Disabled",
+            "Focused",
+            "Success",
+            "Error"
+          ],
+          "Size": [
+            "M",
+            "S"
+          ]
+        },
+        "props": "Hint:B",
+        "variantCount": 18,
+        "signature": "8ne4ya"
       },
       "storybook": {
         "title": "Components/Input/Dropdown",
@@ -1597,7 +2564,17 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18505-21645",
         "variantAxes": [
           "State(3)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Selector",
+            "Rest",
+            "Hover"
+          ]
+        },
+        "props": "Show Scrollbar:B,Show flag:B,Options Panel:S",
+        "variantCount": 3,
+        "signature": "17hvhlb"
       },
       "storybook": {
         "title": null,
@@ -1619,7 +2596,22 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18709-10372",
         "variantAxes": [
           "State(8)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Disabled",
+            "Focused",
+            "Error"
+          ]
+        },
+        "props": "Required:B,Hint:B,Suffix:B,Label:T,Hint text:T",
+        "variantCount": 8,
+        "signature": "ogo0bo"
       },
       "storybook": {
         "title": "Components/Input/Phone",
@@ -1641,7 +2633,22 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18709-10502",
         "variantAxes": [
           "State(8)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Disabled",
+            "Focused",
+            "Error"
+          ]
+        },
+        "props": "Required:B,Hint:B,Suffix:B,Label:T,Hint text:T",
+        "variantCount": 8,
+        "signature": "9ea031"
       },
       "storybook": {
         "title": "Components/Input/Phone",
@@ -1663,7 +2670,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18781-13057",
         "variantAxes": [
           "Active(2)"
-        ]
+        ],
+        "axes": {
+          "Active": [
+            "No",
+            "Yes"
+          ]
+        },
+        "props": "",
+        "variantCount": 2,
+        "signature": "s5yxz0"
       },
       "storybook": {
         "title": null,
@@ -1686,7 +2702,27 @@
         "variantAxes": [
           "State(9)",
           "Placeholder(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Focused",
+            "Success",
+            "Error",
+            "Disabled"
+          ],
+          "Placeholder": [
+            "No",
+            "Yes"
+          ]
+        },
+        "props": "Required:B,Hint:B,Suffix:B,Label:T,Hint text:T",
+        "variantCount": 13,
+        "signature": "10glfpo"
       },
       "storybook": {
         "title": "Components/Input/Text",
@@ -1708,7 +2744,23 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-6276",
         "variantAxes": [
           "State(9)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Disabled",
+            "Focused",
+            "Success",
+            "Error"
+          ]
+        },
+        "props": "Required:B,Placeholder:B,Hint:B,Suffix:B,Label:T,Hint text:T",
+        "variantCount": 9,
+        "signature": "1h1l6vp"
       },
       "storybook": {
         "title": "Components/Input/Text",
@@ -1730,7 +2782,23 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18505-19110",
         "variantAxes": [
           "State(9)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Disabled",
+            "Focused",
+            "Error",
+            "Success"
+          ]
+        },
+        "props": "Required:B,Placeholder:B,Hint:B,Hint text:T,Label:T",
+        "variantCount": 9,
+        "signature": "5jnhfn"
       },
       "storybook": {
         "title": "Components/Input/Text Area",
@@ -1753,7 +2821,27 @@
         "variantAxes": [
           "State(9)",
           "Placeholder(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Active",
+            "Filled",
+            "Filled Hover",
+            "Disabled",
+            "Focused",
+            "Error",
+            "Success"
+          ],
+          "Placeholder": [
+            "No",
+            "Yes"
+          ]
+        },
+        "props": "Required:B,Hint:B,Label:T,Hint text:T",
+        "variantCount": 13,
+        "signature": "g0yoo8"
       },
       "storybook": {
         "title": "Components/Input/Text Area",
@@ -1776,7 +2864,20 @@
         "variantAxes": [
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "City:T,Country:T,Timezone:T",
+        "variantCount": 4,
+        "signature": "566hyc"
       },
       "storybook": {
         "title": "Components/Location",
@@ -1798,7 +2899,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26797-51",
         "variantAxes": [
           "Mode(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ]
+        },
+        "props": "Hour 1:T,Hour 2:T,Minute 1:T,Minute 2:T",
+        "variantCount": 2,
+        "signature": "15w13sy"
       },
       "storybook": {
         "title": "Components/Location",
@@ -1821,7 +2931,20 @@
         "variantAxes": [
           "Variant(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "View amount",
+            "Pagination"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "",
+        "variantCount": 3,
+        "signature": "1nk4kqy"
       },
       "storybook": {
         "title": "Components/Pagination",
@@ -1844,7 +2967,26 @@
         "variantAxes": [
           "State(5)",
           "Variant(5)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Active",
+            "Hover",
+            "Disabled",
+            "Focused"
+          ],
+          "Variant": [
+            "Next",
+            "Page",
+            "Prev",
+            "Last",
+            "First"
+          ]
+        },
+        "props": "",
+        "variantCount": 20,
+        "signature": "1gr65vh"
       },
       "storybook": {
         "title": null,
@@ -1869,19 +3011,49 @@
           "State(5)",
           "Icon(3)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "Primary",
+            "Neutral"
+          ],
+          "State": [
+            "Rest",
+            "Hover",
+            "Pressed",
+            "Focused",
+            "Disabled"
+          ],
+          "Icon": [
+            "Leading",
+            "Trailing",
+            "Off"
+          ],
+          "Size": [
+            "M",
+            "S"
+          ]
+        },
+        "props": "",
+        "variantCount": 60,
+        "signature": "gc1kqn"
       },
       "storybook": {
         "title": "Components/Pill",
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 60 variants. Toggle button with aria-pressed for filter use.",
+      "code": [
+        "src/components/components/Pills/Pills.tsx",
+        "src/components/components/Pills/Pills.css",
+        "src/components/components/Pills/Pills.stories.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "gc1kqn",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1891,7 +3063,19 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=6284-7241",
         "variantAxes": [
           "Progress(5)"
-        ]
+        ],
+        "axes": {
+          "Progress": [
+            "Start",
+            "25%",
+            "50%",
+            "75%",
+            "End"
+          ]
+        },
+        "props": "",
+        "variantCount": 5,
+        "signature": "ydmfr9"
       },
       "storybook": {
         "title": "Components/Progress Bar",
@@ -1914,7 +3098,20 @@
         "variantAxes": [
           "Mode(2)",
           "Device(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Quote:T,Name:T,Role:T,Show role:B,Show logo:B,Show quote mark:B,Logo:I,Show buttons:B,Show button 2:B,Show button 3:B",
+        "variantCount": 4,
+        "signature": "1qphmpu"
       },
       "storybook": {
         "title": "Components/Quote Card",
@@ -1937,7 +3134,27 @@
         "variantAxes": [
           "State(9)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Active",
+            "Hover",
+            "Disabled",
+            "Focused",
+            "Pressed",
+            "Active Hover",
+            "Active Pressed",
+            "Active Focused"
+          ],
+          "Size": [
+            "M",
+            "L"
+          ]
+        },
+        "props": "",
+        "variantCount": 18,
+        "signature": "fx31mh"
       },
       "storybook": {
         "title": "Components/Radio Button",
@@ -1959,7 +3176,23 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=14649-9859",
         "variantAxes": [
           "State(9)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Active",
+            "Hover",
+            "Disabled",
+            "Focused",
+            "Pressed",
+            "Active Hover",
+            "Active Pressed",
+            "Active Focused"
+          ]
+        },
+        "props": "",
+        "variantCount": 9,
+        "signature": "gi9uhy"
       },
       "storybook": {
         "title": "Components/Radio Button",
@@ -1982,7 +3215,20 @@
         "variantAxes": [
           "Mode(2)",
           "State(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "State": [
+            "Rest",
+            "Hover"
+          ]
+        },
+        "props": "Eyebrow:T,Show eyebrow:B,Title:T,Description:T,Hover CTA:T,Hover context:T",
+        "variantCount": 4,
+        "signature": "ptqzji"
       },
       "storybook": {
         "title": "Components/Service Card",
@@ -2005,7 +3251,20 @@
         "variantAxes": [
           "Mode(2)",
           "State(2)"
-        ]
+        ],
+        "axes": {
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "State": [
+            "Rest",
+            "Hover"
+          ]
+        },
+        "props": "Eyebrow:T,Show eyebrow:B,Title:T,Description:T,Caption:T,Show image:B,Show link:B,Hover CTA:T,Hover context:T",
+        "variantCount": 4,
+        "signature": "1cs5xwk"
       },
       "storybook": {
         "title": "Components/Service Card",
@@ -2027,7 +3286,19 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15713-6093",
         "variantAxes": [
           "State(5)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Active",
+            "Rest",
+            "Hover",
+            "Focused",
+            "Disabled"
+          ]
+        },
+        "props": "",
+        "variantCount": 5,
+        "signature": "1384huj"
       },
       "storybook": {
         "title": "Components/Tabs",
@@ -2049,7 +3320,15 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15715-6340",
         "variantAxes": [
           "State(1)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest"
+          ]
+        },
+        "props": "Trailing action:B,Tab container:S",
+        "variantCount": 1,
+        "signature": "wlin8t"
       },
       "storybook": {
         "title": "Components/Tabs",
@@ -2071,7 +3350,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15797-7280",
         "variantAxes": [
           "State(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Active"
+          ]
+        },
+        "props": "",
+        "variantCount": 2,
+        "signature": "lqs5sd"
       },
       "storybook": {
         "title": null,
@@ -2094,19 +3382,37 @@
         "variantAxes": [
           "Variant(2)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "Info",
+            "Neutral"
+          ],
+          "Size": [
+            "S",
+            "M"
+          ]
+        },
+        "props": "Show icon:B",
+        "variantCount": 4,
+        "signature": "xejs82"
       },
       "storybook": {
         "title": "Components/Tag",
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "All 4 variants plus Show icon. Figma default copy (\"Very popular\", \"Only 3 left\") kept; open question in SYNC-REPORT.",
+      "code": [
+        "src/components/components/Tag/Tag.tsx",
+        "src/components/components/Tag/Tag.css",
+        "src/components/components/Tag/Tag.stories.tsx",
+        "src/components/icons/Icon.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "xejs82",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2118,7 +3424,24 @@
           "Layout(2)",
           "Mode(2)",
           "State(2)"
-        ]
+        ],
+        "axes": {
+          "Layout": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "Mode": [
+            "Dark",
+            "Light"
+          ],
+          "State": [
+            "Rest",
+            "Hover"
+          ]
+        },
+        "props": "Level:T,Show level:B,Name:T,Description:T,Show button:B,Logo:I,Show description:B,Hover CTA:T,Hover context:T",
+        "variantCount": 8,
+        "signature": "xgufv2"
       },
       "storybook": {
         "title": "Components/Technology Card",
@@ -2138,7 +3461,11 @@
         "page": "Technology Card",
         "nodeId": "26721:29",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26721-29",
-        "variantAxes": []
+        "variantAxes": [],
+        "axes": {},
+        "props": "Name:T",
+        "variantCount": 1,
+        "signature": "7oqu4y"
       },
       "storybook": {
         "title": null,
@@ -2161,7 +3488,22 @@
         "variantAxes": [
           "Variant(4)",
           "Shadow(2)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "Information",
+            "Success",
+            "Warning",
+            "Error"
+          ],
+          "Shadow": [
+            "Yes",
+            "No"
+          ]
+        },
+        "props": "",
+        "variantCount": 8,
+        "signature": "1biiocd"
       },
       "storybook": {
         "title": "Components/Toaster",
@@ -2185,7 +3527,26 @@
           "State(4)",
           "Size(2)",
           "Active(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Hover",
+            "Focused",
+            "Disabled"
+          ],
+          "Size": [
+            "M",
+            "L"
+          ],
+          "Active": [
+            "No",
+            "Yes"
+          ]
+        },
+        "props": "",
+        "variantCount": 14,
+        "signature": "zm6evj"
       },
       "storybook": {
         "title": "Components/Toggle",
@@ -2208,7 +3569,21 @@
         "variantAxes": [
           "Variant(3)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "Variant": [
+            "On",
+            "Off",
+            "Disabled"
+          ],
+          "Size": [
+            "M",
+            "L"
+          ]
+        },
+        "props": "",
+        "variantCount": 6,
+        "signature": "ve367u"
       },
       "storybook": {
         "title": null,
@@ -2230,7 +3605,16 @@
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=14683-4523",
         "variantAxes": [
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "Size": [
+            "M",
+            "S"
+          ]
+        },
+        "props": "",
+        "variantCount": 2,
+        "signature": "1xdwbtu"
       },
       "storybook": {
         "title": "Components/Tooltip",
@@ -2253,7 +3637,21 @@
         "variantAxes": [
           "State(3)",
           "Size(2)"
-        ]
+        ],
+        "axes": {
+          "State": [
+            "Rest",
+            "Active",
+            "Focused"
+          ],
+          "Size": [
+            "M",
+            "S"
+          ]
+        },
+        "props": "",
+        "variantCount": 6,
+        "signature": "vl85jq"
       },
       "storybook": {
         "title": "Components/Tooltip",
@@ -2262,6 +3660,793 @@
       "internal": false,
       "status": "missing",
       "note": "Not in Storybook yet.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Awards",
+        "page": "Content blocks/Awards",
+        "nodeId": "27096:9988",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27096-9988",
+        "variantAxes": [
+          "Device(2)"
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
+        "props": "Title:T",
+        "variantCount": 2,
+        "signature": "2vt2j9"
+      },
+      "storybook": {
+        "title": "Content blocks/Awards",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet (new in Figma since 6 Nov).",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Filter bar",
+        "page": "Content blocks/Filter bar",
+        "nodeId": "27090:1370",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27090-1370",
+        "variantAxes": [
+          "Device(2)",
+          "State(2)"
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ],
+          "State": [
+            "Open",
+            "Default"
+          ]
+        },
+        "props": "",
+        "variantCount": 3,
+        "signature": "1eweuic"
+      },
+      "storybook": {
+        "title": "Content blocks/Filter bar",
+        "current": null
+      },
+      "internal": false,
+      "status": "missing",
+      "note": "Not in Storybook yet (new in Figma since 6 Nov).",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/ACI Weave",
+        "page": "Technology Card",
+        "nodeId": "26726:931",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-931",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "xmqjpb"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/AWS",
+        "page": "Technology Card",
+        "nodeId": "26726:933",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-933",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "4grcz1"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Adobe",
+        "page": "Technology Card",
+        "nodeId": "26726:935",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-935",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1kuaklr"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Adyen",
+        "page": "Technology Card",
+        "nodeId": "26726:937",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-937",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "53od0d"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Algolia",
+        "page": "Technology Card",
+        "nodeId": "26726:939",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-939",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "fxfr1b"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Alumio",
+        "page": "Technology Card",
+        "nodeId": "26726:941",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-941",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "9eqezr"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Buckaroo",
+        "page": "Technology Card",
+        "nodeId": "26726:943",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-943",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "gyyjgw"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Channable",
+        "page": "Technology Card",
+        "nodeId": "26726:945",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-945",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1ufn123"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Commercetools",
+        "page": "Technology Card",
+        "nodeId": "26726:947",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-947",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1bhbp4i"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Contentful",
+        "page": "Technology Card",
+        "nodeId": "26726:949",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-949",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "b82pds"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Databricks",
+        "page": "Technology Card",
+        "nodeId": "26726:951",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-951",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "x3ltyk"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/DotDigital",
+        "page": "Technology Card",
+        "nodeId": "26726:953",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-953",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "13f73vr"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Drupal",
+        "page": "Technology Card",
+        "nodeId": "26726:955",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-955",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1kbqyfd"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Google Cloud",
+        "page": "Technology Card",
+        "nodeId": "26726:957",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-957",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "w4otem"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/HubSpot Customer Platform",
+        "page": "Technology Card",
+        "nodeId": "26726:959",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-959",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "txmkfu"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Hypernode",
+        "page": "Technology Card",
+        "nodeId": "26726:961",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-961",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "428xea"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Hyvä Magento themes",
+        "page": "Technology Card",
+        "nodeId": "26726:963",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-963",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1oiy4p6"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Klaviyo",
+        "page": "Technology Card",
+        "nodeId": "26726:965",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-965",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1liqo84"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Klevu",
+        "page": "Technology Card",
+        "nodeId": "26726:967",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-967",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "hbirkf"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Microsoft Fabric",
+        "page": "Technology Card",
+        "nodeId": "26726:969",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-969",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "wk3mh9"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Mollie",
+        "page": "Technology Card",
+        "nodeId": "26726:970",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-970",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1fqj34e"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/OpenAI",
+        "page": "Technology Card",
+        "nodeId": "26726:972",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-972",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "71acs5"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Pimcore",
+        "page": "Technology Card",
+        "nodeId": "26726:974",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-974",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "n07nl6"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Salesforce",
+        "page": "Technology Card",
+        "nodeId": "26726:976",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-976",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "5asaux"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Sendcloud",
+        "page": "Technology Card",
+        "nodeId": "26726:978",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-978",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "yh63z1"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Shopify Plus",
+        "page": "Technology Card",
+        "nodeId": "26726:980",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-980",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1snmal8"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Spryker",
+        "page": "Technology Card",
+        "nodeId": "26726:982",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-982",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1as5iyl"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Symson",
+        "page": "Technology Card",
+        "nodeId": "26726:984",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-984",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1vnd992"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/Tweakwise",
+        "page": "Technology Card",
+        "nodeId": "26726:986",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-986",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "91k7bj"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
+      "code": null,
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Logos/n8n",
+        "page": "Technology Card",
+        "nodeId": "26726:988",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26726-988",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 1,
+        "signature": "1hzv8my"
+      },
+      "storybook": {
+        "title": null,
+        "current": null
+      },
+      "internal": true,
+      "status": "internal",
+      "note": "Logo asset: export to public/figma-assets/logos/, used by Technology Card and logo strips. No own story.",
       "code": null,
       "locked": false,
       "lastSyncedSignature": null,
@@ -2574,5 +4759,9 @@
       "lastSynced": null
     }
   ],
-  "migrated": "not needed: fresh repo, no old Storybook"
+  "migrated": "not needed: fresh repo, no old Storybook",
+  "inventory": {
+    "date": "2026-11-09",
+    "total": 130
+  }
 }

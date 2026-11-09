@@ -10,7 +10,7 @@ const config: StorybookConfig = {
     '../src/**/*.mdx',
     '../src/**/*.stories.@(ts|tsx)',
   ],
-  addons: ['@storybook/addon-docs', '@storybook/addon-a11y'],
+  addons: ['@storybook/addon-docs', '@storybook/addon-a11y', 'storybook-addon-pseudo-states'],
   staticDirs: ['../public'],
   // Keep the published Storybook out of search engines (GitHub Pages can't send
   // X-Robots-Tag headers, and a robots.txt only counts at the domain root).
