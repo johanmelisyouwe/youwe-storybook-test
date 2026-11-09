@@ -42,12 +42,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Native details/summary; State via CSS.",
+      "code": [
+        "src/components/components/Accordion/Accordion.tsx",
+        "src/components/components/Accordion/Accordion.css",
+        "src/components/components/Accordion/Accordion.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "s94f1w",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -75,12 +79,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Leading/trailing Icon, Checkbox, Toggle, Radio button. Image leading element not built (no image spec).",
+      "code": [
+        "src/components/components/ActionListItem/ActionListItem.tsx",
+        "src/components/components/ActionListItem/ActionListItem.css",
+        "src/components/components/ActionListItem/ActionListItem.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1844y7i",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -110,11 +118,15 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "Part of Action List Item.",
+      "code": [
+        "src/components/components/ActionListItem/ActionListItem.tsx",
+        "src/components/components/ActionListItem/ActionListItem.css",
+        "src/components/components/ActionListItem/ActionListItem.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1ax4bj6",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -143,11 +155,15 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "Part of Action List Item.",
+      "code": [
+        "src/components/components/ActionListItem/ActionListItem.tsx",
+        "src/components/components/ActionListItem/ActionListItem.css",
+        "src/components/components/ActionListItem/ActionListItem.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1s7dx7f",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -440,12 +456,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "With List wrapper (gap 2xs).",
+      "code": [
+        "src/components/components/ListItem/ListItem.tsx",
+        "src/components/components/ListItem/ListItem.css",
+        "src/components/components/ListItem/ListItem.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1oudc23",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -473,11 +493,15 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "Part of Breadcrumbs.",
+      "code": [
+        "src/components/components/Breadcrumbs/Breadcrumbs.tsx",
+        "src/components/components/Breadcrumbs/Breadcrumbs.css",
+        "src/components/components/Breadcrumbs/Breadcrumbs.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "12kvzjw",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -496,12 +520,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Device=Desktop. \"Show back button\" is not wired to any layer in Figma.",
+      "code": [
+        "src/components/components/Breadcrumbs/Breadcrumbs.tsx",
+        "src/components/components/Breadcrumbs/Breadcrumbs.css",
+        "src/components/components/Breadcrumbs/Breadcrumbs.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "18m0or7",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -520,12 +548,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Device=Mobile: back button to the parent page + optional filter button.",
+      "code": [
+        "src/components/components/Breadcrumbs/Breadcrumbs.tsx",
+        "src/components/components/Breadcrumbs/Breadcrumbs.css",
+        "src/components/components/Breadcrumbs/Breadcrumbs.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "167z9ou",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -966,12 +998,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Figma copy; focus moves into the banner (autoFocus).",
+      "code": [
+        "src/components/components/CookieBanner/CookieBanner.tsx",
+        "src/components/components/CookieBanner/CookieBanner.css",
+        "src/components/components/CookieBanner/CookieBanner.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1l0wvut",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2859,7 +2895,7 @@
         },
         "props": "Required:B,Placeholder:B,Hint:B,Suffix:B,Label:T,Hint text:T",
         "variantCount": 9,
-        "signature": "1h1l6vp"
+        "signature": "puwuka"
       },
       "storybook": {
         "title": "Components/Input/Text",
@@ -2867,7 +2903,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "All 9 states. Hover/Focused/Active real CSS; Filled = value; Success/Error = status. Suffix = search icon.",
+      "note": "All 9 states. Hover/Focused/Active real CSS; Filled = value; Success/Error = status. Suffix = search icon. Disabled placeholder fixed in Figma to body/sm/reg (matches code).",
       "code": [
         "src/components/components/TextInput/TextInput.tsx",
         "src/components/components/TextInput/TextInput.stories.tsx",
@@ -2877,7 +2913,7 @@
         "src/components/icons/Icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "1h1l6vp",
+      "lastSyncedSignature": "puwuka",
       "lastSynced": "2026-11-09"
     },
     {
@@ -3203,12 +3239,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Also takes any value 0–100.",
+      "code": [
+        "src/components/components/ProgressBar/ProgressBar.tsx",
+        "src/components/components/ProgressBar/ProgressBar.css",
+        "src/components/components/ProgressBar/ProgressBar.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "ydmfr9",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3652,12 +3692,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Figma copy; enter/exit motion.",
+      "code": [
+        "src/components/components/Toaster/Toaster.tsx",
+        "src/components/components/Toaster/Toaster.css",
+        "src/components/components/Toaster/Toaster.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1biiocd",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3769,12 +3813,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Tooltip bubble (Size M / S).",
+      "code": [
+        "src/components/components/Tooltip/Tooltip.tsx",
+        "src/components/components/Tooltip/Tooltip.css",
+        "src/components/components/Tooltip/Tooltip.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1xdwbtu",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3806,12 +3854,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Shows on hover and keyboard focus.",
+      "code": [
+        "src/components/components/Tooltip/Tooltip.tsx",
+        "src/components/components/Tooltip/Tooltip.css",
+        "src/components/components/Tooltip/Tooltip.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "vl85jq",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {

@@ -1,56 +1,65 @@
-# Sync report — 9 November 2026 (batch 3)
+# Sync report — 9 November 2026 (batch 4)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3 unchanged (no Figma changes since batch 2). Step 4 for the form inputs. Templates (step 5) are not part of this run.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: one Figma change since batch 3 (Text Input/Static Labels, the Disabled placeholder now uses body/sm/reg, which matches the code; signature updated). Step 4 for the components below. Templates (step 5) are not part of this run.
+
+Batch 3 decisions applied: Dropdown/Quantity stays `not-needed`; hint/error stand-in copy stays for now; floating-label motion stays `duration/fast` + `ease/standard`.
 
 ## Step 4: components
 
 | Component | Story | Variants |
 |---|---|---|
-| Text Input/Static Labels | Components/Input/Text | 9 of 9 (State) |
-| Text Input/Floating Labels | Components/Input/Text | 13 of 13 (State × Placeholder) |
-| Text Area/Static Label | Components/Input/Text Area | 9 of 9 |
-| Text Area/Floating Labels | Components/Input/Text Area | 13 of 13 |
-| Phone Input/Static Labels (+ _Locale select) | Components/Input/Phone | 8 of 8 |
-| Phone Input/Floating Labels | Components/Input/Phone | 8 of 8 |
-| Dropdown/Static Labels (+ _Dropdown/Options) | Components/Input/Dropdown | 9 of 9 (Active = open) |
-| Dropdown/Floating Labels | Components/Input/Dropdown | 13 of 13 |
-| Tab group (update) | Components/Tabs | the trailing action now opens the Figma options menu |
-| Dropdown/Quantity | — | **not built** (web-shop component, see below) |
+| Accordion | Components/Accordion | 12 of 12 (Style × Expanded × State) |
+| Tooltip | Components/Tooltip | 2 of 2 (Size) |
+| Icon tooltip | Components/Tooltip | 6 of 6 (State × Size) |
+| Toaster | Components/Toaster | 8 of 8 (Variant × Shadow) |
+| Progress Bar | Components/Progress Bar | 5 of 5 (Progress) |
+| Breadcrumbs/Desktop (+ _breadcrumb-link) | Components/Breadcrumbs | link states Rest / Active / Focused (+ Hover, code only) |
+| Breadcrumbs/Mobile | Components/Breadcrumbs | Filter button on / off |
+| Action List Item (+ _Leading / _Trailing element) | Components/Action list | 4 of 4 (State); elements Icon, Checkbox, Toggle, Radio button |
+| List Item | Components/List Item | 4 of 4 (Device × Icon) |
+| Cookie Banner | Components/Cookie Banner | 2 of 2 (Device) |
+| Pagination | — | moved to the last batch (BACKLOG.md) |
 
 How they were built:
-- One shared field building block (`src/components/components/Field/`) for label, required mark, control, hint and all states, so the four inputs behave the same. Values read per variant from Figma: static control 44 high (padding 8/8/8/12), floating 48 (0/8/0/12), text area 128, label body/sm/med (Dropdown: body/sm/bold, as in Figma), hint body/sm/reg.
-- Figma states are real behaviour: Hover, Focused and Active are CSS (`:hover`, `:focus-within`); Filled = the field has a value; Success and Error = `status`; Disabled = `disabled`. Focus = 2px `border/system/focus` + `shadow/outer/md/focus`; Error = `surface/system/negative-1` + 2px `border/system/negative` + `shadow/outer/md/error`.
-- Floating labels sit in the field and float up when focused, filled or showing a placeholder (Placeholder=Yes), as in the Figma variants. Phone floating keeps the label up in every state, as in Figma.
-- Accessible markup: real `<input>`, `<textarea>` and `type="tel"`; labels tied to fields; hint/error linked with `aria-describedby`, errors announced (`role="alert"`, `aria-invalid`). Dropdown and the country-code select are WAI-ARIA select-only comboboxes: Enter/Space/Arrow opens, Arrow keys move, Enter selects, Escape closes, a click outside closes (tested in the browser). The Tab group menu uses `role="menu"`.
-- `_Dropdown/Options` built as the shared options panel: `surface/base-1`, radius 2, `shadow/outer/sm/drop`, 45px rows, hover `surface/base-3`, max 220 high with the native scrollbar.
-- Icons and assets exported from Figma: chevron-bottom-down, dropdown arrows (down/up), search (the default Suffix), and the five flags of the locale panel (NL, GB, SE, ID, UA) as SVG files in `public/figma-assets/flags/`.
-- Content: labels, placeholders and options from the Figma contact form (Contact CTA, Variant=Form) and the Offices block: "Business email" / "name@company.com", "Message" / "How can we help you?", "Country" / "Select your country", "Phone" / "0000 000 000".
+- **Accordion**: native `<details>`/`<summary>`, so it opens with the keyboard and works without JavaScript. Header 52 high, label body/lg/med, content body/md/reg secondary. Opening animates the height (`duration/slow`, `ease/emphasized`); the caret rotates (`duration/base`). Optional `name` makes a group where one item is open at a time. Content: the ACI Weave FAQ from the Figma templates.
+- **Tooltip / Icon tooltip**: the bubble is `surface/base-2` with radius 4, `shadow/outer/sm/drop` and the 10px point. The info icon (`content/tertiary`, 24 / 16) shows the tooltip on hover and on keyboard focus, linked with `aria-describedby`. It fades in with a 4px rise (`duration/fast`, `ease/standard`).
+- **Toaster**: 400 wide, system colours per variant, two-tone icons exported from Figma, and the Figma titles and messages. Error and Warning use `role="alert"`, the others `role="status"`. It enters with a fade and an 8px rise (`duration/base`, `ease/emphasized`) and leaves with a fade (`duration/fast`, `ease/exit`); see the Motion story.
+- **Progress Bar**: the five Figma steps, plus any value from 0 to 100. Built as `role="progressbar"`.
+- **Breadcrumbs**: Desktop is an ordered list with `aria-current="page"` on the current page. Mobile is a back button to the parent page plus the optional Filter button, as in Figma. Path from the Figma Hero: Home / Work / JC-Electronics.
+- **Action List Item**: a link or button by default. With a Checkbox, Toggle or Radio button element the whole row is the label of that control. Hover `surface/base-3`, Pressed `surface/base-2`, Focus Ring 6px inside the row.
+- **List Item**: bullet or check in `content/brand`, label body/lg/reg secondary, stacked with `List` (gap 2xs, as the Figma description says). Copy from the event page and the Accordion list content block.
+- **Cookie Banner**: Figma copy; Accept = Primary, Cookie settings = Solid, the same size. It enters from the bottom (`distance/md`, `duration/slow`, `ease/emphasized`). `autoFocus` moves focus into the banner (Figma interaction note); `fixed` places it bottom-right (desktop) or full width (mobile).
+- New icons exported from Figma: chevron-right, chevron-left, account-circle.
 
-Visual comparison with Figma: every variant of each input compared with the Figma component sets. Two issues found and fixed in this run: the Dropdown chevron and the input suffix wrapped under the floating label (moved outside the label stack), and success fields showed the error copy (hint now only shown for Error).
+Visual comparison with Figma: every variant compared with the Figma component sets. Fixed in this run: tooltip line height and icon colour, the toaster close button (top-aligned as in Figma), and the breadcrumb focus ring (now wraps chevron and text, like `_breadcrumb-link`).
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
-- `check-legacy`: clean. Small fix: Figma property names such as `'Hint text'` are no longer flagged as placeholder copy (only text content is).
-- `check-coverage`: clean (22 complete, 54 missing, 54 internal, 1 not needed; 19 templates missing). It now also reads shared story helpers listed in `code`.
+- `check-legacy`: clean
+- `check-coverage`: clean (32 complete, 44 missing, 54 internal, 1 not needed; 19 templates missing)
 
 ## Could not match exactly
 
-- **Hint and error copy.** Every Figma input uses "Hint text"; there is no real hint, success or error copy. The stories use stand-ins for the error state only: "Enter a valid business email address.", "Tell us briefly how we can help.", "Select your country.", "Enter a valid phone number.". Success shows no hint.
-- **Floating-label motion.** Figma calls the label "animated" but gives no Motion line. Code uses `duration/fast` + `ease/standard`.
-- **Text Area corner.** The drawn resize corner is the browser's own resize handle.
-- **Text Input/Static, State=Disabled** uses body/md/reg for the placeholder while all other states use body/sm/reg. Treated as a Figma slip; code keeps body/sm/reg.
-- **Selected option** in the options panel has no Figma state; code uses `surface/base-2` (the Figma "Selector" rows).
+- **Action List Item copy.** Figma only has default copy and no template uses the component. The stories use stand-in industry rows ("Manufacturing", "Retail", "Wholesale" with counts).
+- **_Leading element, Element=Image** is not built: it has no image spec yet.
+- **Breadcrumbs/Desktop "Show back button"** is not connected to any layer in Figma. The back button variant is on the backlog.
+- **Breadcrumb links have no Hover state** in Figma. Approved by the team: code turns the text `content/primary` on hover (`duration/fast`). Design to add it to Figma (BACKLOG.md).
+- **Cookie Banner "Privacy Policy"** is plain text in Figma. Code makes it an underlined link so it is recognisable as a link.
+- **Progress Bar motion**: no Figma Motion line. Code animates the width with `duration/base` + `ease/standard`.
+
+## Decisions (9 November 2026)
+
+- Pagination is built in the last batch (BACKLOG.md).
+- Action List Item stand-in copy is fine for now.
+- Breadcrumbs need a back button variant: added to BACKLOG.md, built once it is in Figma.
+- Breadcrumb links get a Hover state: built in code, design to add it to Figma.
 
 ## Open questions for the design team
 
-1. **Dropdown/Quantity** is a web-shop component (quantity in product or cart). Not built, recorded as `not-needed`. Remove it from Figma?
-2. Can design add real hint and error copy to the inputs (at least for the contact form fields)?
-3. Floating-label animation: is `duration/fast` + `ease/standard` right, or should a Motion line be added?
-4. Text Input/Static Disabled placeholder style: fix to body/sm/reg in Figma?
-5. Open from batch 2: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels.
+1. Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 4: Accordion, Tooltip + Icon tooltip, Toaster, Pagination, Progress Bar, Breadcrumbs, Action List Item, List Item, Cookie Banner.
+Batch 5: the cards (Case, Feature, Image, Insight, Quote, Service, System, Technology Card), Stat, Location, Clock and Industry List Item. Then Header/Corporate, Footer/Corporate and the content blocks; Pagination last.
