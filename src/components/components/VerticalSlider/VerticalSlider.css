@@ -1,0 +1,109 @@
+/*
+  Vertical slider (Figma 26715:410), _Vertical slider/Index item (26713:47), _Vertical slider/Slide (26713:174).
+  Desktop: full-viewport section (1440×900), surface/base-1, padding 80, gap 80. Header: kicker (24×2 brand-red
+  line + body/sm/bold, gap 8) and tagline body/sm/bold, space-between. Body: slide (760) and index (gap 0),
+  space-between, centred; Index=Left swaps the order. Index item: 2px bar + label body/sm/bold, 64 high, gap 16;
+  Rest bar surface/base-3 + label tertiary, Hover bar content/tertiary + label primary, Active bar brand-red +
+  label content/brand. Optional progress bar (2px, surface/base-3 with brand-red fill) at the bottom.
+  Mobile: padding 40/12, stacked, no pinning; step bars (2px, gap 4) and "01 / 03 · Label" in content/brand.
+  Slides (gap 40): Service (eyebrow body/sm/bold, title heading/3xl, body body/lg/reg, Pills S, Button Solid M),
+  Quote (heading/2xl quote, name body/lg/med, role body/md/reg secondary, Outline button),
+  Stat (eyebrow, value heading/3xl content/brand, statement heading/md, Outline button),
+  Case (image 320×400 radius 4 | eyebrow, title heading/xl, body body/lg/reg secondary, Solid button),
+  Content (eyebrow, title heading/xl, body, list with 16×2 brand-red dashes, body/md/med).
+  Motion (Figma): desktop section pins; the active item follows scroll; slide text rolls in per line
+  (duration/zoom); media opens with a circular wipe and settles from scale 1.15 to 1.
+*/
+@layer components {
+  .yw-vslider { position: relative; background: var(--color-shared-surface-base-1); color: var(--color-shared-content-primary); }
+  .yw-vslider--pinned { height: calc(var(--_steps, 3) * 100vh); }
+
+  .yw-vslider__frame {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4xl);
+    min-height: 900px;
+    padding: var(--spacing-4xl);
+    overflow: hidden;
+  }
+
+  .yw-vslider--pinned .yw-vslider__frame { position: sticky; top: 0; height: 100vh; min-height: 0; }
+
+  .yw-vslider__bg { position: absolute !important; z-index: 0; inset: 0; border-radius: 0 !important; }
+  .yw-vslider__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--color-shared-surface-base-1) 30%, transparent); }
+  .yw-vslider--left .yw-vslider__bg::after { background: linear-gradient(to left, var(--color-shared-surface-base-1) 30%, transparent); }
+  .yw-vslider__frame > :not(.yw-vslider__bg) { position: relative; z-index: 1; }
+
+  .yw-vslider__header { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-lg); }
+  .yw-vslider__kicker { display: inline-flex; align-items: center; gap: var(--spacing-2xs); }
+  .yw-vslider__line { width: 24px; height: 2px; background: var(--color-shared-surface-fixed-brand-red); }
+
+  .yw-vslider__body { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: var(--spacing-4xl); }
+  .yw-vslider--left .yw-vslider__body { flex-direction: row-reverse; }
+  .yw-vslider__slide { flex: 0 1 760px; min-width: 0; }
+
+  .yw-vslider__index { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+
+  .yw-vindex {
+    --_ring-radius: var(--shared-radius-2);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    height: 64px;
+    padding: 0 var(--spacing-xs) 0 0;
+    border: 0;
+    background: none;
+    color: var(--color-shared-content-tertiary);
+    text-align: start;
+    cursor: pointer;
+    transition: color var(--motion-duration-base) var(--motion-ease-standard);
+  }
+
+  .yw-vindex__bar { align-self: stretch; width: 2px; background: var(--color-shared-surface-base-3); transition: background-color var(--motion-duration-base) var(--motion-ease-standard); }
+  .yw-vindex:hover { color: var(--color-shared-content-primary); }
+  .yw-vindex:hover .yw-vindex__bar { background: var(--color-shared-content-tertiary); }
+  .yw-vindex[aria-current='true'] { color: var(--color-shared-content-brand); }
+  .yw-vindex[aria-current='true'] .yw-vindex__bar { background: var(--color-shared-surface-fixed-brand-red); }
+
+  .yw-vslider__progress { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: var(--color-shared-surface-base-3); }
+  .yw-vslider__progress > span { display: block; height: 100%; background: var(--color-shared-surface-fixed-brand-red); transition: width var(--motion-duration-slow) var(--motion-ease-emphasized); }
+
+  /* Slides */
+  @keyframes yw-line-roll { from { opacity: 0; transform: translateY(0.6em); } to { opacity: 1; transform: none; } }
+  @keyframes yw-circle-wipe { from { clip-path: circle(0% at 50% 50%); transform: scale(1.15); } to { clip-path: circle(75% at 50% 50%); transform: scale(1); } }
+
+  .yw-slide { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-2xl); }
+  .yw-slide > * { animation: yw-line-roll var(--motion-duration-zoom) var(--motion-ease-emphasized) both; }
+  .yw-slide > :nth-child(2) { animation-delay: var(--motion-stagger); }
+  .yw-slide > :nth-child(3) { animation-delay: calc(var(--motion-stagger) * 2); }
+  .yw-slide > :nth-child(4) { animation-delay: calc(var(--motion-stagger) * 3); }
+  .yw-slide__text { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+  .yw-slide__heading { display: flex; flex-direction: column; gap: var(--spacing-2xs); margin: 0; }
+  .yw-slide p { margin: 0; }
+  .yw-slide__secondary { color: var(--color-shared-content-secondary); }
+  .yw-slide__value { color: var(--color-shared-content-brand); }
+  .yw-slide__pills { display: flex; flex-wrap: wrap; gap: var(--spacing-2xs); }
+  .yw-slide__attribution { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-lg); width: 100%; }
+  .yw-slide__person { display: flex; flex-direction: column; gap: var(--spacing-3xs); }
+  .yw-slide blockquote { margin: 0; }
+  .yw-slide__list { display: flex; flex-direction: column; gap: var(--spacing-sm); margin: 0; padding: 0; list-style: none; }
+  .yw-slide__list li { display: flex; align-items: center; gap: var(--spacing-sm); }
+  .yw-slide__list li::before { content: ''; flex-shrink: 0; width: 16px; height: 2px; background: var(--color-shared-surface-fixed-brand-red); }
+
+  .yw-slide--case { flex-direction: row; align-items: center; }
+  .yw-slide--case > .yw-slide__image { flex: 0 0 320px; aspect-ratio: 320 / 400; animation-name: yw-circle-wipe; }
+  .yw-slide--case .yw-slide__text { flex: 1; min-width: 0; align-items: flex-start; }
+
+  /* Mobile */
+  .yw-vslider--mobile .yw-vslider__frame { gap: var(--spacing-2xl); min-height: 0; padding: var(--spacing-2xl) var(--spacing-xs); }
+  .yw-vslider--mobile .yw-vslider__header { flex-direction: column; align-items: flex-start; gap: var(--spacing-2xs); }
+  .yw-vslider__stack { display: flex; flex-direction: column; gap: var(--spacing-3xl); }
+  .yw-vslider__step { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+  .yw-vslider__current { display: flex; flex-direction: column; gap: var(--spacing-sm); color: var(--color-shared-content-brand); }
+  .yw-vslider__steps { display: flex; gap: var(--spacing-3xs); }
+  .yw-vslider__steps > span { flex: 1; height: 2px; background: var(--color-shared-surface-base-3); }
+  .yw-vslider__steps > span.is-done { background: var(--color-shared-surface-fixed-brand-red); }
+  .yw-vslider--mobile .yw-slide--case { flex-direction: column; align-items: stretch; }
+  .yw-vslider--mobile .yw-slide--case > .yw-slide__image { flex-basis: auto; }
+}

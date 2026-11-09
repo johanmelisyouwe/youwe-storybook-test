@@ -200,12 +200,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Default, Contextual, Active. UI only; onAsk callback for a real answer service. ⌘K focuses the bar, Esc closes the panel.",
+      "code": [
+        "src/components/components/AskYouwe/AskYouwe.tsx",
+        "src/components/components/AskYouwe/AskYouwe.css",
+        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "7oqovh",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -242,12 +247,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Question, Nudge, Case (image placeholder).",
+      "code": [
+        "src/components/components/AskYouwe/AskYouwe.tsx",
+        "src/components/components/AskYouwe/AskYouwe.css",
+        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1k92i53",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -290,11 +300,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "AskButton.",
+      "code": [
+        "src/components/components/AskYouwe/AskYouwe.tsx",
+        "src/components/components/AskYouwe/AskYouwe.css",
+        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "11pwy90",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -327,11 +342,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "AskChip.",
+      "code": [
+        "src/components/components/AskYouwe/AskYouwe.tsx",
+        "src/components/components/AskYouwe/AskYouwe.css",
+        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1hndm7k",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -358,11 +378,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "AskLabel.",
+      "code": [
+        "src/components/components/AskYouwe/AskYouwe.tsx",
+        "src/components/components/AskYouwe/AskYouwe.css",
+        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "4ge688",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -389,11 +414,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "AskAura (CSS blur, breathes ~6s).",
+      "code": [
+        "src/components/components/AskYouwe/AskYouwe.tsx",
+        "src/components/components/AskYouwe/AskYouwe.css",
+        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "14f24jy",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -421,11 +451,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "AskOrb (Figma raw gradient, legacy-ok).",
+      "code": [
+        "src/components/components/AskYouwe/AskYouwe.tsx",
+        "src/components/components/AskYouwe/AskYouwe.css",
+        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1pn26sn",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1739,12 +1774,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Pinned scroll on desktop (pin), stacked on mobile. Background image placeholder only.",
+      "code": [
+        "src/components/components/VerticalSlider/VerticalSlider.tsx",
+        "src/components/components/VerticalSlider/VerticalSlider.css",
+        "src/components/components/VerticalSlider/VerticalSlider.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1k4ziwt",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1772,11 +1812,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "IndexItem.",
+      "code": [
+        "src/components/components/VerticalSlider/VerticalSlider.tsx",
+        "src/components/components/VerticalSlider/VerticalSlider.css",
+        "src/components/components/VerticalSlider/VerticalSlider.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1nw0p3a",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1811,11 +1856,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "Slide: Service, Quote, Stat, Case, Content.",
+      "code": [
+        "src/components/components/VerticalSlider/VerticalSlider.tsx",
+        "src/components/components/VerticalSlider/VerticalSlider.css",
+        "src/components/components/VerticalSlider/VerticalSlider.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1c9gdds",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2186,19 +2236,23 @@
         },
         "props": "",
         "variantCount": 4,
-        "signature": "1oqepok"
+        "signature": "109lrvd"
       },
       "storybook": {
         "title": "Components/Footer/Corporate",
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Sitemap and Newsletter. Duplicate \"Digital Experience\" link removed in Figma (2026-11-09).",
+      "code": [
+        "src/components/components/Footer/Footer.tsx",
+        "src/components/components/Footer/Footer.css",
+        "src/components/components/Footer/Footer.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "109lrvd",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2225,11 +2279,15 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "FooterLink.",
+      "code": [
+        "src/components/components/Footer/Footer.tsx",
+        "src/components/components/Footer/Footer.css",
+        "src/components/components/Footer/Footer.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1kvt1lk",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2260,12 +2318,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Mega menu on hover/keyboard (300ms close delay); mobile sheet with scroll lock; fixed: glass + hide on scroll down.",
+      "code": [
+        "src/components/components/Header/Header.tsx",
+        "src/components/components/Header/Header.css",
+        "src/components/components/Header/Header.stories.tsx",
+        "src/components/logos/YouweLogo.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1am53ky",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2298,11 +2361,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "NavLink.",
+      "code": [
+        "src/components/components/Header/Header.tsx",
+        "src/components/components/Header/Header.css",
+        "src/components/components/Header/Header.stories.tsx",
+        "src/components/logos/YouweLogo.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1j7xckt",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2322,11 +2390,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "UtilityLink.",
+      "code": [
+        "src/components/components/Header/Header.tsx",
+        "src/components/components/Header/Header.css",
+        "src/components/components/Header/Header.stories.tsx",
+        "src/components/logos/YouweLogo.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "11qvedu",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2353,11 +2426,16 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "MegaMenu: ACI Weave and Ask Youwe features.",
+      "code": [
+        "src/components/components/Header/Header.tsx",
+        "src/components/components/Header/Header.css",
+        "src/components/components/Header/Header.stories.tsx",
+        "src/components/logos/YouweLogo.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "hsor5",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2526,16 +2604,22 @@
         "signature": "1vo02ro"
       },
       "storybook": {
-        "title": "Components/Insight Card",
+        "title": "Components/Upcoming events",
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Retitled Components/Upcoming events (the Insight Card title is taken).",
+      "code": [
+        "src/components/components/UpcomingEvents/UpcomingEvents.tsx",
+        "src/components/components/UpcomingEvents/UpcomingEvents.css",
+        "src/components/components/UpcomingEvents/UpcomingEvents.stories.tsx",
+        "src/components/shared/ModeFrame.tsx",
+        "src/components/shared/CardReveal.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1vo02ro",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2562,11 +2646,17 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "EventCard with the shared red reveal.",
+      "code": [
+        "src/components/components/UpcomingEvents/UpcomingEvents.tsx",
+        "src/components/components/UpcomingEvents/UpcomingEvents.css",
+        "src/components/components/UpcomingEvents/UpcomingEvents.stories.tsx",
+        "src/components/shared/ModeFrame.tsx",
+        "src/components/shared/CardReveal.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "fgb6gy",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
