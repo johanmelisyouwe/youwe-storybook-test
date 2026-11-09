@@ -565,9 +565,9 @@
             "L"
           ]
         },
-        "props": "Show second text element:B",
+        "props": "",
         "variantCount": 240,
-        "signature": "1an1gcp"
+        "signature": "1q20mrn"
       },
       "storybook": {
         "title": "Components/Buttons/Basic",
@@ -583,7 +583,7 @@
         "src/components/icons/Icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "1an1gcp",
+      "lastSyncedSignature": "1q20mrn",
       "lastSynced": "2026-11-09"
     },
     {

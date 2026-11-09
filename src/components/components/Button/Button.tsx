@@ -25,10 +25,6 @@ export type ButtonProps = {
   Size?: ButtonSize;
   /** Button text. Also the accessible name when Icon=Only. */
   label: string;
-  /** Figma: Show second text element */
-  'Show second text element'?: boolean;
-  /** Text of the second text element */
-  secondText?: string;
   /** Which Figma icon to show (Figma default: shopping-basket) */
   iconName?: IconName;
   /** Custom icon node; overrides iconName */
@@ -46,8 +42,6 @@ export function Button({
   Icon: iconPos = 'Off',
   Size = 'L',
   label,
-  'Show second text element': showSecond = false,
-  secondText,
   iconName = 'shopping-basket',
   icon,
   href,
@@ -79,7 +73,6 @@ export function Button({
       <>
         {iconPos === 'Leading' && iconEl}
         <span className={TEXT_STYLE[Size]}>{label}</span>
-        {showSecond && secondText && <span className={TEXT_STYLE[Size]}>{secondText}</span>}
         {iconPos === 'Trailing' && iconEl}
       </>
     );

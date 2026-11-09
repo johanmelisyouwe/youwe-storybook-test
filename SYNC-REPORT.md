@@ -54,7 +54,9 @@ Visual comparison with Figma (component set screenshots vs. the `AllVariants` st
 3. **Nudge token**: added in Figma as `motion/distance/xs` = 4px ("Icon nudges on hover"). Exported into `tokens/figma-variables.json`; Button uses `var(--motion-distance-xs)`.
 4. **Industry List Item**: moved in Figma to its own page `– Industry List Item`, so the inventory finds it. Status `missing`, ready for a later batch.
 
-Still open: the hidden "Second text" layer in Button/Basic (same text style, colour not bound to a variable). It's available as `Show second text element` + `secondText`.
+5. **Second text layer** in Button/Basic: not used. Removed in Figma (layer and the `Show second text element` property) and from the code.
+
+No open questions left for this batch.
 
 ## Next batch (suggested)
 
