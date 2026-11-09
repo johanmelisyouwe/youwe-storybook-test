@@ -6,6 +6,8 @@ Batch 6 decisions applied: theme toggle on the backlog; the duplicate "Digital E
 
 **Header update (9 November):** Ask Youwe is removed from Header/Corporate, because the site uses the sticky docked Ask Youwe bar. Removed in Figma (the Ask Youwe layers in all four variants and the "Show Ask Youwe" property) and in code (desktop pill, mobile orb button and the bar in the mobile menu). The Ask Youwe feature column of the mega menu stays.
 
+**Vertical slider update (9 November):** the pinned desktop behaviour now follows the v2 site's "What we do" section, as the team pointed to: 140vh of scroll per chapter; scroll progress picks the chapter; the title rises in a mask (past titles leave upwards) and the rest fades up after 220ms; each chapter can have its own background that opens with a circular wipe at 72% 50% and settles from scale 1.15 to 1, under the site's scrim; the index bars fill as you scroll and a click on an index item scrolls to that chapter (hover/focus still switch slides when not pinned); the optional progress bar fills along the bottom edge. Figma text styles are kept (the site uses a larger fluid title size).
+
 ## Step 4: content blocks
 
 | Block | Story | Variants |
