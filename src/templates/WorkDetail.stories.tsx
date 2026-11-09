@@ -1,0 +1,88 @@
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { Hero } from '../components/components/Hero/Hero';
+import { CaseIntro } from '../components/components/CaseIntro/CaseIntro';
+import { Media } from '../components/components/Media/Media';
+import { SectionHeader } from '../components/components/SectionHeader/SectionHeader';
+import { TextColumn } from '../components/components/TextColumn/TextColumn';
+import { TextMedia } from '../components/components/TextMedia/TextMedia';
+import { Testimonial } from '../components/components/Testimonial/Testimonial';
+import { StatsBlock } from '../components/components/StatsBlock/StatsBlock';
+import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel';
+import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
+import { CASE_INTRO, TEXT_COLUMN, TWO_COLUMN } from '../components/components/TextColumn/longform.copy';
+import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
+import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+
+/*
+  Templates/Work detail — Figma "Page / Work detail": Desktop 26829:20476, Mobile 26924:2198. Copy, props
+  and order from figma/templates.js. The header is its own section (Header/Corporate); the hero is
+  Title + image. Figma pairs the Quooker title with JC-Electronics body copy; the template shows Quooker
+  throughout (decided 9 November), using the Quooker case copy from the Figma long-form components. The
+  Testimonial keeps the stand-in quote from the Figma template (decided 9 November). Sub-footer: the
+  desktop copy on both devices.
+*/
+
+const c = (Title: string, Client: string, stat?: [string, string]): CaseCardProps => ({ Title, Client, logo: logo(Client), stat: stat && { value: stat[0], label: stat[1] }, href: '#' });
+const RELATED: CaseCardProps[] = [
+  c('From 60+ OpCos to one smart platform', 'BunzlOne', ['800+', 'categories active']),
+  c('Scaling product data with Pimcore & AI', 'Chadwicks Group', ['+43%', 'marketable catalog uplift']),
+  c('From inbox to SAP: AI order intake', 'Kingspan Insulated Panels'),
+  c('Scaling smarter: a digital platform for global growth', 'Quooker', ['17', 'markets supported']),
+  c('AI matching for pricing intelligence', 'Symson', ['93%', 'average match score']),
+  c('Booking.com builds Partner Hub with Youwe', 'Booking.com', ['30', 'languages']),
+  c('A PIM system and SAP integration', 'Heidelberg', ['3', 'SAP ERP systems integrated']),
+  c('Adobe Commerce Headless implementation', 'PostNL', ['41%', 'IT cost reduction']),
+];
+
+function WorkDetailPage({ Device }: { Device: Device }) {
+  return (
+    <Page Device={Device}>
+      {header(Device)}
+      <Hero
+        Variant="Title + image"
+        Device={Device}
+        title={['Scaling Smart: Quooker’s Expansion to 17 Countries']}
+        label={{ Type: 'Breadcrumb', crumbs: [{ label: 'Home', href: '#' }, { label: 'Work', href: '#' }, { label: 'Quooker' }] }}
+        logo={logo('Quooker')}
+      />
+      <Section Mode="Dark">
+        <CaseIntro Device={Device} {...{ 'Meta position': 'Left' as const }} meta={CASE_INTRO.meta} lead={CASE_INTRO.lead} body={CASE_INTRO.body} />
+        <Media Layout="Contained" Device={Device} />
+        <SectionHeader Alignment="Centered" Device={Device} kicker={TWO_COLUMN.label} heading={TWO_COLUMN.lead} body={TWO_COLUMN.body.join('\n')} />
+        <Media Layout="Full bleed" Device={Device} />
+        <TextColumn Alignment="Centered" Device={Device} lead={TEXT_COLUMN.lead} body={TEXT_COLUMN.body} />
+      </Section>
+      <TextMedia
+        Device={Device}
+        Theme="Dark"
+        Split="6/6"
+        {...{ 'Media position': 'Right' as const }}
+        heading={'Global thinking,\nglobal understanding'}
+        body="We’re a driven collective of over 270 specialists. Big enough to cover every digital discipline, yet close enough to truly understand the specifics of your business. Together, we create digital ecosystems that drive lasting growth."
+      />
+      <Section Mode="Dark">
+        <Testimonial Device={Device} image quotes={[{ Quote: '“Quote from the client goes here, ideally one or two sentences about the result.”', Name: 'Client name', Role: 'Role, company', logo: logo('Quooker') }]} /> {/* legacy-ok: the Figma template itself has this stand-in quote; reported in SYNC-REPORT.md */}
+        <StatsBlock
+          Type="Plain"
+          Device={Device}
+          intro={{ kicker: 'The results', title: 'From the Netherlands and Belgium to the Nordics, Germany, the UK, Hong Kong and the United Arab Emirates.' }}
+          stats={[{ Value: '17', Label: 'Markets supported' }, { Value: '110,000+', Label: 'Units sold every year' }]}
+        />
+        <Media Layout="Two-up" Device={Device} />
+        <CaseCarousel Layout="Scroll" Device={Device} Kicker="Proven in practice" Title="Related work" button={{ label: 'All cases', href: '#' }} cases={RELATED} />
+      </Section>
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
+      {footer(Device)}
+    </Page>
+  );
+}
+
+const meta: Meta = {
+  title: 'Templates/Work detail',
+  parameters: { layout: 'fullscreen', controls: { disable: true }, docs: { description: { component: 'Case page template: header, Title + image hero with breadcrumb, case intro, media, section header, text column, text + media, testimonial, results, two-up media, related work, sub-footer and footer.' } } },
+};
+export default meta;
+type Story = StoryObj;
+
+export const Desktop: Story = { render: () => <WorkDetailPage Device="Desktop" /> };
+export const Mobile: Story = { render: () => <WorkDetailPage Device="Mobile" />, globals: { viewport: { value: 'mobile' } } };

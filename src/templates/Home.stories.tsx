@@ -6,7 +6,7 @@ import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel
 import { TechnologyLogos } from '../components/components/TechnologyLogos/TechnologyLogos';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
-import { NotAComponent, Page, Section, footer, header, logo, type Device } from './shared';
+import { CLIENT_LOGOS, NotAComponent, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
 
 /*
   Templates/Home — Figma "Page / Home": Desktop 26584:5280, Mobile 26805:3646. Copy, props and order from
@@ -17,7 +17,7 @@ import { NotAComponent, Page, Section, footer, header, logo, type Device } from 
   Sub-footer and footer: the desktop copy is the correct one (decided 9 November) and is used on mobile too.
 */
 
-const HERO_LOGOS = ['Exigent', 'G-Star', 'GoCardless', 'ING', 'LaSalle', 'Munich Re', 'Newland', 'Subway'].map((n) => logo(n, 118));
+const HERO_LOGOS = CLIENT_LOGOS.map((n) => logo(n, 118));
 
 const practice = (n: string, name: string, Title: string, body: string, pills: string[]): SlideData => ({
   Type: 'Service', eyebrow: `${n} · ${name}`, Title, body, pills, button: { label: `Explore ${name}`, href: '#' },
@@ -74,8 +74,6 @@ const CASES: CaseCardProps[] = [
 
 const TECH = ['Pimcore', 'Adobe', 'Commercetools', 'HubSpot', 'Shopify', 'Hyvä', 'Alumio', 'Storyblok', 'Drupal', 'Symson', 'AWS', 'ACI Weave'].map((name) => ({ name }));
 
-/* Desktop sub-footer copy, also on mobile (the Figma mobile frame still has older copy). */
-const SUB_FOOTER = { title: 'Work with us', body: 'Tell us what you want to achieve and we will think along with you.', primary: { label: 'Get in touch', href: '#' }, offices: ['Rotterdam', 'Groningen', 'London', 'Shrewsbury', 'Leeds', 'Stockholm', 'Kyiv', 'Bandung'] };
 
 function HomePage({ Device }: { Device: Device }) {
   const mobile = Device === 'Mobile';
@@ -108,7 +106,7 @@ function HomePage({ Device }: { Device: Device }) {
       <Section Mode="Light">
         <TechnologyLogos Layout="Default" Device={Device} Title="The technology we build on" Body="We pick the platform that fits your business, then connect it to the rest of your landscape." rows={['We pick the platforms', 'that fit your business']} logos={TECH} button={{ label: 'All tech partners', href: '#' }} />
       </Section>
-      <ContactCTA Variant="Sub-footer background" Device={Device} {...SUB_FOOTER} />
+      <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
       {footer(Device)}
     </Page>
   );
