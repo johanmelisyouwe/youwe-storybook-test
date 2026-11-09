@@ -1,5 +1,6 @@
 import { useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { Button } from '../Button/Button';
+import { OptionsPanel, type Option } from '../OptionsPanel/OptionsPanel';
 import '../../shared/focus-ring.css';
 import './Tabs.css';
 
@@ -52,11 +53,18 @@ export type TabGroupProps = {
   'Trailing action'?: boolean;
   trailingLabel?: string;
   onTrailingAction?: () => void;
+  /** Menu shown by the trailing action (Figma _Trailing action State=Active with _Dropdown/Options) */
+  trailingOptions?: Option[];
+  onTrailingSelect?: (value: string) => void;
+  /** Open the trailing menu initially (story preview of _Trailing action State=Active) */
+  defaultMenuOpen?: boolean;
   /** Accessible name of the tab list */
   label: string;
 };
 
-export function TabGroup({ tabs, panels, selected: controlled, onChange, 'Trailing action': trailing = true, trailingLabel = 'More options', onTrailingAction, label }: TabGroupProps) {
+export function TabGroup({ tabs, panels, selected: controlled, onChange, 'Trailing action': trailing = true, trailingLabel = 'More options', onTrailingAction, trailingOptions, onTrailingSelect, defaultMenuOpen = false, label }: TabGroupProps) {
+  const [menu, setMenu] = useState(defaultMenuOpen);
+  const menuId = useId();
   const [inner, setInner] = useState(controlled ?? 0);
   const selected = controlled ?? inner;
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -102,8 +110,22 @@ export function TabGroup({ tabs, panels, selected: controlled, onChange, 'Traili
           <span className="yw-tab-group__ink" aria-hidden="true" style={{ width: ink.w, transform: `translateX(${ink.x}px)` }} />
         </div>
         {trailing && (
-          <div className="yw-tab-group__trailing">
-            <Button Variant="Outline" Icon="Only" Size="S" iconName="more-settings-horizontal" label={trailingLabel} onClick={onTrailingAction} />
+          <div
+            className="yw-tab-group__trailing"
+            onKeyDown={(e) => { if (e.key === 'Escape') setMenu(false); }}
+            onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setMenu(false); }}
+          >
+            <Button
+              Variant="Outline"
+              Icon="Only"
+              Size="S"
+              iconName="more-settings-horizontal"
+              label={trailingLabel}
+              onClick={() => { onTrailingAction?.(); if (trailingOptions) setMenu(!menu); }}
+            />
+            {trailingOptions && menu && (
+              <OptionsPanel id={menuId} role="menu" label={trailingLabel} options={trailingOptions} onSelect={(v) => { onTrailingSelect?.(v); setMenu(false); }} />
+            )}
           </div>
         )}
       </div>

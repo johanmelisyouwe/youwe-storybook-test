@@ -5,8 +5,10 @@ import { Tab, TabGroup, type TabProps } from './Tabs';
   Tab — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15713-6093
   Tab group — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15715-6340
   Figma's tab labels are "Label"; the stories use the three practice names from the Figma templates.
-  The trailing action's options panel (_Dropdown/Options) comes with the dropdowns in a later batch.
+  The trailing action opens the _Dropdown/Options menu; the stories use it for overflow tabs
+  (industries from the Figma Industries page).
 */
+const MORE = ['Manufacturing', 'Wholesale', 'Retail & Consumer Goods'].map((v) => ({ value: v, label: v }));
 
 type State = 'Active' | 'Rest' | 'Hover' | 'Focused' | 'Disabled';
 type Args = TabProps & { State: State };
@@ -41,6 +43,7 @@ export const Group: StoryObj<typeof TabGroup> = {
     <TabGroup
       label="Practices"
       tabs={TABS}
+      trailingOptions={MORE}
       panels={[
         <p key="1" className="yw-body-md-reg" style={{ padding: 'var(--spacing-lg) 0' }}>Commerce, PIM, portals and experience platforms, connected to your ERP.</p>,
         <p key="2" className="yw-body-md-reg" style={{ padding: 'var(--spacing-lg) 0' }}>Complex workflows turned into intelligent, efficient systems: less manual work, less risk.</p>,
@@ -60,7 +63,7 @@ export const AllVariants: Story = {
           <Tab key={s} label="Digital Infrastructure" selected={s === 'Active'} tabIndex={0} className={PSEUDO[s]} disabled={s === 'Disabled'} />
         ))}
       </div>
-      <TabGroup label="Practices" tabs={TABS} />
+      <div style={{ minHeight: 200 }}><TabGroup label="Practices" tabs={TABS} trailingOptions={MORE} defaultMenuOpen /></div>
       <TabGroup label="Practices without action" tabs={TABS} {...{ 'Trailing action': false }} />
     </div>
   ),

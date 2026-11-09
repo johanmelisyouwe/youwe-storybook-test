@@ -1,53 +1,56 @@
-# Sync report — 9 November 2026 (batch 2)
+# Sync report — 9 November 2026 (batch 3)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3 unchanged since batch 1 (no new Figma changes; tokens identical). Step 4 for the next set of building blocks. Templates (step 5) are not part of this run.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3 unchanged (no Figma changes since batch 2). Step 4 for the form inputs. Templates (step 5) are not part of this run.
 
 ## Step 4: components
 
 | Component | Story | Variants |
 |---|---|---|
-| Button/Filter | Components/Buttons/Filter | 15 of 15 (State × Size) + Active Filter |
-| Button/Utility | Components/Buttons/Utility | 6 of 6 (State × Size) |
-| Button/Link | Components/Buttons/Link | 3 of 3 (Size) |
-| Chip | Components/Chips | 8 of 8 (Variant × Size) |
-| Toggle (+ _Handle) | Components/Toggle | 14 of 14 (State × Size × Active) |
-| Checkbox | Components/Checkbox | 30 of 30 (Active × State × Size) |
-| Checkbox label | Components/Checkbox | 27 of 27 |
-| Radio button | Components/Radio Button | 18 of 18 (State × Size) |
-| Radio button label | Components/Radio Button | 9 of 9 |
-| Tab | Components/Tabs | 5 of 5 (State) |
-| Tab group (+ _Trailing action) | Components/Tabs | 1 of 1, with and without trailing action |
+| Text Input/Static Labels | Components/Input/Text | 9 of 9 (State) |
+| Text Input/Floating Labels | Components/Input/Text | 13 of 13 (State × Placeholder) |
+| Text Area/Static Label | Components/Input/Text Area | 9 of 9 |
+| Text Area/Floating Labels | Components/Input/Text Area | 13 of 13 |
+| Phone Input/Static Labels (+ _Locale select) | Components/Input/Phone | 8 of 8 |
+| Phone Input/Floating Labels | Components/Input/Phone | 8 of 8 |
+| Dropdown/Static Labels (+ _Dropdown/Options) | Components/Input/Dropdown | 9 of 9 (Active = open) |
+| Dropdown/Floating Labels | Components/Input/Dropdown | 13 of 13 |
+| Tab group (update) | Components/Tabs | the trailing action now opens the Figma options menu |
+| Dropdown/Quantity | — | **not built** (web-shop component, see below) |
 
-How they were built (same method as batch 1):
-- Geometry, colours, strokes, effects and text styles read per variant from Figma; heights fixed where Figma fixes them (Filter L 52 / M 44 / S 36, Utility 44 / 24, Tab 44, Toggle 42×24 / 58×32, Checkbox 18 / 24 / 44, Radio 18 / 24).
-- Real controls and ARIA: native checkbox and radio inputs (indeterminate supported), Toggle as `role="switch"`, Tab group as WAI-ARIA tabs with roving tabindex and Arrow/Home/End (Figma Interaction line; tested in the browser).
-- Motion from the Figma descriptions: Toggle knob slides (duration/base, ease/emphasized) and track colour (duration/base, ease/standard); the Tab group ink slides between tabs (duration/slow, ease/emphasized); hover colours duration/fast.
-- New Figma icons exported as SVG: filter-tune, close (two sizes), check, remove, more-settings-horizontal and the Button/Link chevron.
-- Only combinations that exist in Figma: Toggle has no disabled-on; Checkbox has Indeterminate only checked and Disabled only unchecked. Those cells stay empty in the AllVariants grids.
+How they were built:
+- One shared field building block (`src/components/components/Field/`) for label, required mark, control, hint and all states, so the four inputs behave the same. Values read per variant from Figma: static control 44 high (padding 8/8/8/12), floating 48 (0/8/0/12), text area 128, label body/sm/med (Dropdown: body/sm/bold, as in Figma), hint body/sm/reg.
+- Figma states are real behaviour: Hover, Focused and Active are CSS (`:hover`, `:focus-within`); Filled = the field has a value; Success and Error = `status`; Disabled = `disabled`. Focus = 2px `border/system/focus` + `shadow/outer/md/focus`; Error = `surface/system/negative-1` + 2px `border/system/negative` + `shadow/outer/md/error`.
+- Floating labels sit in the field and float up when focused, filled or showing a placeholder (Placeholder=Yes), as in the Figma variants. Phone floating keeps the label up in every state, as in Figma.
+- Accessible markup: real `<input>`, `<textarea>` and `type="tel"`; labels tied to fields; hint/error linked with `aria-describedby`, errors announced (`role="alert"`, `aria-invalid`). Dropdown and the country-code select are WAI-ARIA select-only comboboxes: Enter/Space/Arrow opens, Arrow keys move, Enter selects, Escape closes, a click outside closes (tested in the browser). The Tab group menu uses `role="menu"`.
+- `_Dropdown/Options` built as the shared options panel: `surface/base-1`, radius 2, `shadow/outer/sm/drop`, 45px rows, hover `surface/base-3`, max 220 high with the native scrollbar.
+- Icons and assets exported from Figma: chevron-bottom-down, dropdown arrows (down/up), search (the default Suffix), and the five flags of the locale panel (NL, GB, SE, ID, UA) as SVG files in `public/figma-assets/flags/`.
+- Content: labels, placeholders and options from the Figma contact form (Contact CTA, Variant=Form) and the Offices block: "Business email" / "name@company.com", "Message" / "How can we help you?", "Country" / "Select your country", "Phone" / "0000 000 000".
 
-**Focus Ring, now shared and exact.** Reading the Focus Ring layer showed it also carries the effect style `shadow/outer/md/focus` (a dark blue glow around the light ring), which batch 1 missed. There's now one shared Focus Ring (`src/components/shared/focus-ring.css`): 2px `shared/border/system/focus`, 4px outside the control, with the glow and a transparent gap. Button/Basic, Pills, Button/Filter and Toggle use it; Checkbox (radius 4) and Radio (circle) follow the same values; Tab places it 4px inside, as in Figma; Button/Utility has its ring on the button itself, as in Figma.
-
-Visual comparison with Figma (component set screenshots vs. the AllVariants stories): every variant of every component in this batch compared. One story-only artefact found and fixed: a square outline in the focus preview of Checkbox and Radio, caused by the preview class landing on the wrapper.
+Visual comparison with Figma: every variant of each input compared with the Figma component sets. Two issues found and fixed in this run: the Dropdown chevron and the input suffix wrapped under the floating label (moved outside the label stack), and success fields showed the error copy (hint now only shown for Error).
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
-- `check-legacy`: clean
-- `check-coverage`: clean (14 complete, 63 missing, 54 internal; 19 templates missing)
+- `check-legacy`: clean. Small fix: Figma property names such as `'Hint text'` are no longer flagged as placeholder copy (only text content is).
+- `check-coverage`: clean (22 complete, 54 missing, 54 internal, 1 not needed; 19 templates missing). It now also reads shared story helpers listed in `code`.
 
 ## Could not match exactly
 
-- **Button/Link** has no hover state in Figma. I gave the chevron the same nudge as Button/Basic (`distance/xs`) so the link reacts to hover. Remove it if design prefers no hover.
-- **Button/Link lg** and **Checkbox label L** use a plain 20px / 24px regular font in Figma instead of a text style. Code uses the matching size (`font-size/body-lg`, `.yw-body-xl-reg`).
-- **Tab group's trailing action** opens an options panel (`_Dropdown/Options`) in Figma. That panel comes with the dropdowns in batch 3.
+- **Hint and error copy.** Every Figma input uses "Hint text"; there is no real hint, success or error copy. The stories use stand-ins for the error state only: "Enter a valid business email address.", "Tell us briefly how we can help.", "Select your country.", "Enter a valid phone number.". Success shows no hint.
+- **Floating-label motion.** Figma calls the label "animated" but gives no Motion line. Code uses `duration/fast` + `ease/standard`.
+- **Text Area corner.** The drawn resize corner is the browser's own resize handle.
+- **Text Input/Static, State=Disabled** uses body/md/reg for the placeholder while all other states use body/sm/reg. Treated as a Figma slip; code keeps body/sm/reg.
+- **Selected option** in the options panel has no Figma state; code uses `surface/base-2` (the Figma "Selector" rows).
 
 ## Open questions for the design team
 
-1. Button/Link: keep the hover nudge, or no hover?
-2. Attach text styles to Button/Link lg and Checkbox label L?
-3. Tab labels in Figma are "Label"; the stories use the three practice names. Any specific default?
+1. **Dropdown/Quantity** is a web-shop component (quantity in product or cart). Not built, recorded as `not-needed`. Remove it from Figma?
+2. Can design add real hint and error copy to the inputs (at least for the contact form fields)?
+3. Floating-label animation: is `duration/fast` + `ease/standard` right, or should a Motion line be added?
+4. Text Input/Static Disabled placeholder style: fix to body/sm/reg in Figma?
+5. Open from batch 2: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels.
 
 ## Next batch (suggested)
 
-Batch 3: the inputs (Text Input, Text Area, Dropdown incl. options panel, Phone Input, Locale select), then Accordion, Tooltip, Toaster, Pagination, Progress Bar, Breadcrumbs.
+Batch 4: Accordion, Tooltip + Icon tooltip, Toaster, Pagination, Progress Bar, Breadcrumbs, Action List Item, List Item, Cookie Banner.
