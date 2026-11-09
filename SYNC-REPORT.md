@@ -1,68 +1,54 @@
-# Sync report — 9 November 2026 (batch 5)
+# Sync report — 9 November 2026 (batch 6)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: no Figma changes to the components in this batch since the inventory (signatures unchanged). Step 4 for the cards and list components below. Templates (step 5) are not part of this run.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: no Figma changes to these components since the inventory (signatures unchanged). Step 4 for the site chrome, Ask Youwe, Upcoming events and the Vertical slider. Templates (step 5) are not part of this run.
 
-Batch 4 follow-ups: breadcrumb links have a Hover state in code; BACKLOG.md added (Pagination last, Breadcrumbs back button variant, Figma hover state for `_breadcrumb-link`).
+Batch 5 decisions applied: card arrow stays straight; Industry List Item parked; images not imported (BACKLOG.md).
 
 ## Step 4: components
 
 | Component | Story | Variants |
 |---|---|---|
-| Case Card (+ _Case Card/Stat) | Components/Case Card | 20 of 20 (5 sizes incl. Mobile × Mode × State); stat Type × Size 10 of 10 |
-| Insight Card | Components/Insight Card | 16 of 16 (Variant × Device × Mode × State) |
-| Service Card | Components/Service Card | 4 of 4 (Mode × State) |
-| System Card | Components/Service Card | 4 of 4 (Mode × State) |
-| Technology Card (+ logo placeholder) | Components/Technology Card | 8 of 8 (Layout × Mode × State) |
-| Feature Card | Components/Feature Card | 12 of 12 (Device × Variant × Mode) |
-| Quote Card | Components/Quote Card | 4 of 4 (Mode × Device) |
-| Image Card | Components/Image Card | 2 of 2 (Mode) |
-| Stat | Components/Stat | 8 of 8 (Type × Size × Mode) |
-| Location + Clock | Components/Location | 4 of 4 + 2 of 2 |
-| Industry List Item | Components/Industry List Item | built, then **parked** (new Industries design) |
+| Header/Corporate (+ _Nav link, _Utility link, _Mega menu) | Components/Header/Corporate | 4 of 4 (Device × Expanded); nav link 6 of 6; mega menu 2 of 2 |
+| Footer/Corporate (+ _Footer link) | Components/Footer/Corporate | 4 of 4 (Variant × Device); footer link 2 of 2 |
+| Ask Youwe | Components/Ask Youwe | 12 of 12 (State × Mode × Device) |
+| Ask Youwe/Snippet | Components/Ask Youwe | 12 of 12 (Type × Device × Mode) |
+| _Ask Youwe/Orb, Aura, Button, Chip, Label | Components/Ask Youwe (Parts) | all variants |
+| Upcoming events (+ row) | Components/Upcoming events | 4 of 4 (Mode × Device); row Rest/Hover |
+| Vertical slider (+ index item, slides) | Content blocks/Vertical slider | 8 of 8 (Index × Mode × Device); 5 slide types; index item 3 states |
 
 How they were built:
-- **One shared red reveal** (`src/components/shared/card-reveal.css`, `CardReveal`) for Case, Insight, Service, System and Technology Card, as the Figma descriptions say "same red reveal". The red panel wipes up from the bottom (clip-path), its text slides in 40px from the right and fades in, `duration/card` + `ease/card`. Keyboard focus plays it too, with the focus ring on top. Service and System Card add the "lift": the card text slides up `distance/card` and fades; the arrow stays straight.
-- **Each linked card is one link** (Figma: "Whole card is one link"). Tags and "Read more" inside a linked card are drawn as text, not separate links, so there are no links inside links.
-- **Mode** (Dark / Light) is the theme: every card uses the Figma tokens, and the stories show both modes side by side.
-- **Case Card**: the sizes keep the Figma image proportions; the client logo sits top-right over the legibility gradient; the result stat (`_Case Card/Stat`, all five types in L and M) sits bottom-left. Copy from the Figma Case carousel ("How a Design System strengthened G-Star's brand consistency", +43% marketable catalog uplift).
-- **Insight Card**: Default and Featured (heading/lg title plus "Read more"). Copy from the Figma Insights page.
-- **Service / System / Technology Card**: copy from the Services split block, the Card hover example and the partners overview (Databricks, Microsoft Fabric, Pimcore, Shopify Plus).
-- **Feature Card**: Card, Plain (top divider) and AI (Ask Youwe surface and aura). Optional image, arrow, tags, button and link are props. Scroll reveal (`reveal`) uses CSS scroll-driven animation where the browser supports it.
-- **Quote Card**: the Bunzl quote from the Figma Vertical slider (Frank Daamen). Built as `figure` / `blockquote` / `figcaption`.
-- **Stat**: Client and Plain, L and M; optional count-up on scroll (1.6 s ease-out, once), as in the Figma description. Values from the Figma Stats block. The story is titled **Components/Stat**, so "Content blocks/Stats" stays free for the block itself.
-- **Location + Clock**: the eight offices from the Offices block; the clock shows the live local time per office and the digits flip on change (520 ms, `ease/emphasized`).
-- **Industry List Item**: the 14 industries from Figma. `IndustryList` makes the first row active and the active row follows hover and keyboard focus (Figma interaction note). The subtitle opens with `duration/slow` + `ease/emphasized`; the desktop preview fades and slides in.
-- New icons from Figma: arrow-forward, arrow-upward, image. New: the G-Star client logo as SVG.
+- **Header**: the logo is the Figma SVG (mark in `content/brand`, wordmark follows the mode). Desktop has the centred menu, the Ask Youwe pill, Careers and Contact. The Services mega menu follows the Figma interaction note: it opens on hover straight away and closes 300ms after the pointer leaves; Enter or ArrowDown opens it, Esc closes it; it opens with a clip reveal (`duration/slow`). Mobile: logo, Ask Youwe orb and menu button; the menu is a full-screen sheet that locks page scroll and closes with Esc. With `fixed`, the bar turns to glass once scrolled and hides on scroll down, returning on scroll up (`duration/slow`, `ease/emphasized`).
+- **Footer**: Sitemap and Newsletter, desktop and mobile, with the Figma links, legal links, Instagram/LinkedIn icons (Figma SVG) and the language pill.
+- **Ask Youwe**: the bar (Default), Contextual (the bar widens over 640ms, then the page question fades in) and Active (answer panel with question, answer, source, follow-up, CTA and composer; opens from the bar with a clip reveal, `duration/cinematic`). ⌘K focuses the bar and Esc closes the panel. The aura breathes on a ~6s loop. Glass uses the Figma `ask/glass` effect tokens. The Interactive story shows the flow; the answer is the Figma copy (no AI service is connected; `onAsk` is the hook for it).
+- **Snippets**: Question, Nudge and Case with the Figma copy (Kingspan, Quooker).
+- **Upcoming events**: the four Figma events; each card is one link with the shared red reveal. Story titled Components/Upcoming events (the inventory title was the Insight Card's).
+- **Vertical slider**: the five slide types (Service, Quote, Stat, Case, Content) with the Figma copy. On desktop the section can pin and the active item follows scroll (Pinned story); index items are buttons and hover/focus switch slides too. Slide text rolls in line by line (`duration/zoom`, staggered); the case image opens with a circular wipe and settles from scale 1.15. Mobile is stacked with step bars and "01 / 03 · …", no pinning.
+- New icons from Figma: hamburger-menu, language. New: Youwe logo, social icons.
 
-Visual comparison with Figma: every variant compared. Fixed in this run: the reveal arrow on short cards (Technology Card), and the strength of the AI aura.
+Visual comparison with Figma: header (both devices, mega menu open), footer, Ask Youwe (all states), events and the slider compared. Fixed in this run: the mega menu feature link is underlined as in Figma.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
-- `check-legacy`: clean
-- `check-coverage`: clean (43 complete, 32 missing, 54 internal, 1 not needed, 1 parked; 19 templates missing)
+- `check-legacy`: clean (two marked exceptions: the Orb's raw gradient colours, which Figma does not tokenise, and the 6s aura loop, which has no motion token)
+- `check-coverage`: clean (49 complete, 26 missing, 54 internal, 1 not needed, 1 parked; 19 templates missing)
 
 ## Could not match exactly
 
-- **Case photos and most client logos are not in the repo.** This session cannot download images from Figma (figma.com is not on the network allow list), and the photos are too large to pass through the Figma connection. The image frames show the Figma placeholder (`surface/base-3` + image icon). Only the G-Star logo is exported (small SVG). Partner logos on the Technology Card show the partner name in the white tile.
-- **Technology Card logo tile**: the description says the tile is white in both modes; the Figma placeholder has no fill. Code uses a white tile.
-- **Insight Card mobile image heights** are derived from the card heights (Figma does not name them).
-- **Feature Card copy**: Figma only has default copy; stories use the services from the Services split block.
-- **AI aura** (Feature Card) is drawn with CSS gradients and blur, close to the Figma aura but not identical.
-- **Quote mark** uses the heading/2xl size (64px on desktop, smaller on mobile); Figma uses a fixed 64px with no text style.
-
-## Decisions (9 November 2026)
-
-- `www.figma.com` is now allowed, but **images are not imported yet**. The cards keep the Figma image placeholder (BACKLOG.md).
-- Service / System Card: the arrow **stays straight** on hover (as in the Figma Hover variant; the description's −45° is dropped). Design to update the description.
-- Industry List Item: the chevron **stays still**. The component is **parked**: the Industries template has a new design. Code and story are kept for reference (BACKLOG.md).
+- **Theme toggle** in the mobile menu (light/dark sun/moon switch at the bottom) is not built: it is loose layers in Figma, not a component, and the site theme is set per section ("Theme follows the section beneath"). Desktop has a hidden copy of it as well.
+- **Ask Youwe Orb** colours are raw values in Figma, not tokens (`legacy-ok` in code).
+- **Footer "Digital Infrastructure" column** lists both "Digital Experience" and "Digital Experience (DXP)" in Figma; code uses the header's six links (no duplicate).
+- **Images** (mega menu feature, case snippet, slider case image and background) show the Figma placeholder; images are on the backlog.
+- **Ask Youwe docked bar** (after the hero the bar docks to the bottom centre) belongs to the templates ("Templates › Docked bar") and is not part of this run.
+- **Mobile Ask Youwe Contextual** shows the full prompt next to the chip; Figma shortens it to "Ask".
 
 ## Open questions for the design team
 
-1. Service Card / System Card: update the Motion description (no arrow rotation).
-2. Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Mobile menu theme toggle: should it become a component (and also show on desktop), or be dropped?
+2. Footer: remove the duplicate "Digital Experience" link?
+3. Service Card / System Card: update the Motion description (no arrow rotation). Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 6: Header/Corporate (+ nav links, mega menu), Footer/Corporate, Ask Youwe (+ snippet and its parts), Upcoming events, Vertical slider. Then the content blocks and templates (including the new Industries design); Pagination last.
+Batch 7: the content blocks (Hero, Section header/intro, Statement, Stats, Card grid, Case carousel, Contact CTA, Offices, Testimonial and the rest). Then the templates (including the new Industries design); Pagination last.
