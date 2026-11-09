@@ -24,6 +24,8 @@ export type ContactCTAProps = {
   secondary?: { label: string; href?: string };
   /** Sub-footer: office line */
   offices?: string[];
+  /** Form: submit button label */
+  submit?: string;
   /** Form: country options */
   countries?: { value: string; label: string }[];
   /** Sub-footer image (placeholder when absent) */
@@ -31,7 +33,7 @@ export type ContactCTAProps = {
   onSubmit?: (data: FormData) => void;
 };
 
-export function ContactCTA({ Variant = 'Form', Device = 'Desktop', title, body, phone, primary, secondary, offices, countries = [], image, onSubmit }: ContactCTAProps) {
+export function ContactCTA({ Variant = 'Form', Device = 'Desktop', title, body, phone, primary, secondary, offices, countries = [], submit = 'Send message', image, onSubmit }: ContactCTAProps) {
   if (Variant === 'Form') {
     return (
       <section className="yw-block yw-contact yw-contact--form" aria-label={title}>
@@ -58,7 +60,7 @@ export function ContactCTA({ Variant = 'Form', Device = 'Desktop', title, body, 
             <Dropdown Label="Country" Required name="country" placeholderText="Select your country" options={countries} />
             <TextArea Label="Message" Required name="message" placeholderText="How can we help you?" />
             <CheckboxLabel Size="S" name="optIn" label="Yes, I would like to learn more about Youwe’s services" />
-            <Button Variant="Primary" Size="M" type="submit" label="Send message" className="yw-btn-auto" />
+            <Button Variant="Primary" Size="M" type="submit" label={submit} className="yw-btn-auto" />
           </form>
         </div>
       </section>

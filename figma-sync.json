@@ -1318,7 +1318,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Form, Sub-footer split and Sub-footer background; images are placeholders. Signature kept (instance-swap image).",
+      "note": "Form, Sub-footer split and Sub-footer background; images are placeholders. Signature kept (instance-swap image). Form submit label is a prop (Figma template: \"Get in touch\").",
       "code": [
         "src/components/components/ContactCTA/ContactCTA.tsx",
         "src/components/components/ContactCTA/ContactCTA.css",
@@ -2177,7 +2177,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Container-query layout; Dark / Deep blue / Light. Image placeholder.",
+      "note": "Container-query layout; Dark / Deep blue / Light. Image placeholder. Optional media slot (e.g. a Case Card) in place of the image, used by the Industries detail template.",
       "code": [
         "src/components/components/TextMedia/TextMedia.tsx",
         "src/components/components/TextMedia/TextMedia.css",
@@ -5131,10 +5131,14 @@
         "title": "Templates/Industries",
         "story": "Desktop"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "974if1",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Industries.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5147,10 +5151,14 @@
         "title": "Templates/Industries",
         "story": "Mobile"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "9j0b0p",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Industries.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5163,10 +5171,14 @@
         "title": "Templates/Industries detail",
         "story": "Desktop"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1ukya6e",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/IndustriesDetail.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5291,10 +5303,16 @@
         "title": "Templates/Insights",
         "story": "Desktop"
       },
-      "status": "missing",
-      "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "status": "complete",
+      "placeholders": [
+        "Insights · content (Latest + All insights)"
+      ],
+      "lastSyncedSignature": "k6b9g9",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Insights.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5307,10 +5325,16 @@
         "title": "Templates/Insights",
         "story": "Mobile"
       },
-      "status": "missing",
-      "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "status": "complete",
+      "placeholders": [
+        "All insights (type filters + insight grid + Show more)"
+      ],
+      "lastSyncedSignature": "pk0eyr",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Insights.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
