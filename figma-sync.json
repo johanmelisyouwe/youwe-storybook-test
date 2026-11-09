@@ -2375,9 +2375,9 @@
             "Yes"
           ]
         },
-        "props": "Show Ask Youwe:B",
+        "props": "",
         "variantCount": 4,
-        "signature": "1am53ky"
+        "signature": "19yt4ak"
       },
       "storybook": {
         "title": "Components/Header/Corporate",
@@ -2385,7 +2385,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Mega menu on hover/keyboard (300ms close delay); mobile sheet with scroll lock; fixed: glass + hide on scroll down.",
+      "note": "Mega menu on hover/keyboard (300ms close delay); mobile sheet with scroll lock; fixed: glass + hide on scroll down. Ask Youwe removed from the header in Figma and code (2026-11-09): the site uses the sticky docked bar.",
       "code": [
         "src/components/components/Header/Header.tsx",
         "src/components/components/Header/Header.css",
@@ -2393,7 +2393,7 @@
         "src/components/logos/YouweLogo.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "1am53ky",
+      "lastSyncedSignature": "19yt4ak",
       "lastSynced": "2026-11-09"
     },
     {

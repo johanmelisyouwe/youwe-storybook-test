@@ -23,7 +23,7 @@ const NAV: HeaderProps['nav'] = [
   { label: 'About Us', href: '#' },
 ];
 
-type Args = Pick<HeaderProps, 'Device' | 'Expanded' | 'Show Ask Youwe'>;
+type Args = Pick<HeaderProps, 'Device' | 'Expanded'>;
 
 const meta: Meta<Args> = {
   title: 'Components/Header/Corporate',
@@ -32,7 +32,7 @@ const meta: Meta<Args> = {
     Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
     Expanded: { control: 'inline-radio', options: ['No', 'Yes'] },
   },
-  args: { Device: 'Desktop', Expanded: 'No', 'Show Ask Youwe': true },
+  args: { Device: 'Desktop', Expanded: 'No' },
   render: (args) => (
     <div style={{ maxWidth: args.Device === 'Mobile' ? 360 : 1440, minHeight: args.Expanded === 'Yes' ? (args.Device === 'Mobile' ? 780 : 460) : 140 }}>
       <Header key={`${args.Device}${args.Expanded}`} {...args} nav={NAV} current="Services" inline />

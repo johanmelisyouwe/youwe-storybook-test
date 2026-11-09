@@ -2,11 +2,12 @@
   Header/Corporate (Figma 24999:631), _Nav link (24998:575), _Utility link (24998:583), _Mega menu (26977:1552).
   Desktop: transparent wrapper, padding 24; main bar surface/tint-1, radius 4, padding 16/24, logo left,
   menu centred (_Nav link M: body/md/med, padding 8/16; Rest content/primary, Active and Hover content/link),
-  right: Ask Youwe pill (36 high, ask surface + border, orb + body/sm/med), "Careers" (body/md/med), Get in touch (Button Primary S).
+  right: "Careers" (body/md/med) and Contact (Button Primary S). Ask Youwe is not in the header (removed
+  2026-11-09: the site uses the sticky docked Ask Youwe bar).
   Mega menu (Expanded=Yes): 4px below the bar, surface/base-1, radius 4, padding 32/32/64/32, gap 24,
   three link columns (heading body/xs/med tertiary, gap 16; links gap 12) + a feature column.
-  Mobile: logo + Ask Youwe orb button (44) + menu button (Solid M, icon only, tint-1). Expanded: full-screen
-  sheet on surface/base-1: top bar with close, Ask Youwe bar, nav links L (body/xl/med; Active content/brand),
+  Mobile: logo + menu button (Solid M, icon only, tint-1). Expanded: full-screen
+  sheet on surface/base-1: top bar with close, nav links L (body/xl/med; Active content/brand),
   divider, utility links, language, Get in touch (Primary M, full width).
   Motion (Figma): glass background once scrolled; hides on scroll down, returns on scroll up
   (duration/slow, ease/emphasized); mega menu clip reveal duration/slow.
@@ -79,23 +80,6 @@
   /* _Utility link */
   .yw-utility-link { color: var(--color-shared-content-primary); text-decoration: none; }
   .yw-utility-link:hover { text-decoration: underline; }
-
-  /* Ask Youwe pill */
-  .yw-header__ask {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2xs);
-    height: 36px;
-    padding: 7px 14px 7px 10px; /* legacy-ok: Figma pill padding 7/14/7/10 */
-    border: 0;
-    border-radius: var(--component-radius-ask-control);
-    background: var(--color-component-ask-surface);
-    box-shadow: inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border);
-    color: var(--color-shared-content-primary);
-    cursor: pointer;
-  }
-
-  .yw-header__ask--icon { justify-content: center; width: 44px; height: 44px; padding: 0; }
 
   /* Mega menu */
   @keyframes yw-mega-reveal {

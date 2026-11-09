@@ -4,6 +4,8 @@ Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–
 
 Batch 6 decisions applied: theme toggle on the backlog; the duplicate "Digital Experience" footer link is removed in Figma (all four Footer/Corporate variants).
 
+**Header update (9 November):** Ask Youwe is removed from Header/Corporate, because the site uses the sticky docked Ask Youwe bar. Removed in Figma (the Ask Youwe layers in all four variants and the "Show Ask Youwe" property) and in code (desktop pill, mobile orb button and the bar in the mobile menu). The Ask Youwe feature column of the mega menu stays.
+
 ## Step 4: content blocks
 
 | Block | Story | Variants |
