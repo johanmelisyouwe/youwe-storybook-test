@@ -4,6 +4,7 @@ Work agreed with the team that is not part of a sync batch yet. Newest first.
 
 | Item | Why | Status |
 |---|---|---|
+| Theme toggle (light/dark) | In the Figma mobile menu as loose layers, not a component (desktop has a hidden copy). Fine for now (decided 2026-11-09). | Later |
 | Industry List Item | Parked: the Industries template has a new design. Code and story are kept; revisit when that template is synced. | Parked |
 | Case photos and client logos | figma.com is now allowed, but images are not imported yet (decided 2026-11-09). Cards show the Figma image placeholder. | Later |
 | Pagination | Uses Dropdown/Quantity ("View amount"), which was marked for removal. Build it in the last batch, once the dropdown question is settled. | Last batch |

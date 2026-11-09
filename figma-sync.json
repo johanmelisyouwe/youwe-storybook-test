@@ -2236,7 +2236,7 @@
         },
         "props": "",
         "variantCount": 4,
-        "signature": "1oqepok"
+        "signature": "109lrvd"
       },
       "storybook": {
         "title": "Components/Footer/Corporate",
@@ -2244,14 +2244,14 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Sitemap and Newsletter.",
+      "note": "Sitemap and Newsletter. Duplicate \"Digital Experience\" link removed in Figma (2026-11-09).",
       "code": [
         "src/components/components/Footer/Footer.tsx",
         "src/components/components/Footer/Footer.css",
         "src/components/components/Footer/Footer.stories.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "1oqepok",
+      "lastSyncedSignature": "109lrvd",
       "lastSynced": "2026-11-09"
     },
     {

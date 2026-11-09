@@ -38,16 +38,18 @@ Visual comparison with Figma: header (both devices, mega menu open), footer, Ask
 
 - **Theme toggle** in the mobile menu (light/dark sun/moon switch at the bottom) is not built: it is loose layers in Figma, not a component, and the site theme is set per section ("Theme follows the section beneath"). Desktop has a hidden copy of it as well.
 - **Ask Youwe Orb** colours are raw values in Figma, not tokens (`legacy-ok` in code).
-- **Footer "Digital Infrastructure" column** lists both "Digital Experience" and "Digital Experience (DXP)" in Figma; code uses the header's six links (no duplicate).
 - **Images** (mega menu feature, case snippet, slider case image and background) show the Figma placeholder; images are on the backlog.
 - **Ask Youwe docked bar** (after the hero the bar docks to the bottom centre) belongs to the templates ("Templates › Docked bar") and is not part of this run.
 - **Mobile Ask Youwe Contextual** shows the full prompt next to the chip; Figma shortens it to "Ask".
 
+## Decisions (9 November 2026)
+
+- Mobile menu theme toggle: fine for now, added to BACKLOG.md.
+- Footer: the duplicate "Digital Experience" link is removed in Figma (all four Footer/Corporate variants); code already used the six links.
+
 ## Open questions for the design team
 
-1. Mobile menu theme toggle: should it become a component (and also show on desktop), or be dropped?
-2. Footer: remove the duplicate "Digital Experience" link?
-3. Service Card / System Card: update the Motion description (no arrow rotation). Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Service Card / System Card: update the Motion description (no arrow rotation). Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
