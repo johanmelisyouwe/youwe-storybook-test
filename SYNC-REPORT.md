@@ -39,7 +39,7 @@ Visual comparison with Figma: every block compared. Fixed in this run: the Ask Y
 
 ## Could not match exactly
 
-- **Case carousel motion**: Figma describes a pinned horizontal reel (vertical scroll moves the track, images shift ±6% inside the cards). Code uses a snapping scroller with prev/next and the counter; the pinned reel can be added like the Vertical slider if wanted.
+- **Case carousel motion**: Figma describes a pinned horizontal reel (vertical scroll moves the track, images shift ±6% inside the cards). Code uses a snapping scroller with prev/next and the counter (decided: keep the swipe row).
 - **Logos and images**: technology and client logos show the name (logos not exported yet); case, solution and snippet images show the Figma placeholder (images on the backlog).
 - **Card grid "Person", "Content" and "Office" cells** are listed in Figma as cell options but are not components yet; any card can go in a cell.
 - **Tech partners group labels** have no text style in Figma (raw 12px caps); code uses body/xs/bold in capitals.
@@ -47,9 +47,9 @@ Visual comparison with Figma: every block compared. Fixed in this run: the Ask Y
 
 ## Open questions for the design team
 
-1. Case carousel: build the pinned horizontal reel (as described), or keep the snapping scroller?
-2. Tech partners split: a text style for the group labels.
-3. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+Decisions (9 November): Case carousel keeps the swipe row (no pinned reel); the group-label text style is on BACKLOG.md.
+
+1. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 

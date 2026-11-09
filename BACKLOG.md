@@ -4,6 +4,7 @@ Work agreed with the team that is not part of a sync batch yet. Newest first.
 
 | Item | Why | Status |
 |---|---|---|
+| Text style for the Tech partners split group labels | INTEGRATION / DATA PLATFORMS / CLOUD use raw 12px caps in Figma; code uses body/xs/bold in capitals until there is a style. | Waiting for Figma |
 | Statement giant rows in Figma | Built in code after the v2 site (image-filled + outlined rows, drift ±9%). Leave the Figma component for now (decided 2026-11-09). | Later |
 | Theme toggle (light/dark) | In the Figma mobile menu as loose layers, not a component (desktop has a hidden copy). Fine for now (decided 2026-11-09). | Later |
 | Industry List Item | Parked: the Industries template has a new design. Code and story are kept; revisit when that template is synced. | Parked |
