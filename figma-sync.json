@@ -5179,10 +5179,14 @@
         "title": "Templates/Work",
         "story": "Desktop"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1x3cvxo",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Work.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5195,10 +5199,14 @@
         "title": "Templates/Work",
         "story": "Mobile"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "oz072y",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Work.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5211,10 +5219,14 @@
         "title": "Templates/Work detail",
         "story": "Desktop"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1ohemy8",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/WorkDetail.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5227,10 +5239,14 @@
         "title": "Templates/Work detail",
         "story": "Mobile"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1pdjf6r",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/WorkDetail.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5307,10 +5323,14 @@
         "title": "Templates/About Us",
         "story": "Desktop"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1jju5pr",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/About.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5323,10 +5343,14 @@
         "title": "Templates/About Us",
         "story": "Mobile"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "av6wib",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/About.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     }
   ],
   "migrated": "not needed: fresh repo, no old Storybook",

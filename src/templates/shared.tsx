@@ -20,6 +20,15 @@ export const logo = (name: string, width = 96) => (name === 'G-Star' ? <ClientLo
 
 export const OFFICES = ['Rotterdam', 'Groningen', 'London', 'Leeds', 'Shrewsbury', 'Stockholm', 'Bandung', 'Kyiv'];
 
+/** The "Work with us" sub-footer of the desktop templates. The mobile frames have other copy; desktop is correct (decided 9 November). */
+export const WORK_WITH_US = {
+  title: 'Work with us',
+  body: 'Tell us what you want to achieve and we will think along with you.',
+  primary: { label: 'Get in touch', href: '#' },
+  offices: ['Rotterdam', 'Groningen', 'London', 'Shrewsbury', 'Leeds', 'Stockholm', 'Kyiv', 'Bandung'],
+};
+export const CLIENT_LOGOS = ['Exigent', 'G-Star', 'GoCardless', 'ING', 'LaSalle', 'Munich Re', 'Newland', 'Subway'];
+
 const l = (labels: string[]) => labels.map((label) => ({ label, href: '#' }));
 const SERVICE_COLUMNS: FooterColumn[] = [
   { heading: 'Digital Infrastructure', links: l(['B2B Enterprise Commerce', 'D2C Commerce', 'PIM/MDM', 'Digital Experience (DXP)', 'Customer & Partner Portals', 'Cloud Architecture']) },
