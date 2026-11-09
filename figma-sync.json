@@ -5015,10 +5015,16 @@
         "title": "Templates/Home",
         "story": "Desktop"
       },
-      "status": "missing",
-      "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "status": "complete",
+      "placeholders": [
+        "Frame 6 (ACI Weave · videos + snippet)"
+      ],
+      "lastSyncedSignature": "1dkipj1",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Home.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5031,10 +5037,16 @@
         "title": "Templates/Home",
         "story": "Mobile"
       },
-      "status": "missing",
-      "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "status": "complete",
+      "placeholders": [
+        "ACI Weave · video + nudge"
+      ],
+      "lastSyncedSignature": "ckt2vh",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Home.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5047,10 +5059,14 @@
         "title": "Templates/Services",
         "story": "Desktop"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "100svzb",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Services.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {
@@ -5063,10 +5079,14 @@
         "title": "Templates/Services",
         "story": "Mobile"
       },
-      "status": "missing",
+      "status": "complete",
       "placeholders": [],
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "19ze3px",
+      "lastSynced": "2026-11-09",
+      "code": [
+        "src/templates/Services.stories.tsx",
+        "src/templates/shared.tsx"
+      ]
     },
     {
       "figma": {

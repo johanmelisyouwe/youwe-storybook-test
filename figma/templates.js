@@ -35,7 +35,8 @@ const describe = async (inst) => {
   }
   return { component: set ? set.name : inst.name, componentNodeId: set ? set.id : null, props };
 };
-const textsOf = (n, max = 40) => n.findAll((t) => t.type === 'TEXT' && t.visible).slice(0, max).map((t) => ({ layer: t.name, text: t.characters.slice(0, 400) }));
+// A slot can hold a bare text node, which has no findAll.
+const textsOf = (n, max = 40) => ('findAll' in n ? n.findAll((t) => t.type === 'TEXT' && t.visible) : n.type === 'TEXT' ? [n] : []).slice(0, max).map((t) => ({ layer: t.name, text: t.characters.slice(0, 400) }));
 
 // The content placed INSIDE a section: what sits in each slot (Card grid cells …) and the
 // nested cards/items with their own props (case cards in a carousel, stats …).
