@@ -10,7 +10,7 @@ Batch 11 decisions: Work detail shows Quooker throughout; the Testimonial keeps 
 |---|---|---|---|---|
 | Industries (new design) | Templates/Industries → Desktop | 26657:16750 | 974if1 | none |
 | Industries (new design) | Templates/Industries → Mobile | 26814:197 | 9j0b0p | none |
-| Industries detail | Templates/Industries detail → Desktop | 26926:34632 | 1ukya6e | Frame 6 (industry intro + Case Card) |
+| Industries detail | Templates/Industries detail → Desktop | 26926:34632 | 1ukya6e | none |
 | Insights | Templates/Insights → Desktop | 26661:7306 | k6b9g9 | Insights · content (Latest + All insights) |
 | Insights | Templates/Insights → Mobile | 26816:3024 | pk0eyr | All insights (type filters + grid + Show more) |
 
@@ -19,15 +19,17 @@ Industries detail has no mobile frame in Figma, so it only has a Desktop story.
 How they were built (real components, Figma props, copy and order; no extra spacing between blocks):
 - **Industries**:
   - Hero with the client logo bar.
-  - Industry overview: on desktop, Section intro + 14 industry Case Cards (One quarter, rows of four). On mobile, Section intro + the Industry List (the parked Industry List Item, as the Figma mobile frame uses it).
+  - Industry overview: Section intro + 14 industry Case Cards (One quarter, rows of four on desktop). Mobile uses the same cards in their mobile variant, following the desktop design (decided 9 November). The Figma mobile frame still uses the parked Industry List (BACKLOG.md).
   - "In focus" grid (three Case Cards, light), "What connects them" grid (three System Cards), Contact CTA and Footer.
-- **Industries detail (Manufacturing)**: Hero with breadcrumb and client logos, the industry intro (placeholder), a full-width XXL Nutrition Case Card, the quote-only Testimonial, "Related services" (six Service Cards), "Manufacturing case studies" (Full width 3), the contact form and Footer.
+- **Industries detail (Manufacturing)**: Hero with breadcrumb and client logos, the industry intro (Text + media 8/4 with the Unipart Case Card as its media, decided 9 November), a full-width XXL Nutrition Case Card, the quote-only Testimonial, "Related services" (six Service Cards), "Manufacturing case studies" (Full width 3), the contact form and Footer.
 - **Insights**: Hero, then on mobile the "Latest" Card grid (Wide + 1: featured Insight Card + Upcoming events). The insight overview (type filters, card grid, Show more) is hand-built in Figma on both devices, so it is a placeholder.
 - **Sub-footer**: desktop "Work with us" copy on both devices, as decided.
 
-**Component change: Contact CTA.** The form's submit label is now a prop (`submit`, default "Send message"). The Industries detail template uses "Get in touch", as in Figma.
+**Component changes:**
+- **Contact CTA**: the form's submit label is now a prop (`submit`, default "Send message"). The Industries detail template uses "Get in touch", as in Figma.
+- **Text + media**: an optional `media` slot (for example a Case Card) in place of the image, for the Industries detail intro.
 
-Visual comparison (full-page capture vs Figma at 1440 / 360): every template compared. Heights are close (Industries 6159 vs 5967, Industries detail 5944 vs 5934, Insights 6459 vs 6409 and 10882 vs 10932). Fixed in this run:
+Visual comparison (full-page capture vs Figma at 1440 / 360): every template compared. Heights are close (Industries desktop 6159 vs 5967; Industries mobile is now 13133 vs 7199 because the fourteen cards stack in one column, Industries detail 5944 vs 5934, Insights 6459 vs 6409 and 10882 vs 10932). Fixed in this run:
 - **Industries hero**: added the client logo bar.
 - **"In focus" intro**: now stacked, with the title on one line.
 - **Insights mobile hero**: shows the logo bar, as in Figma.
@@ -47,10 +49,9 @@ Visual comparison (full-page capture vs Figma at 1440 / 360): every template com
 
 ## Open questions for the design team
 
-1. Insights overview (type filters, insight grid, "Showing 12 of 174", Show more): make it a component so the template can use it? It is the largest placeholder left (4630 px desktop, 7116 px mobile).
-2. Industries detail intro ("Frame 6": intro text next to a Case Card): component, or Text + media with a card?
-3. Industry List Item is parked, but the Industries mobile frame still uses it. Keep it for mobile?
-4. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+Decisions (9 November): Insights overview → BACKLOG.md; Industries detail intro uses Text + media; Industries mobile follows desktop (cards).
+
+1. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 

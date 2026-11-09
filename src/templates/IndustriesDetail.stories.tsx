@@ -1,19 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Hero } from '../components/components/Hero/Hero';
 import { CaseCard, type CaseCardProps } from '../components/components/CaseCard/CaseCard';
+import { TextMedia } from '../components/components/TextMedia/TextMedia';
 import { Testimonial } from '../components/components/Testimonial/Testimonial';
 import { CardGrid } from '../components/components/CardGrid/CardGrid';
 import { ServiceCard } from '../components/components/ServiceCard/ServiceCard';
 import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import '../components/shared/block.css';
-import { CLIENT_LOGOS, NotAComponent, Page, Section, footer, header, logo } from './shared';
+import { CLIENT_LOGOS, Page, Section, footer, header, logo } from './shared';
 
 /*
   Templates/Industries detail — Figma "Page / Industries detail" (Manufacturing): Desktop 26926:34632.
   Figma has no mobile frame for this template. Copy, props and order from figma/templates.js.
-  "Frame 6" is hand-built (intro text next to a Case Card): placeholder. "Frame 7" wraps a full-width
-  Case Card. Country options for the contact form are examples (not in Figma).
+  "Frame 6" (intro text next to a Case Card) is hand-built in Figma; it is built with Text + media (8/4)
+  with the Case Card as its media (decided 9 November). "Frame 7" wraps a full-width Case Card. Country options for the contact form are examples (not in Figma).
 */
 
 const SERVICES = [
@@ -44,8 +45,15 @@ function IndustriesDetailPage() {
         bar={{ Type: 'Logos', logos: CLIENT_LOGOS.map((n) => logo(n, 118)) }}
         header={header(Device)}
       />
-      <NotAComponent name="Frame 6 (industry intro + Case Card)" height={786} uses={['Case Card']} />
       <Section Mode="Dark">
+        <TextMedia
+          Device={Device}
+          Theme="Dark"
+          Split="8/4"
+          heading="Manufacturers face challenges ranging from complex supply chains to customers who want more customization and speed."
+          body="At Youwe, we help clients make the right decisions to build their digital business. We connect digital technology to existing industrial processes, so the go to market for your products links closely to your production lines. You cannot change everything at once, because your operations rely on your current infrastructure. That is why we help you integrate your legacy systems with modern technology, with a pragmatic approach that avoids unnecessary complexity."
+          media={<CaseCard Device={Device} Title="A Magento platform for motorists and partner garages, linked to SAP" Client="Unipart Autoparts" logo={logo('Unipart Autoparts')} stat={{ value: '75%', label: 'Increase in online orders' }} tags={['Automotive', 'Magento · SAP']} href="#" />}
+        />
         <section className="yw-block" aria-label="Featured case">
           <div className="yw-block__inner" style={{ paddingTop: 0 }}>
             <CaseCard Size="Full" Device={Device} Title="Accelerating Growth with a Digital Pioneer in Sports Supplements" Client="XXL Nutrition" logo={logo('XXL Nutrition')} tags={['Magento', 'Adobe Commerce']} href="#" />

@@ -16,3 +16,5 @@ Work agreed with the team that is not part of a sync batch yet. Newest first.
 | ACI Weave section (Home) | Hand-built frame in Figma (videos + Ask Youwe snippet). Make it a component so the Home template can use it instead of the placeholder (decided 2026-11-09). | Later |
 | Client quotes (Home "In their words") | Copy for Chadwicks Group, Thomas Telford and Symson; Johan supplies screenshots. Shows "Quote to follow" until then. | Waiting for copy |
 | Home mobile frame in Figma | Sub-footer copy and the footer's Youwe links differ from desktop; desktop is correct (decided 2026-11-09). Code uses the desktop copy. | Waiting for Figma |
+| Insights overview component | Type filters, insight card grid, "Showing 12 of 174" and Show more are hand-built in Figma (desktop and mobile). Make it a component so the Insights template can use it instead of the placeholder (decided 2026-11-09). | Later |
+| Industries mobile frame in Figma | Mobile should follow the desktop design: industry Case Cards instead of the Industry List (decided 2026-11-09). Code already does; the Figma mobile frame still uses the parked Industry List. | Waiting for Figma |

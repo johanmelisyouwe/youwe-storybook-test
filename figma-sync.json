@@ -2177,7 +2177,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Container-query layout; Dark / Deep blue / Light. Image placeholder.",
+      "note": "Container-query layout; Dark / Deep blue / Light. Image placeholder. Optional media slot (e.g. a Case Card) in place of the image, used by the Industries detail template.",
       "code": [
         "src/components/components/TextMedia/TextMedia.tsx",
         "src/components/components/TextMedia/TextMedia.css",
@@ -5172,9 +5172,7 @@
         "story": "Desktop"
       },
       "status": "complete",
-      "placeholders": [
-        "Frame 6 (industry intro + Case Card)"
-      ],
+      "placeholders": [],
       "lastSyncedSignature": "1ukya6e",
       "lastSynced": "2026-11-09",
       "code": [

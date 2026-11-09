@@ -3,16 +3,14 @@ import { Hero } from '../components/components/Hero/Hero';
 import { CardGrid } from '../components/components/CardGrid/CardGrid';
 import { CaseCard, type CaseCardProps } from '../components/components/CaseCard/CaseCard';
 import { SystemCard } from '../components/components/ServiceCard/ServiceCard';
-import { SectionIntro } from '../components/components/SectionHeader/SectionHeader';
-import { IndustryList } from '../components/components/IndustryListItem/IndustryListItem';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
-import '../components/shared/block.css';
 import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
 
 /*
   Templates/Industries — Figma "Page / Industries" (new design): Desktop 26657:16750, Mobile 26814:197.
   Copy, props and order from figma/templates.js. Desktop "Frame 4" wraps Section intro + fourteen industry
-  Case Cards (One quarter, rows of four); mobile "Industries we serve" wraps Section intro + the Industry List.
+  Case Cards (One quarter, rows of four). Mobile follows the desktop design with the same cards (decided
+  9 November); the Figma mobile frame still uses the parked Industry List.
   Sub-footer: the desktop copy on both devices.
 */
 
@@ -48,7 +46,6 @@ const SYSTEMS = [
 ];
 
 function IndustriesPage({ Device }: { Device: Device }) {
-  const mobile = Device === 'Mobile';
   return (
     <Page Device={Device}>
       <Hero
@@ -61,21 +58,12 @@ function IndustriesPage({ Device }: { Device: Device }) {
         header={header(Device)}
       />
       <Section Mode="Dark">
-        {mobile ? (
-          <section className="yw-block" aria-label="Industries we serve">
-            <div className="yw-block__inner" style={{ display: 'grid', gap: 'var(--spacing-xl)' }}>
-              <SectionIntro Layout="Split" {...INTRO} />
-              <IndustryList Device="Mobile" items={INDUSTRIES.map(([Title], i) => ({ Number: String(i + 1).padStart(2, '0'), Title, href: '#' }))} />
-            </div>
-          </section>
-        ) : (
-          <CardGrid
-            Layout="4 columns"
-            Device={Device}
-            intro={{ Layout: 'Split', ...INTRO }}
-            cells={INDUSTRIES.map(([Title, Client]) => <CaseCard key={Title} Size="One quarter" Device={Device} Title={Title} Client={Client} href="#" />)}
-          />
-        )}
+        <CardGrid
+          Layout="4 columns"
+          Device={Device}
+          intro={{ Layout: 'Split', ...INTRO }}
+          cells={INDUSTRIES.map(([Title, Client]) => <CaseCard key={Title} Size="One quarter" Device={Device} Title={Title} Client={Client} href="#" />)}
+        />
       </Section>
       <Section Mode="Light">
         <CardGrid Layout="3 columns" Device={Device} intro={{ Layout: 'Stacked', Kicker: 'In focus', Title: 'Trade, homeowners and the ERP behind both.' }} cells={IN_FOCUS.map((p) => <CaseCard key={p.Title} Device={Device} {...p} />)} />
@@ -98,7 +86,7 @@ function IndustriesPage({ Device }: { Device: Device }) {
 
 const meta: Meta = {
   title: 'Templates/Industries',
-  parameters: { layout: 'fullscreen', controls: { disable: true }, docs: { description: { component: 'Industries overview template (new design): hero, industry tiles (desktop) or the industry list (mobile), cases in focus, the three systems, sub-footer and footer.' } } },
+  parameters: { layout: 'fullscreen', controls: { disable: true }, docs: { description: { component: 'Industries overview template (new design): hero, industry tiles, cases in focus, the three systems, sub-footer and footer.' } } },
 };
 export default meta;
 type Story = StoryObj;
