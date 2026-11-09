@@ -1,59 +1,57 @@
-# Sync report — 9 November 2026 (batch 11)
+# Sync report — 9 November 2026 (batch 12)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2, step 5 (templates). No component or token changes in this run.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2, step 5 (templates), plus one small component addition.
 
-Batch 10 decisions: ACI Weave section on BACKLOG.md; "What we do" chapters use the v2 site copy; quotes to follow; desktop copy is correct where the mobile frames differ.
+Batch 11 decisions: Work detail shows Quooker throughout; the Testimonial keeps the stand-in quote.
 
 ## Step 5: templates
 
 | Template | Story | Figma | Signature | Placeholders |
 |---|---|---|---|---|
-| About Us | Templates/About Us → Desktop | 26661:7478 | 1jju5pr | none |
-| About Us | Templates/About Us → Mobile | 26815:1094 | av6wib | none |
-| Work | Templates/Work → Desktop | 26588:9829 | 1x3cvxo | none |
-| Work | Templates/Work → Mobile | 26809:1150 | oz072y | none |
-| Work detail | Templates/Work detail → Desktop | 26829:20476 | 1ohemy8 | none |
-| Work detail | Templates/Work detail → Mobile | 26924:2198 | 1pdjf6r | none |
+| Industries (new design) | Templates/Industries → Desktop | 26657:16750 | 974if1 | none |
+| Industries (new design) | Templates/Industries → Mobile | 26814:197 | 9j0b0p | none |
+| Industries detail | Templates/Industries detail → Desktop | 26926:34632 | 1ukya6e | Frame 6 (industry intro + Case Card) |
+| Insights | Templates/Insights → Desktop | 26661:7306 | k6b9g9 | Insights · content (Latest + All insights) |
+| Insights | Templates/Insights → Mobile | 26816:3024 | pk0eyr | All insights (type filters + grid + Show more) |
+
+Industries detail has no mobile frame in Figma, so it only has a Desktop story.
 
 How they were built (real components, Figma props, copy and order; no extra spacing between blocks):
-- **About Us**: Hero (no bar), Card grid with the three System Cards, Stats (Plain), Offices with live clocks, Leadership, then "Trusted by industry leaders": Stats intro, the client logo bar, Stats with three client stats and Awards. Then Contact CTA and Footer.
-- **Work**: Hero, the "Our work" wrapper (Section intro Split + Filter bar, eCommerce selected on desktop), Card grid with the nine tagged Case Cards, Contact CTA and Footer.
-- **Work detail** (Quooker throughout, decided 9 November): Header as its own section, Hero Title + image with breadcrumb and client logo, Case intro, Media (Contained), Section header (centered), Media (Full bleed), Text column, Text + media, Testimonial, Stats (results), Media (Two-up), Case carousel "Related work", Contact CTA and Footer.
-- **Sub-footer**: the desktop "Work with us" copy on both devices (shared as `WORK_WITH_US` in `src/templates/shared.tsx`). The mobile frames have different copy ("It might just be the best decision you make.", "Your system could be next.", "Could this be your system?").
+- **Industries**:
+  - Hero with the client logo bar.
+  - Industry overview: on desktop, Section intro + 14 industry Case Cards (One quarter, rows of four). On mobile, Section intro + the Industry List (the parked Industry List Item, as the Figma mobile frame uses it).
+  - "In focus" grid (three Case Cards, light), "What connects them" grid (three System Cards), Contact CTA and Footer.
+- **Industries detail (Manufacturing)**: Hero with breadcrumb and client logos, the industry intro (placeholder), a full-width XXL Nutrition Case Card, the quote-only Testimonial, "Related services" (six Service Cards), "Manufacturing case studies" (Full width 3), the contact form and Footer.
+- **Insights**: Hero, then on mobile the "Latest" Card grid (Wide + 1: featured Insight Card + Upcoming events). The insight overview (type filters, card grid, Show more) is hand-built in Figma on both devices, so it is a placeholder.
+- **Sub-footer**: desktop "Work with us" copy on both devices, as decided.
 
-Visual comparison (full-page capture vs Figma at 1440 / 360): every template compared. Fixed in this run:
-- **Stats intros**: in Figma the short line is the kicker and the long sentence is the large title ("Global thinking, local understanding", "Trusted by industry leaders", "The results").
-- **Work hero title**: now breaks onto two lines with the second line in red.
-- **Work filter bar**: the eCommerce tile is selected on desktop.
+**Component change: Contact CTA.** The form's submit label is now a prop (`submit`, default "Send message"). The Industries detail template uses "Get in touch", as in Figma.
 
-Heights are close (About 6390 vs 6482, Work 4604 vs 4575, Work detail 10082 vs 10023).
+Visual comparison (full-page capture vs Figma at 1440 / 360): every template compared. Heights are close (Industries 6159 vs 5967, Industries detail 5944 vs 5934, Insights 6459 vs 6409 and 10882 vs 10932). Fixed in this run:
+- **Industries hero**: added the client logo bar.
+- **"In focus" intro**: now stacked, with the title on one line.
+- **Insights mobile hero**: shows the logo bar, as in Figma.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
-- `check-legacy`: clean (one `legacy-ok`: the Work detail Testimonial uses the stand-in quote that is in the Figma template)
-- `check-coverage`: clean (74 complete, 1 missing = Pagination; templates: 10 complete, 9 missing)
+- `check-legacy`: clean
+- `check-coverage`: clean (74 complete, 1 missing = Pagination; templates: 15 complete, 4 missing)
 
 ## Could not match exactly
 
 - **Images and logos** are placeholders (not imported yet).
-- **Filter options** (Work) are not in Figma; the dropdowns show "All" with example options.
-
-## Work detail: Quooker copy
-
-Figma pairs the Quooker hero with JC-Electronics body copy. The template now uses the Quooker case copy from the Figma long-form components (Case intro, Two-column text → Section header, Text column). The results block is built from those facts: "The results" with 17 markets supported and 110,000+ units a year. The Figma template frame itself still has the JC-Electronics copy. The Testimonial keeps the stand-in quote (decided 9 November).
-
-## Found in Figma
-
-- **Work detail**: the hero is the Quooker case ("Scaling Smart: Quooker’s Expansion to 17 Countries"), while the case intro and section copy are JC-Electronics.
-- **Work detail**: the Testimonial has placeholder copy ("Quote from the client goes here…", "Client name", "Role, company").
-- **Mobile frames**: the sub-footer copy differs from desktop on About Us, Work and Work detail (code uses desktop).
+- **Contact form country list** is an example list (Figma shows only the placeholder).
+- **Industry tiles**: Figma uses Case Cards (One quarter) with an industry as the title and the clients as the client line.
 
 ## Open questions for the design team
 
-1. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Insights overview (type filters, insight grid, "Showing 12 of 174", Show more): make it a component so the template can use it? It is the largest placeholder left (4630 px desktop, 7116 px mobile).
+2. Industries detail intro ("Frame 6": intro text next to a Case Card): component, or Text + media with a card?
+3. Industry List Item is parked, but the Industries mobile frame still uses it. Keep it for mobile?
+4. Open from earlier batches: Service/System Card Motion description; Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 12: Industries (new design), Industries detail, Insights, Tech Partners and Services detail. Pagination last.
+Batch 13: Tech Partners and Services detail (desktop and mobile), the last templates. Then Pagination.
