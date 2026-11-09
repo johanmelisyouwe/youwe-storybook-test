@@ -6,20 +6,18 @@ import { CardGrid, type CardGridProps } from '../components/components/CardGrid/
 import { FeatureCard, type FeatureCardProps } from '../components/components/FeatureCard/FeatureCard';
 import { CaseCard } from '../components/components/CaseCard/CaseCard';
 import { QuoteCard } from '../components/components/QuoteCard/QuoteCard';
-import { Stat } from '../components/components/Stat/Stat';
 import { StatsBlock } from '../components/components/StatsBlock/StatsBlock';
 import { ServiceCard } from '../components/components/ServiceCard/ServiceCard';
 import { TechnologyLogos } from '../components/components/TechnologyLogos/TechnologyLogos';
-import { AskSnippet } from '../components/components/AskYouwe/AskYouwe';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { Mode } from '../components/shared/ModeFrame';
 import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
 
 /*
   Templates/Services detail (B2B Enterprise Commerce) — Figma "Page / Services detail": Desktop 26875:18627,
-  Mobile 26920:28. Copy, props and order from figma/templates.js. The Figma mobile frame is a longer,
-  different composition (more sections: building-block case, How we work, a second proof, FAQ); each
-  device follows its own frame. Sub-footer: the desktop copy on both devices.
+  Mobile 26920:28. Copy, props and order from figma/templates.js. Desktop is leading (decided 9 November):
+  mobile shows the desktop composition in the mobile variants; the Figma mobile frame has extra sections
+  (How we work, a second proof, FAQ) that are not used. Sub-footer: the desktop copy on both devices.
 */
 
 const HERO_STATS = [
@@ -72,21 +70,6 @@ const RELATED: [string, string, string][] = [
   ['03 · Data & Integrations', 'Data Engineering & API', 'Pipelines, APIs and the integration layer.'],
   ['03 · Data & Integrations', 'ACI Weave', 'Our own platform for governed AI agents on your systems.'],
 ];
-const STEPS: [string, string, string][] = [
-  ['Discover', 'Business goals, buyer journeys and integration dependencies first.', 'Workshops'],
-  ['Design', 'Account model, pricing logic and who owns which data: ERP, PIM or commerce.', 'Blueprint'],
-  ['Build & integrate', 'Core integrations and high-value journeys first, through stable APIs.', 'BunzlOne: live MVP in 8 months'],
-  ['Launch without disruption', 'Accounts, contract prices, order history, SEO and redirects move with care.', 'Elektrototaalmarkt: rebuild planned around daily orders'],
-  ['Grow', 'Measure self-service adoption, online share, reorders and quote turnaround.', 'Continuous improvement'],
-];
-const FAQ: [string, string][] = [
-  ['What problems does B2B enterprise commerce solve?', 'It replaces manual ordering, scattered price lists and disconnected systems with account-specific pricing, complex catalogs, approvals and self-service purchasing, so buyers order quickly and your teams spend less time on routine orders.'],
-  ['Can dealers, distributors and direct buyers use one platform?', 'Yes. Account hierarchies, roles and customer-specific catalogs let one platform serve each group with its own prices and range. Separate portals still make sense when buying processes differ strongly.'],
-  ['How does B2B commerce integrate with ERP, PIM and CRM?', 'ERP usually stays the source for pricing, stock, customers and finance; PIM enriches product content. CRM, payment and search connect through stable APIs, with clear ownership of each data domain.'],
-  ['How do quote-to-order flows work?', 'A buyer requests a quote, sales adjusts prices or conditions, and the approved quote becomes an order without retyping. Quotes and orders use the same pricing logic, so they match.'],
-  ['What should we consider when replatforming?', 'Business priorities, integration dependencies and the risk to daily ordering. Plan accounts, contract prices, order history, product data, SEO and redirects, and migrate in phases: core integrations and high-value journeys first.'],
-  ['How do we measure ROI?', 'Self-service adoption, order processing cost, share of online orders, reorder rate, quote turnaround and time to onboard customers or markets, tied to clear commercial goals.'],
-];
 const TECH = ['Adobe', 'Hyvä', 'Commercetools', 'Shopify', 'Pimcore', 'Alumio', 'Symson', 'Storyblok'].map((name) => ({ name }));
 
 const fc = (p: FeatureCardProps) => <FeatureCard key={p.Title} {...p} />;
@@ -115,8 +98,7 @@ function Shared({ Device }: { Device: Device }) {
   );
 }
 
-function DesktopBody() {
-  const Device = 'Desktop' as const;
+function Body({ Device }: { Device: Device }) {
   return (
     <>
       <Section Mode="Dark">
@@ -144,66 +126,6 @@ function DesktopBody() {
   );
 }
 
-function MobileBody() {
-  const Device = 'Mobile' as const;
-  const block = ([Title, Description, tags]: [string, string, string[]?], i: number) => fc({ Variant: 'Card', Number: num(i), Title, Description, tags, image: i === 0 || undefined });
-  return (
-    <>
-      {grid('Light', {
-        Layout: 'Feature + 4', Device,
-        intro: { Layout: 'Split', Kicker: 'Why B2B commerce', Title: 'Buyers order on their terms. Your team sells.', Body: 'Professional buyers want their own catalog, prices and approvals, any time of day.' },
-        cells: [
-          fc({ Variant: 'Card', Title: 'The proposition', Description: 'We build the platform that gives buyers self-service, connected to the ERP and PIM you already run.', image: true }),
-          ...BENEFITS.map(([Title, Description], i) => fc({ Variant: 'Card', Number: num(i), Title, Description })),
-        ],
-      })}
-      {grid('Dark', {
-        Layout: 'Feature + 4', Device,
-        intro: { Layout: 'Split', Kicker: 'What we build', Title: 'Eight building blocks, one platform.', Body: 'Open a tile for the detail and the client it runs for.' },
-        cells: BLOCKS.slice(0, 5).map(block),
-      }, 'bottom')}
-      {grid('Dark', { Layout: '3 columns', Device, cells: BLOCKS.slice(5).map((b, i) => block(b, i + 5)) }, 'both')}
-      {grid('Dark', {
-        Layout: 'Wide + 1', Device,
-        cells: [
-          <CaseCard key="etm" Device={Device} Title="A B2B and B2C webshop rebuilt without disrupting daily orders" Client="Elektrototaalmarkt" logo={logo('Elektrototaalmarkt')} stat={{ value: '73%', label: 'Efficiency improvement' }} tags={['Construction · electrical supplies', 'Magento 2']} href="#" />,
-          <AskSnippet key="ask" Type="Question" Title="Do you build dealer portals?" />,
-        ],
-      }, 'top')}
-      {grid('Light', {
-        Layout: '3 columns', Device,
-        intro: { Layout: 'Split', Kicker: 'Challenges we solve', Title: 'Where B2B ordering gets stuck.', Body: 'Open a tile to see the fix.' },
-        cells: CHALLENGES.slice(0, 3).map(([Title, Description, fix], i) => fc({ Variant: 'Card', Number: `${num(i)} · The problem`, Title, Description: `${Description}\n\nHow we fix it: ${fix}` })),
-      }, 'bottom')}
-      {grid('Light', { Layout: '2 columns', Device, cells: CHALLENGES.slice(3).map(([Title, Description, fix], i) => fc({ Variant: 'Card', Number: `${num(i + 3)} · The problem`, Title, Description: `${Description}\n\nHow we fix it: ${fix}` })) }, 'top')}
-      {grid('Dark', {
-        Layout: '5 columns', Device,
-        intro: { Layout: 'Split', Kicker: 'How we work', Title: 'Phased, so trading never stops.', Body: 'Core integrations and high-value journeys first, then grow.' },
-        cells: STEPS.map(([Title, Description, tag], i) => fc({ Variant: 'Card', Number: String(i + 1), Title, Description, tags: [tag] })),
-      })}
-      {grid('Dark', {
-        Layout: 'Wide + 1', Device,
-        intro: { Layout: 'Split', Kicker: 'Proof', Title: 'Published results, client by client.', Body: 'Real clients, real numbers from their published cases.' },
-        cells: [UNIPART(Device, 'Two thirds'), UNIPART_QUOTE],
-      }, 'bottom')}
-      {grid('Dark', { Layout: '4 columns', Device, cells: STATS.map((s, i) => <Stat key={s.Label} Type="Client" {...s} Label={i === 0 ? 'Fewer phone calls · Unipart Autoparts' : s.Label} />) }, 'both')}
-      {grid('Dark', {
-        Layout: 'Wide + 1', Device,
-        cells: [
-          <CaseCard key="chadwicks" Device={Device} Title="Product data enriched with Pimcore and AI for 50+ branches" Client="Chadwicks Group" logo={logo('Chadwicks Group')} stat={{ value: '+43%', label: 'Marketable catalog uplift' }} tags={['Construction · builders merchant', 'Pimcore · ACI Weave']} href="#" />,
-          <QuoteCard key="quote2" Quote="“You don't build a new platform on your own. For that, you need partners who understand what you are building and why.”" Name="Frank Daamen" Role="Digital Director, BunzlOne" />,
-        ],
-      }, 'both')}
-      <Shared Device={Device} />
-      {grid('Light', {
-        Layout: '3 columns', Device,
-        intro: { Layout: 'Split', Kicker: 'FAQ', Title: 'Frequently asked questions.' },
-        cells: [...FAQ.map(([Title, Description]) => fc({ Variant: 'Card', Title, Description })), <AskSnippet key="ask" Type="Question" Title="Can you integrate with our custom ERP?" />],
-      })}
-    </>
-  );
-}
-
 function ServicesDetailPage({ Device }: { Device: Device }) {
   return (
     <Page Device={Device}>
@@ -216,7 +138,7 @@ function ServicesDetailPage({ Device }: { Device: Device }) {
         bar={{ Type: 'Stats', stats: HERO_STATS }}
         header={header(Device)}
       />
-      {Device === 'Desktop' ? <DesktopBody /> : <MobileBody />}
+      <Body Device={Device} />
       <ContactCTA Variant="Sub-footer background" Device={Device} {...WORK_WITH_US} />
       {footer(Device)}
     </Page>
@@ -225,7 +147,7 @@ function ServicesDetailPage({ Device }: { Device: Device }) {
 
 const meta: Meta = {
   title: 'Templates/Services detail',
-  parameters: { layout: 'fullscreen', controls: { disable: true }, docs: { description: { component: 'Service page template (B2B Enterprise Commerce): hero with breadcrumb and client stats, why, building blocks, challenges, proof, stats, more cases, platforms, related services, sub-footer and footer. Mobile adds How we work, a second proof and FAQ, as in Figma.' } } },
+  parameters: { layout: 'fullscreen', controls: { disable: true }, docs: { description: { component: 'Service page template (B2B Enterprise Commerce): hero with breadcrumb and client stats, why, building blocks, challenges, proof, stats, more cases, platforms, related services, sub-footer and footer.' } } },
 };
 export default meta;
 type Story = StoryObj;
