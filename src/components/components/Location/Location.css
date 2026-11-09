@@ -1,0 +1,51 @@
+/*
+  Location (Figma 26797:116) and Clock (26797:51).
+  Location row: surface/base-1, 1px top border/2, padding 16/0, gap 24, items centred.
+  Desktop: city heading/lg primary | country body/md/reg tertiary | timezone body/md/reg tertiary | clock
+  (three equal columns + clock). Mobile: text block (city heading/md; country + timezone body/sm/reg
+  tertiary, gap 12; gap 2) and the clock, gap 16.
+  Stack rows with gap 0 and add a bottom border on the list (Figma description).
+  Clock: digit tiles 24×32, surface/base-2, radius 4, heading/sm primary; separator 8 wide; gap 2.
+  Motion (Figma): digits flip on change, 520ms ease/emphasized.
+*/
+@layer components {
+  .yw-locations { margin: 0; padding: 0; list-style: none; box-shadow: inset 0 calc(var(--shared-width-1) * -1) 0 var(--color-shared-border-2); }
+
+  .yw-location {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding-block: var(--spacing-sm);
+    background: var(--color-shared-surface-base-1);
+    box-shadow: inset 0 var(--shared-width-1) 0 var(--color-shared-border-2);
+  }
+
+  .yw-location__meta { color: var(--color-shared-content-tertiary); }
+
+  .yw-location--mobile { display: flex; gap: var(--spacing-sm); }
+  .yw-location__text { display: flex; flex: 1; flex-direction: column; gap: var(--spacing-4xs); min-width: 0; }
+  .yw-location__row { display: flex; gap: var(--spacing-xs); }
+
+  /* Clock */
+  @keyframes yw-clock-flip {
+    from { transform: rotateX(90deg); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+
+  .yw-clock { display: inline-flex; align-items: center; gap: var(--spacing-4xs); perspective: 200px; }
+
+  .yw-clock__digit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 32px;
+    border-radius: var(--shared-radius-4);
+    background: var(--color-shared-surface-base-2);
+    color: var(--color-shared-content-primary);
+  }
+
+  .yw-clock__digit > span { display: inline-block; animation: yw-clock-flip 520ms var(--motion-ease-emphasized); }
+  .yw-clock__sep { display: inline-flex; justify-content: center; width: 8px; color: var(--color-shared-content-primary); }
+}

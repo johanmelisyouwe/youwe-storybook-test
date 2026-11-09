@@ -785,12 +785,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Case photos and most client logos not exported yet (G-Star logo only); image shows the Figma placeholder.",
+      "code": [
+        "src/components/components/CaseCard/CaseCard.tsx",
+        "src/components/components/CaseCard/CaseCard.css",
+        "src/components/components/CaseCard/CaseCard.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1eh8kc2",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -825,11 +833,15 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "Part of Case Card (CaseStat).",
+      "code": [
+        "src/components/components/CaseCard/CaseCard.tsx",
+        "src/components/components/CaseCard/CaseCard.css",
+        "src/components/components/CaseCard/CaseCard.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1kn0i6p",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1931,16 +1943,24 @@
         "signature": "mbed16"
       },
       "storybook": {
-        "title": "Content blocks/Stats",
+        "title": "Components/Stat",
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Count-up on scroll (countUp). Retitled Components/Stat so Content blocks/Stats stays free for the block.",
+      "code": [
+        "src/components/components/Stat/Stat.tsx",
+        "src/components/components/Stat/Stat.css",
+        "src/components/components/Stat/Stat.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "mbed16",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2129,12 +2149,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Card, Plain, AI (aura approximated with radial gradients).",
+      "code": [
+        "src/components/components/FeatureCard/FeatureCard.tsx",
+        "src/components/components/FeatureCard/FeatureCard.css",
+        "src/components/components/FeatureCard/FeatureCard.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "c8gbil",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2355,12 +2383,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Zoom 1.04 on hover when linked.",
+      "code": [
+        "src/components/components/ImageCard/ImageCard.tsx",
+        "src/components/components/ImageCard/ImageCard.css",
+        "src/components/components/ImageCard/ImageCard.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1otdyox",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2396,12 +2432,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Moved to its own page \"– Industry List Item\" in Figma on 9 Nov.",
-      "code": null,
+      "status": "complete",
+      "note": "IndustryList: first item active, follows hover and focus.",
+      "code": [
+        "src/components/components/IndustryListItem/IndustryListItem.tsx",
+        "src/components/components/IndustryListItem/IndustryListItem.css",
+        "src/components/components/IndustryListItem/IndustryListItem.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1m34l0r",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -2442,12 +2486,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Default and Featured; image placeholder as in Figma.",
+      "code": [
+        "src/components/components/InsightCard/InsightCard.tsx",
+        "src/components/components/InsightCard/InsightCard.css",
+        "src/components/components/InsightCard/InsightCard.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "18hmdjb",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3040,12 +3092,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Live clock per IANA time zone.",
+      "code": [
+        "src/components/components/Location/Location.tsx",
+        "src/components/components/Location/Location.css",
+        "src/components/components/Location/Location.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "566hyc",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3071,12 +3131,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Part of Location file; digits flip on change.",
+      "code": [
+        "src/components/components/Location/Location.tsx",
+        "src/components/components/Location/Location.css",
+        "src/components/components/Location/Location.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "15w13sy",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3279,12 +3347,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Copy from the Vertical slider quote (Frank Daamen, Bunzl).",
+      "code": [
+        "src/components/components/QuoteCard/QuoteCard.tsx",
+        "src/components/components/QuoteCard/QuoteCard.css",
+        "src/components/components/QuoteCard/QuoteCard.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1qphmpu",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3404,12 +3480,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Shared red reveal with lift.",
+      "code": [
+        "src/components/components/ServiceCard/ServiceCard.tsx",
+        "src/components/components/ServiceCard/ServiceCard.css",
+        "src/components/components/ServiceCard/ServiceCard.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "ptqzji",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3440,12 +3524,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "In ServiceCard.tsx (SystemCard).",
+      "code": [
+        "src/components/components/ServiceCard/ServiceCard.tsx",
+        "src/components/components/ServiceCard/ServiceCard.css",
+        "src/components/components/ServiceCard/ServiceCard.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1cs5xwk",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3630,12 +3722,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Partner logos not exported yet: wordmark in the white tile.",
+      "code": [
+        "src/components/components/TechnologyCard/TechnologyCard.tsx",
+        "src/components/components/TechnologyCard/TechnologyCard.css",
+        "src/components/components/TechnologyCard/TechnologyCard.stories.tsx",
+        "src/components/shared/CardReveal.tsx",
+        "src/components/shared/card-reveal.css",
+        "src/components/shared/CardMedia.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "xgufv2",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3655,11 +3755,15 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "Part of Technology Card (wordmark tile).",
+      "code": [
+        "src/components/components/TechnologyCard/TechnologyCard.tsx",
+        "src/components/components/TechnologyCard/TechnologyCard.css",
+        "src/components/components/TechnologyCard/TechnologyCard.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "7oqu4y",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
