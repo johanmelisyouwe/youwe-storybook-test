@@ -33,6 +33,9 @@
     text-decoration: none;
   }
 
+  /* Hover: not in Figma yet (approved 2026-11-09, design to add it): text to content/primary */
+  .yw-breadcrumbs__text { transition: color var(--motion-duration-fast) var(--motion-ease-standard); }
+  .yw-breadcrumbs__link:hover .yw-breadcrumbs__text,
   .yw-breadcrumbs__link[aria-current='page'] .yw-breadcrumbs__text { color: var(--color-shared-content-primary); }
 
   .yw-breadcrumbs__chevron { display: inline-flex; flex-shrink: 0; }

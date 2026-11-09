@@ -13,12 +13,12 @@ Batch 3 decisions applied: Dropdown/Quantity stays `not-needed`; hint/error stan
 | Icon tooltip | Components/Tooltip | 6 of 6 (State × Size) |
 | Toaster | Components/Toaster | 8 of 8 (Variant × Shadow) |
 | Progress Bar | Components/Progress Bar | 5 of 5 (Progress) |
-| Breadcrumbs/Desktop (+ _breadcrumb-link) | Components/Breadcrumbs | link states Rest / Active / Focused |
+| Breadcrumbs/Desktop (+ _breadcrumb-link) | Components/Breadcrumbs | link states Rest / Active / Focused (+ Hover, code only) |
 | Breadcrumbs/Mobile | Components/Breadcrumbs | Filter button on / off |
 | Action List Item (+ _Leading / _Trailing element) | Components/Action list | 4 of 4 (State); elements Icon, Checkbox, Toggle, Radio button |
 | List Item | Components/List Item | 4 of 4 (Device × Icon) |
 | Cookie Banner | Components/Cookie Banner | 2 of 2 (Device) |
-| Pagination | — | **held back** (uses Dropdown/Quantity, see below) |
+| Pagination | — | moved to the last batch (BACKLOG.md) |
 
 How they were built:
 - **Accordion**: native `<details>`/`<summary>`, so it opens with the keyboard and works without JavaScript. Header 52 high, label body/lg/med, content body/md/reg secondary. Opening animates the height (`duration/slow`, `ease/emphasized`); the caret rotates (`duration/base`). Optional `name` makes a group where one item is open at a time. Content: the ACI Weave FAQ from the Figma templates.
@@ -44,19 +44,22 @@ Visual comparison with Figma: every variant compared with the Figma component se
 
 - **Action List Item copy.** Figma only has default copy and no template uses the component. The stories use stand-in industry rows ("Manufacturing", "Retail", "Wholesale" with counts).
 - **_Leading element, Element=Image** is not built: it has no image spec yet.
-- **Breadcrumbs/Desktop "Show back button"** is a Figma property that is not connected to any layer, so it does nothing. Not built.
-- **Breadcrumb links have no Hover state** in Figma. Code shows no hover change, as in Figma.
+- **Breadcrumbs/Desktop "Show back button"** is not connected to any layer in Figma. The back button variant is on the backlog.
+- **Breadcrumb links have no Hover state** in Figma. Approved by the team: code turns the text `content/primary` on hover (`duration/fast`). Design to add it to Figma (BACKLOG.md).
 - **Cookie Banner "Privacy Policy"** is plain text in Figma. Code makes it an underlined link so it is recognisable as a link.
 - **Progress Bar motion**: no Figma Motion line. Code animates the width with `duration/base` + `ease/standard`.
 
+## Decisions (9 November 2026)
+
+- Pagination is built in the last batch (BACKLOG.md).
+- Action List Item stand-in copy is fine for now.
+- Breadcrumbs need a back button variant: added to BACKLOG.md, built once it is in Figma.
+- Breadcrumb links get a Hover state: built in code, design to add it to Figma.
+
 ## Open questions for the design team
 
-1. **Pagination** uses Dropdown/Quantity for its "View amount" variant. Dropdown/Quantity was marked for removal in batch 3. Keep it for Pagination, or remove the "View amount" variant too? Pagination is built once this is settled.
-2. Action List Item: real copy, and where is it used (filters, mobile menu)?
-3. Breadcrumbs/Desktop: remove the unused "Show back button" property, or connect it?
-4. Breadcrumb links: add a Hover state?
-5. Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Open from earlier batches: Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 5: the cards (Case, Feature, Image, Insight, Quote, Service, System, Technology Card), Stat, Location, Clock, Industry List Item and Pagination (after question 1). Header/Corporate, Footer/Corporate and the content blocks follow after that.
+Batch 5: the cards (Case, Feature, Image, Insight, Quote, Service, System, Technology Card), Stat, Location, Clock and Industry List Item. Then Header/Corporate, Footer/Corporate and the content blocks; Pagination last.
