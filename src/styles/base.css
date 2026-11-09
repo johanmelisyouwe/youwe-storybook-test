@@ -1,0 +1,25 @@
+/* Page defaults that use the Figma tokens. */
+@layer typography {
+  html {
+    color-scheme: dark;
+  }
+
+  [data-theme='light'] {
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--surface-base-1);
+    color: var(--content-primary);
+    font-family: var(--font-family-body);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-body-md);
+  }
+
+  .container {
+    width: 100%;
+    max-width: calc(var(--layout-container-max-width) + 2 * var(--layout-container-padding));
+    margin-inline: auto;
+    padding-inline: var(--layout-container-padding);
+  }
+}

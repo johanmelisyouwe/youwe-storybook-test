@@ -1,0 +1,14 @@
+/*
+  Single entry stylesheet, used by both the Next.js app and Storybook.
+  Cascade layer order (lowest → highest):
+    reset       base reset (box-sizing, links, form fonts)
+    tokens      CSS custom properties generated from Figma
+    typography  .text-* classes generated from Figma text styles
+    components  component styles (src/components/**)
+    utilities   rare one-off helpers
+*/
+@layer reset, tokens, typography, components, utilities;
+
+@import './reset.css';
+@import './tokens.css';
+@import './base.css';
