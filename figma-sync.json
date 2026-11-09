@@ -2944,7 +2944,7 @@
       },
       "internal": false,
       "status": "not-needed",
-      "note": "Web-shop component (quantity in product/cart). Youwe has no web-shop components (design, 9 Nov), so it is not built. Ask design whether to remove it from Figma.",
+      "note": "Web-shop component (quantity in product/cart). Youwe has no web-shop components (design, 9 Nov), so it is not built. Ask design whether to remove it from Figma. Renamed \"Dropdown/Compact\" in Figma and used by Pagination (View amount); its M look is built into Pagination.",
       "code": null,
       "locked": false,
       "lastSyncedSignature": null,
@@ -3411,12 +3411,16 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Prev/pages/Next with ellipsis; mobile First/Prev/current/Next/Last; View amount with the compact dropdown (Figma Dropdown/Compact M) built in. First/last icons exported from Figma.",
+      "code": [
+        "src/components/components/Pagination/Pagination.tsx",
+        "src/components/components/Pagination/Pagination.css",
+        "src/components/components/Pagination/Pagination.stories.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1nk4kqy",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -3454,8 +3458,11 @@
       },
       "internal": true,
       "status": "internal",
-      "note": "Building block: render inside its parent, no own story.",
-      "code": null,
+      "note": "Rendered inside Pagination; states in the Pagination States story.",
+      "code": [
+        "src/components/components/Pagination/Pagination.tsx",
+        "src/components/components/Pagination/Pagination.css"
+      ],
       "locked": false,
       "lastSyncedSignature": null,
       "lastSynced": null
