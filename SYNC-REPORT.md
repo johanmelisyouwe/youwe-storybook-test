@@ -1,56 +1,54 @@
-# Sync report — 9 November 2026 (batch 8)
+# Sync report — 9 November 2026 (batch 9)
 
-Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: no Figma changes to these blocks since the inventory (signatures unchanged). Step 4 for the grid content blocks. Templates (step 5) are not part of this run.
+Figma file: `IP237ISXsaciooPrSykYMh`. Instructions: FIGMA-SYNC.md v2. Steps 1–3: no Figma changes to these blocks since the inventory (signatures unchanged). Step 4 for the last content blocks. Templates (step 5) are not part of this run.
 
-Batch 7 follow-ups: Statement giant rows stay code-only for now (BACKLOG.md); Ask Youwe removed from the header (Figma and code); Vertical slider follows the v2 site "What we do".
+Batch 8 decisions: Case carousel keeps the swipe row; the Tech partners group-label text style is on BACKLOG.md.
 
 ## Step 4: content blocks
 
 | Block | Story | Variants |
 |---|---|---|
-| Card grid | Content blocks/Card grid | 36 of 36 (9 layouts × Mode × Device) |
-| Case carousel | Content blocks/Case carousel | 8 of 8 (Layout × Device) |
-| Stats | Content blocks/Stats | 8 of 8 (Type × Mode × Device) |
-| Feature list | Content blocks/Feature list | 4 of 4 (Layout × Device) |
-| Services split | Content blocks/Services split | 4 of 4 (Mode × Device) |
-| Tech partners split | Content blocks/Tech partners split | 4 of 4 (Mode × Device) |
-| Technology logos | Content blocks/Technology logos | 20 of 20 (Layout × Mode × Device) |
-| Solutions grid | Content blocks/Solutions grid | 1 of 1 |
+| Accordion list | Content blocks/Accordion list | 12 of 12 (Layout × Mode × Device) |
+| Build your stack | Content blocks/Build your stack | all (Mode × Device) |
+| Offices | Content blocks/Offices | all (Mode × Device) |
+| Leadership | Content blocks/Leadership | all (Mode × Device) |
+| Awards | Content blocks/Awards | all (Device) |
+| Contact CTA | Content blocks/Contact CTA | 6 of 6 (Variant × Device) |
+| Filter bar | Content blocks/Filter bar | 3 of 3 (Desktop, Mobile, Mobile Open) |
 
 How they were built:
-- **Built from the existing components**: the blocks use the cards, Stat, Section intro/header, Ask Youwe snippets and buttons from earlier batches, on the shared block frame (container-query layouts, so a narrow frame lays out as mobile).
-- **Card grid**: all nine Figma layouts (2/3/4/5 columns, Wide + 1, 1 + Wide, Feature + 4, Feature + 2, Overflow scroll); cells take any card and stretch to the row height; cards reveal staggered on scroll. The MixedCards story fills a Feature + 4 grid with a Case, Stat, Quote, Service and Insight card.
-- **Case carousel**: Short (header, prev/next and a 01 / 08 counter on the left, cards bleeding off the right edge), Full width 3 / 4, and Scroll. Native snapping scroll; tabbing to a card scrolls it into view; prev is disabled at the start.
-- **Stats**: Client (logo + arrow) and Plain, with overlapping borders and count-up on scroll.
-- **Feature list**: Grid (rows of three Cards) and Split (header left, numbered Plain list right with a closing border).
-- **Services split / Tech partners split**: shared left column (kicker, heading/2xl, body, link, Ask Youwe snippets); Service Cards in two staggered columns, or Technology Cards grouped under Integration, Data platforms and Cloud.
-- **Technology logos**: fixed slots per row (Grid 4/5/6/8) with overlapping borders, empty slots without a border, staggered reveal and hover opacity. Default reuses the Statement's giant drifting rows ("We pick the platforms / that fit your business").
-- **Solutions grid**: title and three-column image cards with the Figma copy.
-- **Kit fix**: `check-legacy` read the first `title:` in a story file as the Storybook title, which broke on story data with card titles; it now picks the meta title (the value with a "/").
+- **Accordion list**: Stacked, Split and Split list (header with bullets) layouts; Plus-Minus accordions with the first item open; "More questions?" CTA. Copy: the ACI Weave FAQ from the templates (the Figma component has placeholder labels).
+- **Build your stack**: goal tabs (Tab group) switch a panel with the goal intro, four partner Technology Cards and a full-width Case Card. Copy from Figma ("Sell B2B online": Alumio, Adobe, Hyvä, Pimcore and the XXL Nutrition case).
+- **Offices**: header ("Eight offices, one team") and the eight Locations with live local clocks.
+- **Leadership**: section intro and ten Person Cards (name and role) in four columns, two on mobile.
+- **Awards**: title and four award badges.
+- **Contact CTA**: Form (First/Last name, Business email, Phone, Country, Message, opt-in checkbox, Send message; phone link in brand red), Sub-footer split (image half with a clip reveal) and Sub-footer background (image with a gradient overlay). Built from the existing form components and buttons.
+- **Filter bar**: desktop system tiles (toggle, `aria-pressed`) and five dropdowns that show "All" until set; mobile system pills, a Filters button with the active count and "9 cases", and a bottom sheet (Clear all, five dropdowns, "Show 9 cases") that slides up.
 
-Visual comparison with Figma: every block compared. Fixed in this run: the Ask Youwe case snippet no longer shows the placeholder icon behind its text.
+Visual comparison with Figma: every block compared at desktop and mobile. Fixed in this run: Contact CTA inputs show the Figma placeholders, mobile form keeps the two-column rows and a full-width button, the split image sits above the text on mobile; Filter bar arrows sit next to the tile label and the result count is right-aligned.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
-- `check-coverage`: clean (67 complete, 8 missing, 54 internal, 1 not needed, 1 parked; 19 templates missing)
+- `check-coverage`: clean (74 complete, 1 missing = Pagination, 54 internal; 19 templates missing)
 
 ## Could not match exactly
 
-- **Case carousel motion**: Figma describes a pinned horizontal reel (vertical scroll moves the track, images shift ±6% inside the cards). Code uses a snapping scroller with prev/next and the counter (decided: keep the swipe row).
-- **Logos and images**: technology and client logos show the name (logos not exported yet); case, solution and snippet images show the Figma placeholder (images on the backlog).
-- **Card grid "Person", "Content" and "Office" cells** are listed in Figma as cell options but are not components yet; any card can go in a cell.
-- **Tech partners group labels** have no text style in Figma (raw 12px caps); code uses body/xs/bold in capitals.
-- **Feature list copy**: the Figma Feature Cards have default copy; the stories use the services.
+- **Images, logos and badges** are placeholders (images not imported yet): partner logos show the name, case/office/contact images and award badges show the placeholder.
+- **Build your stack**: Figma only has content for "Sell B2B online"; the other four goals are tabs without panel content.
+- **Person Card** (Figma 26763:60) is used by Leadership but is not in the inventory, so it has no own story entry; it is exported from Leadership.
+- **Filter bar selected tile**: Figma shows the selected tile with the Focused look; code uses a brand border for the selected state so it is not confused with keyboard focus.
+- **Leadership copy**: Figma has "Board or Directors" for Steve Hulmes; code uses "Board of Directors".
 
 ## Open questions for the design team
 
-Decisions (9 November): Case carousel keeps the swipe row (no pinned reel); the group-label text style is on BACKLOG.md.
-
-1. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
+1. Should the selected Filter bar tile get its own Selected state in Figma (instead of Focused)?
+2. Content for the other four Build your stack goals.
+3. Fix the "Board or Directors" typo in Figma?
+4. Open from earlier batches: Service/System Card Motion description (no arrow rotation); Button/Link hover nudge; text styles for Button/Link lg and Checkbox label L; default tab labels; real hint and error copy for the inputs.
 
 ## Next batch (suggested)
 
-Batch 9: the remaining blocks — Accordion list, Build your stack, Offices, Leadership, Awards, Contact CTA, Filter bar. Then the templates (including the new Industries design); Pagination last.
+Batch 10: the templates (including the new Industries design). Pagination last.

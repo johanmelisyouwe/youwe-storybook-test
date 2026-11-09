@@ -54,5 +54,6 @@
   .yw-hero__media .yw-card-media__placeholder,
   .yw-testimonial__image .yw-card-media__placeholder,
   .yw-vslider__bg .yw-card-media__placeholder,
-  .yw-ask-snippet__image .yw-card-media__placeholder { display: none; }
+  .yw-ask-snippet__image .yw-card-media__placeholder,
+  .yw-contact__bg .yw-card-media__placeholder { display: none; }
 }

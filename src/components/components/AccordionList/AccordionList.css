@@ -1,0 +1,68 @@
+/*
+  Batch 9 content blocks (shared styles).
+  Accordion list (Figma 26534:21312): Stacked = header, Plus-Minus accordions (gap 0), CTA (title body/xl/med,
+    body body/md/reg secondary, gap 8; Primary M button, gap 16), gap 64. Split / Split list = intro (416:
+    header, optional bullet list, CTA; gap 40) left, "Frequently asked questions" (heading/lg) + accordions right
+    (744), gap 120. Motion: items expand like Accordion; block reveal staggered.
+  Build your stack (26851:1491): header (kicker + heading/xl | body/md/reg secondary 440, bottom aligned), goal
+    tabs (Tab group), goal intro (label body/xs caps tertiary + body/lg/reg 760, gap 12), four vertical
+    Technology Cards (gap 16), full-width Case Card; gap 32, padding 80. Mobile: tabs scroll sideways, cards stack.
+  Offices (26799:617): kicker + title row (heading/xl | body/md/reg tertiary), then Location rows; gap 80, padding 80.
+  Leadership (26848:385): Section intro (Stacked) + Person Cards, 4 per row (gap 24), 2 on mobile.
+    Person Card (26763:60): Photo=Yes: photo 320 tall radius 4, gap 16; Photo=No: 1px top border/2, padding 16/0;
+    name body/lg/med, role body/md/reg tertiary, optional email body/md/reg content/link, gap 4.
+  Awards (27096:9988): "Trusted by industry leaders" body/lg/bold and four 95×95 badges, gap 40; mobile stacks.
+*/
+@layer components {
+  .yw-acc-list .yw-block__inner { display: flex; flex-direction: column; gap: var(--spacing-3xl); }
+  .yw-acc-list__items { display: flex; flex-direction: column; }
+  .yw-acc-list__cta { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-sm); }
+  .yw-acc-list__cta-text { display: flex; flex-direction: column; gap: var(--spacing-2xs); }
+  .yw-acc-list__cta-text p { margin: 0; color: var(--color-shared-content-secondary); }
+  .yw-acc-list--split .yw-block__inner { display: grid; grid-template-columns: 416fr 744fr; gap: var(--spacing-5xl); }
+  .yw-acc-list__intro { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+  .yw-acc-list__faq { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+  .yw-acc-list__faq h3 { margin: 0; }
+
+  .yw-stack .yw-block__inner { display: flex; flex-direction: column; gap: var(--spacing-xl); padding-block: var(--spacing-4xl); }
+  .yw-stack__header { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--spacing-lg); }
+  .yw-stack__title { display: flex; flex-direction: column; gap: var(--spacing-lg); margin: 0; }
+  .yw-stack__header p { max-width: 440px; margin: 0; color: var(--color-shared-content-secondary); }
+  .yw-stack__goal { display: flex; flex-direction: column; gap: var(--spacing-xl); padding-top: var(--spacing-xl); }
+  .yw-stack__goal-intro { display: flex; flex-direction: column; gap: var(--spacing-xs); max-width: 760px; }
+  .yw-stack__goal-intro p { margin: 0; }
+  .yw-stack__system { color: var(--color-shared-content-tertiary); text-transform: uppercase; letter-spacing: 0.08em; }
+  .yw-stack__partners { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--spacing-sm); margin: 0; padding: 0; list-style: none; }
+  .yw-stack .yw-tab-group__list { overflow-x: auto; scrollbar-width: none; }
+
+  .yw-offices .yw-block__inner { display: flex; flex-direction: column; gap: var(--spacing-4xl); padding-block: var(--spacing-4xl); }
+  .yw-offices__header { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+  .yw-offices__row { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--spacing-4xl); }
+  .yw-offices__row h2 { margin: 0; flex: 1; }
+  .yw-offices__row p { flex: 1; margin: 0; color: var(--color-shared-content-tertiary); }
+
+  .yw-leadership .yw-block__inner { display: flex; flex-direction: column; gap: var(--spacing-4xl); padding-block: var(--spacing-4xl); }
+  .yw-leadership__people { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--spacing-lg); margin: 0; padding: 0; list-style: none; }
+
+  .yw-person { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+  .yw-person--plain { padding-block: var(--spacing-sm); box-shadow: inset 0 var(--shared-width-1) 0 var(--color-shared-border-2); }
+  .yw-person__info { display: flex; flex-direction: column; gap: var(--spacing-3xs); }
+  .yw-person__role { color: var(--color-shared-content-tertiary); }
+  .yw-person__email { color: var(--color-shared-content-link); text-decoration: none; }
+  .yw-person__email:hover { text-decoration: underline; }
+
+  .yw-awards .yw-block__inner { padding-top: 0; padding-bottom: var(--spacing-4xl); }
+  .yw-awards__row { display: flex; align-items: center; gap: var(--spacing-2xl); margin: 0; }
+  .yw-awards__title { flex: 1; margin: 0; }
+  .yw-awards__badges { display: flex; gap: var(--spacing-2xl); margin: 0; padding: 0; list-style: none; }
+  .yw-awards__badge { width: 95px; }
+
+  @container (max-width: 767px) {
+    .yw-acc-list--split .yw-block__inner { grid-template-columns: 1fr; gap: var(--spacing-2xl); }
+    .yw-stack__header, .yw-offices__row { flex-direction: column; align-items: flex-start; gap: var(--spacing-lg); }
+    .yw-stack__partners { grid-template-columns: 1fr; }
+    .yw-leadership__people { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-sm); }
+    .yw-awards__row { flex-direction: column; align-items: flex-start; gap: var(--spacing-lg); }
+    .yw-awards__badges { flex-wrap: wrap; gap: var(--spacing-lg); }
+  }
+}

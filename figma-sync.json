@@ -1091,12 +1091,19 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Stacked, Split and Split list layouts; ACI Weave FAQ copy; first item expanded.",
+      "code": [
+        "src/components/components/AccordionList/AccordionList.tsx",
+        "src/components/components/AccordionList/AccordionList.css",
+        "src/components/components/AccordionList/AccordionList.stories.tsx",
+        "src/components/components/StatsBlock/StatsBlock.css",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1eag45g",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1127,12 +1134,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Goal tabs with partner Technology Cards and a full Case Card; Figma has content for one goal only (Sell B2B online).",
+      "code": [
+        "src/components/components/BuildYourStack/BuildYourStack.tsx",
+        "src/components/components/BuildYourStack/BuildYourStack.stories.tsx",
+        "src/components/components/AccordionList/AccordionList.css",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "17xlig1",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1304,12 +1317,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Form, Sub-footer split and Sub-footer background; images are placeholders. Signature kept (instance-swap image).",
+      "code": [
+        "src/components/components/ContactCTA/ContactCTA.tsx",
+        "src/components/components/ContactCTA/ContactCTA.css",
+        "src/components/components/ContactCTA/ContactCTA.stories.tsx",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "13pzsxt",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1504,12 +1523,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Section intro and Person Cards (Figma Person Card 26763:60, not an inventory component); photos are placeholders.",
+      "code": [
+        "src/components/components/Leadership/Leadership.tsx",
+        "src/components/components/Leadership/Leadership.stories.tsx",
+        "src/components/components/AccordionList/AccordionList.css",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1szr7md",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -1583,12 +1608,20 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet.",
-      "code": null,
+      "status": "complete",
+      "note": "Header and the eight offices with live clocks.",
+      "code": [
+        "src/components/components/Offices/Offices.tsx",
+        "src/components/components/Offices/Offices.stories.tsx",
+        "src/components/components/Location/Location.tsx",
+        "src/components/components/Location/Location.css",
+        "src/components/components/AccordionList/AccordionList.css",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1731v0b",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -4195,12 +4228,18 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet (new in Figma since 6 Nov).",
-      "code": null,
+      "status": "complete",
+      "note": "Title and four award badges (placeholders until the badges are exported).",
+      "code": [
+        "src/components/components/Awards/Awards.tsx",
+        "src/components/components/Awards/Awards.stories.tsx",
+        "src/components/components/AccordionList/AccordionList.css",
+        "src/components/shared/block.css",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "2vt2j9",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
@@ -4231,12 +4270,17 @@
         "current": null
       },
       "internal": false,
-      "status": "missing",
-      "note": "Not in Storybook yet (new in Figma since 6 Nov).",
-      "code": null,
+      "status": "complete",
+      "note": "Desktop tiles + dropdowns; mobile pills, Filters button and bottom sheet. Selected tile uses a brand border (Figma shows the Focused look).",
+      "code": [
+        "src/components/components/FilterBar/FilterBar.tsx",
+        "src/components/components/FilterBar/FilterBar.css",
+        "src/components/components/FilterBar/FilterBar.stories.tsx",
+        "src/components/shared/ModeFrame.tsx"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "1eweuic",
+      "lastSynced": "2026-11-09"
     },
     {
       "figma": {
