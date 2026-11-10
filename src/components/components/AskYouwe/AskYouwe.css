@@ -228,7 +228,18 @@
 
   .yw-ask-dock.is-shown { pointer-events: auto; opacity: 1; transform: none; }
   /* Floating over any section, light ones included: lay the glass on a dark base so the text keeps its contrast. */
-  .yw-ask-dock > .yw-ask-glass { background: linear-gradient(var(--color-component-ask-surface), var(--color-component-ask-surface)), color-mix(in srgb, var(--color-shared-surface-base-1) 88%, transparent); }
+  /* Docked glass: frosted (ask/glass blur 32 + saturation) over a 65% base-1 tint, so the page shows through
+     but the text keeps AA contrast over light sections too; a light top edge and the ask border catch the light. */
+  .yw-ask-dock > .yw-ask-glass {
+    background:
+      linear-gradient(180deg, var(--color-component-ask-surface-raised), transparent 60%),
+      color-mix(in srgb, var(--color-shared-surface-base-1) 65%, transparent);
+    box-shadow:
+      inset 0 var(--shared-width-1) 0 var(--color-component-ask-border),
+      inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border),
+      var(--effect-ask-glass-shadow);
+    backdrop-filter: blur(var(--effect-ask-glass-blur)) saturate(1.6);
+  }
   .yw-ask-dock.is-open > .yw-ask-panel { max-height: calc(100vh - 2 * var(--spacing-lg)); overflow-y: auto; }
   .yw-ask-dock--mobile { bottom: var(--spacing-md); }
 }

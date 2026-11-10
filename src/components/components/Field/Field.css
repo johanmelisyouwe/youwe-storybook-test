@@ -11,6 +11,7 @@
     focused/active 2px shared/border/system/focus + shadow/outer/md/focus;
     success 1px border/system/positive; error surface/system/negative-1 + 2px border/system/negative
     + shadow/outer/md/error; disabled disabled surface/border/content.
+  Hover: shadow/outer/md/hover ring (4px).
   Hint: content/tertiary; content/system/positive (success), content/system/negative (error).
   The floating-label move uses duration/fast + ease/standard (Figma says "animated", no motion line).
 */
@@ -82,9 +83,10 @@
   }
 
   /* ---- states ---- */
-  .yw-field__control:hover { --_border: var(--color-component-forms-border-hover); }
-  .yw-field.is-filled .yw-field__control,
-  .yw-field:has(.yw-field__input:not(:placeholder-shown)) .yw-field__control {
+  /* Hover: forms/border/hover + shadow/outer/md/hover ring (Figma: Dropdown, Phone, Text Area, Compact; Text Input follows for consistency) */
+  .yw-field__control:hover { --_border: var(--color-component-forms-border-hover); --_fx: var(--effect-shadow-outer-md-hover-shadow); }
+  /* :where keeps "filled" weak, so Success / Error / Disabled borders still win on a filled field. */
+  .yw-field:where(.is-filled, :has(.yw-field__input:not(:placeholder-shown))) .yw-field__control {
     --_border: var(--color-component-forms-border-filled);
   }
   .yw-field__control:focus-within {
