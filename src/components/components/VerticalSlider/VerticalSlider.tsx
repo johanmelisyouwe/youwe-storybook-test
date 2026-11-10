@@ -147,7 +147,8 @@ export function VerticalSlider({ Index = 'Right', Device = 'Desktop', Kicker, Ta
 
   const header = (
     <div className="yw-vslider__header">
-      <span className="yw-vslider__kicker"><span className="yw-vslider__line" aria-hidden="true" /><span className="yw-body-sm-bold">{Kicker}</span></span>
+      {/* The kicker is the section heading (h2), so the slide titles (h3) sit under it in the outline. */}
+      <h2 className="yw-vslider__kicker"><span className="yw-vslider__line" aria-hidden="true" /><span className="yw-body-sm-bold">{Kicker}</span></h2>
       {Tagline && <span className="yw-body-sm-bold">{Tagline}</span>}
     </div>
   );

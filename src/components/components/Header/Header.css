@@ -76,7 +76,7 @@
   .yw-nav-link[aria-current='page'],
   .yw-nav-link[aria-expanded='true'] { color: var(--color-shared-content-link); }
 
-  .yw-nav-link--plain { padding: 0; }
+  .yw-nav-link--plain { margin-block: calc(var(--spacing-3xs) * -1); padding: var(--spacing-3xs) 0; } /* 24px+ tap target, same visual spacing */
   .yw-nav-link--l { padding: 0; }
   .yw-nav-link--l:hover,
   .yw-nav-link--l[aria-current='page'] { color: var(--color-shared-surface-fixed-brand-red); }

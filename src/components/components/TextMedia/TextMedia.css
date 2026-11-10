@@ -24,12 +24,15 @@
     .yw-text-media--left .yw-text-media__text { order: 0; }
   }
 
+  /* Scroll-driven motion only without a reduced-motion preference (it ignores animation duration). */
+  @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     @keyframes yw-clip-reveal {
       from { clip-path: inset(18% 8% round var(--shared-radius-8)); transform: scale(0.96); }
       to { clip-path: inset(0 round var(--shared-radius-4)); transform: none; }
     }
     .yw-clip-reveal { animation: yw-clip-reveal linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+  }
   }
 
   /* Media */

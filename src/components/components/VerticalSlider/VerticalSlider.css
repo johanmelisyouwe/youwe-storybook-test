@@ -57,7 +57,7 @@
   .yw-vslider__progress { z-index: 1; }
 
   .yw-vslider__header { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-lg); }
-  .yw-vslider__kicker { display: inline-flex; align-items: center; gap: var(--spacing-2xs); }
+  .yw-vslider__kicker { display: inline-flex; align-items: center; gap: var(--spacing-2xs); margin: 0; }
   .yw-vslider__line { width: 24px; height: 2px; background: var(--color-shared-surface-fixed-brand-red); }
 
   .yw-vslider__body { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: var(--spacing-4xl); }
