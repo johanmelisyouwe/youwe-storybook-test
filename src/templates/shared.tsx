@@ -1,14 +1,8 @@
 import type { ReactNode } from 'react'
-import {
-    Header,
-    type HeaderProps,
-} from '../components/components/Header/Header'
-import {
-    Footer,
-    type FooterColumn,
-} from '../components/components/Footer/Footer'
-import { Logo } from '../components/logos/Logo'
-import type { Mode } from '../components/shared/ModeFrame'
+import { Header, type HeaderProps } from '../site/header'
+import { Footer, type FooterColumn } from '../site/footer'
+import { Logo } from '../shared/logos/logo'
+import type { Mode } from '../shared/mode-frame'
 import './templates.css'
 
 /*

@@ -45,9 +45,9 @@
       "status": "complete",
       "note": "Native details/summary; State via CSS.",
       "code": [
-        "src/components/components/Accordion/Accordion.tsx",
-        "src/components/components/Accordion/Accordion.css",
-        "src/components/components/Accordion/Accordion.stories.tsx"
+        "src/ui/accordion/accordion.tsx",
+        "src/ui/accordion/accordion.css",
+        "src/ui/accordion/accordion.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "s94f1w",
@@ -82,9 +82,9 @@
       "status": "complete",
       "note": "Leading/trailing Icon, Checkbox, Toggle, Radio button. Image leading element not built (no image spec).",
       "code": [
-        "src/components/components/ActionListItem/ActionListItem.tsx",
-        "src/components/components/ActionListItem/ActionListItem.css",
-        "src/components/components/ActionListItem/ActionListItem.stories.tsx"
+        "src/ui/action-list-item/action-list-item.tsx",
+        "src/ui/action-list-item/action-list-item.css",
+        "src/ui/action-list-item/action-list-item.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1844y7i",
@@ -120,9 +120,9 @@
       "status": "internal",
       "note": "Part of Action List Item.",
       "code": [
-        "src/components/components/ActionListItem/ActionListItem.tsx",
-        "src/components/components/ActionListItem/ActionListItem.css",
-        "src/components/components/ActionListItem/ActionListItem.stories.tsx"
+        "src/ui/action-list-item/action-list-item.tsx",
+        "src/ui/action-list-item/action-list-item.css",
+        "src/ui/action-list-item/action-list-item.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1ax4bj6",
@@ -157,9 +157,9 @@
       "status": "internal",
       "note": "Part of Action List Item.",
       "code": [
-        "src/components/components/ActionListItem/ActionListItem.tsx",
-        "src/components/components/ActionListItem/ActionListItem.css",
-        "src/components/components/ActionListItem/ActionListItem.stories.tsx"
+        "src/ui/action-list-item/action-list-item.tsx",
+        "src/ui/action-list-item/action-list-item.css",
+        "src/ui/action-list-item/action-list-item.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1s7dx7f",
@@ -203,10 +203,10 @@
       "status": "complete",
       "note": "Default, Contextual, Active. UI only; onAsk callback for a real answer service. ⌘K focuses the bar, Esc closes the panel.",
       "code": [
-        "src/components/components/AskYouwe/AskYouwe.tsx",
-        "src/components/components/AskYouwe/AskYouwe.css",
-        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/site/ask-youwe/ask-youwe.tsx",
+        "src/site/ask-youwe/ask-youwe.css",
+        "src/site/ask-youwe/ask-youwe.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "7oqovh",
@@ -250,10 +250,10 @@
       "status": "complete",
       "note": "Question, Nudge, Case (image placeholder).",
       "code": [
-        "src/components/components/AskYouwe/AskYouwe.tsx",
-        "src/components/components/AskYouwe/AskYouwe.css",
-        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/site/ask-youwe/ask-youwe.tsx",
+        "src/site/ask-youwe/ask-youwe.css",
+        "src/site/ask-youwe/ask-youwe.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1k92i53",
@@ -302,10 +302,10 @@
       "status": "internal",
       "note": "AskButton.",
       "code": [
-        "src/components/components/AskYouwe/AskYouwe.tsx",
-        "src/components/components/AskYouwe/AskYouwe.css",
-        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/site/ask-youwe/ask-youwe.tsx",
+        "src/site/ask-youwe/ask-youwe.css",
+        "src/site/ask-youwe/ask-youwe.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "11pwy90",
@@ -344,10 +344,10 @@
       "status": "internal",
       "note": "AskChip.",
       "code": [
-        "src/components/components/AskYouwe/AskYouwe.tsx",
-        "src/components/components/AskYouwe/AskYouwe.css",
-        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/site/ask-youwe/ask-youwe.tsx",
+        "src/site/ask-youwe/ask-youwe.css",
+        "src/site/ask-youwe/ask-youwe.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1hndm7k",
@@ -380,10 +380,10 @@
       "status": "internal",
       "note": "AskLabel.",
       "code": [
-        "src/components/components/AskYouwe/AskYouwe.tsx",
-        "src/components/components/AskYouwe/AskYouwe.css",
-        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/site/ask-youwe/ask-youwe.tsx",
+        "src/site/ask-youwe/ask-youwe.css",
+        "src/site/ask-youwe/ask-youwe.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "4ge688",
@@ -416,10 +416,10 @@
       "status": "internal",
       "note": "AskAura (CSS blur, breathes ~6s).",
       "code": [
-        "src/components/components/AskYouwe/AskYouwe.tsx",
-        "src/components/components/AskYouwe/AskYouwe.css",
-        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/site/ask-youwe/ask-youwe.tsx",
+        "src/site/ask-youwe/ask-youwe.css",
+        "src/site/ask-youwe/ask-youwe.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "14f24jy",
@@ -453,10 +453,10 @@
       "status": "internal",
       "note": "AskOrb (Figma raw gradient, legacy-ok).",
       "code": [
-        "src/components/components/AskYouwe/AskYouwe.tsx",
-        "src/components/components/AskYouwe/AskYouwe.css",
-        "src/components/components/AskYouwe/AskYouwe.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/site/ask-youwe/ask-youwe.tsx",
+        "src/site/ask-youwe/ask-youwe.css",
+        "src/site/ask-youwe/ask-youwe.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1pn26sn",
@@ -494,9 +494,9 @@
       "status": "complete",
       "note": "With List wrapper (gap 2xs).",
       "code": [
-        "src/components/components/ListItem/ListItem.tsx",
-        "src/components/components/ListItem/ListItem.css",
-        "src/components/components/ListItem/ListItem.stories.tsx"
+        "src/ui/list-item/list-item.tsx",
+        "src/ui/list-item/list-item.css",
+        "src/ui/list-item/list-item.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1oudc23",
@@ -530,9 +530,9 @@
       "status": "internal",
       "note": "Part of Breadcrumbs.",
       "code": [
-        "src/components/components/Breadcrumbs/Breadcrumbs.tsx",
-        "src/components/components/Breadcrumbs/Breadcrumbs.css",
-        "src/components/components/Breadcrumbs/Breadcrumbs.stories.tsx"
+        "src/ui/breadcrumbs/breadcrumbs.tsx",
+        "src/ui/breadcrumbs/breadcrumbs.css",
+        "src/ui/breadcrumbs/breadcrumbs.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "12kvzjw",
@@ -558,9 +558,9 @@
       "status": "complete",
       "note": "Device=Desktop. \"Show back button\" is not wired to any layer in Figma.",
       "code": [
-        "src/components/components/Breadcrumbs/Breadcrumbs.tsx",
-        "src/components/components/Breadcrumbs/Breadcrumbs.css",
-        "src/components/components/Breadcrumbs/Breadcrumbs.stories.tsx"
+        "src/ui/breadcrumbs/breadcrumbs.tsx",
+        "src/ui/breadcrumbs/breadcrumbs.css",
+        "src/ui/breadcrumbs/breadcrumbs.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "18m0or7",
@@ -586,9 +586,9 @@
       "status": "complete",
       "note": "Device=Mobile: back button to the parent page + optional filter button.",
       "code": [
-        "src/components/components/Breadcrumbs/Breadcrumbs.tsx",
-        "src/components/components/Breadcrumbs/Breadcrumbs.css",
-        "src/components/components/Breadcrumbs/Breadcrumbs.stories.tsx"
+        "src/ui/breadcrumbs/breadcrumbs.tsx",
+        "src/ui/breadcrumbs/breadcrumbs.css",
+        "src/ui/breadcrumbs/breadcrumbs.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "167z9ou",
@@ -644,11 +644,11 @@
       "status": "complete",
       "note": "All 240 variants. States are real CSS. Icon nudge uses motion/distance/xs (added in Figma 9 Nov). Focus Ring now matches Figma incl. the shadow/outer/md/focus glow (batch 2).",
       "code": [
-        "src/components/components/Button/Button.tsx",
-        "src/components/components/Button/Button.css",
-        "src/components/components/Button/Button.stories.tsx",
-        "src/components/icons/Icon.tsx",
-        "src/components/shared/focus-ring.css"
+        "src/ui/button/button.tsx",
+        "src/ui/button/button.css",
+        "src/ui/button/button.stories.tsx",
+        "src/shared/icons/icon.tsx",
+        "src/shared/focus-ring/focus-ring.css"
       ],
       "locked": false,
       "lastSyncedSignature": "1q20mrn",
@@ -687,10 +687,10 @@
       "status": "complete",
       "note": "All 6 variants. Focus ring on the button itself, as in Figma.",
       "code": [
-        "src/components/components/ButtonUtility/ButtonUtility.tsx",
-        "src/components/components/ButtonUtility/ButtonUtility.css",
-        "src/components/components/ButtonUtility/ButtonUtility.stories.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/ui/button-utility/button-utility.tsx",
+        "src/ui/button-utility/button-utility.css",
+        "src/ui/button-utility/button-utility.stories.tsx",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "b69hft",
@@ -732,11 +732,11 @@
       "status": "complete",
       "note": "All 15 variants. Counter = Active Filter; screen readers hear \"1 active\".",
       "code": [
-        "src/components/components/ButtonFilter/ButtonFilter.tsx",
-        "src/components/components/ButtonFilter/ButtonFilter.css",
-        "src/components/components/ButtonFilter/ButtonFilter.stories.tsx",
-        "src/components/icons/Icon.tsx",
-        "src/components/shared/focus-ring.css"
+        "src/ui/button-filter/button-filter.tsx",
+        "src/ui/button-filter/button-filter.css",
+        "src/ui/button-filter/button-filter.stories.tsx",
+        "src/shared/icons/icon.tsx",
+        "src/shared/focus-ring/focus-ring.css"
       ],
       "locked": false,
       "lastSyncedSignature": "1c3m8ze",
@@ -770,10 +770,10 @@
       "status": "complete",
       "note": "All 3 sizes. Figma has no hover state; the chevron nudge (distance/xs) follows Button/Basic. lg uses 20px regular (no text style in Figma).",
       "code": [
-        "src/components/components/ButtonLink/ButtonLink.tsx",
-        "src/components/components/ButtonLink/ButtonLink.css",
-        "src/components/components/ButtonLink/ButtonLink.stories.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/ui/button-link/button-link.tsx",
+        "src/ui/button-link/button-link.css",
+        "src/ui/button-link/button-link.stories.tsx",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1r2ba38",
@@ -823,13 +823,13 @@
       "status": "complete",
       "note": "Case photos and most client logos not exported yet (G-Star logo only); image shows the Figma placeholder.",
       "code": [
-        "src/components/components/CaseCard/CaseCard.tsx",
-        "src/components/components/CaseCard/CaseCard.css",
-        "src/components/components/CaseCard/CaseCard.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/case-card/case-card.tsx",
+        "src/ui/case-card/case-card.css",
+        "src/ui/case-card/case-card.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1eh8kc2",
@@ -870,9 +870,9 @@
       "status": "internal",
       "note": "Part of Case Card (CaseStat).",
       "code": [
-        "src/components/components/CaseCard/CaseCard.tsx",
-        "src/components/components/CaseCard/CaseCard.css",
-        "src/components/components/CaseCard/CaseCard.stories.tsx"
+        "src/ui/case-card/case-card.tsx",
+        "src/ui/case-card/case-card.css",
+        "src/ui/case-card/case-card.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1kn0i6p",
@@ -920,10 +920,10 @@
       "status": "complete",
       "note": "All 30 variants. Native input; indeterminate via the DOM property.",
       "code": [
-        "src/components/components/Checkbox/Checkbox.tsx",
-        "src/components/components/Checkbox/Checkbox.css",
-        "src/components/components/Checkbox/Checkbox.stories.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/ui/checkbox/checkbox.tsx",
+        "src/ui/checkbox/checkbox.css",
+        "src/ui/checkbox/checkbox.stories.tsx",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "7aosoq",
@@ -970,10 +970,10 @@
       "status": "complete",
       "note": "All 27 variants (CheckboxLabel). L label is 24px regular in Figma → body/xl/reg.",
       "code": [
-        "src/components/components/Checkbox/Checkbox.tsx",
-        "src/components/components/Checkbox/Checkbox.css",
-        "src/components/components/Checkbox/Checkbox.stories.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/ui/checkbox/checkbox.tsx",
+        "src/ui/checkbox/checkbox.css",
+        "src/ui/checkbox/checkbox.stories.tsx",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "7tzdks",
@@ -1013,9 +1013,9 @@
       "status": "complete",
       "note": "All 8 variants.",
       "code": [
-        "src/components/components/Chip/Chip.tsx",
-        "src/components/components/Chip/Chip.css",
-        "src/components/components/Chip/Chip.stories.tsx"
+        "src/ui/chip/chip.tsx",
+        "src/ui/chip/chip.css",
+        "src/ui/chip/chip.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "ljz4ah",
@@ -1048,9 +1048,9 @@
       "status": "complete",
       "note": "Figma copy; focus moves into the banner (autoFocus).",
       "code": [
-        "src/components/components/CookieBanner/CookieBanner.tsx",
-        "src/components/components/CookieBanner/CookieBanner.css",
-        "src/components/components/CookieBanner/CookieBanner.stories.tsx"
+        "src/ui/cookie-banner/cookie-banner.tsx",
+        "src/ui/cookie-banner/cookie-banner.css",
+        "src/ui/cookie-banner/cookie-banner.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1l0wvut",
@@ -1094,12 +1094,12 @@
       "status": "complete",
       "note": "Stacked, Split and Split list layouts; ACI Weave FAQ copy; first item expanded.",
       "code": [
-        "src/components/components/AccordionList/AccordionList.tsx",
-        "src/components/components/AccordionList/AccordionList.css",
-        "src/components/components/AccordionList/AccordionList.stories.tsx",
-        "src/components/components/StatsBlock/StatsBlock.css",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/accordion-list/accordion-list.tsx",
+        "src/blocks/accordion-list/accordion-list.css",
+        "src/blocks/accordion-list/accordion-list.stories.tsx",
+        "src/blocks/stats-block/stats-block.css",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1eag45g",
@@ -1137,12 +1137,12 @@
       "status": "complete",
       "note": "Goal tabs with partner Technology Cards and a full Case Card; Figma content for \"Sell B2B online\", placeholder panels for the other four goals.",
       "code": [
-        "src/components/components/BuildYourStack/BuildYourStack.tsx",
-        "src/components/components/BuildYourStack/BuildYourStack.stories.tsx",
-        "src/components/components/AccordionList/AccordionList.css",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx",
-        "src/components/components/BuildYourStack/buildYourStack.copy.tsx"
+        "src/blocks/build-your-stack/build-your-stack.tsx",
+        "src/blocks/build-your-stack/build-your-stack.stories.tsx",
+        "src/blocks/accordion-list/accordion-list.css",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx",
+        "src/blocks/build-your-stack/build-your-stack.copy.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "17xlig1",
@@ -1192,11 +1192,11 @@
       "status": "complete",
       "note": "All 9 layouts; cells take any card.",
       "code": [
-        "src/components/components/CardGrid/CardGrid.tsx",
-        "src/components/components/CardGrid/CardGrid.css",
-        "src/components/components/CardGrid/CardGrid.stories.tsx",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/card-grid/card-grid.tsx",
+        "src/blocks/card-grid/card-grid.css",
+        "src/blocks/card-grid/card-grid.stories.tsx",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "wk8tzt",
@@ -1236,10 +1236,10 @@
       "status": "complete",
       "note": "Snapping scroller with prev/next and counter; pinned reel not built (see report).",
       "code": [
-        "src/components/components/CaseCarousel/CaseCarousel.tsx",
-        "src/components/components/CaseCarousel/CaseCarousel.css",
-        "src/components/components/CaseCarousel/CaseCarousel.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/case-carousel/case-carousel.tsx",
+        "src/blocks/case-carousel/case-carousel.css",
+        "src/blocks/case-carousel/case-carousel.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "17cyy9v",
@@ -1277,12 +1277,12 @@
       "status": "complete",
       "note": "Styles in TextColumn.css.",
       "code": [
-        "src/components/components/CaseIntro/CaseIntro.tsx",
-        "src/components/components/CaseIntro/CaseIntro.stories.tsx",
-        "src/components/components/TextColumn/TextColumn.tsx",
-        "src/components/components/TextColumn/TextColumn.css",
-        "src/components/components/TextColumn/longform.copy.ts",
-        "src/components/shared/block.css"
+        "src/blocks/case-intro/case-intro.tsx",
+        "src/blocks/case-intro/case-intro.stories.tsx",
+        "src/blocks/text-column/text-column.tsx",
+        "src/blocks/text-column/text-column.css",
+        "src/blocks/text-column/longform.copy.ts",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "8vccav",
@@ -1321,11 +1321,11 @@
       "status": "complete",
       "note": "Form, Sub-footer split and Sub-footer background; images are placeholders. Signature kept (instance-swap image). Form submit label is a prop (Figma template: \"Get in touch\").",
       "code": [
-        "src/components/components/ContactCTA/ContactCTA.tsx",
-        "src/components/components/ContactCTA/ContactCTA.css",
-        "src/components/components/ContactCTA/ContactCTA.stories.tsx",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/contact-cta/contact-cta.tsx",
+        "src/blocks/contact-cta/contact-cta.css",
+        "src/blocks/contact-cta/contact-cta.stories.tsx",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "13pzsxt",
@@ -1363,10 +1363,10 @@
       "status": "complete",
       "note": "Grid and Split; styles in StatsBlock.css.",
       "code": [
-        "src/components/components/FeatureList/FeatureList.tsx",
-        "src/components/components/FeatureList/FeatureList.stories.tsx",
-        "src/components/shared/block.css",
-        "src/components/components/StatsBlock/StatsBlock.css"
+        "src/blocks/feature-list/feature-list.tsx",
+        "src/blocks/feature-list/feature-list.stories.tsx",
+        "src/shared/block/block.css",
+        "src/blocks/stats-block/stats-block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "uw00hg",
@@ -1404,10 +1404,10 @@
       "status": "complete",
       "note": "Gradient and Title + image; title line mask reveal; optional scroll recede; bar marquee. Background image not imported.",
       "code": [
-        "src/components/components/Hero/Hero.tsx",
-        "src/components/components/Hero/Hero.css",
-        "src/components/components/Hero/Hero.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/hero/hero.tsx",
+        "src/blocks/hero/hero.css",
+        "src/blocks/hero/hero.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "3lpt5u",
@@ -1445,10 +1445,10 @@
       "status": "internal",
       "note": "HeroBar: Logos (only G-Star exported; others as text) and Stats.",
       "code": [
-        "src/components/components/Hero/Hero.tsx",
-        "src/components/components/Hero/Hero.css",
-        "src/components/components/Hero/Hero.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/hero/hero.tsx",
+        "src/blocks/hero/hero.css",
+        "src/blocks/hero/hero.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "p3aekr",
@@ -1486,10 +1486,10 @@
       "status": "internal",
       "note": "HeroLabel: Subtitle or Breadcrumb.",
       "code": [
-        "src/components/components/Hero/Hero.tsx",
-        "src/components/components/Hero/Hero.css",
-        "src/components/components/Hero/Hero.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/hero/hero.tsx",
+        "src/blocks/hero/hero.css",
+        "src/blocks/hero/hero.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "1mk8ev0",
@@ -1527,11 +1527,11 @@
       "status": "complete",
       "note": "Section intro and Person Cards (Figma Person Card 26763:60, not an inventory component); photos are placeholders. \"Board of Directors\" typo fixed in Figma.",
       "code": [
-        "src/components/components/Leadership/Leadership.tsx",
-        "src/components/components/Leadership/Leadership.stories.tsx",
-        "src/components/components/AccordionList/AccordionList.css",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/leadership/leadership.tsx",
+        "src/blocks/leadership/leadership.stories.tsx",
+        "src/blocks/accordion-list/accordion-list.css",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1szr7md",
@@ -1571,10 +1571,10 @@
       "status": "complete",
       "note": "Clip reveal on scroll. Image placeholders.",
       "code": [
-        "src/components/components/Media/Media.tsx",
-        "src/components/components/Media/Media.stories.tsx",
-        "src/components/components/TextMedia/TextMedia.css",
-        "src/components/shared/block.css"
+        "src/blocks/media/media.tsx",
+        "src/blocks/media/media.stories.tsx",
+        "src/blocks/text-media/text-media.css",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "vrfzw6",
@@ -1612,13 +1612,13 @@
       "status": "complete",
       "note": "Header and the eight offices with live clocks.",
       "code": [
-        "src/components/components/Offices/Offices.tsx",
-        "src/components/components/Offices/Offices.stories.tsx",
-        "src/components/components/Location/Location.tsx",
-        "src/components/components/Location/Location.css",
-        "src/components/components/AccordionList/AccordionList.css",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/offices/offices.tsx",
+        "src/blocks/offices/offices.stories.tsx",
+        "src/ui/location/location.tsx",
+        "src/ui/location/location.css",
+        "src/blocks/accordion-list/accordion-list.css",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1731v0b",
@@ -1656,10 +1656,10 @@
       "status": "complete",
       "note": "Word-rise title reveal.",
       "code": [
-        "src/components/components/SectionHeader/SectionHeader.tsx",
-        "src/components/components/SectionHeader/SectionHeader.css",
-        "src/components/components/SectionHeader/SectionHeader.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/section-header/section-header.tsx",
+        "src/blocks/section-header/section-header.css",
+        "src/blocks/section-header/section-header.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "27isn",
@@ -1702,11 +1702,11 @@
       "status": "complete",
       "note": "Word reveal + scroll highlight body.",
       "code": [
-        "src/components/components/SectionHeader/SectionHeader.tsx",
-        "src/components/components/SectionHeader/SectionHeader.css",
-        "src/components/components/SectionHeader/SectionIntro.stories.tsx",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/section-header/section-header.tsx",
+        "src/blocks/section-header/section-header.css",
+        "src/blocks/section-header/section-intro.stories.tsx",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "7ebnjt",
@@ -1744,11 +1744,11 @@
       "status": "complete",
       "note": "SplitIntro shared with Tech partners split.",
       "code": [
-        "src/components/components/ServicesSplit/ServicesSplit.tsx",
-        "src/components/components/ServicesSplit/ServicesSplit.css",
-        "src/components/components/ServicesSplit/ServicesSplit.stories.tsx",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/services-split/services-split.tsx",
+        "src/blocks/services-split/services-split.css",
+        "src/blocks/services-split/services-split.stories.tsx",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1a6ul6r",
@@ -1786,12 +1786,12 @@
       "status": "complete",
       "note": "Partner logos shown as names.",
       "code": [
-        "src/components/components/TechPartnersSplit/TechPartnersSplit.tsx",
-        "src/components/components/TechPartnersSplit/TechPartnersSplit.stories.tsx",
-        "src/components/shared/block.css",
-        "src/components/components/ServicesSplit/ServicesSplit.css",
-        "src/components/components/ServicesSplit/ServicesSplit.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/tech-partners-split/tech-partners-split.tsx",
+        "src/blocks/tech-partners-split/tech-partners-split.stories.tsx",
+        "src/shared/block/block.css",
+        "src/blocks/services-split/services-split.css",
+        "src/blocks/services-split/services-split.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1g9sth0",
@@ -1837,12 +1837,12 @@
       "status": "complete",
       "note": "Default uses the shared GiantRows; logos as names.",
       "code": [
-        "src/components/components/TechnologyLogos/TechnologyLogos.tsx",
-        "src/components/components/TechnologyLogos/TechnologyLogos.css",
-        "src/components/components/TechnologyLogos/TechnologyLogos.stories.tsx",
-        "src/components/shared/block.css",
-        "src/components/components/Statement/Statement.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/technology-logos/technology-logos.tsx",
+        "src/blocks/technology-logos/technology-logos.css",
+        "src/blocks/technology-logos/technology-logos.stories.tsx",
+        "src/shared/block/block.css",
+        "src/blocks/statement/statement.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "38mon3",
@@ -1885,10 +1885,10 @@
       "status": "complete",
       "note": "Pinned scroll on desktop (pin), stacked on mobile. Background image placeholder only.",
       "code": [
-        "src/components/components/VerticalSlider/VerticalSlider.tsx",
-        "src/components/components/VerticalSlider/VerticalSlider.css",
-        "src/components/components/VerticalSlider/VerticalSlider.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/vertical-slider/vertical-slider.tsx",
+        "src/blocks/vertical-slider/vertical-slider.css",
+        "src/blocks/vertical-slider/vertical-slider.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1k4ziwt",
@@ -1922,10 +1922,10 @@
       "status": "internal",
       "note": "IndexItem.",
       "code": [
-        "src/components/components/VerticalSlider/VerticalSlider.tsx",
-        "src/components/components/VerticalSlider/VerticalSlider.css",
-        "src/components/components/VerticalSlider/VerticalSlider.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/vertical-slider/vertical-slider.tsx",
+        "src/blocks/vertical-slider/vertical-slider.css",
+        "src/blocks/vertical-slider/vertical-slider.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1nw0p3a",
@@ -1966,10 +1966,10 @@
       "status": "internal",
       "note": "Slide: Service, Quote, Stat, Case, Content.",
       "code": [
-        "src/components/components/VerticalSlider/VerticalSlider.tsx",
-        "src/components/components/VerticalSlider/VerticalSlider.css",
-        "src/components/components/VerticalSlider/VerticalSlider.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/vertical-slider/vertical-slider.tsx",
+        "src/blocks/vertical-slider/vertical-slider.css",
+        "src/blocks/vertical-slider/vertical-slider.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1c9gdds",
@@ -1995,9 +1995,9 @@
       "status": "complete",
       "note": "Image placeholders.",
       "code": [
-        "src/components/components/SolutionsGrid/SolutionsGrid.tsx",
-        "src/components/components/SolutionsGrid/SolutionsGrid.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/solutions-grid/solutions-grid.tsx",
+        "src/blocks/solutions-grid/solutions-grid.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "1niwz1h",
@@ -2030,10 +2030,10 @@
       "status": "complete",
       "note": "Optional drifting decorative rows (not drawn in Figma).",
       "code": [
-        "src/components/components/Statement/Statement.tsx",
-        "src/components/components/Statement/Statement.css",
-        "src/components/components/Statement/Statement.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/statement/statement.tsx",
+        "src/blocks/statement/statement.css",
+        "src/blocks/statement/statement.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "1bihdg0",
@@ -2076,11 +2076,11 @@
       "status": "complete",
       "note": "Retitled story stays Content blocks/Stats; the single Stat is Components/Stat.",
       "code": [
-        "src/components/components/StatsBlock/StatsBlock.tsx",
-        "src/components/components/StatsBlock/StatsBlock.css",
-        "src/components/components/StatsBlock/StatsBlock.stories.tsx",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/stats-block/stats-block.tsx",
+        "src/blocks/stats-block/stats-block.css",
+        "src/blocks/stats-block/stats-block.stories.tsx",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "fo854p",
@@ -2123,13 +2123,13 @@
       "status": "complete",
       "note": "Count-up on scroll (countUp). Retitled Components/Stat so Content blocks/Stats stays free for the block.",
       "code": [
-        "src/components/components/Stat/Stat.tsx",
-        "src/components/components/Stat/Stat.css",
-        "src/components/components/Stat/Stat.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/stat/stat.tsx",
+        "src/ui/stat/stat.css",
+        "src/ui/stat/stat.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "mbed16",
@@ -2180,10 +2180,10 @@
       "status": "complete",
       "note": "Container-query layout; Dark / Deep blue / Light. Image placeholder. Optional media slot (e.g. a Case Card) in place of the image, used by the Industries detail template.",
       "code": [
-        "src/components/components/TextMedia/TextMedia.tsx",
-        "src/components/components/TextMedia/TextMedia.css",
-        "src/components/components/TextMedia/TextMedia.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/text-media/text-media.tsx",
+        "src/blocks/text-media/text-media.css",
+        "src/blocks/text-media/text-media.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "8xjat0",
@@ -2216,10 +2216,10 @@
       "status": "complete",
       "note": "Auto-advance 7s with View Transition when several quotes; pauses on hover/focus/off-screen.",
       "code": [
-        "src/components/components/Testimonial/Testimonial.tsx",
-        "src/components/components/Testimonial/Testimonial.css",
-        "src/components/components/Testimonial/Testimonial.stories.tsx",
-        "src/components/shared/block.css"
+        "src/blocks/testimonial/testimonial.tsx",
+        "src/blocks/testimonial/testimonial.css",
+        "src/blocks/testimonial/testimonial.stories.tsx",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "18pitnd",
@@ -2257,11 +2257,11 @@
       "status": "complete",
       "note": "Long-form lead + body.",
       "code": [
-        "src/components/components/TextColumn/TextColumn.tsx",
-        "src/components/components/TextColumn/TextColumn.css",
-        "src/components/components/TextColumn/longform.copy.ts",
-        "src/components/shared/block.css",
-        "src/components/components/TextColumn/TextColumn.stories.tsx"
+        "src/blocks/text-column/text-column.tsx",
+        "src/blocks/text-column/text-column.css",
+        "src/blocks/text-column/longform.copy.ts",
+        "src/shared/block/block.css",
+        "src/blocks/text-column/text-column.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1w8kjpd",
@@ -2299,12 +2299,12 @@
       "status": "complete",
       "note": "Styles in TextColumn.css.",
       "code": [
-        "src/components/components/TwoColumnText/TwoColumnText.tsx",
-        "src/components/components/TwoColumnText/TwoColumnText.stories.tsx",
-        "src/components/components/TextColumn/TextColumn.tsx",
-        "src/components/components/TextColumn/TextColumn.css",
-        "src/components/components/TextColumn/longform.copy.ts",
-        "src/components/shared/block.css"
+        "src/blocks/two-column-text/two-column-text.tsx",
+        "src/blocks/two-column-text/two-column-text.stories.tsx",
+        "src/blocks/text-column/text-column.tsx",
+        "src/blocks/text-column/text-column.css",
+        "src/blocks/text-column/longform.copy.ts",
+        "src/shared/block/block.css"
       ],
       "locked": false,
       "lastSyncedSignature": "1uy218e",
@@ -2348,13 +2348,13 @@
       "status": "complete",
       "note": "Card, Plain, AI (aura approximated with radial gradients).",
       "code": [
-        "src/components/components/FeatureCard/FeatureCard.tsx",
-        "src/components/components/FeatureCard/FeatureCard.css",
-        "src/components/components/FeatureCard/FeatureCard.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/feature-card/feature-card.tsx",
+        "src/ui/feature-card/feature-card.css",
+        "src/ui/feature-card/feature-card.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "c8gbil",
@@ -2392,9 +2392,9 @@
       "status": "complete",
       "note": "Sitemap and Newsletter. Duplicate \"Digital Experience\" link removed in Figma (2026-11-09).",
       "code": [
-        "src/components/components/Footer/Footer.tsx",
-        "src/components/components/Footer/Footer.css",
-        "src/components/components/Footer/Footer.stories.tsx"
+        "src/site/footer/footer.tsx",
+        "src/site/footer/footer.css",
+        "src/site/footer/footer.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "109lrvd",
@@ -2427,9 +2427,9 @@
       "status": "internal",
       "note": "FooterLink.",
       "code": [
-        "src/components/components/Footer/Footer.tsx",
-        "src/components/components/Footer/Footer.css",
-        "src/components/components/Footer/Footer.stories.tsx"
+        "src/site/footer/footer.tsx",
+        "src/site/footer/footer.css",
+        "src/site/footer/footer.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1kvt1lk",
@@ -2467,10 +2467,10 @@
       "status": "complete",
       "note": "Mega menu on hover/keyboard (300ms close delay); mobile sheet with scroll lock; fixed: glass + hide on scroll down. Ask Youwe removed from the header in Figma and code (2026-11-09): the site uses the sticky docked bar.",
       "code": [
-        "src/components/components/Header/Header.tsx",
-        "src/components/components/Header/Header.css",
-        "src/components/components/Header/Header.stories.tsx",
-        "src/components/logos/YouweLogo.tsx"
+        "src/site/header/header.tsx",
+        "src/site/header/header.css",
+        "src/site/header/header.stories.tsx",
+        "src/shared/logos/youwe-logo.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "19yt4ak",
@@ -2509,10 +2509,10 @@
       "status": "internal",
       "note": "NavLink.",
       "code": [
-        "src/components/components/Header/Header.tsx",
-        "src/components/components/Header/Header.css",
-        "src/components/components/Header/Header.stories.tsx",
-        "src/components/logos/YouweLogo.tsx"
+        "src/site/header/header.tsx",
+        "src/site/header/header.css",
+        "src/site/header/header.stories.tsx",
+        "src/shared/logos/youwe-logo.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1j7xckt",
@@ -2538,10 +2538,10 @@
       "status": "internal",
       "note": "UtilityLink.",
       "code": [
-        "src/components/components/Header/Header.tsx",
-        "src/components/components/Header/Header.css",
-        "src/components/components/Header/Header.stories.tsx",
-        "src/components/logos/YouweLogo.tsx"
+        "src/site/header/header.tsx",
+        "src/site/header/header.css",
+        "src/site/header/header.stories.tsx",
+        "src/shared/logos/youwe-logo.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "11qvedu",
@@ -2574,10 +2574,10 @@
       "status": "internal",
       "note": "MegaMenu: ACI Weave and Ask Youwe features.",
       "code": [
-        "src/components/components/Header/Header.tsx",
-        "src/components/components/Header/Header.css",
-        "src/components/components/Header/Header.stories.tsx",
-        "src/components/logos/YouweLogo.tsx"
+        "src/site/header/header.tsx",
+        "src/site/header/header.css",
+        "src/site/header/header.stories.tsx",
+        "src/shared/logos/youwe-logo.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "hsor5",
@@ -2610,13 +2610,13 @@
       "status": "complete",
       "note": "Zoom 1.04 on hover when linked.",
       "code": [
-        "src/components/components/ImageCard/ImageCard.tsx",
-        "src/components/components/ImageCard/ImageCard.css",
-        "src/components/components/ImageCard/ImageCard.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/image-card/image-card.tsx",
+        "src/ui/image-card/image-card.css",
+        "src/ui/image-card/image-card.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1otdyox",
@@ -2659,13 +2659,13 @@
       "status": "parked",
       "note": "Parked 2026-11-09: the Industries template has a new design. Code and story kept for reference (BACKLOG.md).",
       "code": [
-        "src/components/components/IndustryListItem/IndustryListItem.tsx",
-        "src/components/components/IndustryListItem/IndustryListItem.css",
-        "src/components/components/IndustryListItem/IndustryListItem.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/industry-list-item/industry-list-item.tsx",
+        "src/ui/industry-list-item/industry-list-item.css",
+        "src/ui/industry-list-item/industry-list-item.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1m34l0r",
@@ -2713,13 +2713,13 @@
       "status": "complete",
       "note": "Default and Featured; image placeholder as in Figma.",
       "code": [
-        "src/components/components/InsightCard/InsightCard.tsx",
-        "src/components/components/InsightCard/InsightCard.css",
-        "src/components/components/InsightCard/InsightCard.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/insight-card/insight-card.tsx",
+        "src/ui/insight-card/insight-card.css",
+        "src/ui/insight-card/insight-card.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "18hmdjb",
@@ -2757,11 +2757,11 @@
       "status": "complete",
       "note": "Retitled Components/Upcoming events (the Insight Card title is taken).",
       "code": [
-        "src/components/components/UpcomingEvents/UpcomingEvents.tsx",
-        "src/components/components/UpcomingEvents/UpcomingEvents.css",
-        "src/components/components/UpcomingEvents/UpcomingEvents.stories.tsx",
-        "src/components/shared/ModeFrame.tsx",
-        "src/components/shared/CardReveal.tsx"
+        "src/ui/upcoming-events/upcoming-events.tsx",
+        "src/ui/upcoming-events/upcoming-events.css",
+        "src/ui/upcoming-events/upcoming-events.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx",
+        "src/shared/card-reveal/card-reveal.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1vo02ro",
@@ -2794,11 +2794,11 @@
       "status": "internal",
       "note": "EventCard with the shared red reveal.",
       "code": [
-        "src/components/components/UpcomingEvents/UpcomingEvents.tsx",
-        "src/components/components/UpcomingEvents/UpcomingEvents.css",
-        "src/components/components/UpcomingEvents/UpcomingEvents.stories.tsx",
-        "src/components/shared/ModeFrame.tsx",
-        "src/components/shared/CardReveal.tsx"
+        "src/ui/upcoming-events/upcoming-events.tsx",
+        "src/ui/upcoming-events/upcoming-events.css",
+        "src/ui/upcoming-events/upcoming-events.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx",
+        "src/shared/card-reveal/card-reveal.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "fgb6gy",
@@ -2843,16 +2843,16 @@
       "status": "complete",
       "note": "All 13 variants.",
       "code": [
-        "src/components/components/Dropdown/Dropdown.tsx",
-        "src/components/components/Dropdown/Dropdown.css",
-        "src/components/components/Dropdown/Dropdown.stories.tsx",
-        "src/components/components/Field/Field.tsx",
-        "src/components/components/Field/Field.css",
-        "src/components/components/Field/fieldStory.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.css",
-        "src/components/components/OptionsPanel/useListbox.ts",
-        "src/components/icons/Icon.tsx"
+        "src/ui/dropdown/dropdown.tsx",
+        "src/ui/dropdown/dropdown.css",
+        "src/ui/dropdown/dropdown.stories.tsx",
+        "src/ui/field/field.tsx",
+        "src/ui/field/field.css",
+        "src/ui/field/field-story.tsx",
+        "src/ui/options-panel/options-panel.tsx",
+        "src/ui/options-panel/options-panel.css",
+        "src/ui/options-panel/use-listbox.ts",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1ijdmm3",
@@ -2892,16 +2892,16 @@
       "status": "complete",
       "note": "All 9 states (Active = open). Select-only combobox with keyboard support and the Figma options panel.",
       "code": [
-        "src/components/components/Dropdown/Dropdown.tsx",
-        "src/components/components/Dropdown/Dropdown.css",
-        "src/components/components/Dropdown/Dropdown.stories.tsx",
-        "src/components/components/Field/Field.tsx",
-        "src/components/components/Field/Field.css",
-        "src/components/components/Field/fieldStory.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.css",
-        "src/components/components/OptionsPanel/useListbox.ts",
-        "src/components/icons/Icon.tsx"
+        "src/ui/dropdown/dropdown.tsx",
+        "src/ui/dropdown/dropdown.css",
+        "src/ui/dropdown/dropdown.stories.tsx",
+        "src/ui/field/field.tsx",
+        "src/ui/field/field.css",
+        "src/ui/field/field-story.tsx",
+        "src/ui/options-panel/options-panel.tsx",
+        "src/ui/options-panel/options-panel.css",
+        "src/ui/options-panel/use-listbox.ts",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1isfzol",
@@ -3015,16 +3015,16 @@
       "status": "complete",
       "note": "All 8 states with _Locale select (5 Figma flags/codes).",
       "code": [
-        "src/components/components/PhoneInput/PhoneInput.tsx",
-        "src/components/components/PhoneInput/PhoneInput.css",
-        "src/components/components/PhoneInput/PhoneInput.stories.tsx",
-        "src/components/components/Field/Field.tsx",
-        "src/components/components/Field/Field.css",
-        "src/components/components/Field/fieldStory.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.css",
-        "src/components/components/OptionsPanel/useListbox.ts",
-        "src/components/icons/Icon.tsx"
+        "src/ui/phone-input/phone-input.tsx",
+        "src/ui/phone-input/phone-input.css",
+        "src/ui/phone-input/phone-input.stories.tsx",
+        "src/ui/field/field.tsx",
+        "src/ui/field/field.css",
+        "src/ui/field/field-story.tsx",
+        "src/ui/options-panel/options-panel.tsx",
+        "src/ui/options-panel/options-panel.css",
+        "src/ui/options-panel/use-listbox.ts",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "ogo0bo",
@@ -3063,16 +3063,16 @@
       "status": "complete",
       "note": "All 8 states. Label always up, as in Figma.",
       "code": [
-        "src/components/components/PhoneInput/PhoneInput.tsx",
-        "src/components/components/PhoneInput/PhoneInput.css",
-        "src/components/components/PhoneInput/PhoneInput.stories.tsx",
-        "src/components/components/Field/Field.tsx",
-        "src/components/components/Field/Field.css",
-        "src/components/components/Field/fieldStory.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.css",
-        "src/components/components/OptionsPanel/useListbox.ts",
-        "src/components/icons/Icon.tsx"
+        "src/ui/phone-input/phone-input.tsx",
+        "src/ui/phone-input/phone-input.css",
+        "src/ui/phone-input/phone-input.stories.tsx",
+        "src/ui/field/field.tsx",
+        "src/ui/field/field.css",
+        "src/ui/field/field-story.tsx",
+        "src/ui/options-panel/options-panel.tsx",
+        "src/ui/options-panel/options-panel.css",
+        "src/ui/options-panel/use-listbox.ts",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "9ea031",
@@ -3148,12 +3148,12 @@
       "status": "complete",
       "note": "All 13 variants (State × Placeholder). Label floats on focus/value; Placeholder=Yes keeps it up.",
       "code": [
-        "src/components/components/TextInput/TextInput.tsx",
-        "src/components/components/TextInput/TextInput.stories.tsx",
-        "src/components/components/Field/Field.tsx",
-        "src/components/components/Field/Field.css",
-        "src/components/components/Field/fieldStory.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/ui/text-input/text-input.tsx",
+        "src/ui/text-input/text-input.stories.tsx",
+        "src/ui/field/field.tsx",
+        "src/ui/field/field.css",
+        "src/ui/field/field-story.tsx",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "10glfpo",
@@ -3193,12 +3193,12 @@
       "status": "complete",
       "note": "All 9 states. Hover/Focused/Active real CSS; Filled = value; Success/Error = status. Suffix = search icon. Disabled placeholder fixed in Figma to body/sm/reg (matches code).",
       "code": [
-        "src/components/components/TextInput/TextInput.tsx",
-        "src/components/components/TextInput/TextInput.stories.tsx",
-        "src/components/components/Field/Field.tsx",
-        "src/components/components/Field/Field.css",
-        "src/components/components/Field/fieldStory.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/ui/text-input/text-input.tsx",
+        "src/ui/text-input/text-input.stories.tsx",
+        "src/ui/field/field.tsx",
+        "src/ui/field/field.css",
+        "src/ui/field/field-story.tsx",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "puwuka",
@@ -3238,12 +3238,12 @@
       "status": "complete",
       "note": "All 9 states. Native resize handle instead of the drawn Figma corner.",
       "code": [
-        "src/components/components/TextArea/TextArea.tsx",
-        "src/components/components/TextArea/TextArea.css",
-        "src/components/components/TextArea/TextArea.stories.tsx",
-        "src/components/components/Field/Field.tsx",
-        "src/components/components/Field/Field.css",
-        "src/components/components/Field/fieldStory.tsx"
+        "src/ui/text-area/text-area.tsx",
+        "src/ui/text-area/text-area.css",
+        "src/ui/text-area/text-area.stories.tsx",
+        "src/ui/field/field.tsx",
+        "src/ui/field/field.css",
+        "src/ui/field/field-story.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "5jnhfn",
@@ -3288,12 +3288,12 @@
       "status": "complete",
       "note": "All 13 variants.",
       "code": [
-        "src/components/components/TextArea/TextArea.tsx",
-        "src/components/components/TextArea/TextArea.css",
-        "src/components/components/TextArea/TextArea.stories.tsx",
-        "src/components/components/Field/Field.tsx",
-        "src/components/components/Field/Field.css",
-        "src/components/components/Field/fieldStory.tsx"
+        "src/ui/text-area/text-area.tsx",
+        "src/ui/text-area/text-area.css",
+        "src/ui/text-area/text-area.stories.tsx",
+        "src/ui/field/field.tsx",
+        "src/ui/field/field.css",
+        "src/ui/field/field-story.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "g0yoo8",
@@ -3331,13 +3331,13 @@
       "status": "complete",
       "note": "Live clock per IANA time zone.",
       "code": [
-        "src/components/components/Location/Location.tsx",
-        "src/components/components/Location/Location.css",
-        "src/components/components/Location/Location.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/location/location.tsx",
+        "src/ui/location/location.css",
+        "src/ui/location/location.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "566hyc",
@@ -3370,13 +3370,13 @@
       "status": "complete",
       "note": "Part of Location file; digits flip on change.",
       "code": [
-        "src/components/components/Location/Location.tsx",
-        "src/components/components/Location/Location.css",
-        "src/components/components/Location/Location.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/location/location.tsx",
+        "src/ui/location/location.css",
+        "src/ui/location/location.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "15w13sy",
@@ -3414,9 +3414,9 @@
       "status": "complete",
       "note": "Prev/pages/Next with ellipsis; mobile First/Prev/current/Next/Last; View amount with the compact dropdown (Figma Dropdown/Compact M) built in. First/last icons exported from Figma.",
       "code": [
-        "src/components/components/Pagination/Pagination.tsx",
-        "src/components/components/Pagination/Pagination.css",
-        "src/components/components/Pagination/Pagination.stories.tsx"
+        "src/ui/pagination/pagination.tsx",
+        "src/ui/pagination/pagination.css",
+        "src/ui/pagination/pagination.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1nk4kqy",
@@ -3460,8 +3460,8 @@
       "status": "internal",
       "note": "Rendered inside Pagination; states in the Pagination States story.",
       "code": [
-        "src/components/components/Pagination/Pagination.tsx",
-        "src/components/components/Pagination/Pagination.css"
+        "src/ui/pagination/pagination.tsx",
+        "src/ui/pagination/pagination.css"
       ],
       "locked": false,
       "lastSyncedSignature": null,
@@ -3513,11 +3513,11 @@
       "status": "complete",
       "note": "All 60 variants. Toggle button with aria-pressed for filter use. Focus Ring now matches Figma incl. the shadow/outer/md/focus glow (batch 2).",
       "code": [
-        "src/components/components/Pills/Pills.tsx",
-        "src/components/components/Pills/Pills.css",
-        "src/components/components/Pills/Pills.stories.tsx",
-        "src/components/icons/Icon.tsx",
-        "src/components/shared/focus-ring.css"
+        "src/ui/pills/pills.tsx",
+        "src/ui/pills/pills.css",
+        "src/ui/pills/pills.stories.tsx",
+        "src/shared/icons/icon.tsx",
+        "src/shared/focus-ring/focus-ring.css"
       ],
       "locked": false,
       "lastSyncedSignature": "gc1kqn",
@@ -3553,9 +3553,9 @@
       "status": "complete",
       "note": "Also takes any value 0–100.",
       "code": [
-        "src/components/components/ProgressBar/ProgressBar.tsx",
-        "src/components/components/ProgressBar/ProgressBar.css",
-        "src/components/components/ProgressBar/ProgressBar.stories.tsx"
+        "src/ui/progress-bar/progress-bar.tsx",
+        "src/ui/progress-bar/progress-bar.css",
+        "src/ui/progress-bar/progress-bar.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "ydmfr9",
@@ -3593,13 +3593,13 @@
       "status": "complete",
       "note": "Copy from the Vertical slider quote (Frank Daamen, Bunzl).",
       "code": [
-        "src/components/components/QuoteCard/QuoteCard.tsx",
-        "src/components/components/QuoteCard/QuoteCard.css",
-        "src/components/components/QuoteCard/QuoteCard.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/quote-card/quote-card.tsx",
+        "src/ui/quote-card/quote-card.css",
+        "src/ui/quote-card/quote-card.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1qphmpu",
@@ -3644,9 +3644,9 @@
       "status": "complete",
       "note": "All 18 variants. Native input.",
       "code": [
-        "src/components/components/Radio/Radio.tsx",
-        "src/components/components/Radio/Radio.css",
-        "src/components/components/Radio/Radio.stories.tsx"
+        "src/ui/radio/radio.tsx",
+        "src/ui/radio/radio.css",
+        "src/ui/radio/radio.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "fx31mh",
@@ -3686,9 +3686,9 @@
       "status": "complete",
       "note": "All 9 variants (RadioLabel, size M).",
       "code": [
-        "src/components/components/Radio/Radio.tsx",
-        "src/components/components/Radio/Radio.css",
-        "src/components/components/Radio/Radio.stories.tsx"
+        "src/ui/radio/radio.tsx",
+        "src/ui/radio/radio.css",
+        "src/ui/radio/radio.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "gi9uhy",
@@ -3726,13 +3726,13 @@
       "status": "complete",
       "note": "Shared red reveal with lift.",
       "code": [
-        "src/components/components/ServiceCard/ServiceCard.tsx",
-        "src/components/components/ServiceCard/ServiceCard.css",
-        "src/components/components/ServiceCard/ServiceCard.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/service-card/service-card.tsx",
+        "src/ui/service-card/service-card.css",
+        "src/ui/service-card/service-card.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "ptqzji",
@@ -3770,13 +3770,13 @@
       "status": "complete",
       "note": "In ServiceCard.tsx (SystemCard).",
       "code": [
-        "src/components/components/ServiceCard/ServiceCard.tsx",
-        "src/components/components/ServiceCard/ServiceCard.css",
-        "src/components/components/ServiceCard/ServiceCard.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/service-card/service-card.tsx",
+        "src/ui/service-card/service-card.css",
+        "src/ui/service-card/service-card.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1cs5xwk",
@@ -3812,10 +3812,10 @@
       "status": "complete",
       "note": "All 5 variants.",
       "code": [
-        "src/components/components/Tabs/Tabs.tsx",
-        "src/components/components/Tabs/Tabs.css",
-        "src/components/components/Tabs/Tabs.stories.tsx",
-        "src/components/shared/focus-ring.css"
+        "src/ui/tabs/tabs.tsx",
+        "src/ui/tabs/tabs.css",
+        "src/ui/tabs/tabs.stories.tsx",
+        "src/shared/focus-ring/focus-ring.css"
       ],
       "locked": false,
       "lastSyncedSignature": "1384huj",
@@ -3847,13 +3847,13 @@
       "status": "complete",
       "note": "WAI-ARIA tabs, roving tabindex, Arrow/Home/End, sliding ink. Trailing action opens the _Dropdown/Options menu (batch 3).",
       "code": [
-        "src/components/components/Tabs/Tabs.tsx",
-        "src/components/components/Tabs/Tabs.css",
-        "src/components/components/Tabs/Tabs.stories.tsx",
-        "src/components/components/Button/Button.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.tsx",
-        "src/components/components/OptionsPanel/OptionsPanel.css",
-        "src/components/components/OptionsPanel/useListbox.ts"
+        "src/ui/tabs/tabs.tsx",
+        "src/ui/tabs/tabs.css",
+        "src/ui/tabs/tabs.stories.tsx",
+        "src/ui/button/button.tsx",
+        "src/ui/options-panel/options-panel.tsx",
+        "src/ui/options-panel/options-panel.css",
+        "src/ui/options-panel/use-listbox.ts"
       ],
       "locked": false,
       "lastSyncedSignature": "wlin8t",
@@ -3922,10 +3922,10 @@
       "status": "complete",
       "note": "All 4 variants plus Show icon. Default copy updated in Figma to \"Featured\" / \"Case study\".",
       "code": [
-        "src/components/components/Tag/Tag.tsx",
-        "src/components/components/Tag/Tag.css",
-        "src/components/components/Tag/Tag.stories.tsx",
-        "src/components/icons/Icon.tsx"
+        "src/ui/tag/tag.tsx",
+        "src/ui/tag/tag.css",
+        "src/ui/tag/tag.stories.tsx",
+        "src/shared/icons/icon.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "k3t3ff",
@@ -3968,13 +3968,13 @@
       "status": "complete",
       "note": "Partner logos not exported yet: wordmark in the white tile.",
       "code": [
-        "src/components/components/TechnologyCard/TechnologyCard.tsx",
-        "src/components/components/TechnologyCard/TechnologyCard.css",
-        "src/components/components/TechnologyCard/TechnologyCard.stories.tsx",
-        "src/components/shared/CardReveal.tsx",
-        "src/components/shared/card-reveal.css",
-        "src/components/shared/CardMedia.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/ui/technology-card/technology-card.tsx",
+        "src/ui/technology-card/technology-card.css",
+        "src/ui/technology-card/technology-card.stories.tsx",
+        "src/shared/card-reveal/card-reveal.tsx",
+        "src/shared/card-reveal/card-reveal.css",
+        "src/shared/card-reveal/card-media.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "xgufv2",
@@ -4000,9 +4000,9 @@
       "status": "internal",
       "note": "Part of Technology Card (wordmark tile).",
       "code": [
-        "src/components/components/TechnologyCard/TechnologyCard.tsx",
-        "src/components/components/TechnologyCard/TechnologyCard.css",
-        "src/components/components/TechnologyCard/TechnologyCard.stories.tsx"
+        "src/ui/technology-card/technology-card.tsx",
+        "src/ui/technology-card/technology-card.css",
+        "src/ui/technology-card/technology-card.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "7oqu4y",
@@ -4042,9 +4042,9 @@
       "status": "complete",
       "note": "Figma copy; enter/exit motion.",
       "code": [
-        "src/components/components/Toaster/Toaster.tsx",
-        "src/components/components/Toaster/Toaster.css",
-        "src/components/components/Toaster/Toaster.stories.tsx"
+        "src/ui/toaster/toaster.tsx",
+        "src/ui/toaster/toaster.css",
+        "src/ui/toaster/toaster.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1biiocd",
@@ -4089,11 +4089,11 @@
       "status": "complete",
       "note": "All 14 variants incl. _Handle. role=\"switch\".",
       "code": [
-        "src/components/components/Toggle/Toggle.tsx",
-        "src/components/components/Toggle/Toggle.css",
-        "src/components/components/Toggle/Toggle.stories.tsx",
-        "src/components/icons/Icon.tsx",
-        "src/components/shared/focus-ring.css"
+        "src/ui/toggle/toggle.tsx",
+        "src/ui/toggle/toggle.css",
+        "src/ui/toggle/toggle.stories.tsx",
+        "src/shared/icons/icon.tsx",
+        "src/shared/focus-ring/focus-ring.css"
       ],
       "locked": false,
       "lastSyncedSignature": "zm6evj",
@@ -4163,9 +4163,9 @@
       "status": "complete",
       "note": "Tooltip bubble (Size M / S).",
       "code": [
-        "src/components/components/Tooltip/Tooltip.tsx",
-        "src/components/components/Tooltip/Tooltip.css",
-        "src/components/components/Tooltip/Tooltip.stories.tsx"
+        "src/ui/tooltip/tooltip.tsx",
+        "src/ui/tooltip/tooltip.css",
+        "src/ui/tooltip/tooltip.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "1xdwbtu",
@@ -4204,9 +4204,9 @@
       "status": "complete",
       "note": "Shows on hover and keyboard focus.",
       "code": [
-        "src/components/components/Tooltip/Tooltip.tsx",
-        "src/components/components/Tooltip/Tooltip.css",
-        "src/components/components/Tooltip/Tooltip.stories.tsx"
+        "src/ui/tooltip/tooltip.tsx",
+        "src/ui/tooltip/tooltip.css",
+        "src/ui/tooltip/tooltip.stories.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "vl85jq",
@@ -4239,11 +4239,11 @@
       "status": "complete",
       "note": "Title and four award badges (placeholders until the badges are exported).",
       "code": [
-        "src/components/components/Awards/Awards.tsx",
-        "src/components/components/Awards/Awards.stories.tsx",
-        "src/components/components/AccordionList/AccordionList.css",
-        "src/components/shared/block.css",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/awards/awards.tsx",
+        "src/blocks/awards/awards.stories.tsx",
+        "src/blocks/accordion-list/accordion-list.css",
+        "src/shared/block/block.css",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "2vt2j9",
@@ -4281,10 +4281,10 @@
       "status": "complete",
       "note": "Desktop tiles + dropdowns; mobile pills, Filters button and bottom sheet. Selected tile: brand border (Figma updated 9 November, was Focused).",
       "code": [
-        "src/components/components/FilterBar/FilterBar.tsx",
-        "src/components/components/FilterBar/FilterBar.css",
-        "src/components/components/FilterBar/FilterBar.stories.tsx",
-        "src/components/shared/ModeFrame.tsx"
+        "src/blocks/filter-bar/filter-bar.tsx",
+        "src/blocks/filter-bar/filter-bar.css",
+        "src/blocks/filter-bar/filter-bar.stories.tsx",
+        "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
       "lastSyncedSignature": "13hibo3",

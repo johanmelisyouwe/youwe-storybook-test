@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero } from '../components/components/Hero/Hero'
-import { CardGrid } from '../components/components/CardGrid/CardGrid'
-import { InsightCard } from '../components/components/InsightCard/InsightCard'
-import {
-    UpcomingEvents,
-    type EventItem,
-} from '../components/components/UpcomingEvents/UpcomingEvents'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
+import { Hero } from '../blocks/hero'
+import { CardGrid } from '../blocks/card-grid'
+import { InsightCard } from '../ui/insight-card'
+import { UpcomingEvents, type EventItem } from '../ui/upcoming-events'
+import { ContactCTA } from '../blocks/contact-cta'
 import {
     CLIENT_LOGOS,
     NotAComponent,

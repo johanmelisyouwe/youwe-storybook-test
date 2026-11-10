@@ -1,16 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero } from '../components/components/Hero/Hero'
-import {
-    CaseCard,
-    type CaseCardProps,
-} from '../components/components/CaseCard/CaseCard'
-import { TextMedia } from '../components/components/TextMedia/TextMedia'
-import { Testimonial } from '../components/components/Testimonial/Testimonial'
-import { CardGrid } from '../components/components/CardGrid/CardGrid'
-import { ServiceCard } from '../components/components/ServiceCard/ServiceCard'
-import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
-import '../components/shared/block.css'
+import { Hero } from '../blocks/hero'
+import { CaseCard, type CaseCardProps } from '../ui/case-card'
+import { TextMedia } from '../blocks/text-media'
+import { Testimonial } from '../blocks/testimonial'
+import { CardGrid } from '../blocks/card-grid'
+import { ServiceCard } from '../ui/service-card'
+import { CaseCarousel } from '../blocks/case-carousel'
+import { ContactCTA } from '../blocks/contact-cta'
+import '../shared/block/block.css'
 import { CLIENT_LOGOS, Page, Section, footer, header, logo } from './shared'
 import { abstract, caseImage, clientPhoto } from '../media/media'
 

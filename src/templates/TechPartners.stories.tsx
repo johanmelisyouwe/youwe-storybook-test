@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero } from '../components/components/Hero/Hero'
-import { BuildYourStack } from '../components/components/BuildYourStack/BuildYourStack'
-import { BUILD_YOUR_STACK } from '../components/components/BuildYourStack/buildYourStack.copy'
-import { SectionIntro } from '../components/components/SectionHeader/SectionHeader'
+import { Hero } from '../blocks/hero'
+import { BuildYourStack } from '../blocks/build-your-stack'
+import { BUILD_YOUR_STACK } from '../blocks/build-your-stack/build-your-stack.copy'
+import { SectionIntro } from '../blocks/section-header'
 import {
     TechPartnersSplit,
     type TechPartnersSplitProps,
-} from '../components/components/TechPartnersSplit/TechPartnersSplit'
-import type { TechnologyCardProps } from '../components/components/TechnologyCard/TechnologyCard'
-import { AskSnippet } from '../components/components/AskYouwe/AskYouwe'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
-import '../components/shared/block.css'
+} from '../blocks/tech-partners-split'
+import type { TechnologyCardProps } from '../ui/technology-card'
+import { AskSnippet } from '../site/ask-youwe'
+import { ContactCTA } from '../blocks/contact-cta'
+import '../shared/block/block.css'
 import {
     CLIENT_LOGOS,
     Page,

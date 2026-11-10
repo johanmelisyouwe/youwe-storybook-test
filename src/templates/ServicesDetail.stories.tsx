@@ -1,22 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import type { ReactNode } from 'react'
-import { Hero } from '../components/components/Hero/Hero'
-import { FeatureList } from '../components/components/FeatureList/FeatureList'
-import {
-    CardGrid,
-    type CardGridProps,
-} from '../components/components/CardGrid/CardGrid'
-import {
-    FeatureCard,
-    type FeatureCardProps,
-} from '../components/components/FeatureCard/FeatureCard'
-import { CaseCard } from '../components/components/CaseCard/CaseCard'
-import { QuoteCard } from '../components/components/QuoteCard/QuoteCard'
-import { StatsBlock } from '../components/components/StatsBlock/StatsBlock'
-import { ServiceCard } from '../components/components/ServiceCard/ServiceCard'
-import { TechnologyLogos } from '../components/components/TechnologyLogos/TechnologyLogos'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
-import type { Mode } from '../components/shared/ModeFrame'
+import { Hero } from '../blocks/hero'
+import { FeatureList } from '../blocks/feature-list'
+import { CardGrid, type CardGridProps } from '../blocks/card-grid'
+import { FeatureCard, type FeatureCardProps } from '../ui/feature-card'
+import { CaseCard } from '../ui/case-card'
+import { QuoteCard } from '../ui/quote-card'
+import { StatsBlock } from '../blocks/stats-block'
+import { ServiceCard } from '../ui/service-card'
+import { TechnologyLogos } from '../blocks/technology-logos'
+import { ContactCTA } from '../blocks/contact-cta'
+import type { Mode } from '../shared/mode-frame'
 import {
     Page,
     Section,

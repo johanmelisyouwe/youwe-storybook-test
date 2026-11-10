@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero } from '../components/components/Hero/Hero'
-import { CardGrid } from '../components/components/CardGrid/CardGrid'
-import {
-    CaseCard,
-    type CaseCardProps,
-} from '../components/components/CaseCard/CaseCard'
-import { SystemCard } from '../components/components/ServiceCard/ServiceCard'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
+import { Hero } from '../blocks/hero'
+import { CardGrid } from '../blocks/card-grid'
+import { CaseCard, type CaseCardProps } from '../ui/case-card'
+import { SystemCard } from '../ui/service-card'
+import { ContactCTA } from '../blocks/contact-cta'
 import {
     CLIENT_LOGOS,
     Page,

@@ -1,15 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero, HeroBar } from '../components/components/Hero/Hero'
-import { CardGrid } from '../components/components/CardGrid/CardGrid'
-import { SystemCard } from '../components/components/ServiceCard/ServiceCard'
-import { StatsBlock } from '../components/components/StatsBlock/StatsBlock'
-import {
-    Offices,
-    type OfficesProps,
-} from '../components/components/Offices/Offices'
-import { Leadership } from '../components/components/Leadership/Leadership'
-import { Awards } from '../components/components/Awards/Awards'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
+import { Hero, HeroBar } from '../blocks/hero'
+import { CardGrid } from '../blocks/card-grid'
+import { SystemCard } from '../ui/service-card'
+import { StatsBlock } from '../blocks/stats-block'
+import { Offices, type OfficesProps } from '../blocks/offices'
+import { Leadership } from '../blocks/leadership'
+import { Awards } from '../blocks/awards'
+import { ContactCTA } from '../blocks/contact-cta'
 import {
     CLIENT_LOGOS,
     Page,

@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero } from '../components/components/Hero/Hero'
+import { Hero } from '../blocks/hero'
 import {
     ServicesSplit,
     type ServicesSplitProps,
-} from '../components/components/ServicesSplit/ServicesSplit'
-import { AskSnippet } from '../components/components/AskYouwe/AskYouwe'
-import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
-import type { CaseCardProps } from '../components/components/CaseCard/CaseCard'
+} from '../blocks/services-split'
+import { AskSnippet } from '../site/ask-youwe'
+import { CaseCarousel } from '../blocks/case-carousel'
+import { ContactCTA } from '../blocks/contact-cta'
+import type { CaseCardProps } from '../ui/case-card'
 import {
     OFFICES,
     Page,

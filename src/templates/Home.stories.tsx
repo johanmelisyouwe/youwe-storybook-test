@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero } from '../components/components/Hero/Hero'
+import { Hero } from '../blocks/hero'
 import {
     VerticalSlider,
     type SlideData,
     type VerticalSliderProps,
-} from '../components/components/VerticalSlider/VerticalSlider'
-import { StatsBlock } from '../components/components/StatsBlock/StatsBlock'
-import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel'
-import { TechnologyLogos } from '../components/components/TechnologyLogos/TechnologyLogos'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
-import type { CaseCardProps } from '../components/components/CaseCard/CaseCard'
+} from '../blocks/vertical-slider'
+import { StatsBlock } from '../blocks/stats-block'
+import { CaseCarousel } from '../blocks/case-carousel'
+import { TechnologyLogos } from '../blocks/technology-logos'
+import { ContactCTA } from '../blocks/contact-cta'
+import type { CaseCardProps } from '../ui/case-card'
 import {
     CLIENT_LOGOS,
     NotAComponent,

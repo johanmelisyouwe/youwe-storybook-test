@@ -1,14 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero } from '../components/components/Hero/Hero'
-import { SectionIntro } from '../components/components/SectionHeader/SectionHeader'
-import {
-    FilterBar,
-    type FilterBarProps,
-} from '../components/components/FilterBar/FilterBar'
-import { CardGrid } from '../components/components/CardGrid/CardGrid'
-import { CaseCard } from '../components/components/CaseCard/CaseCard'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
-import '../components/shared/block.css'
+import { Hero } from '../blocks/hero'
+import { SectionIntro } from '../blocks/section-header'
+import { FilterBar, type FilterBarProps } from '../blocks/filter-bar'
+import { CardGrid } from '../blocks/card-grid'
+import { CaseCard } from '../ui/case-card'
+import { ContactCTA } from '../blocks/contact-cta'
+import '../shared/block/block.css'
 import {
     Page,
     Section,

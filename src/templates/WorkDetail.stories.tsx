@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
-import { Hero } from '../components/components/Hero/Hero'
-import { CaseIntro } from '../components/components/CaseIntro/CaseIntro'
-import { Media } from '../components/components/Media/Media'
-import { SectionHeader } from '../components/components/SectionHeader/SectionHeader'
-import { TextColumn } from '../components/components/TextColumn/TextColumn'
-import { TextMedia } from '../components/components/TextMedia/TextMedia'
-import { Testimonial } from '../components/components/Testimonial/Testimonial'
-import { StatsBlock } from '../components/components/StatsBlock/StatsBlock'
-import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel'
-import { ContactCTA } from '../components/components/ContactCTA/ContactCTA'
+import { Hero } from '../blocks/hero'
+import { CaseIntro } from '../blocks/case-intro'
+import { Media } from '../blocks/media'
+import { SectionHeader } from '../blocks/section-header'
+import { TextColumn } from '../blocks/text-column'
+import { TextMedia } from '../blocks/text-media'
+import { Testimonial } from '../blocks/testimonial'
+import { StatsBlock } from '../blocks/stats-block'
+import { CaseCarousel } from '../blocks/case-carousel'
+import { ContactCTA } from '../blocks/contact-cta'
 import {
     CASE_INTRO,
     TEXT_COLUMN,
     TWO_COLUMN,
-} from '../components/components/TextColumn/longform.copy'
-import type { CaseCardProps } from '../components/components/CaseCard/CaseCard'
+} from '../blocks/text-column/longform.copy'
+import type { CaseCardProps } from '../ui/case-card'
 import {
     Page,
     Section,
