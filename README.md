@@ -35,7 +35,10 @@ tokens/figma-variables.json    Figma export (variables, text styles, effects). N
 src/tokens/                    GENERATED tokens.css + tokens.resolved.json
 src/styles/                    globals.css (layer order), reset.css, base.css
 src/foundations/               Colour, type, spacing, radius, motion, effects pages (from the tokens)
-src/components/                Components, filled by the sync (components/, content-blocks/, site/)
+src/ui/                        Figma components (one kebab-case folder each), filled by the sync
+src/blocks/                    Content blocks, filled by the sync
+src/site/                      Header, footer, Ask Youwe
+src/shared/                    Focus ring, block frame, card reveal, icons, logos, cx
 src/templates/                 Page template stories, filled by the sync
 public/figma-assets/           Images exported from Figma by the sync
 app/                           Next.js app (pages built from the components)
@@ -53,13 +56,14 @@ Checks (also run in CI on every push):
 
 ```bash
 pnpm check          # check-legacy + check-coverage
+pnpm lint           # biome (not in check yet: pre-existing findings)
 ```
 
 ## Styling rules
 
 - Use **semantic tokens** only (`var(--color-shared-surface-base-2)`, `var(--color-shared-content-secondary)`, `var(--spacing-lg)`), never raw hex or px values.
 - Use the **text style classes** (`.yw-heading-xl`, `.yw-body-md-reg`) for typography. They sit above components in the cascade, so they always win.
-- Component CSS goes in `@layer components`.
+- Component CSS is a CSS Module in `@layer components`; variants are `data-*` attributes, not class names.
 - All copy and images come from Figma; no placeholder text.
 - Dark is the default mode. Light is `data-theme="light"` on any wrapper.
 
