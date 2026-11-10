@@ -7,7 +7,7 @@ import figma from '../../tokens/figma-variables.json';
   - src/tokens/tokens.resolved.json (every CSS variable with its value per Figma mode)
   - tokens/figma-variables.json (text styles)
   Nothing on these pages is typed by hand (FIGMA-SYNC.md step 6). If a value looks
-  wrong, fix it in Figma, re-export and run `npm run tokens`.
+  wrong, fix it in Figma, re-export and run `pnpm tokens`.
 */
 
 const meta: Meta = {

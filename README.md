@@ -15,9 +15,9 @@ The same stack as the main Youwe Storybook, so results can be compared:
 ## Run it locally
 
 ```bash
-npm install
-npm run storybook      # http://localhost:6006
-npm run dev            # Next.js app on http://localhost:3000
+pnpm install
+pnpm storybook      # http://localhost:6006
+pnpm dev            # Next.js app on http://localhost:3000
 ```
 
 ## Project structure
@@ -47,12 +47,12 @@ Connect the Figma MCP server (see the appendix in `FIGMA-SYNC.md`), then ask you
 
 > Run the sync described in FIGMA-SYNC.md.
 
-It exports the tokens, works through the components and templates, compares them with Figma, runs the checks and opens a pull request with `SYNC-REPORT.md`. To update only the tokens by hand: re-export into `tokens/figma-variables.json` and run `npm run tokens`.
+It exports the tokens, works through the components and templates, compares them with Figma, runs the checks and opens a pull request with `SYNC-REPORT.md`. To update only the tokens by hand: re-export into `tokens/figma-variables.json` and run `pnpm tokens`.
 
 Checks (also run in CI on every push):
 
 ```bash
-npm run check          # check-legacy + check-coverage
+pnpm check          # check-legacy + check-coverage
 ```
 
 ## Styling rules

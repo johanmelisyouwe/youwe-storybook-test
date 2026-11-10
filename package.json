@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start",
     "tokens": "node scripts/build-tokens.mjs tokens/figma-variables.json src/tokens",
-    "storybook": "npm run tokens && storybook dev -p 6006",
-    "build-storybook": "npm run tokens && storybook build -o storybook-static",
+    "storybook": "pnpm tokens && storybook dev -p 6006",
+    "build-storybook": "pnpm tokens && storybook build -o storybook-static",
     "typecheck": "tsc --noEmit",
     "check": "node scripts/check-legacy.mjs && node scripts/check-coverage.mjs"
   },
@@ -32,5 +32,11 @@
   },
   "engines": {
     "node": ">=20.19"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
