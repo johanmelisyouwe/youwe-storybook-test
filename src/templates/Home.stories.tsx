@@ -55,10 +55,10 @@ const IN_THEIR_WORDS: VerticalSliderProps['items'] = [
 ];
 
 const STATS = [
-  { Value: '+12.7%', Label: 'More checkout starts in the first UK post-launch comparison', logo: logo('Quooker'), href: '#' },
-  { Value: '+43%', Label: 'Marketable catalog uplift', logo: logo('Chadwicks'), href: '#' },
-  { Value: '800+', Label: 'Categories active', logo: logo('BunzlOne'), href: '#' },
-  { Value: '+93%', Label: 'Average match score', logo: logo('Symson'), href: '#' },
+  { Value: '+12.7%', Label: 'More checkout starts in the first UK post-launch comparison', logo: logo('Quooker', 80), href: '#' },
+  { Value: '+43%', Label: 'Marketable catalog uplift', logo: logo('Chadwicks', 80), href: '#' },
+  { Value: '800+', Label: 'Categories active', logo: logo('BunzlOne', 80), href: '#' },
+  { Value: '+93%', Label: 'Average match score', logo: logo('Symson', 80), href: '#' },
 ];
 
 const c = (Title: string, Client: string, stat?: [string, string]): CaseCardProps => ({ Title, Client, logo: logo(Client), image: clientPhoto(Client), stat: stat && { value: stat[0], label: stat[1] }, href: '#' });
@@ -73,7 +73,7 @@ const CASES: CaseCardProps[] = [
   c('Adobe Commerce Headless implementation', 'PostNL', ['41%', 'IT cost reduction']),
 ];
 
-const TECH = ['Pimcore', 'Adobe', 'Commercetools', 'HubSpot', 'Shopify', 'Hyvä', 'Alumio', 'Storyblok', 'Drupal', 'Symson', 'AWS', 'ACI Weave'].map((name) => ({ name, logo: logo(name, 110) }));
+const TECH = ['Pimcore', 'Adobe', 'Commercetools', 'HubSpot', 'Shopify', 'Hyvä', 'Alumio', 'Storyblok', 'Drupal', 'Symson', 'AWS', 'ACI Weave'].map((name) => ({ name, logo: logo(name, 118) }));
 
 
 function HomePage({ Device: story }: { Device: Device }) {

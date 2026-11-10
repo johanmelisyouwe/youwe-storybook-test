@@ -29,8 +29,10 @@ export const NAV: HeaderProps['nav'] = ['Services', 'Work', 'Industries', 'Tech 
 /** Desktop templates use Auto: on a phone or tablet the header switches to the hamburger by itself. */
 export const header = (Device: Device) => <Header Device={Device === 'Desktop' ? 'Auto' : 'Mobile'} nav={NAV} />;
 
-/** Client and technology logos exported from Figma (name as text when there is no logo yet). */
-export const logo = (name: string, width = 96) => <Logo name={name} box={[width, Math.round(width / 3)]} />;
+/** Client and technology logos in their Figma logo box (190×100) at the slot width: case card 140, stat 80, hero bar 118. */
+export const logo = (name: string, width = 140) => <Logo name={name} width={width} />;
+/** Partner logos on technology cards (Figma Logos/*, 120×40 box). */
+export const partnerLogo = (name: string) => <Logo name={name} kind="partner" width={120} />;
 
 export const OFFICES = ['Rotterdam', 'Groningen', 'London', 'Leeds', 'Shrewsbury', 'Stockholm', 'Bandung', 'Kyiv'];
 
