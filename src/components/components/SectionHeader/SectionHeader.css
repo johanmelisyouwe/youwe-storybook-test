@@ -8,11 +8,16 @@
 */
 @layer components {
   .yw-section-header__text { display: flex; flex-direction: column; gap: var(--spacing-lg); max-width: 524px; }
-  .yw-section-header--centered .yw-section-header__text { align-items: center; margin-inline: auto; text-align: center; }
+  /* Centered (used for long statements, e.g. Work detail): wider measure than Figma's 524 so a long heading
+     doesn't become a narrow tower; the body stays a left-aligned 632 reading column under it (polish, 10 Nov). */
+  .yw-section-header--centered .yw-section-header__text { align-items: center; max-width: 860px; margin-inline: auto; text-align: center; }
+  .yw-section-header--centered .yw-section-header__text > p { max-width: 632px; text-align: start; }
   .yw-section-header h2, .yw-section-intro h2 { margin: 0; }
   .yw-section-header p { margin: 0; color: var(--color-shared-content-secondary); }
 
 
+  /* Scroll-driven motion only without a reduced-motion preference (it ignores animation duration). */
+  @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     @keyframes yw-word-rise { from { transform: translateY(105%); } to { transform: none; } }
     .yw-word {
@@ -21,6 +26,7 @@
       animation-timeline: view();
       animation-range: entry 0% entry 60%;
     }
+  }
   }
 
   .yw-section-intro { display: flex; flex-direction: column; gap: var(--spacing-lg); }

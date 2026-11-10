@@ -33,9 +33,12 @@
     gap: var(--spacing-lg);
   }
 
+  /* Scroll-driven motion only without a reduced-motion preference (it ignores animation duration). */
+  @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: scroll()) {
     @keyframes yw-hero-recede { to { opacity: 0.15; transform: translateY(-12vh) scale(0.96); } }
     .yw-hero--recede .yw-hero__content { animation: yw-hero-recede linear both; animation-timeline: scroll(root); animation-range: 0 860px; }
+  }
   }
 
   .yw-hero__titlecol { display: flex; flex: 0 1 776px; flex-direction: column; gap: var(--spacing-lg); min-width: 0; }

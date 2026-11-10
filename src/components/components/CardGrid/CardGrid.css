@@ -30,6 +30,8 @@
   }
   .yw-card-grid--scroll .yw-card-grid__grid > li { flex: 0 0 416px; scroll-snap-align: start; }
 
+  /* Scroll-driven motion only without a reduced-motion preference (it ignores animation duration). */
+  @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .yw-card-grid__grid > li {
       animation: yw-block-in var(--motion-duration-reveal) var(--motion-ease-emphasized) both;
@@ -37,6 +39,7 @@
       animation-timeline: view();
       animation-range: entry 0% entry 35%;
     }
+  }
   }
 
   @container (max-width: 767px) {

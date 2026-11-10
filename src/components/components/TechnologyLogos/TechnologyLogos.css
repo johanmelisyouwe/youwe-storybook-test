@@ -31,6 +31,8 @@
   .yw-tech-logos__grid > li:not(.is-empty):hover { opacity: 0.7; }
   .yw-tech-logos__grid img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
+  /* Scroll-driven motion only without a reduced-motion preference (it ignores animation duration). */
+  @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .yw-tech-logos__grid > li {
       animation: yw-block-in var(--motion-duration-reveal) var(--motion-ease-emphasized) both;
@@ -38,6 +40,7 @@
       animation-timeline: view();
       animation-range: entry 0% entry 40%;
     }
+  }
   }
 
   @container (max-width: 767px) {

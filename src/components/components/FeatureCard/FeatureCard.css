@@ -23,12 +23,15 @@
     background: var(--color-shared-surface-base-2);
   }
 
+  /* Scroll-driven motion only without a reduced-motion preference (it ignores animation duration). */
+  @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .yw-feature-card--reveal {
       animation: yw-block-reveal var(--motion-duration-reveal) var(--motion-ease-emphasized) both;
       animation-timeline: view();
       animation-range: entry 0% entry 40%;
     }
+  }
   }
 
   .yw-feature-card--plain {

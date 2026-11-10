@@ -44,12 +44,15 @@
     to { opacity: 1; transform: none; }
   }
 
+  /* Scroll-driven motion only without a reduced-motion preference (it ignores animation duration). */
+  @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .yw-block-reveal {
       animation: yw-block-in var(--motion-duration-reveal) var(--motion-ease-emphasized) both;
       animation-timeline: view();
       animation-range: entry 0% entry 35%;
     }
+  }
   }
 }
 
