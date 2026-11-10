@@ -42,9 +42,21 @@
   .yw-hero__title { margin: 0; }
   .yw-hero__line { display: block; overflow: hidden; }
   .yw-hero__line > span { display: block; animation: yw-hero-line var(--motion-duration-cinematic) var(--motion-ease-emphasized) both; }
-  .yw-hero__line:nth-child(2) > span { animation-delay: 120ms; color: var(--color-shared-content-brand); } /* legacy-ok: Figma "+120ms per line", no token */
+  .yw-hero__line:nth-child(2) > span { animation-delay: 120ms; color: var(--color-shared-surface-fixed-brand-red); } /* legacy-ok: Figma "+120ms per line", no token */
   .yw-hero__line:nth-child(3) > span { animation-delay: 240ms; } /* legacy-ok: Figma "+120ms per line", no token */
   @keyframes yw-hero-line { from { transform: translateY(105%); } to { transform: none; } }
+
+  /* Entrance (batch 6, after the v2 site): label first, then the title lines, then body, buttons and the
+     logo bar rise in; the background image settles from a slight zoom. Reduced motion: tokens go to 1ms. */
+  @keyframes yw-hero-rise { from { opacity: 0; transform: translateY(var(--motion-distance-md)); } to { opacity: 1; transform: none; } }
+  @keyframes yw-hero-settle { from { transform: scale(1.08); } to { transform: none; } }
+  .yw-hero__titlecol > :not(.yw-hero__title) { animation: yw-hero-rise var(--motion-duration-reveal) var(--motion-ease-emphasized) both; }
+  .yw-hero__textcol > * { animation: yw-hero-rise var(--motion-duration-reveal) var(--motion-ease-emphasized) both; animation-delay: calc(var(--motion-stagger) * 5); }
+  .yw-hero__textcol > * + * { animation-delay: calc(var(--motion-stagger) * 6); }
+  .yw-hero__logo { animation: yw-hero-rise var(--motion-duration-reveal) var(--motion-ease-emphasized) both; animation-delay: calc(var(--motion-stagger) * 4); }
+  .yw-hero > .yw-hero-bar { animation: yw-hero-rise var(--motion-duration-reveal) var(--motion-ease-emphasized) both; animation-delay: calc(var(--motion-stagger) * 8); }
+  .yw-hero__media img { animation: yw-hero-settle calc(var(--motion-duration-cinematic) * 2) var(--motion-ease-emphasized) both; }
+  .yw-hero__image img { animation: yw-hero-settle calc(var(--motion-duration-cinematic) * 2) var(--motion-ease-emphasized) both; }
 
   .yw-hero__textcol { display: flex; flex: 0 1 480px; flex-direction: column; gap: var(--spacing-lg); }
   .yw-hero__textcol p { margin: 0; }

@@ -52,10 +52,10 @@ const CHALLENGES: [string, string, string][] = [
   ['New markets, new rules', 'Each market needs its own language, payments and range.', 'Multi-store B2B: one platform, a catalog and conditions per market.'],
 ];
 const STATS = [
-  { Value: '50%', Label: 'Fewer phone calls', logo: logo('Chadwicks', 80), href: '#' },
-  { Value: '73%', Label: 'Efficiency improvement', logo: logo('Elektrototaalmarkt', 80), href: '#' },
-  { Value: '3,360', Label: 'Man-hours saved', logo: logo('Chadwicks', 80), href: '#' },
-  { Value: '8', Label: 'Months to a live MVP', logo: logo('BunzlOne', 80), href: '#' },
+  { Value: '50%', Label: 'Fewer phone calls', logo: logo('Chadwicks', 80), href: '#', context: 'Chadwicks' },
+  { Value: '73%', Label: 'Efficiency improvement', logo: logo('Elektrototaalmarkt', 80), href: '#', context: 'Elektrototaalmarkt' },
+  { Value: '3,360', Label: 'Man-hours saved', logo: logo('Chadwicks', 80), href: '#', context: 'Chadwicks' },
+  { Value: '8', Label: 'Months to a live MVP', logo: logo('BunzlOne', 80), href: '#', context: 'BunzlOne' },
 ];
 const MORE_CASES: [string, string][] = [
   ['A dealer portal with personalized pricing and technical drawings', 'PePe Parts'],

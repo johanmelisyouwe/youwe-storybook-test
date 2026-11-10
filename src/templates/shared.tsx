@@ -1,8 +1,9 @@
-import { useSyncExternalStore, type CSSProperties, type ReactNode } from 'react';
+import { useRef, useSyncExternalStore, type CSSProperties, type ReactNode } from 'react';
 import { Header, type HeaderProps } from '../components/components/Header/Header';
 import { Footer, type FooterColumn } from '../components/components/Footer/Footer';
 import { Logo } from '../components/logos/Logo';
 import { AskDock } from '../components/components/AskYouwe/AskYouwe';
+import { useMotion } from '../components/shared/motion';
 import type { Mode } from '../components/shared/ModeFrame';
 import './templates.css';
 
@@ -99,14 +100,17 @@ const ASK_PREVIEW = {
 };
 
 /**
- * Template page: dark theme, page column (360 wide in Mobile stories) and the docked Ask Youwe bar.
+ * Template page: dark theme, page column (360 wide in Mobile stories), the docked Ask Youwe bar and the
+ * page motion (scroll reveals, card staggers, image clip reveals; see components/shared/motion.ts).
  * `ask` is the page's contextual question on the bar.
  */
 export function Page({ Device: story, ask, children }: { Device: Device; ask?: string; children: ReactNode }) {
   const Device = useDevice(story);
+  const ref = useRef<HTMLDivElement>(null);
+  useMotion(ref);
   const style = { width: '100%', maxWidth: WIDTH[story], margin: '0 auto', overflowX: 'clip', background: 'var(--color-shared-surface-base-1)', '--yw-page-max': story === 'Mobile' ? `${WIDTH.Mobile}px` : undefined } as CSSProperties;
   return (
-    <div data-theme="dark" data-page="" style={style}>
+    <div ref={ref} data-theme="dark" data-page="" style={style}>
       {children}
       <AskDock Device={Device} context={ask} answer={ASK_PREVIEW} />
     </div>

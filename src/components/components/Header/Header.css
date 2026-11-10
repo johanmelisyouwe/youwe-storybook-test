@@ -79,7 +79,7 @@
   .yw-nav-link--plain { padding: 0; }
   .yw-nav-link--l { padding: 0; }
   .yw-nav-link--l:hover,
-  .yw-nav-link--l[aria-current='page'] { color: var(--color-shared-content-brand); }
+  .yw-nav-link--l[aria-current='page'] { color: var(--color-shared-surface-fixed-brand-red); }
 
   /* _Utility link */
   .yw-utility-link { color: var(--color-shared-content-primary); text-decoration: none; }

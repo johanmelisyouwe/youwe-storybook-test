@@ -4,7 +4,6 @@ Work agreed with the team that is not part of a sync batch yet. Newest first.
 
 | Item | Why | Status |
 |---|---|---|
-| More motion on the templates | Motion feels thin on the pages. Proposal to make: scroll reveals per section (blocks, card staggers, image clip reveals, count-ups) applied consistently, hero entrance, slider and carousel transitions, all from the Figma motion tokens and with reduced-motion respected. (Johan, 2026-11-10) | To propose |
 | Contrast colours in Figma | Code now overrides 8 semantic colour values that fail WCAG AA (src/tokens/contrast-overrides.css). The same change to the Figma variables was blocked by the edit permission check twice (batch 3 and batch 5); make it in Figma (or approve it), re-export the tokens and delete the override file. Also: Section intro unread words are content/tertiary (not 28% opacity) and read words content/secondary. | Waiting for Figma |
 | Statement giant rows in Figma | Built in code after the v2 site (image-filled + outlined rows, drift ±9%). Leave the Figma component for now (decided 2026-11-09). | Later |
 | Theme toggle (light/dark) | In the Figma mobile menu as loose layers, not a component (desktop has a hidden copy). Fine for now (decided 2026-11-09). | Later |

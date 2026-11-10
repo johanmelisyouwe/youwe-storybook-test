@@ -2119,7 +2119,7 @@
         },
         "props": "Value:T,Label:T,Logo:I,Show button:B",
         "variantCount": 12,
-        "signature": "kpnfco"
+        "signature": "1wpqwc6"
       },
       "storybook": {
         "title": "Components/Stat",
@@ -2138,7 +2138,7 @@
         "src/components/shared/ModeFrame.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "kpnfco",
+      "lastSyncedSignature": "1wpqwc6",
       "lastSynced": "2026-11-10"
     },
     {

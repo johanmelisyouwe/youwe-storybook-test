@@ -87,9 +87,9 @@ function AboutPage({ Device: story }: { Device: Device }) {
           Type="Client"
           Device={Device}
           stats={[
-            { Value: '20,000', Label: 'Enriched products', logo: logo('Chadwicks', 80), href: '#' },
-            { Value: '+480%', Label: 'eCommerce revenue', logo: logo('Elektrototaalmarkt', 80), href: '#' },
-            { Value: '93%', Label: 'Average match score', logo: logo('Symson', 80), href: '#' },
+            { Value: '20,000', Label: 'Enriched products', logo: logo('Chadwicks', 80), href: '#', context: 'Chadwicks' },
+            { Value: '+480%', Label: 'eCommerce revenue', logo: logo('Elektrototaalmarkt', 80), href: '#', context: 'Elektrototaalmarkt' },
+            { Value: '93%', Label: 'Average match score', logo: logo('Symson', 80), href: '#', context: 'Symson' },
           ]}
         />
         <Awards Device={Device} Title="Trusted by industry leaders" badges={BADGES} />
