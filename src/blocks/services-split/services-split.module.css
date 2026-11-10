@@ -1,0 +1,104 @@
+/*
+  Content blocks/Services split (Figma 26849:946) and Tech partners split (26851:911). Padding 80, gap 80.
+  Left (600): kicker + heading/2xl title (gap 8), body body/lg/reg (gap 24, right padding 40), then Ask Youwe
+  snippets (gap 16, 64 below the intro). Tech partners adds a Button/Link and uses a secondary body.
+  Services right: Service Cards in two columns (gap 16); the second column starts 32px lower.
+  Tech partners right: groups (label, then Technology Cards in two columns, gap 16), 40 between groups.
+  Mobile: one column. Motion (Figma): block reveal staggered.
+*/
+@layer components {
+    .root .inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--spacing-4xl);
+        padding-block: var(--spacing-4xl);
+    }
+    .left {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xl);
+    }
+    .intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
+        padding-right: var(--spacing-2xl);
+
+        & p {
+            margin: 0;
+        }
+    }
+    .title {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        margin: 0;
+    }
+    .root[data-layout="tech"] .intro p {
+        color: var(--color-shared-content-secondary);
+    }
+    .snippets {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-sm);
+        align-items: start;
+    }
+    .col {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        & > li > * {
+            height: auto;
+        }
+    }
+    .colOffset {
+        padding-top: var(--spacing-xl);
+    }
+
+    .groups {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+    }
+    .group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    .groupLabel {
+        margin: 0;
+        color: var(--color-shared-content-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    @container (max-width: 63.9375rem) {
+        .root .inner {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
+        }
+    }
+
+    @container (max-width: 47.9375rem) {
+        .cols {
+            grid-template-columns: 1fr;
+        }
+        .colOffset {
+            padding-top: 0;
+        }
+        .intro {
+            padding-right: 0;
+        }
+    }
+}

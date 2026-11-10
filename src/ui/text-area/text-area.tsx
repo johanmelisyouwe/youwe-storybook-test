@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { FieldShell, type FieldLabels, type FieldStatus } from '../field'
-import './text-area.css'
+import { cx } from '../../shared/cx'
+import styles from '../field/field.module.css'
 
 /*
   Text Area — Figma "Text Area/Static Label" (18505:19110) and "Text Area/Floating Labels" (18505:19469),
@@ -62,11 +63,11 @@ export function TextArea({
             disabled={disabled}
             floated={Labels === 'Floating' && Boolean(showPlaceholder)}
             controlClassName={controlClassName}
-            className="yw-textarea"
+            className={styles.textarea}
         >
             <textarea
                 id={id}
-                className="yw-field__input yw-body-md-reg"
+                className={cx(styles.input, 'yw-body-md-reg')}
                 name={name}
                 rows={rows}
                 required={Required}

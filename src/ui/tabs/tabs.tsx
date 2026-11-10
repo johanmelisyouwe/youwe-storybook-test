@@ -8,8 +8,9 @@ import {
 } from 'react'
 import { Button } from '../button'
 import { OptionsPanel, type Option } from '../options-panel'
-import '../../shared/focus-ring/focus-ring.css'
-import './tabs.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './tabs.module.css'
 
 /*
   Tab — Figma 15713:6093, Tab group — 15715:6340, _Trailing action — 15797:7280 (page "– Tabs").
@@ -53,9 +54,7 @@ export function Tab({
             disabled={disabled}
             onClick={onClick}
             onKeyDown={onKeyDown}
-            className={['yw-tab', 'yw-focus-ring', className]
-                .filter(Boolean)
-                .join(' ')}
+            className={cx(styles.tab, ring.root, className)}
         >
             <span className={selected ? 'yw-body-sm-bold' : 'yw-body-sm-reg'}>
                 {label}
@@ -132,12 +131,8 @@ export function TabGroup({
 
     return (
         <div>
-            <div className="yw-tab-group">
-                <div
-                    className="yw-tab-group__list"
-                    role="tablist"
-                    aria-label={label}
-                >
+            <div className={styles.root}>
+                <div className={styles.list} role="tablist" aria-label={label}>
                     {tabs.map((t, i) => (
                         <Tab
                             key={t}
@@ -153,7 +148,7 @@ export function TabGroup({
                         />
                     ))}
                     <span
-                        className="yw-tab-group__ink"
+                        className={styles.ink}
                         aria-hidden="true"
                         style={{
                             width: ink.w,
@@ -163,7 +158,7 @@ export function TabGroup({
                 </div>
                 {trailing && (
                     <div
-                        className="yw-tab-group__trailing"
+                        className={styles.trailing}
                         onKeyDown={(e) => {
                             if (e.key === 'Escape') setMenu(false)
                         }}
@@ -189,6 +184,7 @@ export function TabGroup({
                         />
                         {trailingOptions && menu && (
                             <OptionsPanel
+                                className={styles.options}
                                 id={menuId}
                                 role="menu"
                                 label={trailingLabel}
@@ -210,7 +206,7 @@ export function TabGroup({
                     aria-labelledby={`${base}-tab-${i}`}
                     hidden={i !== selected}
                     tabIndex={0}
-                    className="yw-tab-panel"
+                    className={styles.tabPanel}
                 >
                     {p}
                 </div>

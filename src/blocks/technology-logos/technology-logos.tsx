@@ -1,9 +1,9 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { Button } from '../../ui/button'
 import { GiantRows } from '../statement'
-import '../../shared/block/block.css'
-import '../statement/statement.css'
-import './technology-logos.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './technology-logos.module.css'
 
 /* Content blocks/Technology logos — Figma 26851:1733. */
 
@@ -37,13 +37,8 @@ export function TechnologyLogos({
     const n = isDefault ? 6 : parseInt(Layout.replace('Grid ', ''), 10)
     return (
         <section
-            className={[
-                'yw-block',
-                'yw-tech-logos',
-                isDefault && 'yw-tech-logos--default',
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-default={isDefault || undefined}
+            className={cx(block.root, styles.root)}
             aria-label={Title}
         >
             {isDefault && rows && rows.length > 0 && (
@@ -54,8 +49,8 @@ export function TechnologyLogos({
                     }))}
                 />
             )}
-            <div className="yw-block__inner">
-                <div className="yw-tech-logos__text">
+            <div className={cx(block.inner, styles.inner)}>
+                <div className={styles.text}>
                     <h2
                         className={
                             isDefault ? 'yw-heading-lg' : 'yw-heading-xl'
@@ -74,13 +69,13 @@ export function TechnologyLogos({
                     )}
                 </div>
                 <ul
-                    className="yw-tech-logos__grid"
+                    className={styles.grid}
                     style={{ ['--_n' as string]: n } as CSSProperties}
                 >
                     {logos.map((l, i) => (
                         <li
                             key={i}
-                            className={l ? undefined : 'is-empty'}
+                            data-empty={!l || undefined}
                             style={
                                 { ['--_i' as string]: i % n } as CSSProperties
                             }

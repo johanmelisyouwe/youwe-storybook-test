@@ -42,3 +42,46 @@
         border: 0;
     }
 }
+
+@layer tokens {
+    :root {
+        --yw-container-max: 110rem; /* legacy-ok: fluid content max (1920 screen minus gutters), not a Figma token */
+    }
+}
+
+/*
+  Testimonial quote swap (view transition named "yw-quote" in testimonial.tsx). The
+  ::view-transition pseudo-elements live on the document root, so this can't sit in the
+  component's CSS module (no local class to hang it on).
+*/
+@layer components {
+    ::view-transition-old(yw-quote) {
+        animation: var(--motion-duration-slow) var(--motion-ease-exit) both
+            yw-quote-out;
+    }
+
+    ::view-transition-new(yw-quote) {
+        animation: var(--motion-duration-reveal) var(--motion-ease-emphasized)
+            both yw-quote-in;
+    }
+
+    @keyframes yw-quote-in {
+        from {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-md));
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes yw-quote-out {
+        to {
+            opacity: 0;
+            filter: blur(0.375rem);
+            transform: translateY(calc(var(--motion-distance-md) * -1));
+        }
+    }
+}

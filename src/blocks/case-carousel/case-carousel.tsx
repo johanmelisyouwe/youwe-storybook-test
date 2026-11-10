@@ -1,8 +1,9 @@
 import { useRef, useState, type ReactNode } from 'react'
 import { Button } from '../../ui/button'
 import { CaseCard, type CaseCardProps } from '../../ui/case-card'
-import '../../shared/block/block.css'
-import './case-carousel.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './case-carousel.module.css'
 
 /* Content blocks/Case carousel — Figma 24985:700. */
 
@@ -71,17 +72,18 @@ export function CaseCarousel({
     if (Layout === 'Short') {
         return (
             <section
-                className="yw-block yw-case-carousel yw-case-carousel--short"
+                data-layout="short"
+                className={cx(block.root, styles.root)}
                 aria-roledescription="carousel"
                 aria-label={Title}
             >
-                <div className="yw-block__inner">
-                    <div className="yw-case-carousel__aside">
-                        <div className="yw-case-carousel__text">
+                <div className={cx(block.inner, styles.inner)}>
+                    <div className={styles.aside}>
+                        <div className={styles.text}>
                             <h2 className="yw-heading-xl">{Title}</h2>
                             {body && <p className="yw-body-md-reg">{body}</p>}
                         </div>
-                        <div className="yw-case-carousel__controls">
+                        <div className={styles.controls}>
                             <Button
                                 Variant="Outline"
                                 Icon="Only"
@@ -101,7 +103,7 @@ export function CaseCarousel({
                                 onClick={() => step(1)}
                             />
                             <span
-                                className="yw-case-carousel__count yw-body-sm-bold"
+                                className={cx(styles.count, 'yw-body-sm-bold')}
                                 aria-live="polite"
                             >
                                 {pad(Math.min(index + 1, cases.length))} /{' '}
@@ -111,7 +113,7 @@ export function CaseCarousel({
                     </div>
                     <ul
                         ref={track}
-                        className="yw-case-carousel__track"
+                        className={styles.track}
                         onScroll={onScroll}
                     >
                         {items}
@@ -122,11 +124,13 @@ export function CaseCarousel({
     }
 
     const head = (
-        <div className="yw-case-carousel__head">
+        <div className={styles.head}>
             {Kicker && (
-                <span className="yw-kicker yw-body-sm-bold">{Kicker}</span>
+                <span className={cx(block.kicker, 'yw-body-sm-bold')}>
+                    {Kicker}
+                </span>
             )}
-            <div className="yw-case-carousel__titlebar">
+            <div className={styles.titlebar}>
                 <h2 className="yw-heading-xl">{Title}</h2>
                 {button && (
                     <Button
@@ -143,14 +147,15 @@ export function CaseCarousel({
     if (Layout === 'Scroll') {
         return (
             <section
-                className="yw-block yw-case-carousel yw-case-carousel--scroll"
+                data-layout="scroll"
+                className={cx(block.root, styles.root)}
                 aria-label={Title}
             >
-                <div className="yw-block__inner">
+                <div className={cx(block.inner, styles.inner)}>
                     {head}
                     <ul
                         ref={track}
-                        className="yw-case-carousel__track"
+                        className={styles.track}
                         onScroll={onScroll}
                     >
                         {items}
@@ -162,13 +167,14 @@ export function CaseCarousel({
 
     return (
         <section
-            className="yw-block yw-case-carousel yw-case-carousel--grid"
+            data-layout="grid"
+            className={cx(block.root, styles.root)}
             aria-label={Title}
         >
-            <div className="yw-block__inner">
+            <div className={cx(block.inner, styles.inner)}>
                 {head}
                 <ul
-                    className="yw-case-carousel__grid"
+                    className={styles.grid}
                     style={{
                         ['--_cols' as string]:
                             Layout === 'Full width 4' ? 4 : 3,

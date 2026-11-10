@@ -5,7 +5,6 @@ import { FilterBar, type FilterBarProps } from '../blocks/filter-bar'
 import { CardGrid } from '../blocks/card-grid'
 import { CaseCard } from '../ui/case-card'
 import { ContactCTA } from '../blocks/contact-cta'
-import '../shared/block/block.css'
 import {
     Page,
     Section,
@@ -16,6 +15,7 @@ import {
     type Device,
 } from './shared'
 import { abstract, clientPhoto } from '../media/media'
+import block from '../shared/block/block.module.css'
 
 /*
   Templates/Work — Figma "Page / Work": Desktop 26588:9829, Mobile 26809:1150. Copy, props and order from
@@ -125,9 +125,9 @@ function WorkPage({ Device }: { Device: Device }) {
                 header={header(Device)}
             />
             <Section Mode="Dark">
-                <section className="yw-block" aria-label="Our work">
+                <section className={block.root} aria-label="Our work">
                     <div
-                        className="yw-block__inner"
+                        className={block.inner}
                         style={{
                             display: 'grid',
                             gap: 'var(--spacing-3xl)',

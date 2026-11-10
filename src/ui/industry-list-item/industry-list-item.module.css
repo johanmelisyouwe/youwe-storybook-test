@@ -1,0 +1,139 @@
+/*
+  Industry List Item (Figma 25019:679). Numbered list row; stack rows 80px apart (Figma description).
+  Row: number (40 wide; desktop body/xl/reg, mobile body/lg/reg with 4px top) | text (gap 16) | chevron 24, gap 16.
+  Collapsed: number, title (heading/lg) and chevron in content/placeholder.
+  Expanded: number content/secondary, title and chevron content/primary, subtitle body/md/reg tertiary,
+  and on desktop a floating preview (520×260, radius 4, image + gradient to 50% black, customer name
+  body/sm/reg bottom-left) to the right, 95px above the row. Mobile rows: padding 16/0.
+  Motion (Figma): subtitle max-height duration/slow ease/emphasized; preview fades/slides duration/slow.
+*/
+@layer components {
+    .industryList {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4xl);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &[data-mobile] {
+            gap: 0;
+        }
+    }
+
+    .root {
+        --focus-ring-radius: var(--shared-radius-4);
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        color: var(--color-shared-content-placeholder);
+        text-decoration: none;
+        transition: color var(--motion-duration-base)
+            var(--motion-ease-standard);
+
+        &[data-device="mobile"] {
+            padding-block: var(--spacing-sm);
+        }
+
+        &[data-device="mobile"] .number {
+            padding-top: var(--spacing-3xs);
+        }
+
+        &[data-expanded] {
+            color: var(--color-shared-content-primary);
+        }
+
+        &[data-expanded] .number {
+            color: var(--color-shared-content-secondary);
+        }
+
+        &[data-expanded] .sub {
+            grid-template-rows: 1fr;
+            margin-top: var(--spacing-sm);
+        }
+
+        /*
+  Desktop preview
+*/
+
+        &[data-device="desktop"][data-expanded] .content {
+            padding-right: 32.5rem;
+        }
+
+        &[data-expanded] .preview {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex: 1;
+        gap: var(--spacing-sm);
+        min-width: 0;
+    }
+    .number {
+        flex-shrink: 0;
+        width: 2.5rem;
+    }
+    .text {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 0;
+    }
+    .chevron {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .sub {
+        display: grid;
+        grid-template-rows: 0fr;
+        color: var(--color-shared-content-tertiary);
+        transition:
+            grid-template-rows var(--motion-duration-slow)
+            var(--motion-ease-emphasized),
+            margin-top var(--motion-duration-slow) var(--motion-ease-emphasized);
+
+        & > span {
+            overflow: hidden;
+        }
+    }
+
+    .preview {
+        position: absolute;
+        z-index: 1;
+        top: -95px;
+        right: 2.5rem;
+        display: flex !important;
+        align-items: flex-end;
+        width: 32.5rem;
+        height: 16.25rem;
+        padding: var(--spacing-sm);
+        color: var(--color-shared-content-fixed-light);
+        opacity: 0;
+        transform: translateY(var(--motion-distance-sm));
+        pointer-events: none;
+        transition:
+            opacity var(--motion-duration-slow) var(--motion-ease-emphasized),
+            transform var(--motion-duration-slow) var(--motion-ease-emphasized);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                var(--color-neutral-900-50)
+            );
+        }
+
+        & > .customer {
+            position: relative;
+            z-index: 1;
+        }
+    }
+}

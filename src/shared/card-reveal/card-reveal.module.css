@@ -1,0 +1,175 @@
+/*
+  Card reveal — the shared "Hover · red overlay" layer of Case, Insight, Service, System and Technology Card.
+  Figma: overlay surface/fixed/brand-red, padding 24, radius 4; top-right a 40px round arrow tile
+  (surface/fixed/light, arrow content/brand); bottom: CTA heading/sm + context body/sm/reg, fixed light, gap 8.
+  Motion (Figma descriptions): the red panel wipes up from the bottom (clip-path), its text slides in
+  40px from the right and fades in; duration/card + ease/card. Keyboard focus triggers it too.
+  `data-reveal="lift"` on the card root (Service/System): the card text slides up distance/card and fades. The arrow stays
+  straight (decided 2026-11-09, as in the Figma Hover variant).
+*/
+@layer components {
+    .root {
+        position: relative;
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        isolation: isolate;
+
+        &:focus-visible {
+            outline: none;
+        }
+
+        &:hover .overlay,
+        &:focus-visible .overlay {
+            clip-path: inset(0 0 0 0 round var(--component-radius-card));
+        }
+
+        &:hover .message,
+        &:focus-visible .message {
+            opacity: 1;
+            transform: none;
+        }
+
+        /*
+  Focus ring on top of the red panel (shared Focus Ring look)
+*/
+
+        &:focus-visible::after {
+            content: "";
+            position: absolute;
+            z-index: 3;
+            inset: calc(var(--spacing-3xs) * -1);
+            border: var(--shared-width-2) solid
+                var(--color-shared-border-system-focus);
+            border-radius: calc(
+                var(--component-radius-card) +
+                var(--spacing-3xs)
+            );
+            box-shadow: var(--effect-shadow-outer-md-focus-shadow);
+            pointer-events: none;
+        }
+
+        &[data-reveal="lift"]:hover .lift,
+        &[data-reveal="lift"]:focus-visible .lift {
+            opacity: 0;
+            transform: translateY(calc(var(--motion-distance-card) * -1));
+        }
+    }
+
+    .overlay {
+        position: absolute;
+        z-index: 2;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-fixed-brand-red);
+        color: var(--color-shared-content-fixed-light);
+        clip-path: inset(100% 0 0 0 round var(--component-radius-card));
+        pointer-events: none;
+        transition: clip-path var(--motion-duration-card)
+            var(--motion-ease-card);
+    }
+
+    .arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        align-self: flex-end;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: var(--shared-radius-circular);
+        background: var(--color-shared-surface-fixed-light);
+        color: var(--color-shared-content-brand);
+        transition: transform var(--motion-duration-card)
+            var(--motion-ease-card);
+    }
+
+    .message {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        opacity: 0;
+        transform: translateX(var(--motion-distance-card));
+        transition:
+            opacity var(--motion-duration-card) var(--motion-ease-card),
+            transform var(--motion-duration-card) var(--motion-ease-card);
+    }
+
+    .lift {
+        transition:
+            opacity var(--motion-duration-card) var(--motion-ease-card),
+            transform var(--motion-duration-card) var(--motion-ease-card);
+    }
+
+    /* Round outline arrow button used in the rest state of several cards (40px, 1px border, content/primary) */
+    .cardArrow {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: var(--shared-radius-circular);
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--_arrow-border, var(--color-shared-border-5));
+        color: var(--color-shared-content-primary);
+    }
+}
+
+/* Shared card bits (Case, Insight, System Card) */
+@layer components {
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2xs);
+        padding-top: var(--spacing-2xs);
+    }
+
+    /* Non-interactive pill inside a linked card (Figma: Pills Neutral S with a border/2 stroke, or the Insight "Type") */
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        height: 1.5rem;
+        padding-inline: var(--spacing-xs);
+        border-radius: var(--component-radius-pill);
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--color-shared-border-2);
+        color: var(--color-shared-content-primary);
+        white-space: nowrap;
+
+        &[data-type] {
+            height: 1.625rem;
+            color: var(--color-component-tag-content);
+        }
+    }
+
+    /* Image frame with the Figma placeholder (surface/base-3 + 24px image icon at 50%) when there is no picture */
+    .media {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--shared-radius-4);
+        background: var(--color-shared-surface-base-3);
+
+        & > img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .placeholder {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: flex;
+        color: var(--color-shared-content-primary);
+        opacity: 0.5;
+        transform: translate(-50%, -50%);
+    }
+}

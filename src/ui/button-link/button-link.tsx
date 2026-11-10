@@ -1,5 +1,6 @@
 import { Icon } from '../../shared/icons/icon'
-import './button-link.css'
+import { cx } from '../../shared/cx'
+import styles from './button-link.module.css'
 
 /* Button/Link — Figma node 20540:33000 (page "– Buttons"). Text link with a chevron. */
 
@@ -28,24 +29,32 @@ export function ButtonLink({
     as,
 }: ButtonLinkProps) {
     const [w, h] = CHEVRON[Size]
-    const cls = ['yw-link-button', `yw-link-button--${Size}`, className]
-        .filter(Boolean)
-        .join(' ')
+    const cls = cx(styles.root, className)
     const inner = (
         <>
             <span className={TEXT[Size] || undefined}>{label}</span>
-            <span className="yw-link-button__chevron" aria-hidden="true">
+            <span className={styles.chevron} aria-hidden="true">
                 <Icon name="link-chevron" size={w} height={h} />
             </span>
         </>
     )
-    if (as === 'span') return <span className={cls}>{inner}</span>
+    if (as === 'span')
+        return (
+            <span data-size={Size} className={cls}>
+                {inner}
+            </span>
+        )
     return href ? (
-        <a className={cls} href={href} onClick={onClick}>
+        <a data-size={Size} className={cls} href={href} onClick={onClick}>
             {inner}
         </a>
     ) : (
-        <button type="button" className={cls} onClick={onClick}>
+        <button
+            type="button"
+            data-size={Size}
+            className={cls}
+            onClick={onClick}
+        >
             {inner}
         </button>
     )

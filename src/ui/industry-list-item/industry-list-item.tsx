@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/focus-ring/focus-ring.css'
-import './industry-list-item.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './industry-list-item.module.css'
 
 /*
   Industry List Item — Figma 25019:679 (page "Industries").
@@ -43,45 +44,36 @@ export function IndustryListItem({
         <li>
             <a
                 href={href}
-                className={[
-                    'yw-industry',
-                    'yw-focus-ring',
-                    `yw-industry--${Device.toLowerCase()}`,
-                    Expanded === 'Yes' && 'is-expanded',
-                    className,
-                ]
-                    .filter(Boolean)
-                    .join(' ')}
+                data-device={Device.toLowerCase()}
+                data-expanded={Expanded === 'Yes' || undefined}
+                className={cx(styles.root, ring.root, className)}
                 onMouseEnter={onActivate}
                 onFocus={onActivate}
             >
-                <span className="yw-industry__content">
+                <span className={styles.content}>
                     <span
                         className={[
-                            'yw-industry__number',
+                            styles.number,
                             desktop ? 'yw-body-xl-reg' : 'yw-body-lg-reg',
                         ].join(' ')}
                     >
                         {Number}
                     </span>
-                    <span className="yw-industry__text">
+                    <span className={styles.text}>
                         <span className="yw-heading-lg">{Title}</span>
                         {Subtitle && (
-                            <span className="yw-industry__sub yw-body-md-reg">
+                            <span className={cx(styles.sub, 'yw-body-md-reg')}>
                                 <span>{Subtitle}</span>
                             </span>
                         )}
                     </span>
                 </span>
-                <span className="yw-industry__chevron" aria-hidden="true">
+                <span className={styles.chevron} aria-hidden="true">
                     <Icon name="chevron-right" size={24} />
                 </span>
                 {desktop && preview && (
-                    <CardMedia
-                        src={preview.image}
-                        className="yw-industry__preview"
-                    >
-                        <span className="yw-industry__customer yw-body-sm-reg">
+                    <CardMedia src={preview.image} className={styles.preview}>
+                        <span className={cx(styles.customer, 'yw-body-sm-reg')}>
                             {preview.customer}
                         </span>
                     </CardMedia>
@@ -102,12 +94,8 @@ export function IndustryList({
     const [active, setActive] = useState(0)
     return (
         <ul
-            className={[
-                'yw-industry-list',
-                Device === 'Mobile' && 'yw-industry-list--mobile',
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-mobile={Device === 'Mobile' || undefined}
+            className={cx(styles.industryList)}
         >
             {items.map((it, i) => (
                 <IndustryListItem

@@ -7,9 +7,9 @@ import { CardGrid } from '../blocks/card-grid'
 import { ServiceCard } from '../ui/service-card'
 import { CaseCarousel } from '../blocks/case-carousel'
 import { ContactCTA } from '../blocks/contact-cta'
-import '../shared/block/block.css'
 import { CLIENT_LOGOS, Page, Section, footer, header, logo } from './shared'
 import { abstract, caseImage, clientPhoto } from '../media/media'
+import block from '../shared/block/block.module.css'
 
 /*
   Templates/Industries detail — Figma "Page / Industries detail" (Manufacturing): Desktop 26926:34632.
@@ -128,8 +128,8 @@ function IndustriesDetailPage() {
                         />
                     }
                 />
-                <section className="yw-block" aria-label="Featured case">
-                    <div className="yw-block__inner" style={{ paddingTop: 0 }}>
+                <section className={block.root} aria-label="Featured case">
+                    <div className={block.inner} style={{ paddingTop: 0 }}>
                         <CaseCard
                             Size="Full"
                             Device={Device}

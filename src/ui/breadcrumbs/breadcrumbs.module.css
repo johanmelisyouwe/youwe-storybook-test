@@ -1,0 +1,58 @@
+/*
+  Breadcrumbs (Figma Desktop 18846:21440, Mobile 18703:12478, _breadcrumb-link 15409:8869).
+  Desktop: links in a row, gap 4 (3xs); each link after the first starts with a 16px chevron-right;
+    body/xs/reg content/tertiary; the current page (State=Active) is content/primary.
+    Focused: shared Focus Ring, radius 4.
+  Mobile: a back button (Button/Basic Outline, Leading chevron-left, S) to the parent page, plus an
+    optional Button/Filter S on the right (prop "Filter button").
+*/
+@layer components {
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .item {
+        display: inline-flex;
+        color: var(--color-shared-content-tertiary);
+    }
+
+    /* _breadcrumb-link: chevron + text, gap 4; the focus ring wraps both (Figma State=Focused) */
+    .link {
+        --focus-ring-radius: var(--shared-radius-4);
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        border-radius: var(--shared-radius-4);
+        color: inherit;
+        text-decoration: none;
+
+        &:hover .text,
+        &[aria-current="page"] .text {
+            color: var(--color-shared-content-primary);
+        }
+    }
+
+    /* Hover: not in Figma yet (approved 2026-11-09, design to add it): text to content/primary */
+    .text {
+        transition: color var(--motion-duration-fast)
+            var(--motion-ease-standard);
+    }
+
+    .chevron {
+        display: inline-flex;
+        flex-shrink: 0;
+    }
+
+    .root[data-mobile] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 2.25rem;
+    }
+}

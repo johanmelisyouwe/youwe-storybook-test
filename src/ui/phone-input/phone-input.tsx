@@ -3,7 +3,8 @@ import { Icon } from '../../shared/icons/icon'
 import { FieldShell, type FieldLabels, type FieldStatus } from '../field'
 import { OptionsPanel, type Option } from '../options-panel'
 import { useListbox } from '../options-panel/use-listbox'
-import './phone-input.css'
+import { cx } from '../../shared/cx'
+import styles from '../field/field.module.css'
 
 /*
   Phone Input — Figma "Phone Input/Static Labels" (18709:10372) and "Phone Input/Floating Labels" (18709:10502),
@@ -54,7 +55,7 @@ function LocaleSelect({
         <span ref={lb.root} style={{ display: 'contents' }}>
             <button
                 type="button"
-                className="yw-locale"
+                className={styles.locale}
                 aria-haspopup="listbox"
                 aria-expanded={lb.open}
                 aria-controls={`${id}-list`}
@@ -67,7 +68,7 @@ function LocaleSelect({
                 onKeyDown={lb.onKeyDown}
             >
                 <img
-                    className="yw-locale__flag"
+                    className={styles.localeFlag}
                     src={cur.flag}
                     alt=""
                     width={22}
@@ -77,7 +78,7 @@ function LocaleSelect({
                     name={lb.open ? 'arrow-drop-up' : 'arrow-drop-down'}
                     size={24}
                 />
-                <span className="yw-locale__code yw-body-md-reg">
+                <span className={cx(styles.localeCode, 'yw-body-md-reg')}>
                     {cur.label}
                 </span>
             </button>
@@ -159,16 +160,16 @@ export function PhoneInput({
             floated
             filled={Boolean(n)}
             controlClassName={controlClassName}
-            className="yw-phone"
+            className={styles.phone}
             trailing={
                 Suffix ? (
-                    <span className="yw-field__suffix" aria-hidden="true">
+                    <span className={styles.suffix} aria-hidden="true">
                         <Icon name="search" size={24} />
                     </span>
                 ) : null
             }
         >
-            <span className="yw-phone__row">
+            <span className={styles.phoneRow}>
                 <LocaleSelect
                     value={code}
                     disabled={disabled}
@@ -180,7 +181,7 @@ export function PhoneInput({
                 />
                 <input
                     id={id}
-                    className="yw-field__input yw-body-md-reg"
+                    className={cx(styles.input, 'yw-body-md-reg')}
                     type="tel"
                     inputMode="tel"
                     autoComplete="tel-national"

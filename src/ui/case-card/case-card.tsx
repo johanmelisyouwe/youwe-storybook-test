@@ -2,7 +2,9 @@ import type { ReactNode } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { CardReveal } from '../../shared/card-reveal'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import './case-card.css'
+import { cx } from '../../shared/cx'
+import reveal from '../../shared/card-reveal/card-reveal.module.css'
+import styles from './case-card.module.css'
 
 /*
   Case Card — Figma 24984:520; _Case Card/Stat — 26708:88 (page "Cards").
@@ -41,24 +43,22 @@ export function CaseStat({
     const v = Size === 'L' ? 'yw-heading-lg' : 'yw-heading-md'
     const l = Size === 'L' ? 'yw-body-sm-reg' : 'yw-body-xs-reg'
     const icon = Size === 'L' ? 24 : 16
-    const cls = [
-        'yw-case-stat',
-        `yw-case-stat--${Size.toLowerCase()}`,
-        (Type === 'Before-after' || Type === 'Stacked') &&
-            'yw-case-stat--stack',
-        Type === 'Pair' && 'yw-case-stat--pair',
-    ]
-        .filter(Boolean)
-        .join(' ')
+    const attrs = {
+        className: styles.caseStat,
+        'data-size': Size.toLowerCase(),
+        'data-stack':
+            Type === 'Before-after' || Type === 'Stacked' || undefined,
+        'data-pair': Type === 'Pair' || undefined,
+    }
     if (Type === 'Pair') {
         return (
-            <span className={cls}>
-                <span className="yw-case-stat__pair">
+            <span {...attrs}>
+                <span className={styles.caseStatPair}>
                     <span className={v}>{value}</span>
                     <span className={l}>{label}</span>
                 </span>
-                <span className="yw-case-stat__divider" aria-hidden="true" />
-                <span className="yw-case-stat__pair">
+                <span className={styles.caseStatDivider} aria-hidden="true" />
+                <span className={styles.caseStatPair}>
                     <span className={v}>{value2}</span>
                     <span className={l}>{label2}</span>
                 </span>
@@ -68,14 +68,14 @@ export function CaseStat({
     let main: ReactNode = <span className={v}>{value}</span>
     if (Type === 'Trend')
         main = (
-            <span className="yw-case-stat__value">
+            <span className={styles.caseStatValue}>
                 <Icon name="arrow-upward" size={icon} />
                 <span className={v}>{value}</span>
             </span>
         )
     if (Type === 'Before-after')
         main = (
-            <span className="yw-case-stat__values">
+            <span className={styles.caseStatValues}>
                 <span className={v}>{before}</span>
                 <Icon name="arrow-forward" size={icon} />
                 <span className="yw-visually-hidden">to</span>
@@ -83,7 +83,7 @@ export function CaseStat({
             </span>
         )
     return (
-        <span className={cls}>
+        <span {...attrs}>
             {main}
             <span className={l}>{label}</span>
         </span>
@@ -131,21 +131,13 @@ export function CaseCard({
     return (
         <a
             href={href}
-            className={[
-                'yw-reveal',
-                'yw-case-card',
-                Device === 'Mobile'
-                    ? 'yw-case-card--mobile'
-                    : `yw-case-card--${slug(Size)}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-size={Device === 'Mobile' ? 'mobile' : slug(Size)}
+            className={cx(reveal.root, styles.root, className)}
         >
-            <CardMedia src={image} className="yw-case-card__image">
-                {logo && <span className="yw-case-card__logo">{logo}</span>}
+            <CardMedia src={image} className={styles.image}>
+                {logo && <span className={styles.logo}>{logo}</span>}
                 {stat && (
-                    <span className="yw-case-card__stat">
+                    <span className={styles.stat}>
                         <CaseStat
                             {...stat}
                             Size={Device === 'Mobile' ? 'M' : 'L'}
@@ -153,17 +145,17 @@ export function CaseCard({
                     </span>
                 )}
             </CardMedia>
-            <span className="yw-case-card__text">
+            <span className={styles.text}>
                 <span className="yw-body-xl-med">{Title}</span>
-                <span className="yw-case-card__client yw-body-md-reg">
+                <span className={cx(styles.client, 'yw-body-md-reg')}>
                     {Client}
                 </span>
                 {tags && tags.length > 0 && (
-                    <span className="yw-card-tags">
+                    <span className={reveal.tags}>
                         {tags.map((t) => (
                             <span
                                 key={t}
-                                className="yw-card-tag yw-body-xs-reg"
+                                className={cx(reveal.tag, 'yw-body-xs-reg')}
                             >
                                 {t}
                             </span>

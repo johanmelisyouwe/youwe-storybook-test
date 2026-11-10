@@ -1,5 +1,5 @@
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/block/block.css'
+import block from '../../shared/block/block.module.css'
 
 /*
   Content blocks/Solutions grid — Figma 24984:21277. Title (body/2xl/med, centred) and a three-column grid of
@@ -17,9 +17,9 @@ export function SolutionsGrid({
     items,
 }: SolutionsGridProps) {
     return (
-        <section className="yw-block" aria-label={title}>
+        <section className={block.root} aria-label={title}>
             <div
-                className="yw-block__inner"
+                className={block.inner}
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -33,7 +33,6 @@ export function SolutionsGrid({
                     {title}
                 </h2>
                 <ul
-                    className="yw-solutions"
                     style={{
                         display: 'grid',
                         gridTemplateColumns:
@@ -47,7 +46,7 @@ export function SolutionsGrid({
                     {items.map((it) => (
                         <li
                             key={it.title}
-                            className="yw-block-reveal"
+                            className={block.reveal}
                             style={{
                                 display: 'flex',
                                 flexDirection: 'column',

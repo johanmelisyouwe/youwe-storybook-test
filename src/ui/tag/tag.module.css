@@ -1,0 +1,45 @@
+/*
+  Tag (Figma 6284:7265). Values read per variant from Figma on 2026-11-09.
+  Size  height  padding-inline  gap          icon  text style
+  S     20      4 (3xs)         2 (4xs)      12    body/xs/reg
+  M     24      8 (2xs)         4 (3xs)      16    body/sm/reg
+  Radius component/radius/tag (square). Non-interactive.
+  Info:    shared/surface/fixed/bright-blue, text shared/content/fixed/light
+  Neutral: shared/surface/tint-1 + blur/background-blur, text shared/content/fixed/light
+*/
+@layer components {
+    .root {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        gap: var(--spacing-4xs);
+        height: 1.25rem;
+        padding-inline: var(--spacing-3xs);
+        border-radius: var(--component-radius-tag);
+        color: var(--color-shared-content-fixed-light);
+        white-space: nowrap;
+
+        &[data-size="m"] {
+            gap: var(--spacing-3xs);
+            height: 1.5rem;
+            padding-inline: var(--spacing-2xs);
+        }
+
+        &[data-variant="info"] {
+            background: var(--color-shared-surface-fixed-bright-blue);
+        }
+
+        &[data-variant="neutral"] {
+            background: var(--color-shared-surface-tint-1);
+            backdrop-filter: blur(var(--effect-blur-background-blur-blur));
+            -webkit-backdrop-filter: blur(
+                var(--effect-blur-background-blur-blur)
+            );
+        }
+    }
+
+    .icon {
+        display: inline-flex;
+        flex-shrink: 0;
+    }
+}

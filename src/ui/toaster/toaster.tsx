@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Icon, type IconName } from '../../shared/icons/icon'
-import '../../shared/focus-ring/focus-ring.css'
-import './toaster.css'
+import { cx } from '../../shared/cx'
+import styles from './toaster.module.css'
 
 /* Toaster — Figma node 6284:7291 (page "– Toaster"). Transient notification. */
 
@@ -38,32 +38,29 @@ export function Toaster({
     return (
         <div
             role={urgent ? 'alert' : 'status'}
-            className={[
-                'yw-toaster',
-                `yw-toaster--${Variant.toLowerCase()}`,
-                Shadow === 'Yes' && 'yw-toaster--shadow',
-                leaving && 'is-leaving',
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-variant={Variant.toLowerCase()}
+            data-shadow={Shadow === 'Yes' || undefined}
+            data-leaving={leaving || undefined}
+            className={cx(styles.root)}
             onAnimationEnd={(e) => {
-                if (leaving && e.animationName === 'yw-toaster-out') onClose?.()
+                if (leaving && e.animationName === styles['toaster-out'])
+                    onClose?.()
             }}
         >
-            <span className="yw-toaster__icon" aria-hidden="true">
+            <span className={styles.icon} aria-hidden="true">
                 <Icon name={ICON[Variant]} size={24} />
             </span>
-            <span className="yw-toaster__content">
-                <span className="yw-toaster__title yw-body-sm-bold">
+            <span className={styles.content}>
+                <span className={cx(styles.title, 'yw-body-sm-bold')}>
                     {title}
                 </span>
-                <span className="yw-toaster__message yw-body-sm-reg">
+                <span className={cx(styles.message, 'yw-body-sm-reg')}>
                     {message}
                 </span>
             </span>
             <button
                 type="button"
-                className="yw-toaster__close yw-focus-ring"
+                className={styles.close}
                 aria-label={closeLabel}
                 onClick={() => (onClose ? setLeaving(true) : undefined)}
             >

@@ -1,6 +1,7 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
-import '../../shared/block/block.css'
-import './statement.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './statement.module.css'
 
 /* Content blocks/Statement — Figma 26543:21679. */
 
@@ -70,9 +71,7 @@ export function GiantRows({
     return (
         <div
             ref={giant}
-            className={['yw-statement__giant', className]
-                .filter(Boolean)
-                .join(' ')}
+            className={cx(styles.giant, className)}
             aria-hidden="true"
         >
             {rows.map((r, i) => {
@@ -80,12 +79,8 @@ export function GiantRows({
                 return (
                     <span
                         key={i}
-                        className={[
-                            'yw-statement__row',
-                            style !== 'solid' && `yw-statement__row--${style}`,
-                        ]
-                            .filter(Boolean)
-                            .join(' ')}
+                        data-style={style !== 'solid' ? style : undefined}
+                        className={cx(styles.row)}
                         style={
                             r.image
                                 ? ({
@@ -104,10 +99,10 @@ export function GiantRows({
 
 export function Statement({ text, rows }: StatementProps) {
     return (
-        <section className="yw-block yw-statement">
+        <section className={cx(block.root, styles.root)}>
             {rows && rows.length > 0 && <GiantRows rows={rows} />}
-            <div className="yw-block__inner">
-                <p className="yw-statement__text yw-heading-xl">{text}</p>
+            <div className={block.inner}>
+                <p className={cx(styles.text, 'yw-heading-xl')}>{text}</p>
             </div>
         </section>
     )

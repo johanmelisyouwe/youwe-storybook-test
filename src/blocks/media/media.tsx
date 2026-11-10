@@ -1,6 +1,7 @@
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/block/block.css'
-import '../text-media/text-media.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from '../text-media/text-media.module.css'
 
 /* Content blocks/Media — Figma 24988:606. Styles in TextMedia.css (shared media rules). */
 
@@ -24,18 +25,14 @@ export function Media({
     alt2,
 }: MediaProps) {
     const two = Layout === 'Two-up' || Layout === 'Two-up staggered'
-    const cls = [
-        'yw-block',
-        'yw-media',
-        Layout === 'Full bleed' && 'yw-media--full',
-        Layout === 'Two-up staggered' && 'yw-media--staggered',
-    ]
-        .filter(Boolean)
-        .join(' ')
     return (
-        <section className={cls}>
+        <section
+            data-full={Layout === 'Full bleed' || undefined}
+            data-staggered={Layout === 'Two-up staggered' || undefined}
+            className={cx(block.root, styles.media)}
+        >
             <div
-                className="yw-block__inner"
+                className={cx(block.inner, styles.inner)}
                 style={
                     Layout === 'Contained' || two
                         ? { paddingBlock: 'var(--spacing-4xl)' }
@@ -43,18 +40,18 @@ export function Media({
                 }
             >
                 {two ? (
-                    <div className="yw-media__two">
+                    <div className={styles.mediaTwo}>
                         <CardMedia
                             src={image}
                             alt={alt}
                             ratio="632 / 736"
-                            className="yw-clip-reveal"
+                            className={styles.clipReveal}
                         />
                         <CardMedia
                             src={image2}
                             alt={alt2}
                             ratio="632 / 736"
-                            className="yw-clip-reveal"
+                            className={styles.clipReveal}
                         />
                     </div>
                 ) : (
@@ -64,7 +61,7 @@ export function Media({
                         ratio={
                             Layout === 'Full bleed' ? '16 / 9' : '1280 / 666'
                         }
-                        className="yw-clip-reveal"
+                        className={styles.clipReveal}
                     />
                 )}
             </div>

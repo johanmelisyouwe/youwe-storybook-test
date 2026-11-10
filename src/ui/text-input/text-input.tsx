@@ -1,6 +1,8 @@
 import { useId, useState, type ChangeEvent } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { FieldShell, type FieldLabels, type FieldStatus } from '../field'
+import { cx } from '../../shared/cx'
+import styles from '../field/field.module.css'
 
 /*
   Text Input — Figma "Text Input/Static Labels" (6284:6276) and "Text Input/Floating Labels" (6394:3683),
@@ -74,7 +76,7 @@ export function TextInput({
             controlClassName={controlClassName}
             trailing={
                 Suffix ? (
-                    <span className="yw-field__suffix" aria-hidden="true">
+                    <span className={styles.suffix} aria-hidden="true">
                         <Icon name="search" size={24} />
                     </span>
                 ) : null
@@ -82,7 +84,7 @@ export function TextInput({
         >
             <input
                 id={id}
-                className="yw-field__input yw-body-sm-reg"
+                className={cx(styles.input, 'yw-body-sm-reg')}
                 type={type}
                 name={name}
                 autoComplete={autoComplete}

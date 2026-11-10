@@ -1,8 +1,9 @@
 import { Icon } from '../../shared/icons/icon'
 import { Button } from '../button'
 import { ButtonFilter } from '../button-filter'
-import '../../shared/focus-ring/focus-ring.css'
-import './breadcrumbs.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './breadcrumbs.module.css'
 
 /*
   Breadcrumbs — Figma Breadcrumbs/Desktop 18846:21440 and Breadcrumbs/Mobile 18703:12478 (page "Breadcrumbs").
@@ -37,13 +38,8 @@ export function Breadcrumbs({
         return (
             <nav
                 aria-label="Breadcrumb"
-                className={[
-                    'yw-breadcrumbs',
-                    'yw-breadcrumbs--mobile',
-                    className,
-                ]
-                    .filter(Boolean)
-                    .join(' ')}
+                data-mobile
+                className={cx(styles.root, className)}
             >
                 <Button
                     Variant="Outline"
@@ -65,40 +61,33 @@ export function Breadcrumbs({
         )
     }
     return (
-        <nav
-            aria-label="Breadcrumb"
-            className={['yw-breadcrumbs', className].filter(Boolean).join(' ')}
-        >
-            <ol className="yw-breadcrumbs__list">
+        <nav aria-label="Breadcrumb" className={cx(styles.root, className)}>
+            <ol className={styles.list}>
                 {items.map((c, i) => {
                     const current = i === items.length - 1
                     return (
                         <li
                             key={`${c.label}-${i}`}
-                            className="yw-breadcrumbs__item yw-body-xs-reg"
+                            className={cx(styles.item, 'yw-body-xs-reg')}
                         >
                             <a
-                                className={[
-                                    'yw-breadcrumbs__link',
-                                    'yw-focus-ring',
-                                    linkClassName,
-                                ]
-                                    .filter(Boolean)
-                                    .join(' ')}
+                                className={cx(
+                                    styles.link,
+                                    ring.root,
+                                    linkClassName
+                                )}
                                 href={c.href ?? '#'}
                                 aria-current={current ? 'page' : undefined}
                             >
                                 {i > 0 && (
                                     <span
-                                        className="yw-breadcrumbs__chevron"
+                                        className={styles.chevron}
                                         aria-hidden="true"
                                     >
                                         <Icon name="chevron-right" size={16} />
                                     </span>
                                 )}
-                                <span className="yw-breadcrumbs__text">
-                                    {c.label}
-                                </span>
+                                <span className={styles.text}>{c.label}</span>
                             </a>
                         </li>
                     )

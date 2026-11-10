@@ -1,6 +1,7 @@
 import { Icon } from '../../shared/icons/icon'
-import '../../shared/focus-ring/focus-ring.css'
-import './pagination.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './pagination.module.css'
 
 /* Pagination — Figma 6284:7106 (Variant: View amount, Pagination × Device). */
 
@@ -52,14 +53,15 @@ export function Pagination({
     if (Variant === 'View amount') {
         return (
             <div
-                className={['yw-view-amount yw-body-md-reg', className]
-                    .filter(Boolean)
-                    .join(' ')}
+                className={cx(
+                    cx(styles.viewAmount, 'yw-body-md-reg'),
+                    className
+                )}
             >
                 <span id="yw-view-max">View max.</span>
-                <span className="yw-compact-select" style={{ padding: 0 }}>
+                <span className={styles.compactSelect} style={{ padding: 0 }}>
                     <select
-                        className="yw-focus-ring yw-body-md-reg"
+                        className={cx(ring.root, 'yw-body-md-reg')}
                         aria-labelledby="yw-view-max yw-per-page"
                         value={perPage}
                         onChange={(e) =>
@@ -81,17 +83,12 @@ export function Pagination({
 
     const go = (p: number) => onPageChange?.(Math.min(total, Math.max(1, p)))
     const btn = (cls = '') =>
-        ['yw-page-btn yw-focus-ring yw-body-md-reg', cls, buttonClassName]
-            .filter(Boolean)
-            .join(' ')
+        cx(cx(styles.pageBtn, 'yw-body-md-reg'), cls, buttonClassName)
     const first = page <= 1
     const last = page >= total
 
     return (
-        <nav
-            className={['yw-pagination', className].filter(Boolean).join(' ')}
-            aria-label="Pagination"
-        >
+        <nav className={cx(styles.root, className)} aria-label="Pagination">
             {Device === 'Mobile' && (
                 <button
                     type="button"
@@ -105,7 +102,7 @@ export function Pagination({
             )}
             <button
                 type="button"
-                className={btn('yw-page-btn--prev')}
+                className={btn(styles.pageBtnPrev)}
                 disabled={first}
                 onClick={() => go(page - 1)}
                 aria-label="Previous page"
@@ -119,7 +116,10 @@ export function Pagination({
                         <li key={it === 'gap' ? `gap-${i}` : it}>
                             {it === 'gap' ? (
                                 <span
-                                    className="yw-page-gap yw-body-md-reg"
+                                    className={cx(
+                                        styles.pageGap,
+                                        'yw-body-md-reg'
+                                    )}
                                     aria-hidden="true"
                                 >
                                     …
@@ -143,7 +143,7 @@ export function Pagination({
             </ol>
             <button
                 type="button"
-                className={btn('yw-page-btn--next')}
+                className={btn(styles.pageBtnNext)}
                 disabled={last}
                 onClick={() => go(page + 1)}
                 aria-label="Next page"

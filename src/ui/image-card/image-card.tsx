@@ -1,6 +1,7 @@
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/focus-ring/focus-ring.css'
-import './image-card.css'
+import { cx } from '../../shared/cx'
+import styles from './image-card.module.css'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
 
 /* Image Card — Figma 26904:35 (page "Cards"). */
 
@@ -26,21 +27,21 @@ export function ImageCard({
     const inner = (
         <>
             <CardMedia
-                className="yw-image-card__media"
+                className={styles.media}
                 src={image}
                 alt={alt}
                 ratio={ratio}
             />
             {Caption && (
-                <span className="yw-image-card__caption yw-body-sm-reg">
+                <span className={cx(styles.caption, 'yw-body-sm-reg')}>
                     {Caption}
                 </span>
             )}
         </>
     )
-    const cls = ['yw-image-card', className].filter(Boolean).join(' ')
+    const cls = cx(styles.root, className)
     return href ? (
-        <a href={href} className={`${cls} yw-focus-ring`}>
+        <a href={href} className={cx(cls, ring.root)}>
             {inner}
         </a>
     ) : (

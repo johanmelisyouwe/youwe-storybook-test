@@ -1,7 +1,8 @@
 import { Icon } from '../icons/icon'
-import './card-reveal.css'
+import { cx } from '../cx'
+import styles from './card-reveal.module.css'
 
-/* The "Hover · red overlay" layer shared by the linked cards. Place inside an element with class `yw-reveal`. */
+/* The "Hover · red overlay" layer shared by the linked cards. Place inside an element with the `root` class of card-reveal.module.css. */
 export function CardReveal({
     cta,
     context,
@@ -10,11 +11,11 @@ export function CardReveal({
     context?: string
 }) {
     return (
-        <span className="yw-reveal__overlay" aria-hidden="true">
-            <span className="yw-reveal__arrow">
+        <span className={styles.overlay} aria-hidden="true">
+            <span className={styles.arrow}>
                 <Icon name="arrow-forward" size={24} />
             </span>
-            <span className="yw-reveal__message">
+            <span className={styles.message}>
                 <span className="yw-heading-sm">{cta}</span>
                 {context && <span className="yw-body-sm-reg">{context}</span>}
             </span>
@@ -24,10 +25,7 @@ export function CardReveal({
 
 export function CardArrow({ className }: { className?: string }) {
     return (
-        <span
-            className={['yw-card-arrow', className].filter(Boolean).join(' ')}
-            aria-hidden="true"
-        >
+        <span className={cx(styles.cardArrow, className)} aria-hidden="true">
             <Icon name="arrow-forward" size={24} />
         </span>
     )

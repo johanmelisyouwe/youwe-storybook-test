@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { CardArrow } from '../../shared/card-reveal'
-import '../../shared/focus-ring/focus-ring.css'
-import './stat.css'
+import { cx } from '../../shared/cx'
+import styles from './stat.module.css'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
 
 /* Stat — Figma 26795:73 (page "Stats"). */
 
@@ -54,7 +55,7 @@ function useCountUp(value: string, on: boolean) {
             const t0 = performance.now()
             const tick = (t: number) => {
                 const k = Math.min(1, (t - t0) / 1600)
-                const eased = 1 - Math.pow(1 - k, 3) // ease-out
+                const eased = 1 - (1 - k) ** 3 // ease-out
                 setText(`${p.pre}${(p.num * eased).toFixed(p.dec)}${p.post}`)
                 if (k < 1) raf = requestAnimationFrame(tick)
             }
@@ -81,20 +82,20 @@ export function Stat({
 }: StatProps) {
     const [ref, text] = useCountUp(Value, countUp)
     return (
-        <div className={['yw-stat', className].filter(Boolean).join(' ')}>
+        <div className={cx(styles.root, className)}>
             {Type === 'Client' && (
-                <div className="yw-stat__top">
-                    <span className="yw-stat__logo">{logo}</span>
+                <div className={styles.top}>
+                    <span className={styles.logo}>{logo}</span>
                     {href && (
                         <a
                             href={href}
-                            className="yw-focus-ring"
+                            className={ring.root}
                             style={{
                                 borderRadius: 'var(--shared-radius-circular)',
                             }}
                             aria-label={`Read the case: ${Label}`}
                         >
-                            <CardArrow className="yw-stat__arrow" />
+                            <CardArrow className={styles.arrow} />
                         </a>
                     )}
                 </div>
@@ -102,18 +103,18 @@ export function Stat({
             <span
                 ref={ref}
                 className={[
-                    'yw-stat__value',
+                    styles.value,
                     Size === 'L' ? 'yw-heading-2xl' : 'yw-heading-xl',
                 ].join(' ')}
                 aria-label={Value}
             >
                 {text}
             </span>
-            <span className="yw-stat__label yw-body-md-reg">{Label}</span>
+            <span className={cx(styles.label, 'yw-body-md-reg')}>{Label}</span>
         </div>
     )
 }
 
 export function StatRow({ children }: { children: ReactNode }) {
-    return <div className="yw-stat-row">{children}</div>
+    return <div className={styles.statRow}>{children}</div>
 }

@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
-import '../../shared/block/block.css'
-import './section-header.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './section-header.module.css'
 
 /* Content blocks/Section header — Figma 24985:699; Content blocks/Section intro — 26847:85. */
-
-const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ')
 
 /** Splits a heading into words for the masked word-rise reveal (screen readers get the plain text). */
 export function Words({ text }: { text: string }) {
@@ -15,7 +14,7 @@ export function Words({ text }: { text: string }) {
             <span className="yw-visually-hidden">
                 {text.replace(/\n/g, ' ')}
             </span>
-            <span className="yw-words" aria-hidden="true">
+            <span className={styles.words} aria-hidden="true">
                 {lines.map((line, li) => (
                     <span
                         key={li}
@@ -37,7 +36,7 @@ export function Words({ text }: { text: string }) {
                                             ['--_i' as string]: i++,
                                         } as CSSProperties
                                     }
-                                    className="yw-word"
+                                    className={styles.word}
                                 >
                                     {w}&nbsp;
                                 </span>
@@ -69,16 +68,13 @@ export function SectionHeader({
 }: SectionHeaderProps) {
     return (
         <section
-            className={cx(
-                'yw-block',
-                'yw-section-header',
-                Alignment === 'Centered' && 'yw-section-header--centered'
-            )}
+            data-centered={Alignment === 'Centered' || undefined}
+            className={cx(block.root, styles.root)}
         >
-            <div className="yw-block__inner">
-                <div className="yw-section-header__text">
+            <div className={block.inner}>
+                <div className={styles.text}>
                     {kicker && Alignment === 'Left' && (
-                        <span className="yw-kicker yw-body-sm-bold">
+                        <span className={cx(block.kicker, 'yw-body-sm-bold')}>
                             {kicker}
                         </span>
                     )}
@@ -143,23 +139,25 @@ export function SectionIntro({
     const [ref, lit] = useHighlight(words.length)
     return (
         <div
-            className={cx(
-                'yw-section-intro',
-                Layout === 'Stacked' && 'yw-section-intro--stacked',
-                className
-            )}
+            data-stacked={Layout === 'Stacked' || undefined}
+            className={cx(styles.sectionIntro, className)}
         >
             {Kicker && (
-                <span className="yw-kicker yw-body-sm-bold">{Kicker}</span>
+                <span className={cx(block.kicker, 'yw-body-sm-bold')}>
+                    {Kicker}
+                </span>
             )}
-            <div className="yw-section-intro__row">
+            <div className={styles.sectionIntroRow}>
                 <h2 className="yw-heading-xl">
                     <Words text={Title} />
                 </h2>
                 {Body && (
                     <p
                         ref={ref}
-                        className="yw-section-intro__body yw-body-md-reg"
+                        className={cx(
+                            styles.sectionIntroBody,
+                            'yw-body-md-reg'
+                        )}
                     >
                         <span className="yw-visually-hidden">{Body}</span>
                         {words.map((w, i) => (

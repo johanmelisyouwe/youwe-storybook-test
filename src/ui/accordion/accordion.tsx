@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import { Icon } from '../../shared/icons/icon'
-import '../../shared/focus-ring/focus-ring.css'
-import './accordion.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './accordion.module.css'
 
 /* Accordion — Figma node 18830:12898 (page "– Accordion"). Native <details>/<summary>, as the Figma Interaction line asks. */
 
@@ -29,42 +30,29 @@ export function Accordion({
 }: AccordionProps) {
     return (
         <details
-            className={[
-                'yw-accordion',
-                `yw-accordion--${Style.toLowerCase()}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-style={Style.toLowerCase()}
+            className={cx(styles.root, className)}
             open={Expanded === 'Yes'}
             name={name}
         >
-            <summary
-                className={[
-                    'yw-accordion__header',
-                    'yw-focus-ring',
-                    summaryClassName,
-                ]
-                    .filter(Boolean)
-                    .join(' ')}
-            >
-                <span className="yw-accordion__label yw-body-lg-med">
+            <summary className={cx(styles.header, ring.root, summaryClassName)}>
+                <span className={cx(styles.label, 'yw-body-lg-med')}>
                     {label}
                 </span>
                 {Style === 'Caret' ? (
-                    <span className="yw-accordion__icon" aria-hidden="true">
+                    <span className={styles.icon} aria-hidden="true">
                         <Icon name="chevron-down" size={24} />
                     </span>
                 ) : (
                     <>
                         <span
-                            className="yw-accordion__icon yw-accordion__icon--closed"
+                            className={cx(styles.icon, styles.iconClosed)}
                             aria-hidden="true"
                         >
                             <Icon name="add" size={24} />
                         </span>
                         <span
-                            className="yw-accordion__icon yw-accordion__icon--open"
+                            className={cx(styles.icon, styles.iconOpen)}
                             aria-hidden="true"
                         >
                             <Icon name="remove" size={24} />
@@ -72,7 +60,7 @@ export function Accordion({
                     </>
                 )}
             </summary>
-            <div className="yw-accordion__content yw-body-md-reg">
+            <div className={cx(styles.content, 'yw-body-md-reg')}>
                 {children}
             </div>
         </details>

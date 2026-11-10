@@ -1,0 +1,66 @@
+/*
+  Quote Card (Figma 26895:260). Small client quote for card grids; stretches to fill its cell and keeps the
+  attribution at the bottom. surface/base-2, radius card, padding 24, space-between.
+  Quote block: padding-bottom 32, gap 16; quote mark content/brand (48px line), quote body/xl/reg primary.
+  Attribution gap 16: name body/sm/bold primary, role body/sm/reg secondary (gap 2), optional logo 96×40.
+  Optional actions: up to 3 Solid M buttons, gap 12. Motion (Figma): scroll block reveal.
+*/
+@layer components {
+    .root {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        margin: 0;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+
+        & blockquote {
+            margin: 0;
+        }
+    }
+
+    .quote {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding-bottom: var(--spacing-xl);
+    }
+    .mark {
+        height: 3rem;
+        color: var(--color-shared-content-brand);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-heading-2xl);
+        line-height: 3rem;
+    }
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    .attribution {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+    .person {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-4xs);
+    }
+    .role {
+        color: var(--color-shared-content-secondary);
+    }
+    .logo {
+        display: flex;
+        flex-shrink: 0;
+        width: 6rem;
+    }
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+}

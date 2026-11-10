@@ -1,0 +1,271 @@
+/*
+  Content blocks/Hero (Figma 24985:698), _Hero/Bar (26880:273), _Hero/Label (26882:927).
+  Gradient: 840 high (mobile 640), surface/base-1 with a background image/video and a dark fade.
+  Content padding 80, gap 24, aligned to the bottom: title column (label + heading/3xl, 2nd line content/brand,
+  gap 24) and text column 480 (body/lg/reg + up to 2 buttons: Primary M + Solid M, gap 8). Mobile stacks.
+  Bar: 1px top component/alpha/1, padding 16/32, client logos (118×62) gap 64 as a slow marquee (linear 40s),
+  or stats (value heading/lg, label body/sm/reg tertiary, client body/sm/med content/link, gap 12; gap 64);
+  160px fades left and right. Label: Subtitle (red line + body/sm/bold) or Breadcrumb.
+  Title + image: padding-top 80, text row (breadcrumbs + heading/3xl title | client logo 190×100, bottom
+  aligned, gap 64), then a full-width 16:9 image (gap 80).
+  Motion (Figma): title rises line by line in a mask (duration/cinematic, ease/emphasized, +120ms per line);
+  on scroll the hero recedes over the first 860px (up 12vh, scale 0.96, opacity 0.15); logos marquee 40s.
+*/
+@layer components {
+    .root {
+        overflow: hidden;
+
+        &[data-gradient] {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 52.5rem;
+        }
+
+        &[data-mobile].root[data-gradient] {
+            min-height: 40rem;
+        }
+
+        /*
+  Title + image
+*/
+
+        &[data-image] .row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: var(--spacing-3xl);
+        }
+
+        &[data-image] .titlecol {
+            flex: 0 1 64.125rem;
+        }
+    }
+
+    .media {
+        position: absolute !important;
+        z-index: 0;
+        inset: 0;
+        border-radius: 0 !important;
+        background: var(--color-shared-surface-base-1) !important;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                var(--color-shared-surface-base-1)
+            );
+        }
+
+        & img,
+        & video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .header {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        left: 0;
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+    }
+
+    @supports (animation-timeline: scroll()) {
+        @keyframes hero-recede {
+            to {
+                opacity: 0.15;
+                transform: translateY(-12vh) scale(0.96);
+            }
+        }
+        .root[data-recede] .content {
+            animation: hero-recede linear both;
+            animation-timeline: scroll(root);
+            animation-range: 0 53.75rem;
+        }
+    }
+
+    .titlecol {
+        display: flex;
+        flex: 0 1 48.5rem;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        min-width: 0;
+    }
+    .title {
+        margin: 0;
+    }
+    .line {
+        display: block;
+        overflow: hidden;
+
+        & > span {
+            display: block;
+            animation: hero-line var(--motion-duration-cinematic)
+                var(--motion-ease-emphasized) both;
+        }
+
+        &:nth-child(2) > span {
+            animation-delay: 120ms; /* legacy-ok: Figma "+120ms per line", no token */
+            color: var(--color-shared-content-brand);
+        }
+
+        &:nth-child(3) > span {
+            animation-delay: 240ms; /* legacy-ok: Figma "+120ms per line", no token */
+        }
+    }
+    @keyframes hero-line {
+        from {
+            transform: translateY(105%);
+        }
+        to {
+            transform: none;
+        }
+    }
+
+    .textcol {
+        display: flex;
+        flex: 0 1 30rem;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+
+        & p {
+            margin: 0;
+        }
+    }
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2xs);
+    }
+
+    @container (max-width: 47.9375rem) {
+        .content {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .titlecol,
+        .textcol {
+            flex-basis: auto;
+        }
+    }
+
+    /* Bar */
+    @keyframes marquee {
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    .heroBar {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        padding: var(--spacing-sm) 0;
+        box-shadow: inset 0 var(--shared-width-1) 0
+            var(--color-component-alpha-1);
+
+        &[data-stats] {
+            padding-block: var(--spacing-xl);
+        }
+
+        &:hover .heroBarTrack,
+        &:focus-within .heroBarTrack {
+            animation-play-state: paused;
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            bottom: 0;
+            width: 10rem;
+            pointer-events: none;
+        }
+
+        &::before {
+            left: 0;
+            background: linear-gradient(
+                to right,
+                var(--color-shared-surface-base-1),
+                transparent
+            );
+        }
+
+        &::after {
+            right: 0;
+            background: linear-gradient(
+                to left,
+                var(--color-shared-surface-base-1),
+                transparent
+            );
+        }
+    }
+    .heroBarTrack {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3xl);
+        width: max-content;
+        padding-inline: var(--spacing-xl);
+        animation: marquee 40s linear infinite; /* legacy-ok: Figma "marquee linear 40s" */
+    }
+    .heroBarLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 7.375rem;
+        height: 3.875rem;
+        color: var(--color-shared-content-primary);
+    }
+    .heroBarStat {
+        display: inline-flex;
+        align-items: baseline;
+        gap: var(--spacing-xs);
+        white-space: nowrap;
+    }
+    .heroBarLabel {
+        color: var(--color-shared-content-tertiary);
+    }
+    .heroBarClient {
+        color: var(--color-shared-content-link);
+    }
+    .logo {
+        flex-shrink: 0;
+        width: 11.875rem;
+        color: var(--color-shared-content-primary);
+    }
+    .image {
+        margin-top: var(--spacing-4xl);
+        border-radius: 0 !important;
+    }
+
+    @container (max-width: 47.9375rem) {
+        .root[data-image] .row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-lg);
+        }
+        .image {
+            margin-top: var(--spacing-xl);
+        }
+    }
+}

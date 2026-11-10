@@ -3,12 +3,14 @@
   Cascade layer order (lowest → highest):
     reset       base reset (box-sizing, links, form fonts)
     tokens      CSS custom properties generated from Figma (src/tokens/tokens.css)
-    components  component styles (src/components/**, each file in @layer components)
+    components  component styles (src/{ui,blocks,site,shared}/**, each in @layer components)
     typography  .yw-* text-style classes generated from Figma; ABOVE components, so a
                 text style on an element always wins over a component's base font
     utilities   rare one-off helpers
+    project     page and template overrides (placement, one-off tweaks); beats
+                components without a specificity fight
 */
-@layer reset, tokens, components, typography, utilities;
+@layer reset, tokens, components, typography, utilities, project;
 
 @import "./fonts.css";
 @import "./reset.css";

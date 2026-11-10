@@ -1,7 +1,8 @@
 import type { CSSProperties } from 'react'
 import { Stat, type StatProps } from '../../ui/stat'
-import '../../shared/block/block.css'
-import './stats-block.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './stats-block.module.css'
 
 /* Content blocks/Stats — Figma 24985:701. */
 
@@ -18,25 +19,30 @@ export type StatsBlockProps = {
 
 export function StatsBlock({ Type = 'Client', intro, stats }: StatsBlockProps) {
     return (
-        <section className="yw-block yw-stats-block" aria-label={intro?.kicker}>
-            <div className="yw-block__inner">
+        <section
+            className={cx(block.root, styles.root)}
+            aria-label={intro?.kicker}
+        >
+            <div className={cx(block.inner, styles.inner)}>
                 {intro && (
-                    <div className="yw-stats-block__intro yw-block-reveal">
+                    <div className={cx(styles.intro, block.reveal)}>
                         {intro.kicker && (
-                            <span className="yw-kicker yw-body-sm-bold">
+                            <span
+                                className={cx(block.kicker, 'yw-body-sm-bold')}
+                            >
                                 {intro.kicker}
                             </span>
                         )}
                         <h2 className="yw-heading-2xl">{intro.title}</h2>
                         {intro.body && (
-                            <p className="yw-stats-block__body yw-body-lg-reg">
+                            <p className={cx(styles.body, 'yw-body-lg-reg')}>
                                 {intro.body}
                             </p>
                         )}
                     </div>
                 )}
                 <div
-                    className="yw-stats-block__row"
+                    className={styles.row}
                     style={
                         { ['--_n' as string]: stats.length } as CSSProperties
                     }

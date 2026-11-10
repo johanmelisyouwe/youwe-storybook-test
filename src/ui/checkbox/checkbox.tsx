@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Icon } from '../../shared/icons/icon'
-import './checkbox.css'
+import { cx } from '../../shared/cx'
+import styles from './checkbox.module.css'
 
 /*
   Checkbox — Figma node 15432:8660, and Checkbox label — 15432:8734 (page "– Checkbox").
@@ -44,33 +45,26 @@ export function Checkbox({
     }, [indeterminate])
     return (
         <span
-            className={[
-                'yw-checkbox',
-                `yw-checkbox--${Size.toLowerCase()}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-size={Size.toLowerCase()}
+            className={cx(styles.root, className)}
         >
             <input
                 ref={ref}
                 type="checkbox"
-                className={['yw-checkbox__input', inputClassName]
-                    .filter(Boolean)
-                    .join(' ')}
+                className={cx(styles.input, inputClassName)}
                 checked={Active === 'Yes'}
                 disabled={disabled}
                 onChange={(e) => onChange?.(e.target.checked)}
                 {...rest}
             />
-            <span className="yw-checkbox__box" aria-hidden="true">
+            <span className={styles.box} aria-hidden="true">
                 <Icon
-                    className="yw-checkbox__icon yw-checkbox__icon--check"
+                    className={cx(styles.icon, styles.iconCheck)}
                     name="check"
                     size={ICON[Size]}
                 />
                 <Icon
-                    className="yw-checkbox__icon yw-checkbox__icon--remove"
+                    className={cx(styles.icon, styles.iconRemove)}
                     name="remove"
                     size={ICON[Size]}
                 />
@@ -99,10 +93,8 @@ export function CheckboxLabel({
 }: CheckboxLabelProps) {
     return (
         <label
-            className={[
-                'yw-checkbox-label',
-                `yw-checkbox-label--${Size.toLowerCase()}`,
-            ].join(' ')}
+            data-size={Size.toLowerCase()}
+            className={[styles.checkboxLabel].join(' ')}
         >
             <Checkbox Size={Size} className={className} {...props} />
             <span className={TEXT[Size]}>{label}</span>

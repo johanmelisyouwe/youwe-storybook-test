@@ -4,8 +4,8 @@ import { Pills } from '../../ui/pills'
 import { ButtonFilter } from '../../ui/button-filter'
 import { Button } from '../../ui/button'
 import { Icon } from '../../shared/icons/icon'
-import '../../shared/focus-ring/focus-ring.css'
-import './filter-bar.css'
+import { cx } from '../../shared/cx'
+import styles from './filter-bar.module.css'
 
 /* Content blocks/Filter bar — Figma 27090:1370 (variants: Desktop Default, Mobile Default, Mobile Open). */
 
@@ -84,13 +84,13 @@ export function FilterBar({
 
     if (Device === 'Desktop') {
         return (
-            <div className="yw-filter-bar" role="search" aria-label="Filter">
-                <ul className="yw-filter-bar__systems">
+            <div className={styles.root} role="search" aria-label="Filter">
+                <ul className={styles.systems}>
                     {systems.map((s) => (
                         <li key={s}>
                             <button
                                 type="button"
-                                className="yw-filter-tile yw-focus-ring"
+                                className={styles.filterTile}
                                 aria-pressed={system === s}
                                 onClick={() => pick(system === s ? null : s)}
                             >
@@ -100,7 +100,7 @@ export function FilterBar({
                         </li>
                     ))}
                 </ul>
-                <div className="yw-filter-bar__fields">{dropdowns}</div>
+                <div className={styles.fields}>{dropdowns}</div>
             </div>
         )
     }
@@ -108,13 +108,14 @@ export function FilterBar({
     const sheet = (
         <div
             id={sheetId}
-            className={`yw-filter-sheet${inline ? ' yw-filter-sheet--static' : ''}`}
+            data-static={inline || undefined}
+            className={styles.filterSheet}
             role="dialog"
             aria-modal={!inline}
             aria-label="Filters"
         >
-            <span className="yw-filter-sheet__handle" aria-hidden="true" />
-            <div className="yw-filter-sheet__head">
+            <span className={styles.filterSheetHandle} aria-hidden="true" />
+            <div className={styles.filterSheetHead}>
                 <h2 className="yw-heading-sm">Filters</h2>
                 <Button
                     Variant="Outline"
@@ -126,7 +127,7 @@ export function FilterBar({
                     }}
                 />
             </div>
-            <div className="yw-filter-sheet__fields">{dropdowns}</div>
+            <div className={styles.filterSheetFields}>{dropdowns}</div>
             <Button
                 Variant="Primary"
                 Size="M"
@@ -138,11 +139,12 @@ export function FilterBar({
 
     return (
         <div
-            className="yw-filter-bar yw-filter-bar--mobile"
+            data-layout="mobile"
+            className={styles.root}
             role="search"
             aria-label="Filter"
         >
-            <ul className="yw-filter-bar__pills">
+            <ul className={styles.pills}>
                 <li>
                     <Pills
                         Variant={system === null ? 'Primary' : 'Neutral'}
@@ -162,7 +164,7 @@ export function FilterBar({
                     </li>
                 ))}
             </ul>
-            <div className="yw-filter-bar__bar">
+            <div className={styles.bar}>
                 <ButtonFilter
                     Size="M"
                     label="Filters"
@@ -172,7 +174,9 @@ export function FilterBar({
                     aria-controls={sheetId}
                     onClick={() => setOpen(true)}
                 />
-                <span className="yw-filter-bar__count yw-body-sm-reg">{`${count} ${noun}`}</span>
+                <span
+                    className={cx(styles.count, 'yw-body-sm-reg')}
+                >{`${count} ${noun}`}</span>
             </div>
             {open &&
                 (inline ? (
@@ -180,7 +184,7 @@ export function FilterBar({
                 ) : (
                     <>
                         <div
-                            className="yw-filter-scrim"
+                            className={styles.filterScrim}
                             onClick={() => setOpen(false)}
                         />
                         {sheet}

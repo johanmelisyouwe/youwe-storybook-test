@@ -1,0 +1,134 @@
+/*
+  Content blocks/Case carousel (Figma 24985:700).
+  Short: header (heading/xl + body body/md/reg secondary, 552 wide) with prev/next (Button Outline M, icon only)
+    at the bottom on the left; Case Cards (One third) scrolling to the right edge, gap 16.
+  Full width 3 / 4: kicker + title (heading/xl) + Solid button, then 3 or 4 cards in a row (One third / One quarter).
+  Scroll: same header, one row of cards running off the right edge.
+  Mobile: stacked, native swipe with snap. Motion (Figma): desktop pinned reel and image shift are described;
+  code uses a snapping scroller with prev/next and a 01 / 08 counter (see SYNC-REPORT.md).
+  Interaction: tabbing to a card scrolls it fully into view.
+*/
+@layer components {
+    .root[data-layout="short"] .inner {
+        display: grid;
+        grid-template-columns: 39.5rem minmax(0, 1fr);
+        gap: var(--spacing-sm);
+        max-width: none;
+        padding-right: 0;
+        margin-left: max(
+            0px,
+            calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)
+        );
+    }
+    .aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: var(--spacing-xl);
+        padding-right: var(--spacing-4xl);
+    }
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        max-width: 34.5rem;
+
+        & h2,
+        & p {
+            margin: 0;
+        }
+
+        & p {
+            color: var(--color-shared-content-secondary);
+        }
+    }
+    .controls {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+    .count {
+        color: var(--color-shared-content-secondary);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    .titlebar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+
+        & h2 {
+            margin: 0;
+        }
+    }
+    .root[data-layout="grid"] .inner,
+    .root[data-layout="scroll"] .inner {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4xl);
+    }
+
+    .track {
+        display: flex;
+        gap: var(--spacing-sm);
+        overflow-x: auto;
+        margin: 0;
+        padding: 0 var(--_pad) 0 0;
+        list-style: none;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+        & > li {
+            flex: 0 0 26rem;
+            scroll-snap-align: start;
+        }
+    }
+    .root[data-layout="scroll"] .inner {
+        max-width: none;
+        padding-right: 0;
+        margin-left: max(
+            0px,
+            calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)
+        );
+    }
+    .root[data-layout="scroll"] .head {
+        padding-right: var(--_pad);
+        max-width: calc(var(--yw-container-max) + var(--_pad));
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(var(--_cols), minmax(0, 1fr));
+        gap: var(--spacing-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    @container (max-width: 47.9375rem) {
+        .root[data-layout="short"] .inner {
+            grid-template-columns: 1fr;
+            padding-right: 0;
+        }
+        .aside {
+            padding-right: var(--_pad);
+        }
+        .grid {
+            grid-template-columns: 1fr;
+        }
+        .track > li {
+            flex-basis: 85%;
+        }
+        .titlebar {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+}

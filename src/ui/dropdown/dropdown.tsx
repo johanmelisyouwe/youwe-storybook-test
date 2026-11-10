@@ -3,7 +3,8 @@ import { Icon } from '../../shared/icons/icon'
 import { FieldShell, type FieldLabels, type FieldStatus } from '../field'
 import { OptionsPanel, type Option } from '../options-panel'
 import { useListbox } from '../options-panel/use-listbox'
-import './dropdown.css'
+import { cx } from '../../shared/cx'
+import styles from '../field/field.module.css'
 
 /*
   Dropdown — Figma "Dropdown/Static Labels" (18505:20713) and "Dropdown/Floating Labels" (18505:21072),
@@ -79,11 +80,7 @@ export function Dropdown({
               : ''
 
     return (
-        <div
-            ref={lb.root}
-            className="yw-dropdown-root"
-            style={{ position: 'relative', width: '100%' }}
-        >
+        <div ref={lb.root} style={{ position: 'relative', width: '100%' }}>
             <FieldShell
                 labels={Labels}
                 id={id}
@@ -100,12 +97,11 @@ export function Dropdown({
                 }
                 controlClassName={controlClassName}
                 titleClass="yw-body-sm-bold"
-                className={['yw-dropdown', open && 'is-open']
-                    .filter(Boolean)
-                    .join(' ')}
+                open={open}
+                className={styles.dropdown}
                 onControlClick={() => !disabled && lb.setOpen(!lb.open)}
                 trailing={
-                    <span className="yw-dropdown__chevron" aria-hidden="true">
+                    <span className={styles.dropdownChevron} aria-hidden="true">
                         <Icon name="chevron-down" size={24} />
                     </span>
                 }
@@ -127,13 +123,8 @@ export function Dropdown({
                         Hint && hintText ? `${id}-hint` : undefined
                     }
                     disabled={disabled}
-                    className={[
-                        'yw-dropdown__button',
-                        'yw-body-md-reg',
-                        selectedIndex < 0 && 'is-placeholder',
-                    ]
-                        .filter(Boolean)
-                        .join(' ')}
+                    data-placeholder={selectedIndex < 0 || undefined}
+                    className={cx(styles.dropdownButton, 'yw-body-md-reg')}
                     onKeyDown={lb.onKeyDown}
                 >
                     {shown}

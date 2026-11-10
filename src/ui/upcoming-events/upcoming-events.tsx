@@ -1,6 +1,8 @@
 import { CardReveal } from '../../shared/card-reveal'
 import { ButtonLink } from '../button-link'
-import './upcoming-events.css'
+import { cx } from '../../shared/cx'
+import reveal from '../../shared/card-reveal/card-reveal.module.css'
+import styles from './upcoming-events.module.css'
 
 /* Upcoming events — Figma 26740:42; _Upcoming events/Row — 26887:988 (page "Insights"). */
 
@@ -27,21 +29,21 @@ export function EventCard({
     className,
 }: EventItem & { className?: string }) {
     return (
-        <a
-            href={href}
-            className={['yw-reveal', 'yw-event', className]
-                .filter(Boolean)
-                .join(' ')}
-        >
-            <span className="yw-event__date" aria-hidden="true">
+        <a href={href} className={cx(reveal.root, styles.event, className)}>
+            <span className={styles.eventDate} aria-hidden="true">
                 <span className="yw-heading-2xl">{Day}</span>
-                <span className="yw-event__month yw-body-xs-bold">{Month}</span>
+                <span className={cx(styles.eventMonth, 'yw-body-xs-bold')}>
+                    {Month}
+                </span>
             </span>
             <span className="yw-visually-hidden">{date}: </span>
-            <span className="yw-event__text">
+            <span className={styles.eventText}>
                 <span className="yw-body-md-med">{Title}</span>
-                <span className="yw-card-tags">
-                    <span className="yw-card-tag yw-card-tag--type yw-body-xs-reg">
+                <span className={reveal.tags}>
+                    <span
+                        data-type
+                        className={cx(reveal.tag, 'yw-body-xs-reg')}
+                    >
                         {Place}
                     </span>
                 </span>
@@ -65,17 +67,16 @@ export function UpcomingEvents({
 }: UpcomingEventsProps) {
     return (
         <section
-            className={['yw-events', Device === 'Mobile' && 'yw-events--mobile']
-                .filter(Boolean)
-                .join(' ')}
+            data-mobile={Device === 'Mobile' || undefined}
+            className={cx(styles.root)}
         >
-            <h2 className="yw-events__heading">
-                <span className="yw-events__eyebrow yw-body-sm-bold">
+            <h2 className={styles.heading}>
+                <span className={cx(styles.eyebrow, 'yw-body-sm-bold')}>
                     Events
                 </span>
                 <span className="yw-heading-md">Upcoming events</span>
             </h2>
-            <ul className="yw-events__list">
+            <ul className={styles.list}>
                 {events.slice(0, 4).map((e) => (
                     <li key={e.Title}>
                         <EventCard {...e} />

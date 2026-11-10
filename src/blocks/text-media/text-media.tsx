@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/block/block.css'
-import './text-media.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './text-media.module.css'
 
 /* Content blocks/Text + media — Figma 24985:702. */
 
@@ -32,30 +33,24 @@ export function TextMedia({
     alt,
     media,
 }: TextMediaProps) {
-    const cls = [
-        'yw-block',
-        'yw-text-media',
-        Split !== '6/6' && `yw-text-media--${Split.replace('/', '-')}`,
-        pos === 'Left' && 'yw-text-media--left',
-        Theme === 'Deep blue' && 'yw-text-media--deep-blue',
-    ]
-        .filter(Boolean)
-        .join(' ')
     return (
         <section
-            className={cls}
+            data-split={Split !== '6/6' ? Split.replace('/', '-') : undefined}
+            data-left={pos === 'Left' || undefined}
+            data-deep-blue={Theme === 'Deep blue' || undefined}
+            className={cx(block.root, styles.root)}
             data-theme={Theme === 'Light' ? 'light' : undefined}
         >
-            <div className="yw-block__inner">
-                <div className="yw-text-media__grid">
-                    <div className="yw-text-media__text yw-block-reveal">
+            <div className={cx(block.inner, styles.inner)}>
+                <div className={styles.grid}>
+                    <div className={cx(styles.text, block.reveal)}>
                         <h2
                             className="yw-heading-xl"
                             style={{ whiteSpace: 'pre-line' }}
                         >
                             {heading}
                         </h2>
-                        <p className="yw-text-media__body yw-body-md-reg">
+                        <p className={cx(styles.body, 'yw-body-md-reg')}>
                             {body}
                         </p>
                     </div>
@@ -64,7 +59,7 @@ export function TextMedia({
                             src={image}
                             alt={alt}
                             ratio="608 / 474"
-                            className="yw-clip-reveal"
+                            className={styles.clipReveal}
                         />
                     )}
                 </div>

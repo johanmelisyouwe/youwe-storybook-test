@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Button } from '../button'
-import './cookie-banner.css'
+import { cx } from '../../shared/cx'
+import styles from './cookie-banner.module.css'
 
 /*
   Cookie Banner — Figma node 26536:71 (page "Cookie Banner").
@@ -37,19 +38,15 @@ export function CookieBanner({
             tabIndex={-1}
             role="region"
             aria-label="Cookie consent"
-            className={[
-                'yw-cookie',
-                Device === 'Mobile' && 'yw-cookie--mobile',
-                fixed && 'yw-cookie--fixed',
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-mobile={Device === 'Mobile' || undefined}
+            data-fixed={fixed || undefined}
+            className={cx(styles.root)}
         >
-            <p className="yw-cookie__message yw-body-md-reg">
+            <p className={cx(styles.message, 'yw-body-md-reg')}>
                 We collect data to optimize your online experience. Want to know
                 more? Check out our <a href={privacyHref}>Privacy Policy</a>.
             </p>
-            <div className="yw-cookie__actions">
+            <div className={styles.actions}>
                 <Button
                     Variant="Primary"
                     Size="M"

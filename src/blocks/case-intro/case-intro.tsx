@@ -1,6 +1,7 @@
 import { Body, Lead } from '../text-column'
-import '../../shared/block/block.css'
-import '../text-column/text-column.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from '../text-column/text-column.module.css'
 
 /* Content blocks/Case intro — Figma 24988:571. Styles in TextColumn.css (shared long-form). */
 
@@ -22,26 +23,21 @@ export function CaseIntro({
     body,
 }: CaseIntroProps) {
     return (
-        <section className="yw-block yw-longform">
-            <div className="yw-block__inner">
+        <section className={cx(block.root, styles.longform)}>
+            <div className={block.inner}>
                 <div
-                    className={[
-                        'yw-case-intro',
-                        'yw-block-reveal',
-                        pos === 'Right' && 'yw-case-intro--meta-right',
-                    ]
-                        .filter(Boolean)
-                        .join(' ')}
+                    data-meta-right={pos === 'Right' || undefined}
+                    className={cx(styles.caseIntro, block.reveal)}
                 >
-                    <dl className="yw-case-intro__meta">
+                    <dl className={styles.caseIntroMeta}>
                         {meta.map((m) => (
-                            <div key={m.label} className="yw-case-intro__item">
+                            <div key={m.label} className={styles.caseIntroItem}>
                                 <dt className="yw-body-xs-bold">{m.label}</dt>
                                 <dd className="yw-body-md-reg">{m.value}</dd>
                             </div>
                         ))}
                     </dl>
-                    <div className="yw-case-intro__text">
+                    <div className={styles.caseIntroText}>
                         <Lead>{lead}</Lead>
                         <Body paragraphs={body} />
                     </div>

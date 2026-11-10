@@ -3,7 +3,8 @@ import { CardMedia } from '../../shared/card-reveal/card-media'
 import { Pills } from '../pills'
 import { Button } from '../button'
 import { ButtonLink } from '../button-link'
-import './feature-card.css'
+import { cx } from '../../shared/cx'
+import styles from './feature-card.module.css'
 
 /* Feature Card — Figma 26533:129 (page "Cards"). Static card; tags, button and link are separate links where used. */
 
@@ -44,31 +45,28 @@ export function FeatureCard({
 }: FeatureCardProps) {
     return (
         <article
-            className={[
-                'yw-feature-card',
-                `yw-feature-card--${Variant.toLowerCase()}`,
-                reveal && 'yw-feature-card--reveal',
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-variant={Variant.toLowerCase()}
+            data-reveal={reveal || undefined}
+            className={cx(styles.root, className)}
         >
             {Variant === 'AI' && (
-                <span className="yw-feature-card__aura" aria-hidden="true" />
+                <span className={styles.aura} aria-hidden="true" />
             )}
             {image && (
                 <CardMedia
-                    className="yw-feature-card__image"
+                    className={styles.image}
                     src={typeof image === 'string' ? image : undefined}
                     ratio="16 / 9"
                     style={{ borderRadius: 0 }}
                 />
             )}
-            <div className="yw-feature-card__content">
-                <div className="yw-feature-card__header">
-                    <div className="yw-feature-card__heading">
+            <div className={styles.content}>
+                <div className={styles.header}>
+                    <div className={styles.heading}>
                         {Number && (
-                            <span className="yw-feature-card__number yw-body-sm-bold">
+                            <span
+                                className={cx(styles.number, 'yw-body-sm-bold')}
+                            >
                                 {Number}
                             </span>
                         )}
@@ -79,13 +77,13 @@ export function FeatureCard({
                     {arrow && <CardArrow />}
                 </div>
                 <p
-                    className="yw-feature-card__desc yw-body-md-reg"
+                    className={cx(styles.desc, 'yw-body-md-reg')}
                     style={{ margin: 0 }}
                 >
                     {Description}
                 </p>
                 {tags && tags.length > 0 && (
-                    <div className="yw-feature-card__tags">
+                    <div className={styles.tags}>
                         {tags.slice(0, 3).map((t) => (
                             <Pills
                                 key={t}
@@ -97,7 +95,7 @@ export function FeatureCard({
                     </div>
                 )}
                 {button && (
-                    <div className="yw-feature-card__bottom">
+                    <div className={styles.bottom}>
                         <Button
                             Variant="Outline"
                             Size="M"

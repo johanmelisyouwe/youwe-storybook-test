@@ -1,17 +1,18 @@
-import '../../shared/block/block.css'
-import './text-column.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './text-column.module.css'
 
 /* Content blocks/Text column — Figma 24988:596. Also exports the shared long-form pieces. */
 
-const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ')
-
 export function Lead({ children }: { children: string }) {
-    return <p className="yw-longform__lead yw-body-2xl-med">{children}</p>
+    return (
+        <p className={cx(styles.longformLead, 'yw-body-2xl-med')}>{children}</p>
+    )
 }
 
 export function Body({ paragraphs }: { paragraphs: string[] }) {
     return (
-        <div className="yw-longform__body yw-body-lg-reg">
+        <div className={cx(styles.longformBody, 'yw-body-lg-reg')}>
             {paragraphs.map((p, i) => (
                 <p key={i}>{p}</p>
             ))}
@@ -35,15 +36,11 @@ export function TextColumn({
 }: TextColumnProps) {
     return (
         <section
-            className={cx(
-                'yw-block',
-                'yw-longform',
-                'yw-text-column',
-                Alignment === 'Centered' && 'yw-text-column--centered'
-            )}
+            data-centered={Alignment === 'Centered' || undefined}
+            className={cx(block.root, styles.longform, styles.root)}
         >
-            <div className="yw-block__inner">
-                <div className="yw-text-column__text yw-block-reveal">
+            <div className={block.inner}>
+                <div className={cx(styles.text, block.reveal)}>
                     <Lead>{lead}</Lead>
                     <Body paragraphs={body} />
                 </div>

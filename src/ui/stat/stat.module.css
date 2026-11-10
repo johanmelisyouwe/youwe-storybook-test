@@ -1,0 +1,48 @@
+/*
+  Stat (Figma 26795:73). surface/base-1, 1px border/2, padding 24, gap 16. Place in a row with -1px gap
+  so borders overlap (Figma description). Value heading/2xl (L) or heading/xl (M) primary;
+  label body/md/reg secondary. Type=Client: top row with client logo (80×42) and a 40px round arrow (border/4).
+  Motion (Figma): count up on scroll, 1.6s ease-out, once.
+*/
+@layer components {
+    .statRow {
+        display: flex;
+
+        & > * + * {
+            margin-left: -1px;
+        }
+    }
+
+    .root {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-lg);
+        background: var(--color-shared-surface-base-1);
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--color-shared-border-2);
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--color-shared-content-primary);
+    }
+    .logo {
+        display: flex;
+        width: 5rem;
+    }
+    .arrow {
+        --_arrow-border: var(--color-shared-border-4);
+    }
+    .value {
+        font-variant-numeric: tabular-nums;
+    }
+    .label {
+        color: var(--color-shared-content-secondary);
+    }
+}

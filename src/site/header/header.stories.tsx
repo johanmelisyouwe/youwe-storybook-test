@@ -139,11 +139,7 @@ export const Parts: Story = {
                 <UtilityLink label="Careers" href="#" />
             </div>
             <div style={{ position: 'relative', maxWidth: 1440 }}>
-                <MegaMenu
-                    {...MEGA}
-                    Feature="Ask Youwe"
-                    className="yw-mega--static"
-                />
+                <MegaMenu {...MEGA} Feature="Ask Youwe" inline />
             </div>
         </div>
     ),

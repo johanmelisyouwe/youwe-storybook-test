@@ -1,6 +1,7 @@
 import { Icon } from '../../shared/icons/icon'
-import '../../shared/focus-ring/focus-ring.css'
-import './toggle.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './toggle.module.css'
 
 /*
   Toggle — Figma node 15416:13125 (page "– Toggle"), handle = _Handle (15416:13163).
@@ -40,24 +41,18 @@ export function Toggle({
             aria-label={label}
             disabled={disabled}
             onClick={() => onChange?.(!on)}
-            className={[
-                'yw-toggle',
-                'yw-focus-ring',
-                `yw-toggle--${Size.toLowerCase()}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-size={Size.toLowerCase()}
+            className={cx(styles.root, ring.root, className)}
             {...aria}
         >
-            <span className="yw-toggle__handle" aria-hidden="true">
+            <span className={styles.handle} aria-hidden="true">
                 <Icon
-                    className="yw-toggle__icon yw-toggle__icon--off"
+                    className={cx(styles.icon, styles.iconOff)}
                     name="close-md"
                     size={icon}
                 />
                 <Icon
-                    className="yw-toggle__icon yw-toggle__icon--on"
+                    className={cx(styles.icon, styles.iconOn)}
                     name="check"
                     size={icon}
                 />

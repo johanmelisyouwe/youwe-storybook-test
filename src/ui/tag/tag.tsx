@@ -1,5 +1,6 @@
 import { Icon, type IconName } from '../../shared/icons/icon'
-import './tag.css'
+import { cx } from '../../shared/cx'
+import styles from './tag.module.css'
 
 /* Tag — Figma node 6284:7265 (page "– Tag"). Non-interactive status label. */
 
@@ -29,17 +30,12 @@ export function Tag({
 }: TagProps) {
     return (
         <span
-            className={[
-                'yw-tag',
-                `yw-tag--${Variant.toLowerCase()}`,
-                `yw-tag--${Size.toLowerCase()}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-variant={Variant.toLowerCase()}
+            data-size={Size.toLowerCase()}
+            className={cx(styles.root, className)}
         >
             {showIcon && (
-                <span className="yw-tag__icon" aria-hidden="true">
+                <span className={styles.icon} aria-hidden="true">
                     <Icon name={iconName} size={Size === 'M' ? 16 : 12} />
                 </span>
             )}

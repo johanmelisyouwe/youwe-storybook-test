@@ -10,7 +10,6 @@ import {
 import type { TechnologyCardProps } from '../ui/technology-card'
 import { AskSnippet } from '../site/ask-youwe'
 import { ContactCTA } from '../blocks/contact-cta'
-import '../shared/block/block.css'
 import {
     CLIENT_LOGOS,
     Page,
@@ -22,6 +21,7 @@ import {
     type Device,
 } from './shared'
 import { abstract, logoFor } from '../media/media'
+import block from '../shared/block/block.module.css'
 
 /*
   Templates/Tech Partners — Figma "Page / Tech Partners": Desktop 26661:7114, Mobile 26816:2055. Copy,
@@ -255,11 +255,8 @@ function TechPartnersPage({ Device }: { Device: Device }) {
                 <BuildYourStack Device={Device} {...BUILD_YOUR_STACK} />
             </Section>
             <Section Mode="Light">
-                <section className="yw-block" aria-label="All partners">
-                    <div
-                        className="yw-block__inner"
-                        style={{ paddingBottom: 0 }}
-                    >
+                <section className={block.root} aria-label="All partners">
+                    <div className={block.inner} style={{ paddingBottom: 0 }}>
                         <SectionIntro
                             Layout="Split"
                             Kicker="All partners"

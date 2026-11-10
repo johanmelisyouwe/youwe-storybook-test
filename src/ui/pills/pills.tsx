@@ -1,6 +1,7 @@
 import { Icon, type IconName } from '../../shared/icons/icon'
-import '../../shared/focus-ring/focus-ring.css'
-import './pills.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './pills.module.css'
 
 /*
   Pills — Figma node 6285:1970 (page "– Pill"). Selectable tag for filters and option toggles.
@@ -46,22 +47,16 @@ export function Pills({
         iconName ?? (Variant === 'Neutral' ? 'info' : 'show-password')
     const icon =
         iconPos === 'Off' ? null : (
-            <span className="yw-pill__icon" aria-hidden="true">
+            <span className={styles.icon} aria-hidden="true">
                 <Icon name={name} size={size} />
             </span>
         )
     return (
         <button
             type="button"
-            className={[
-                'yw-pill',
-                'yw-focus-ring',
-                `yw-pill--${Variant.toLowerCase()}`,
-                `yw-pill--${Size.toLowerCase()}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-variant={Variant.toLowerCase()}
+            data-size={Size.toLowerCase()}
+            className={cx(styles.root, ring.root, className)}
             aria-pressed={pressed}
             disabled={disabled}
             onClick={onClick}

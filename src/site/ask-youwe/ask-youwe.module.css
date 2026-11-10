@@ -1,0 +1,421 @@
+/*
+  Ask Youwe (Figma 27019:3067), Ask Youwe/Snippet (26692:106) and parts:
+  _Ask Youwe/Orb (26669:34), /Aura (26709:1121), /Button (26689:70), /Chip (26709:1124), /Label (26709:1128).
+  Glass: component/ask/surface + 1px component/ask/border + effect ask/glass (blur 32 + drop shadow);
+  snippets use ask/glass-flat (blur 24). Aura: glow-1 and glow-2 ellipses, layer blur 72/80, behind content.
+  Bar: 56 high, padding 8/20/8/8, gap 12, radius 4; prompt body/md/reg secondary; ⌘K key chip.
+  Contextual: bar widens (640ms ease/emphasized), then the suggestion chip fades in.
+  Active: panel 560 wide, padding 32, gap 24; opens from the bar with a clip reveal (duration/cinematic).
+  Default: the aura breathes on a ~6s loop.
+*/
+.askChip {
+    composes: root from "../../shared/focus-ring/focus-ring.module.css";
+}
+
+@layer components {
+    /* Orb: brand gradient sphere (Figma raw gradient colours, not tokens) */
+    .askOrb {
+        display: inline-block;
+        flex-shrink: 0;
+        width: var(--_orb, 1.25rem);
+        height: var(--_orb, 1.25rem);
+        border-radius: var(--shared-radius-circular);
+        background: radial-gradient(
+            circle at 30% 30%,
+            #ff9e73 0%,
+            #ff2e5e 30%,
+            #c40040 62%,
+            #4a144f 84%,
+            var(--color-blue-500) 100%
+        ); /* legacy-ok: Figma Orb uses raw gradient stops */
+        box-shadow:
+            inset 0 0 calc(var(--_orb, 1.25rem) / 4) rgb(255 255 255 / 0.35),
+            0 0 calc(var(--_orb, 1.25rem) / 2)
+            color-mix(
+                in srgb,
+                var(--color-component-ask-glow-1) 50%,
+                transparent
+            ); /* legacy-ok: Figma Orb inner highlight */
+
+        &[data-size="m"] {
+            --_orb: 2rem;
+        }
+
+        &[data-size="l"] {
+            --_orb: 3rem;
+        }
+    }
+
+    /* Aura */
+    @keyframes ask-breathe {
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: var(--_aura-op, 0.6);
+        }
+        50% {
+            transform: scale(1.08);
+            opacity: calc(var(--_aura-op, 0.6) * 0.75);
+        }
+    }
+
+    .askAura {
+        position: absolute;
+        z-index: 0;
+        top: -40px;
+        left: -60px;
+        width: 20rem;
+        height: 7.5rem;
+        opacity: var(--_aura-op, 0.6);
+        pointer-events: none;
+        animation: ask-breathe 6s ease-in-out infinite; /* legacy-ok: Figma "~6s loop", no motion token for it */
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(2.25rem);
+        }
+
+        &::before {
+            top: 10%;
+            left: 0;
+            width: 54%;
+            height: 64%;
+            background: var(--color-component-ask-glow-1);
+        }
+
+        &::after {
+            top: 20%;
+            left: 40%;
+            width: 62%;
+            height: 72%;
+            background: var(--color-component-ask-glow-2);
+        }
+    }
+
+    /* Glass surfaces */
+    .askGlass {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        border-radius: var(--component-radius-ask-panel);
+        background: var(--color-component-ask-surface);
+        box-shadow:
+            inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border),
+            var(--effect-ask-glass-shadow);
+        backdrop-filter: blur(var(--effect-ask-glass-blur));
+        color: var(--color-shared-content-primary);
+
+        &[data-flat] {
+            box-shadow: inset 0 0 0 var(--shared-width-1)
+                var(--color-component-ask-border);
+            backdrop-filter: blur(var(--effect-ask-glass-flat-blur));
+        }
+
+        & > :not(.askAura) {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    /* Buttons and chips */
+    .askBtn,
+    .askChip {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        padding: var(--spacing-2xs) var(--spacing-sm);
+        border: 0;
+        border-radius: var(--component-radius-ask-control);
+        background: var(--color-component-ask-surface-raised);
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--color-component-ask-border);
+        color: var(--color-shared-content-primary);
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+            background-color var(--motion-duration-fast)
+            var(--motion-ease-standard),
+            box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+    }
+
+    .askBtn[data-variant="primary"] {
+        background: var(--color-shared-surface-fixed-brand-red);
+        box-shadow: none;
+        color: var(--color-shared-content-fixed-light);
+    }
+    .askBtn[data-variant="primary"]:hover {
+        background: var(--color-component-brand-red-3);
+    }
+    .askBtn[data-variant="glass"]:hover,
+    .askChip[data-suggestion]:hover {
+        background: var(--color-component-ask-border);
+    }
+    .askBtn[data-variant="disabled"] {
+        box-shadow: none;
+        color: var(--color-shared-content-tertiary);
+        cursor: not-allowed;
+    }
+    .askBtn[data-icon] {
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+    }
+    .askBtn[data-icon].askBtn[data-s] {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .askChip[data-context] {
+        gap: var(--spacing-3xs);
+        padding: var(--spacing-3xs) var(--spacing-xs);
+        cursor: default;
+    }
+    .askChip[data-context] .askChipMeta {
+        color: var(--color-shared-content-tertiary);
+    }
+    .askChip[data-key] {
+        padding: 2px var(--spacing-2xs);
+        box-shadow: none;
+        color: var(--color-shared-content-secondary);
+        cursor: default;
+    } /* 2px: Figma padding */
+
+    .askLabel {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        color: var(--color-component-ask-meta);
+    }
+
+    /* Bar */
+    .askBar {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        width: 100%;
+        max-width: 30rem;
+        min-height: 3.5rem;
+        padding: var(--spacing-2xs) var(--spacing-md) var(--spacing-2xs)
+            var(--spacing-2xs);
+        transition: max-width 640ms var(--motion-ease-emphasized);
+        cursor: text;
+
+        &[data-contextual] {
+            max-width: 44.75rem;
+        }
+
+        &:focus-within {
+            box-shadow:
+                inset 0 0 0 var(--shared-width-1)
+                var(--color-component-ask-border),
+                0 0 0 var(--shared-width-2)
+                var(--color-shared-border-system-focus);
+        }
+    }
+    .askBarPrompt {
+        flex: 1;
+        min-width: 0;
+        color: var(--color-shared-content-secondary);
+    }
+
+    .askBarInput {
+        flex: 1;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--color-shared-content-primary);
+        outline: none;
+
+        &::placeholder {
+            color: var(--color-shared-content-secondary);
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    .askBarContext {
+        animation: fade-in var(--motion-duration-base)
+            var(--motion-ease-standard) 640ms both;
+    }
+
+    /* Active panel */
+    @keyframes ask-open {
+        from {
+            clip-path: inset(
+                calc(100% - 3.5rem) 0 0 0 round
+                    var(--component-radius-ask-panel)
+            );
+        }
+        to {
+            clip-path: inset(0 0 0 0 round var(--component-radius-ask-panel));
+        }
+    }
+
+    .askPanel {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        width: 100%;
+        max-width: 35rem;
+        padding: var(--spacing-xl);
+        animation: ask-open var(--motion-duration-cinematic)
+            var(--motion-ease-emphasized);
+
+        &[data-mobile] {
+            padding: var(--spacing-lg);
+        }
+
+        & .askAura {
+            --_aura-op: 0.55;
+            top: -150px;
+            left: -140px;
+            width: 32.5rem;
+            height: 18.75rem;
+        }
+    }
+    .askPanelHeader {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2xs);
+
+        & > :global(.yw-body-md-bold) {
+            flex: 1;
+        }
+    }
+    .askPanelQuestion {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .askPanelBubble {
+        max-width: 80%;
+        margin: 0;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--component-radius-ask-card);
+        background: var(--color-component-ask-surface-raised);
+    }
+
+    .askPanelAnswer {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+
+        & p {
+            margin: 0;
+        }
+    }
+    .askPanelSource {
+        color: var(--color-shared-content-tertiary);
+    }
+    .askPanelFollowups {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2xs);
+    }
+
+    .askPanelComposer {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-2xs) var(--spacing-2xs) var(--spacing-2xs)
+            var(--spacing-md);
+        border-radius: var(--component-radius-ask-panel);
+        background: var(--color-component-ask-surface-raised);
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--color-component-ask-border);
+    }
+
+    /* Snippets */
+    .askSnippet {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        width: 100%;
+        max-width: 37.5rem;
+        padding: var(--spacing-lg);
+
+        & .askAura {
+            --_aura-op: 0.45;
+            top: -60px;
+            left: -90px;
+            width: 17.5rem;
+            height: 8.75rem;
+            animation: none;
+        }
+
+        &[data-type="nudge"] .askSnippetText {
+            flex-direction: row;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        &[data-type="case"] {
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-end;
+            min-height: 21.25rem;
+            color: var(--color-shared-content-fixed-light);
+        }
+
+        &[data-type="case"].askSnippet[data-mobile] {
+            min-height: 23.75rem;
+        }
+
+        &[data-type="case"] .askLabel {
+            color: var(--color-shared-content-fixed-light);
+        }
+    }
+    .askSnippetText {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+        min-width: 0;
+    }
+    .askSnippetImage {
+        position: absolute !important;
+        z-index: 0 !important;
+        inset: 0;
+        border-radius: 0 !important;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                color-mix(in srgb, var(--color-neutral-900) 5%, transparent) 0%,
+                color-mix(in srgb, var(--color-neutral-900) 35%, transparent)
+                    25%,
+                color-mix(in srgb, var(--color-neutral-900) 82%, transparent)
+                    50%,
+                color-mix(in srgb, var(--color-neutral-900) 96%, transparent)
+                    100%
+            );
+        }
+    }
+
+    .askSnippetContent {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+    }
+    .askSnippetActions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2xs);
+        padding-top: var(--spacing-2xs);
+    }
+}

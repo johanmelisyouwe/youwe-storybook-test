@@ -5,13 +5,11 @@ import { Button } from '../../ui/button'
 import { ButtonUtility } from '../../ui/button-utility'
 import { AskYouwe } from '../ask-youwe'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/focus-ring/focus-ring.css'
-import '../../shared/block/block.css'
-import './header.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './header.module.css'
 
 /* Header/Corporate — Figma 24999:631; _Nav link 24998:575; _Utility link 24998:583; _Mega menu 26977:1552. */
-
-const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ')
 
 export type NavItem = { label: string; href: string; mega?: MegaMenuProps }
 
@@ -21,21 +19,25 @@ export function NavLink({
     label,
     href,
     active,
+    plain,
     className,
 }: {
     Size?: 'M' | 'L'
     label: string
     href: string
     active?: boolean
+    /** Plain link inside the mega menu (no underline animation) */
+    plain?: boolean
     className?: string
 }) {
     return (
         <a
             href={href}
+            data-l={Size === 'L' || undefined}
+            data-plain={plain || undefined}
             className={cx(
-                'yw-nav-link',
-                'yw-focus-ring',
-                Size === 'L' && 'yw-nav-link--l',
+                styles.navLink,
+                ring.root,
                 Size === 'L' ? 'yw-body-xl-med' : 'yw-body-md-med',
                 className
             )}
@@ -49,7 +51,7 @@ export function NavLink({
 /* _Utility link */
 export function UtilityLink({ label, href }: { label: string; href: string }) {
     return (
-        <a href={href} className="yw-utility-link yw-focus-ring yw-body-xs-reg">
+        <a href={href} className={cx(styles.utilityLink, 'yw-body-xs-reg')}>
             {label}
         </a>
     )
@@ -67,6 +69,8 @@ export type MegaMenuProps = {
     featureHref?: string
     featureImage?: string
     id?: string
+    /** Rendered in place (stories, mobile sheet) instead of as a dropdown */
+    inline?: boolean
     className?: string
     onMouseEnter?: () => void
     onMouseLeave?: () => void
@@ -81,6 +85,7 @@ export function MegaMenu({
     featureHref = '#',
     featureImage,
     id,
+    inline,
     className,
     onMouseEnter,
     onMouseLeave,
@@ -88,47 +93,43 @@ export function MegaMenu({
     return (
         <div
             id={id}
-            className={cx('yw-mega', className)}
+            data-static={inline || undefined}
+            className={cx(styles.mega, className)}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
             {columns.slice(0, 3).map((c) => (
-                <div key={c.heading} className="yw-mega__col">
-                    <span className="yw-mega__heading yw-body-xs-med">
+                <div key={c.heading} className={styles.megaCol}>
+                    <span className={cx(styles.megaHeading, 'yw-body-xs-med')}>
                         {c.heading}
                     </span>
-                    <ul className="yw-mega__links">
+                    <ul className={styles.megaLinks}>
                         {c.links.map((l) => (
                             <li key={l.label}>
-                                <NavLink
-                                    label={l.label}
-                                    href={l.href}
-                                    className="yw-nav-link--plain"
-                                />
+                                <NavLink label={l.label} href={l.href} plain />
                             </li>
                         ))}
                     </ul>
                 </div>
             ))}
             {Feature === 'ACI Weave' ? (
-                <a
-                    href={featureHref}
-                    className="yw-mega__feature yw-focus-ring"
-                >
+                <a href={featureHref} className={styles.megaFeature}>
                     <CardMedia src={featureImage} ratio="314 / 120" />
-                    <span className="yw-mega__feature-text">
-                        <span className="yw-mega__eyebrow yw-body-xs-med">
+                    <span className={styles.megaFeatureText}>
+                        <span
+                            className={cx(styles.megaEyebrow, 'yw-body-xs-med')}
+                        >
                             {Eyebrow}
                         </span>
                         <span className="yw-body-md-med">{Title}</span>
-                        <span className="yw-mega__more yw-body-sm-med">
+                        <span className={cx(styles.megaMore, 'yw-body-sm-med')}>
                             {Link}
                         </span>
                     </span>
                 </a>
             ) : (
-                <div className="yw-mega__col">
-                    <span className="yw-mega__heading yw-body-xs-med">
+                <div className={styles.megaCol}>
+                    <span className={cx(styles.megaHeading, 'yw-body-xs-med')}>
                         Not sure where to start?
                     </span>
                     <AskYouwe {...{ 'Show shortcut': false }} />
@@ -217,14 +218,15 @@ export function Header({
     if (Device === 'Mobile') {
         const sheet = (
             <div
-                className={cx('yw-sheet', inline && 'yw-sheet--static')}
+                data-static={inline || undefined}
+                className={cx(styles.sheet)}
                 id={`${id}-sheet`}
                 role="dialog"
                 aria-modal={!inline}
                 aria-label="Menu"
             >
-                <div className="yw-sheet__top">
-                    <a href="/" className="yw-header__logo yw-focus-ring">
+                <div className={styles.sheetTop}>
+                    <a href="/" className={styles.logo}>
                         <YouweLogo />
                     </a>
                     <ButtonUtility
@@ -233,7 +235,7 @@ export function Header({
                         onClick={() => setOpen(false)}
                     />
                 </div>
-                <ul className="yw-sheet__links">
+                <ul className={styles.sheetLinks}>
                     {nav.map((n) => (
                         <li key={n.label}>
                             <NavLink
@@ -245,17 +247,17 @@ export function Header({
                         </li>
                     ))}
                 </ul>
-                <div className="yw-sheet__divider" />
-                <div className="yw-sheet__utility">
+                <div className={styles.sheetDivider} />
+                <div className={styles.sheetUtility}>
                     {utility.map((u) => (
                         <UtilityLink key={u.label} {...u} />
                     ))}
-                    <span className="yw-sheet__lang">
+                    <span className={styles.sheetLang}>
                         <Icon name="language" size={16} />
                         <UtilityLink label={language} href="#" />
                     </span>
                 </div>
-                <div className="yw-sheet__cta">
+                <div className={styles.sheetCta}>
                     <Button
                         Variant="Primary"
                         Size="M"
@@ -267,24 +269,22 @@ export function Header({
         )
         return (
             <header
-                className={cx(
-                    'yw-header',
-                    'yw-header--mobile',
-                    fixed && 'yw-header--fixed',
-                    hidden && !open && 'is-hidden'
-                )}
+                data-mobile
+                data-fixed={fixed || undefined}
+                data-hidden={(hidden && !open) || undefined}
+                className={styles.root}
             >
                 {open && inline ? (
                     sheet
                 ) : (
-                    <div className="yw-header__top">
-                        <a href="/" className="yw-header__logo yw-focus-ring">
+                    <div className={styles.top}>
+                        <a href="/" className={styles.logo}>
                             <YouweLogo />
                         </a>
-                        <div className="yw-header__mright">
+                        <div className={styles.mright}>
                             <button
                                 type="button"
-                                className="yw-header__menu-btn yw-focus-ring"
+                                className={styles.menuBtn}
                                 aria-label="Open menu"
                                 aria-expanded={open}
                                 aria-controls={`${id}-sheet`}
@@ -302,18 +302,16 @@ export function Header({
 
     return (
         <header
-            className={cx(
-                'yw-header',
-                fixed && 'yw-header--fixed',
-                scrolled && 'is-scrolled',
-                hidden && !open && 'is-hidden'
-            )}
+            data-fixed={fixed || undefined}
+            data-scrolled={scrolled || undefined}
+            data-hidden={(hidden && !open) || undefined}
+            className={styles.root}
         >
-            <nav className="yw-header__bar" aria-label="Main">
-                <a href="/" className="yw-header__logo yw-focus-ring">
+            <nav className={styles.bar} aria-label="Main">
+                <a href="/" className={styles.logo}>
                     <YouweLogo />
                 </a>
-                <ul className="yw-header__menu">
+                <ul className={styles.menu}>
                     {nav.map((n) =>
                         n.mega ? (
                             <li
@@ -323,7 +321,10 @@ export function Header({
                             >
                                 <a
                                     href={n.href}
-                                    className="yw-nav-link yw-focus-ring yw-body-md-med"
+                                    className={cx(
+                                        styles.navLink,
+                                        'yw-body-md-med'
+                                    )}
                                     aria-current={
                                         n.label === current ? 'page' : undefined
                                     }
@@ -353,12 +354,13 @@ export function Header({
                         )
                     )}
                 </ul>
-                <div className="yw-header__right">
+                <div className={styles.right}>
                     {utility.map((u) => (
                         <a
                             key={u.label}
                             href={u.href}
-                            className="yw-nav-link yw-nav-link--plain yw-focus-ring yw-body-md-med"
+                            data-plain
+                            className={cx(styles.navLink, 'yw-body-md-med')}
                         >
                             {u.label}
                         </a>
@@ -375,7 +377,7 @@ export function Header({
                 <MegaMenu
                     {...megaItem.mega}
                     id={`${id}-mega`}
-                    className={inline ? 'yw-mega--static' : undefined}
+                    inline={inline}
                     onMouseEnter={enter}
                     onMouseLeave={leave}
                 />

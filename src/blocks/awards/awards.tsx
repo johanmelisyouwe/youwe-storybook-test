@@ -1,6 +1,7 @@
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/block/block.css'
-import '../accordion-list/accordion-list.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from '../accordion-list/accordion-list.module.css'
 
 /* Content blocks/Awards — Figma 27096:9988. Styles in AccordionList.css (batch 9 blocks). */
 
@@ -18,17 +19,17 @@ export function Awards({
     badges,
 }: AwardsProps) {
     return (
-        <section className="yw-block yw-awards" aria-label={Title}>
-            <div className="yw-block__inner">
-                <div className="yw-awards__row yw-block-reveal">
-                    <h2 className="yw-awards__title yw-body-lg-bold">
+        <section className={cx(block.root, styles.awards)} aria-label={Title}>
+            <div className={cx(block.inner, styles.inner)}>
+                <div className={cx(styles.awardsRow, block.reveal)}>
+                    <h2 className={cx(styles.awardsTitle, 'yw-body-lg-bold')}>
                         {Title}
                     </h2>
-                    <ul className="yw-awards__badges">
+                    <ul className={styles.awardsBadges}>
                         {badges.map((b) => (
                             <li
                                 key={b.name}
-                                className="yw-awards__badge"
+                                className={styles.awardsBadge}
                                 title={b.name}
                             >
                                 <CardMedia

@@ -3,9 +3,10 @@ import { Accordion } from '../../ui/accordion'
 import { Button } from '../../ui/button'
 import { List, ListItem } from '../../ui/list-item'
 import { Words } from '../section-header'
-import '../../shared/block/block.css'
-import '../stats-block/stats-block.css'
-import './accordion-list.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './accordion-list.module.css'
+import stats from '../stats-block/stats-block.module.css'
 
 /* Content blocks/Accordion list — Figma 26534:21312. */
 
@@ -41,9 +42,11 @@ export function AccordionList({
     cta,
 }: AccordionListProps) {
     const head = (
-        <div className="yw-feature-list__head">
+        <div className={stats.featureListHead}>
             {kicker && (
-                <span className="yw-kicker yw-body-sm-bold">{kicker}</span>
+                <span className={cx(block.kicker, 'yw-body-sm-bold')}>
+                    {kicker}
+                </span>
             )}
             <h2 className="yw-heading-xl">
                 <Words text={heading} />
@@ -52,8 +55,8 @@ export function AccordionList({
         </div>
     )
     const ctaEl = cta && (
-        <div className="yw-acc-list__cta yw-block-reveal">
-            <div className="yw-acc-list__cta-text">
+        <div className={cx(styles.cta, block.reveal)}>
+            <div className={styles.ctaText}>
                 <span className="yw-body-xl-med">{cta.title}</span>
                 <p className="yw-body-md-reg">{cta.body}</p>
             </div>
@@ -66,14 +69,14 @@ export function AccordionList({
         </div>
     )
     const list = (
-        <div className="yw-acc-list__items">
+        <div className={styles.items}>
             {items.map((it, i) => (
                 <Accordion
                     key={it.label}
                     Style="Plus-Minus"
                     Expanded={i === 0 ? 'Yes' : 'No'}
                     label={it.label}
-                    className="yw-block-reveal"
+                    className={block.reveal}
                 >
                     {it.content}
                 </Accordion>
@@ -82,8 +85,8 @@ export function AccordionList({
     )
     if (Layout === 'Stacked') {
         return (
-            <section className="yw-block yw-acc-list">
-                <div className="yw-block__inner">
+            <section className={cx(block.root, styles.root)}>
+                <div className={cx(block.inner, styles.inner)}>
                     {head}
                     {list}
                     {ctaEl}
@@ -92,9 +95,9 @@ export function AccordionList({
         )
     }
     return (
-        <section className="yw-block yw-acc-list yw-acc-list--split">
-            <div className="yw-block__inner">
-                <div className="yw-acc-list__intro">
+        <section data-layout="split" className={cx(block.root, styles.root)}>
+            <div className={cx(block.inner, styles.inner)}>
+                <div className={styles.intro}>
                     {head}
                     {Layout === 'Split list' && bullets && (
                         <List>
@@ -105,7 +108,7 @@ export function AccordionList({
                     )}
                     {ctaEl}
                 </div>
-                <div className="yw-acc-list__faq">
+                <div className={styles.faq}>
                     <h3 className="yw-heading-lg">{faqTitle}</h3>
                     {list}
                 </div>

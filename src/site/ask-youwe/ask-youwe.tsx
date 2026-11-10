@@ -1,16 +1,14 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/focus-ring/focus-ring.css'
-import '../../shared/block/block.css'
-import './ask-youwe.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './ask-youwe.module.css'
 
 /*
   Ask Youwe — Figma 27019:3067; Ask Youwe/Snippet — 26692:106; parts _Ask Youwe/Orb, Aura, Button, Chip, Label.
   The UI only: wiring to a real answer service is out of scope (onAsk callback).
 */
-
-const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ')
 
 /* _Ask Youwe/Orb */
 export function AskOrb({
@@ -22,19 +20,16 @@ export function AskOrb({
 }) {
     return (
         <span
-            className={cx(
-                'yw-ask-orb',
-                Size !== 'S' && `yw-ask-orb--${Size.toLowerCase()}`,
-                className
-            )}
+            data-size={Size !== 'S' ? Size.toLowerCase() : undefined}
+            className={cx(styles.askOrb, className)}
             aria-hidden="true"
         />
     )
 }
 
-/* _Ask Youwe/Aura — place inside a .yw-ask-glass surface */
+/* _Ask Youwe/Aura — place inside an askGlass surface */
 export function AskAura() {
-    return <span className="yw-ask-aura" aria-hidden="true" />
+    return <span className={styles.askAura} aria-hidden="true" />
 }
 
 /* _Ask Youwe/Button */
@@ -59,14 +54,12 @@ export function AskButton({
     onClick,
     className,
 }: AskButtonProps) {
-    const cls = cx(
-        'yw-ask-btn',
-        'yw-focus-ring',
-        `yw-ask-btn--${Variant.toLowerCase()}`,
-        Type === 'Icon' && 'yw-ask-btn--icon',
-        Size === 'S' && 'yw-ask-btn--s',
-        className
-    )
+    const attrs = {
+        className: cx(styles.askBtn, ring.root, className),
+        'data-variant': Variant.toLowerCase(),
+        'data-icon': Type === 'Icon' || undefined,
+        'data-s': Size === 'S' || undefined,
+    }
     const inner =
         Type === 'Icon' ? (
             <Icon name={icon} size={16} />
@@ -80,7 +73,7 @@ export function AskButton({
         return (
             <a
                 href={href}
-                className={cls}
+                {...attrs}
                 aria-label={Type === 'Icon' ? label : undefined}
             >
                 {inner}
@@ -89,7 +82,7 @@ export function AskButton({
     return (
         <button
             type="button"
-            className={cls}
+            {...attrs}
             onClick={onClick}
             disabled={Variant === 'Disabled'}
             aria-label={Type === 'Icon' ? label : undefined}
@@ -113,14 +106,14 @@ export function AskChip({
 }) {
     if (Type === 'Key')
         return (
-            <kbd className="yw-ask-chip yw-ask-chip--key yw-body-xs-med">
+            <kbd data-key className={cx(styles.askChip, 'yw-body-xs-med')}>
                 {label}
             </kbd>
         )
     if (Type === 'Context')
         return (
-            <span className="yw-ask-chip yw-ask-chip--context">
-                <span className="yw-ask-chip__meta yw-body-xs-reg">
+            <span data-context className={cx(styles.askChip)}>
+                <span className={cx(styles.askChipMeta, 'yw-body-xs-reg')}>
                     {meta ?? 'This page'}
                 </span>
                 <span className="yw-body-xs-med">{label}</span>
@@ -129,7 +122,8 @@ export function AskChip({
     return (
         <button
             type="button"
-            className="yw-ask-chip yw-ask-chip--suggestion yw-focus-ring yw-body-sm-reg"
+            data-suggestion
+            className={cx(styles.askChip, 'yw-body-sm-reg')}
             onClick={onClick}
         >
             {label}
@@ -140,7 +134,7 @@ export function AskChip({
 /* _Ask Youwe/Label */
 export function AskLabel({ label = 'Ask Youwe' }: { label?: string }) {
     return (
-        <span className="yw-ask-label yw-body-xs-med">
+        <span className={cx(styles.askLabel, 'yw-body-xs-med')}>
             <AskOrb />
             {label}
         </span>
@@ -217,16 +211,12 @@ export function AskYouwe({
     if (State === 'Active') {
         return (
             <section
-                className={cx(
-                    'yw-ask-glass',
-                    'yw-ask-panel',
-                    Device === 'Mobile' && 'yw-ask-panel--mobile',
-                    className
-                )}
+                data-mobile={Device === 'Mobile' || undefined}
+                className={cx(styles.askGlass, styles.askPanel, className)}
                 aria-labelledby={`${id}-t`}
             >
                 <AskAura />
-                <div className="yw-ask-panel__header">
+                <div className={styles.askPanelHeader}>
                     <AskOrb />
                     <span id={`${id}-t`} className="yw-body-md-bold">
                         Ask Youwe
@@ -240,22 +230,32 @@ export function AskYouwe({
                     />
                 </div>
                 {Question && (
-                    <div className="yw-ask-panel__question">
-                        <p className="yw-ask-panel__bubble yw-body-md-reg">
+                    <div className={styles.askPanelQuestion}>
+                        <p
+                            className={cx(
+                                styles.askPanelBubble,
+                                'yw-body-md-reg'
+                            )}
+                        >
                             {Question}
                         </p>
                     </div>
                 )}
-                <div className="yw-ask-panel__answer" aria-live="polite">
+                <div className={styles.askPanelAnswer} aria-live="polite">
                     <p className="yw-body-md-reg">{Answer}</p>
                     {Source && (
-                        <span className="yw-ask-panel__source yw-body-xs-reg">
+                        <span
+                            className={cx(
+                                styles.askPanelSource,
+                                'yw-body-xs-reg'
+                            )}
+                        >
                             {Source}
                         </span>
                     )}
                 </div>
                 {(followUp || cta) && (
-                    <div className="yw-ask-panel__followups">
+                    <div className={styles.askPanelFollowups}>
                         {followUp && (
                             <AskChip
                                 label={followUp}
@@ -271,9 +271,9 @@ export function AskYouwe({
                         )}
                     </div>
                 )}
-                <form className="yw-ask-panel__composer" onSubmit={submit}>
+                <form className={styles.askPanelComposer} onSubmit={submit}>
                     <input
-                        className="yw-ask-bar__input yw-body-md-reg"
+                        className={cx(styles.askBarInput, 'yw-body-md-reg')}
                         placeholder="Ask a follow-up…"
                         aria-label="Ask a follow-up"
                         value={q}
@@ -293,14 +293,10 @@ export function AskYouwe({
     return (
         <form
             role="search"
-            className={cx(
-                'yw-ask-glass',
-                'yw-ask-bar',
-                State === 'Contextual' &&
-                    Device === 'Desktop' &&
-                    'yw-ask-bar--contextual',
-                className
-            )}
+            data-contextual={
+                (State === 'Contextual' && Device === 'Desktop') || undefined
+            }
+            className={cx(styles.askGlass, styles.askBar, className)}
             onSubmit={submit}
             onClick={() => input.current?.focus()}
         >
@@ -308,14 +304,14 @@ export function AskYouwe({
             <AskOrb />
             <input
                 ref={input}
-                className="yw-ask-bar__input yw-body-md-reg"
+                className={cx(styles.askBarInput, 'yw-body-md-reg')}
                 placeholder={Prompt}
                 aria-label={Prompt}
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
             />
             {State === 'Contextual' && context && (
-                <span className="yw-ask-bar__context">
+                <span className={styles.askBarContext}>
                     <AskChip label={context} onClick={() => onAsk?.(context)} />
                 </span>
             )}
@@ -356,19 +352,21 @@ export function AskSnippet({
     onAsk,
     className,
 }: AskSnippetProps) {
-    const base = cx(
-        'yw-ask-glass',
-        'yw-ask-glass--flat',
-        'yw-ask-snippet',
-        `yw-ask-snippet--${Type.toLowerCase()}`,
-        Device === 'Mobile' && 'yw-ask-snippet--mobile',
-        className
-    )
+    const base = {
+        className: cx(styles.askGlass, styles.askSnippet, className),
+        'data-flat': true,
+        'data-type': Type.toLowerCase(),
+        'data-mobile': Device === 'Mobile' || undefined,
+    }
     if (Type === 'Case') {
         return (
-            <article className={base}>
-                <CardMedia src={image} className="yw-ask-snippet__image" />
-                <div className="yw-ask-snippet__content">
+            <article {...base}>
+                <CardMedia
+                    src={image}
+                    className={styles.askSnippetImage}
+                    placeholder={false}
+                />
+                <div className={styles.askSnippetContent}>
                     <AskLabel
                         label={`Ask Youwe · ${reason ?? 'Related case'}`}
                     />
@@ -376,7 +374,7 @@ export function AskSnippet({
                         {Title}
                     </h3>
                     {Meta && <span className="yw-body-sm-reg">{Meta}</span>}
-                    <div className="yw-ask-snippet__actions">
+                    <div className={styles.askSnippetActions}>
                         <AskButton
                             Variant="Primary"
                             label="Read the case"
@@ -395,9 +393,9 @@ export function AskSnippet({
     }
     if (Type === 'Nudge') {
         return (
-            <aside className={base}>
+            <aside {...base}>
                 <AskAura />
-                <span className="yw-ask-snippet__text">
+                <span className={styles.askSnippetText}>
                     <AskOrb />
                     <span className="yw-body-sm-reg">{Title}</span>
                 </span>
@@ -406,9 +404,9 @@ export function AskSnippet({
         )
     }
     return (
-        <aside className={base}>
+        <aside {...base}>
             <AskAura />
-            <span className="yw-ask-snippet__text">
+            <span className={styles.askSnippetText}>
                 <AskLabel
                     label={reason ? `Ask Youwe · ${reason}` : 'Ask Youwe'}
                 />

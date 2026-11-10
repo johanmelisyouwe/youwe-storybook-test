@@ -1,0 +1,86 @@
+/*
+  Cookie Banner (Figma 26536:71). surface/base-2, radius component/radius/card.
+  Desktop: 600 wide, padding 32 (xl), gap 24 (lg), message left, buttons stacked on the right (180 wide, gap 8).
+  Mobile: full width, padding 24 (lg), gap 24, buttons side by side (gap 8).
+  Message body/md/reg content/primary. Accept = Primary, Cookie settings = Solid (Size M).
+  Placement: bottom-right on desktop, full width at the bottom on mobile.
+  Motion (Figma): enters from the bottom distance/md, duration/slow ease/emphasized.
+*/
+@layer components {
+    @keyframes cookie-in {
+        from {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-md));
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .root {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+        width: 100%;
+        max-width: 37.5rem;
+        padding: var(--spacing-xl);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+        color: var(--color-shared-content-primary);
+        animation: cookie-in var(--motion-duration-slow)
+            var(--motion-ease-emphasized);
+
+        &[data-fixed] {
+            position: fixed;
+            z-index: 100;
+            right: var(--spacing-lg);
+            bottom: var(--spacing-lg);
+        }
+
+        &[data-mobile] {
+            flex-direction: column;
+            align-items: stretch;
+            max-width: none;
+            padding: var(--spacing-lg);
+        }
+
+        &[data-mobile] .actions {
+            flex-direction: row;
+            width: auto;
+        }
+
+        &[data-mobile] .actions > * {
+            flex: 1;
+        }
+
+        &[data-mobile].root[data-fixed] {
+            right: var(--spacing-2xs);
+            bottom: var(--spacing-2xs);
+            left: var(--spacing-2xs);
+            width: auto;
+        }
+    }
+
+    .message {
+        flex: 1;
+        margin: 0;
+
+        & a {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        gap: var(--spacing-2xs);
+        width: 11.25rem;
+
+        & > * {
+            width: 100%;
+        }
+    }
+}

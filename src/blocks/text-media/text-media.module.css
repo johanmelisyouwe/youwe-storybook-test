@@ -1,0 +1,104 @@
+/*
+  Content blocks/Text + media (Figma 24985:702). Text (heading/xl + body body/md/reg secondary, gap 24) and
+  media (radius 4) side by side, gap 64, centred. Split 6/6 (608 | 608), 4/8, 8/4; Media position Left/Right.
+  Tablet and mobile stack (text first). Theme: Dark (surface/base-1), Deep blue (surface/fixed/bright-blue),
+  Light (light colour mode). Motion (Figma): text block reveal; media clip reveal.
+  Content blocks/Media (24988:606): Contained (80px margins, radius 4, 1280×666), Full bleed (edge to edge,
+  16:9), Two-up (two 632×736, gap 16), Two-up staggered (second one 80px lower).
+  Motion: media clip reveal (inset 18%/8% → 0 with radius, scale 0.96 → 1), scroll-linked.
+*/
+@layer components {
+    .root[data-deep-blue] {
+        background: var(--color-shared-surface-fixed-bright-blue);
+        color: var(--color-shared-content-fixed-light);
+    }
+    .root[data-deep-blue] .body {
+        color: var(--color-shared-content-fixed-light);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: var(--spacing-3xl);
+    }
+    .root[data-split="4-8"] .grid {
+        grid-template-columns: 4fr 8fr;
+    }
+    .root[data-split="8-4"] .grid {
+        grid-template-columns: 8fr 4fr;
+    }
+    .root[data-left] .text {
+        order: 2;
+    }
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+
+        & h2,
+        & p {
+            margin: 0;
+        }
+    }
+    .body {
+        color: var(--color-shared-content-secondary);
+    }
+
+    @container (max-width: 63.9375rem) {
+        .grid,
+        .root[data-split="4-8"] .grid,
+        .root[data-split="8-4"] .grid {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+        }
+        .root[data-left] .text {
+            order: 0;
+        }
+    }
+
+    @supports (animation-timeline: view()) {
+        @keyframes clip-reveal {
+            from {
+                clip-path: inset(18% 8% round var(--shared-radius-8));
+                transform: scale(0.96);
+            }
+            to {
+                clip-path: inset(0 round var(--shared-radius-4));
+                transform: none;
+            }
+        }
+        .clipReveal {
+            animation: clip-reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 40%;
+        }
+    }
+
+    /* Media */
+    .media[data-full] .inner {
+        max-width: none;
+        padding: 0;
+    }
+    .media[data-full] .clipReveal {
+        border-radius: 0;
+    }
+    .mediaTwo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-sm);
+        align-items: start;
+    }
+    .media[data-staggered] .mediaTwo > :nth-child(2) {
+        margin-top: var(--spacing-4xl);
+    }
+
+    @container (max-width: 47.9375rem) {
+        .mediaTwo {
+            grid-template-columns: 1fr;
+        }
+        .media[data-staggered] .mediaTwo > :nth-child(2) {
+            margin-top: 0;
+        }
+    }
+}

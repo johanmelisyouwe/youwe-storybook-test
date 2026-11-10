@@ -5,8 +5,9 @@ import {
 } from '../../ui/technology-card'
 import { ButtonLink } from '../../ui/button-link'
 import { SplitIntro } from '../services-split'
-import '../../shared/block/block.css'
-import '../services-split/services-split.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from '../services-split/services-split.module.css'
 
 /* Content blocks/Tech partners split — Figma 26851:911. Styles in ServicesSplit.css. */
 
@@ -31,10 +32,11 @@ export function TechPartnersSplit({
 }: TechPartnersSplitProps) {
     return (
         <section
-            className="yw-block yw-split yw-split--tech"
+            data-layout="tech"
+            className={cx(block.root, styles.root)}
             aria-label={title}
         >
-            <div className="yw-block__inner">
+            <div className={cx(block.inner, styles.inner)}>
                 <SplitIntro
                     kicker={kicker}
                     title={title}
@@ -50,18 +52,23 @@ export function TechPartnersSplit({
                         )
                     }
                 />
-                <div className="yw-split__groups">
+                <div className={styles.groups}>
                     {groups.map((g) => (
                         <section
                             key={g.label}
-                            className="yw-split__group yw-block-reveal"
+                            className={cx(styles.group, block.reveal)}
                             aria-label={g.label}
                         >
-                            <h3 className="yw-split__group-label yw-body-xs-bold">
+                            <h3
+                                className={cx(
+                                    styles.groupLabel,
+                                    'yw-body-xs-bold'
+                                )}
+                            >
                                 {g.label}
                             </h3>
                             <ul
-                                className="yw-split__cols"
+                                className={styles.cols}
                                 style={{
                                     margin: 0,
                                     padding: 0,

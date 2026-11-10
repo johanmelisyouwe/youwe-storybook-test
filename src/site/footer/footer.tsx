@@ -1,12 +1,11 @@
 import { Icon } from '../../shared/icons/icon'
 import { Button } from '../../ui/button'
-import '../../shared/focus-ring/focus-ring.css'
-import '../../shared/block/block.css'
-import './footer.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './footer.module.css'
 
 /* Footer/Corporate — Figma 25022:751; _Footer link — 25034:672 (page "Footer"). */
 
-const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ')
 type Link = { label: string; href: string }
 
 /* _Footer link */
@@ -22,10 +21,10 @@ export function FooterLink({
     return (
         <a
             href={href}
+            data-s={Size === 'S' || undefined}
             className={cx(
-                'yw-footer-link',
-                'yw-focus-ring',
-                Size === 'S' && 'yw-footer-link--s',
+                styles.footerLink,
+                ring.root,
                 Size === 'S' ? 'yw-body-sm-reg' : 'yw-body-md-reg'
             )}
         >
@@ -76,15 +75,13 @@ export function Footer({
 }: FooterProps) {
     return (
         <footer
-            className={cx(
-                'yw-footer',
-                Variant === 'Newsletter' && 'yw-footer--newsletter',
-                Device === 'Mobile' && 'yw-footer--mobile'
-            )}
+            data-newsletter={Variant === 'Newsletter' || undefined}
+            data-mobile={Device === 'Mobile' || undefined}
+            className={cx(styles.root)}
         >
-            <div className="yw-footer__columns">
+            <div className={styles.columns}>
                 {Variant === 'Newsletter' && newsletter && (
-                    <div className="yw-footer__newsletter">
+                    <div className={styles.newsletter}>
                         <p className="yw-body-sm-reg">{newsletter.text}</p>
                         <Button
                             Variant="Primary"
@@ -97,13 +94,13 @@ export function Footer({
                 {columns.map((c) => (
                     <nav
                         key={c.heading}
-                        className="yw-footer__col"
+                        className={styles.col}
                         aria-label={c.heading}
                     >
-                        <h2 className="yw-footer__heading yw-body-md-bold">
+                        <h2 className={cx(styles.heading, 'yw-body-md-bold')}>
                             {c.heading}
                         </h2>
-                        <ul className="yw-footer__links">
+                        <ul className={styles.links}>
                             {c.links.map((l) => (
                                 <li key={l.label}>
                                     <FooterLink {...l} />
@@ -113,25 +110,28 @@ export function Footer({
                     </nav>
                 ))}
             </div>
-            <div className="yw-footer__bottom">
-                <div className="yw-footer__divider" />
-                <div className="yw-footer__legal">
-                    <div className="yw-footer__legal-links">
+            <div className={styles.bottom}>
+                <div className={styles.divider} />
+                <div className={styles.legal}>
+                    <div className={styles.legalLinks}>
                         {legal.map((l) => (
                             <a
                                 key={l.label}
                                 href={l.href}
-                                className="yw-footer-link yw-focus-ring yw-body-sm-reg"
+                                className={cx(
+                                    styles.footerLink,
+                                    'yw-body-sm-reg'
+                                )}
                             >
                                 {l.label}
                             </a>
                         ))}
                     </div>
-                    <div className="yw-footer__social">
+                    <div className={styles.social}>
                         {social.Instagram && (
                             <a
                                 href={social.Instagram}
-                                className="yw-focus-ring"
+                                className={ring.root}
                                 aria-label="Youwe on Instagram"
                             >
                                 <SocialIcon name="Instagram" />
@@ -140,7 +140,7 @@ export function Footer({
                         {social.LinkedIn && (
                             <a
                                 href={social.LinkedIn}
-                                className="yw-focus-ring"
+                                className={ring.root}
                                 aria-label="Youwe on LinkedIn"
                             >
                                 <SocialIcon name="LinkedIn" />
@@ -149,7 +149,7 @@ export function Footer({
                         {Variant === 'Newsletter' && (
                             <button
                                 type="button"
-                                className="yw-footer__lang yw-focus-ring yw-body-sm-reg"
+                                className={cx(styles.lang, 'yw-body-sm-reg')}
                                 aria-label={`Language: ${language}`}
                             >
                                 <Icon name="language" size={16} />

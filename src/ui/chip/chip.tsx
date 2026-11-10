@@ -1,4 +1,5 @@
-import './chip.css'
+import { cx } from '../../shared/cx'
+import styles from './chip.module.css'
 
 /* Chip — Figma node 24519:4237 (page "– Chips"). Non-interactive status label. */
 
@@ -22,15 +23,13 @@ export function Chip({
 }: ChipProps) {
     return (
         <span
-            className={[
-                'yw-chip',
-                `yw-chip--${Variant.toLowerCase()}`,
-                `yw-chip--${Size.toLowerCase()}`,
+            data-variant={Variant.toLowerCase()}
+            data-size={Size.toLowerCase()}
+            className={cx(
+                styles.root,
                 Size === 'M' ? 'yw-body-md-med' : 'yw-body-xs-med',
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+                className
+            )}
         >
             {label}
         </span>

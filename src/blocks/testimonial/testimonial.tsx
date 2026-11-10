@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { flushSync } from 'react-dom'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/block/block.css'
-import '../../shared/focus-ring/focus-ring.css'
-import './testimonial.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './testimonial.module.css'
 
 /* Content blocks/Testimonial — Figma 26535:238. */
 
@@ -69,7 +69,7 @@ export function Testimonial({
     return (
         <section
             ref={ref}
-            className="yw-block yw-testimonial"
+            className={cx(block.root, styles.root)}
             aria-roledescription={quotes.length > 1 ? 'carousel' : undefined}
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
@@ -79,15 +79,13 @@ export function Testimonial({
             {image && (
                 <CardMedia
                     src={typeof image === 'string' ? image : undefined}
-                    className="yw-testimonial__image"
+                    className={styles.image}
+                    placeholder={false}
                 />
             )}
-            <div className="yw-block__inner">
-                <figure className="yw-testimonial__content">
-                    <span
-                        className="yw-testimonial__accent"
-                        aria-hidden="true"
-                    />
+            <div className={cx(block.inner, styles.inner)}>
+                <figure className={styles.content}>
+                    <span className={styles.accent} aria-hidden="true" />
                     <div
                         style={{ viewTransitionName: 'yw-quote' }}
                         aria-live={quotes.length > 1 ? 'polite' : undefined}
@@ -97,20 +95,23 @@ export function Testimonial({
                         </blockquote>
                     </div>
                     {(q.Name || (showLogo && q.logo)) && (
-                        <figcaption className="yw-testimonial__attribution">
+                        <figcaption className={styles.attribution}>
                             {showLogo && q.logo && (
-                                <span className="yw-testimonial__logo">
-                                    {q.logo}
-                                </span>
+                                <span className={styles.logo}>{q.logo}</span>
                             )}
-                            <span className="yw-testimonial__person">
+                            <span className={styles.person}>
                                 {q.Name && (
                                     <span className="yw-body-md-bold">
                                         {q.Name}
                                     </span>
                                 )}
                                 {q.Role && (
-                                    <span className="yw-testimonial__role yw-body-sm-reg">
+                                    <span
+                                        className={cx(
+                                            styles.role,
+                                            'yw-body-sm-reg'
+                                        )}
+                                    >
                                         {q.Role}
                                     </span>
                                 )}
@@ -118,12 +119,12 @@ export function Testimonial({
                         </figcaption>
                     )}
                     {quotes.length > 1 && (
-                        <div className="yw-testimonial__dots">
+                        <div className={styles.dots}>
                             {quotes.map((x, n) => (
                                 <button
                                     key={n}
                                     type="button"
-                                    className="yw-testimonial__dot yw-focus-ring"
+                                    className={styles.dot}
                                     aria-label={`Quote ${n + 1} of ${quotes.length}`}
                                     aria-current={n === i ? 'true' : undefined}
                                     onClick={() => go(n)}

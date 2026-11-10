@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { SectionIntro, type SectionIntroProps } from './'
 import { ModeFrame, type Mode } from '../../shared/mode-frame'
+import block from '../../shared/block/block.module.css'
 
 /* Content blocks/Section intro — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26847-85 (Figma copy) */
 
@@ -35,7 +36,7 @@ const meta: Meta<Args> = {
     render: ({ Layout, Mode, Device }) => (
         <ModeFrame Mode={Mode}>
             <div
-                className="yw-block"
+                className={block.root}
                 style={{ maxWidth: W[Device], background: 'none' }}
             >
                 <SectionIntro {...COPY} Layout={Layout} />
@@ -67,13 +68,13 @@ export const AllVariants: Story = {
                                 }}
                             >
                                 <div
-                                    className="yw-block"
+                                    className={block.root}
                                     style={{ width: 1280, background: 'none' }}
                                 >
                                     <SectionIntro {...COPY} Layout={l} />
                                 </div>
                                 <div
-                                    className="yw-block"
+                                    className={block.root}
                                     style={{ width: 336, background: 'none' }}
                                 >
                                     <SectionIntro {...COPY} Layout={l} />

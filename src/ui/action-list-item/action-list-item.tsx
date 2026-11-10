@@ -3,8 +3,9 @@ import { Icon, type IconName } from '../../shared/icons/icon'
 import { Checkbox } from '../checkbox'
 import { Toggle } from '../toggle'
 import { Radio } from '../radio'
-import '../../shared/focus-ring/focus-ring.css'
-import './action-list-item.css'
+import { cx } from '../../shared/cx'
+import styles from './action-list-item.module.css'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
 
 /*
   Action List Item — Figma node 18788:17600 (page "Action List").
@@ -73,7 +74,7 @@ export function ActionListItem({
         switch (e) {
             case 'Icon':
                 return (
-                    <span className="yw-action-item__icon" aria-hidden="true">
+                    <span className={styles.icon} aria-hidden="true">
                         <Icon name={icon} size={24} />
                     </span>
                 )
@@ -111,24 +112,24 @@ export function ActionListItem({
     const inner = (
         <>
             {leading && (
-                <span className="yw-action-item__lead">
+                <span className={styles.lead}>
                     {element(leading, leadingIcon)}
                 </span>
             )}
-            <span className="yw-action-item__body">
+            <span className={styles.body}>
                 <span id={labelId} className="yw-body-md-reg">
                     {label}
                 </span>
                 {support && (
-                    <span className="yw-action-item__support yw-body-sm-reg">
+                    <span className={cx(styles.support, 'yw-body-sm-reg')}>
                         {support}
                     </span>
                 )}
             </span>
             {(counter || trailing) && (
-                <span className="yw-action-item__trail">
+                <span className={styles.trail}>
                     {counter && (
-                        <span className="yw-action-item__count yw-body-xs-reg">
+                        <span className={cx(styles.count, 'yw-body-xs-reg')}>
                             {counter}
                         </span>
                     )}
@@ -138,19 +139,20 @@ export function ActionListItem({
         </>
     )
 
-    const cls = [
-        'yw-action-item',
-        divider && 'yw-action-item--divider',
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ')
+    const attrs = {
+        className: cx(styles.root, className),
+        'data-divider': divider || undefined,
+    }
     let row: ReactNode
     if (isControl(leading) || isControl(trailing))
-        row = <label className={cls}>{inner}</label>
+        row = <label {...attrs}>{inner}</label>
     else if (href)
         row = (
-            <a className={`${cls} yw-focus-ring`} href={href}>
+            <a
+                {...attrs}
+                className={cx(attrs.className, ring.root)}
+                href={href}
+            >
                 {inner}
             </a>
         )
@@ -158,7 +160,8 @@ export function ActionListItem({
         row = (
             <button
                 type="button"
-                className={`${cls} yw-focus-ring`}
+                {...attrs}
+                className={cx(attrs.className, ring.root)}
                 onClick={onClick}
             >
                 {inner}
@@ -175,7 +178,7 @@ export function ActionList({
     label?: string
 }) {
     return (
-        <ul className="yw-action-list" aria-label={label}>
+        <ul className={styles.actionList} aria-label={label}>
             {children}
         </ul>
     )

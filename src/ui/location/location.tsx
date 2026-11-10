@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import './location.css'
+import { cx } from '../../shared/cx'
+import styles from './location.module.css'
 
 /* Location — Figma 26797:116; Clock — Figma 26797:51 (page "Offices"). */
 
@@ -34,26 +35,29 @@ export function Clock({ timeZone, time, label }: ClockProps) {
     const [h1, h2, , m1, m2] = t.split('')
     return (
         <span
-            className="yw-clock"
+            className={styles.clock}
             role="timer"
             aria-label={label ? `Local time in ${label}: ${t}` : t}
         >
             {[h1, h2].map((d, i) => (
                 <span
                     key={`h${i}`}
-                    className="yw-clock__digit yw-heading-sm"
+                    className={cx(styles.clockDigit, 'yw-heading-sm')}
                     aria-hidden="true"
                 >
                     <span key={d}>{d}</span>
                 </span>
             ))}
-            <span className="yw-clock__sep yw-heading-sm" aria-hidden="true">
+            <span
+                className={cx(styles.clockSep, 'yw-heading-sm')}
+                aria-hidden="true"
+            >
                 :
             </span>
             {[m1, m2].map((d, i) => (
                 <span
                     key={`m${i}`}
-                    className="yw-clock__digit yw-heading-sm"
+                    className={cx(styles.clockDigit, 'yw-heading-sm')}
                     aria-hidden="true"
                 >
                     <span key={d}>{d}</span>
@@ -86,10 +90,16 @@ export function Location({
 }: LocationProps) {
     if (Device === 'Mobile') {
         return (
-            <li className="yw-location yw-location--mobile">
-                <span className="yw-location__text">
+            <li data-mobile className={styles.root}>
+                <span className={styles.text}>
                     <span className="yw-heading-md">{City}</span>
-                    <span className="yw-location__meta yw-location__row yw-body-sm-reg">
+                    <span
+                        className={cx(
+                            styles.meta,
+                            styles.row,
+                            'yw-body-sm-reg'
+                        )}
+                    >
                         <span>{Country}</span>
                         <span>{Timezone}</span>
                     </span>
@@ -99,15 +109,17 @@ export function Location({
         )
     }
     return (
-        <li className="yw-location">
+        <li className={styles.root}>
             <span className="yw-heading-lg">{City}</span>
-            <span className="yw-location__meta yw-body-md-reg">{Country}</span>
-            <span className="yw-location__meta yw-body-md-reg">{Timezone}</span>
+            <span className={cx(styles.meta, 'yw-body-md-reg')}>{Country}</span>
+            <span className={cx(styles.meta, 'yw-body-md-reg')}>
+                {Timezone}
+            </span>
             <Clock timeZone={timeZone} time={time} label={City} />
         </li>
     )
 }
 
 export function LocationList({ children }: { children: React.ReactNode }) {
-    return <ul className="yw-locations">{children}</ul>
+    return <ul className={styles.locations}>{children}</ul>
 }

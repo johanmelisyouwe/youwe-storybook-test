@@ -1,5 +1,6 @@
 import { Icon, type IconName } from '../../shared/icons/icon'
-import './button-utility.css'
+import { cx } from '../../shared/cx'
+import styles from './button-utility.module.css'
 
 /* Button/Utility — Figma node 6464:5164 (page "– Buttons"). Compact round icon button (close, …). */
 
@@ -29,13 +30,8 @@ export function ButtonUtility({
             type="button"
             aria-label={label}
             onClick={onClick}
-            className={[
-                'yw-utility-button',
-                `yw-utility-button--${Size.toLowerCase()}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-size={Size.toLowerCase()}
+            className={cx(styles.root, className)}
         >
             <Icon name={name} size={Size === 'S' ? 16 : 24} />
         </button>

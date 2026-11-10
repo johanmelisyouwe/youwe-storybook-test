@@ -1,0 +1,122 @@
+/*
+  Toaster (Figma 6284:7291). Read per variant on 2026-11-09.
+  400 wide, radius 8, 1px border, padding 0/4; per variant surface/system/*-1 + border/system/*;
+  icon frame 32 wide (padding 8/4, 24px two-tone icon in the system colour);
+  content padding 8/4, gap 4: title body/sm/bold in content/system/*, message body/sm/reg content/secondary;
+  close: 24px round transparent button with a 16px close icon.
+  Shadow=Yes adds shadow/outer/sm/drop.
+  Motion (Figma): enters fade + distance/sm up, duration/base ease/emphasized; exits duration/fast ease/exit.
+*/
+.close {
+    composes: root from "../../shared/focus-ring/focus-ring.module.css";
+}
+
+@layer components {
+    @keyframes toaster-in {
+        from {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-sm));
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes toaster-out {
+        to {
+            opacity: 0;
+        }
+    }
+
+    .root {
+        display: flex;
+        width: 100%;
+        max-width: 25rem;
+        padding-inline: var(--spacing-3xs);
+        border-radius: var(--shared-radius-8);
+        animation: toaster-in var(--motion-duration-base)
+            var(--motion-ease-emphasized);
+
+        &[data-leaving] {
+            animation: toaster-out var(--motion-duration-fast)
+                var(--motion-ease-exit) forwards;
+        }
+
+        &[data-shadow] {
+            box-shadow:
+                var(--_border-shadow), var(--effect-shadow-outer-sm-drop-shadow);
+        }
+
+        &:not(.root[data-shadow]) {
+            box-shadow: var(--_border-shadow);
+        }
+
+        &[data-variant="information"] {
+            --_bg: var(--color-shared-surface-system-info-1);
+            --_line: var(--color-shared-border-system-info);
+            --_fg: var(--color-shared-content-system-info);
+        }
+
+        &[data-variant="success"] {
+            --_bg: var(--color-shared-surface-system-positive-1);
+            --_line: var(--color-shared-border-system-positive);
+            --_fg: var(--color-shared-content-system-positive);
+        }
+
+        &[data-variant="warning"] {
+            --_bg: var(--color-shared-surface-system-caution-1);
+            --_line: var(--color-shared-border-system-caution);
+            --_fg: var(--color-shared-content-system-caution);
+        }
+
+        &[data-variant="error"] {
+            --_bg: var(--color-shared-surface-system-negative-1);
+            --_line: var(--color-shared-border-system-negative);
+            --_fg: var(--color-shared-content-system-negative);
+        }
+    }
+
+    .root {
+        --_border-shadow: inset 0 0 0 var(--shared-width-1) var(--_line);
+        background: var(--_bg);
+    }
+
+    .icon {
+        display: flex;
+        flex-shrink: 0;
+        padding: var(--spacing-2xs) var(--spacing-3xs);
+        color: var(--_fg);
+    }
+
+    .content {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+        padding: var(--spacing-2xs) var(--spacing-3xs);
+    }
+
+    .title {
+        color: var(--_fg);
+    }
+    .message {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        align-self: flex-start;
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0;
+        border: 0;
+        border-radius: var(--shared-radius-circular);
+        background: var(--color-shared-surface-transparent);
+        color: var(--color-shared-content-primary);
+        cursor: pointer;
+    }
+}

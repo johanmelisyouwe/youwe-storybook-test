@@ -1,6 +1,7 @@
 import { Body, Lead } from '../text-column'
-import '../../shared/block/block.css'
-import '../text-column/text-column.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from '../text-column/text-column.module.css'
 
 /* Content blocks/Two-column text — Figma 24988:587. Styles in TextColumn.css (shared long-form). */
 
@@ -21,26 +22,26 @@ export function TwoColumnText({
     body,
 }: TwoColumnTextProps) {
     return (
-        <section className="yw-block yw-longform">
-            <div className="yw-block__inner">
+        <section className={cx(block.root, styles.longform)}>
+            <div className={block.inner}>
                 <div
-                    className={[
-                        'yw-two-col',
-                        'yw-block-reveal',
-                        Split === '4/8' && 'yw-two-col--4-8',
-                    ]
-                        .filter(Boolean)
-                        .join(' ')}
+                    data-split={Split === '4/8' ? '4-8' : undefined}
+                    className={cx(styles.twoCol, block.reveal)}
                 >
-                    <div className="yw-two-col__lead">
+                    <div className={styles.twoColLead}>
                         {label && (
-                            <span className="yw-two-col__label yw-body-md-bold">
+                            <span
+                                className={cx(
+                                    styles.twoColLabel,
+                                    'yw-body-md-bold'
+                                )}
+                            >
                                 {label}
                             </span>
                         )}
                         <Lead>{lead}</Lead>
                     </div>
-                    <div className="yw-two-col__body">
+                    <div className={styles.twoColBody}>
                         <Body paragraphs={body} />
                     </div>
                 </div>

@@ -5,8 +5,9 @@ import {
     type TechnologyCardProps,
 } from '../../ui/technology-card'
 import { CaseCard, type CaseCardProps } from '../../ui/case-card'
-import '../../shared/block/block.css'
-import '../accordion-list/accordion-list.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from '../accordion-list/accordion-list.module.css'
 
 /* Content blocks/Build your stack — Figma 26851:1491. Styles in AccordionList.css (batch 9 blocks). */
 
@@ -40,11 +41,11 @@ export function BuildYourStack({
 }: BuildYourStackProps) {
     const [tab, setTab] = useState(selected)
     return (
-        <section className="yw-block yw-stack" aria-label={title}>
-            <div className="yw-block__inner">
-                <div className="yw-stack__header">
-                    <h2 className="yw-stack__title">
-                        <span className="yw-kicker yw-body-sm-bold">
+        <section className={cx(block.root, styles.stack)} aria-label={title}>
+            <div className={cx(block.inner, styles.inner)}>
+                <div className={styles.stackHeader}>
+                    <h2 className={styles.stackTitle}>
+                        <span className={cx(block.kicker, 'yw-body-sm-bold')}>
                             {kicker}
                         </span>
                         <span className="yw-heading-xl">{title}</span>
@@ -58,10 +59,15 @@ export function BuildYourStack({
                     selected={tab}
                     onChange={setTab}
                     panels={goals.map((g) => (
-                        <div key={g.label} className="yw-stack__goal">
-                            <div className="yw-stack__goal-intro">
+                        <div key={g.label} className={styles.stackGoal}>
+                            <div className={styles.stackGoalIntro}>
                                 {g.system && (
-                                    <span className="yw-stack__system yw-body-xs-bold">
+                                    <span
+                                        className={cx(
+                                            styles.stackSystem,
+                                            'yw-body-xs-bold'
+                                        )}
+                                    >
                                         {g.system}
                                     </span>
                                 )}
@@ -70,7 +76,7 @@ export function BuildYourStack({
                                 )}
                             </div>
                             {g.partners && (
-                                <ul className="yw-stack__partners">
+                                <ul className={styles.stackPartners}>
                                     {g.partners.map((p) => (
                                         <li key={p.Name}>
                                             <TechnologyCard

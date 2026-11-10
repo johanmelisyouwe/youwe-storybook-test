@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import { ServiceCard, type ServiceCardProps } from '../../ui/service-card'
-import '../../shared/block/block.css'
-import './services-split.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './services-split.module.css'
 
 /* Content blocks/Services split — Figma 26849:946. */
 
@@ -20,17 +21,19 @@ export function SplitIntro({
     snippets?: ReactNode
 }) {
     return (
-        <div className="yw-split__left">
-            <div className="yw-split__intro yw-block-reveal">
-                <h2 className="yw-split__title">
-                    <span className="yw-kicker yw-body-sm-bold">{kicker}</span>
+        <div className={styles.left}>
+            <div className={cx(styles.intro, block.reveal)}>
+                <h2 className={styles.title}>
+                    <span className={cx(block.kicker, 'yw-body-sm-bold')}>
+                        {kicker}
+                    </span>
                     <span className="yw-heading-2xl">{title}</span>
                 </h2>
                 <p className="yw-body-lg-reg">{body}</p>
                 {link}
             </div>
             {snippets && (
-                <div className="yw-split__snippets yw-block-reveal">
+                <div className={cx(styles.snippets, block.reveal)}>
                     {snippets}
                 </div>
             )}
@@ -59,25 +62,25 @@ export function ServicesSplit({
     const a = services.filter((_, i) => i % 2 === 0)
     const b = services.filter((_, i) => i % 2 === 1)
     return (
-        <section className="yw-block yw-split" aria-label={title}>
-            <div className="yw-block__inner">
+        <section className={cx(block.root, styles.root)} aria-label={title}>
+            <div className={cx(block.inner, styles.inner)}>
                 <SplitIntro
                     kicker={kicker}
                     title={title}
                     body={body}
                     snippets={snippets}
                 />
-                <div className="yw-split__cols">
-                    <ul className="yw-split__col">
+                <div className={styles.cols}>
+                    <ul className={styles.col}>
                         {a.map((s) => (
-                            <li key={s.Title} className="yw-block-reveal">
+                            <li key={s.Title} className={block.reveal}>
                                 <ServiceCard {...s} />
                             </li>
                         ))}
                     </ul>
-                    <ul className="yw-split__col yw-split__col--offset">
+                    <ul className={cx(styles.col, styles.colOffset)}>
                         {b.map((s) => (
-                            <li key={s.Title} className="yw-block-reveal">
+                            <li key={s.Title} className={block.reveal}>
                                 <ServiceCard {...s} />
                             </li>
                         ))}

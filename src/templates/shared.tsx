@@ -3,7 +3,6 @@ import { Header, type HeaderProps } from '../site/header'
 import { Footer, type FooterColumn } from '../site/footer'
 import { Logo } from '../shared/logos/logo'
 import type { Mode } from '../shared/mode-frame'
-import './templates.css'
 
 /*
   Shared pieces for the page templates (FIGMA-SYNC.md step 5). Copy comes from the Figma templates.
@@ -144,17 +143,9 @@ export function Section({
     flush?: 'top' | 'bottom' | 'both'
     children: ReactNode
 }) {
-    const cls = flush
-        ? [
-              flush !== 'bottom' && 'yw-flush-top',
-              flush !== 'top' && 'yw-flush-bottom',
-          ]
-              .filter(Boolean)
-              .join(' ')
-        : undefined
     return (
         <div
-            className={cls}
+            data-flush={flush === 'both' ? 'top bottom' : flush}
             data-theme={Mode.toLowerCase()}
             style={{
                 background: 'var(--color-shared-surface-base-1)',

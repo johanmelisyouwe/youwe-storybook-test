@@ -1,4 +1,4 @@
-// Placeholder page. Real pages are assembled from src/components and follow
+// Placeholder page. Real pages are assembled from src/ui, src/blocks and src/site and follow
 // the approved Figma templates (see the Templates section in Storybook).
 export default function Home() {
     return (

@@ -1,7 +1,8 @@
 import { FeatureCard, type FeatureCardProps } from '../../ui/feature-card'
 import { Words } from '../section-header'
-import '../../shared/block/block.css'
-import '../stats-block/stats-block.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from '../stats-block/stats-block.module.css'
 
 /* Content blocks/Feature list — Figma 26534:132. Styles in StatsBlock.css (shared grid blocks). */
 
@@ -24,9 +25,11 @@ export function FeatureList({
     items,
 }: FeatureListProps) {
     const head = (
-        <div className="yw-feature-list__head">
+        <div className={styles.featureListHead}>
             {kicker && (
-                <span className="yw-kicker yw-body-sm-bold">{kicker}</span>
+                <span className={cx(block.kicker, 'yw-body-sm-bold')}>
+                    {kicker}
+                </span>
             )}
             <h2 className="yw-heading-xl">
                 <Words text={heading} />
@@ -36,18 +39,19 @@ export function FeatureList({
     )
     return (
         <section
-            className={[
-                'yw-block',
-                'yw-feature-list',
-                Layout === 'Split' && 'yw-feature-list--split',
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-split={Layout === 'Split' || undefined}
+            className={cx(block.root, styles.featureList)}
         >
-            <div className="yw-block__inner yw-feature-list__inner">
+            <div
+                className={cx(
+                    block.inner,
+                    styles.inner,
+                    styles.featureListInner
+                )}
+            >
                 {head}
                 {Layout === 'Grid' ? (
-                    <ul className="yw-feature-list__grid">
+                    <ul className={styles.featureListGrid}>
                         {items.map((it) => (
                             <li key={it.Title}>
                                 <FeatureCard {...it} Variant="Card" reveal />
@@ -55,7 +59,7 @@ export function FeatureList({
                         ))}
                     </ul>
                 ) : (
-                    <ol className="yw-feature-list__items">
+                    <ol className={styles.featureListItems}>
                         {items.map((it, i) => (
                             <li key={it.Title}>
                                 <FeatureCard

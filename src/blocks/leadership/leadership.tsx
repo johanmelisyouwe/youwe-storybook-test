@@ -1,7 +1,8 @@
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { SectionIntro } from '../section-header'
-import '../../shared/block/block.css'
-import '../accordion-list/accordion-list.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from '../accordion-list/accordion-list.module.css'
 
 /* Content blocks/Leadership — Figma 26848:385; Person Card — Figma 26763:60. Styles in AccordionList.css. */
 
@@ -23,21 +24,22 @@ export function PersonCard({
 }: PersonCardProps) {
     return (
         <article
-            className={['yw-person', Photo === 'No' && 'yw-person--plain']
-                .filter(Boolean)
-                .join(' ')}
+            data-plain={Photo === 'No' || undefined}
+            className={cx(styles.person)}
         >
             {Photo === 'Yes' && (
                 <CardMedia src={image} alt={name} style={{ height: 320 }} />
             )}
-            <div className="yw-person__info">
+            <div className={styles.personInfo}>
                 <h3 className="yw-body-lg-med" style={{ margin: 0 }}>
                     {name}
                 </h3>
-                <span className="yw-person__role yw-body-md-reg">{role}</span>
+                <span className={cx(styles.personRole, 'yw-body-md-reg')}>
+                    {role}
+                </span>
                 {email && (
                     <a
-                        className="yw-person__email yw-body-md-reg"
+                        className={cx(styles.personEmail, 'yw-body-md-reg')}
                         href={`mailto:${email}`}
                     >
                         {email}
@@ -65,12 +67,15 @@ export function Leadership({
     photos = false,
 }: LeadershipProps) {
     return (
-        <section className="yw-block yw-leadership" aria-label={title}>
-            <div className="yw-block__inner">
+        <section
+            className={cx(block.root, styles.leadership)}
+            aria-label={title}
+        >
+            <div className={cx(block.inner, styles.inner)}>
                 <SectionIntro Layout="Stacked" Kicker={kicker} Title={title} />
-                <ul className="yw-leadership__people">
+                <ul className={styles.leadershipPeople}>
                     {people.map((p) => (
-                        <li key={p.name} className="yw-block-reveal">
+                        <li key={p.name} className={block.reveal}>
                             <PersonCard {...p} Photo={photos ? 'Yes' : 'No'} />
                         </li>
                     ))}

@@ -1,7 +1,9 @@
 import { CardArrow, CardReveal } from '../../shared/card-reveal'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { ButtonLink } from '../button-link'
-import './service-card.css'
+import { cx } from '../../shared/cx'
+import reveal from '../../shared/card-reveal/card-reveal.module.css'
+import styles from './service-card.module.css'
 
 /*
   Service Card — Figma 26763:51, System Card — Figma 26751:66 (page "Cards").
@@ -34,20 +36,19 @@ export function ServiceCard({
     return (
         <a
             href={href}
-            className={[
-                'yw-reveal',
-                'yw-reveal--lift',
-                'yw-service-card',
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-reveal="lift"
+            className={cx(reveal.root, styles.root, className)}
         >
-            <span className="yw-service-card__text yw-reveal__lift">
-                <span className="yw-service-card__top">
-                    <span className="yw-service-card__heading">
+            <span className={cx(styles.text, reveal.lift)}>
+                <span className={styles.top}>
+                    <span className={styles.heading}>
                         {Eyebrow && (
-                            <span className="yw-service-card__eyebrow yw-body-sm-bold">
+                            <span
+                                className={cx(
+                                    styles.eyebrow,
+                                    'yw-body-sm-bold'
+                                )}
+                            >
                                 {Eyebrow}
                             </span>
                         )}
@@ -55,7 +56,7 @@ export function ServiceCard({
                     </span>
                     <CardArrow />
                 </span>
-                <span className="yw-service-card__body yw-body-md-reg">
+                <span className={cx(styles.body, 'yw-body-md-reg')}>
                     {Description}
                 </span>
             </span>
@@ -90,31 +91,25 @@ export function SystemCard({
     return (
         <a
             href={href}
-            className={[
-                'yw-reveal',
-                'yw-reveal--lift',
-                'yw-service-card',
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-reveal="lift"
+            className={cx(reveal.root, styles.root, className)}
         >
-            <span className="yw-service-card__heading yw-reveal__lift">
+            <span className={cx(styles.heading, reveal.lift)}>
                 {Eyebrow && (
-                    <span className="yw-service-card__eyebrow yw-body-sm-bold">
+                    <span className={cx(styles.eyebrow, 'yw-body-sm-bold')}>
                         {Eyebrow}
                     </span>
                 )}
                 <span className="yw-body-xl-med">{Title}</span>
             </span>
-            <span className="yw-service-card__body yw-body-md-reg yw-reveal__lift">
+            <span className={cx(styles.body, 'yw-body-md-reg', reveal.lift)}>
                 {Description}
             </span>
             {showImage && (
-                <span className="yw-service-card__media">
+                <span className={styles.media}>
                     <CardMedia src={image} ratio="368 / 208" />
                     {Caption && (
-                        <span className="yw-service-card__caption yw-body-sm-reg">
+                        <span className={cx(styles.caption, 'yw-body-sm-reg')}>
                             {Caption}
                         </span>
                     )}

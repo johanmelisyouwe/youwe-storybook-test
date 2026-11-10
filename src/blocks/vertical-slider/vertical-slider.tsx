@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '../../ui/button'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/focus-ring/focus-ring.css'
-import '../../shared/block/block.css'
-import './vertical-slider.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import reveal from '../../shared/card-reveal/card-reveal.module.css'
+import styles from './vertical-slider.module.css'
 
 /*
   Vertical slider — Figma 26715:410; _Vertical slider/Index item 26713:47; _Vertical slider/Slide 26713:174.
@@ -12,7 +13,6 @@ import './vertical-slider.css'
   "What we do" section; mobile is stacked without pinning.
 */
 
-const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ')
 type Btn = { label: string; href: string }
 
 export type SlideData =
@@ -59,24 +59,24 @@ export function Slide(props: SlideData) {
     switch (props.Type) {
         case 'Service':
             return (
-                <div className="yw-slide">
-                    <div className="yw-slide__text">
-                        <h3 className="yw-slide__heading">
+                <div className={styles.slide}>
+                    <div className={styles.slideText}>
+                        <h3 className={styles.slideHeading}>
                             <span className="yw-body-sm-bold">
                                 {props.eyebrow}
                             </span>
-                            <span className="yw-heading-3xl yw-mask">
+                            <span className={cx('yw-heading-3xl', styles.mask)}>
                                 <span>{props.Title}</span>
                             </span>
                         </h3>
                         <p className="yw-body-lg-reg">{props.body}</p>
                     </div>
                     {props.pills && (
-                        <div className="yw-slide__pills">
+                        <div className={styles.slidePills}>
                             {props.pills.map((p) => (
                                 <span
                                     key={p}
-                                    className="yw-card-tag yw-body-xs-reg"
+                                    className={cx(reveal.tag, 'yw-body-xs-reg')}
                                 >
                                     {p}
                                 </span>
@@ -95,15 +95,20 @@ export function Slide(props: SlideData) {
             )
         case 'Quote':
             return (
-                <figure className="yw-slide" style={{ margin: 0 }}>
+                <figure className={styles.slide} style={{ margin: 0 }}>
                     <blockquote className="yw-heading-2xl">
                         {props.quote}
                     </blockquote>
-                    <figcaption className="yw-slide__attribution">
-                        <span className="yw-slide__person">
+                    <figcaption className={styles.slideAttribution}>
+                        <span className={styles.slidePerson}>
                             <span className="yw-body-lg-med">{props.name}</span>
                             {props.role && (
-                                <span className="yw-slide__secondary yw-body-md-reg">
+                                <span
+                                    className={cx(
+                                        styles.slideSecondary,
+                                        'yw-body-md-reg'
+                                    )}
+                                >
                                     {props.role}
                                 </span>
                             )}
@@ -121,10 +126,16 @@ export function Slide(props: SlideData) {
             )
         case 'Stat':
             return (
-                <div className="yw-slide">
-                    <h3 className="yw-slide__heading">
+                <div className={styles.slide}>
+                    <h3 className={styles.slideHeading}>
                         <span className="yw-body-sm-bold">{props.eyebrow}</span>
-                        <span className="yw-slide__value yw-heading-3xl yw-mask">
+                        <span
+                            className={cx(
+                                styles.slideValue,
+                                'yw-heading-3xl',
+                                styles.mask
+                            )}
+                        >
                             <span>{props.value}</span>
                         </span>
                     </h3>
@@ -141,17 +152,25 @@ export function Slide(props: SlideData) {
             )
         case 'Case':
             return (
-                <div className="yw-slide yw-slide--case">
-                    <CardMedia src={props.image} className="yw-slide__image" />
-                    <div className="yw-slide__text">
+                <div data-case className={cx(styles.slide)}>
+                    <CardMedia
+                        src={props.image}
+                        className={styles.slideImage}
+                    />
+                    <div className={styles.slideText}>
                         <span className="yw-body-sm-bold">{props.eyebrow}</span>
                         <h3
-                            className="yw-heading-xl yw-mask"
+                            className={cx('yw-heading-xl', styles.mask)}
                             style={{ margin: 0 }}
                         >
                             <span>{props.Title}</span>
                         </h3>
-                        <p className="yw-slide__secondary yw-body-lg-reg">
+                        <p
+                            className={cx(
+                                styles.slideSecondary,
+                                'yw-body-lg-reg'
+                            )}
+                        >
                             {props.body}
                         </p>
                         {props.button && (
@@ -167,18 +186,18 @@ export function Slide(props: SlideData) {
             )
         default:
             return (
-                <div className="yw-slide">
-                    <h3 className="yw-slide__heading">
+                <div className={styles.slide}>
+                    <h3 className={styles.slideHeading}>
                         <span className="yw-body-sm-bold">{props.eyebrow}</span>
-                        <span className="yw-heading-xl yw-mask">
+                        <span className={cx('yw-heading-xl', styles.mask)}>
                             <span>{props.Title}</span>
                         </span>
                     </h3>
-                    <p className="yw-slide__secondary yw-body-lg-reg">
+                    <p className={cx(styles.slideSecondary, 'yw-body-lg-reg')}>
                         {props.body}
                     </p>
                     {props.list && (
-                        <ul className="yw-slide__list">
+                        <ul className={styles.slideList}>
                             {props.list.map((l) => (
                                 <li key={l} className="yw-body-md-med">
                                     {l}
@@ -208,13 +227,13 @@ export function IndexItem({
     return (
         <button
             type="button"
-            className={cx('yw-vindex', 'yw-focus-ring', className)}
+            className={cx(styles.vindex, ring.root, className)}
             aria-current={active ? 'true' : undefined}
             onClick={onSelect}
             onMouseEnter={hoverSelect ? onSelect : undefined}
             onFocus={hoverSelect ? onSelect : undefined}
         >
-            <span className="yw-vindex__bar" aria-hidden="true" />
+            <span className={styles.vindexBar} aria-hidden="true" />
             <span className="yw-body-sm-bold">{label}</span>
         </button>
     )
@@ -311,9 +330,9 @@ export function VerticalSlider({
     }
 
     const header = (
-        <div className="yw-vslider__header">
-            <span className="yw-vslider__kicker">
-                <span className="yw-vslider__line" aria-hidden="true" />
+        <div className={styles.header}>
+            <span className={styles.kicker}>
+                <span className={styles.line} aria-hidden="true" />
                 <span className="yw-body-sm-bold">{Kicker}</span>
             </span>
             {Tagline && <span className="yw-body-sm-bold">{Tagline}</span>}
@@ -326,40 +345,38 @@ export function VerticalSlider({
     if (Device === 'Mobile') {
         return (
             <section
-                className={cx(
-                    'yw-vslider',
-                    'yw-vslider--mobile',
-                    Index === 'Left' && 'yw-vslider--left'
-                )}
+                data-mobile
+                data-left={Index === 'Left' || undefined}
+                className={cx(styles.root)}
                 aria-label={Kicker}
             >
-                <div className="yw-vslider__frame">
+                <div className={styles.frame}>
                     {bgOn && (
                         <CardMedia
                             src={items[0].image ?? fallback}
-                            className="yw-vslider__bg"
+                            className={styles.bg}
+                            placeholder={false}
                         />
                     )}
                     {header}
-                    <div className="yw-vslider__stack">
+                    <div className={styles.stack}>
                         {items.map((it, i) => (
                             <div
                                 key={it.label}
-                                className="yw-vslider__step is-active"
+                                data-active
+                                className={styles.step}
                             >
-                                <div className="yw-vslider__current">
+                                <div className={styles.current}>
                                     {steps && (
                                         <span
-                                            className="yw-vslider__steps"
+                                            className={styles.steps}
                                             aria-hidden="true"
                                         >
                                             {items.map((_, j) => (
                                                 <span
                                                     key={j}
-                                                    className={
-                                                        j <= i
-                                                            ? 'is-done'
-                                                            : undefined
+                                                    data-done={
+                                                        j <= i || undefined
                                                     }
                                                 />
                                             ))}
@@ -382,21 +399,20 @@ export function VerticalSlider({
     return (
         <section
             ref={ref}
-            className={cx(
-                'yw-vslider',
-                pin && 'yw-vslider--pinned',
-                Index === 'Left' && 'yw-vslider--left'
-            )}
+            data-pinned={pin || undefined}
+            data-left={Index === 'Left' || undefined}
+            className={cx(styles.root)}
             style={{ ['--_steps' as string]: N }}
             aria-label={Kicker}
         >
-            <div className="yw-vslider__frame">
+            <div className={styles.frame}>
                 {bgOn &&
                     items.map((it, i) => (
                         <CardMedia
                             key={i}
                             src={it.image ?? fallback}
-                            className="yw-vslider__bg"
+                            className={styles.bg}
+                            placeholder={false}
                             style={{
                                 ['--r' as string]:
                                     i === 0
@@ -409,16 +425,14 @@ export function VerticalSlider({
                         />
                     ))}
                 {header}
-                <div className="yw-vslider__body">
-                    <div className="yw-vslider__chapters" aria-live="polite">
+                <div className={styles.body}>
+                    <div className={styles.chapters} aria-live="polite">
                         {items.map((it, i) => (
                             <div
                                 key={it.label}
-                                className={cx(
-                                    'yw-vslider__chapter',
-                                    i === active && 'is-active',
-                                    i < active && 'is-past'
-                                )}
+                                data-active={i === active || undefined}
+                                data-past={i < active || undefined}
+                                className={cx(styles.chapter)}
                                 aria-hidden={i !== active}
                                 inert={i !== active ? true : undefined}
                             >
@@ -426,7 +440,7 @@ export function VerticalSlider({
                             </div>
                         ))}
                     </div>
-                    <ul className="yw-vslider__index">
+                    <ul className={styles.index}>
                         {items.map((it, i) => (
                             <li
                                 key={it.label}
@@ -447,7 +461,7 @@ export function VerticalSlider({
                     </ul>
                 </div>
                 {progress && (
-                    <div className="yw-vslider__progress" aria-hidden="true">
+                    <div className={styles.progress} aria-hidden="true">
                         <span style={{ transform: `scaleX(${prog})` }} />
                     </div>
                 )}

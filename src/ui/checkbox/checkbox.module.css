@@ -1,0 +1,181 @@
+/*
+  Checkbox (Figma 15432:8660) and Checkbox label (15432:8734). Read per variant on 2026-11-09.
+  Size  box  icon  hover mark  label text
+  S     18   16    8           body/md/reg (row 22 high, box padded 2px)
+  M     24   24    12          body/lg/reg
+  L     44   32    20          24px regular → body/xl/reg
+  Box radius 2 (shared/radius/2), 1px inside border. Gap box–label 12 (spacing/xs).
+  Unchecked: surface/base-1 + border/3; hover adds shadow/outer/md/hover and a base-3 hover mark;
+  pressed: surface/base-3 + border/4 + shadow/outer/md/pressed.
+  Checked: brand-red/2 (hover /3, pressed /4), white check. Indeterminate: brand-red/4 + pressed shadow + remove icon.
+  Disabled (unchecked only in Figma): disabled surface/border; label disabled content.
+  Focus: Focus Ring with radius 4 (shared/radius/4), 4px outside the box.
+*/
+@layer components {
+    .root {
+        --_size: 1.5rem;
+        --_mark: 0.75rem;
+        --_bg: var(--color-shared-surface-base-1);
+        --_border: var(--color-shared-border-3);
+        --_fx: 0 0 transparent;
+
+        position: relative;
+        display: inline-flex;
+        flex-shrink: 0;
+        width: var(--_size);
+        height: var(--_size);
+
+        &[data-size="s"] {
+            --_size: 1.125rem;
+            --_mark: 0.5rem;
+        }
+
+        &[data-size="l"] {
+            --_size: 2.75rem;
+            --_mark: 1.25rem;
+        }
+
+        /*
+  hover / pressed
+*/
+
+        &:hover {
+            --_fx: var(--effect-shadow-outer-md-hover-shadow);
+        }
+
+        &:hover .input:not(:checked):not(:indeterminate) + .box::before {
+            content: "";
+            width: var(--_mark);
+            height: var(--_mark);
+            border-radius: var(--shared-radius-2);
+            background: var(--color-shared-surface-base-3);
+        }
+
+        &:active {
+            --_bg: var(--color-shared-surface-base-3);
+            --_border: var(--color-shared-border-4);
+            --_fx: var(--effect-shadow-outer-md-pressed-shadow);
+        }
+
+        &:active .box::before {
+            display: none;
+        }
+
+        &:hover .input:checked + .box {
+            --_bg: var(--color-component-brand-red-3);
+            --_border: var(--color-component-brand-red-3);
+        }
+
+        &:active .input:checked + .box {
+            --_bg: var(--color-component-brand-red-4);
+            --_border: var(--color-component-brand-red-4);
+        }
+
+        /*
+  disabled
+*/
+
+        &:has(.input:disabled) {
+            --_bg: var(--color-component-disabled-surface-1);
+            --_border: var(--color-component-disabled-border-default);
+            --_fx: 0 0 transparent;
+            pointer-events: none;
+        }
+    }
+
+    .input {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+
+        /*
+  checked
+*/
+
+        &:checked + .box {
+            --_bg: var(--color-component-brand-red-2);
+            --_border: var(--color-component-brand-red-2);
+        }
+
+        &:checked + .box .iconCheck {
+            display: block;
+        }
+
+        /*
+  indeterminate
+*/
+
+        &:indeterminate + .box {
+            --_bg: var(--color-component-brand-red-4);
+            --_border: var(--color-component-brand-red-4);
+            --_fx: var(--effect-shadow-outer-md-pressed-shadow);
+        }
+
+        &:indeterminate + .box .iconCheck {
+            display: none;
+        }
+
+        &:indeterminate + .box .iconRemove {
+            display: block;
+        }
+
+        /*
+  focus ring (radius 4, 4px outside)
+*/
+
+        &:focus-visible + .box::after {
+            content: "";
+            position: absolute;
+            inset: calc(var(--spacing-3xs) * -1);
+            border: var(--shared-width-2) solid
+                var(--color-shared-border-system-focus);
+            border-radius: var(--shared-radius-4);
+            box-shadow: var(--effect-shadow-outer-md-focus-shadow);
+            pointer-events: none;
+        }
+    }
+
+    .box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--shared-radius-2);
+        background: var(--_bg);
+        box-shadow:
+            inset 0 0 0 var(--shared-width-1) var(--_border),
+            var(--_fx);
+        color: var(--color-shared-content-fixed-light);
+        transition:
+            background-color var(--motion-duration-fast)
+            var(--motion-ease-standard),
+            box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+    }
+
+    .icon {
+        display: none;
+    }
+
+    /* labelled */
+    .checkboxLabel {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        color: var(--color-shared-content-primary);
+        cursor: pointer;
+
+        &[data-size="s"] .root {
+            margin-block: var(--spacing-4xs);
+        }
+
+        &:has(input:disabled) {
+            color: var(--color-component-disabled-content-default);
+            cursor: not-allowed;
+        }
+    }
+}

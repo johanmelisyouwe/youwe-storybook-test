@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Icon, type IconName } from '../../shared/icons/icon'
-import '../../shared/focus-ring/focus-ring.css'
-import './button.css'
+import { cx } from '../../shared/cx'
+import styles from './button.module.css'
 
 /* Button/Basic — Figma node 6284:4476 (page "– Buttons"). Axis and prop names match Figma. */
 
@@ -51,20 +51,16 @@ export function Button({
     onClick,
     className,
 }: ButtonProps) {
-    const classes = [
-        'yw-button',
-        'yw-focus-ring',
-        `yw-button--${Variant.toLowerCase()}`,
-        `yw-button--${Size.toLowerCase()}`,
-        iconPos !== 'Off' && `yw-button--${iconPos.toLowerCase()}`,
-        className,
-    ]
-        .filter(Boolean)
-        .join(' ')
+    const shared = {
+        className: cx(styles.root, className),
+        'data-variant': Variant.toLowerCase(),
+        'data-size': Size.toLowerCase(),
+        'data-icon': iconPos === 'Off' ? undefined : iconPos.toLowerCase(),
+    }
 
     const iconEl =
         iconPos === 'Off' ? null : (
-            <span className="yw-button__icon" aria-hidden="true">
+            <span className={styles.icon} aria-hidden="true">
                 {icon ?? <Icon name={iconName} size={ICON_SIZE[Size]} />}
             </span>
         )
@@ -85,7 +81,7 @@ export function Button({
     if (href) {
         return (
             <a
-                className={classes}
+                {...shared}
                 href={disabled ? undefined : href}
                 aria-disabled={disabled || undefined}
                 onClick={onClick}
@@ -97,7 +93,7 @@ export function Button({
     }
     return (
         <button
-            className={classes}
+            {...shared}
             type={type}
             disabled={disabled}
             onClick={onClick}

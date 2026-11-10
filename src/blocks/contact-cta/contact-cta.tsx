@@ -4,8 +4,9 @@ import { TextArea } from '../../ui/text-area'
 import { CheckboxLabel } from '../../ui/checkbox'
 import { Button } from '../../ui/button'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/block/block.css'
-import './contact-cta.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './contact-cta.module.css'
 
 /* Content blocks/Contact CTA — Figma 26535:451. */
 
@@ -53,11 +54,12 @@ export function ContactCTA({
     if (Variant === 'Form') {
         return (
             <section
-                className="yw-block yw-contact yw-contact--form"
+                data-layout="form"
+                className={cx(block.root, styles.root)}
                 aria-label={title}
             >
-                <div className="yw-block__inner">
-                    <div className="yw-contact__text yw-block-reveal">
+                <div className={cx(block.inner, styles.inner)}>
+                    <div className={cx(styles.text, block.reveal)}>
                         <h2
                             className={
                                 Device === 'Mobile'
@@ -67,11 +69,14 @@ export function ContactCTA({
                         >
                             {title}
                         </h2>
-                        <div className="yw-contact__body">
+                        <div className={styles.body}>
                             <p className="yw-body-md-reg">{body}</p>
                             {phone && (
                                 <a
-                                    className="yw-contact__phone yw-body-2xl-med"
+                                    className={cx(
+                                        styles.phone,
+                                        'yw-body-2xl-med'
+                                    )}
                                     href={`tel:${phone.replace(/[^+\d]/g, '')}`}
                                 >
                                     {phone}
@@ -80,13 +85,13 @@ export function ContactCTA({
                         </div>
                     </div>
                     <form
-                        className="yw-contact__form yw-block-reveal"
+                        className={cx(styles.form, block.reveal)}
                         onSubmit={(e) => {
                             e.preventDefault()
                             onSubmit?.(new FormData(e.currentTarget))
                         }}
                     >
-                        <div className="yw-contact__row">
+                        <div className={styles.row}>
                             <TextInput
                                 Label="First name"
                                 Required
@@ -102,7 +107,7 @@ export function ContactCTA({
                                 placeholderText="Last name"
                             />
                         </div>
-                        <div className="yw-contact__row">
+                        <div className={styles.row}>
                             <TextInput
                                 Label="Business email"
                                 Required
@@ -143,7 +148,7 @@ export function ContactCTA({
                             Size="M"
                             type="submit"
                             label={submit}
-                            className="yw-btn-auto"
+                            className={styles.btnAuto}
                         />
                     </form>
                 </div>
@@ -152,7 +157,7 @@ export function ContactCTA({
     }
 
     const content = (
-        <div className="yw-contact__content yw-block-reveal">
+        <div className={cx(styles.content, block.reveal)}>
             <h2
                 className={
                     Device === 'Mobile' ? 'yw-heading-xl' : 'yw-heading-3xl'
@@ -162,7 +167,7 @@ export function ContactCTA({
             </h2>
             <p className="yw-body-lg-reg">{body}</p>
             {(primary || secondary) && (
-                <div className="yw-contact__actions">
+                <div className={styles.actions}>
                     {primary && (
                         <Button
                             Variant="Primary"
@@ -182,7 +187,7 @@ export function ContactCTA({
                 </div>
             )}
             {offices && (
-                <p className="yw-contact__offices yw-body-sm-reg">
+                <p className={cx(styles.offices, 'yw-body-sm-reg')}>
                     {offices.join('  ·  ')}
                 </p>
             )}
@@ -192,14 +197,17 @@ export function ContactCTA({
     if (Variant === 'Sub-footer split') {
         return (
             <section
-                className="yw-block yw-contact yw-contact--split"
+                data-layout="split"
+                className={cx(block.root, styles.root)}
                 aria-label={title}
             >
-                <div className="yw-contact__split">
-                    <div className="yw-block__inner">{content}</div>
+                <div className={styles.split}>
+                    <div className={cx(block.inner, styles.inner)}>
+                        {content}
+                    </div>
                     <CardMedia
                         src={image}
-                        className="yw-contact__image yw-contact__clip"
+                        className={cx(styles.image, styles.clip)}
                     />
                 </div>
             </section>
@@ -208,11 +216,12 @@ export function ContactCTA({
 
     return (
         <section
-            className="yw-block yw-contact yw-contact--background"
+            data-layout="background"
+            className={cx(block.root, styles.root)}
             aria-label={title}
         >
-            <CardMedia src={image} className="yw-contact__bg" />
-            <div className="yw-block__inner">{content}</div>
+            <CardMedia src={image} className={styles.bg} placeholder={false} />
+            <div className={cx(block.inner, styles.inner)}>{content}</div>
         </section>
     )
 }

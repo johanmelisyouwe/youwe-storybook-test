@@ -1,0 +1,85 @@
+/*
+  Content blocks/Section header (Figma 24985:699): opens a section. Text max 524 wide, gap 24: optional
+  red-line kicker (Left), heading/xl, body body/md/reg secondary. Alignment Left or Centered.
+  Content blocks/Section intro (26847:85): kicker + title heading/xl + body body/md/reg tertiary. Split = title
+  left, body right, bottom aligned (desktop); Stacked = body under the title (gap 24). Mobile stacks.
+  Motion (Figma): title words rise from 105% in a mask (duration/reveal, ease/emphasized, +stagger/2 per word);
+  Section intro body: scroll highlight (words 28% → 100% opacity, never fades back).
+*/
+@layer components {
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        max-width: 32.75rem;
+    }
+    .root[data-centered] .text {
+        align-items: center;
+        margin-inline: auto;
+        text-align: center;
+    }
+    .root h2,
+    .sectionIntro h2 {
+        margin: 0;
+    }
+    .root p {
+        margin: 0;
+        color: var(--color-shared-content-secondary);
+    }
+
+    @supports (animation-timeline: view()) {
+        @keyframes word-rise {
+            from {
+                transform: translateY(105%);
+            }
+            to {
+                transform: none;
+            }
+        }
+        .word {
+            animation: word-rise var(--motion-duration-reveal)
+                var(--motion-ease-emphasized) both;
+            animation-delay: calc(var(--_i) * var(--motion-stagger) / 2);
+            animation-timeline: view();
+            animation-range: entry 0% entry 60%;
+        }
+    }
+
+    .sectionIntro {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+
+        &[data-stacked] .sectionIntroRow {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+    .sectionIntroRow {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+
+        & > * {
+            flex: 0 1 50%;
+        }
+    }
+    .sectionIntroBody {
+        margin: 0;
+        max-width: 39.5rem;
+        color: var(--color-shared-content-tertiary);
+
+        & > span {
+            transition: opacity var(--motion-duration-slow)
+                var(--motion-ease-standard);
+        }
+    }
+
+    @container (max-width: 47.9375rem) {
+        .sectionIntroRow {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+}

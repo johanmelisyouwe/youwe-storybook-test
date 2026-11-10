@@ -1,0 +1,158 @@
+/*
+  Content blocks/Contact CTA (Figma 26535:451).
+  Form: text (608; heading/xl 528, body/md/reg secondary 464, phone body/2xl/med content/brand; gaps 24/16) and
+    the form (608): two rows of two Text Inputs (gap 16), Country dropdown, Message text area, checkbox (S),
+    Primary M "Send message"; gap 24. Columns gap 64, centred; padding 120/80.
+  Sub-footer split: content half (padding 120/80, title heading/3xl, body/lg/reg, gap 24; Primary + Solid
+    buttons, offices line body/sm/reg tertiary, gap 40) and an image half (720×724).
+  Sub-footer background: full-bleed image with a gradient overlay; content 880 wide, bottom aligned.
+  Motion (Figma): block reveal; image variants use the media clip reveal.
+*/
+@layer components {
+    .root[data-layout="form"] .inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: var(--spacing-3xl);
+    }
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        padding-right: var(--spacing-4xl);
+
+        & h2,
+        & p {
+            margin: 0;
+        }
+    }
+    .body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+
+        & p {
+            color: var(--color-shared-content-secondary);
+        }
+    }
+    .phone {
+        color: var(--color-shared-content-brand);
+        text-decoration: none;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
+
+        & > * {
+            width: 100%;
+        }
+
+        & > .btnAuto {
+            width: auto;
+        }
+    }
+    .row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-sm);
+    }
+
+    .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .root[data-layout="split"] .inner {
+        display: flex;
+        justify-content: flex-end;
+        max-width: none;
+        margin: 0;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+        max-width: 35rem;
+
+        & h2,
+        & p {
+            margin: 0;
+        }
+    }
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2xs);
+    }
+    .offices {
+        color: var(--color-shared-content-tertiary);
+    }
+    .image {
+        border-radius: 0 !important;
+        min-height: 100%;
+    }
+
+    .root[data-layout="background"] {
+        overflow: hidden;
+    }
+    .root[data-layout="background"] .content {
+        max-width: 55rem;
+    }
+    .bg {
+        position: absolute !important;
+        z-index: 0;
+        inset: 0;
+        border-radius: 0 !important;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                var(--color-shared-surface-base-1) 0%,
+                var(--color-neutral-900-50) 60%,
+                transparent 100%
+            );
+        }
+    }
+    .root[data-layout="background"] .inner {
+        position: relative;
+        z-index: 1;
+    }
+
+    @container (max-width: 47.9375rem) {
+        .root[data-layout="form"] .inner,
+        .split {
+            grid-template-columns: minmax(0, 1fr);
+        }
+        .text {
+            padding-right: 0;
+        }
+        .form > .btnAuto {
+            width: 100%;
+        }
+        .image {
+            order: -1;
+            min-height: 0;
+            aspect-ratio: 360 / 206;
+        }
+    }
+
+    @supports (animation-timeline: view()) {
+        @keyframes contact-clip {
+            from {
+                clip-path: inset(12% 0 12% 12%);
+            }
+            to {
+                clip-path: inset(0);
+            }
+        }
+        .clip {
+            animation: contact-clip linear both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 40%;
+        }
+    }
+}

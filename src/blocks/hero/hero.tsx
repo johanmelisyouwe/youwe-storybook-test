@@ -2,12 +2,11 @@ import type { ReactNode } from 'react'
 import { Button } from '../../ui/button'
 import { Breadcrumbs, type Crumb } from '../../ui/breadcrumbs'
 import { CardMedia } from '../../shared/card-reveal/card-media'
-import '../../shared/block/block.css'
-import './hero.css'
+import { cx } from '../../shared/cx'
+import block from '../../shared/block/block.module.css'
+import styles from './hero.module.css'
 
 /* Content blocks/Hero — Figma 24985:698; _Hero/Bar — 26880:273; _Hero/Label — 26882:927. */
-
-const cx = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(' ')
 
 /* _Hero/Label */
 export type HeroLabelProps = {
@@ -30,7 +29,9 @@ export function HeroLabel({
                 {...{ 'Filter button': false }}
             />
         )
-    return <span className="yw-kicker yw-body-sm-bold">{Subtitle}</span>
+    return (
+        <span className={cx(block.kicker, 'yw-body-sm-bold')}>{Subtitle}</span>
+    )
 }
 
 /* _Hero/Bar */
@@ -48,17 +49,21 @@ export function HeroBar({
     const items =
         Type === 'Logos'
             ? logos.map((l, i) => (
-                  <span key={i} className="yw-hero-bar__logo">
+                  <span key={i} className={styles.heroBarLogo}>
                       {l}
                   </span>
               ))
             : stats.map((s) => (
-                  <span key={s.client + s.value} className="yw-hero-bar__stat">
+                  <span key={s.client + s.value} className={styles.heroBarStat}>
                       <span className="yw-heading-lg">{s.value}</span>
-                      <span className="yw-hero-bar__label yw-body-sm-reg">
+                      <span
+                          className={cx(styles.heroBarLabel, 'yw-body-sm-reg')}
+                      >
                           {s.label}
                       </span>
-                      <span className="yw-hero-bar__client yw-body-sm-med">
+                      <span
+                          className={cx(styles.heroBarClient, 'yw-body-sm-med')}
+                      >
                           {s.client}
                       </span>
                   </span>
@@ -66,12 +71,10 @@ export function HeroBar({
     // The track holds the items twice so the marquee loops seamlessly; the copy is hidden from screen readers.
     return (
         <div
-            className={cx(
-                'yw-hero-bar',
-                Type === 'Stats' && 'yw-hero-bar--stats'
-            )}
+            data-stats={Type === 'Stats' || undefined}
+            className={cx(styles.heroBar)}
         >
-            <div className="yw-hero-bar__track">
+            <div className={styles.heroBarTrack}>
                 {items}
                 <span aria-hidden="true" style={{ display: 'contents' }}>
                     {items}
@@ -119,9 +122,9 @@ export function Hero({
     recede = false,
 }: HeroProps) {
     const lines = (
-        <h1 className="yw-hero__title yw-heading-3xl">
+        <h1 className={cx(styles.title, 'yw-heading-3xl')}>
             {title.map((t, i) => (
-                <span key={i} className="yw-hero__line">
+                <span key={i} className={styles.line}>
                     <span>{t}</span>
                 </span>
             ))}
@@ -130,53 +133,51 @@ export function Hero({
     if (Variant === 'Title + image') {
         return (
             <section
-                className={cx(
-                    'yw-block',
-                    'yw-hero',
-                    'yw-hero--image',
-                    Device === 'Mobile' && 'yw-hero--mobile'
-                )}
+                data-image
+                data-mobile={Device === 'Mobile' || undefined}
+                className={cx(block.root, styles.root)}
             >
-                {header && <div className="yw-hero__header">{header}</div>}
-                <div className="yw-block__inner" style={{ paddingBottom: 0 }}>
-                    <div className="yw-hero__row">
-                        <div className="yw-hero__titlecol">
+                {header && <div className={styles.header}>{header}</div>}
+                <div className={block.inner} style={{ paddingBottom: 0 }}>
+                    <div className={styles.row}>
+                        <div className={styles.titlecol}>
                             {label && <HeroLabel Device={Device} {...label} />}
                             {lines}
                         </div>
-                        {logo && <span className="yw-hero__logo">{logo}</span>}
+                        {logo && <span className={styles.logo}>{logo}</span>}
                     </div>
                 </div>
                 <CardMedia
                     src={image}
                     ratio="16 / 9"
-                    className="yw-hero__image"
+                    className={styles.image}
                 />
             </section>
         )
     }
     return (
         <section
-            className={cx(
-                'yw-block',
-                'yw-hero',
-                'yw-hero--gradient',
-                Device === 'Mobile' && 'yw-hero--mobile',
-                recede && 'yw-hero--recede'
-            )}
+            data-gradient
+            data-mobile={Device === 'Mobile' || undefined}
+            data-recede={recede || undefined}
+            className={cx(block.root, styles.root)}
         >
-            <CardMedia src={image} className="yw-hero__media" />
-            {header && <div className="yw-hero__header">{header}</div>}
-            <div className="yw-block__inner yw-hero__content">
-                <div className="yw-hero__titlecol">
+            <CardMedia
+                src={image}
+                className={styles.media}
+                placeholder={false}
+            />
+            {header && <div className={styles.header}>{header}</div>}
+            <div className={cx(block.inner, styles.content)}>
+                <div className={styles.titlecol}>
                     {label && <HeroLabel Device={Device} {...label} />}
                     {lines}
                 </div>
                 {(body || buttons.length > 0) && (
-                    <div className="yw-hero__textcol">
+                    <div className={styles.textcol}>
                         {body && <p className="yw-body-lg-reg">{body}</p>}
                         {buttons.length > 0 && (
-                            <div className="yw-hero__actions">
+                            <div className={styles.actions}>
                                 {buttons.slice(0, 2).map((b, i) => (
                                     <Button
                                         key={b.label}

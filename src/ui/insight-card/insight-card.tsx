@@ -1,7 +1,9 @@
 import { CardReveal } from '../../shared/card-reveal'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { ButtonLink } from '../button-link'
-import './insight-card.css'
+import { cx } from '../../shared/cx'
+import reveal from '../../shared/card-reveal/card-reveal.module.css'
+import styles from './insight-card.module.css'
 
 /* Insight Card — Figma 26733:125 (page "Cards"). Blog, whitepaper, event, video or news. Whole card is one link. */
 
@@ -43,28 +45,25 @@ export function InsightCard({
     return (
         <a
             href={href}
-            className={[
-                'yw-reveal',
-                'yw-insight-card',
-                featured && 'yw-insight-card--featured',
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-featured={featured || undefined}
+            className={cx(reveal.root, styles.root, className)}
         >
             <CardMedia src={image} ratio={RATIO[Variant][Device]} />
-            <span className="yw-insight-card__text">
+            <span className={styles.text}>
                 <span className={featured ? 'yw-heading-lg' : 'yw-body-xl-med'}>
                     {Title}
                 </span>
                 {Meta && (
-                    <span className="yw-insight-card__meta yw-body-md-reg">
+                    <span className={cx(styles.meta, 'yw-body-md-reg')}>
                         {Meta}
                     </span>
                 )}
                 {Type && (
-                    <span className="yw-card-tags">
-                        <span className="yw-card-tag yw-card-tag--type yw-body-xs-reg">
+                    <span className={reveal.tags}>
+                        <span
+                            data-type
+                            className={cx(reveal.tag, 'yw-body-xs-reg')}
+                        >
                             {Type}
                         </span>
                     </span>

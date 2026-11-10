@@ -1,0 +1,165 @@
+/*
+  Button/Basic (Figma 6284:4476). Values read per variant from Figma on 2026-11-09.
+  Size      height  padding-inline                 gap        icon  text style
+  L         56      24 (spacing/lg)                8 (2xs)    24    body/lg/reg
+  M         48      16 (spacing/sm)                8 (2xs)    24    body/md/reg
+  S         36      12 (spacing/xs)                4 (3xs)    16    body/sm/reg
+  XS        24      12 (xs); 8 on the icon side    4 (3xs)    16    body/xs/reg
+  Icon only: square (L 56, M 48, S 36, XS 24).
+  Heights are fixed in Figma, so they are set explicitly.
+  Motion (Figma description): background/colour duration/fast ease/standard; the
+  trailing icon nudges in its direction (distance/xs) duration/base ease/emphasized. No scaling.
+  Focus ring: shared Focus Ring building block (2px shared/border/system/focus 4px outside + shadow/outer/md/focus).
+*/
+.root {
+    composes: root from "../../shared/focus-ring/focus-ring.module.css";
+}
+
+@layer components {
+    .root {
+        --button-size-l: 3.5rem;
+        --button-size-m: 3rem;
+        --button-size-s: 2.25rem;
+        --button-size-xs: 1.5rem;
+        --_bg: var(--color-component-brand-red-2);
+        --_border: var(--color-component-brand-red-2);
+        --_border-width: 0;
+        --_fg: var(--color-shared-content-fixed-light);
+        --_height: var(--button-size-l);
+        --_pad-start: var(--spacing-lg);
+        --_pad-end: var(--spacing-lg);
+        --_gap: var(--spacing-2xs);
+
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        gap: var(--_gap);
+        height: var(--_height);
+        padding-inline: var(--_pad-start) var(--_pad-end);
+        border-radius: var(--component-radius-button);
+        background: var(--_bg);
+        color: var(--_fg);
+        box-shadow: inset 0 0 0 var(--_border-width) var(--_border);
+        white-space: nowrap;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+            background-color var(--motion-duration-fast)
+            var(--motion-ease-standard),
+            color var(--motion-duration-fast) var(--motion-ease-standard),
+            box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+
+        /* ---- Sizes ---- */
+        &[data-size="m"] {
+            --_height: var(--button-size-m);
+            --_pad-start: var(--spacing-sm);
+            --_pad-end: var(--spacing-sm);
+        }
+
+        &[data-size="s"] {
+            --_height: var(--button-size-s);
+            --_pad-start: var(--spacing-xs);
+            --_pad-end: var(--spacing-xs);
+            --_gap: var(--spacing-3xs);
+        }
+
+        &[data-size="xs"] {
+            --_height: var(--button-size-xs);
+            --_pad-start: var(--spacing-xs);
+            --_pad-end: var(--spacing-xs);
+            --_gap: var(--spacing-3xs);
+
+            &[data-icon="leading"] {
+                --_pad-start: var(--spacing-2xs);
+            }
+
+            &[data-icon="trailing"] {
+                --_pad-end: var(--spacing-2xs);
+            }
+        }
+
+        &[data-icon="only"] {
+            width: var(--_height);
+            padding: 0;
+        }
+
+        /* ---- Variants (Rest / Hover / Pressed) ---- */
+        &[data-variant="primary"] {
+            &:hover {
+                --_bg: var(--color-component-brand-red-3);
+                --_border: var(--color-component-brand-red-3);
+            }
+
+            &:active {
+                --_bg: var(--color-component-brand-red-4);
+                --_border: var(--color-component-brand-red-4);
+            }
+        }
+
+        &[data-variant="outline"] {
+            --_bg: var(--color-shared-surface-transparent);
+            --_border: var(--color-component-neutral-contrast-1);
+            --_border-width: var(--shared-width-1);
+            --_fg: var(--color-component-neutral-contrast-1);
+
+            &:hover {
+                --_bg: var(--color-component-neutral-contrast-1);
+                --_fg: var(--color-shared-content-inverse-1);
+            }
+
+            &:active {
+                --_bg: var(--color-component-neutral-contrast-2);
+                --_border: var(--color-component-neutral-contrast-2);
+                --_fg: var(--color-shared-content-inverse-1);
+            }
+        }
+
+        &[data-variant="solid"] {
+            --_bg: var(--color-component-neutral-mid-1);
+            --_border: var(--color-component-neutral-mid-1);
+            --_border-width: var(--shared-width-1);
+            --_fg: var(--color-shared-content-primary);
+
+            &:hover {
+                --_bg: var(--color-component-neutral-mid-2);
+                --_border: var(--color-component-neutral-mid-2);
+            }
+
+            &:active {
+                --_bg: var(--color-component-neutral-mid-3);
+                --_border: var(--color-component-neutral-mid-3);
+            }
+        }
+
+        /* Trailing icon nudges forward, leading icon nudges back (Figma Motion line) */
+        &[data-icon="trailing"]:hover .icon {
+            transform: translateX(var(--motion-distance-xs));
+        }
+
+        &[data-icon="leading"]:hover .icon {
+            transform: translateX(calc(var(--motion-distance-xs) * -1));
+        }
+
+        /* ---- Disabled ---- */
+        &:disabled,
+        &[aria-disabled="true"] {
+            --_bg: var(--color-component-disabled-surface-1);
+            --_border: var(--color-component-disabled-border-default);
+            --_fg: var(--color-component-disabled-content-default);
+            cursor: not-allowed;
+            pointer-events: none;
+
+            & .icon {
+                transform: none;
+            }
+        }
+    }
+
+    .icon {
+        flex-shrink: 0;
+        transition: transform var(--motion-duration-base)
+            var(--motion-ease-emphasized);
+    }
+}

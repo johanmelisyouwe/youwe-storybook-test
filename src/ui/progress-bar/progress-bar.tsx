@@ -1,4 +1,4 @@
-import './progress-bar.css'
+import styles from './progress-bar.module.css'
 
 /* Progress Bar — Figma node 6284:7241 (page "– Progress Bar"). */
 
@@ -28,14 +28,14 @@ export function ProgressBar({
     const v = Math.max(0, Math.min(100, value ?? STEP[Progress]))
     return (
         <div
-            className="yw-progress"
+            className={styles.root}
             role="progressbar"
             aria-label={label}
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={v}
         >
-            <div className="yw-progress__bar" style={{ width: `${v}%` }} />
+            <div className={styles.bar} style={{ width: `${v}%` }} />
         </div>
     )
 }

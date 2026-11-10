@@ -1,0 +1,127 @@
+/*
+  Long-form text blocks.
+  Text column (Figma 24988:596): one reading column 632 wide (Centered or Left), gap 32:
+    lead body/2xl/med primary, body body/lg/reg secondary (paragraphs).
+  Two-column text (24988:587): label body/md/bold content/brand + lead (gap 8) left; body right with 32 top.
+    Split 6/6 (632 | 632) or 4/8 (416 | 848, body 740 right-aligned), gap 16. Mobile stacks.
+  Case intro (24988:571): meta list 416 (label body/xs/bold content/brand, value body/md/reg, gap 8; 1px
+    border/2 dividers, gap 20) beside the text 740 (lead + body, gap 32); Meta position Left or Right.
+  Motion (Figma): block reveal on scroll.
+*/
+@layer components {
+    .longform p {
+        margin: 0;
+    }
+    .longformLead {
+        color: var(--color-shared-content-primary);
+    }
+    .longformBody {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+        color: var(--color-shared-content-secondary);
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        max-width: 39.5rem;
+    }
+    .root[data-centered] .text {
+        margin-inline: auto;
+    }
+
+    .twoCol {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-sm);
+
+        &[data-split="4-8"] {
+            grid-template-columns: 416fr 848fr;
+        }
+
+        &[data-split="4-8"] .twoColLead {
+            max-width: none;
+        }
+
+        &[data-split="4-8"] .twoColBody {
+            justify-self: end;
+            max-width: 46.25rem;
+        }
+    }
+    .twoColLead {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        max-width: 32.75rem;
+    }
+    .twoColLabel {
+        color: var(--color-shared-content-brand);
+    }
+    .twoColBody {
+        padding-top: var(--spacing-xl);
+    }
+
+    .caseIntro {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+
+        &[data-meta-right] {
+            flex-direction: row-reverse;
+        }
+    }
+    .caseIntroMeta {
+        display: flex;
+        flex: 0 1 26rem;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        margin: 0;
+    }
+    .caseIntroItem {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+
+        & + .caseIntroItem {
+            padding-top: var(--spacing-md);
+            box-shadow: inset 0 var(--shared-width-1) 0
+                var(--color-shared-border-2);
+        }
+
+        & dt {
+            color: var(--color-shared-content-brand);
+        }
+
+        & dd {
+            margin: 0;
+            white-space: pre-line;
+        }
+    }
+    .caseIntroText {
+        display: flex;
+        flex: 0 1 46.25rem;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+    }
+
+    @container (max-width: 47.9375rem) {
+        .twoCol,
+        .twoCol[data-split="4-8"] {
+            grid-template-columns: 1fr;
+        }
+        .twoColBody {
+            padding-top: var(--spacing-lg);
+        }
+        .caseIntro,
+        .caseIntro[data-meta-right] {
+            flex-direction: column;
+            gap: var(--spacing-2xl);
+        }
+        .caseIntroMeta,
+        .caseIntroText {
+            flex-basis: auto;
+        }
+    }
+}

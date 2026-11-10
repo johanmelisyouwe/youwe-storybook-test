@@ -1,7 +1,8 @@
 import { useId } from 'react'
 import { Icon } from '../../shared/icons/icon'
-import '../../shared/focus-ring/focus-ring.css'
-import './tooltip.css'
+import { cx } from '../../shared/cx'
+import ring from '../../shared/focus-ring/focus-ring.module.css'
+import styles from './tooltip.module.css'
 
 /* Tooltip — Figma 14683:4523, Icon tooltip — 6284:7455 (page "– Tooltip"). */
 
@@ -18,15 +19,10 @@ export function Tooltip({ Size = 'M', text, id, className }: TooltipProps) {
         <span
             role="tooltip"
             id={id}
-            className={[
-                'yw-tooltip',
-                `yw-tooltip--${Size.toLowerCase()}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-size={Size.toLowerCase()}
+            className={cx(styles.root, className)}
         >
-            <span className="yw-tooltip__text yw-body-xs-reg">{text}</span>
+            <span className={cx(styles.text, 'yw-body-xs-reg')}>{text}</span>
         </span>
     )
 }
@@ -55,29 +51,22 @@ export function IconTooltip({
     const id = useId()
     return (
         <span
-            className={[
-                'yw-icon-tooltip',
-                `yw-icon-tooltip--${Size.toLowerCase()}`,
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-size={Size.toLowerCase()}
+            className={cx(styles.iconTooltip, className)}
         >
             <button
                 type="button"
-                className={[
-                    'yw-icon-tooltip__trigger',
-                    'yw-focus-ring',
-                    triggerClassName,
-                ]
-                    .filter(Boolean)
-                    .join(' ')}
+                className={cx(
+                    styles.iconTooltipTrigger,
+                    ring.root,
+                    triggerClassName
+                )}
                 aria-label={label}
                 aria-describedby={id}
             >
                 <Icon name="info-filled" size={Size === 'S' ? 16 : 24} />
             </button>
-            <span className="yw-icon-tooltip__bubble">
+            <span className={styles.iconTooltipBubble}>
                 <Tooltip id={id} Size={tooltipSize} text={text} />
             </span>
         </span>

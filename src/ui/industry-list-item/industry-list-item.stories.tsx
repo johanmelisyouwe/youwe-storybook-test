@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { IndustryList, IndustryListItem, type Industry } from './'
 import { ModeFrame, type Mode } from '../../shared/mode-frame'
+import styles from './industry-list-item.module.css'
 
 /*
   Industry List Item — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=25019-679
@@ -55,7 +56,7 @@ const meta: Meta<Args> = {
     render: ({ Device, Expanded, Mode }) => (
         <ModeFrame Mode={Mode}>
             <div style={{ maxWidth: W[Device], paddingTop: 120 }}>
-                <ul className="yw-industry-list">
+                <ul className={styles.industryList}>
                     <IndustryListItem
                         {...ITEMS[0]}
                         Device={Device}
@@ -99,7 +100,7 @@ export const AllVariants: Story = {
                     >
                         {(['No', 'Yes'] as const).map((e) => (
                             <div key={e} style={{ maxWidth: 1280 }}>
-                                <ul className="yw-industry-list">
+                                <ul className={styles.industryList}>
                                     <IndustryListItem
                                         {...ITEMS[0]}
                                         Expanded={e}
@@ -108,7 +109,7 @@ export const AllVariants: Story = {
                             </div>
                         ))}
                         <div style={{ width: 336 }}>
-                            <ul className="yw-industry-list yw-industry-list--mobile">
+                            <ul data-mobile className={styles.industryList}>
                                 {(['No', 'Yes'] as const).map((e) => (
                                     <IndustryListItem
                                         key={e}

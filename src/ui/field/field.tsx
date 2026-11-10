@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import './field.css'
+import { cx } from '../../shared/cx'
+import styles from './field.module.css'
 
 /*
   Shared building block for the Figma input components (label, required mark, control, hint).
@@ -21,6 +22,8 @@ export type FieldShellProps = {
     /** Floating label stays up (focused, filled or showing a placeholder) */
     floated?: boolean
     filled?: boolean
+    /** A popup (dropdown list) belonging to the control is open */
+    open?: boolean
     /** Extra class on the control (pseudo-state previews in stories) */
     controlClassName?: string
     /** Label text style for the static title (Figma differs per component) */
@@ -43,6 +46,7 @@ export function FieldShell({
     disabled,
     floated,
     filled,
+    open,
     controlClassName,
     titleClass = 'yw-body-sm-med',
     onControlClick,
@@ -54,7 +58,7 @@ export function FieldShell({
     const req = required ? (
         <span
             className={[
-                'yw-field__required',
+                styles.required,
                 labels === 'Static' ? 'yw-body-sm-bold' : '',
             ].join(' ')}
             aria-hidden="true"
@@ -64,35 +68,29 @@ export function FieldShell({
     ) : null
     return (
         <div
-            className={[
-                'yw-field',
-                `yw-field--${labels.toLowerCase()}`,
-                status === 'Success' && 'is-success',
-                status === 'Error' && 'is-error',
-                disabled && 'is-disabled',
-                floated && 'is-floated',
-                filled && 'is-filled',
-                className,
-            ]
-                .filter(Boolean)
-                .join(' ')}
+            data-labels={labels.toLowerCase()}
+            data-success={status === 'Success' || undefined}
+            data-error={status === 'Error' || undefined}
+            data-disabled={disabled || undefined}
+            data-floated={floated || undefined}
+            data-filled={filled || undefined}
+            data-open={open || undefined}
+            className={cx(styles.root, className)}
             data-hint-id={hintId}
         >
             {labels === 'Static' && (
-                <label className="yw-field__title" htmlFor={id}>
+                <label className={styles.title} htmlFor={id}>
                     <span className={titleClass}>{label}</span>
                     {req}
                 </label>
             )}
             <div
-                className={['yw-field__control', controlClassName]
-                    .filter(Boolean)
-                    .join(' ')}
+                className={cx(styles.control, controlClassName)}
                 onClick={onControlClick}
             >
                 {labels === 'Floating' ? (
-                    <span className="yw-field__stack">
-                        <label className="yw-field__float-label" htmlFor={id}>
+                    <span className={styles.stack}>
+                        <label className={styles.floatLabel} htmlFor={id}>
                             <span>{label}</span>
                             {req}
                         </label>
@@ -106,7 +104,7 @@ export function FieldShell({
             {hint && hintText && (
                 <p
                     id={hintId}
-                    className="yw-field__hint yw-body-sm-reg"
+                    className={cx(styles.hint, 'yw-body-sm-reg')}
                     role={status === 'Error' ? 'alert' : undefined}
                 >
                     {hintText}
