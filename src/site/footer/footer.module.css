@@ -91,8 +91,12 @@
         }
     }
 
+    /* Tap target: 4px padding above and below takes links to 24px+ (WCAG 2.2 target size); the negative margin keeps the Figma spacing */
     .footer-link {
         --focus-ring-radius: var(--shared-radius-2);
+        display: inline-block;
+        margin-block: calc(var(--spacing-3xs) * -1);
+        padding-block: var(--spacing-3xs);
         color: var(--color-shared-content-secondary);
         text-decoration: none;
         transition: color var(--motion-duration-fast)

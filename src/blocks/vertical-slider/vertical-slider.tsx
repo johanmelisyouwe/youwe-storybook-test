@@ -335,10 +335,11 @@ export function VerticalSlider({
 
     const header = (
         <div className={styles.header}>
-            <span className={styles.kicker}>
+            {/* The kicker is the section heading (h2), so the slide titles (h3) sit under it in the outline */}
+            <h2 className={styles.kicker}>
                 <span className={styles.line} aria-hidden="true" />
                 <span className="yw-body-sm-bold">{Kicker}</span>
-            </span>
+            </h2>
             {Tagline && <span className="yw-body-sm-bold">{Tagline}</span>}
         </div>
     )

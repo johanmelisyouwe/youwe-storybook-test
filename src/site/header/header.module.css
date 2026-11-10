@@ -180,8 +180,10 @@
             }
         }
 
+        /* 24px+ tap target, same visual spacing */
         &[data-plain] {
-            padding: 0;
+            margin-block: calc(var(--spacing-3xs) * -1);
+            padding: var(--spacing-3xs) 0;
         }
 
         &[data-l] {

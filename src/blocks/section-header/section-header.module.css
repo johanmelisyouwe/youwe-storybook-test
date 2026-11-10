@@ -14,10 +14,18 @@
         max-width: 32.75rem;
     }
     .root {
+        /* Centered (long statements, e.g. Work detail): wider measure than Figma's 524 so a long heading
+           doesn't become a narrow tower; the body stays a left-aligned 632 reading column under it (polish, 10 Nov) */
         &[data-centered] .text {
             align-items: center;
+            max-width: 53.75rem;
             margin-inline: auto;
             text-align: center;
+
+            & > p {
+                max-width: 39.5rem;
+                text-align: start;
+            }
         }
 
         & h2 {
