@@ -1,18 +1,39 @@
-# Sync report — 10 November 2026 (logos & states)
+# Sync report — 10 November 2026 (text contrast)
 
-Backlog batch 2: logos in their Figma boxes, the remaining logo exports and the stat card hover.
+Backlog batch 3: every text colour pair now passes WCAG AA (4.5:1).
 
-## Logos
+## What the audit found
 
-- **Figma logo boxes everywhere.** In Figma every client and technology logo is a 190×100 frame with the logo placed inside with its own margins (Clients/*, Technologies/*), and the partner logos on Tech Partners are 120×40 frames (Logos/*). The logo files are now those frames, so a logo drawn at a slot size carries the Figma margins: case cards 140×74 (One quarter 104×55, mobile 112×59), stats 80×42, hero logo bars and the technology grid 118×62, partner cards 120×40, case hero 190×100.
-- **Case card logo** no longer touches the edges: the image keeps its Figma padding (8/16) and the logo its box margins.
-- **19 more logos exported** (the partner logos on Tech Partners and Build your stack): Databricks, Microsoft Fabric, Google Cloud, OpenAI, n8n, Spryker, Contentful, DotDigital, Salesforce, Klaviyo, Algolia, Tweakwise, Klevu, Channable, Adyen, Buckaroo, Mollie, Sendcloud, Hypernode. Partner cards now show logos instead of names.
-- `Logo` takes the slot `width` (and `kind="partner"` for the 120×40 partner box); `ClientLogo` uses it. Logos stay one colour (text colour), so Databricks' red mark is drawn in the text colour too.
-- Unipart has no logo in Figma, so it still shows the name.
+axe-core colour-contrast over all 282 Storybook stories: **677 failing text nodes** before, **0** after (bar one known false positive, below). Almost all came from a handful of semantic colours that fail on the standard surfaces (base-1 / base-2).
 
-## Stat card hover
+## Colour changes (nearest passing primitive)
 
-Not in Figma yet, so designed in code to match the cards: the whole Client stat card is the link; on hover the card goes to surface/base-2 and the round arrow fills brand red with a light arrow (duration/fast). No hover on touch screens. New *Hover* story. Adding the state to the Figma Stat component is on the backlog (Figma batch).
+| Token | Mode | Figma now | Code now | Before → after (worst surface) | Where you see it |
+|---|---|---|---|---|---|
+| shared/content/brand | dark | brand-red/400 | brand-red/200 | 3.16 → 5.01 | Footer headings, feature card numbers, event months, two-column labels, kickers |
+| shared/content/brand | light | brand-red/400 | brand-red/500 | 4.25 → 5.83 | Feature card numbers on light cards |
+| shared/content/link | dark | brand-red/300 | brand-red/200 | 3.99 → 5.01 | Service card eyebrow |
+| shared/content/placeholder | dark | neutral/600 | neutral/400 | 2.05 → 5.20 | Input and dropdown placeholders, Industry list idle rows |
+| shared/content/placeholder | light | neutral/300 | neutral/500 | 1.94 → 4.69 | Industry list idle rows (light) |
+| shared/content/tertiary | light | neutral/500 | neutral/600 | 4.17 → 6.57 | Service card caption on light cards |
+| component/tag/content | dark | neutral/450 | neutral/400 | 3.73 → 5.20 | Card type tags |
+| component/tag/content | light | neutral/500 | neutral/600 | 4.17 → 6.57 | Card type tags (light) |
+
+Buttons (white on brand red, 4.79) already passed and are unchanged.
+
+**Design note for review:** in light mode, content/tertiary now equals content/secondary (neutral/600), because there is no primitive between neutral/500 and neutral/600. Brand red text on dark is now the lighter brand-red/200; surfaces, buttons and borders keep brand-red/400.
+
+## Section intro scroll highlight
+
+Unread words were drawn at 28% opacity (1.4–1.6:1). They now use **content/tertiary** (the Figma body colour, which passes) and light up to **content/secondary** as the paragraph scrolls. The effect is kept and every state passes AA. With reduced motion all words show as read.
+
+## Figma: blocked
+
+Changing the eight Figma variables (color_semantics, dark/light modes) was **denied by the edit permission check** ("Modify Shared Resources"). As agreed, I did not work around it. Until Figma is updated, the code values live in `src/tokens/contrast-overrides.css` (a small, documented override on top of the generated tokens, using only existing primitives). Once the Figma variables are changed and the tokens re-exported, delete that file. Listed on the backlog.
+
+## Known false positive
+
+Ask Youwe *Related case* snippet: axe reads the white text against the grey placeholder behind the image, but the snippet has a dark scrim (82–96% base-1) under the text, giving 12:1 or more. Checked visually.
 
 ## Checks
 
@@ -20,9 +41,8 @@ Not in Figma yet, so designed in code to match the cards: the whole Client stat 
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
 - `check-coverage`: clean
-
-Visual check: Home (stats, hero logos, carousel), Tech Partners (partner cards), Case carousel and Stat stories.
+- axe colour-contrast, 282 stories: 0 failures (excluding the false positive above)
 
 ## Backlog
 
-Removed: case card logo padding, Figma logo boxes, stat hover, remaining logos. Added: Stat hover in Figma. Next: text contrast.
+Removed: Text contrast. Added: Contrast colours in Figma. Next: batch 4 (ACI Weave section, Insights overview, compact dropdown).

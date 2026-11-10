@@ -49,7 +49,7 @@ export function SectionHeader({ Alignment = 'Left', kicker, heading, body }: Sec
   );
 }
 
-/** Scroll highlight: words go from 28% to 100% opacity as the paragraph scrolls up, and never fade back. */
+/** Scroll highlight: unread words stay content/tertiary (the Figma body colour), read words light up to content/secondary; both pass WCAG AA as the paragraph scrolls up, and never fade back. */
 function useHighlight(words: number) {
   const ref = useRef<HTMLParagraphElement>(null);
   const [lit, setLit] = useState(words);
@@ -92,7 +92,7 @@ export function SectionIntro({ Layout = 'Split', Kicker, Title, Body, className 
         {Body && (
           <p ref={ref} className="yw-section-intro__body yw-body-md-reg">
             <span className="yw-visually-hidden">{Body}</span>
-            {words.map((w, i) => <span key={i} aria-hidden="true" style={{ opacity: i < lit ? 1 : 0.28 }}>{w} </span>)}
+            {words.map((w, i) => <span key={i} aria-hidden="true" className={i < lit ? "is-lit" : undefined}>{w} </span>)}
           </p>
         )}
       </div>

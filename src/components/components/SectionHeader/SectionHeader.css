@@ -4,7 +4,7 @@
   Content blocks/Section intro (26847:85): kicker + title heading/xl + body body/md/reg tertiary. Split = title
   left, body right, bottom aligned (desktop); Stacked = body under the title (gap 24). Mobile stacks.
   Motion (Figma): title words rise from 105% in a mask (duration/reveal, ease/emphasized, +stagger/2 per word);
-  Section intro body: scroll highlight (words 28% → 100% opacity, never fades back).
+  Section intro body: scroll highlight (unread words content/tertiary, read words content/secondary, both AA; never fades back).
 */
 @layer components {
   .yw-section-header__text { display: flex; flex-direction: column; gap: var(--spacing-lg); max-width: 524px; }
@@ -28,6 +28,7 @@
   .yw-section-intro__row > * { flex: 0 1 50%; }
   .yw-section-intro--stacked .yw-section-intro__row { flex-direction: column; align-items: flex-start; }
   .yw-section-intro__body { margin: 0; max-width: 632px; color: var(--color-shared-content-tertiary); }
+  .yw-section-intro__body > .is-lit { color: var(--color-shared-content-secondary); transition: color var(--motion-duration-base) var(--motion-ease-standard); }
   .yw-section-intro__body > span { transition: opacity var(--motion-duration-slow) var(--motion-ease-standard); }
 
   @container (max-width: 767px) {
