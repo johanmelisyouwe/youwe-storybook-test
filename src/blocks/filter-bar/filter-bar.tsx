@@ -90,7 +90,7 @@ export function FilterBar({
     if (Device === 'Desktop') {
         return (
             <div className={styles.root} role="search" aria-label="Filter">
-                <ul className={styles.systems}>
+                <ul data-stagger className={styles.systems}>
                     {systems.map((s) => (
                         <li key={s}>
                             <button

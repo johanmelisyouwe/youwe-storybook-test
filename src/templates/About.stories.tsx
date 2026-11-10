@@ -16,6 +16,7 @@ import {
     header,
     logo,
     type Device,
+    useDevice,
 } from './shared'
 import { abstract, caseImage } from '../media/media'
 
@@ -126,9 +127,10 @@ const BADGES = [
     { name: 'Great Place To Work' },
 ]
 
-function AboutPage({ Device }: { Device: Device }) {
+function AboutPage({ Device: story }: { Device: Device }) {
+    const Device = useDevice(story)
     return (
-        <Page Device={Device}>
+        <Page Device={story} ask="Where are your offices?">
             <Hero
                 Device={Device}
                 image={abstract('015')}
@@ -229,20 +231,23 @@ function AboutPage({ Device }: { Device: Device }) {
                         {
                             Value: '20,000',
                             Label: 'Enriched products',
-                            logo: logo('Chadwicks'),
+                            logo: logo('Chadwicks', 80),
                             href: '#',
+                            context: 'Chadwicks',
                         },
                         {
                             Value: '+480%',
                             Label: 'eCommerce revenue',
-                            logo: logo('Elektrototaalmarkt'),
+                            logo: logo('Elektrototaalmarkt', 80),
                             href: '#',
+                            context: 'Elektrototaalmarkt',
                         },
                         {
                             Value: '93%',
                             Label: 'Average match score',
-                            logo: logo('Symson'),
+                            logo: logo('Symson', 80),
                             href: '#',
+                            context: 'Symson',
                         },
                     ]}
                 />

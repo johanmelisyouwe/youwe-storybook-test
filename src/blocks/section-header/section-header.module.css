@@ -4,7 +4,7 @@
   Content blocks/Section intro (26847:85): kicker + title heading/xl + body body/md/reg tertiary. Split = title
   left, body right, bottom aligned (desktop); Stacked = body under the title (gap 24). Mobile stacks.
   Motion (Figma): title words rise from 105% in a mask (duration/reveal, ease/emphasized, +stagger/2 per word);
-  Section intro body: scroll highlight (words 28% → 100% opacity, never fades back).
+  Section intro body: scroll highlight (unread words content/tertiary, read words content/secondary, both AA; never fades back).
 */
 @layer components {
     .text {
@@ -78,6 +78,12 @@
         margin: 0;
         max-width: 39.5rem;
         color: var(--color-shared-content-tertiary);
+
+        & > [data-lit] {
+            color: var(--color-shared-content-secondary);
+            transition: color var(--motion-duration-base)
+                var(--motion-ease-standard);
+        }
 
         & > span {
             transition: opacity var(--motion-duration-slow)

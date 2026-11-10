@@ -20,10 +20,19 @@
             flex-direction: column;
             justify-content: flex-end;
             min-height: 52.5rem;
+            /* the header overlays the hero: long titles never run under it */
+            padding-top: var(--spacing-5xl);
         }
 
         &[data-mobile].root[data-gradient] {
             min-height: 40rem;
+            padding-top: var(--spacing-4xl);
+        }
+
+        & > .hero-bar {
+            animation: hero-rise var(--motion-duration-reveal)
+                var(--motion-ease-emphasized) both;
+            animation-delay: calc(var(--motion-stagger) * 8);
         }
 
         /*
@@ -86,6 +95,11 @@
             height: 100%;
             object-fit: cover;
         }
+
+        & img {
+            animation: hero-settle calc(var(--motion-duration-cinematic) * 2)
+                var(--motion-ease-emphasized) both;
+        }
     }
 
     .header {
@@ -122,6 +136,11 @@
         flex-direction: column;
         gap: var(--spacing-lg);
         min-width: 0;
+
+        & > :not(.title) {
+            animation: hero-rise var(--motion-duration-reveal)
+                var(--motion-ease-emphasized) both;
+        }
     }
     .title {
         margin: 0;
@@ -138,7 +157,7 @@
 
         &:nth-child(2) > span {
             animation-delay: 120ms; /* legacy-ok: Figma "+120ms per line", no token */
-            color: var(--color-shared-content-brand);
+            color: var(--color-shared-surface-fixed-brand-red);
         }
 
         &:nth-child(3) > span {
@@ -154,6 +173,27 @@
         }
     }
 
+    /* Entrance (batch 6, after the v2 site): label first, then the title lines, then body, buttons and the
+       logo bar rise in; the background image settles from a slight zoom. Reduced motion: tokens go to 1ms. */
+    @keyframes hero-rise {
+        from {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-md));
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    @keyframes hero-settle {
+        from {
+            transform: scale(1.08);
+        }
+        to {
+            transform: none;
+        }
+    }
+
     .textcol {
         display: flex;
         flex: 0 1 30rem;
@@ -162,6 +202,16 @@
 
         & p {
             margin: 0;
+        }
+
+        & > * {
+            animation: hero-rise var(--motion-duration-reveal)
+                var(--motion-ease-emphasized) both;
+            animation-delay: calc(var(--motion-stagger) * 5);
+        }
+
+        & > * + * {
+            animation-delay: calc(var(--motion-stagger) * 6);
         }
     }
     .actions {
@@ -184,7 +234,7 @@
     /* Bar */
     @keyframes marquee {
         to {
-            transform: translateX(-50%);
+            transform: translateX(-100%);
         }
     }
 
@@ -200,11 +250,11 @@
             padding-block: var(--spacing-xl);
         }
 
-        &:focus-within .hero-bar-track {
+        &:focus-within .hero-bar-group {
             animation-play-state: paused;
         }
         @media (hover: hover) and (pointer: fine) {
-            &:hover .hero-bar-track {
+            &:hover .hero-bar-group {
                 animation-play-state: paused;
             }
         }
@@ -240,10 +290,15 @@
     }
     .hero-bar-track {
         display: flex;
+        width: max-content;
+    }
+    /* Each group carries its trailing gap as padding, so translateX(-100%) moves exactly one period. */
+    .hero-bar-group {
+        display: flex;
+        flex-shrink: 0;
         align-items: center;
         gap: var(--spacing-3xl);
-        width: max-content;
-        padding-inline: var(--spacing-xl);
+        padding-right: var(--spacing-3xl);
         animation: marquee 40s linear infinite; /* legacy-ok: Figma "marquee linear 40s" */
     }
     .hero-bar-logo {
@@ -271,10 +326,18 @@
         flex-shrink: 0;
         width: 11.875rem;
         color: var(--color-shared-content-primary);
+        animation: hero-rise var(--motion-duration-reveal)
+            var(--motion-ease-emphasized) both;
+        animation-delay: calc(var(--motion-stagger) * 4);
     }
     .image {
         margin-top: var(--spacing-4xl);
         border-radius: 0 !important;
+
+        & img {
+            animation: hero-settle calc(var(--motion-duration-cinematic) * 2)
+                var(--motion-ease-emphasized) both;
+        }
     }
 
     @container (max-width: 47.9375rem) {

@@ -42,7 +42,7 @@
         }
     }
 
-    /* Hover: not in Figma yet (approved 2026-11-09, design to add it): text to content/primary */
+    /* Hover (Figma State=Hover, added 10 Nov): text to content/primary */
     .text {
         transition: color var(--motion-duration-fast)
             var(--motion-ease-standard);
@@ -53,6 +53,12 @@
         flex-shrink: 0;
     }
     .root {
+        &[data-back] {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
         &[data-mobile] {
             display: flex;
             align-items: center;

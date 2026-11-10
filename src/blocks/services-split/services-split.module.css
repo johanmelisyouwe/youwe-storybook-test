@@ -86,11 +86,10 @@
         flex-direction: column;
         gap: var(--spacing-sm);
     }
+    /* text style body/xs/caps */
     .group-label {
         margin: 0;
         color: var(--color-shared-content-secondary);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
     }
 
     @container (max-width: 47.9375rem) {

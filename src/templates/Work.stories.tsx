@@ -13,6 +13,7 @@ import {
     header,
     logo,
     type Device,
+    useDevice,
 } from './shared'
 import { abstract, clientPhoto } from '../media/media'
 import block from '../shared/block/block.module.css'
@@ -113,9 +114,10 @@ const CASES: [string, string, string[]][] = [
     ],
 ]
 
-function WorkPage({ Device }: { Device: Device }) {
+function WorkPage({ Device: story }: { Device: Device }) {
+    const Device = useDevice(story)
     return (
-        <Page Device={Device}>
+        <Page Device={story} ask="Which results did you get for clients?">
             <Hero
                 Device={Device}
                 image={abstract('001')}
@@ -130,6 +132,7 @@ function WorkPage({ Device }: { Device: Device }) {
                         className={block.inner}
                         style={{
                             display: 'grid',
+                            gridTemplateColumns: 'minmax(0, 1fr)',
                             gap: 'var(--spacing-3xl)',
                             paddingBottom: 0,
                         }}

@@ -392,7 +392,7 @@
         color: var(--color-shared-content-secondary);
     }
     .slide-value {
-        color: var(--color-shared-content-brand);
+        color: var(--color-shared-surface-fixed-brand-red);
     }
     .slide-pills {
         display: flex;

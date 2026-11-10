@@ -68,6 +68,48 @@
                 transform: translateY(calc(var(--motion-distance-card) * -1));
             }
         }
+
+        /* The card's own arrow button stays still while the text lifts (decided 2026-11-10): counter the lift */
+        &[data-reveal="lift"]:focus-visible .lift .card-arrow {
+            transform: translateY(var(--motion-distance-card));
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &[data-reveal="lift"]:hover .lift .card-arrow {
+                transform: translateY(var(--motion-distance-card));
+            }
+        }
+
+        /* Touch screens (no hover): no red overlay, an always-visible arrow button top-right (decided 2026-11-10) */
+        @media (hover: none) {
+            &[data-reveal="lift"] .lift {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            /* Cards that already show their own arrow button keep that one */
+            &:has(.card-arrow) .touch {
+                display: none;
+            }
+        }
+    }
+
+    .touch {
+        display: none;
+
+        @media (hover: none) {
+            position: absolute;
+            z-index: 2;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: var(--shared-radius-circular);
+            background: var(--color-shared-surface-fixed-light);
+            color: var(--color-shared-surface-fixed-brand-red);
+        }
     }
 
     .overlay {
@@ -85,6 +127,10 @@
         pointer-events: none;
         transition: clip-path var(--motion-duration-card)
             var(--motion-ease-card);
+
+        @media (hover: none) {
+            display: none;
+        }
     }
 
     .arrow {
@@ -97,7 +143,7 @@
         height: 2.5rem;
         border-radius: var(--shared-radius-circular);
         background: var(--color-shared-surface-fixed-light);
-        color: var(--color-shared-content-brand);
+        color: var(--color-shared-surface-fixed-brand-red);
         transition: transform var(--motion-duration-card)
             var(--motion-ease-card);
     }
@@ -117,6 +163,11 @@
         transition:
             opacity var(--motion-duration-card) var(--motion-ease-card),
             transform var(--motion-duration-card) var(--motion-ease-card);
+
+        & .card-arrow {
+            transition: transform var(--motion-duration-card)
+                var(--motion-ease-card);
+        }
     }
 
     /* Round outline arrow button used in the rest state of several cards (40px, 1px border, content/primary) */

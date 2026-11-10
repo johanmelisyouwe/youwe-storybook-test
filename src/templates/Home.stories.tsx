@@ -10,9 +10,10 @@ import { CaseCarousel } from '../blocks/case-carousel'
 import { TechnologyLogos } from '../blocks/technology-logos'
 import { ContactCTA } from '../blocks/contact-cta'
 import type { CaseCardProps } from '../ui/case-card'
+import { AciWeave } from '../blocks/aci-weave'
+import { ACI_WEAVE } from '../blocks/aci-weave/aci-weave.copy'
 import {
     CLIENT_LOGOS,
-    NotAComponent,
     Page,
     Section,
     WORK_WITH_US,
@@ -20,6 +21,7 @@ import {
     header,
     logo,
     type Device,
+    useDevice,
 } from './shared'
 import { abstract, clientPhoto } from '../media/media'
 
@@ -126,26 +128,30 @@ const STATS = [
     {
         Value: '+12.7%',
         Label: 'More checkout starts in the first UK post-launch comparison',
-        logo: logo('Quooker'),
+        logo: logo('Quooker', 80),
         href: '#',
+        context: 'Quooker',
     },
     {
         Value: '+43%',
         Label: 'Marketable catalog uplift',
-        logo: logo('Chadwicks'),
+        logo: logo('Chadwicks', 80),
         href: '#',
+        context: 'Chadwicks',
     },
     {
         Value: '800+',
         Label: 'Categories active',
-        logo: logo('BunzlOne'),
+        logo: logo('BunzlOne', 80),
         href: '#',
+        context: 'BunzlOne',
     },
     {
         Value: '+93%',
         Label: 'Average match score',
-        logo: logo('Symson'),
+        logo: logo('Symson', 80),
         href: '#',
+        context: 'Symson',
     },
 ]
 
@@ -206,12 +212,13 @@ const TECH = [
     'Symson',
     'AWS',
     'ACI Weave',
-].map((name) => ({ name, logo: logo(name, 110) }))
+].map((name) => ({ name, logo: logo(name, 118) }))
 
-function HomePage({ Device }: { Device: Device }) {
+function HomePage({ Device: story }: { Device: Device }) {
+    const Device = useDevice(story)
     const mobile = Device === 'Mobile'
     return (
-        <Page Device={Device}>
+        <Page Device={story} ask="Which service fits my problem?">
             <Hero
                 Device={Device}
                 image={abstract('016')}
@@ -273,19 +280,7 @@ function HomePage({ Device }: { Device: Device }) {
                     items={mobile ? IN_THEIR_WORDS.slice(0, 3) : IN_THEIR_WORDS}
                 />
             </Section>
-            {mobile ? (
-                <NotAComponent
-                    name="ACI Weave · video + nudge"
-                    height={1637}
-                    uses={['Ask Youwe/Snippet', 'Button/Basic']}
-                />
-            ) : (
-                <NotAComponent
-                    name="Frame 6 (ACI Weave · videos + snippet)"
-                    height={1356}
-                    uses={['Ask Youwe/Snippet', 'Button/Basic']}
-                />
-            )}
+            <AciWeave Device={Device} {...ACI_WEAVE} />
             <Section Mode="Light">
                 <TechnologyLogos
                     Layout="Default"
@@ -316,7 +311,7 @@ const meta: Meta = {
         docs: {
             description: {
                 component:
-                    'Home page template: hero with client logos, What we do slider, client stats, case reel, client quotes, ACI Weave section (not a component yet), technology logos, sub-footer and footer.',
+                    'Home page template: hero with client logos, What we do slider, client stats, case reel, client quotes, ACI Weave section, technology logos, sub-footer and footer.',
             },
         },
     },

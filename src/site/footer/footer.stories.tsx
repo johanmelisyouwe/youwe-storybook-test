@@ -87,11 +87,16 @@ const meta: Meta<Args> = {
             control: 'inline-radio',
             options: ['Sitemap', 'Newsletter'],
         },
-        Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
+        Device: {
+            control: 'inline-radio',
+            options: ['Desktop', 'Mobile', 'Auto'],
+            description:
+                'Auto: both render, the screen width picks (mobile below 768px)',
+        },
     },
     args: { Variant: 'Sitemap', Device: 'Desktop' },
     render: ({ Variant, Device }) => (
-        <div style={{ maxWidth: Device === 'Mobile' ? 360 : 1440 }}>
+        <div style={{ maxWidth: Device === 'Mobile' ? 360 : undefined }}>
             <Footer Variant={Variant} Device={Device} {...props(Variant)} />
         </div>
     ),
@@ -142,4 +147,9 @@ export const AllVariants: Story = {
             </div>
         </div>
     ),
+}
+
+/** Device=Auto, as the templates use it: resize the canvas below 768px to get the mobile footer. */
+export const Responsive: Story = {
+    args: { Device: 'Auto', Variant: 'Newsletter' },
 }

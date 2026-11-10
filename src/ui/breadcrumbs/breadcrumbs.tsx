@@ -7,7 +7,8 @@ import styles from './breadcrumbs.module.css'
 
 /*
   Breadcrumbs — Figma Breadcrumbs/Desktop 18846:21440 and Breadcrumbs/Mobile 18703:12478 (page "Breadcrumbs").
-  Links are _breadcrumb-link (15409:8869): State Rest / Active (current page) / Focused.
+  Links are _breadcrumb-link (15409:8869): State Rest / Hover / Active (current page) / Focused.
+  Desktop "Show back button" (default off): Button/Basic Outline, Leading chevron-left, S, "Back" to the parent page, gap 12.
 */
 
 export type Crumb = { label: string; href?: string }
@@ -17,6 +18,8 @@ export type BreadcrumbsProps = {
     items: Crumb[]
     /** Figma: two components, Breadcrumbs/Desktop and Breadcrumbs/Mobile */
     Device?: 'Desktop' | 'Mobile'
+    /** Desktop only. Figma: Show back button — "Back" to the parent page before the crumbs */
+    'Show back button'?: boolean
     /** Mobile only. Figma: Filter button */
     'Filter button'?: boolean
     onFilter?: () => void
@@ -28,6 +31,7 @@ export type BreadcrumbsProps = {
 export function Breadcrumbs({
     items,
     Device = 'Desktop',
+    'Show back button': back = false,
     'Filter button': filter = true,
     onFilter,
     className,
@@ -61,7 +65,21 @@ export function Breadcrumbs({
         )
     }
     return (
-        <nav aria-label="Breadcrumb" className={cx(styles.root, className)}>
+        <nav
+            aria-label="Breadcrumb"
+            data-back={back || undefined}
+            className={cx(styles.root, className)}
+        >
+            {back && (
+                <Button
+                    Variant="Outline"
+                    Icon="Leading"
+                    Size="S"
+                    iconName="chevron-left"
+                    label="Back"
+                    href={(items[items.length - 2] ?? items[0]).href ?? '#'}
+                />
+            )}
             <ol className={styles.list}>
                 {items.map((c, i) => {
                     const current = i === items.length - 1

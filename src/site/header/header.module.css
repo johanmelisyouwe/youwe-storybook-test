@@ -9,7 +9,7 @@
   Mobile: logo + menu button (Solid M, icon only, tint-1). Expanded: full-screen
   sheet on surface/base-1: top bar with close, nav links L (body/xl/med; Active content/brand),
   divider, utility links, language, Get in touch (Primary M, full width).
-  Motion (Figma): glass background once scrolled; hides on scroll down, returns on scroll up
+  Motion (Figma): glass background once scrolled (dark glass, base-1 80% + blur); hides on scroll down, returns on scroll up
   (duration/slow, ease/emphasized); mega menu clip reveal duration/slow.
   Interaction: mega menu opens on hover immediately, closes 300ms after the pointer leaves; Enter/ArrowDown
   opens, Esc closes. Mobile: full-screen sheet, page scroll locked.
@@ -53,19 +53,40 @@
         transition: transform var(--motion-duration-slow)
             var(--motion-ease-emphasized);
 
+        /* Fixed: --yw-page-max keeps it on the page column when a page is narrower than the viewport (Mobile stories). */
         &[data-fixed] {
             position: fixed;
             top: 0;
             right: 0;
             left: 0;
+            max-width: var(--yw-page-max, none);
+            margin-inline: auto;
         }
 
         &[data-hidden] {
             transform: translateY(-100%);
         }
 
+        /* Once scrolled the bar becomes dark glass, so it stays readable over light sections too. */
+        &[data-scrolled] .bar {
+            background: color-mix(
+                in srgb,
+                var(--color-shared-surface-base-1) 80%,
+                transparent
+            );
+        }
+
         &[data-scrolled] .bar::before {
             opacity: 1;
+        }
+
+        &[data-mobile][data-scrolled] {
+            background: color-mix(
+                in srgb,
+                var(--color-shared-surface-base-1) 80%,
+                transparent
+            );
+            backdrop-filter: blur(var(--effect-blur-background-blur-blur));
         }
 
         /*
@@ -168,11 +189,11 @@
         }
 
         &[data-l][aria-current="page"] {
-            color: var(--color-shared-content-brand);
+            color: var(--color-shared-surface-fixed-brand-red);
         }
         @media (hover: hover) and (pointer: fine) {
             &[data-l]:hover {
-                color: var(--color-shared-content-brand);
+                color: var(--color-shared-surface-fixed-brand-red);
             }
         }
     }

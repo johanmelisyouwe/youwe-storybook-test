@@ -39,7 +39,7 @@ export function YouweLogo({
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d={MARK}
-                style={{ fill: 'var(--color-shared-content-brand)' }}
+                style={{ fill: 'var(--color-shared-surface-fixed-brand-red)' }}
             />
         </svg>
     )

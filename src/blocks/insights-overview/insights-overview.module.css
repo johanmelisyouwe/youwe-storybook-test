@@ -1,0 +1,66 @@
+/* Content blocks/Insights overview: see insights-overview.tsx for the Figma frames and measurements. */
+@layer components {
+    .root {
+        & .inner {
+            --_py: var(--spacing-4xl);
+        }
+    }
+
+    .stack {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+
+        @container (max-width: 47.9375rem) {
+            gap: var(--spacing-lg);
+        }
+    }
+
+    .heading {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+
+        & h2 {
+            margin: 0;
+        }
+    }
+
+    .count {
+        margin: 0;
+        color: var(--color-shared-content-tertiary);
+    }
+
+    /* Type tiles: one column per type on desktop (--_types), three a row on tablet */
+    .types {
+        grid-template-columns: repeat(var(--_types), minmax(0, 1fr));
+
+        @container (max-width: 63.9375rem) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    .pills {
+        margin-inline: calc(var(--spacing-xs) * -1);
+        padding-inline: var(--spacing-xs);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--spacing-2xl) var(--spacing-sm);
+        align-items: start;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        @container (max-width: 63.9375rem) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @container (max-width: 47.9375rem) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--spacing-lg);
+        }
+    }
+}

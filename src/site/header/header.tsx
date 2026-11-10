@@ -7,6 +7,7 @@ import { AskYouwe } from '../ask-youwe'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
 import ring from '../../shared/focus-ring/focus-ring.module.css'
+import responsive from '../../shared/responsive/responsive.module.css'
 import styles from './header.module.css'
 
 /* Header/Corporate — Figma 24999:631; _Nav link 24998:575; _Utility link 24998:583; _Mega menu 26977:1552. */
@@ -152,8 +153,8 @@ export function MegaMenu({
 }
 
 export type HeaderProps = {
-    /** Figma: Device */
-    Device?: 'Desktop' | 'Mobile'
+    /** Figma: Device. 'Auto' renders both and lets the screen width choose (hamburger below 1024px). */
+    Device?: 'Desktop' | 'Mobile' | 'Auto'
     /** Figma: Expanded (desktop: mega menu open; mobile: menu sheet open) */
     Expanded?: 'No' | 'Yes'
     nav: NavItem[]
@@ -191,7 +192,23 @@ function useScrollState(enabled: boolean) {
     return state
 }
 
-export function Header({
+export function Header(props: HeaderProps) {
+    if (props.Device === 'Auto') {
+        return (
+            <>
+                <div className={responsive['only-lg']}>
+                    <HeaderView {...props} Device="Desktop" />
+                </div>
+                <div className={responsive['below-lg']}>
+                    <HeaderView {...props} Device="Mobile" />
+                </div>
+            </>
+        )
+    }
+    return <HeaderView {...props} />
+}
+
+function HeaderView({
     Device = 'Desktop',
     Expanded = 'No',
     nav,
@@ -295,6 +312,7 @@ export function Header({
             <header
                 data-mobile
                 data-fixed={fixed || undefined}
+                data-scrolled={scrolled || undefined}
                 data-hidden={(hidden && !open) || undefined}
                 className={styles.root}
             >

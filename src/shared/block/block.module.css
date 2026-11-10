@@ -11,6 +11,7 @@
 @layer components {
     .root {
         container-type: inline-size;
+        overflow-x: clip; /* bleeding rows (carousels, giant text) never widen the page */
         position: relative;
         background: var(--color-shared-surface-base-1);
         color: var(--color-shared-content-primary);

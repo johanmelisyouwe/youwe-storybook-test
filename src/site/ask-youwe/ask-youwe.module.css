@@ -434,4 +434,62 @@
         gap: var(--spacing-2xs);
         padding-top: var(--spacing-2xs);
     }
+
+    /* Docked bar: fixed bottom centre, slides up after the hero, out of the way over the footer. */
+    .dock {
+        position: fixed;
+        z-index: 40;
+        right: 0;
+        bottom: var(--spacing-lg);
+        left: 0;
+        display: flex;
+        justify-content: center;
+        max-width: var(--yw-page-max, none);
+        margin-inline: auto;
+        padding-inline: var(--spacing-md);
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(calc(100% + var(--spacing-lg)));
+        transition:
+            opacity var(--motion-duration-slow) var(--motion-ease-emphasized),
+            transform var(--motion-duration-slow) var(--motion-ease-emphasized);
+
+        &[data-shown] {
+            pointer-events: auto;
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Docked glass: frosted (ask/glass blur 32 + saturation) over a 65% base-1 tint, so the page shows through
+           but the text keeps AA contrast over light sections too; a light top edge and the ask border catch the light. */
+        & > .ask-glass {
+            background:
+                linear-gradient(
+                    180deg,
+                    var(--color-component-ask-surface-raised),
+                    transparent 60%
+                ),
+                color-mix(
+                    in srgb,
+                    var(--color-shared-surface-base-1) 65%,
+                    transparent
+                );
+            box-shadow:
+                inset 0 var(--shared-width-1) 0
+                var(--color-component-ask-border),
+                inset 0 0 0 var(--shared-width-1)
+                var(--color-component-ask-border),
+                var(--effect-ask-glass-shadow);
+            backdrop-filter: blur(var(--effect-ask-glass-blur)) saturate(1.6);
+        }
+
+        &[data-open] > .ask-panel {
+            max-height: calc(100vh - 2 * var(--spacing-lg));
+            overflow-y: auto;
+        }
+
+        &[data-mobile] {
+            bottom: var(--spacing-md);
+        }
+    }
 }

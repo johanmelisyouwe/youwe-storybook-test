@@ -60,6 +60,7 @@ export function CardGrid({
                     </div>
                 )}
                 <ul
+                    data-stagger
                     className={styles.grid}
                     style={{ ['--_cols' as string]: cols } as CSSProperties}
                     tabIndex={Layout === 'Overflow scroll' ? 0 : undefined}

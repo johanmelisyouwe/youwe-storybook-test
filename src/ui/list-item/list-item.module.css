@@ -27,7 +27,7 @@
         justify-content: center;
         width: 1.5rem;
         height: 1lh;
-        color: var(--color-shared-content-brand);
+        color: var(--color-shared-surface-fixed-brand-red);
     }
 
     .bullet {

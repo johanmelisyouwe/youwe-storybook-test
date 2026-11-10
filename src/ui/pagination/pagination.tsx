@@ -1,4 +1,5 @@
 import { Icon } from '../../shared/icons/icon'
+import { CompactDropdown } from '../compact-dropdown'
 import { cx } from '../../shared/cx'
 import ring from '../../shared/focus-ring/focus-ring.module.css'
 import styles from './pagination.module.css'
@@ -59,26 +60,12 @@ export function Pagination({
                 )}
             >
                 <span id="yw-view-max">View max.</span>
-                <span
-                    className={styles['compact-select']}
-                    style={{ padding: 0 }}
-                >
-                    <select
-                        className={cx(ring.root, 'yw-body-md-reg')}
-                        aria-labelledby="yw-view-max yw-per-page"
-                        value={perPage}
-                        onChange={(e) =>
-                            onPerPageChange?.(Number(e.target.value))
-                        }
-                    >
-                        {perPageOptions.map((n) => (
-                            <option key={n} value={n}>
-                                {n}
-                            </option>
-                        ))}
-                    </select>
-                    <Icon name="chevron-down" size={24} />
-                </span>
+                <CompactDropdown
+                    options={perPageOptions}
+                    value={perPage}
+                    onChange={(v) => onPerPageChange?.(Number(v))}
+                    aria-labelledby="yw-view-max yw-per-page"
+                />
                 <span id="yw-per-page">per page</span>
             </div>
         )

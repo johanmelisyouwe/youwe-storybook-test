@@ -24,15 +24,16 @@ const meta: Meta<Args> = {
         State: {
             control: 'inline-radio',
             options: ['Rest', 'Hover', 'Focused'],
-            description:
-                '_breadcrumb-link State (Active = the current page; Hover is code-only until it is in Figma)',
+            description: '_breadcrumb-link State (Active = the current page)',
         },
         items: { control: 'object' },
+        'Show back button': { control: 'boolean', description: 'Desktop only' },
     },
     args: {
         Device: 'Desktop',
         State: 'Rest',
         items: ITEMS,
+        'Show back button': false,
         'Filter button': true,
     },
     render: ({ State, ...args }) => (
@@ -54,12 +55,13 @@ export default meta
 type Story = StoryObj<Args>
 
 export const Default: Story = {}
+export const BackButton: Story = { args: { 'Show back button': true } }
 export const Mobile: Story = {
     args: { Device: 'Mobile' },
     globals: { viewport: { value: 'mobile' } },
 }
 
-/** Every Figma variant: Desktop (link states Rest / Active / Hover / Focused) and Mobile (Filter button on / off). */
+/** Every Figma variant: Desktop (link states Rest / Active / Hover / Focused, and with the back button) and Mobile (Filter button on / off). */
 export const AllVariants: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
@@ -67,6 +69,7 @@ export const AllVariants: Story = {
             <Breadcrumbs items={ITEMS} />
             <Breadcrumbs items={ITEMS} linkClassName="pseudo-hover" />
             <Breadcrumbs items={ITEMS} linkClassName="pseudo-focus-visible" />
+            <Breadcrumbs items={ITEMS} {...{ 'Show back button': true }} />
             <div
                 style={{
                     width: 343,

@@ -6,12 +6,14 @@ import styles from './card-reveal.module.css'
 /*
   Card image frame. Without `src` it shows the Figma placeholder (surface/base-3 + image icon),
   unless `placeholder` is false (background media in Hero, Testimonial, Vertical slider, Ask Youwe, Contact CTA).
+  `data-clip` opts the frame into the template page clip reveal (shared/motion); background media stays out.
 */
 export function CardMedia({
     src,
     alt = '',
     ratio,
     placeholder = true,
+    clip = placeholder,
     className,
     style,
     children,
@@ -20,12 +22,14 @@ export function CardMedia({
     alt?: string
     ratio?: string
     placeholder?: boolean
+    clip?: boolean
     className?: string
     style?: CSSProperties
     children?: ReactNode
 }) {
     return (
         <span
+            data-clip={clip || undefined}
             className={cx(styles.media, className)}
             style={{ display: 'block', aspectRatio: ratio, ...style }}
         >

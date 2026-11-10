@@ -13,6 +13,7 @@ import {
     header,
     logo,
     type Device,
+    useDevice,
 } from './shared'
 import { abstract, caseImage, clientPhoto } from '../media/media'
 
@@ -114,9 +115,10 @@ const SYSTEMS = [
     ],
 ]
 
-function IndustriesPage({ Device }: { Device: Device }) {
+function IndustriesPage({ Device: story }: { Device: Device }) {
+    const Device = useDevice(story)
     return (
-        <Page Device={Device}>
+        <Page Device={story} ask="Which industries do you work in?">
             <Hero
                 Device={Device}
                 image={abstract('006')}

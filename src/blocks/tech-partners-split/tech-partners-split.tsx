@@ -62,7 +62,7 @@ export function TechPartnersSplit({
                             <h3
                                 className={cx(
                                     styles['group-label'],
-                                    'yw-body-xs-bold'
+                                    'yw-body-xs-caps'
                                 )}
                             >
                                 {g.label}

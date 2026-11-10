@@ -1,24 +1,21 @@
-# Sync report — 9 November 2026 (fluid container)
+# Sync report — 10 November 2026 (Ask Youwe glass, input fixes)
 
-The layout no longer stops at 1440px. Decided 9 November: fluid with a maximum.
+## Docked Ask Youwe bar: more glass
 
-## What changed
+The bar stays at the bottom of the screen. It's now frosted glass: the ask/glass blur (32px) with extra saturation over a 65% base-1 tint (was 88%), a soft light gradient from the top, a light top edge and the ask border. The page now shows through clearly over images; over light sections it reads as smoked glass and the text stays readable (white on the tint passes AA). The open answer panel uses the same glass.
 
-- **Backgrounds are full width** on every screen size; the 1440px page frame around templates and Desktop stories is gone (the black side bars).
-- **Content is fluid**: it keeps the Figma 80px side gutters and grows with the screen up to `--yw-container-max` (1760px, a 1920 screen), then centres. At 1440 nothing changes (1280px content, as in Figma).
-- **One variable**: `--yw-container-max` in `src/components/shared/block.css` (`legacy-ok`: a layout decision, not a Figma token). Used by the block frame, the bleeding carousels and scroll grids, the Vertical slider, the footer and the header bar (which stays 56px outside the content edge, as in Figma).
-- **Stories**: Desktop stories and templates fill the canvas; Mobile stays at 360px. The side-by-side AllVariants stories keep their fixed 1440/360 frames.
-- **Unchanged**: tablet and mobile breakpoints, vertical rhythm, text-line widths (intros, bodies) — those keep their readable maximum widths.
+## Figma check: what changed since the last sync
 
-Visual check: Home and Services detail at 1440 (unchanged), 1920 (content 1760) and 2560 (content centred, header, slider and footer aligned with the blocks).
+A full signature check of all components against `figma-sync.json` found 5 components changed in Figma since the 9 November sync, all form fields: Dropdown (floating labels), Compact dropdown, Phone input (floating labels), Text input (floating labels), Text area (floating labels). Variants and properties are unchanged; comparing them with Storybook found two differences, both fixed in code:
+
+- **Hover ring missing.** Figma's input Hover and Filled Hover states have the shadow/outer/md/hover ring (4px, white 20%). Code had only the border. Added to every field (Text input, Dropdown, Phone, Text area, Compact dropdown).
+  - In Figma, **Text Input** (static and floating labels) is the only field without the ring. Code gives it the ring too, for consistency; adding it in Figma is listed as a follow-up.
+- **Success border not showing on filled fields** (a code bug): the "filled" border overrode the green Success border. Success now shows its green border, as in Figma.
+
+Signatures for the 5 components are updated.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
-- `check-legacy`: clean
-- `check-coverage`: clean (75 components complete, 19 of 19 templates)
-
-## For the design team
-
-1. The Figma designs stay at 1440; this is the rule for wider screens: full-width backgrounds, content up to 1760px. Worth adding to Brand / Page guidelines.
+- `check-legacy`, `check-coverage`: clean

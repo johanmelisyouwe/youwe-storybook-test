@@ -4,7 +4,7 @@
   Buttons: 48 high, radius 2, surface/base-1; hover and active surface/base-2. Labels body/md/reg underlined;
   the active page and disabled buttons are not underlined; disabled uses disabled/content/default.
   Prev/Next: chevron 24 + label, padding 8/12/8/8 (mirrored for Next). First/Last: icon only, 48 square.
-  View amount: "View max." + compact dropdown (Dropdown/Compact M, 72×44) + "per page", body/md/reg secondary.
+  View amount: "View max." + Compact dropdown component (Dropdown/Compact M) + "per page", body/md/reg secondary.
 */
 .page-btn {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
@@ -90,40 +90,6 @@
 
         & > span:first-child {
             padding-left: 0;
-        }
-    }
-    .compact-select {
-        position: relative;
-        display: inline-flex;
-
-        & select {
-            width: 4.5rem;
-            height: 2.75rem;
-            padding: 0 var(--spacing-xl) 0 var(--spacing-xs);
-            border: 0;
-            border-radius: var(--component-radius-input-fields);
-            background: var(--color-component-forms-surface-default);
-            box-shadow: inset 0 0 0 var(--shared-width-1)
-                var(--color-component-forms-border-rest);
-            color: var(--color-shared-content-primary);
-            font: inherit;
-            appearance: none;
-            cursor: pointer;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            & select:hover {
-                box-shadow: inset 0 0 0 var(--shared-width-1)
-                    var(--color-component-forms-border-hover);
-            }
-        }
-
-        & svg {
-            position: absolute;
-            top: 50%;
-            right: var(--spacing-2xs);
-            transform: translateY(-50%);
-            pointer-events: none;
         }
     }
 }

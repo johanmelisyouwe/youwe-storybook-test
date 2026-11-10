@@ -1,0 +1,30 @@
+/*
+  Page-level switches for parts that change markup by device (Header, Footer) when used with Device="Auto":
+  both versions render, the viewport width picks one. Header: hamburger below 1024px; Footer: mobile below
+  768px (decided 2026-11-10). Content blocks don't need this: they adapt with container queries.
+*/
+@layer components {
+    .only-lg {
+        @media (max-width: 1023px) {
+            display: none !important;
+        }
+    }
+
+    .below-lg {
+        @media (min-width: 1024px) {
+            display: none !important;
+        }
+    }
+
+    .only-md {
+        @media (max-width: 767px) {
+            display: none !important;
+        }
+    }
+
+    .below-md {
+        @media (min-width: 768px) {
+            display: none !important;
+        }
+    }
+}

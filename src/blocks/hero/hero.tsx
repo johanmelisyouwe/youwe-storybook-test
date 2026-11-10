@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react'
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { Button } from '../../ui/button'
 import { Breadcrumbs, type Crumb } from '../../ui/breadcrumbs'
 import { CardMedia } from '../../shared/card-reveal/card-media'
+import { CountUp } from '../../ui/stat'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
 import styles from './hero.module.css'
@@ -58,7 +59,7 @@ export function HeroBar({
                       key={s.client + s.value}
                       className={styles['hero-bar-stat']}
                   >
-                      <span className="yw-heading-lg">{s.value}</span>
+                      <CountUp className="yw-heading-lg" value={s.value} />
                       <span
                           className={cx(
                               styles['hero-bar-label'],
@@ -77,17 +78,44 @@ export function HeroBar({
                       </span>
                   </span>
               ))
-    // The track holds the items twice so the marquee loops seamlessly; the copy is hidden from screen readers.
+    // Endless marquee: the items form one group; the group is repeated until the bar is covered
+    // plus one spare, and every group slides left by exactly its own width (gap included), so the
+    // loop restarts on an identical frame (no jump) and wide screens never run out of logos.
+    // Only the first group is read by screen readers.
+    const bar = useRef<HTMLDivElement>(null)
+    const group = useRef<HTMLDivElement>(null)
+    const [copies, setCopies] = useState(2)
+    useLayoutEffect(() => {
+        const b = bar.current,
+            g = group.current
+        if (!b || !g || typeof ResizeObserver === 'undefined') return
+        const fit = () => {
+            const w = g.offsetWidth
+            if (w) setCopies(Math.max(2, Math.ceil(b.offsetWidth / w) + 1))
+        }
+        const ro = new ResizeObserver(fit)
+        ro.observe(b)
+        ro.observe(g)
+        fit()
+        return () => ro.disconnect()
+    }, [])
     return (
         <div
+            ref={bar}
             data-stats={Type === 'Stats' || undefined}
             className={cx(styles['hero-bar'])}
         >
             <div className={styles['hero-bar-track']}>
-                {items}
-                <span aria-hidden="true" style={{ display: 'contents' }}>
-                    {items}
-                </span>
+                {Array.from({ length: copies }, (_, n) => (
+                    <div
+                        key={n}
+                        ref={n === 0 ? group : undefined}
+                        className={styles['hero-bar-group']}
+                        aria-hidden={n > 0 || undefined}
+                    >
+                        {items}
+                    </div>
+                ))}
             </div>
         </div>
     )
@@ -159,6 +187,7 @@ export function Hero({
                 <CardMedia
                     src={image}
                     ratio="16 / 9"
+                    clip={false}
                     className={styles.image}
                 />
             </section>

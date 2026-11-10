@@ -7,7 +7,15 @@ import { CardGrid } from '../blocks/card-grid'
 import { ServiceCard } from '../ui/service-card'
 import { CaseCarousel } from '../blocks/case-carousel'
 import { ContactCTA } from '../blocks/contact-cta'
-import { CLIENT_LOGOS, Page, Section, footer, header, logo } from './shared'
+import {
+    CLIENT_LOGOS,
+    Page,
+    Section,
+    footer,
+    header,
+    logo,
+    useDevice,
+} from './shared'
 import { abstract, caseImage, clientPhoto } from '../media/media'
 import block from '../shared/block/block.module.css'
 
@@ -84,9 +92,12 @@ const COUNTRIES = [
 ].map((x) => ({ value: x, label: x }))
 
 function IndustriesDetailPage() {
-    const Device = 'Desktop' as const
+    const Device = useDevice('Desktop')
     return (
-        <Page Device={Device}>
+        <Page
+            Device="Desktop"
+            ask="Which clients do you work for in this industry?"
+        >
             <Hero
                 Device={Device}
                 image={caseImage('heidelberg', 'wide')}

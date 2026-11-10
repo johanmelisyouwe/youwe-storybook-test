@@ -29,7 +29,7 @@
     }
     .mark {
         height: 3rem;
-        color: var(--color-shared-content-brand);
+        color: var(--color-shared-surface-fixed-brand-red);
         font-weight: var(--font-weight-bold);
         font-size: var(--font-size-heading-2xl);
         line-height: 3rem;

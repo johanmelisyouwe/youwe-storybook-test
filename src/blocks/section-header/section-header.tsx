@@ -88,7 +88,7 @@ export function SectionHeader({
     )
 }
 
-/** Scroll highlight: words go from 28% to 100% opacity as the paragraph scrolls up, and never fade back. */
+/** Scroll highlight: unread words stay content/tertiary (the Figma body colour), read words light up to content/secondary; both pass WCAG AA as the paragraph scrolls up, and never fade back. */
 function useHighlight(words: number) {
     const ref = useRef<HTMLParagraphElement>(null)
     const [lit, setLit] = useState(words)
@@ -165,7 +165,7 @@ export function SectionIntro({
                             <span
                                 key={i}
                                 aria-hidden="true"
-                                style={{ opacity: i < lit ? 1 : 0.28 }}
+                                data-lit={i < lit || undefined}
                             >
                                 {w}{' '}
                             </span>

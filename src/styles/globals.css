@@ -15,4 +15,5 @@
 @import "./fonts.css";
 @import "./reset.css";
 @import "../tokens/tokens.css";
+@import "../tokens/contrast-overrides.css";
 @import "./base.css";

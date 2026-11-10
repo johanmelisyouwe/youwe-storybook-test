@@ -1,7 +1,14 @@
-import type { ReactNode } from 'react'
+import {
+    useRef,
+    useSyncExternalStore,
+    type CSSProperties,
+    type ReactNode,
+} from 'react'
 import { Header, type HeaderProps } from '../site/header'
 import { Footer, type FooterColumn } from '../site/footer'
 import { Logo } from '../shared/logos/logo'
+import { AskDock } from '../site/ask-youwe'
+import { useMotion } from '../shared/motion/motion'
 import type { Mode } from '../shared/mode-frame'
 
 /*
@@ -10,6 +17,25 @@ import type { Mode } from '../shared/mode-frame'
 */
 
 export type Device = 'Desktop' | 'Mobile'
+
+const PHONE = '(max-width: 767px)'
+const subscribe = (cb: () => void) => {
+    const m = window.matchMedia(PHONE)
+    m.addEventListener('change', cb)
+    return () => m.removeEventListener('change', cb)
+}
+/**
+  The Desktop template follows the screen: below 768px it renders the mobile variants (cards, slider,
+  hero, filter bar…), so the page works on a real phone. The Mobile story always renders mobile.
+*/
+export function useDevice(story: Device): Device {
+    const phone = useSyncExternalStore(
+        subscribe,
+        () => window.matchMedia(PHONE).matches,
+        () => false
+    )
+    return story === 'Mobile' || phone ? 'Mobile' : 'Desktop'
+}
 /** Story frame width: desktop is fluid (full viewport), mobile 360 as in Figma. */
 export const WIDTH: Record<Device, number | string> = {
     Desktop: '100%',
@@ -24,11 +50,19 @@ export const NAV: HeaderProps['nav'] = [
     'Insights',
     'About Us',
 ].map((label) => ({ label, href: '#' }))
-export const header = (Device: Device) => <Header Device={Device} nav={NAV} />
+/** Desktop templates use Auto: on a phone or tablet the header switches to the hamburger by itself. */
+/** Fixed header: hides on scroll down, comes back on scroll up (Figma header motion). */
+export const header = (Device: Device) => (
+    <Header Device={Device === 'Desktop' ? 'Auto' : 'Mobile'} nav={NAV} fixed />
+)
 
-/** Client and technology logos exported from Figma (name as text when there is no logo yet). */
-export const logo = (name: string, width = 96) => (
-    <Logo name={name} box={[width, Math.round(width / 3)]} />
+/** Client and technology logos in their Figma logo box (190×100) at the slot width: case card 140, stat 80, hero bar 118. */
+export const logo = (name: string, width = 140) => (
+    <Logo name={name} width={width} />
+)
+/** Partner logos on technology cards (Figma Logos/*, 120×40 box). */
+export const partnerLogo = (name: string) => (
+    <Logo name={name} kind="partner" width={120} />
 )
 
 export const OFFICES = [
@@ -124,7 +158,7 @@ export const YOUWE_SITEMAP = [
 export const footer = (Device: Device, youwe: string[] = YOUWE_PAGES) => (
     <Footer
         Variant="Newsletter"
-        Device={Device}
+        Device={Device === 'Desktop' ? 'Auto' : 'Mobile'}
         columns={[{ heading: 'Youwe', links: l(youwe) }, ...SERVICE_COLUMNS]}
         newsletter={{
             text: 'Tell us what you want to achieve and we will think along with you.',
@@ -190,24 +224,40 @@ export function NotAComponent({
     )
 }
 
+const ASK_PREVIEW = {
+    Answer: 'Ask Youwe is shown here as a preview: in Storybook it is not connected to an answer service yet, so every question gets this placeholder answer.',
+    cta: { label: 'Contact an expert', href: '#' },
+}
+
+/**
+ * Template page: dark theme, page column (360 wide in Mobile stories), the docked Ask Youwe bar and the
+ * page motion (scroll reveals, card staggers, image clip reveals; see shared/motion/motion.ts).
+ * `ask` is the page's contextual question on the bar.
+ */
 export function Page({
-    Device,
+    Device: story,
+    ask,
     children,
 }: {
     Device: Device
+    ask?: string
     children: ReactNode
 }) {
+    const Device = useDevice(story)
+    const ref = useRef<HTMLDivElement>(null)
+    useMotion(ref)
+    const style = {
+        width: '100%',
+        maxWidth: WIDTH[story],
+        margin: '0 auto',
+        overflowX: 'clip',
+        background: 'var(--color-shared-surface-base-1)',
+        '--yw-page-max': story === 'Mobile' ? `${WIDTH.Mobile}px` : undefined,
+    } as CSSProperties
     return (
-        <div
-            data-theme="dark"
-            style={{
-                width: '100%',
-                maxWidth: WIDTH[Device],
-                margin: '0 auto',
-                background: 'var(--color-shared-surface-base-1)',
-            }}
-        >
+        <div ref={ref} data-theme="dark" data-page="" style={style}>
             {children}
+            <AskDock Device={Device} context={ask} answer={ASK_PREVIEW} />
         </div>
     )
 }

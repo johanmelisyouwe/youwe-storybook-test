@@ -165,7 +165,7 @@ for (const t of src._textStyles || []) {
     const size = isAlias(t.size) ? val(t.size) : `${t.size}px`
     const lh = isAlias(t.lineHeight) ? val(t.lineHeight) : t.lineHeight
     classes.push(
-        `.yw-${slug(t.name)} {\n  font-family: ${fam};\n  font-weight: ${w};\n  font-size: ${size};\n  line-height: ${lh};\n  letter-spacing: ${t.letterSpacing};\n}`
+        `.yw-${slug(t.name)} {\n  font-family: ${fam};\n  font-weight: ${w};\n  font-size: ${size};\n  line-height: ${lh};\n  letter-spacing: ${t.letterSpacing};${t.textCase ? `\n  text-transform: ${{ UPPER: 'uppercase', LOWER: 'lowercase', TITLE: 'capitalize' }[t.textCase] || 'none'};` : ''}\n}`
     )
 }
 

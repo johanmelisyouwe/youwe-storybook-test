@@ -16,6 +16,7 @@ import {
     header,
     logo,
     type Device,
+    useDevice,
 } from './shared'
 import { abstract, caseImage, clientPhoto } from '../media/media'
 
@@ -262,10 +263,11 @@ const CASES: CaseCardProps[] = [
     href: '#',
 }))
 
-function ServicesPage({ Device }: { Device: Device }) {
+function ServicesPage({ Device: story }: { Device: Device }) {
+    const Device = useDevice(story)
     const mobile = Device === 'Mobile'
     return (
-        <Page Device={Device}>
+        <Page Device={story} ask="Which service fits my problem?">
             <Hero
                 Device={Device}
                 image={abstract('003')}

@@ -73,14 +73,19 @@ const meta: Meta<Args> = {
         },
     },
     argTypes: {
-        Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
+        Device: {
+            control: 'inline-radio',
+            options: ['Desktop', 'Mobile', 'Auto'],
+            description:
+                'Auto: both render, the screen width picks (hamburger below 1024px)',
+        },
         Expanded: { control: 'inline-radio', options: ['No', 'Yes'] },
     },
     args: { Device: 'Desktop', Expanded: 'No' },
     render: (args) => (
         <div
             style={{
-                maxWidth: args.Device === 'Mobile' ? 360 : 1440,
+                maxWidth: args.Device === 'Mobile' ? 360 : undefined,
                 minHeight:
                     args.Expanded === 'Yes'
                         ? args.Device === 'Mobile'
@@ -183,3 +188,6 @@ export const AllVariants: Story = {
         </div>
     ),
 }
+
+/** Device=Auto, as the templates use it: resize the canvas below 1024px to get the hamburger. */
+export const Responsive: Story = { args: { Device: 'Auto' } }

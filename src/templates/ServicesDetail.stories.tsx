@@ -19,6 +19,7 @@ import {
     header,
     logo,
     type Device,
+    useDevice,
 } from './shared'
 import { abstract, caseImage, clientPhoto } from '../media/media'
 
@@ -133,26 +134,30 @@ const STATS = [
     {
         Value: '50%',
         Label: 'Fewer phone calls',
-        logo: logo('Chadwicks'),
+        logo: logo('Chadwicks', 80),
         href: '#',
+        context: 'Chadwicks',
     },
     {
         Value: '73%',
         Label: 'Efficiency improvement',
-        logo: logo('Elektrototaalmarkt'),
+        logo: logo('Elektrototaalmarkt', 80),
         href: '#',
+        context: 'Elektrototaalmarkt',
     },
     {
         Value: '3,360',
         Label: 'Man-hours saved',
-        logo: logo('Chadwicks'),
+        logo: logo('Chadwicks', 80),
         href: '#',
+        context: 'Chadwicks',
     },
     {
         Value: '8',
         Label: 'Months to a live MVP',
-        logo: logo('BunzlOne'),
+        logo: logo('BunzlOne', 80),
         href: '#',
+        context: 'BunzlOne',
     },
 ]
 const MORE_CASES: [string, string][] = [
@@ -214,7 +219,7 @@ const TECH = [
     'Alumio',
     'Symson',
     'Storyblok',
-].map((name) => ({ name, logo: logo(name, 110) }))
+].map((name) => ({ name, logo: logo(name, 118) }))
 
 const fc = (p: FeatureCardProps) => <FeatureCard key={p.Title} {...p} />
 type Flush = 'top' | 'bottom' | 'both'
@@ -414,9 +419,10 @@ function Body({ Device }: { Device: Device }) {
     )
 }
 
-function ServicesDetailPage({ Device }: { Device: Device }) {
+function ServicesDetailPage({ Device: story }: { Device: Device }) {
+    const Device = useDevice(story)
     return (
-        <Page Device={Device}>
+        <Page Device={story} ask={'What does "Build it" include?'}>
             <Hero
                 Device={Device}
                 image={abstract('008')}

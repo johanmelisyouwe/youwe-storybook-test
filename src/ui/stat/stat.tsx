@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef, type ReactNode } from 'react'
-import { CardArrow } from '../../shared/card-reveal'
+import { CardArrow, CardReveal } from '../../shared/card-reveal'
 import { cx } from '../../shared/cx'
+import reveal from '../../shared/card-reveal/card-reveal.module.css'
 import styles from './stat.module.css'
-import ring from '../../shared/focus-ring/focus-ring.module.css'
 
 /* Stat — Figma 26795:73 (page "Stats"). */
 
@@ -18,6 +18,10 @@ export type StatProps = {
     logo?: ReactNode
     /** Type=Client: link of the round arrow (Show button) */
     href?: string
+    /** Hover overlay CTA (linked Client stat) */
+    cta?: string
+    /** Hover overlay context line, e.g. the client */
+    context?: string
     /** Count up when scrolled into view (Figma motion: 1.6s ease-out, once) */
     countUp?: boolean
     className?: string
@@ -83,44 +87,71 @@ export function Stat({
     Label,
     logo,
     href,
+    cta = 'Read the case',
+    context,
     countUp = false,
     className,
 }: StatProps) {
     const ref = useCountUp(Value, countUp)
-    return (
-        <div className={cx(styles.root, className)}>
+    const linked = Type === 'Client' && !!href
+    const body = (
+        <>
             {Type === 'Client' && (
                 <div className={styles.top}>
                     <span className={styles.logo}>{logo}</span>
-                    {href && (
-                        <a
-                            href={href}
-                            className={ring.root}
-                            style={{
-                                borderRadius: 'var(--shared-radius-circular)',
-                            }}
-                            aria-label={`Read the case: ${Label}`}
-                        >
-                            <CardArrow className={styles.arrow} />
-                        </a>
-                    )}
+                    {href && <CardArrow className={styles.arrow} />}
                 </div>
             )}
             <span
                 ref={ref}
-                className={[
+                className={cx(
                     styles.value,
-                    Size === 'L' ? 'yw-heading-2xl' : 'yw-heading-xl',
-                ].join(' ')}
+                    Size === 'L' ? 'yw-heading-2xl' : 'yw-heading-xl'
+                )}
                 aria-label={Value}
             >
                 {Value}
             </span>
             <span className={cx(styles.label, 'yw-body-md-reg')}>{Label}</span>
-        </div>
+        </>
+    )
+    // Linked Client stat: the whole card is the link with the shared red overlay hover, like the other cards.
+    if (linked) {
+        return (
+            <a
+                href={href}
+                data-link
+                className={cx(reveal.root, styles.root, className)}
+                aria-label={`${cta}: ${Value} ${Label}`}
+            >
+                {body}
+                <CardReveal cta={cta} context={context} />
+            </a>
+        )
+    }
+    return <div className={cx(styles.root, className)}>{body}</div>
+}
+
+/** A number that counts up once when it scrolls into view (same motion as Stat), e.g. hero bar stats. */
+export function CountUp({
+    value,
+    className,
+}: {
+    value: string
+    className?: string
+}) {
+    const ref = useCountUp(value, true)
+    return (
+        <span ref={ref} className={className} aria-label={value}>
+            {value}
+        </span>
     )
 }
 
 export function StatRow({ children }: { children: ReactNode }) {
-    return <div className={styles['stat-row']}>{children}</div>
+    return (
+        <div data-stagger className={styles['stat-row']}>
+            {children}
+        </div>
+    )
 }

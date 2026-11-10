@@ -69,6 +69,7 @@ export function TechnologyLogos({
                     )}
                 </div>
                 <ul
+                    data-stagger
                     className={styles.grid}
                     style={{ ['--_n' as string]: n } as CSSProperties}
                 >

@@ -18,7 +18,9 @@ import {
     footer,
     header,
     logo,
+    partnerLogo,
     type Device,
+    useDevice,
 } from './shared'
 import { abstract, logoFor } from '../media/media'
 import block from '../shared/block/block.module.css'
@@ -43,7 +45,7 @@ const cards = (list: Card[]): TechnologyCardProps[] =>
         Level,
         Description,
         'Show button': b,
-        logo: logoFor(Name) ? logo(Name, 100) : undefined,
+        logo: logoFor(Name, 'partner') ? partnerLogo(Name) : undefined,
         'Hover CTA': 'Go to partner page',
         'Hover context': `${Name} at Youwe`,
         href: '#',
@@ -232,9 +234,10 @@ const SPLITS: (Omit<TechPartnersSplitProps, 'Device'> & { key: string })[] = [
     },
 ]
 
-function TechPartnersPage({ Device }: { Device: Device }) {
+function TechPartnersPage({ Device: story }: { Device: Device }) {
+    const Device = useDevice(story)
     return (
-        <Page Device={Device}>
+        <Page Device={story} ask="Which platforms do you work with?">
             <Hero
                 Device={Device}
                 image={abstract('007')}

@@ -431,3 +431,83 @@ export function AskSnippet({
         </aside>
     )
 }
+
+/* Docked bar (code: the site's sticky Ask Youwe bar; Figma only has the bar itself, not its placement) */
+export type AskDockProps = {
+    Device?: 'Desktop' | 'Mobile'
+    /** Page-specific question shown as the Contextual chip (desktop; on mobile the bar stays Default, there is no room) */
+    context?: string
+    /** Static answer shown in the panel (no AI service is connected) */
+    answer?: Partial<AskYouweProps>
+    /** Scroll distance before the bar slides in (px) */
+    after?: number
+}
+
+/**
+ * Fixed to the bottom of the viewport, centred on the page column. Slides in after the hero, steps aside
+ * while the footer is on screen, and opens the answer panel above itself; Esc or close returns to the bar.
+ */
+export function AskDock({
+    Device = 'Desktop',
+    context,
+    answer,
+    after = 480,
+}: AskDockProps) {
+    const ref = useRef<HTMLDivElement>(null)
+    const [shown, setShown] = useState(false)
+    const [q, setQ] = useState<string | null>(null)
+    useEffect(() => {
+        const root = ref.current?.closest('[data-page]') ?? document
+        const footer = root.querySelector('footer')
+        let footerInView = false
+        const update = () => setShown(window.scrollY > after && !footerInView)
+        const io =
+            footer && typeof IntersectionObserver !== 'undefined'
+                ? new IntersectionObserver(([e]) => {
+                      footerInView = e.isIntersecting
+                      update()
+                  })
+                : null
+        if (io && footer) io.observe(footer)
+        window.addEventListener('scroll', update, { passive: true })
+        update()
+        return () => {
+            window.removeEventListener('scroll', update)
+            io?.disconnect()
+        }
+    }, [after])
+    const open = q !== null
+    return (
+        <div
+            ref={ref}
+            data-shown={shown || open || undefined}
+            data-open={open || undefined}
+            data-mobile={Device === 'Mobile' || undefined}
+            className={styles.dock}
+        >
+            {open ? (
+                <AskYouwe
+                    key="panel"
+                    State="Active"
+                    Device={Device}
+                    {...answer}
+                    Question={q}
+                    onClose={() => setQ(null)}
+                    onAsk={setQ}
+                />
+            ) : (
+                <AskYouwe
+                    key="bar"
+                    State={
+                        context && Device === 'Desktop'
+                            ? 'Contextual'
+                            : 'Default'
+                    }
+                    Device={Device}
+                    context={context}
+                    onAsk={setQ}
+                />
+            )}
+        </div>
+    )
+}

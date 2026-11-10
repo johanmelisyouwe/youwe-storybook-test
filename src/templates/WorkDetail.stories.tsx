@@ -23,6 +23,7 @@ import {
     header,
     logo,
     type Device,
+    useDevice,
 } from './shared'
 import { abstract, caseImage, clientPhoto } from '../media/media'
 
@@ -79,9 +80,10 @@ const RELATED: CaseCardProps[] = [
     ]),
 ]
 
-function WorkDetailPage({ Device }: { Device: Device }) {
+function WorkDetailPage({ Device: story }: { Device: Device }) {
+    const Device = useDevice(story)
     return (
-        <Page Device={Device}>
+        <Page Device={story} ask="How did Quooker expand to 17 countries?">
             {header(Device)}
             <Hero
                 Variant="Title + image"
@@ -95,7 +97,7 @@ function WorkDetailPage({ Device }: { Device: Device }) {
                         { label: 'Quooker' },
                     ],
                 }}
-                logo={logo('Quooker', 140)}
+                logo={logo('Quooker', 190)}
                 image={caseImage('quooker-1', 'wide')}
             />
             <Section Mode="Dark">

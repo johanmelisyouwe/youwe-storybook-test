@@ -57,42 +57,84 @@ export const clientPhoto = (
     return key ? caseImage(key, kind) : undefined
 }
 
-/** Logo files (public/media/logos) and their aspect ratio (width / height of the vector). */
-export const LOGOS: Record<string, { file: string; ratio: number }> = {
-    'ACI Weave': { file: 'aci-weave', ratio: 5.567 },
-    Adobe: { file: 'adobe', ratio: 3.962 },
-    Alumio: { file: 'alumio', ratio: 4.824 },
-    AWS: { file: 'aws', ratio: 1.691 },
-    'Booking.com': { file: 'booking', ratio: 6.099 },
-    BunzlOne: { file: 'bunzlone', ratio: 8.091 },
-    Chadwicks: { file: 'chadwicks', ratio: 2.424 },
-    Commercetools: { file: 'commercetools', ratio: 3.64 },
-    Drupal: { file: 'drupal', ratio: 4.01 },
-    Elektrototaalmarkt: { file: 'elektrototaalmarkt', ratio: 11.625 },
-    Exigent: { file: 'exigent', ratio: 2.752 },
-    Fairphone: { file: 'fairphone', ratio: 4.46 },
-    'G-Star': { file: 'g-star', ratio: 11.067 },
-    Glenway: { file: 'glenway', ratio: 3.35 },
-    GoCardless: { file: 'gocardless', ratio: 6.822 },
-    Heidelberg: { file: 'heidelberg', ratio: 8.973 },
-    HubSpot: { file: 'hubspot', ratio: 3.517 },
-    Hyvä: { file: 'hyva', ratio: 2.213 },
-    ING: { file: 'ing', ratio: 3.912 },
-    'JC-Electronics': { file: 'jc-electronics', ratio: 5.454 },
-    Kingspan: { file: 'kingspan', ratio: 2.061 },
-    LaSalle: { file: 'lasalle', ratio: 4.062 },
-    'Munich Re': { file: 'munich-re', ratio: 4.333 },
-    Newland: { file: 'newland', ratio: 3.768 },
-    'PePe Parts': { file: 'pepe-parts', ratio: 1.941 },
-    Pimcore: { file: 'pimcore', ratio: 5.714 },
-    PostNL: { file: 'postnl', ratio: 1.011 },
-    Quooker: { file: 'quooker', ratio: 3.949 },
-    'Schneider Electric': { file: 'schneider-electric', ratio: 3.395 },
-    Shopify: { file: 'shopify', ratio: 3.51 },
-    Storyblok: { file: 'storyblok', ratio: 4.857 },
-    Subway: { file: 'subway', ratio: 5.235 },
-    Symson: { file: 'symson', ratio: 4.719 },
-    'XXL Nutrition': { file: 'xxl-nutrition', ratio: 1.735 },
+/*
+  Logos keep the Figma logo box (decided 2026-11-10): Clients/* and Technologies/* are 190×100 frames with
+  the logo placed inside with its margins; the partner logos on Tech Partners (Logos/*) are 120×40 frames.
+  The SVG files are those frames, so a logo is drawn at the slot size and the margins come with it.
+*/
+const FRAME = 190 / 100
+const PARTNER = 120 / 40
+
+/** Clients/* and Technologies/* (190×100 frame) by display name → file. */
+const LOGO_FILES: Record<string, string> = {
+    'ACI Weave': 'aci-weave',
+    Adobe: 'adobe',
+    Alumio: 'alumio',
+    AWS: 'aws',
+    'Booking.com': 'booking',
+    BunzlOne: 'bunzlone',
+    Chadwicks: 'chadwicks',
+    Commercetools: 'commercetools',
+    Drupal: 'drupal',
+    Elektrototaalmarkt: 'elektrototaalmarkt',
+    Exigent: 'exigent',
+    Fairphone: 'fairphone',
+    'G-Star': 'g-star',
+    Glenway: 'glenway',
+    GoCardless: 'gocardless',
+    Heidelberg: 'heidelberg',
+    HubSpot: 'hubspot',
+    Hyvä: 'hyva',
+    ING: 'ing',
+    'JC-Electronics': 'jc-electronics',
+    Kingspan: 'kingspan',
+    LaSalle: 'lasalle',
+    'Munich Re': 'munich-re',
+    Newland: 'newland',
+    'PePe Parts': 'pepe-parts',
+    Pimcore: 'pimcore',
+    PostNL: 'postnl',
+    Quooker: 'quooker',
+    'Schneider Electric': 'schneider-electric',
+    Shopify: 'shopify',
+    Storyblok: 'storyblok',
+    Subway: 'subway',
+    Symson: 'symson',
+    'XXL Nutrition': 'xxl-nutrition',
+}
+
+/** Logos/* partner logos (120×40 frame) by display name → file. */
+const PARTNER_FILES: Record<string, string> = {
+    'ACI Weave': 'partner-aci-weave',
+    Adobe: 'partner-adobe',
+    Adyen: 'partner-adyen',
+    Algolia: 'partner-algolia',
+    Alumio: 'partner-alumio',
+    AWS: 'partner-aws',
+    Buckaroo: 'partner-buckaroo',
+    Channable: 'partner-channable',
+    Commercetools: 'partner-commercetools',
+    Contentful: 'partner-contentful',
+    Databricks: 'partner-databricks',
+    DotDigital: 'partner-dotdigital',
+    Drupal: 'partner-drupal',
+    'Google Cloud': 'partner-google-cloud',
+    HubSpot: 'partner-hubspot',
+    Hypernode: 'partner-hypernode',
+    Hyvä: 'partner-hyva',
+    Klaviyo: 'partner-klaviyo',
+    Klevu: 'partner-klevu',
+    'Microsoft Fabric': 'partner-microsoft-fabric',
+    Mollie: 'partner-mollie',
+    n8n: 'partner-n8n',
+    OpenAI: 'partner-openai',
+    Pimcore: 'partner-pimcore',
+    Salesforce: 'partner-salesforce',
+    Sendcloud: 'partner-sendcloud',
+    Shopify: 'partner-shopify',
+    Spryker: 'partner-spryker',
+    Symson: 'partner-symson',
+    Tweakwise: 'partner-tweakwise',
 }
 
 /** Name variants used in copy → logo key. */
@@ -107,14 +149,26 @@ const ALIASES: Record<string, string> = {
     'Hyvä Magento themes': 'Hyvä',
     'Shopify Plus': 'Shopify',
     'Munich-Re': 'Munich Re',
-    'Unipart Autoparts': 'Unipart',
     'Schneider-Electric': 'Schneider Electric',
     'PePe-Parts': 'PePe Parts',
     'XXL-Nutrition': 'XXL Nutrition',
 }
-export const logoFor = (name: string) => {
-    const entry = LOGOS[ALIASES[name] ?? name]
-    return entry
-        ? { src: `${BASE}logos/${entry.file}.svg`, ratio: entry.ratio }
-        : undefined
+
+export type LogoKind = 'client' | 'partner'
+/** The logo file and its frame ratio; partner logos fall back to the client frame and the other way round. */
+export const logoFor = (name: string, kind: LogoKind = 'client') => {
+    const key = ALIASES[name] ?? name
+    const order: [Record<string, string>, number][] =
+        kind === 'partner'
+            ? [
+                  [PARTNER_FILES, PARTNER],
+                  [LOGO_FILES, FRAME],
+              ]
+            : [
+                  [LOGO_FILES, FRAME],
+                  [PARTNER_FILES, PARTNER],
+              ]
+    for (const [files, ratio] of order)
+        if (files[key]) return { src: `${BASE}logos/${files[key]}.svg`, ratio }
+    return undefined
 }

@@ -10,28 +10,28 @@ const SELL: StackGoal = {
     partners: [
         {
             Name: 'Alumio',
-            logo: <Logo name="Alumio" box={[110, 32]} />,
+            logo: <Logo name="Alumio" kind="partner" width={120} />,
             Level: 'Integration',
             Description: 'iPaaS that connects ERP, PIM and commerce.',
             href: '#',
         },
         {
             Name: 'Adobe',
-            logo: <Logo name="Adobe" box={[110, 32]} />,
+            logo: <Logo name="Adobe" kind="partner" width={120} />,
             Level: 'Commerce',
             Description: 'Adobe Commerce as the B2B platform.',
             href: '#',
         },
         {
             Name: 'Hyvä',
-            logo: <Logo name="Hyvä" box={[110, 32]} />,
+            logo: <Logo name="Hyvä" kind="partner" width={120} />,
             Level: 'Gold Partner',
             Description: 'Fast Magento storefront.',
             href: '#',
         },
         {
             Name: 'Pimcore',
-            logo: <Logo name="Pimcore" box={[110, 32]} />,
+            logo: <Logo name="Pimcore" kind="partner" width={120} />,
             Level: 'Strategic Partner',
             Description: 'One source for product data.',
             href: '#',
@@ -40,7 +40,7 @@ const SELL: StackGoal = {
     case: {
         Title: 'Accelerating Growth with a Digital Pioneer in Sports Supplements',
         Client: 'XXL Nutrition',
-        logo: <Logo name="XXL Nutrition" box={[140, 48]} />,
+        logo: <Logo name="XXL Nutrition" width={140} />,
         image: caseImage('xxl', 'wide'),
         tags: ['Magento', 'Adobe Commerce'],
         href: '#',

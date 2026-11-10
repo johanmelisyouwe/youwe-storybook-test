@@ -2,6 +2,7 @@ import { Icon } from '../../shared/icons/icon'
 import { Button } from '../../ui/button'
 import { cx } from '../../shared/cx'
 import ring from '../../shared/focus-ring/focus-ring.module.css'
+import responsive from '../../shared/responsive/responsive.module.css'
 import styles from './footer.module.css'
 
 /* Footer/Corporate — Figma 25022:751; _Footer link — 25034:672 (page "Footer"). */
@@ -50,8 +51,8 @@ export type FooterColumn = { heading: string; links: Link[] }
 export type FooterProps = {
     /** Figma: Variant */
     Variant?: 'Sitemap' | 'Newsletter'
-    /** Figma: Device */
-    Device?: 'Desktop' | 'Mobile'
+    /** Figma: Device. 'Auto' renders both and lets the screen width choose (mobile below 768px). */
+    Device?: 'Desktop' | 'Mobile' | 'Auto'
     /** First column ("Youwe") and the three service columns */
     columns: FooterColumn[]
     legal?: Link[]
@@ -61,7 +62,23 @@ export type FooterProps = {
     language?: string
 }
 
-export function Footer({
+export function Footer(props: FooterProps) {
+    if (props.Device === 'Auto') {
+        return (
+            <>
+                <div className={responsive['only-md']}>
+                    <FooterView {...props} Device="Desktop" />
+                </div>
+                <div className={responsive['below-md']}>
+                    <FooterView {...props} Device="Mobile" />
+                </div>
+            </>
+        )
+    }
+    return <FooterView {...props} />
+}
+
+function FooterView({
     Variant = 'Sitemap',
     Device = 'Desktop',
     columns,

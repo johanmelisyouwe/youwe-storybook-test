@@ -509,18 +509,19 @@
         "nodeId": "15409:8869",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15409-8869",
         "variantAxes": [
-          "State(3)"
+          "State(4)"
         ],
         "axes": {
           "State": [
             "Rest",
             "Active",
-            "Focused"
+            "Focused",
+            "Hover"
           ]
         },
         "props": "",
-        "variantCount": 3,
-        "signature": "12kvzjw"
+        "variantCount": 4,
+        "signature": "iox31s"
       },
       "storybook": {
         "title": null,
@@ -535,8 +536,8 @@
         "src/ui/breadcrumbs/breadcrumbs.stories.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "12kvzjw",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "iox31s",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -548,7 +549,7 @@
         "axes": {},
         "props": "Show back button:B,Breadcrumb slot:S",
         "variantCount": 1,
-        "signature": "18m0or7"
+        "signature": "6y5xsi"
       },
       "storybook": {
         "title": "Components/Breadcrumbs",
@@ -563,8 +564,8 @@
         "src/ui/breadcrumbs/breadcrumbs.stories.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "18m0or7",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "6y5xsi",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -1795,7 +1796,7 @@
       ],
       "locked": false,
       "lastSyncedSignature": "1g9sth0",
-      "lastSynced": "2026-11-09"
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -2095,7 +2096,8 @@
         "variantAxes": [
           "Type(2)",
           "Size(2)",
-          "Mode(2)"
+          "Mode(2)",
+          "State(2)"
         ],
         "axes": {
           "Type": [
@@ -2109,11 +2111,15 @@
           "Mode": [
             "Dark",
             "Light"
+          ],
+          "State": [
+            "Rest",
+            "Hover"
           ]
         },
         "props": "Value:T,Label:T,Logo:I,Show button:B",
-        "variantCount": 8,
-        "signature": "mbed16"
+        "variantCount": 12,
+        "signature": "1wpqwc6"
       },
       "storybook": {
         "title": "Components/Stat",
@@ -2132,8 +2138,8 @@
         "src/shared/mode-frame/mode-frame.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "mbed16",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "1wpqwc6",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -2382,7 +2388,7 @@
         },
         "props": "",
         "variantCount": 4,
-        "signature": "109lrvd"
+        "signature": "1q5dyh8"
       },
       "storybook": {
         "title": "Components/Footer/Corporate",
@@ -2397,8 +2403,8 @@
         "src/site/footer/footer.stories.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "109lrvd",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "1q5dyh8",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -2833,7 +2839,7 @@
         },
         "props": "Required:B,Hint:B,Label:T,Hint text:T",
         "variantCount": 13,
-        "signature": "1ijdmm3"
+        "signature": "1jvq5ui"
       },
       "storybook": {
         "title": "Components/Input/Dropdown",
@@ -2854,8 +2860,8 @@
         "src/shared/icons/icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "1ijdmm3",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "1jvq5ui",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -2907,7 +2913,7 @@
     },
     {
       "figma": {
-        "name": "Dropdown/Quantity",
+        "name": "Dropdown/Compact",
         "page": "Input/Dropdown",
         "nodeId": "18597:11473",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=18597-11473",
@@ -2934,19 +2940,24 @@
         },
         "props": "Hint:B",
         "variantCount": 18,
-        "signature": "8ne4ya"
+        "signature": "2rb913"
       },
       "storybook": {
-        "title": "Components/Input/Dropdown",
-        "current": null
+        "title": "Components/Input/Compact dropdown",
+        "current": "AllVariants"
       },
       "internal": false,
-      "status": "not-needed",
-      "note": "Web-shop component (quantity in product/cart). Youwe has no web-shop components (design, 9 Nov), so it is not built. Ask design whether to remove it from Figma. Renamed \"Dropdown/Compact\" in Figma and used by Pagination (View amount); its M look is built into Pagination.",
-      "code": null,
+      "status": "complete",
+      "note": "Renamed from Dropdown/Quantity in Figma. Own component since 10 Nov; used by Pagination (View amount). Native select: Active is the platform option list.",
+      "code": [
+        "src/ui/compact-dropdown/compact-dropdown.tsx",
+        "src/ui/compact-dropdown/compact-dropdown.module.css",
+        "src/ui/compact-dropdown/compact-dropdown.stories.tsx",
+        "src/ui/field/field.module.css"
+      ],
       "locked": false,
-      "lastSyncedSignature": null,
-      "lastSynced": null
+      "lastSyncedSignature": "2rb913",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -3050,7 +3061,7 @@
         },
         "props": "Required:B,Hint:B,Suffix:B,Label:T,Hint text:T",
         "variantCount": 8,
-        "signature": "9ea031"
+        "signature": "4xi80c"
       },
       "storybook": {
         "title": "Components/Input/Phone",
@@ -3071,8 +3082,8 @@
         "src/shared/icons/icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "9ea031",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "4xi80c",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -3134,7 +3145,7 @@
         },
         "props": "Required:B,Hint:B,Suffix:B,Label:T,Hint text:T",
         "variantCount": 13,
-        "signature": "10glfpo"
+        "signature": "170ngkr"
       },
       "storybook": {
         "title": "Components/Input/Text",
@@ -3152,8 +3163,8 @@
         "src/shared/icons/icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "10glfpo",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "170ngkr",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -3273,7 +3284,7 @@
         },
         "props": "Required:B,Hint:B,Label:T,Hint text:T",
         "variantCount": 13,
-        "signature": "g0yoo8"
+        "signature": "ubfmrr"
       },
       "storybook": {
         "title": "Components/Input/Text Area",
@@ -3290,8 +3301,8 @@
         "src/ui/field/field-story.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "g0yoo8",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "ubfmrr",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -5003,6 +5014,64 @@
       "locked": false,
       "lastSyncedSignature": null,
       "lastSynced": null
+    },
+    {
+      "figma": {
+        "name": "Content blocks/ACI Weave",
+        "page": "Templates (Page / Home, Frame 6)",
+        "nodeId": "26598:4074",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26598-4074",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Content blocks/ACI Weave",
+        "current": "AllVariants"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Built from the hand-built Home frames (desktop Frame 6 26598:4074, mobile 26924:10755). A Figma component is proposed for design review.",
+      "code": [
+        "src/blocks/aci-weave/aci-weave.tsx",
+        "src/blocks/aci-weave/aci-weave.module.css",
+        "src/blocks/aci-weave/aci-weave.stories.tsx",
+        "src/blocks/aci-weave/aci-weave.copy.ts"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-10"
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Insights overview",
+        "page": "Templates (Page / Insights, All insights)",
+        "nodeId": "26734:89",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26734-89",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Content blocks/Insights overview",
+        "current": "AllVariants"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Built from the hand-built All insights frames (desktop 26734:89, mobile 26816:3083). A Figma component is proposed for design review.",
+      "code": [
+        "src/blocks/insights-overview/insights-overview.tsx",
+        "src/blocks/insights-overview/insights-overview.module.css",
+        "src/blocks/insights-overview/insights-overview.stories.tsx",
+        "src/blocks/insights-overview/insights-overview.demo.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-10"
     }
   ],
   "templates": [
@@ -5018,9 +5087,7 @@
         "story": "Desktop"
       },
       "status": "complete",
-      "placeholders": [
-        "Frame 6 (ACI Weave · videos + snippet)"
-      ],
+      "placeholders": [],
       "lastSyncedSignature": "1dkipj1",
       "lastSynced": "2026-11-09",
       "code": [
@@ -5040,9 +5107,7 @@
         "story": "Mobile"
       },
       "status": "complete",
-      "placeholders": [
-        "ACI Weave · video + nudge"
-      ],
+      "placeholders": [],
       "lastSyncedSignature": "ckt2vh",
       "lastSynced": "2026-11-09",
       "code": [
@@ -5326,9 +5391,7 @@
         "story": "Desktop"
       },
       "status": "complete",
-      "placeholders": [
-        "Insights · content (Latest + All insights)"
-      ],
+      "placeholders": [],
       "lastSyncedSignature": "k6b9g9",
       "lastSynced": "2026-11-09",
       "code": [
@@ -5348,9 +5411,7 @@
         "story": "Mobile"
       },
       "status": "complete",
-      "placeholders": [
-        "All insights (type filters + insight grid + Show more)"
-      ],
+      "placeholders": [],
       "lastSyncedSignature": "pk0eyr",
       "lastSynced": "2026-11-09",
       "code": [

@@ -46,7 +46,7 @@
     .accent {
         width: 2.5rem;
         height: 2px;
-        background: var(--color-shared-content-brand);
+        background: var(--color-shared-surface-fixed-brand-red);
     }
     .attribution {
         display: flex;
@@ -82,7 +82,7 @@
         cursor: pointer;
 
         &[aria-current="true"] {
-            background: var(--color-shared-content-brand);
+            background: var(--color-shared-surface-fixed-brand-red);
         }
     }
 
