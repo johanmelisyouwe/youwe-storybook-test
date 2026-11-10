@@ -6,7 +6,7 @@ import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel
 import { TechnologyLogos } from '../components/components/TechnologyLogos/TechnologyLogos';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
-import { CLIENT_LOGOS, NotAComponent, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { CLIENT_LOGOS, NotAComponent, Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, clientPhoto } from '../media/media';
 
 /*
@@ -76,10 +76,11 @@ const CASES: CaseCardProps[] = [
 const TECH = ['Pimcore', 'Adobe', 'Commercetools', 'HubSpot', 'Shopify', 'Hyvä', 'Alumio', 'Storyblok', 'Drupal', 'Symson', 'AWS', 'ACI Weave'].map((name) => ({ name, logo: logo(name, 110) }));
 
 
-function HomePage({ Device }: { Device: Device }) {
+function HomePage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   const mobile = Device === 'Mobile';
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       <Hero
         Device={Device}
         image={abstract('016')}

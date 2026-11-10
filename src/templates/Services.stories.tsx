@@ -5,7 +5,7 @@ import { AskSnippet } from '../components/components/AskYouwe/AskYouwe';
 import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
-import { OFFICES, Page, Section, footer, header, logo, type Device } from './shared';
+import { OFFICES, Page, Section, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, caseImage, clientPhoto } from '../media/media';
 
 /*
@@ -109,10 +109,11 @@ const CASES: CaseCardProps[] = [
   ['Seamless replatforming for Fairphone commerce platform', 'Fairphone'],
 ].map(([Title, Client]) => ({ Title, Client: Client === 'G-Star' ? 'G-Star RAW' : Client, logo: logo(Client), image: clientPhoto(Client), href: '#' }));
 
-function ServicesPage({ Device }: { Device: Device }) {
+function ServicesPage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   const mobile = Device === 'Mobile';
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       <Hero
         Device={Device}
         image={abstract('003')}

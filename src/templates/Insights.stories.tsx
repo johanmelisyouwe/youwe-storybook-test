@@ -4,7 +4,7 @@ import { CardGrid } from '../components/components/CardGrid/CardGrid';
 import { InsightCard } from '../components/components/InsightCard/InsightCard';
 import { UpcomingEvents, type EventItem } from '../components/components/UpcomingEvents/UpcomingEvents';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
-import { CLIENT_LOGOS, NotAComponent, Page, logo, Section, WORK_WITH_US, footer, header, type Device } from './shared';
+import { CLIENT_LOGOS, NotAComponent, Page, logo, Section, WORK_WITH_US, footer, header, type Device, useDevice } from './shared';
 import { abstract } from '../media/media';
 
 /*
@@ -22,10 +22,11 @@ const EVENTS: EventItem[] = [
 ];
 const USES = ['Insight Card', 'Upcoming events', 'Button/Basic', 'Section header'];
 
-function InsightsPage({ Device }: { Device: Device }) {
+function InsightsPage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   const mobile = Device === 'Mobile';
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       <Hero
         Device={Device}
         image={abstract('005')}

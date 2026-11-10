@@ -21,10 +21,10 @@ const meta: Meta<Args> = {
   parameters: { layout: 'fullscreen', docs: { description: { component: 'Corporate site footer. Sitemap: brand column plus three service columns. Newsletter: text and button first, plus a language selector. Static; links change colour on hover (duration/fast).' } } },
   argTypes: {
     Variant: { control: 'inline-radio', options: ['Sitemap', 'Newsletter'] },
-    Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
+    Device: { control: 'inline-radio', options: ['Desktop', 'Mobile', 'Auto'], description: 'Auto: both render, the screen width picks (mobile below 768px)' },
   },
   args: { Variant: 'Sitemap', Device: 'Desktop' },
-  render: ({ Variant, Device }) => <div style={{ maxWidth: Device === 'Mobile' ? 360 : 1440 }}><Footer Variant={Variant} Device={Device} {...props(Variant)} /></div>,
+  render: ({ Variant, Device }) => <div style={{ maxWidth: Device === 'Mobile' ? 360 : undefined }}><Footer Variant={Variant} Device={Device} {...props(Variant)} /></div>,
 };
 export default meta;
 type Story = StoryObj<Args>;
@@ -51,3 +51,6 @@ export const AllVariants: Story = {
     </div>
   ),
 };
+
+/** Device=Auto, as the templates use it: resize the canvas below 768px to get the mobile footer. */
+export const Responsive: Story = { args: { Device: 'Auto', Variant: 'Newsletter' } };
