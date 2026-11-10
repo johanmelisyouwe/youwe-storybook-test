@@ -41,11 +41,13 @@
             flex: 0 1 64.125rem;
         }
 
-        @supports (animation-timeline: scroll()) {
-            &[data-recede] .content {
-                animation: hero-recede linear both;
-                animation-timeline: scroll(root);
-                animation-range: 0 53.75rem;
+        @media (prefers-reduced-motion: no-preference) {
+            @supports (animation-timeline: scroll()) {
+                &[data-recede] .content {
+                    animation: hero-recede linear both;
+                    animation-timeline: scroll(root);
+                    animation-range: 0 53.75rem;
+                }
             }
         }
 
@@ -103,11 +105,13 @@
         gap: var(--spacing-lg);
     }
 
-    @supports (animation-timeline: scroll()) {
-        @keyframes hero-recede {
-            to {
-                opacity: 0.15;
-                transform: translateY(-12vh) scale(0.96);
+    @media (prefers-reduced-motion: no-preference) {
+        @supports (animation-timeline: scroll()) {
+            @keyframes hero-recede {
+                to {
+                    opacity: 0.15;
+                    transform: translateY(-12vh) scale(0.96);
+                }
             }
         }
     }
@@ -196,9 +200,13 @@
             padding-block: var(--spacing-xl);
         }
 
-        &:hover .hero-bar-track,
         &:focus-within .hero-bar-track {
             animation-play-state: paused;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .hero-bar-track {
+                animation-play-state: paused;
+            }
         }
 
         &::before,

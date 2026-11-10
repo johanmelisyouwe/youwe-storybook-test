@@ -151,8 +151,7 @@ export function TabGroup({
                         className={styles.ink}
                         aria-hidden="true"
                         style={{
-                            width: ink.w,
-                            transform: `translateX(${ink.x}px)`,
+                            transform: `translateX(${ink.x}px) scaleX(${ink.w})`,
                         }}
                     />
                 </div>

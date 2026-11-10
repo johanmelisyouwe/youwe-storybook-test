@@ -15,17 +15,14 @@ function timeIn(timeZone: string) {
 
 /** Live local time in `timeZone`, updated every 15 s. `time` ("11:12") fixes the value (for stories). */
 export function useLocalTime(timeZone: string, time?: string) {
-    const [now, setNow] = useState(time ?? '--:--')
+    const [now, setNow] = useState('--:--')
     useEffect(() => {
-        if (time) {
-            setNow(time)
-            return
-        }
+        if (time) return
         setNow(timeIn(timeZone))
         const id = setInterval(() => setNow(timeIn(timeZone)), 15000)
         return () => clearInterval(id)
     }, [timeZone, time])
-    return now
+    return time ?? now
 }
 
 export type ClockProps = { timeZone: string; time?: string; label?: string }

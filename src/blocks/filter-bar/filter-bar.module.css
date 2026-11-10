@@ -53,8 +53,10 @@
             var(--motion-ease-standard),
             box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
 
-        &:hover {
-            background: var(--color-shared-surface-base-3);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background: var(--color-shared-surface-base-3);
+            }
         }
 
         &[aria-pressed="true"] {

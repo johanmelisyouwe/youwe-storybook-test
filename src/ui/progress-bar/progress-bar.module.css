@@ -1,6 +1,6 @@
 /*
   Progress Bar (Figma 6284:7241). 4px high, radius 2, track component/alpha/1, progress content/primary.
-  Figma steps: Start (a 2px sliver), 25%, 50%, 75%, End. Width animates duration/base ease/standard
+  Figma steps: Start (a 2px sliver), 25%, 50%, 75%, End. The clip animates duration/base ease/standard
   (no Figma motion line; small UI change).
 */
 @layer components {
@@ -15,9 +15,9 @@
 
     .bar {
         height: 100%;
-        min-width: 2px;
         background: var(--color-shared-content-primary);
-        transition: width var(--motion-duration-base)
+        clip-path: inset(0 calc(100% - max(2px, var(--_value))) 0 0);
+        transition: clip-path var(--motion-duration-base)
             var(--motion-ease-standard);
     }
 }

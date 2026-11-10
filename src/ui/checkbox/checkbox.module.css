@@ -39,16 +39,18 @@
   hover / pressed
 */
 
-        &:hover {
-            --_fx: var(--effect-shadow-outer-md-hover-shadow);
-        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                --_fx: var(--effect-shadow-outer-md-hover-shadow);
+            }
 
-        &:hover .input:not(:checked):not(:indeterminate) + .box::before {
-            content: "";
-            width: var(--_mark);
-            height: var(--_mark);
-            border-radius: var(--shared-radius-2);
-            background: var(--color-shared-surface-base-3);
+            &:hover .input:not(:checked):not(:indeterminate) + .box::before {
+                content: "";
+                width: var(--_mark);
+                height: var(--_mark);
+                border-radius: var(--shared-radius-2);
+                background: var(--color-shared-surface-base-3);
+            }
         }
 
         &:active {
@@ -61,9 +63,11 @@
             display: none;
         }
 
-        &:hover .input:checked + .box {
-            --_bg: var(--color-component-brand-red-3);
-            --_border: var(--color-component-brand-red-3);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .input:checked + .box {
+                --_bg: var(--color-component-brand-red-3);
+                --_border: var(--color-component-brand-red-3);
+            }
         }
 
         &:active .input:checked + .box {

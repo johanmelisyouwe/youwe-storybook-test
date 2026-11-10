@@ -64,8 +64,8 @@
             transform: translateY(-100%);
         }
 
-        &[data-scrolled] .bar {
-            backdrop-filter: blur(var(--effect-blur-background-blur-blur));
+        &[data-scrolled] .bar::before {
+            opacity: 1;
         }
 
         /*
@@ -96,8 +96,20 @@
         padding: var(--spacing-sm) var(--spacing-lg);
         border-radius: var(--shared-radius-4);
         background: var(--color-shared-surface-tint-1);
-        transition: backdrop-filter var(--motion-duration-slow)
-            var(--motion-ease-emphasized);
+
+        /* Behind the bar's tint (no stacking context on .bar); fading it is cheaper than animating the blur */
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            border-radius: inherit;
+            backdrop-filter: blur(var(--effect-blur-background-blur-blur));
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--motion-duration-slow)
+                var(--motion-ease-emphasized);
+        }
     }
 
     .logo {
@@ -137,10 +149,14 @@
         transition: color var(--motion-duration-fast)
             var(--motion-ease-standard);
 
-        &:hover,
         &[aria-current="page"],
         &[aria-expanded="true"] {
             color: var(--color-shared-content-link);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: var(--color-shared-content-link);
+            }
         }
 
         &[data-plain] {
@@ -151,9 +167,13 @@
             padding: 0;
         }
 
-        &[data-l]:hover,
         &[data-l][aria-current="page"] {
             color: var(--color-shared-content-brand);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &[data-l]:hover {
+                color: var(--color-shared-content-brand);
+            }
         }
     }
 
@@ -162,8 +182,10 @@
         color: var(--color-shared-content-primary);
         text-decoration: none;
 
-        &:hover {
-            text-decoration: underline;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 
@@ -188,7 +210,8 @@
         padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-3xl);
         border-radius: var(--shared-radius-4);
         background: var(--color-shared-surface-base-1);
-        animation: mega-reveal var(--motion-duration-slow)
+        /* Keyframes, not a transition: a resting clip-path would cut off content that overflows on narrow widths */
+        animation: mega-reveal var(--motion-duration-base)
             var(--motion-ease-emphasized);
 
         &[data-static] {

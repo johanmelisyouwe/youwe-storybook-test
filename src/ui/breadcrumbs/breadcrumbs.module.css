@@ -32,9 +32,13 @@
         color: inherit;
         text-decoration: none;
 
-        &:hover .text,
         &[aria-current="page"] .text {
             color: var(--color-shared-content-primary);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .text {
+                color: var(--color-shared-content-primary);
+            }
         }
     }
 

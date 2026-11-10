@@ -17,9 +17,13 @@
         border-radius: var(--component-radius-card);
         background: var(--color-shared-surface-base-2);
 
-        &:hover .eyebrow,
         &:focus-visible .eyebrow {
             color: var(--color-shared-content-brand);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .eyebrow {
+                color: var(--color-shared-content-brand);
+            }
         }
     }
 

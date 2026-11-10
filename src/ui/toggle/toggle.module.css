@@ -55,15 +55,17 @@
             display: none;
         }
 
-        &:hover {
-            box-shadow:
-                inset 0 0 0 var(--shared-width-1) var(--_track-border),
-                var(--effect-shadow-outer-md-hover-shadow);
-        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                box-shadow:
+                    inset 0 0 0 var(--shared-width-1) var(--_track-border),
+                    var(--effect-shadow-outer-md-hover-shadow);
+            }
 
-        &[aria-checked="true"]:hover {
-            --_track: var(--color-component-brand-red-3);
-            --_track-border: var(--color-component-brand-red-3);
+            &[aria-checked="true"]:hover {
+                --_track: var(--color-component-brand-red-3);
+                --_track-border: var(--color-component-brand-red-3);
+            }
         }
 
         &:disabled {

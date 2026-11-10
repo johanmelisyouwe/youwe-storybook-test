@@ -12,23 +12,6 @@
 }
 
 @layer components {
-    @keyframes toaster-in {
-        from {
-            opacity: 0;
-            transform: translateY(var(--motion-distance-sm));
-        }
-        to {
-            opacity: 1;
-            transform: none;
-        }
-    }
-
-    @keyframes toaster-out {
-        to {
-            opacity: 0;
-        }
-    }
-
     .root {
         --_border-shadow: inset 0 0 0 var(--shared-width-1) var(--_line);
         display: flex;
@@ -37,12 +20,19 @@
         padding-inline: var(--spacing-3xs);
         border-radius: var(--shared-radius-8);
         background: var(--_bg);
-        animation: toaster-in var(--motion-duration-base)
-            var(--motion-ease-emphasized);
+        transition:
+            opacity var(--motion-duration-base) var(--motion-ease-emphasized),
+            transform var(--motion-duration-base) var(--motion-ease-emphasized);
+
+        @starting-style {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-sm));
+        }
 
         &[data-leaving] {
-            animation: toaster-out var(--motion-duration-fast)
-                var(--motion-ease-exit) forwards;
+            opacity: 0;
+            transition: opacity var(--motion-duration-fast)
+                var(--motion-ease-exit);
         }
 
         &[data-shadow] {

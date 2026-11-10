@@ -79,8 +79,10 @@
             box-shadow: none;
         }
 
-        & > li:not([data-empty]):hover {
-            opacity: 0.7;
+        @media (hover: hover) and (pointer: fine) {
+            & > li:not([data-empty]):hover {
+                opacity: 0.7;
+            }
         }
 
         & img {
@@ -89,13 +91,19 @@
             object-fit: contain;
         }
 
-        @supports (animation-timeline: view()) {
-            & > li {
-                animation: block-in var(--motion-duration-reveal)
-                    var(--motion-ease-emphasized) both;
-                animation-delay: calc(var(--_i, 0) * var(--motion-stagger) / 2);
-                animation-timeline: view();
-                animation-range: entry 0% entry 40%;
+        @media (prefers-reduced-motion: no-preference) {
+            @supports (animation-timeline: view()) {
+                & > li {
+                    animation: block-in var(--motion-duration-reveal)
+                        var(--motion-ease-emphasized) both;
+                    animation-delay: calc(
+                        var(--_i, 0) *
+                        var(--motion-stagger) /
+                        2
+                    );
+                    animation-timeline: view();
+                    animation-range: entry 0% entry 40%;
+                }
             }
         }
     }

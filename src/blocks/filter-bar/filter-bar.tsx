@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useId, useState } from 'react'
 import { Dropdown } from '../../ui/dropdown'
 import { Pills } from '../../ui/pills'
 import { ButtonFilter } from '../../ui/button-filter'
@@ -58,7 +58,12 @@ export function FilterBar({
     const sheetId = useId()
     const system = sysProp !== undefined ? sysProp : sysState
     const values = valProp ?? valState
-    useEffect(() => setOpen(State === 'Open'), [State])
+    // Follow the State prop (story control) when it changes, without an effect
+    const [prevState, setPrevState] = useState(State)
+    if (State !== prevState) {
+        setPrevState(State)
+        setOpen(State === 'Open')
+    }
 
     const pick = (s: string | null) => {
         setSys(s)

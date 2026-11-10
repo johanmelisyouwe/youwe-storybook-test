@@ -102,8 +102,10 @@
             color: var(--color-shared-content-primary);
         }
 
-        &:hover {
-            color: var(--color-shared-content-link);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: var(--color-shared-content-link);
+            }
         }
     }
 

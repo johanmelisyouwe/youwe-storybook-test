@@ -41,8 +41,10 @@
             height: 2.25rem;
         }
 
-        &:hover {
-            --_bg: var(--color-component-neutral-mid-2);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                --_bg: var(--color-component-neutral-mid-2);
+            }
         }
 
         &:active {

@@ -53,10 +53,12 @@
             --focus-ring-inset: -3px;
         }
 
-        &:hover .icon-tooltip-bubble {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, 0);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .icon-tooltip-bubble {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, 0);
+            }
         }
     }
 

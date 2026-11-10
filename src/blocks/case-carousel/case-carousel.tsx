@@ -38,7 +38,10 @@ export function CaseCarousel({
         const card = el.querySelector('li') as HTMLElement | null
         el.scrollBy({
             left: dir * ((card?.offsetWidth ?? 416) + 16),
-            behavior: 'smooth',
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
+                .matches
+                ? 'auto'
+                : 'smooth',
         })
     }
     const onScroll = () => {

@@ -68,21 +68,23 @@
         color: var(--color-shared-content-secondary);
     }
 
-    @supports (animation-timeline: view()) {
-        @keyframes clip-reveal {
-            from {
-                clip-path: inset(18% 8% round var(--shared-radius-8));
-                transform: scale(0.96);
+    @media (prefers-reduced-motion: no-preference) {
+        @supports (animation-timeline: view()) {
+            @keyframes clip-reveal {
+                from {
+                    clip-path: inset(18% 8% round var(--shared-radius-8));
+                    transform: scale(0.96);
+                }
+                to {
+                    clip-path: inset(0 round var(--shared-radius-4));
+                    transform: none;
+                }
             }
-            to {
-                clip-path: inset(0 round var(--shared-radius-4));
-                transform: none;
+            .clip-reveal {
+                animation: clip-reveal linear both;
+                animation-timeline: view();
+                animation-range: entry 0% cover 40%;
             }
-        }
-        .clip-reveal {
-            animation: clip-reveal linear both;
-            animation-timeline: view();
-            animation-range: entry 0% cover 40%;
         }
     }
 

@@ -36,10 +36,12 @@
             var(--motion-ease-standard),
             color var(--motion-duration-fast) var(--motion-ease-standard);
 
-        &:hover {
-            --_bg: var(--color-shared-surface-base-3);
-            --_line: var(--color-shared-border-3);
-            color: var(--color-shared-content-primary);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                --_bg: var(--color-shared-surface-base-3);
+                --_line: var(--color-shared-border-3);
+                color: var(--color-shared-content-primary);
+            }
         }
 
         &[aria-selected="true"] {
@@ -86,12 +88,13 @@
         position: absolute;
         bottom: 0;
         left: 0;
+        width: 1px;
         height: var(--shared-width-2);
+        transform-origin: left;
         background: var(--color-shared-border-brand-1);
         pointer-events: none;
-        transition:
-            transform var(--motion-duration-slow) var(--motion-ease-emphasized),
-            width var(--motion-duration-slow) var(--motion-ease-emphasized);
+        transition: transform var(--motion-duration-base)
+            var(--motion-ease-emphasized);
     }
 
     .trailing {

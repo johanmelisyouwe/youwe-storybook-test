@@ -38,8 +38,10 @@
                 var(--color-shared-border-2);
         }
 
-        &:hover {
-            background: var(--color-shared-surface-base-3);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background: var(--color-shared-surface-base-3);
+            }
         }
 
         &:active {

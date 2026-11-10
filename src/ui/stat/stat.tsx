@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useLayoutEffect, useRef, type ReactNode } from 'react'
 import { CardArrow } from '../../shared/card-reveal'
 import { cx } from '../../shared/cx'
 import styles from './stat.module.css'
@@ -34,20 +34,26 @@ function parse(v: string) {
 
 function useCountUp(value: string, on: boolean) {
     const ref = useRef<HTMLSpanElement>(null)
-    const [text, setText] = useState(value)
-    useEffect(() => {
+    const latest = useRef(value)
+    latest.current = value
+    // Layout effect: the final value never flashes before the count starts. The count writes into
+    // React's own text node instead of re-rendering every frame, and puts the real value back on cleanup.
+    useLayoutEffect(() => {
         const p = parse(value)
         const el = ref.current
+        const node = el?.firstChild
         if (
             !on ||
             !p ||
             !el ||
+            !node ||
             window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        ) {
-            setText(value)
+        )
             return
+        const show = (n: number) => {
+            node.nodeValue = `${p.pre}${n.toFixed(p.dec)}${p.post}`
         }
-        setText(`${p.pre}${(0).toFixed(p.dec)}${p.post}`)
+        show(0)
         let raf = 0
         const io = new IntersectionObserver(([e]) => {
             if (!e.isIntersecting) return
@@ -55,8 +61,7 @@ function useCountUp(value: string, on: boolean) {
             const t0 = performance.now()
             const tick = (t: number) => {
                 const k = Math.min(1, (t - t0) / 1600)
-                const eased = 1 - (1 - k) ** 3 // ease-out
-                setText(`${p.pre}${(p.num * eased).toFixed(p.dec)}${p.post}`)
+                show(p.num * (1 - (1 - k) ** 3)) // ease-out
                 if (k < 1) raf = requestAnimationFrame(tick)
             }
             raf = requestAnimationFrame(tick)
@@ -65,9 +70,10 @@ function useCountUp(value: string, on: boolean) {
         return () => {
             io.disconnect()
             cancelAnimationFrame(raf)
+            node.nodeValue = latest.current
         }
     }, [value, on])
-    return [ref, text] as const
+    return ref
 }
 
 export function Stat({
@@ -80,7 +86,7 @@ export function Stat({
     countUp = false,
     className,
 }: StatProps) {
-    const [ref, text] = useCountUp(Value, countUp)
+    const ref = useCountUp(Value, countUp)
     return (
         <div className={cx(styles.root, className)}>
             {Type === 'Client' && (
@@ -108,7 +114,7 @@ export function Stat({
                 ].join(' ')}
                 aria-label={Value}
             >
-                {text}
+                {Value}
             </span>
             <span className={cx(styles.label, 'yw-body-md-reg')}>{Label}</span>
         </div>

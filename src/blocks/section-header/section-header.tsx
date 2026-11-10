@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
 import styles from './section-header.module.css'
@@ -92,7 +92,8 @@ export function SectionHeader({
 function useHighlight(words: number) {
     const ref = useRef<HTMLParagraphElement>(null)
     const [lit, setLit] = useState(words)
-    useEffect(() => {
+    // Layout effect: dims the words before the first paint, so they don't flash fully lit
+    useLayoutEffect(() => {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches)
             return
         setLit(0)

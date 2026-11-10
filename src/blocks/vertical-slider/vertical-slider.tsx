@@ -267,10 +267,6 @@ export type VerticalSliderProps = {
 }
 
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v))
-const smooth = (a: number, b: number, v: number) => {
-    const t = clamp((v - a) / (b - a))
-    return t * t * (3 - 2 * t)
-}
 
 export function VerticalSlider({
     Index = 'Right',
@@ -285,7 +281,6 @@ export function VerticalSlider({
     initial = 0,
 }: VerticalSliderProps) {
     const [active, setActive] = useState(initial)
-    const [p, setP] = useState(0)
     const ref = useRef<HTMLElement>(null)
     const N = items.length
 
@@ -306,7 +301,8 @@ export function VerticalSlider({
             const pr = clamp(
                 -r.top / Math.max(1, el.offsetHeight - window.innerHeight)
             )
-            setP(pr)
+            // Written straight to the DOM: a React render per scroll frame is too much
+            el.style.setProperty('--p', pr.toFixed(4))
             setActive(Math.min(N - 1, Math.floor(pr * N * 0.9999)))
         }
         const on = () => {
@@ -330,7 +326,10 @@ export function VerticalSlider({
         const top = el.getBoundingClientRect().top + window.scrollY
         window.scrollTo({
             top: top + ((i + 0.5) / N) * (el.offsetHeight - window.innerHeight),
-            behavior: 'smooth',
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)')
+                .matches
+                ? 'auto'
+                : 'smooth',
         })
     }
 
@@ -398,16 +397,17 @@ export function VerticalSlider({
         )
     }
 
-    // Without pinning, p follows the selected chapter so the media and bars show the same states
-    const prog = pin ? p : (active + 0.5) / N
-
     return (
         <section
             ref={ref}
             data-pinned={pin || undefined}
             data-left={Index === 'Left' || undefined}
             className={cx(styles.root)}
-            style={{ ['--_steps' as string]: N }}
+            style={{
+                ['--_steps' as string]: N,
+                // Without pinning, p follows the selected chapter so the media and bars show the same states
+                ['--p' as string]: pin ? undefined : (active + 0.5) / N,
+            }}
             aria-label={Kicker}
         >
             <div className={styles.frame}>
@@ -419,13 +419,8 @@ export function VerticalSlider({
                             className={styles.bg}
                             placeholder={false}
                             style={{
-                                ['--r' as string]:
-                                    i === 0
-                                        ? '150%'
-                                        : `${(smooth(i / N - 0.035, i / N + 0.045, prog) * 150).toFixed(2)}%`,
-                                ['--k' as string]: clamp(
-                                    prog * N - i + 0.5
-                                ).toFixed(3),
+                                ['--_i' as string]: i,
+                                ['--r' as string]: i === 0 ? '150%' : undefined,
                             }}
                         />
                     ))}
@@ -449,11 +444,7 @@ export function VerticalSlider({
                         {items.map((it, i) => (
                             <li
                                 key={it.label}
-                                style={{
-                                    ['--f' as string]: clamp(
-                                        prog * N - i
-                                    ).toFixed(3),
-                                }}
+                                style={{ ['--_i' as string]: i }}
                             >
                                 <IndexItem
                                     label={it.label}
@@ -467,7 +458,7 @@ export function VerticalSlider({
                 </div>
                 {progress && (
                     <div className={styles.progress} aria-hidden="true">
-                        <span style={{ transform: `scaleX(${prog})` }} />
+                        <span />
                     </div>
                 )}
             </div>

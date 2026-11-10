@@ -129,7 +129,19 @@
     }
 
     /* Chapter media: full-bleed, opens with a circular wipe at 72% 50% and settles from scale 1.15 to 1 (v2 site) */
+    /*
+      Scroll progress --p (0 to 1) is set on the root; each item has its index --_i.
+      --r: smoothstep around the chapter start, 150% radius when open. --k: image settle. --f: index bar fill.
+    */
     .bg {
+        --_t: clamp(
+            0,
+            (var(--p, 0) - var(--_i) / var(--_steps) + 0.035) /
+            0.08,
+            1
+        );
+        --r: calc(var(--_t) * var(--_t) * (3 - 2 * var(--_t)) * 150%);
+        --k: clamp(0, var(--p, 0) * var(--_steps) - var(--_i) + 0.5, 1);
         position: absolute !important;
         z-index: 0;
         inset: 0;
@@ -153,6 +165,7 @@
             display: block;
             height: 100%;
             background: var(--color-shared-surface-fixed-brand-red);
+            transform: scaleX(var(--p, 0));
             transform-origin: left;
         }
     }
@@ -196,12 +209,9 @@
 
         & .mask > span {
             transform: translateY(calc(105% + 0.24em));
-            transition: transform 900ms var(--motion-ease-emphasized);
+            transition: transform var(--motion-duration-zoom)
+                var(--motion-ease-emphasized);
         }
-
-        /*
-  legacy-ok: v2 site title mask 900ms
-*/
 
         &[data-active] .mask > span {
             transform: none;
@@ -250,6 +260,10 @@
         margin: 0;
         padding: 0;
         list-style: none;
+
+        & > li {
+            --f: clamp(0, var(--p, 0) * var(--_steps) - var(--_i), 1);
+        }
     }
 
     .vindex {
@@ -267,12 +281,14 @@
         transition: color var(--motion-duration-base)
             var(--motion-ease-standard);
 
-        &:hover {
-            color: var(--color-shared-content-primary);
-        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: var(--color-shared-content-primary);
+            }
 
-        &:hover .vindex-bar {
-            background: var(--color-shared-content-tertiary);
+            &:hover .vindex-bar {
+                background: var(--color-shared-content-tertiary);
+            }
         }
 
         &[aria-current="true"] {

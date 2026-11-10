@@ -175,7 +175,14 @@ function useScrollState(enabled: boolean) {
         let last = window.scrollY
         const on = () => {
             const y = window.scrollY
-            setState({ scrolled: y > 8, hidden: y > last && y > 120 })
+            const scrolled = y > 8
+            const hidden = y > last && y > 120
+            // Same object back = no re-render; most scroll events change nothing
+            setState((s) =>
+                s.scrolled === scrolled && s.hidden === hidden
+                    ? s
+                    : { scrolled, hidden }
+            )
             last = y
         }
         window.addEventListener('scroll', on, { passive: true })
@@ -201,7 +208,12 @@ export function Header({
     const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
     const { scrolled, hidden } = useScrollState(fixed)
 
-    useEffect(() => setOpen(Expanded === 'Yes'), [Expanded])
+    // Follow the Expanded prop (story control) when it changes, without an effect
+    const [prevExpanded, setPrevExpanded] = useState(Expanded)
+    if (Expanded !== prevExpanded) {
+        setPrevExpanded(Expanded)
+        setOpen(Expanded === 'Yes')
+    }
 
     // Esc closes; mobile sheet locks page scroll
     useEffect(() => {

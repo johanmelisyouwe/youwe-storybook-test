@@ -60,11 +60,21 @@ export function Testimonial({
         return () => io.disconnect()
     }, [])
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: go is recreated every render; it only reads quotes, covered by quotes.length
     useEffect(() => {
-        if (!autoAdvance || paused || quotes.length < 2) return
+        if (
+            !autoAdvance ||
+            paused ||
+            quotes.length < 2 ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        )
+            return
         const t = setTimeout(() => go(i + 1), 7000)
         return () => clearTimeout(t)
-    })
+    }, [autoAdvance, paused, i, quotes.length])
+
+    // Announce quote changes only when the user drives them, not on every auto-advance
+    const live = autoAdvance && !paused ? 'off' : 'polite'
 
     return (
         <section
@@ -88,7 +98,7 @@ export function Testimonial({
                     <span className={styles.accent} aria-hidden="true" />
                     <div
                         style={{ viewTransitionName: 'yw-quote' }}
-                        aria-live={quotes.length > 1 ? 'polite' : undefined}
+                        aria-live={quotes.length > 1 ? live : undefined}
                     >
                         <blockquote className="yw-heading-lg">
                             {q.Quote}

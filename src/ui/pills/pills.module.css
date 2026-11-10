@@ -37,9 +37,11 @@
             padding-inline: var(--spacing-xs);
         }
 
-        &[data-variant="primary"]:hover {
-            --_bg: var(--color-component-brand-red-3);
-            --_border: var(--color-component-brand-red-3);
+        @media (hover: hover) and (pointer: fine) {
+            &[data-variant="primary"]:hover {
+                --_bg: var(--color-component-brand-red-3);
+                --_border: var(--color-component-brand-red-3);
+            }
         }
 
         &[data-variant="primary"]:active {
@@ -54,9 +56,11 @@
             --_fg: var(--color-shared-content-primary);
         }
 
-        &[data-variant="neutral"]:hover {
-            --_bg: var(--color-component-neutral-contrast-1);
-            --_fg: var(--color-shared-content-inverse-1);
+        @media (hover: hover) and (pointer: fine) {
+            &[data-variant="neutral"]:hover {
+                --_bg: var(--color-component-neutral-contrast-1);
+                --_fg: var(--color-shared-content-inverse-1);
+            }
         }
 
         &[data-variant="neutral"]:active {

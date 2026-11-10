@@ -29,8 +29,10 @@
             --_press-dot: 0.75rem;
         }
 
-        &:hover {
-            --_fx: var(--effect-shadow-outer-md-hover-shadow);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                --_fx: var(--effect-shadow-outer-md-hover-shadow);
+            }
         }
 
         &:active {
@@ -45,9 +47,11 @@
             background: var(--color-shared-surface-base-2);
         }
 
-        &:hover .input:checked + .circle {
-            --_bg: var(--color-component-brand-red-3);
-            --_border: var(--color-component-brand-red-3);
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .input:checked + .circle {
+                --_bg: var(--color-component-brand-red-3);
+                --_border: var(--color-component-brand-red-3);
+            }
         }
 
         &:active .input:checked + .circle {

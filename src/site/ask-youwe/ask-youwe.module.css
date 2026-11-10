@@ -148,12 +148,14 @@
             color: var(--color-shared-content-fixed-light);
         }
 
-        &[data-variant="primary"]:hover {
-            background: var(--color-component-brand-red-3);
-        }
+        @media (hover: hover) and (pointer: fine) {
+            &[data-variant="primary"]:hover {
+                background: var(--color-component-brand-red-3);
+            }
 
-        &[data-variant="glass"]:hover {
-            background: var(--color-component-ask-border);
+            &[data-variant="glass"]:hover {
+                background: var(--color-component-ask-border);
+            }
         }
 
         &[data-variant="disabled"] {
@@ -175,8 +177,10 @@
         }
     }
     .ask-chip {
-        &[data-suggestion]:hover {
-            background: var(--color-component-ask-border);
+        @media (hover: hover) and (pointer: fine) {
+            &[data-suggestion]:hover {
+                background: var(--color-component-ask-border);
+            }
         }
 
         &[data-context] {

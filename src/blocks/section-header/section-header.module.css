@@ -30,21 +30,23 @@
         }
     }
 
-    @supports (animation-timeline: view()) {
-        @keyframes word-rise {
-            from {
-                transform: translateY(105%);
+    @media (prefers-reduced-motion: no-preference) {
+        @supports (animation-timeline: view()) {
+            @keyframes word-rise {
+                from {
+                    transform: translateY(105%);
+                }
+                to {
+                    transform: none;
+                }
             }
-            to {
-                transform: none;
+            .word {
+                animation: word-rise var(--motion-duration-reveal)
+                    var(--motion-ease-emphasized) both;
+                animation-delay: calc(var(--_i) * var(--motion-stagger) / 2);
+                animation-timeline: view();
+                animation-range: entry 0% entry 60%;
             }
-        }
-        .word {
-            animation: word-rise var(--motion-duration-reveal)
-                var(--motion-ease-emphasized) both;
-            animation-delay: calc(var(--_i) * var(--motion-stagger) / 2);
-            animation-timeline: view();
-            animation-range: entry 0% entry 60%;
         }
     }
 

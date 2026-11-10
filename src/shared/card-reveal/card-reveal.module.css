@@ -19,15 +19,24 @@
             outline: none;
         }
 
-        &:hover .overlay,
         &:focus-visible .overlay {
             clip-path: inset(0 0 0 0 round var(--component-radius-card));
         }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .overlay {
+                clip-path: inset(0 0 0 0 round var(--component-radius-card));
+            }
+        }
 
-        &:hover .message,
         &:focus-visible .message {
             opacity: 1;
             transform: none;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .message {
+                opacity: 1;
+                transform: none;
+            }
         }
 
         /*
@@ -49,10 +58,15 @@
             pointer-events: none;
         }
 
-        &[data-reveal="lift"]:hover .lift,
         &[data-reveal="lift"]:focus-visible .lift {
             opacity: 0;
             transform: translateY(calc(var(--motion-distance-card) * -1));
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &[data-reveal="lift"]:hover .lift {
+                opacity: 0;
+                transform: translateY(calc(var(--motion-distance-card) * -1));
+            }
         }
     }
 

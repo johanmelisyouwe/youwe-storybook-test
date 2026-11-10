@@ -42,8 +42,12 @@ export function Toaster({
             data-shadow={Shadow === 'Yes' || undefined}
             data-leaving={leaving || undefined}
             className={cx(styles.root)}
-            onAnimationEnd={(e) => {
-                if (leaving && e.animationName === styles['toaster-out'])
+            onTransitionEnd={(e) => {
+                if (
+                    leaving &&
+                    e.target === e.currentTarget &&
+                    e.propertyName === 'opacity'
+                )
                     onClose?.()
             }}
         >

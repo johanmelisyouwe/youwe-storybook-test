@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import styles from './progress-bar.module.css'
 
 /* Progress Bar — Figma node 6284:7241 (page "– Progress Bar"). */
@@ -35,7 +36,10 @@ export function ProgressBar({
             aria-valuemax={100}
             aria-valuenow={v}
         >
-            <div className={styles.bar} style={{ width: `${v}%` }} />
+            <div
+                className={styles.bar}
+                style={{ '--_value': `${v}%` } as CSSProperties}
+            />
         </div>
     )
 }

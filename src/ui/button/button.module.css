@@ -87,9 +87,11 @@
 
         /* ---- Variants (Rest / Hover / Pressed) ---- */
         &[data-variant="primary"] {
-            &:hover {
-                --_bg: var(--color-component-brand-red-3);
-                --_border: var(--color-component-brand-red-3);
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    --_bg: var(--color-component-brand-red-3);
+                    --_border: var(--color-component-brand-red-3);
+                }
             }
 
             &:active {
@@ -104,9 +106,11 @@
             --_border-width: var(--shared-width-1);
             --_fg: var(--color-component-neutral-contrast-1);
 
-            &:hover {
-                --_bg: var(--color-component-neutral-contrast-1);
-                --_fg: var(--color-shared-content-inverse-1);
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    --_bg: var(--color-component-neutral-contrast-1);
+                    --_fg: var(--color-shared-content-inverse-1);
+                }
             }
 
             &:active {
@@ -122,9 +126,11 @@
             --_border-width: var(--shared-width-1);
             --_fg: var(--color-shared-content-primary);
 
-            &:hover {
-                --_bg: var(--color-component-neutral-mid-2);
-                --_border: var(--color-component-neutral-mid-2);
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    --_bg: var(--color-component-neutral-mid-2);
+                    --_border: var(--color-component-neutral-mid-2);
+                }
             }
 
             &:active {
@@ -134,12 +140,14 @@
         }
 
         /* Trailing icon nudges forward, leading icon nudges back (Figma Motion line) */
-        &[data-icon="trailing"]:hover .icon {
-            transform: translateX(var(--motion-distance-xs));
-        }
+        @media (hover: hover) and (pointer: fine) {
+            &[data-icon="trailing"]:hover .icon {
+                transform: translateX(var(--motion-distance-xs));
+            }
 
-        &[data-icon="leading"]:hover .icon {
-            transform: translateX(calc(var(--motion-distance-xs) * -1));
+            &[data-icon="leading"]:hover .icon {
+                transform: translateX(calc(var(--motion-distance-xs) * -1));
+            }
         }
 
         /* ---- Disabled ---- */
