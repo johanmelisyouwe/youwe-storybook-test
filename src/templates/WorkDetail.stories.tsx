@@ -45,7 +45,7 @@ function WorkDetailPage({ Device: story }: { Device: Device }) {
         Device={Device}
         title={['Scaling Smart: Quooker’s Expansion to 17 Countries']}
         label={{ Type: 'Breadcrumb', crumbs: [{ label: 'Home', href: '#' }, { label: 'Work', href: '#' }, { label: 'Quooker' }] }}
-        logo={logo('Quooker', 140)}
+        logo={logo('Quooker', 190)}
         image={caseImage('quooker-1', 'wide')}
       />
       <Section Mode="Dark">

@@ -29,6 +29,9 @@
   }
 
   .yw-case-card__logo { position: relative; z-index: 1; display: flex; }
+  /* Figma logo slot per size (190×100 logo box): 140×74; One quarter 104×55; mobile 112×59 */
+  .yw-case-card--one-quarter .yw-case-card__logo > [role='img'] { width: 104px !important; height: 55px !important; }
+  .yw-case-card--mobile .yw-case-card__logo > [role='img'] { width: 112px !important; height: 59px !important; }
 
   .yw-case-card__stat { position: absolute; z-index: 1; left: var(--spacing-sm); bottom: var(--spacing-sm); }
 

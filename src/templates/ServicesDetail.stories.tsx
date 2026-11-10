@@ -52,10 +52,10 @@ const CHALLENGES: [string, string, string][] = [
   ['New markets, new rules', 'Each market needs its own language, payments and range.', 'Multi-store B2B: one platform, a catalog and conditions per market.'],
 ];
 const STATS = [
-  { Value: '50%', Label: 'Fewer phone calls', logo: logo('Chadwicks'), href: '#' },
-  { Value: '73%', Label: 'Efficiency improvement', logo: logo('Elektrototaalmarkt'), href: '#' },
-  { Value: '3,360', Label: 'Man-hours saved', logo: logo('Chadwicks'), href: '#' },
-  { Value: '8', Label: 'Months to a live MVP', logo: logo('BunzlOne'), href: '#' },
+  { Value: '50%', Label: 'Fewer phone calls', logo: logo('Chadwicks', 80), href: '#' },
+  { Value: '73%', Label: 'Efficiency improvement', logo: logo('Elektrototaalmarkt', 80), href: '#' },
+  { Value: '3,360', Label: 'Man-hours saved', logo: logo('Chadwicks', 80), href: '#' },
+  { Value: '8', Label: 'Months to a live MVP', logo: logo('BunzlOne', 80), href: '#' },
 ];
 const MORE_CASES: [string, string][] = [
   ['A dealer portal with personalized pricing and technical drawings', 'PePe Parts'],
@@ -71,7 +71,7 @@ const RELATED: [string, string, string][] = [
   ['03 · Data & Integrations', 'Data Engineering & API', 'Pipelines, APIs and the integration layer.'],
   ['03 · Data & Integrations', 'ACI Weave', 'Our own platform for governed AI agents on your systems.'],
 ];
-const TECH = ['Adobe', 'Hyvä', 'Commercetools', 'Shopify', 'Pimcore', 'Alumio', 'Symson', 'Storyblok'].map((name) => ({ name, logo: logo(name, 110) }));
+const TECH = ['Adobe', 'Hyvä', 'Commercetools', 'Shopify', 'Pimcore', 'Alumio', 'Symson', 'Storyblok'].map((name) => ({ name, logo: logo(name, 118) }));
 
 const fc = (p: FeatureCardProps) => <FeatureCard key={p.Title} {...p} />;
 type Flush = 'top' | 'bottom' | 'both';

@@ -66,3 +66,14 @@ export const AllVariants: Story = {
     </div>
   ),
 };
+
+/** Client stat: rest and hover (whole card is the link; not in Figma yet, decided 10 November). */
+export const Hover: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="yw-stat-row" style={{ width: 640 }}>
+      <Stat Type="Client" {...CLIENT} />
+      <Stat Type="Client" {...CLIENT} className="pseudo-hover" />
+    </div>
+  ),
+};

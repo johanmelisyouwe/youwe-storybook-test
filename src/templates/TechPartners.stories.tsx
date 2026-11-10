@@ -8,7 +8,7 @@ import type { TechnologyCardProps } from '../components/components/TechnologyCar
 import { AskSnippet } from '../components/components/AskYouwe/AskYouwe';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import '../components/shared/block.css';
-import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
+import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, partnerLogo, type Device, useDevice } from './shared';
 import { abstract, logoFor } from '../media/media';
 
 /*
@@ -20,7 +20,7 @@ import { abstract, logoFor } from '../media/media';
 */
 
 type Card = [name: string, level?: string, description?: string, button?: boolean];
-const cards = (list: Card[]): TechnologyCardProps[] => list.map(([Name, Level, Description, b]) => ({ Name, Level, Description, 'Show button': b, logo: logoFor(Name) ? logo(Name, 100) : undefined, 'Hover CTA': 'Go to partner page', 'Hover context': `${Name} at Youwe`, href: '#' }));
+const cards = (list: Card[]): TechnologyCardProps[] => list.map(([Name, Level, Description, b]) => ({ Name, Level, Description, 'Show button': b, logo: logoFor(Name, 'partner') ? partnerLogo(Name) : undefined, 'Hover CTA': 'Go to partner page', 'Hover context': `${Name} at Youwe`, href: '#' }));
 
 const SPLITS: (Omit<TechPartnersSplitProps, 'Device'> & { key: string })[] = [
   {

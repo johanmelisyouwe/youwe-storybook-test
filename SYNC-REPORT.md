@@ -1,18 +1,18 @@
-# Sync report — 10 November 2026 (mobile & layout fixes)
+# Sync report — 10 November 2026 (logos & states)
 
-First batch of the backlog from the 10 November review. Decisions: arrow button top-right on touch cards; hamburger below 1024px; templates follow the screen width.
+Backlog batch 2: logos in their Figma boxes, the remaining logo exports and the stat card hover.
 
-## Fixed
+## Logos
 
-- **Templates work on a real phone.** The Desktop template stories now follow the screen: below 768px they render the mobile variants (slider, cards, hero, filter bar, footer…), so opening a Desktop template on a phone shows the mobile design instead of a squeezed desktop. The Mobile stories still always render mobile at 360px. (`useDevice` in `src/templates/shared.tsx`.)
-- **Header: hamburger below 1024px.** Header and Footer have a new `Device="Auto"`: both versions render and the screen width picks one (header below 1024px, footer below 768px). Templates use it; the Header and Footer stories have a *Responsive* story to try it by resizing.
-- **Mobile footer** now shows on phones (same mechanism).
-- **Horizontal scroll.** Found on Work (mobile): the filter pills row stretched its grid wider than the screen. Fixed, and as a safeguard every content block and template page clips sideways overflow (`overflow-x: clip`, which keeps sticky/pinned sections working). Bleeding rows (case carousel, giant text, logo marquee) stay inside the page. The case carousel itself still swipes sideways, by design.
-- **Cards on touch screens:** no red hover overlay; an always-visible round arrow button top-right (the Figma hover arrow tile). Cards that already show their own arrow button (Service, Technology, Feature) keep theirs. On case cards the client logo moves left of the arrow.
-- **Static arrow on hover (desktop):** on Service and System cards the card's own arrow button no longer moves up with the text when the red overlay comes in.
-- **Hero:** long titles no longer run under the header (top padding equal to the header area). At 1440 the hero looks the same.
+- **Figma logo boxes everywhere.** In Figma every client and technology logo is a 190×100 frame with the logo placed inside with its own margins (Clients/*, Technologies/*), and the partner logos on Tech Partners are 120×40 frames (Logos/*). The logo files are now those frames, so a logo drawn at a slot size carries the Figma margins: case cards 140×74 (One quarter 104×55, mobile 112×59), stats 80×42, hero logo bars and the technology grid 118×62, partner cards 120×40, case hero 190×100.
+- **Case card logo** no longer touches the edges: the image keeps its Figma padding (8/16) and the logo its box margins.
+- **19 more logos exported** (the partner logos on Tech Partners and Build your stack): Databricks, Microsoft Fabric, Google Cloud, OpenAI, n8n, Spryker, Contentful, DotDigital, Salesforce, Klaviyo, Algolia, Tweakwise, Klevu, Channable, Adyen, Buckaroo, Mollie, Sendcloud, Hypernode. Partner cards now show logos instead of names.
+- `Logo` takes the slot `width` (and `kind="partner"` for the 120×40 partner box); `ClientLogo` uses it. Logos stay one colour (text colour), so Databricks' red mark is drawn in the text colour too.
+- Unipart has no logo in Figma, so it still shows the name.
 
-Checked on an emulated iPhone 13 (Home, Work, Services detail, Tech Partners, Industries, Work detail: no sideways scroll, hamburger, mobile footer, touch arrows) and at 1440 (unchanged).
+## Stat card hover
+
+Not in Figma yet, so designed in code to match the cards: the whole Client stat card is the link; on hover the card goes to surface/base-2 and the round arrow fills brand red with a light arrow (duration/fast). No hover on touch screens. New *Hover* story. Adding the state to the Figma Stat component is on the backlog (Figma batch).
 
 ## Checks
 
@@ -21,6 +21,8 @@ Checked on an emulated iPhone 13 (Home, Work, Services detail, Tech Partners, In
 - `check-legacy`: clean
 - `check-coverage`: clean
 
+Visual check: Home (stats, hero logos, carousel), Tech Partners (partner cards), Case carousel and Stat stories.
+
 ## Backlog
 
-The five items above are removed from BACKLOG.md. Next batch: logos (Figma logo boxes, case card padding, remaining exports) and the stat card hover.
+Removed: case card logo padding, Figma logo boxes, stat hover, remaining logos. Added: Stat hover in Figma. Next: text contrast.
