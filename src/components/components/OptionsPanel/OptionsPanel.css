@@ -7,48 +7,49 @@
   Selected option: surface/base-2 (the Figma "Selector" rows). Opening has no motion line in Figma.
 */
 @layer components {
-  .yw-options {
-    position: absolute;
-    z-index: 10;
-    top: calc(100% + var(--spacing-3xs));
-    left: 0;
-    min-width: 100%;
-    max-height: 220px;
-    margin: 0;
-    padding: 0;
-    overflow-y: auto;
-    border-radius: var(--shared-radius-2);
-    background: var(--color-shared-surface-base-1);
-    box-shadow: var(--effect-shadow-outer-sm-drop-shadow);
-    list-style: none;
-  }
+    .yw-options {
+        position: absolute;
+        z-index: 10;
+        top: calc(100% + var(--spacing-3xs));
+        left: 0;
+        min-width: 100%;
+        max-height: 220px;
+        margin: 0;
+        padding: 0;
+        overflow-y: auto;
+        border-radius: var(--shared-radius-2);
+        background: var(--color-shared-surface-base-1);
+        box-shadow: var(--effect-shadow-outer-sm-drop-shadow);
+        list-style: none;
+    }
 
-  .yw-options__option {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-2xs);
-    min-height: 45px;
-    padding: var(--spacing-xs);
-    background: var(--color-shared-surface-base-1);
-    color: var(--color-shared-content-primary);
-    white-space: nowrap;
-    cursor: pointer;
-    transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
-  }
+    .yw-options__option {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        min-height: 45px;
+        padding: var(--spacing-xs);
+        background: var(--color-shared-surface-base-1);
+        color: var(--color-shared-content-primary);
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background-color var(--motion-duration-fast)
+            var(--motion-ease-standard);
+    }
 
-  .yw-options__option[aria-selected='true'] {
-    background: var(--color-shared-surface-base-2);
-  }
+    .yw-options__option[aria-selected="true"] {
+        background: var(--color-shared-surface-base-2);
+    }
 
-  .yw-options__option:hover,
-  .yw-options__option.is-active {
-    background: var(--color-shared-surface-base-3);
-  }
+    .yw-options__option:hover,
+    .yw-options__option.is-active {
+        background: var(--color-shared-surface-base-3);
+    }
 
-  .yw-options__flag {
-    display: block;
-    flex-shrink: 0;
-    width: 22px;
-    height: 16px;
-  }
+    .yw-options__flag {
+        display: block;
+        flex-shrink: 0;
+        width: 22px;
+        height: 16px;
+    }
 }

@@ -8,36 +8,36 @@
   Neutral: shared/surface/tint-1 + blur/background-blur, text shared/content/fixed/light
 */
 @layer components {
-  .yw-tag {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-    gap: var(--spacing-4xs);
-    height: 20px;
-    padding-inline: var(--spacing-3xs);
-    border-radius: var(--component-radius-tag);
-    color: var(--color-shared-content-fixed-light);
-    white-space: nowrap;
-  }
+    .yw-tag {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        gap: var(--spacing-4xs);
+        height: 20px;
+        padding-inline: var(--spacing-3xs);
+        border-radius: var(--component-radius-tag);
+        color: var(--color-shared-content-fixed-light);
+        white-space: nowrap;
+    }
 
-  .yw-tag--m {
-    gap: var(--spacing-3xs);
-    height: 24px;
-    padding-inline: var(--spacing-2xs);
-  }
+    .yw-tag--m {
+        gap: var(--spacing-3xs);
+        height: 24px;
+        padding-inline: var(--spacing-2xs);
+    }
 
-  .yw-tag--info {
-    background: var(--color-shared-surface-fixed-bright-blue);
-  }
+    .yw-tag--info {
+        background: var(--color-shared-surface-fixed-bright-blue);
+    }
 
-  .yw-tag--neutral {
-    background: var(--color-shared-surface-tint-1);
-    backdrop-filter: blur(var(--effect-blur-background-blur-blur));
-    -webkit-backdrop-filter: blur(var(--effect-blur-background-blur-blur));
-  }
+    .yw-tag--neutral {
+        background: var(--color-shared-surface-tint-1);
+        backdrop-filter: blur(var(--effect-blur-background-blur-blur));
+        -webkit-backdrop-filter: blur(var(--effect-blur-background-blur-blur));
+    }
 
-  .yw-tag__icon {
-    display: inline-flex;
-    flex-shrink: 0;
-  }
+    .yw-tag__icon {
+        display: inline-flex;
+        flex-shrink: 0;
+    }
 }

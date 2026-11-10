@@ -7,33 +7,61 @@
   (pill, border/2, body/xs/reg component/tag/content) with 8px top. Hover: shared red reveal.
 */
 @layer components {
-  .yw-events { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spacing-md); }
-  .yw-events__heading { display: flex; flex-direction: column; gap: var(--spacing-2xs); margin: 0; }
-  .yw-events__eyebrow { color: var(--color-shared-content-secondary); }
-  .yw-events__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--spacing-sm); width: 100%; margin: 0; padding: 0; list-style: none; }
-  .yw-events--mobile .yw-events__list { grid-template-columns: 1fr; }
+    .yw-events {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+    .yw-events__heading {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        margin: 0;
+    }
+    .yw-events__eyebrow {
+        color: var(--color-shared-content-secondary);
+    }
+    .yw-events__list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--spacing-sm);
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .yw-events--mobile .yw-events__list {
+        grid-template-columns: 1fr;
+    }
 
-  .yw-event {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    height: 100%;
-    padding: var(--spacing-sm);
-    border-radius: var(--component-radius-card);
-    background: var(--color-shared-surface-base-2);
-  }
+    .yw-event {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        height: 100%;
+        padding: var(--spacing-sm);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
 
-  .yw-event__date {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-3xs);
-    width: 76px;
-    padding-bottom: var(--spacing-3xs);
-    border-radius: var(--shared-radius-4);
-    background: var(--color-shared-surface-base-1);
-  }
+    .yw-event__date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        width: 76px;
+        padding-bottom: var(--spacing-3xs);
+        border-radius: var(--shared-radius-4);
+        background: var(--color-shared-surface-base-1);
+    }
 
-  .yw-event__month { color: var(--color-shared-content-brand); }
-  .yw-event__text { display: flex; flex-direction: column; gap: var(--spacing-3xs); }
+    .yw-event__month {
+        color: var(--color-shared-content-brand);
+    }
+    .yw-event__text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+    }
 }

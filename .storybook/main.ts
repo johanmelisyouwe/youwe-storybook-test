@@ -1,25 +1,26 @@
-import type { StorybookConfig } from '@storybook/nextjs-vite';
+import type { StorybookConfig } from '@storybook/nextjs-vite'
 
 // Aktiv Grotesk (Youwe-licensed) is served from public/fonts and declared in
 // src/styles/fonts.css. Preload the three weights the Figma text styles use.
-const weights = ['regular', 'medium', 'bold'];
+const weights = ['regular', 'medium', 'bold']
 
 const config: StorybookConfig = {
-  framework: { name: '@storybook/nextjs-vite', options: {} },
-  stories: [
-    '../src/**/*.mdx',
-    '../src/**/*.stories.@(ts|tsx)',
-  ],
-  addons: ['@storybook/addon-docs', '@storybook/addon-a11y', 'storybook-addon-pseudo-states'],
-  staticDirs: ['../public'],
-  // Keep the published Storybook out of search engines (GitHub Pages can't send
-  // X-Robots-Tag headers, and a robots.txt only counts at the domain root).
-  managerHead: (head) => `${head}
+    framework: { name: '@storybook/nextjs-vite', options: {} },
+    stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
+    addons: [
+        '@storybook/addon-docs',
+        '@storybook/addon-a11y',
+        'storybook-addon-pseudo-states',
+    ],
+    staticDirs: ['../public'],
+    // Keep the published Storybook out of search engines (GitHub Pages can't send
+    // X-Robots-Tag headers, and a robots.txt only counts at the domain root).
+    managerHead: (head) => `${head}
     <meta name="robots" content="noindex, nofollow, noarchive">`,
-  previewHead: (head) => `${head}
+    previewHead: (head) => `${head}
     <meta name="robots" content="noindex, nofollow, noarchive">
     ${weights.map((w) => `<link rel="preload" href="./fonts/aktiv-grotesk/aktiv-grotesk-${w}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n    ')}`,
-  core: { disableTelemetry: true },
-};
+    core: { disableTelemetry: true },
+}
 
-export default config;
+export default config

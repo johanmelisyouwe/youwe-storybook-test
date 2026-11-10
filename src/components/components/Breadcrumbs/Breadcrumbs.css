@@ -7,43 +7,51 @@
     optional Button/Filter S on the right (prop "Filter button").
 */
 @layer components {
-  .yw-breadcrumbs__list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--spacing-3xs);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+    .yw-breadcrumbs__list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 
-  .yw-breadcrumbs__item {
-    display: inline-flex;
-    color: var(--color-shared-content-tertiary);
-  }
+    .yw-breadcrumbs__item {
+        display: inline-flex;
+        color: var(--color-shared-content-tertiary);
+    }
 
-  /* _breadcrumb-link: chevron + text, gap 4; the focus ring wraps both (Figma State=Focused) */
-  .yw-breadcrumbs__link {
-    --_ring-radius: var(--shared-radius-4);
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-3xs);
-    border-radius: var(--shared-radius-4);
-    color: inherit;
-    text-decoration: none;
-  }
+    /* _breadcrumb-link: chevron + text, gap 4; the focus ring wraps both (Figma State=Focused) */
+    .yw-breadcrumbs__link {
+        --_ring-radius: var(--shared-radius-4);
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        border-radius: var(--shared-radius-4);
+        color: inherit;
+        text-decoration: none;
+    }
 
-  /* Hover: not in Figma yet (approved 2026-11-09, design to add it): text to content/primary */
-  .yw-breadcrumbs__text { transition: color var(--motion-duration-fast) var(--motion-ease-standard); }
-  .yw-breadcrumbs__link:hover .yw-breadcrumbs__text,
-  .yw-breadcrumbs__link[aria-current='page'] .yw-breadcrumbs__text { color: var(--color-shared-content-primary); }
+    /* Hover: not in Figma yet (approved 2026-11-09, design to add it): text to content/primary */
+    .yw-breadcrumbs__text {
+        transition: color var(--motion-duration-fast)
+            var(--motion-ease-standard);
+    }
+    .yw-breadcrumbs__link:hover .yw-breadcrumbs__text,
+    .yw-breadcrumbs__link[aria-current="page"] .yw-breadcrumbs__text {
+        color: var(--color-shared-content-primary);
+    }
 
-  .yw-breadcrumbs__chevron { display: inline-flex; flex-shrink: 0; }
+    .yw-breadcrumbs__chevron {
+        display: inline-flex;
+        flex-shrink: 0;
+    }
 
-  .yw-breadcrumbs--mobile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 36px;
-  }
+    .yw-breadcrumbs--mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 36px;
+    }
 }

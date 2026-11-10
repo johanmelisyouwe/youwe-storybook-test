@@ -5,35 +5,35 @@
   Stack items with gap 2xs (Figma description). Device only changes the width (text style is responsive).
 */
 @layer components {
-  .yw-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2xs);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+    .yw-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 
-  .yw-list-item {
-    display: flex;
-    gap: var(--spacing-xs);
-    color: var(--color-shared-content-secondary);
-  }
+    .yw-list-item {
+        display: flex;
+        gap: var(--spacing-xs);
+        color: var(--color-shared-content-secondary);
+    }
 
-  .yw-list-item__icon {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 1lh;
-    color: var(--color-shared-content-brand);
-  }
+    .yw-list-item__icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 1lh;
+        color: var(--color-shared-content-brand);
+    }
 
-  .yw-list-item__bullet {
-    width: 6px;
-    height: 6px;
-    border-radius: var(--shared-radius-circular);
-    background: currentColor;
-  }
+    .yw-list-item__bullet {
+        width: 6px;
+        height: 6px;
+        border-radius: var(--shared-radius-circular);
+        background: currentColor;
+    }
 }

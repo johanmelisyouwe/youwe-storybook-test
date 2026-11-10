@@ -6,24 +6,60 @@
   Optional actions: up to 3 Solid M buttons, gap 12. Motion (Figma): scroll block reveal.
 */
 @layer components {
-  .yw-quote-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    margin: 0;
-    padding: var(--spacing-lg);
-    border-radius: var(--component-radius-card);
-    background: var(--color-shared-surface-base-2);
-  }
+    .yw-quote-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        margin: 0;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
 
-  .yw-quote-card__quote { display: flex; flex-direction: column; gap: var(--spacing-sm); padding-bottom: var(--spacing-xl); }
-  .yw-quote-card__mark { height: 48px; color: var(--color-shared-content-brand); font-weight: var(--font-weight-bold); font-size: var(--font-size-heading-2xl); line-height: 48px; }
-  .yw-quote-card blockquote { margin: 0; }
-  .yw-quote-card__bottom { display: flex; flex-direction: column; gap: var(--spacing-lg); }
-  .yw-quote-card__attribution { display: flex; align-items: center; gap: var(--spacing-sm); }
-  .yw-quote-card__person { display: flex; flex: 1; flex-direction: column; gap: var(--spacing-4xs); }
-  .yw-quote-card__role { color: var(--color-shared-content-secondary); }
-  .yw-quote-card__logo { display: flex; flex-shrink: 0; width: 96px; }
-  .yw-quote-card__actions { display: flex; flex-wrap: wrap; gap: var(--spacing-xs); }
+    .yw-quote-card__quote {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding-bottom: var(--spacing-xl);
+    }
+    .yw-quote-card__mark {
+        height: 48px;
+        color: var(--color-shared-content-brand);
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-heading-2xl);
+        line-height: 48px;
+    }
+    .yw-quote-card blockquote {
+        margin: 0;
+    }
+    .yw-quote-card__bottom {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    .yw-quote-card__attribution {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+    .yw-quote-card__person {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-4xs);
+    }
+    .yw-quote-card__role {
+        color: var(--color-shared-content-secondary);
+    }
+    .yw-quote-card__logo {
+        display: flex;
+        flex-shrink: 0;
+        width: 96px;
+    }
+    .yw-quote-card__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
 }

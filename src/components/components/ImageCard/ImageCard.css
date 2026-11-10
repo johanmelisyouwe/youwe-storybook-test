@@ -4,9 +4,27 @@
   Motion (Figma): when linked, the image zooms to 1.04 on hover (duration/zoom, ease/emphasized).
 */
 @layer components {
-  .yw-image-card { display: flex; flex-direction: column; gap: var(--spacing-xs); height: 100%; margin: 0; color: inherit; text-decoration: none; }
-  .yw-image-card__media { flex: 1; min-height: 0; }
-  .yw-image-card__media > img { transition: transform var(--motion-duration-zoom) var(--motion-ease-emphasized); }
-  a.yw-image-card:hover .yw-image-card__media > img { transform: scale(1.04); }
-  .yw-image-card__caption { color: var(--color-shared-content-secondary); }
+    .yw-image-card {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        height: 100%;
+        margin: 0;
+        color: inherit;
+        text-decoration: none;
+    }
+    .yw-image-card__media {
+        flex: 1;
+        min-height: 0;
+    }
+    .yw-image-card__media > img {
+        transition: transform var(--motion-duration-zoom)
+            var(--motion-ease-emphasized);
+    }
+    a.yw-image-card:hover .yw-image-card__media > img {
+        transform: scale(1.04);
+    }
+    .yw-image-card__caption {
+        color: var(--color-shared-content-secondary);
+    }
 }

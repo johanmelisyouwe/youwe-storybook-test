@@ -8,76 +8,77 @@
   Focus ring: shared Focus Ring building block.
 */
 @layer components {
-  .yw-pill {
-    --_bg: var(--color-component-brand-red-2);
-    --_border: var(--color-component-brand-red-2);
-    --_border-width: var(--shared-width-1);
-    --_fg: var(--color-shared-content-fixed-light);
+    .yw-pill {
+        --_bg: var(--color-component-brand-red-2);
+        --_border: var(--color-component-brand-red-2);
+        --_border-width: var(--shared-width-1);
+        --_fg: var(--color-shared-content-fixed-light);
 
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-    gap: var(--spacing-3xs);
-    height: 36px;
-    padding-inline: var(--spacing-sm);
-    border-radius: var(--component-radius-pill);
-    background: var(--_bg);
-    color: var(--_fg);
-    box-shadow: inset 0 0 0 var(--_border-width) var(--_border);
-    white-space: nowrap;
-    cursor: pointer;
-    transition:
-      background-color var(--motion-duration-fast) var(--motion-ease-standard),
-      color var(--motion-duration-fast) var(--motion-ease-standard),
-      box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
-  }
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        gap: var(--spacing-3xs);
+        height: 36px;
+        padding-inline: var(--spacing-sm);
+        border-radius: var(--component-radius-pill);
+        background: var(--_bg);
+        color: var(--_fg);
+        box-shadow: inset 0 0 0 var(--_border-width) var(--_border);
+        white-space: nowrap;
+        cursor: pointer;
+        transition:
+            background-color var(--motion-duration-fast)
+            var(--motion-ease-standard),
+            color var(--motion-duration-fast) var(--motion-ease-standard),
+            box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+    }
 
-  .yw-pill--s {
-    height: 24px;
-    padding-inline: var(--spacing-xs);
-  }
+    .yw-pill--s {
+        height: 24px;
+        padding-inline: var(--spacing-xs);
+    }
 
-  .yw-pill__icon {
-    display: inline-flex;
-    flex-shrink: 0;
-  }
+    .yw-pill__icon {
+        display: inline-flex;
+        flex-shrink: 0;
+    }
 
-  .yw-pill--primary:hover {
-    --_bg: var(--color-component-brand-red-3);
-    --_border: var(--color-component-brand-red-3);
-  }
+    .yw-pill--primary:hover {
+        --_bg: var(--color-component-brand-red-3);
+        --_border: var(--color-component-brand-red-3);
+    }
 
-  .yw-pill--primary:active {
-    --_bg: var(--color-component-brand-red-4);
-    --_border: var(--color-component-brand-red-4);
-    --_border-width: var(--shared-width-2);
-  }
+    .yw-pill--primary:active {
+        --_bg: var(--color-component-brand-red-4);
+        --_border: var(--color-component-brand-red-4);
+        --_border-width: var(--shared-width-2);
+    }
 
-  .yw-pill--neutral {
-    --_bg: var(--color-shared-surface-transparent);
-    --_border: var(--color-component-neutral-contrast-1);
-    --_fg: var(--color-shared-content-primary);
-  }
+    .yw-pill--neutral {
+        --_bg: var(--color-shared-surface-transparent);
+        --_border: var(--color-component-neutral-contrast-1);
+        --_fg: var(--color-shared-content-primary);
+    }
 
-  .yw-pill--neutral:hover {
-    --_bg: var(--color-component-neutral-contrast-1);
-    --_fg: var(--color-shared-content-inverse-1);
-  }
+    .yw-pill--neutral:hover {
+        --_bg: var(--color-component-neutral-contrast-1);
+        --_fg: var(--color-shared-content-inverse-1);
+    }
 
-  .yw-pill--neutral:active {
-    --_bg: var(--color-component-neutral-contrast-2);
-    --_border: var(--color-component-neutral-contrast-2);
-    --_border-width: var(--shared-width-2);
-    --_fg: var(--color-shared-content-inverse-1);
-  }
+    .yw-pill--neutral:active {
+        --_bg: var(--color-component-neutral-contrast-2);
+        --_border: var(--color-component-neutral-contrast-2);
+        --_border-width: var(--shared-width-2);
+        --_fg: var(--color-shared-content-inverse-1);
+    }
 
-  /* Focus: Rest look + the shared Focus Ring (src/components/shared/focus-ring.css) */
+    /* Focus: Rest look + the shared Focus Ring (src/components/shared/focus-ring.css) */
 
-  .yw-pill:disabled {
-    --_bg: var(--color-component-disabled-surface-1);
-    --_border: var(--color-component-disabled-border-default);
-    --_border-width: var(--shared-width-1);
-    --_fg: var(--color-component-disabled-content-default);
-    cursor: not-allowed;
-  }
+    .yw-pill:disabled {
+        --_bg: var(--color-component-disabled-surface-1);
+        --_border: var(--color-component-disabled-border-default);
+        --_border-width: var(--shared-width-1);
+        --_fg: var(--color-component-disabled-content-default);
+        cursor: not-allowed;
+    }
 }

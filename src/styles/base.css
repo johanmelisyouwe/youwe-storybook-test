@@ -1,40 +1,44 @@
 /* Page defaults that use the Figma tokens. */
 @layer typography {
-  html {
-    color-scheme: dark;
-  }
+    html {
+        color-scheme: dark;
+    }
 
-  [data-theme='light'] {
-    color-scheme: light;
-  }
+    [data-theme="light"] {
+        color-scheme: light;
+    }
 
-  body {
-    background: var(--color-shared-surface-base-1);
-    color: var(--color-shared-content-primary);
-    font-family: var(--font-family-body);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-size-body-md);
-  }
+    body {
+        background: var(--color-shared-surface-base-1);
+        color: var(--color-shared-content-primary);
+        font-family: var(--font-family-body);
+        font-weight: var(--font-weight-regular);
+        font-size: var(--font-size-body-md);
+    }
 
-  .container {
-    width: 100%;
-    max-width: calc(var(--layout-container-max-width) + 2 * var(--layout-container-padding));
-    margin-inline: auto;
-    padding-inline: var(--layout-container-padding);
-  }
+    .container {
+        width: 100%;
+        max-width: calc(
+            var(--layout-container-max-width) +
+            2 *
+            var(--layout-container-padding)
+        );
+        margin-inline: auto;
+        padding-inline: var(--layout-container-padding);
+    }
 }
 
 @layer utilities {
-  /* Text for screen readers only (e.g. "1 active" on the filter counter) */
-  .yw-visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-    border: 0;
-  }
+    /* Text for screen readers only (e.g. "1 active" on the filter counter) */
+    .yw-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+    }
 }

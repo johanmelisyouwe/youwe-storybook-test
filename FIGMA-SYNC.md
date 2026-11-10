@@ -1,6 +1,6 @@
 # Figma → Storybook sync (v2)
 
-Instructions for an AI coding assistant (Claude Code, Cursor, Copilot, Windsurf or any tool that supports MCP). Run them whenever the design system changes in Figma: *"Run the sync described in FIGMA-SYNC.md."*
+Instructions for an AI coding assistant (Claude Code, Cursor, Copilot, Windsurf or any tool that supports MCP). Run them whenever the design system changes in Figma: _"Run the sync described in FIGMA-SYNC.md."_
 
 **Figma is the source of truth.** This file contains no design specs on purpose. Every value, variant, state, text and motion rule is read from Figma at run time. If something is missing or unclear in Figma, report it. Do not invent it here or in code.
 
@@ -16,36 +16,36 @@ Instructions for an AI coding assistant (Claude Code, Cursor, Copilot, Windsurf 
 
 Everything below refers to these paths. If you use this kit in another repo, update this table first and keep the rest of the file unchanged.
 
-| What | This repo |
-|---|---|
-| Stack | Next.js 16 + React 19 + TypeScript, Storybook 10 (`@storybook/nextjs-vite`), plain CSS with cascade layers |
-| Token export (input) | `tokens/figma-variables.json` |
-| Generated tokens (output) | `src/tokens/tokens.css`, `src/tokens/tokens.resolved.json`, built with `pnpm tokens` |
-| Entry stylesheet | `src/styles/globals.css`: declares `@layer reset, tokens, components, typography, utilities;`, imports the reset and tokens. Imported by `.storybook/preview.tsx` and `app/layout.tsx` |
-| Components | `src/components/<group>/<Name>/`: `<Name>.tsx`, `<Name>.css`, `<Name>.stories.tsx`. Groups: `components` (Figma `Components/…`), `content-blocks` (Figma `Content blocks/…`), `site` (header, footer, Ask Youwe) |
-| Building blocks (`_` names) | inside the parent's folder, no story |
-| Templates | `src/templates/<Name>.stories.tsx`, title `Templates/<Name>`, exports `Desktop` and `Mobile` |
-| Foundations docs | `src/foundations/` (rendered from `tokens.resolved.json`) |
-| Exported images | `public/figma-assets/<group>/<name>.<ext>`, referenced as `/figma-assets/…` |
-| Fonts | family from tokens; files in `public/fonts/aktiv-grotesk/` (Regular, Medium, Bold woff2, Youwe-licensed), declared in `src/styles/fonts.css` |
-| Run / build / check | `pnpm storybook` · `pnpm build-storybook` · `pnpm typecheck` · `pnpm check` |
-| Old Storybook to migrate | none (`figma-sync.json` has `"migrated"`), so step 0 is skipped |
+| What                        | This repo                                                                                                                                                                                                        |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stack                       | Next.js 16 + React 19 + TypeScript, Storybook 10 (`@storybook/nextjs-vite`), plain CSS with cascade layers                                                                                                       |
+| Token export (input)        | `tokens/figma-variables.json`                                                                                                                                                                                    |
+| Generated tokens (output)   | `src/tokens/tokens.css`, `src/tokens/tokens.resolved.json`, built with `pnpm tokens`                                                                                                                             |
+| Entry stylesheet            | `src/styles/globals.css`: declares `@layer reset, tokens, components, typography, utilities;`, imports the reset and tokens. Imported by `.storybook/preview.tsx` and `app/layout.tsx`                           |
+| Components                  | `src/components/<group>/<Name>/`: `<Name>.tsx`, `<Name>.css`, `<Name>.stories.tsx`. Groups: `components` (Figma `Components/…`), `content-blocks` (Figma `Content blocks/…`), `site` (header, footer, Ask Youwe) |
+| Building blocks (`_` names) | inside the parent's folder, no story                                                                                                                                                                             |
+| Templates                   | `src/templates/<Name>.stories.tsx`, title `Templates/<Name>`, exports `Desktop` and `Mobile`                                                                                                                     |
+| Foundations docs            | `src/foundations/` (rendered from `tokens.resolved.json`)                                                                                                                                                        |
+| Exported images             | `public/figma-assets/<group>/<name>.<ext>`, referenced as `/figma-assets/…`                                                                                                                                      |
+| Fonts                       | family from tokens; files in `public/fonts/aktiv-grotesk/` (Regular, Medium, Bold woff2, Youwe-licensed), declared in `src/styles/fonts.css`                                                                     |
+| Run / build / check         | `pnpm storybook` · `pnpm build-storybook` · `pnpm typecheck` · `pnpm check`                                                                                                                                      |
+| Old Storybook to migrate    | none (`figma-sync.json` has `"migrated"`), so step 0 is skipped                                                                                                                                                  |
 
 ---
 
 ## 1. Where things live in Figma
 
-| What | Where in Figma | How to read it |
-|---|---|---|
-| Colours, spacing, font sizes, radii, borders, layout, **motion** | Local variables (collections `color_primitives`, `color_semantics`, `spacing`, `font_semantics`, `font_primitives`, `border`, `layout`, `motion`) | Run `figma/export-figma-variables.js` (step 3) |
-| Text styles and effects (shadows, blur) | Local styles | Same export |
-| Components | Pages whose name starts with `– ` (for example `– Case Card`, `– Content blocks/Hero`) | Run `figma/inventory.js`, then read **each variant** with the MCP design-context tool, plus a screenshot |
-| Component behaviour | Each component's **description**: lines starting with `Motion:` and `Interaction:` | Part of the inventory output |
-| Motion principles and recipes | Page **Brand / Motion** | Read the page (design context or screenshot) |
-| Ask Youwe behaviour | Page **– Ask Youwe**, frame "Usage notes" | Read the page |
-| Imagery | Pages **Brand / Imagery** and **Brand / Cases Content**; library file "Youwe – Imagery" | Export assets through the MCP tools into `public/figma-assets/`. Never hot-link Figma image URLs: they expire. |
-| Approved page templates | Page **Templates**, frames named `Page / …` in the sections *Desktop* and *Mobile* | Run `figma/templates.js` (step 5). Every other frame on that page is an exploration: ignore it. |
-| Page structure, rhythm and content rules | Page **Brand / Page guidelines** | Read the page (step 6) |
+| What                                                             | Where in Figma                                                                                                                                    | How to read it                                                                                                 |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Colours, spacing, font sizes, radii, borders, layout, **motion** | Local variables (collections `color_primitives`, `color_semantics`, `spacing`, `font_semantics`, `font_primitives`, `border`, `layout`, `motion`) | Run `figma/export-figma-variables.js` (step 3)                                                                 |
+| Text styles and effects (shadows, blur)                          | Local styles                                                                                                                                      | Same export                                                                                                    |
+| Components                                                       | Pages whose name starts with `– ` (for example `– Case Card`, `– Content blocks/Hero`)                                                            | Run `figma/inventory.js`, then read **each variant** with the MCP design-context tool, plus a screenshot       |
+| Component behaviour                                              | Each component's **description**: lines starting with `Motion:` and `Interaction:`                                                                | Part of the inventory output                                                                                   |
+| Motion principles and recipes                                    | Page **Brand / Motion**                                                                                                                           | Read the page (design context or screenshot)                                                                   |
+| Ask Youwe behaviour                                              | Page **– Ask Youwe**, frame "Usage notes"                                                                                                         | Read the page                                                                                                  |
+| Imagery                                                          | Pages **Brand / Imagery** and **Brand / Cases Content**; library file "Youwe – Imagery"                                                           | Export assets through the MCP tools into `public/figma-assets/`. Never hot-link Figma image URLs: they expire. |
+| Approved page templates                                          | Page **Templates**, frames named `Page / …` in the sections _Desktop_ and _Mobile_                                                                | Run `figma/templates.js` (step 5). Every other frame on that page is an exploration: ignore it.                |
+| Page structure, rhythm and content rules                         | Page **Brand / Page guidelines**                                                                                                                  | Read the page (step 6)                                                                                         |
 
 Names starting with `_` (for example `_Ask Youwe/Chip`) are **building blocks**. Build them as internal parts of their parent component. They get no story of their own.
 
@@ -55,12 +55,12 @@ Names starting with `_` (for example `_Ask Youwe/Chip`) are **building blocks**.
 
 1. **No hard-coded design values.** Colours, sizes, spacing, radii, shadows, font families, durations and easings come from the generated `src/tokens/tokens.css` custom properties. If a value has no token, report it in the sync report.
 2. **Never edit generated token files by hand.** They come from step 3.
-3. **Fonts** come from the tokens (`--font-family-headings`, `--font-family-body`). Remove any `@font-face` or `font-family` that Figma does not use, for example *Aktiv Grotesk Ex*. Only the weights the Figma text styles use are loaded (see section 0); commit licensed font files only where the license allows it.
+3. **Fonts** come from the tokens (`--font-family-headings`, `--font-family-body`). Remove any `@font-face` or `font-family` that Figma does not use, for example _Aktiv Grotesk Ex_. Only the weights the Figma text styles use are loaded (see section 0); commit licensed font files only where the license allows it.
 4. **Names match Figma.**
    - Story title: the `storybook.title` in `figma-sync.json` (`Components/<page>` or `Content blocks/<name>`).
    - Each Figma **variant axis** becomes an arg with the same name and options (`Mode`, `Device`, `Size`, `State`, `Layout` …).
    - Each **boolean, text, instance-swap and slot property** becomes a control or prop with the same name and default. Slots become `children`-style props (React nodes).
-5. **Stories:** one *Default* story, one story per value of the main axis (for example `Layout`, `Variant` or `Size`), and one `AllVariants` story that renders the full variant grid like the Figma component set.
+5. **Stories:** one _Default_ story, one story per value of the main axis (for example `Layout`, `Variant` or `Size`), and one `AllVariants` story that renders the full variant grid like the Figma component set.
    - **Only build combinations that exist in Figma.** The inventory lists the exact variant names. When a combination does not exist, the controls must not offer it: disable the option or fall back to the nearest existing variant, and say so in the story description.
    - **Image and logo pickers** (instance-swap properties with `choices` in the inventory) become a select control with a small, representative set of real assets exported into `public/figma-assets/`.
 6. **Mode and Device.**
@@ -74,7 +74,7 @@ Names starting with `_` (for example `_Ask Youwe/Chip`) are **building blocks**.
 9. **Interaction:** implement the `Interaction:` line (keyboard support, focus behaviour, timing). Accessible markup is required: real links and buttons, ARIA patterns for tabs and disclosure. Fix every a11y-panel violation or report it.
 10. **Do not overwrite hand-written logic.** Code between `// @keep-start` and `// @keep-end`, and any component with `"locked": true` in `figma-sync.json`, is left alone. Report the differences instead.
 11. **Never delete** a component or story because it disappeared from Figma. Mark it `"status": "removed-in-figma"` and list it in the report. The exception is the first-run migration (step 0).
-12. **Nothing old or invented may persist.** Every run ends with `pnpm check`. Both checks must report *clean*:
+12. **Nothing old or invented may persist.** Every run ends with `pnpm check`. Both checks must report _clean_:
     - `check-legacy`: fonts Figma does not use, variables that are not Figma tokens, hard-coded colours, font sizes and durations, old story titles, **placeholder copy**, a **missing reset**, component CSS **outside `@layer components`**, and **word spans that lose their spaces**.
     - `check-coverage`: every `complete`/`partial` component has its axes as args (and, if complete, every option plus an `AllVariants` story); every synced template has its device stories.
     - A line may be exempted with a `legacy-ok` comment only with a reason; list every exemption in the report.
@@ -83,8 +83,8 @@ Names starting with `_` (for example `_Ask Youwe/Chip`) are **building blocks**.
     - Every component stylesheet is wrapped in `@layer components { … }`.
     - The `.yw-*` text-style classes are in `typography`, **above** components, so a text style on an element always wins. Do not fight them with `font: inherit` or font shorthands in components; put the right `.yw-*` class on the element instead.
 14. **All content comes from Figma.** Texts, images, logos, numbers and links shown in stories are the ones in the Figma component defaults or the templates.
-    - Never invent copy, never show placeholder text (*Lorem ipsum*, *Hint text*, *Client name* …), and never render a property, layer or variant name as visible text (for example a layout name like "3 columns" as a heading).
-    - If Figma itself contains placeholder copy, keep the component working but list it in the report under *Open questions*.
+    - Never invent copy, never show placeholder text (_Lorem ipsum_, _Hint text_, _Client name_ …), and never render a property, layer or variant name as visible text (for example a layout name like "3 columns" as a heading).
+    - If Figma itself contains placeholder copy, keep the component working but list it in the report under _Open questions_.
 15. **Keep text intact.** Do not split text into word or letter spans unless the Figma motion spec requires it (word reveal). If you must, keep the spaces: render the space outside the `inline-block` span or use `white-space: pre`, and make sure the text still reads correctly and copies as one sentence.
 16. **Exact geometry per variant.** Heights, paddings, gaps, radii, icon sizes and font styles differ per variant (for example each `Size` of Button/Basic has its own height and text style). Read them from the design context of **that variant**. Do not interpolate from one variant or round to "close enough".
 17. **Keep Figma's layout behaviour.** Auto-layout direction, wrapping, fixed vs. fill widths, clipping and scrolling are part of the design. A horizontally scrolling row (for example Case carousel `Layout=Scroll`, Filter bar pills on mobile) stays a horizontal scroll at every width; it must not stack vertically. Sections fill the page width; content follows `--layout-container-max-width` and `--layout-container-padding`.
@@ -94,6 +94,7 @@ Names starting with `_` (for example `_Ask Youwe/Chip`) are **building blocks**.
 ## 3. Steps for every run
 
 ### Step 0: First run only, migrate an old Storybook
+
 Skip this step when `figma-sync.json` has `"migrated"`. Otherwise:
 
 1. **Check what is shared.** Find out whether old stylesheets, fonts or component code are also used by the website. **Storybook-only files** may be cleaned up. **Shared files** are not deleted from: override old values with the generated tokens and list the leftovers in the report.
@@ -104,29 +105,34 @@ Skip this step when `figma-sync.json` has `"migrated"`. Otherwise:
 6. Add `"migrated": "<date>"` to `figma-sync.json`.
 
 ### Step 1: Check the connection
+
 - Confirm the Figma MCP server is connected and can open file `IP237ISXsaciooPrSykYMh` (see the appendix).
 - Confirm the project builds: `pnpm install`, `pnpm tokens`, `pnpm typecheck`.
 - If the MCP server has no tool for running plugin code, use the fallbacks noted in steps 2 and 3.
 
 ### Step 2: Inventory
+
 - Run `figma/inventory.js` through the run-plugin-code tool (`use_figma`). It is paged: run it with `START = 0`, then again with the returned `next`, until `next` is `null`. Lower `COUNT` if a response is cut off.
 - Compare the result with `figma-sync.json`:
   - **new:** in Figma, not in the record → add it, status `missing`.
   - **changed:** signature differs from `lastSyncedSignature` → needs a sync.
   - **removed:** in the record, not in Figma → status `removed-in-figma` (rule 11).
 - Record each component's full variant options in `figma.axes` (for example `{"Mode": ["Dark", "Light"], "Size": ["L", "M", "S", "XS"]}`); `check-coverage` uses it.
-- *Fallback without plugin code:* use the MCP metadata tool on each `– ` page and treat every component as changed.
+- _Fallback without plugin code:_ use the MCP metadata tool on each `– ` page and treat every component as changed.
 
 ### Step 3: Tokens
+
 1. Run `figma/export-figma-variables.js` through the run-plugin-code tool. Save the returned JSON unchanged as `tokens/figma-variables.json`.
 2. Run `pnpm tokens`.
 3. Make sure only `src/styles/globals.css` imports the tokens. Remove hand-written duplicates of those variables.
 4. Commit the JSON and the generated files together, so the diff shows exactly what changed in Figma.
 
 ### Step 4: Components
+
 Work on one component at a time: building blocks and small components first (buttons, pills, tags, inputs), then cards, then content blocks, then header, footer and Ask Youwe. Reuse what is built; a card uses the real Button, a content block uses the real cards.
 
 For each component that is `missing`, `partial` or **changed**:
+
 1. **Read it from Figma, per variant.** Do not build from a screenshot or from memory.
    - Run the design-context tool on the component set **and on one variant per value of every axis** (always Dark + Light and Desktop + Mobile when those axes exist, and every `Size`/`Layout`). Note the geometry per variant (rule 16).
    - Take a screenshot of the component set for reference.
@@ -141,6 +147,7 @@ For each component that is `missing`, `partial` or **changed**:
 5. **Update `figma-sync.json` for this component:** `code` (all file paths), `status` (`complete` / `partial` with a short `note`), `figma.axes`, `lastSyncedSignature`, `lastSynced`.
 
 ### Step 5: Templates (page stories)
+
 Approved templates show how pages are built: section order, rhythm, the switch between dark and light, and real content lengths. They are compositions of components, not new components.
 
 1. Run `figma/templates.js` once per template (`INDEX = 0`, then the returned `next`, until `next` is `null`). Each section comes back as one of:
@@ -152,22 +159,24 @@ Approved templates show how pages are built: section order, rhythm, the switch b
    - Stack the real components in the same order with the same props. **Fill slots and nested cards with exactly the items `templates.js` lists**, with their props, texts and images. Never use the component's default content in a template.
    - The page header is part of the Hero (or a separate `Header/Corporate` section); it must be there.
    - Do not add spacing between sections: the section padding inside each block creates the rhythm.
-4. For every `frame` section, render a clearly marked placeholder of the same height labelled *"Not a component yet: <frame name>"*, and list it in `placeholders` and in the report. **Never rebuild a hand-built frame as one-off markup.**
+4. For every `frame` section, render a clearly marked placeholder of the same height labelled _"Not a component yet: <frame name>"_, and list it in `placeholders` and in the report. **Never rebuild a hand-built frame as one-off markup.**
 5. Compare a full-page capture of the story with the Figma template screenshot at the same width. Differences that come from a component go back to step 4.
 6. Update the template in `figma-sync.json`: `code`, `status`, `placeholders`, `lastSyncedSignature`, `lastSynced`.
 
 ### Step 6: Foundations, motion and page guideline docs
+
 - **Foundations/Colours, Typography, Spacing, Radius, Motion, Effects:** rendered from the generated token files (already in `src/foundations/`). Keep them generated, never typed by hand.
 - **Foundations/Motion demos:** the principles and patterns from **Brand / Motion**, with live demos built from the real components (card red reveal, scroll and word reveal, clip reveal, header hide/show, Ask Youwe states), including reduced motion.
 - **Templates/Page guidelines:** the rules from **Brand / Page guidelines** as text (MDX), with links to the template stories as worked examples.
 
 ### Step 7: Check and report
+
 1. `pnpm typecheck`, `pnpm build-storybook` and `pnpm check` must all pass.
 2. Write `SYNC-REPORT.md` (overwrite it each run):
    - date and Figma file key
    - token changes: added, changed and removed variables (from the JSON diff)
    - components added, updated, unchanged and removed in Figma, with what was compared visually
-   - templates added or updated, with their *Not a component yet* placeholders
+   - templates added or updated, with their _Not a component yet_ placeholders
    - the results of both checks, and any `legacy-ok` exemptions with reasons
    - on a migration run: the old → new mapping, and what was deleted, parked or left in shared files
    - anything that could not be matched to Figma, placeholder copy found **in Figma**, and open questions for the design team
@@ -178,6 +187,7 @@ Approved templates show how pages are built: section order, rhythm, the switch b
 ## 4. Definition of done
 
 **For a component**
+
 - [ ] Every Figma variant axis and property is an arg or control, with the same names, options and defaults; `figma.axes` is recorded.
 - [ ] Built from the design context of each variant; geometry matches per variant.
 - [ ] Dark/Light and Desktop/Mobile render correctly, where those axes exist; mobile follows the mobile design.
@@ -190,6 +200,7 @@ Approved templates show how pages are built: section order, rhythm, the switch b
 - [ ] `figma-sync.json` is updated.
 
 **For a template**
+
 - [ ] Every section uses a real component with the props from Figma, in the same order, with the slot and nested content from `templates.js`.
 - [ ] The header is present; scrolling rows scroll; no spacing added between sections.
 - [ ] Hand-built frames appear as labelled placeholders and are listed.
@@ -204,10 +215,12 @@ Figma's remote MCP server address is `https://mcp.figma.com/mcp`. Sign in with a
 
 - **Claude Code:** `claude mcp add --transport http figma https://mcp.figma.com/mcp`, then run `/mcp` and authenticate.
 - **Cursor:** add this to `.cursor/mcp.json`, then authenticate in Settings → MCP:
+
   ```json
   { "mcpServers": { "figma": { "url": "https://mcp.figma.com/mcp" } } }
   ```
 - **VS Code (Copilot):** add this to `.vscode/mcp.json`, then start the server and sign in:
+
   ```json
   { "servers": { "figma": { "type": "http", "url": "https://mcp.figma.com/mcp" } } }
   ```

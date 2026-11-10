@@ -5,55 +5,57 @@
   Open ("Active"): the chevron points up (Figma swaps to chevron-top-up) and the options panel shows.
 */
 @layer components {
-  .yw-dropdown .yw-field__control {
-    padding-inline: var(--spacing-xs);
-    cursor: pointer;
-  }
+    .yw-dropdown .yw-field__control {
+        padding-inline: var(--spacing-xs);
+        cursor: pointer;
+    }
 
-  .yw-dropdown__button {
-    display: block;
-    flex: 1;
-    min-width: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: var(--color-shared-content-primary);
-    text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: pointer;
-    outline: none;
-  }
+    .yw-dropdown__button {
+        display: block;
+        flex: 1;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--color-shared-content-primary);
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        outline: none;
+    }
 
-  .yw-dropdown__button.is-placeholder {
-    color: var(--color-shared-content-placeholder);
-  }
+    .yw-dropdown__button.is-placeholder {
+        color: var(--color-shared-content-placeholder);
+    }
 
-  .yw-dropdown__chevron {
-    display: inline-flex;
-    flex-shrink: 0;
-    color: var(--color-shared-content-primary);
-    transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
-  }
+    .yw-dropdown__chevron {
+        display: inline-flex;
+        flex-shrink: 0;
+        color: var(--color-shared-content-primary);
+        transition: transform var(--motion-duration-fast)
+            var(--motion-ease-standard);
+    }
 
-  .yw-dropdown.is-open .yw-dropdown__chevron {
-    transform: rotate(180deg);
-  }
+    .yw-dropdown.is-open .yw-dropdown__chevron {
+        transform: rotate(180deg);
+    }
 
-  .yw-dropdown.yw-field--floating .yw-dropdown__button {
-    height: 0;
-    opacity: 0;
-  }
+    .yw-dropdown.yw-field--floating .yw-dropdown__button {
+        height: 0;
+        opacity: 0;
+    }
 
-  .yw-dropdown.yw-field--floating:is(.is-floated, .is-filled, .is-open) .yw-dropdown__button {
-    height: auto;
-    opacity: 1;
-  }
+    .yw-dropdown.yw-field--floating:is(.is-floated, .is-filled, .is-open)
+        .yw-dropdown__button {
+        height: auto;
+        opacity: 1;
+    }
 
-  .yw-dropdown.is-disabled .yw-dropdown__button,
-  .yw-dropdown.is-disabled .yw-dropdown__chevron {
-    color: var(--color-component-disabled-content-default);
-    cursor: not-allowed;
-  }
+    .yw-dropdown.is-disabled .yw-dropdown__button,
+    .yw-dropdown.is-disabled .yw-dropdown__chevron {
+        color: var(--color-component-disabled-content-default);
+        cursor: not-allowed;
+    }
 }

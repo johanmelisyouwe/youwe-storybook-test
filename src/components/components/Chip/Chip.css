@@ -8,22 +8,34 @@
   Non-interactive status label.
 */
 @layer components {
-  .yw-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-3xs) var(--spacing-sm);
-    border-radius: var(--component-radius-pill);
-    white-space: nowrap;
-  }
+    .yw-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-3xs) var(--spacing-sm);
+        border-radius: var(--component-radius-pill);
+        white-space: nowrap;
+    }
 
-  .yw-chip--s {
-    min-height: 24px;
-    padding-inline: var(--spacing-2xs);
-  }
+    .yw-chip--s {
+        min-height: 24px;
+        padding-inline: var(--spacing-2xs);
+    }
 
-  .yw-chip--positive { background: var(--color-shared-surface-system-positive-1); color: var(--color-shared-content-system-positive); }
-  .yw-chip--caution { background: var(--color-shared-surface-system-caution-1); color: var(--color-shared-content-system-caution); }
-  .yw-chip--negative { background: var(--color-shared-surface-system-negative-1); color: var(--color-shared-content-system-negative); }
-  .yw-chip--info { background: var(--color-shared-surface-system-info-1); color: var(--color-shared-content-system-info); }
+    .yw-chip--positive {
+        background: var(--color-shared-surface-system-positive-1);
+        color: var(--color-shared-content-system-positive);
+    }
+    .yw-chip--caution {
+        background: var(--color-shared-surface-system-caution-1);
+        color: var(--color-shared-content-system-caution);
+    }
+    .yw-chip--negative {
+        background: var(--color-shared-surface-system-negative-1);
+        color: var(--color-shared-content-system-negative);
+    }
+    .yw-chip--info {
+        background: var(--color-shared-surface-system-info-1);
+        color: var(--color-shared-content-system-info);
+    }
 }

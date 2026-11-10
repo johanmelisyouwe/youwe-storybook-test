@@ -9,106 +9,125 @@
   Focus: circular Focus Ring 4px outside.
 */
 @layer components {
-  .yw-radio {
-    --_size: 18px;
-    --_dot: 8px;
-    --_press-dot: 8px;
-    --_bg: var(--color-shared-surface-base-1);
-    --_border: var(--color-shared-border-3);
-    --_fx: 0 0 transparent;
+    .yw-radio {
+        --_size: 18px;
+        --_dot: 8px;
+        --_press-dot: 8px;
+        --_bg: var(--color-shared-surface-base-1);
+        --_border: var(--color-shared-border-3);
+        --_fx: 0 0 transparent;
 
-    position: relative;
-    display: inline-flex;
-    flex-shrink: 0;
-    width: var(--_size);
-    height: var(--_size);
-  }
+        position: relative;
+        display: inline-flex;
+        flex-shrink: 0;
+        width: var(--_size);
+        height: var(--_size);
+    }
 
-  .yw-radio--l { --_size: 24px; --_dot: 10px; --_press-dot: 12px; }
+    .yw-radio--l {
+        --_size: 24px;
+        --_dot: 10px;
+        --_press-dot: 12px;
+    }
 
-  .yw-radio__input {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-  }
+    .yw-radio__input {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
 
-  .yw-radio__circle {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--shared-radius-circular);
-    background: var(--_bg);
-    box-shadow: inset 0 0 0 var(--shared-width-1) var(--_border), var(--_fx);
-    transition:
-      background-color var(--motion-duration-fast) var(--motion-ease-standard),
-      box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
-  }
+    .yw-radio__circle {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--shared-radius-circular);
+        background: var(--_bg);
+        box-shadow:
+            inset 0 0 0 var(--shared-width-1) var(--_border),
+            var(--_fx);
+        transition:
+            background-color var(--motion-duration-fast)
+            var(--motion-ease-standard),
+            box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+    }
 
-  .yw-radio__circle::before {
-    content: '';
-    display: none;
-    width: var(--_dot);
-    height: var(--_dot);
-    border-radius: var(--shared-radius-circular);
-    background: var(--color-shared-content-fixed-light);
-  }
+    .yw-radio__circle::before {
+        content: "";
+        display: none;
+        width: var(--_dot);
+        height: var(--_dot);
+        border-radius: var(--shared-radius-circular);
+        background: var(--color-shared-content-fixed-light);
+    }
 
-  .yw-radio:hover { --_fx: var(--effect-shadow-outer-md-hover-shadow); }
-  .yw-radio:active { --_border: var(--color-shared-border-4); --_fx: var(--effect-shadow-outer-md-pressed-shadow); }
-  .yw-radio:active .yw-radio__input:not(:checked) + .yw-radio__circle::before {
-    display: block;
-    width: var(--_press-dot);
-    height: var(--_press-dot);
-    background: var(--color-shared-surface-base-2);
-  }
+    .yw-radio:hover {
+        --_fx: var(--effect-shadow-outer-md-hover-shadow);
+    }
+    .yw-radio:active {
+        --_border: var(--color-shared-border-4);
+        --_fx: var(--effect-shadow-outer-md-pressed-shadow);
+    }
+    .yw-radio:active
+        .yw-radio__input:not(:checked)
+        + .yw-radio__circle::before {
+        display: block;
+        width: var(--_press-dot);
+        height: var(--_press-dot);
+        background: var(--color-shared-surface-base-2);
+    }
 
-  .yw-radio__input:checked + .yw-radio__circle {
-    --_bg: var(--color-component-brand-red-2);
-    --_border: var(--color-component-brand-red-2);
-  }
-  .yw-radio__input:checked + .yw-radio__circle::before { display: block; }
-  .yw-radio:hover .yw-radio__input:checked + .yw-radio__circle {
-    --_bg: var(--color-component-brand-red-3);
-    --_border: var(--color-component-brand-red-3);
-  }
-  .yw-radio:active .yw-radio__input:checked + .yw-radio__circle {
-    --_bg: var(--color-component-brand-red-4);
-    --_border: var(--color-component-brand-red-4);
-  }
+    .yw-radio__input:checked + .yw-radio__circle {
+        --_bg: var(--color-component-brand-red-2);
+        --_border: var(--color-component-brand-red-2);
+    }
+    .yw-radio__input:checked + .yw-radio__circle::before {
+        display: block;
+    }
+    .yw-radio:hover .yw-radio__input:checked + .yw-radio__circle {
+        --_bg: var(--color-component-brand-red-3);
+        --_border: var(--color-component-brand-red-3);
+    }
+    .yw-radio:active .yw-radio__input:checked + .yw-radio__circle {
+        --_bg: var(--color-component-brand-red-4);
+        --_border: var(--color-component-brand-red-4);
+    }
 
-  .yw-radio__input:focus-visible + .yw-radio__circle::after {
-    content: '';
-    position: absolute;
-    inset: calc(var(--spacing-3xs) * -1);
-    border: var(--shared-width-2) solid var(--color-shared-border-system-focus);
-    border-radius: var(--shared-radius-circular);
-    box-shadow: var(--effect-shadow-outer-md-focus-shadow);
-    pointer-events: none;
-  }
+    .yw-radio__input:focus-visible + .yw-radio__circle::after {
+        content: "";
+        position: absolute;
+        inset: calc(var(--spacing-3xs) * -1);
+        border: var(--shared-width-2) solid
+            var(--color-shared-border-system-focus);
+        border-radius: var(--shared-radius-circular);
+        box-shadow: var(--effect-shadow-outer-md-focus-shadow);
+        pointer-events: none;
+    }
 
-  .yw-radio:has(.yw-radio__input:disabled) {
-    --_bg: var(--color-component-disabled-surface-1);
-    --_border: var(--color-component-disabled-border-default);
-    --_fx: 0 0 transparent;
-    pointer-events: none;
-  }
+    .yw-radio:has(.yw-radio__input:disabled) {
+        --_bg: var(--color-component-disabled-surface-1);
+        --_border: var(--color-component-disabled-border-default);
+        --_fx: 0 0 transparent;
+        pointer-events: none;
+    }
 
-  .yw-radio-label {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    color: var(--color-shared-content-primary);
-    cursor: pointer;
-  }
-  .yw-radio-label .yw-radio { margin-block: var(--spacing-4xs); }
-  .yw-radio-label:has(input:disabled) {
-    color: var(--color-component-disabled-content-default);
-    cursor: not-allowed;
-  }
+    .yw-radio-label {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        color: var(--color-shared-content-primary);
+        cursor: pointer;
+    }
+    .yw-radio-label .yw-radio {
+        margin-block: var(--spacing-4xs);
+    }
+    .yw-radio-label:has(input:disabled) {
+        color: var(--color-component-disabled-content-default);
+        cursor: not-allowed;
+    }
 }

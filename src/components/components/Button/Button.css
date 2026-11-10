@@ -12,145 +12,147 @@
   Focus ring: shared Focus Ring building block (2px shared/border/system/focus 4px outside + shadow/outer/md/focus).
 */
 @layer components {
-  .yw-button {
-    --_bg: var(--color-component-brand-red-2);
-    --_border: var(--color-component-brand-red-2);
-    --_border-width: 0px;
-    --_fg: var(--color-shared-content-fixed-light);
-    --_height: 56px;
-    --_pad-start: var(--spacing-lg);
-    --_pad-end: var(--spacing-lg);
-    --_gap: var(--spacing-2xs);
+    .yw-button {
+        --_bg: var(--color-component-brand-red-2);
+        --_border: var(--color-component-brand-red-2);
+        --_border-width: 0px;
+        --_fg: var(--color-shared-content-fixed-light);
+        --_height: 56px;
+        --_pad-start: var(--spacing-lg);
+        --_pad-end: var(--spacing-lg);
+        --_gap: var(--spacing-2xs);
 
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    gap: var(--_gap);
-    height: var(--_height);
-    padding-inline: var(--_pad-start) var(--_pad-end);
-    border-radius: var(--component-radius-button);
-    background: var(--_bg);
-    color: var(--_fg);
-    box-shadow: inset 0 0 0 var(--_border-width) var(--_border);
-    white-space: nowrap;
-    text-decoration: none;
-    cursor: pointer;
-    transition:
-      background-color var(--motion-duration-fast) var(--motion-ease-standard),
-      color var(--motion-duration-fast) var(--motion-ease-standard),
-      box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
-  }
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        gap: var(--_gap);
+        height: var(--_height);
+        padding-inline: var(--_pad-start) var(--_pad-end);
+        border-radius: var(--component-radius-button);
+        background: var(--_bg);
+        color: var(--_fg);
+        box-shadow: inset 0 0 0 var(--_border-width) var(--_border);
+        white-space: nowrap;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+            background-color var(--motion-duration-fast)
+            var(--motion-ease-standard),
+            color var(--motion-duration-fast) var(--motion-ease-standard),
+            box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
+    }
 
-  .yw-button__icon {
-    flex-shrink: 0;
-    transition: transform var(--motion-duration-base) var(--motion-ease-emphasized);
-  }
+    .yw-button__icon {
+        flex-shrink: 0;
+        transition: transform var(--motion-duration-base)
+            var(--motion-ease-emphasized);
+    }
 
-  /* ---- Sizes ---- */
-  .yw-button--m {
-    --_height: 48px;
-    --_pad-start: var(--spacing-sm);
-    --_pad-end: var(--spacing-sm);
-  }
+    /* ---- Sizes ---- */
+    .yw-button--m {
+        --_height: 48px;
+        --_pad-start: var(--spacing-sm);
+        --_pad-end: var(--spacing-sm);
+    }
 
-  .yw-button--s {
-    --_height: 36px;
-    --_pad-start: var(--spacing-xs);
-    --_pad-end: var(--spacing-xs);
-    --_gap: var(--spacing-3xs);
-  }
+    .yw-button--s {
+        --_height: 36px;
+        --_pad-start: var(--spacing-xs);
+        --_pad-end: var(--spacing-xs);
+        --_gap: var(--spacing-3xs);
+    }
 
-  .yw-button--xs {
-    --_height: 24px;
-    --_pad-start: var(--spacing-xs);
-    --_pad-end: var(--spacing-xs);
-    --_gap: var(--spacing-3xs);
-  }
+    .yw-button--xs {
+        --_height: 24px;
+        --_pad-start: var(--spacing-xs);
+        --_pad-end: var(--spacing-xs);
+        --_gap: var(--spacing-3xs);
+    }
 
-  .yw-button--xs.yw-button--leading {
-    --_pad-start: var(--spacing-2xs);
-  }
+    .yw-button--xs.yw-button--leading {
+        --_pad-start: var(--spacing-2xs);
+    }
 
-  .yw-button--xs.yw-button--trailing {
-    --_pad-end: var(--spacing-2xs);
-  }
+    .yw-button--xs.yw-button--trailing {
+        --_pad-end: var(--spacing-2xs);
+    }
 
-  .yw-button--only {
-    width: var(--_height);
-    padding: 0;
-  }
+    .yw-button--only {
+        width: var(--_height);
+        padding: 0;
+    }
 
-  /* ---- Variants (Rest / Hover / Pressed) ---- */
-  .yw-button--primary:hover {
-    --_bg: var(--color-component-brand-red-3);
-    --_border: var(--color-component-brand-red-3);
-  }
+    /* ---- Variants (Rest / Hover / Pressed) ---- */
+    .yw-button--primary:hover {
+        --_bg: var(--color-component-brand-red-3);
+        --_border: var(--color-component-brand-red-3);
+    }
 
-  .yw-button--primary:active {
-    --_bg: var(--color-component-brand-red-4);
-    --_border: var(--color-component-brand-red-4);
-  }
+    .yw-button--primary:active {
+        --_bg: var(--color-component-brand-red-4);
+        --_border: var(--color-component-brand-red-4);
+    }
 
-  .yw-button--outline {
-    --_bg: var(--color-shared-surface-transparent);
-    --_border: var(--color-component-neutral-contrast-1);
-    --_border-width: var(--shared-width-1);
-    --_fg: var(--color-component-neutral-contrast-1);
-  }
+    .yw-button--outline {
+        --_bg: var(--color-shared-surface-transparent);
+        --_border: var(--color-component-neutral-contrast-1);
+        --_border-width: var(--shared-width-1);
+        --_fg: var(--color-component-neutral-contrast-1);
+    }
 
-  .yw-button--outline:hover {
-    --_bg: var(--color-component-neutral-contrast-1);
-    --_fg: var(--color-shared-content-inverse-1);
-  }
+    .yw-button--outline:hover {
+        --_bg: var(--color-component-neutral-contrast-1);
+        --_fg: var(--color-shared-content-inverse-1);
+    }
 
-  .yw-button--outline:active {
-    --_bg: var(--color-component-neutral-contrast-2);
-    --_border: var(--color-component-neutral-contrast-2);
-    --_fg: var(--color-shared-content-inverse-1);
-  }
+    .yw-button--outline:active {
+        --_bg: var(--color-component-neutral-contrast-2);
+        --_border: var(--color-component-neutral-contrast-2);
+        --_fg: var(--color-shared-content-inverse-1);
+    }
 
-  .yw-button--solid {
-    --_bg: var(--color-component-neutral-mid-1);
-    --_border: var(--color-component-neutral-mid-1);
-    --_border-width: var(--shared-width-1);
-    --_fg: var(--color-shared-content-primary);
-  }
+    .yw-button--solid {
+        --_bg: var(--color-component-neutral-mid-1);
+        --_border: var(--color-component-neutral-mid-1);
+        --_border-width: var(--shared-width-1);
+        --_fg: var(--color-shared-content-primary);
+    }
 
-  .yw-button--solid:hover {
-    --_bg: var(--color-component-neutral-mid-2);
-    --_border: var(--color-component-neutral-mid-2);
-  }
+    .yw-button--solid:hover {
+        --_bg: var(--color-component-neutral-mid-2);
+        --_border: var(--color-component-neutral-mid-2);
+    }
 
-  .yw-button--solid:active {
-    --_bg: var(--color-component-neutral-mid-3);
-    --_border: var(--color-component-neutral-mid-3);
-  }
+    .yw-button--solid:active {
+        --_bg: var(--color-component-neutral-mid-3);
+        --_border: var(--color-component-neutral-mid-3);
+    }
 
-  /* Trailing icon nudges forward, leading icon nudges back (Figma Motion line) */
-  .yw-button--trailing:hover .yw-button__icon {
-    transform: translateX(var(--motion-distance-xs));
-  }
+    /* Trailing icon nudges forward, leading icon nudges back (Figma Motion line) */
+    .yw-button--trailing:hover .yw-button__icon {
+        transform: translateX(var(--motion-distance-xs));
+    }
 
-  .yw-button--leading:hover .yw-button__icon {
-    transform: translateX(calc(var(--motion-distance-xs) * -1));
-  }
+    .yw-button--leading:hover .yw-button__icon {
+        transform: translateX(calc(var(--motion-distance-xs) * -1));
+    }
 
-  /* Focus: Rest look + the shared Focus Ring (src/components/shared/focus-ring.css) */
+    /* Focus: Rest look + the shared Focus Ring (src/components/shared/focus-ring.css) */
 
-  /* ---- Disabled ---- */
-  .yw-button:disabled,
-  .yw-button[aria-disabled='true'] {
-    --_bg: var(--color-component-disabled-surface-1);
-    --_border: var(--color-component-disabled-border-default);
-    --_fg: var(--color-component-disabled-content-default);
-    cursor: not-allowed;
-    pointer-events: none;
-  }
+    /* ---- Disabled ---- */
+    .yw-button:disabled,
+    .yw-button[aria-disabled="true"] {
+        --_bg: var(--color-component-disabled-surface-1);
+        --_border: var(--color-component-disabled-border-default);
+        --_fg: var(--color-component-disabled-content-default);
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 
-  .yw-button:disabled .yw-button__icon,
-  .yw-button[aria-disabled='true'] .yw-button__icon {
-    transform: none;
-  }
+    .yw-button:disabled .yw-button__icon,
+    .yw-button[aria-disabled="true"] .yw-button__icon {
+        transform: none;
+    }
 }

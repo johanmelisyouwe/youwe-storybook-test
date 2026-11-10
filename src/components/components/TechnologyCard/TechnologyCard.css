@@ -6,35 +6,58 @@
   description body/sm/reg secondary. Hover: shared red reveal.
 */
 @layer components {
-  .yw-tech-card {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-lg);
-    height: 100%;
-    padding: var(--spacing-lg);
-    border-radius: var(--component-radius-card);
-    background: var(--color-shared-surface-base-2);
-  }
+    .yw-tech-card {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+        height: 100%;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
 
-  .yw-tech-card--vertical { flex-direction: column; align-items: stretch; }
-  .yw-tech-card__top { display: flex; align-items: center; justify-content: space-between; }
+    .yw-tech-card--vertical {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .yw-tech-card__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-  .yw-tech-card__logo {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 40px;
-    border-radius: var(--shared-radius-4);
-    background: var(--color-shared-surface-fixed-light);
-    color: var(--color-shared-content-fixed-dark);
-  }
+    .yw-tech-card__logo {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 120px;
+        height: 40px;
+        border-radius: var(--shared-radius-4);
+        background: var(--color-shared-surface-fixed-light);
+        color: var(--color-shared-content-fixed-dark);
+    }
 
-  .yw-tech-card__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .yw-tech-card__logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
 
-  .yw-tech-card__text { display: flex; flex: 1; flex-direction: column; gap: var(--spacing-2xs); min-width: 0; }
-  .yw-tech-card__heading { display: flex; flex-direction: column; gap: var(--spacing-3xs); }
-  .yw-tech-card__level,
-  .yw-tech-card__desc { color: var(--color-shared-content-secondary); }
+    .yw-tech-card__text {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        min-width: 0;
+    }
+    .yw-tech-card__heading {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+    }
+    .yw-tech-card__level,
+    .yw-tech-card__desc {
+        color: var(--color-shared-content-secondary);
+    }
 }

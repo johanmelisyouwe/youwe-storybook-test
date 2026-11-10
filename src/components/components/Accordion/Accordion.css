@@ -8,71 +8,86 @@
   Interaction (Figma): native details/summary, keyboard toggles.
 */
 @layer components {
-  .yw-accordion {
-    interpolate-size: allow-keywords;
-    background: var(--color-shared-surface-base-1);
-  }
+    .yw-accordion {
+        interpolate-size: allow-keywords;
+        background: var(--color-shared-surface-base-1);
+    }
 
-  .yw-accordion + .yw-accordion {
-    margin-top: calc(var(--shared-width-1) * -1);
-  }
+    .yw-accordion + .yw-accordion {
+        margin-top: calc(var(--shared-width-1) * -1);
+    }
 
-  .yw-accordion__header {
-    --_ring-inset: var(--spacing-3xs);
-    --_ring-radius: var(--shared-radius-8);
+    .yw-accordion__header {
+        --_ring-inset: var(--spacing-3xs);
+        --_ring-radius: var(--shared-radius-8);
 
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: var(--spacing-xs);
-    background: var(--color-shared-surface-base-1);
-    box-shadow:
-      inset 0 var(--shared-width-1) 0 var(--color-shared-border-3),
-      inset 0 calc(var(--shared-width-1) * -1) 0 var(--color-shared-border-3);
-    color: var(--color-shared-content-primary);
-    list-style: none;
-    cursor: pointer;
-    transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
-  }
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: var(--spacing-xs);
+        background: var(--color-shared-surface-base-1);
+        box-shadow:
+            inset 0 var(--shared-width-1) 0 var(--color-shared-border-3),
+            inset 0 calc(var(--shared-width-1) * -1) 0
+            var(--color-shared-border-3);
+        color: var(--color-shared-content-primary);
+        list-style: none;
+        cursor: pointer;
+        transition: background-color var(--motion-duration-fast)
+            var(--motion-ease-standard);
+    }
 
-  .yw-accordion__header::-webkit-details-marker { display: none; }
+    .yw-accordion__header::-webkit-details-marker {
+        display: none;
+    }
 
-  .yw-accordion__header:hover {
-    background: var(--color-shared-surface-base-3);
-  }
+    .yw-accordion__header:hover {
+        background: var(--color-shared-surface-base-3);
+    }
 
-  .yw-accordion__label { flex: 1; }
+    .yw-accordion__label {
+        flex: 1;
+    }
 
-  .yw-accordion__icon {
-    display: inline-flex;
-    flex-shrink: 0;
-    transition: transform var(--motion-duration-base) var(--motion-ease-standard);
-  }
+    .yw-accordion__icon {
+        display: inline-flex;
+        flex-shrink: 0;
+        transition: transform var(--motion-duration-base)
+            var(--motion-ease-standard);
+    }
 
-  .yw-accordion--caret[open] .yw-accordion__icon { transform: rotate(180deg); }
-  .yw-accordion--plus-minus .yw-accordion__icon--open,
-  .yw-accordion--plus-minus[open] .yw-accordion__icon--closed { display: none; }
-  .yw-accordion--plus-minus[open] .yw-accordion__icon--open { display: inline-flex; }
+    .yw-accordion--caret[open] .yw-accordion__icon {
+        transform: rotate(180deg);
+    }
+    .yw-accordion--plus-minus .yw-accordion__icon--open,
+    .yw-accordion--plus-minus[open] .yw-accordion__icon--closed {
+        display: none;
+    }
+    .yw-accordion--plus-minus[open] .yw-accordion__icon--open {
+        display: inline-flex;
+    }
 
-  .yw-accordion::details-content {
-    block-size: 0;
-    overflow: clip;
-    transition:
-      block-size var(--motion-duration-slow) var(--motion-ease-emphasized),
-      content-visibility var(--motion-duration-slow) var(--motion-ease-emphasized) allow-discrete;
-  }
+    .yw-accordion::details-content {
+        block-size: 0;
+        overflow: clip;
+        transition:
+            block-size var(--motion-duration-slow) var(--motion-ease-emphasized),
+            content-visibility var(--motion-duration-slow)
+            var(--motion-ease-emphasized) allow-discrete;
+    }
 
-  .yw-accordion[open]::details-content {
-    block-size: auto;
-  }
+    .yw-accordion[open]::details-content {
+        block-size: auto;
+    }
 
-  .yw-accordion__content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-sm);
-    box-shadow: inset 0 calc(var(--shared-width-1) * -1) 0 var(--color-shared-border-3);
-    color: var(--color-shared-content-secondary);
-  }
+    .yw-accordion__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        padding: var(--spacing-sm);
+        box-shadow: inset 0 calc(var(--shared-width-1) * -1) 0
+            var(--color-shared-border-3);
+        color: var(--color-shared-content-secondary);
+    }
 }

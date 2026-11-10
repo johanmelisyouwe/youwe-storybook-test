@@ -8,30 +8,53 @@
   Hover: the shared red reveal with lift (card-reveal.css).
 */
 @layer components {
-  .yw-service-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    height: 100%;
-    padding: var(--spacing-lg);
-    border-radius: var(--component-radius-card);
-    background: var(--color-shared-surface-base-2);
-  }
+    .yw-service-card {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        height: 100%;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
 
-  .yw-service-card__text { display: flex; flex-direction: column; gap: var(--spacing-sm); }
-  .yw-service-card__top { display: flex; gap: var(--spacing-lg); }
-  .yw-service-card__heading { display: flex; flex: 1; flex-direction: column; gap: var(--spacing-3xs); min-width: 0; }
+    .yw-service-card__text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    .yw-service-card__top {
+        display: flex;
+        gap: var(--spacing-lg);
+    }
+    .yw-service-card__heading {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+        min-width: 0;
+    }
 
-  .yw-service-card__eyebrow {
-    color: var(--color-shared-content-link);
-    transition: color var(--motion-duration-card) var(--motion-ease-card);
-  }
+    .yw-service-card__eyebrow {
+        color: var(--color-shared-content-link);
+        transition: color var(--motion-duration-card) var(--motion-ease-card);
+    }
 
-  .yw-reveal:hover .yw-service-card__eyebrow ,
-  .yw-reveal:focus-visible .yw-service-card__eyebrow { color: var(--color-shared-content-brand); }
+    .yw-reveal:hover .yw-service-card__eyebrow,
+    .yw-reveal:focus-visible .yw-service-card__eyebrow {
+        color: var(--color-shared-content-brand);
+    }
 
-  .yw-service-card__body { color: var(--color-shared-content-secondary); }
+    .yw-service-card__body {
+        color: var(--color-shared-content-secondary);
+    }
 
-  .yw-service-card__media { display: flex; flex-direction: column; gap: var(--spacing-xs); }
-  .yw-service-card__caption { color: var(--color-shared-content-tertiary); }
+    .yw-service-card__media {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    .yw-service-card__caption {
+        color: var(--color-shared-content-tertiary);
+    }
 }
