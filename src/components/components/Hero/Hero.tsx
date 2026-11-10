@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { Button } from '../Button/Button';
 import { Breadcrumbs, type Crumb } from '../Breadcrumbs/Breadcrumbs';
 import { CardMedia } from '../../shared/CardMedia';
@@ -29,12 +29,27 @@ export function HeroBar({ Type = 'Logos', logos = [], stats = [] }: HeroBarProps
         <span className="yw-hero-bar__client yw-body-sm-med">{s.client}</span>
       </span>
     ));
-  // The track holds the items twice so the marquee loops seamlessly; the copy is hidden from screen readers.
+  // Endless marquee: the items form one group; the group is repeated until the bar is covered
+  // plus one spare, and every group slides left by exactly its own width (gap included), so the
+  // loop restarts on an identical frame (no jump) and wide screens never run out of logos.
+  // Only the first group is read by screen readers.
+  const bar = useRef<HTMLDivElement>(null);
+  const group = useRef<HTMLDivElement>(null);
+  const [copies, setCopies] = useState(2);
+  useLayoutEffect(() => {
+    const b = bar.current, g = group.current;
+    if (!b || !g || typeof ResizeObserver === 'undefined') return;
+    const fit = () => { const w = g.offsetWidth; if (w) setCopies(Math.max(2, Math.ceil(b.offsetWidth / w) + 1)); };
+    const ro = new ResizeObserver(fit);
+    ro.observe(b); ro.observe(g); fit();
+    return () => ro.disconnect();
+  }, []);
   return (
-    <div className={cx('yw-hero-bar', Type === 'Stats' && 'yw-hero-bar--stats')}>
+    <div ref={bar} className={cx('yw-hero-bar', Type === 'Stats' && 'yw-hero-bar--stats')}>
       <div className="yw-hero-bar__track">
-        {items}
-        <span aria-hidden="true" style={{ display: 'contents' }}>{items}</span>
+        {Array.from({ length: copies }, (_, n) => (
+          <div key={n} ref={n === 0 ? group : undefined} className="yw-hero-bar__group" aria-hidden={n > 0 || undefined}>{items}</div>
+        ))}
       </div>
     </div>
   );

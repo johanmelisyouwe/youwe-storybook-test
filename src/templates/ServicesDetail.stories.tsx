@@ -130,7 +130,7 @@ function Body({ Device }: { Device: Device }) {
 function ServicesDetailPage({ Device: story }: { Device: Device }) {
   const Device = useDevice(story);
   return (
-    <Page Device={story}>
+    <Page Device={story} ask={'What does "Build it" include?'}>
       <Hero
         Device={Device}
         image={abstract('008')}

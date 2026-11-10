@@ -51,7 +51,7 @@ const SYSTEMS = [
 function IndustriesPage({ Device: story }: { Device: Device }) {
   const Device = useDevice(story);
   return (
-    <Page Device={story}>
+    <Page Device={story} ask="Which industries do you work in?">
       <Hero
         Device={Device}
         image={abstract('006')}

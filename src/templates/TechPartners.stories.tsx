@@ -70,7 +70,7 @@ const SPLITS: (Omit<TechPartnersSplitProps, 'Device'> & { key: string })[] = [
 function TechPartnersPage({ Device: story }: { Device: Device }) {
   const Device = useDevice(story);
   return (
-    <Page Device={story}>
+    <Page Device={story} ask="Which platforms do you work with?">
       <Hero
         Device={Device}
         image={abstract('007')}

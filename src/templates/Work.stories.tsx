@@ -41,7 +41,7 @@ const CASES: [string, string, string[]][] = [
 function WorkPage({ Device: story }: { Device: Device }) {
   const Device = useDevice(story);
   return (
-    <Page Device={story}>
+    <Page Device={story} ask="Which results did you get for clients?">
       <Hero
         Device={Device}
         image={abstract('001')}

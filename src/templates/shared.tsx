@@ -1,7 +1,8 @@
-import { useSyncExternalStore, type ReactNode } from 'react';
+import { useSyncExternalStore, type CSSProperties, type ReactNode } from 'react';
 import { Header, type HeaderProps } from '../components/components/Header/Header';
 import { Footer, type FooterColumn } from '../components/components/Footer/Footer';
 import { Logo } from '../components/logos/Logo';
+import { AskDock } from '../components/components/AskYouwe/AskYouwe';
 import type { Mode } from '../components/shared/ModeFrame';
 import './templates.css';
 
@@ -27,7 +28,8 @@ export const WIDTH: Record<Device, number | string> = { Desktop: '100%', Mobile:
 
 export const NAV: HeaderProps['nav'] = ['Services', 'Work', 'Industries', 'Tech Partners', 'Insights', 'About Us'].map((label) => ({ label, href: '#' }));
 /** Desktop templates use Auto: on a phone or tablet the header switches to the hamburger by itself. */
-export const header = (Device: Device) => <Header Device={Device === 'Desktop' ? 'Auto' : 'Mobile'} nav={NAV} />;
+/** Fixed header: hides on scroll down, comes back on scroll up (Figma header motion). */
+export const header = (Device: Device) => <Header Device={Device === 'Desktop' ? 'Auto' : 'Mobile'} nav={NAV} fixed />;
 
 /** Client and technology logos in their Figma logo box (190×100) at the slot width: case card 140, stat 80, hero bar 118. */
 export const logo = (name: string, width = 140) => <Logo name={name} width={width} />;
@@ -91,6 +93,22 @@ export function NotAComponent({ name, height, uses }: { name: string; height: nu
   );
 }
 
-export function Page({ Device, children }: { Device: Device; children: ReactNode }) {
-  return <div data-theme="dark" style={{ width: '100%', maxWidth: WIDTH[Device], margin: '0 auto', overflowX: 'clip', background: 'var(--color-shared-surface-base-1)' }}>{children}</div>;
+const ASK_PREVIEW = {
+  Answer: 'Ask Youwe is shown here as a preview: in Storybook it is not connected to an answer service yet, so every question gets this placeholder answer.',
+  cta: { label: 'Contact an expert', href: '#' },
+};
+
+/**
+ * Template page: dark theme, page column (360 wide in Mobile stories) and the docked Ask Youwe bar.
+ * `ask` is the page's contextual question on the bar.
+ */
+export function Page({ Device: story, ask, children }: { Device: Device; ask?: string; children: ReactNode }) {
+  const Device = useDevice(story);
+  const style = { width: '100%', maxWidth: WIDTH[story], margin: '0 auto', overflowX: 'clip', background: 'var(--color-shared-surface-base-1)', '--yw-page-max': story === 'Mobile' ? `${WIDTH.Mobile}px` : undefined } as CSSProperties;
+  return (
+    <div data-theme="dark" data-page="" style={style}>
+      {children}
+      <AskDock Device={Device} context={ask} answer={ASK_PREVIEW} />
+    </div>
+  );
 }
