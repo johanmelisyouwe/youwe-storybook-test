@@ -80,7 +80,7 @@ Names starting with `_` (for example `_Ask Youwe/Chip`) are **building blocks**.
     - A line may be exempted with a `legacy-ok` comment only with a reason; list every exemption in the report.
 13. **CSS Modules, cascade layers and reset.** The entry stylesheet declares `@layer reset, tokens, components, typography, utilities, project;`.
     - `reset`: box-sizing, margins, media, form controls inherit font, `:where(a, a:visited) { color: inherit; text-decoration: none; }`. It must exist before any component is built.
-    - Every component stylesheet is a CSS Module (`<name>.module.css`) wrapped in `@layer components { … }`, imported as `styles` and merged with `cx` from `src/shared/cx.ts`. Class names are local and short (`.root`, `.icon`); states and descendants are nested under their class with `&`.
+    - Every component stylesheet is a CSS Module (`<name>.module.css`) wrapped in `@layer components { … }`, imported as `styles` and merged with `cx` from `src/shared/cx.ts`. Class names are local, short and kebab-case (`.root`, `.bar-track`, read as `styles['bar-track']`); states and descendants are nested under their class with `&`.
     - Figma variants are `data-*` attributes on the element, never swapped class names: `data-size={Size.toLowerCase()}` in the component, `&[data-size="m"]` in the CSS. Props keep their Figma names (rule 4).
     - The focus ring is pulled in with `composes: root from "…/shared/focus-ring/focus-ring.module.css"`, kept outside the layer (Turbopack rejects `composes` inside `@layer`). Content blocks merge `block.root`/`block.inner` from `src/shared/block/block.module.css` with their own classes.
     - Lengths are in `rem`; `px` only for borders and hairlines.

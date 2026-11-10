@@ -24,6 +24,7 @@ pnpm dev            # Next.js app on http://localhost:3000
 
 ```
 AGENTS.md / CLAUDE.md          Entry point for AI tools → FIGMA-SYNC.md
+CONVENTIONS.md                 Structure and CSS conventions (borrowed from waypoint)
 FIGMA-SYNC.md                  The Figma → Storybook sync instructions (v2)
 figma-sync.json                Sync record: every Figma component/template, status, code path, signature
 figma/                         Read-only Figma snippets: export-figma-variables.js, inventory.js, templates.js
@@ -43,6 +44,10 @@ src/templates/                 Page template stories, filled by the sync
 public/figma-assets/           Images exported from Figma by the sync
 app/                           Next.js app (pages built from the components)
 ```
+
+## Conventions
+
+The folder structure and CSS setup are borrowed from waypoint, see [CONVENTIONS.md](CONVENTIONS.md).
 
 ## Updating from Figma
 
