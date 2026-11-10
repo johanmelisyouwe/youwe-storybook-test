@@ -11,7 +11,7 @@ export function YouweLogo({ Variant = 'Main', width = 48, className }: { Variant
   return (
     <svg className={className} width={width} height={icon ? (width * 25.2) / 48 : (width * 42) / 48} viewBox={vb} role="img" aria-label="Youwe">
       {!icon && <path fillRule="evenodd" clipRule="evenodd" d={WORD} fill="currentColor" />}
-      <path fillRule="evenodd" clipRule="evenodd" d={MARK} style={{ fill: 'var(--color-shared-content-brand)' }} />
+      <path fillRule="evenodd" clipRule="evenodd" d={MARK} style={{ fill: 'var(--color-shared-surface-fixed-brand-red)' }} />
     </svg>
   );
 }

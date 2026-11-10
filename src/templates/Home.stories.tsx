@@ -57,10 +57,10 @@ const IN_THEIR_WORDS: VerticalSliderProps['items'] = [
 ];
 
 const STATS = [
-  { Value: '+12.7%', Label: 'More checkout starts in the first UK post-launch comparison', logo: logo('Quooker', 80), href: '#' },
-  { Value: '+43%', Label: 'Marketable catalog uplift', logo: logo('Chadwicks', 80), href: '#' },
-  { Value: '800+', Label: 'Categories active', logo: logo('BunzlOne', 80), href: '#' },
-  { Value: '+93%', Label: 'Average match score', logo: logo('Symson', 80), href: '#' },
+  { Value: '+12.7%', Label: 'More checkout starts in the first UK post-launch comparison', logo: logo('Quooker', 80), href: '#', context: 'Quooker' },
+  { Value: '+43%', Label: 'Marketable catalog uplift', logo: logo('Chadwicks', 80), href: '#', context: 'Chadwicks' },
+  { Value: '800+', Label: 'Categories active', logo: logo('BunzlOne', 80), href: '#', context: 'BunzlOne' },
+  { Value: '+93%', Label: 'Average match score', logo: logo('Symson', 80), href: '#', context: 'Symson' },
 ];
 
 const c = (Title: string, Client: string, stat?: [string, string]): CaseCardProps => ({ Title, Client, logo: logo(Client), image: clientPhoto(Client), stat: stat && { value: stat[0], label: stat[1] }, href: '#' });

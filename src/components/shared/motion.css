@@ -1,0 +1,25 @@
+/* Page motion — see motion.ts. Only active under [data-motion="on"] (set by useMotion). */
+@layer components {
+  [data-motion='on'] [data-reveal='rise'] {
+    opacity: 0;
+    transform: translateY(var(--motion-distance-lg));
+    transition:
+      opacity var(--motion-duration-reveal) var(--motion-ease-emphasized) var(--_reveal-delay, 0ms),
+      transform var(--motion-duration-reveal) var(--motion-ease-emphasized) var(--_reveal-delay, 0ms);
+  }
+
+  [data-motion='on'] [data-reveal='clip'] {
+    clip-path: inset(10% 6% 10% 6% round var(--component-radius-card));
+    transition: clip-path var(--motion-duration-zoom) var(--motion-ease-emphasized) var(--_reveal-delay, 0ms);
+  }
+  [data-motion='on'] [data-reveal='clip'] img {
+    transform: scale(1.12);
+    transition: transform calc(var(--motion-duration-cinematic) * 1.4) var(--motion-ease-emphasized) var(--_reveal-delay, 0ms);
+  }
+
+  [data-motion='on'] [data-reveal].is-in { opacity: 1; transform: none; clip-path: inset(0 0 0 0 round var(--component-radius-card)); }
+  [data-motion='on'] [data-reveal].is-in img { transform: none; }
+
+  /* The JS reveal replaces the scroll-timeline reveals on template pages, so nothing animates twice. */
+  [data-motion='on'] :is(.yw-block-reveal, .yw-card-grid__grid > li, .yw-tech-logos__grid > li, .yw-clip-reveal) { animation: none; }
+}

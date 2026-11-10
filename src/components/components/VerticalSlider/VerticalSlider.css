@@ -129,7 +129,7 @@
   .yw-slide__heading { display: flex; flex-direction: column; gap: var(--spacing-2xs); margin: 0; }
   .yw-slide p { margin: 0; }
   .yw-slide__secondary { color: var(--color-shared-content-secondary); }
-  .yw-slide__value { color: var(--color-shared-content-brand); }
+  .yw-slide__value { color: var(--color-shared-surface-fixed-brand-red); }
   .yw-slide__pills { display: flex; flex-wrap: wrap; gap: var(--spacing-2xs); }
   .yw-slide__attribution { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-lg); width: 100%; }
   .yw-slide__person { display: flex; flex-direction: column; gap: var(--spacing-3xs); }

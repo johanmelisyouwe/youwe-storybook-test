@@ -15,6 +15,10 @@
   shared/content/tertiary        light  neutral/500    neutral/600    6.57 (base-2)
   component/tag/content          dark   neutral/450    neutral/400    5.20 (base-2)
   component/tag/content          light  neutral/500    neutral/600    6.57 (base-2)
+
+  The lighter brand-red/200 is for small brand text only. The Youwe logo, graphics (arrows, accents,
+  icons) and large text (hero line, slide values, quote marks, mobile nav L) keep the original brand red
+  via shared/surface/fixed/brand-red (logos are exempt; graphics and large text need 3:1, which it passes).
 */
 @layer tokens {
   :root,

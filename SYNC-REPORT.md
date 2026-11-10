@@ -1,39 +1,35 @@
-# Sync report — 10 November 2026 (Figma alignment)
+# Sync report — 10 November 2026 (motion, stat hover, logo colour)
 
-Backlog batch 5: Figma brought in line with what is built in code (desktop leading). All edits below were made in the Figma file and checked there; nothing was deleted (sections that desktop doesn't have are hidden and renamed).
+Backlog batch 6 (expressive motion, after the v2 site) plus two fixes from your review of batch 5.
 
-## Components in Figma
+## Fixes from review
 
-- **Stat → State=Hover** (new axis, Rest/Hover). Client cards: surface/base-2, round arrow filled surface/fixed/brand-red with a content/fixed/light arrow, in Dark and Light, L and M. Matches the code hover from batch 2. Plain cards have State=Rest only.
-- **_breadcrumb-link → State=Hover**: text content/primary, as in code.
-- **Breadcrumbs/Desktop → back button**: the existing "Show back button" property now controls a real layer (Button/Basic Outline, Leading chevron-left, S, "Back") before the crumbs. Its default is now **off**, so none of the 11 existing instances changed. Built in code too: `Show back button` prop, Back links to the parent page; new *Back button* story.
-- **New text style body/xs/caps** (body/xs/bold + 6% letter spacing + uppercase, same font variables) applied to the INTEGRATION / DATA PLATFORMS / CLOUD labels in Tech partners split (12 labels, which used raw values). Code now uses the generated `.yw-body-xs-caps` class; letter spacing goes from 8% (guessed) to Figma's 6%. The token export and build now carry text case (`text-transform`).
+- **Stat hover = the card hover.** A linked Client stat now behaves like the other cards: the whole card is the link and the red overlay wipes up with "Read the case" and the client name (Card reveal, duration/card). Square corners, because stats sit edge to edge in rows. Touch screens keep the always-visible arrow. In Figma the four Stat *State=Hover* variants are rebuilt the same way (the Rest card + the shared "Hover · red overlay", CTA "Read the case", context "Quooker").
+- **Youwe logo back to the original red.** The contrast fix (batch 3) made brand text lighter (brand-red/200), and the logo used the same colour. The logo, and other graphics and large text, now use `shared/surface/fixed/brand-red` (always the original brand red): the logo mark, card arrow tiles, testimonial accent and dots, list icons, the hero's second title line, Vertical slider values, quote marks and the active link in the mobile menu. Logos are exempt from contrast rules; graphics and large text need 3:1, which the original red passes (3.9:1 on dark). Small brand text (footer headings, card numbers, kickers) stays on the lighter, readable red.
 
-## Template frames in Figma (mobile follows desktop)
+## Motion on the templates
 
-- **Sub-footers** on 8 mobile frames (Home, Services detail, Industries, Work, Work detail, Tech Partners, Insights, About Us) now have the desktop copy: *Work with us*, the desktop body, one *Get in touch* button (the second button is hidden) and the desktop office order. Services already matched.
-- **Footer/Corporate mobile** now has the same Youwe links as desktop (Home, Services, Work, Industries, Tech Partners, Insights, About Us) in the component, so every mobile frame matches; the Home mobile footer's different links are cleared.
-- **Services detail mobile**: *How we work*, *Proof · Chadwicks* and *FAQ* are hidden (renamed "… (hidden: not on desktop)").
-- **Industries mobile**: the parked Industry List is hidden; in its place an *Industry cards* frame with the 14 desktop industry cards (Case Card, Size=One third, Device=Mobile, the only mobile Case Card; gap spacing/lg).
+One motion layer for every template page (`src/components/shared/motion.ts`), using an IntersectionObserver, so it works in every browser and staggers are real (the previous scroll-timeline reveals ran in Chrome only and their stagger delays did nothing). Everything plays once and is then handed back to the component (so hover zooms keep working).
 
-## Not done
+- **Section reveals:** text blocks, section intros, the ACI Weave text and the Insights heading fade in and rise 48px (distance/lg, duration/reveal, ease/emphasized).
+- **Card staggers:** cards in card grids, logos in technology grids, stats in stat rows, insight cards, ACI Weave videos and filter tiles come in one after another, 80ms apart (motion/stagger).
+- **Image clip reveals:** card and content images open from an inset clip while the image settles from a 12% zoom (duration/zoom). Background images (hero, testimonial, slider, sub-footer) are left out.
+- **Hero entrance:** label, then the title lines (as before), then body, buttons and the logo bar rise in, while the background image settles from a slight zoom.
+- **Count-ups:** the hero bar stats now count up like the stat cards.
+- Already in place and kept: pinned What we do slider, drifting giant rows (Statement, Technology logos), section title word rise, sub-footer image clip, header and Ask Youwe motion.
+- **Reduced motion:** nothing is hidden or moved (the layer doesn't start, and the motion tokens drop to 1ms).
+- Without JavaScript everything is simply visible.
 
-- **Contrast colours (batch 3)**: retried as part of this batch and **blocked again** by the edit permission check ("Modify Shared Resources"). Not worked around. The code override (`src/tokens/contrast-overrides.css`) stays. To finish it, either change the eight variables in Figma yourself (table in the batch 3 report) or allow the edit.
-- **Statement giant rows**: skipped. The backlog decision (9 Nov) is to leave the Figma component for now, and the earlier attempt was blocked as well.
-
-## Sync bookkeeping
-
-`figma-sync.json` has the new signatures and axes for Stat, _breadcrumb-link, Breadcrumbs/Desktop, Tech partners split and Footer/Corporate. The edited mobile template frames will show as changed at the next template sync; that is expected (the code already follows desktop).
+Component stories stay still (motion runs on the templates), so components are easy to review.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
-- `check-coverage`: clean (76 complete, 19 templates)
-
-Visual check in Figma (Stat set, an Industries mobile card) and Storybook (Breadcrumbs, Tech partners split labels).
+- `check-coverage`: clean
+- Scrolled through all 10 desktop templates and Home + Insights on an iPhone 13: every revealed element ends visible (cards in the case carousel reveal as they're swiped in), no horizontal scroll.
 
 ## Backlog
 
-Removed: group label text style, Breadcrumbs back button, breadcrumb hover, Home mobile frame, Industries mobile frame, mobile template frames, Stat hover in Figma. Still open in Figma: contrast colours, Statement giant rows (later), proposed components review, docked Ask Youwe bar placement. Next: batch 6 (expressive motion).
+Removed: more motion on the templates. Open: contrast colours in Figma (blocked), Statement giant rows in Figma (later), proposed components review, docked Ask Youwe bar placement in Figma, theme toggle, Industry List Item (parked), Action List copy, client quotes, image rights, CMS images.

@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { Button } from '../Button/Button';
 import { Breadcrumbs, type Crumb } from '../Breadcrumbs/Breadcrumbs';
 import { CardMedia } from '../../shared/CardMedia';
+import { CountUp } from '../Stat/Stat';
 import '../../shared/block.css';
 import './Hero.css';
 
@@ -24,7 +25,7 @@ export function HeroBar({ Type = 'Logos', logos = [], stats = [] }: HeroBarProps
     ? logos.map((l, i) => <span key={i} className="yw-hero-bar__logo">{l}</span>)
     : stats.map((s) => (
       <span key={s.client + s.value} className="yw-hero-bar__stat">
-        <span className="yw-heading-lg">{s.value}</span>
+        <CountUp className="yw-heading-lg" value={s.value} />
         <span className="yw-hero-bar__label yw-body-sm-reg">{s.label}</span>
         <span className="yw-hero-bar__client yw-body-sm-med">{s.client}</span>
       </span>

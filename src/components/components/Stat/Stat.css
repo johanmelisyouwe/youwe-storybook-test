@@ -3,8 +3,8 @@
   so borders overlap (Figma description). Value heading/2xl (L) or heading/xl (M) primary;
   label body/md/reg secondary. Type=Client: top row with client logo (80×42) and a 40px round arrow (border/4).
   Motion (Figma): count up on scroll, 1.6s ease-out, once.
-  State=Hover (Client with a link; in Figma since 10 Nov): the whole card is the link; surface/base-2
-  and the arrow fills surface/fixed/brand-red with a fixed-light arrow, duration/fast. Touch: no hover.
+  State=Hover (Client with a link): the whole card is the link with the shared red overlay of the other cards
+  (Card reveal: red panel wipes up, CTA "Read the case" + context). Square corners (stat rows). Touch: no hover.
 */
 @layer components {
   .yw-stat-row { display: flex; }
@@ -24,21 +24,10 @@
 
   .yw-stat__top { display: flex; align-items: center; justify-content: space-between; color: var(--color-shared-content-primary); }
   .yw-stat__logo { display: flex; width: 80px; }
-  .yw-stat__arrow {
-    --_arrow-border: var(--color-shared-border-4);
-    transition: background-color var(--motion-duration-fast) var(--motion-ease-standard), color var(--motion-duration-fast) var(--motion-ease-standard), box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
-  }
+  .yw-stat__arrow { --_arrow-border: var(--color-shared-border-4); }
 
-  /* The arrow link stretches over the whole card */
-  .yw-stat--link { position: relative; transition: background-color var(--motion-duration-fast) var(--motion-ease-standard); }
-  .yw-stat__link::after { content: ''; position: absolute; inset: 0; }
-
-  @media (hover: hover) {
-    .yw-stat--link:hover { background: var(--color-shared-surface-base-2); }
-    .yw-stat--link:hover .yw-stat__arrow { --_arrow-border: transparent; background: var(--color-shared-surface-fixed-brand-red); color: var(--color-shared-content-fixed-light); }
-  }
-  .yw-stat--link.pseudo-hover { background: var(--color-shared-surface-base-2); }
-  .yw-stat--link.pseudo-hover .yw-stat__arrow { --_arrow-border: transparent; background: var(--color-shared-surface-fixed-brand-red); color: var(--color-shared-content-fixed-light); }
+  .yw-stat.yw-reveal { display: flex; }
+  .yw-stat--link { --component-radius-card: 0px; } /* stats sit edge to edge in rows */
   .yw-stat__value { font-variant-numeric: tabular-nums; }
   .yw-stat__label { color: var(--color-shared-content-secondary); }
 }

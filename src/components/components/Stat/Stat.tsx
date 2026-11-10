@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { CardArrow } from '../../shared/CardReveal';
+import { CardArrow, CardReveal } from '../../shared/CardReveal';
 import '../../shared/focus-ring.css';
 import './Stat.css';
 
@@ -17,6 +17,10 @@ export type StatProps = {
   logo?: ReactNode;
   /** Type=Client: link of the round arrow (Show button) */
   href?: string;
+  /** Hover overlay CTA (linked Client stat) */
+  cta?: string;
+  /** Hover overlay context line, e.g. the client */
+  context?: string;
   /** Count up when scrolled into view (Figma motion: 1.6s ease-out, once) */
   countUp?: boolean;
   className?: string;
@@ -58,20 +62,37 @@ function useCountUp(value: string, on: boolean) {
   return [ref, text] as const;
 }
 
-export function Stat({ Type = 'Plain', Size = 'L', Value, Label, logo, href, countUp = false, className }: StatProps) {
+export function Stat({ Type = 'Plain', Size = 'L', Value, Label, logo, href, cta = 'Read the case', context, countUp = false, className }: StatProps) {
   const [ref, text] = useCountUp(Value, countUp);
-  return (
-    <div className={['yw-stat', Type === 'Client' && href && 'yw-stat--link', className].filter(Boolean).join(' ')}>
+  const linked = Type === 'Client' && !!href;
+  const body = (
+    <>
       {Type === 'Client' && (
         <div className="yw-stat__top">
           <span className="yw-stat__logo">{logo}</span>
-          {href && <a href={href} className="yw-stat__link yw-focus-ring" style={{ borderRadius: 'var(--shared-radius-circular)' }} aria-label={`Read the case: ${Label}`}><CardArrow className="yw-stat__arrow" /></a>}
+          {href && <CardArrow className="yw-stat__arrow" />}
         </div>
       )}
       <span ref={ref} className={['yw-stat__value', Size === 'L' ? 'yw-heading-2xl' : 'yw-heading-xl'].join(' ')} aria-label={Value}>{text}</span>
       <span className="yw-stat__label yw-body-md-reg">{Label}</span>
-    </div>
+    </>
   );
+  // Linked Client stat: the whole card is the link with the shared red overlay hover, like the other cards.
+  if (linked) {
+    return (
+      <a href={href} className={['yw-reveal', 'yw-stat', 'yw-stat--link', className].filter(Boolean).join(' ')} aria-label={`${cta}: ${Value} ${Label}`}>
+        {body}
+        <CardReveal cta={cta} context={context} />
+      </a>
+    );
+  }
+  return <div className={['yw-stat', className].filter(Boolean).join(' ')}>{body}</div>;
+}
+
+/** A number that counts up once when it scrolls into view (same motion as Stat), e.g. hero bar stats. */
+export function CountUp({ value, className }: { value: string; className?: string }) {
+  const [ref, text] = useCountUp(value, true);
+  return <span ref={ref} className={className} aria-label={value}>{text}</span>;
 }
 
 export function StatRow({ children }: { children: ReactNode }) {

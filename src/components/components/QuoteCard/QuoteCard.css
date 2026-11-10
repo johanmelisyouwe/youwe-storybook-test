@@ -18,7 +18,7 @@
   }
 
   .yw-quote-card__quote { display: flex; flex-direction: column; gap: var(--spacing-sm); padding-bottom: var(--spacing-xl); }
-  .yw-quote-card__mark { height: 48px; color: var(--color-shared-content-brand); font-weight: var(--font-weight-bold); font-size: var(--font-size-heading-2xl); line-height: 48px; }
+  .yw-quote-card__mark { height: 48px; color: var(--color-shared-surface-fixed-brand-red); font-weight: var(--font-weight-bold); font-size: var(--font-size-heading-2xl); line-height: 48px; }
   .yw-quote-card blockquote { margin: 0; }
   .yw-quote-card__bottom { display: flex; flex-direction: column; gap: var(--spacing-lg); }
   .yw-quote-card__attribution { display: flex; align-items: center; gap: var(--spacing-sm); }

@@ -44,7 +44,7 @@
     height: 40px;
     border-radius: var(--shared-radius-circular);
     background: var(--color-shared-surface-fixed-light);
-    color: var(--color-shared-content-brand);
+    color: var(--color-shared-surface-fixed-brand-red);
     transition: transform var(--motion-duration-card) var(--motion-ease-card);
   }
 
@@ -108,7 +108,7 @@
       height: 40px;
       border-radius: var(--shared-radius-circular);
       background: var(--color-shared-surface-fixed-light);
-      color: var(--color-shared-content-brand);
+      color: var(--color-shared-surface-fixed-brand-red);
     }
     /* Cards that already show their own arrow button keep that one */
     .yw-reveal:has(.yw-card-arrow) .yw-reveal__touch { display: none; }

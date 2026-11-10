@@ -16,7 +16,7 @@ const ABOUT = [
   { Value: '250+', Label: 'Specialists across every digital discipline' },
   { Value: '8', Label: 'Offices in the Netherlands, the UK, Sweden, Indonesia and Ukraine' },
 ];
-const CLIENT = { Value: '+43%', Label: 'Marketable catalog uplift', logo: <ClientLogo name="G-Star" width={80} />, href: '#' };
+const CLIENT = { Value: '+43%', Label: 'Marketable catalog uplift', logo: <ClientLogo name="G-Star" width={80} />, href: '#', context: 'G-Star' };
 
 const meta: Meta<Args> = {
   title: 'Components/Stat',
