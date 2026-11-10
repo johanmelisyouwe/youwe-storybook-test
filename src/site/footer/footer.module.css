@@ -1,0 +1,164 @@
+/*
+  Footer/Corporate (Figma 25022:751) and _Footer link (25034:672).
+  surface/base-1. Desktop padding 64/80/24/80, gap 64; Mobile padding 40/12/24/12, gap 40.
+  Columns gap 24 (mobile: stacked, gap 32): heading body/md/bold content/brand, gap 16; links gap 8.
+  _Footer link M body/md/reg content/secondary, S body/sm/reg content/primary; hover colour duration/fast.
+  Newsletter: body/sm/reg tertiary + Button Primary M "Contact us" (gap 24) instead of the brand column, five columns.
+  Bottom: 1px divider border/2, gap 24; legal bar (Terms, Privacy body/sm/reg secondary, gap 16) and
+  socials (24px icons, gap 16) + language pill (border/3, body/sm/reg, padding 8/16).
+*/
+.footer-link {
+    composes: root from "../../shared/focus-ring/focus-ring.module.css";
+}
+
+.lang {
+    composes: root from "../../shared/focus-ring/focus-ring.module.css";
+}
+
+@layer components {
+    .root {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xl);
+        padding: var(--spacing-3xl)
+            max(var(--spacing-4xl), calc((100% - var(--yw-container-max)) / 2))
+            var(--spacing-lg);
+        background: var(--color-shared-surface-base-1);
+        color: var(--color-shared-content-primary);
+
+        &[data-newsletter] .columns {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        /*
+  Mobile
+*/
+
+        &[data-mobile] {
+            gap: var(--spacing-2xl);
+            padding: var(--spacing-2xl) var(--spacing-xs) var(--spacing-lg);
+        }
+
+        &[data-mobile] .columns {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+        }
+
+        &[data-mobile] .legal {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+        }
+
+        &[data-mobile] .social {
+            flex-wrap: wrap;
+        }
+    }
+
+    .columns {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--spacing-lg);
+        align-items: start;
+    }
+    .col {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    .heading {
+        margin: 0;
+        color: var(--color-shared-content-brand);
+    }
+    .links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-2xs);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .newsletter {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
+
+        & p {
+            margin: 0;
+            color: var(--color-shared-content-tertiary);
+        }
+    }
+
+    /* Tap target: 4px padding above and below takes links to 24px+ (WCAG 2.2 target size); the negative margin keeps the Figma spacing */
+    .footer-link {
+        --focus-ring-radius: var(--shared-radius-2);
+        display: inline-block;
+        margin-block: calc(var(--spacing-3xs) * -1);
+        padding-block: var(--spacing-3xs);
+        color: var(--color-shared-content-secondary);
+        text-decoration: none;
+        transition: color var(--motion-duration-fast)
+            var(--motion-ease-standard);
+
+        &[data-s] {
+            color: var(--color-shared-content-primary);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: var(--color-shared-content-link);
+            }
+        }
+    }
+
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    .divider {
+        height: var(--shared-width-1);
+        background: var(--color-shared-border-2);
+    }
+    .legal {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+    }
+    .legal-links {
+        display: flex;
+        gap: var(--spacing-sm);
+
+        & .footer-link {
+            color: var(--color-shared-content-secondary);
+        }
+    }
+    .social {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+
+        & a {
+            display: flex;
+            color: var(--color-shared-content-primary);
+            border-radius: var(--shared-radius-2);
+        }
+    }
+
+    .lang {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        padding: var(--spacing-2xs) var(--spacing-sm);
+        border: 0;
+        border-radius: var(--shared-radius-circular);
+        background: none;
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--color-shared-border-3);
+        color: var(--color-shared-content-primary);
+        cursor: pointer;
+    }
+}

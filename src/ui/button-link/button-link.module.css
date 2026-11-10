@@ -1,0 +1,45 @@
+/*
+  Button/Link (Figma 20540:33000). Values read per variant from Figma on 2026-11-09.
+  Size  text                         chevron  gap
+  lg    20px regular (no text style) 9×13     8 (2xs)
+  md    body/md/reg                  8×12     8 (2xs)
+  sm    body/sm/reg                  7×10     8 (2xs)
+  Text and chevron: shared/content/primary. Figma has no hover state for this component;
+  the chevron nudge uses the same motion as Button/Basic (distance/xs). See SYNC-REPORT.
+*/
+@layer components {
+    .root {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        color: var(--color-shared-content-primary);
+        text-decoration: none;
+        cursor: pointer;
+
+        &[data-size="lg"] {
+            font-family: var(--font-family-body);
+            font-weight: var(--font-weight-regular);
+            font-size: var(--font-size-body-lg);
+            line-height: 1;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .chevron {
+                transform: translateX(var(--motion-distance-xs));
+            }
+        }
+
+        &:focus-visible {
+            outline: var(--shared-width-2) solid
+                var(--color-shared-border-system-focus);
+            outline-offset: var(--shared-width-2);
+            border-radius: var(--shared-radius-2);
+        }
+    }
+
+    .chevron {
+        display: inline-flex;
+        transition: transform var(--motion-duration-base)
+            var(--motion-ease-emphasized);
+    }
+}

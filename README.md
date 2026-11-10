@@ -15,15 +15,16 @@ The same stack as the main Youwe Storybook, so results can be compared:
 ## Run it locally
 
 ```bash
-npm install
-npm run storybook      # http://localhost:6006
-npm run dev            # Next.js app on http://localhost:3000
+pnpm install
+pnpm storybook      # http://localhost:6006
+pnpm dev            # Next.js app on http://localhost:3000
 ```
 
 ## Project structure
 
 ```
 AGENTS.md / CLAUDE.md          Entry point for AI tools → FIGMA-SYNC.md
+CONVENTIONS.md                 Structure and CSS conventions (borrowed from waypoint)
 FIGMA-SYNC.md                  The Figma → Storybook sync instructions (v2)
 figma-sync.json                Sync record: every Figma component/template, status, code path, signature
 figma/                         Read-only Figma snippets: export-figma-variables.js, inventory.js, templates.js
@@ -35,11 +36,18 @@ tokens/figma-variables.json    Figma export (variables, text styles, effects). N
 src/tokens/                    GENERATED tokens.css + tokens.resolved.json
 src/styles/                    globals.css (layer order), reset.css, base.css
 src/foundations/               Colour, type, spacing, radius, motion, effects pages (from the tokens)
-src/components/                Components, filled by the sync (components/, content-blocks/, site/)
+src/ui/                        Figma components (one kebab-case folder each), filled by the sync
+src/blocks/                    Content blocks, filled by the sync
+src/site/                      Header, footer, Ask Youwe
+src/shared/                    Focus ring, block frame, card reveal, icons, logos, cx
 src/templates/                 Page template stories, filled by the sync
 public/figma-assets/           Images exported from Figma by the sync
 app/                           Next.js app (pages built from the components)
 ```
+
+## Conventions
+
+The folder structure and CSS setup are borrowed from waypoint, see [CONVENTIONS.md](CONVENTIONS.md).
 
 ## Updating from Figma
 
@@ -47,19 +55,20 @@ Connect the Figma MCP server (see the appendix in `FIGMA-SYNC.md`), then ask you
 
 > Run the sync described in FIGMA-SYNC.md.
 
-It exports the tokens, works through the components and templates, compares them with Figma, runs the checks and opens a pull request with `SYNC-REPORT.md`. To update only the tokens by hand: re-export into `tokens/figma-variables.json` and run `npm run tokens`.
+It exports the tokens, works through the components and templates, compares them with Figma, runs the checks and opens a pull request with `SYNC-REPORT.md`. To update only the tokens by hand: re-export into `tokens/figma-variables.json` and run `pnpm tokens`.
 
 Checks (also run in CI on every push):
 
 ```bash
-npm run check          # check-legacy + check-coverage
+pnpm check          # check-legacy + check-coverage
+pnpm lint           # biome (not in check yet: pre-existing findings)
 ```
 
 ## Styling rules
 
 - Use **semantic tokens** only (`var(--color-shared-surface-base-2)`, `var(--color-shared-content-secondary)`, `var(--spacing-lg)`), never raw hex or px values.
 - Use the **text style classes** (`.yw-heading-xl`, `.yw-body-md-reg`) for typography. They sit above components in the cascade, so they always win.
-- Component CSS goes in `@layer components`.
+- Component CSS is a CSS Module in `@layer components`; variants are `data-*` attributes, not class names.
 - All copy and images come from Figma; no placeholder text.
 - Dark is the default mode. Light is `data-theme="light"` on any wrapper.
 

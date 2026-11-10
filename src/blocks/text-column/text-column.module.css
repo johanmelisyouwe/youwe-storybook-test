@@ -1,0 +1,137 @@
+/*
+  Long-form text blocks.
+  Text column (Figma 24988:596): one reading column 632 wide (Centered or Left), gap 32:
+    lead body/2xl/med primary, body body/lg/reg secondary (paragraphs).
+  Two-column text (24988:587): label body/md/bold content/brand + lead (gap 8) left; body right with 32 top.
+    Split 6/6 (632 | 632) or 4/8 (416 | 848, body 740 right-aligned), gap 16. Mobile stacks.
+  Case intro (24988:571): meta list 416 (label body/xs/bold content/brand, value body/md/reg, gap 8; 1px
+    border/2 dividers, gap 20) beside the text 740 (lead + body, gap 32); Meta position Left or Right.
+  Motion (Figma): block reveal on scroll.
+*/
+@layer components {
+    .longform {
+        & p {
+            margin: 0;
+        }
+    }
+    .longform-lead {
+        color: var(--color-shared-content-primary);
+    }
+    .longform-body {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+        color: var(--color-shared-content-secondary);
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        max-width: 39.5rem;
+    }
+    .root {
+        &[data-centered] .text {
+            margin-inline: auto;
+        }
+    }
+
+    .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-sm);
+
+        &[data-split="4-8"] {
+            grid-template-columns: 416fr 848fr;
+        }
+
+        &[data-split="4-8"] .two-col-lead {
+            max-width: none;
+        }
+
+        &[data-split="4-8"] .two-col-body {
+            justify-self: end;
+            max-width: 46.25rem;
+        }
+
+        @container (max-width: 47.9375rem) {
+            &,
+            &[data-split="4-8"] {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+    .two-col-lead {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        max-width: 32.75rem;
+    }
+    .two-col-label {
+        color: var(--color-shared-content-brand);
+    }
+    .two-col-body {
+        padding-top: var(--spacing-xl);
+    }
+
+    .case-intro {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+
+        &[data-meta-right] {
+            flex-direction: row-reverse;
+        }
+
+        @container (max-width: 47.9375rem) {
+            &,
+            &[data-meta-right] {
+                flex-direction: column;
+                gap: var(--spacing-2xl);
+            }
+        }
+    }
+    .case-intro-meta {
+        display: flex;
+        flex: 0 1 26rem;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        margin: 0;
+    }
+    .case-intro-item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+
+        & + .case-intro-item {
+            padding-top: var(--spacing-md);
+            box-shadow: inset 0 var(--shared-width-1) 0
+                var(--color-shared-border-2);
+        }
+
+        & dt {
+            color: var(--color-shared-content-brand);
+        }
+
+        & dd {
+            margin: 0;
+            white-space: pre-line;
+        }
+    }
+    .case-intro-text {
+        display: flex;
+        flex: 0 1 46.25rem;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+    }
+
+    @container (max-width: 47.9375rem) {
+        .two-col-body {
+            padding-top: var(--spacing-lg);
+        }
+        .case-intro-meta,
+        .case-intro-text {
+            flex-basis: auto;
+        }
+    }
+}

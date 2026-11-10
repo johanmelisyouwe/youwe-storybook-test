@@ -1,0 +1,48 @@
+{
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+    "files": {
+        "includes": [
+            "**",
+            "!**/node_modules",
+            "!**/.next",
+            "!**/storybook-static",
+            "!src/tokens",
+            "!tokens",
+            "!figma",
+            "!figma-sync.json",
+            "!public"
+        ]
+    },
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineEnding": "lf"
+    },
+    "assist": {
+        "actions": {
+            "source": {
+                "organizeImports": "off"
+            }
+        }
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "preset": "recommended",
+            "style": {
+                "noDescendingSpecificity": "off"
+            },
+            "complexity": {
+                "noImportantStyles": "off"
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "single",
+            "semicolons": "asNeeded",
+            "trailingCommas": "es5"
+        }
+    }
+}

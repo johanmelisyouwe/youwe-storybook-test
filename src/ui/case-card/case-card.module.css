@@ -1,0 +1,156 @@
+/*
+  Case Card (Figma 24984:520) and _Case Card/Stat (26708:88). Read per variant on 2026-11-09.
+  Card: image + text, gap 12. Image radius 4, padding 8/16/16/16, client logo top-right (140×74),
+  gradient for logo legibility (neutral/900 at 40% → 0 at 30%). Optional result stat bottom-left (16px in).
+  Text gap 4: title body/xl/med primary, client body/md/reg tertiary, tags (Pills Neutral S, border/2) with 8px top.
+  Image proportions per Size: One third 416×485, Two thirds 848×451, Full 1280×606, One quarter 308×375,
+  Mobile 342×431 (Figma description).
+  Stat: neutral/900-50 glass, radius 4, fixed light text. L: padding 12/16, gap 12, value heading/lg, label body/sm/reg.
+  M: padding 10/12, gap 8, value heading/md, label body/xs/reg. Before-after and Stacked stack value and label (gap 4).
+  Hover: shared red reveal.
+*/
+@layer components {
+    .root {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+
+        &[data-size="one-third"] .image {
+            aspect-ratio: 416 / 485;
+        }
+
+        &[data-size="two-thirds"] .image {
+            aspect-ratio: 848 / 451;
+        }
+
+        &[data-size="full"] .image {
+            aspect-ratio: 1280 / 606;
+        }
+
+        &[data-size="one-quarter"] .image {
+            aspect-ratio: 308 / 375;
+        }
+
+        &[data-size="mobile"] .image {
+            aspect-ratio: 342 / 431;
+        }
+
+        /* Figma logo slot per size (190×100 logo box): 140×74; One quarter 104×55; mobile 112×59 */
+        &[data-size="one-quarter"] .logo > [role="img"] {
+            width: 6.5rem !important;
+            height: 3.4375rem !important;
+        }
+
+        &[data-size="mobile"] .logo > [role="img"] {
+            width: 7rem !important;
+            height: 3.6875rem !important;
+        }
+    }
+
+    .image {
+        display: flex !important;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: var(--spacing-2xs) var(--spacing-sm) var(--spacing-sm);
+        color: var(--color-shared-content-fixed-light);
+
+        &::before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                color-mix(in srgb, var(--color-neutral-900) 40%, transparent) 0%,
+                transparent 30%
+            );
+        }
+    }
+
+    .logo {
+        position: relative;
+        z-index: 1;
+        display: flex;
+
+        /* Touch screens: the client logo moves left of the always-visible arrow (card reveal) */
+        @media (hover: none) {
+            margin-right: var(--spacing-3xl);
+        }
+    }
+
+    .stat {
+        position: absolute;
+        z-index: 1;
+        left: var(--spacing-sm);
+        bottom: var(--spacing-sm);
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+    }
+    .client {
+        color: var(--color-shared-content-tertiary);
+    }
+
+    /* _Case Card/Stat */
+    .case-stat {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--shared-radius-4);
+        background: var(--color-neutral-900-50);
+        color: var(--color-shared-content-fixed-light);
+
+        &[data-size="m"] {
+            gap: var(--spacing-2xs);
+            padding: 0.625rem var(--spacing-xs);
+        }
+
+        &[data-stack] {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-3xs);
+        }
+
+        &[data-size="m"] .case-stat-values {
+            gap: var(--spacing-2xs);
+        }
+
+        &[data-pair] {
+            gap: var(--spacing-md);
+        }
+
+        &[data-pair].case-stat[data-size="m"] {
+            gap: 0.875rem;
+        }
+
+        &[data-size="m"] .case-stat-divider {
+            height: 2rem;
+        }
+    }
+    .case-stat-value {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-3xs);
+    }
+    .case-stat-values {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+    }
+    .case-stat-pair {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4xs);
+    }
+
+    .case-stat-divider {
+        align-self: center;
+        width: 1px;
+        height: 2.5rem;
+        background: var(--color-neutral-0-30);
+    }
+}

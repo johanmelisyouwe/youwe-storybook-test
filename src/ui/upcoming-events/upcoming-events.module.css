@@ -1,0 +1,68 @@
+/*
+  Upcoming events (Figma 26740:42) and _Upcoming events/Row (26887:988).
+  Heading: eyebrow body/sm/bold secondary + title heading/md primary (gap 8); block gap 20.
+  Desktop: up to four event cards in a row (gap 16); mobile: stacked (gap 16). "All events" Button/Link md.
+  Event card: surface/base-2, radius 4, padding 16, gap 16. Date tile 76×84 surface/base-1, radius 4:
+  day heading/2xl primary, month body/xs/bold content/brand (gap 4). Title body/md/med; place tag
+  (pill, border/2, body/xs/reg component/tag/content) with 8px top. Hover: shared red reveal.
+*/
+@layer components {
+    .root {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+
+        &[data-mobile] .list {
+            grid-template-columns: 1fr;
+        }
+    }
+    .heading {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        margin: 0;
+    }
+    .eyebrow {
+        color: var(--color-shared-content-secondary);
+    }
+    .list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--spacing-sm);
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .event {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        height: 100%;
+        padding: var(--spacing-sm);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
+
+    .event-date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        width: 4.75rem;
+        padding-bottom: var(--spacing-3xs);
+        border-radius: var(--shared-radius-4);
+        background: var(--color-shared-surface-base-1);
+    }
+
+    .event-month {
+        color: var(--color-shared-content-brand);
+    }
+    .event-text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+    }
+}

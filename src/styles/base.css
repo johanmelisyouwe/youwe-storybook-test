@@ -1,40 +1,133 @@
 /* Page defaults that use the Figma tokens. */
 @layer typography {
-  html {
-    color-scheme: dark;
-  }
+    html {
+        color-scheme: dark;
+    }
 
-  [data-theme='light'] {
-    color-scheme: light;
-  }
+    [data-theme="light"] {
+        color-scheme: light;
+    }
 
-  body {
-    background: var(--color-shared-surface-base-1);
-    color: var(--color-shared-content-primary);
-    font-family: var(--font-family-body);
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-size-body-md);
-  }
+    body {
+        background: var(--color-shared-surface-base-1);
+        color: var(--color-shared-content-primary);
+        font-family: var(--font-family-body);
+        font-weight: var(--font-weight-regular);
+        font-size: var(--font-size-body-md);
+    }
 
-  .container {
-    width: 100%;
-    max-width: calc(var(--layout-container-max-width) + 2 * var(--layout-container-padding));
-    margin-inline: auto;
-    padding-inline: var(--layout-container-padding);
-  }
+    .container {
+        width: 100%;
+        max-width: calc(
+            var(--layout-container-max-width) +
+            2 *
+            var(--layout-container-padding)
+        );
+        margin-inline: auto;
+        padding-inline: var(--layout-container-padding);
+    }
 }
 
 @layer utilities {
-  /* Text for screen readers only (e.g. "1 active" on the filter counter) */
-  .yw-visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-    border: 0;
-  }
+    /* Text for screen readers only (e.g. "1 active" on the filter counter) */
+    .yw-visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+    }
+}
+
+@layer tokens {
+    :root {
+        --yw-container-max: 110rem; /* legacy-ok: fluid content max (1920 screen minus gutters), not a Figma token */
+    }
+}
+
+/*
+  Testimonial quote swap (view transition named "yw-quote" in testimonial.tsx). The
+  ::view-transition pseudo-elements live on the document root, so this can't sit in the
+  component's CSS module (no local class to hang it on).
+*/
+@layer components {
+    ::view-transition-old(yw-quote) {
+        animation: var(--motion-duration-slow) var(--motion-ease-exit) both
+            yw-quote-out;
+    }
+
+    ::view-transition-new(yw-quote) {
+        animation: var(--motion-duration-reveal) var(--motion-ease-emphasized)
+            both yw-quote-in;
+    }
+
+    @keyframes yw-quote-in {
+        from {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-md));
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes yw-quote-out {
+        to {
+            opacity: 0;
+            filter: blur(0.375rem);
+            transform: translateY(calc(var(--motion-distance-md) * -1));
+        }
+    }
+}
+
+/*
+  Page motion (template pages): see shared/motion/motion.ts. Only active under [data-motion="on"].
+  Global because the hooks are data attributes spread over many components.
+*/
+@layer components {
+    [data-motion="on"] {
+        & [data-motion-reveal="rise"] {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-lg));
+            transition:
+                opacity var(--motion-duration-reveal)
+                var(--motion-ease-emphasized) var(--_reveal-delay, 0ms),
+                transform var(--motion-duration-reveal)
+                var(--motion-ease-emphasized) var(--_reveal-delay, 0ms);
+        }
+
+        & [data-motion-reveal="clip"] {
+            clip-path: inset(10% 6% 10% 6% round var(--component-radius-card));
+            transition: clip-path var(--motion-duration-zoom)
+                var(--motion-ease-emphasized) var(--_reveal-delay, 0ms);
+
+            & img {
+                transform: scale(1.12);
+                transition: transform
+                    calc(var(--motion-duration-cinematic) * 1.4)
+                    var(--motion-ease-emphasized) var(--_reveal-delay, 0ms);
+            }
+        }
+
+        & [data-motion-reveal][data-motion-in] {
+            opacity: 1;
+            transform: none;
+            clip-path: inset(0 0 0 0 round var(--component-radius-card));
+
+            & img {
+                transform: none;
+            }
+        }
+
+        /* The JS reveal replaces the scroll-timeline reveals, so nothing animates twice */
+        & :is([data-motion-reveal], [data-motion-done]) {
+            animation: none;
+        }
+    }
 }

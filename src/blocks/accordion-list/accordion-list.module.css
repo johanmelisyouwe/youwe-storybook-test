@@ -1,0 +1,253 @@
+/*
+  Batch 9 content blocks (shared styles).
+  Accordion list (Figma 26534:21312): Stacked = header, Plus-Minus accordions (gap 0), CTA (title body/xl/med,
+    body body/md/reg secondary, gap 8; Primary M button, gap 16), gap 64. Split / Split list = intro (416:
+    header, optional bullet list, CTA; gap 40) left, "Frequently asked questions" (heading/lg) + accordions right
+    (744), gap 120. Motion: items expand like Accordion; block reveal staggered.
+  Build your stack (26851:1491): header (kicker + heading/xl | body/md/reg secondary 440, bottom aligned), goal
+    tabs (Tab group), goal intro (label body/xs caps tertiary + body/lg/reg 760, gap 12), four vertical
+    Technology Cards (gap 16), full-width Case Card; gap 32, padding 80. Mobile: tabs scroll sideways, cards stack.
+  Offices (26799:617): kicker + title row (heading/xl | body/md/reg tertiary), then Location rows; gap 80, padding 80.
+  Leadership (26848:385): Section intro (Stacked) + Person Cards, 4 per row (gap 24), 2 on mobile.
+    Person Card (26763:60): Photo=Yes: photo 320 tall radius 4, gap 16; Photo=No: 1px top border/2, padding 16/0;
+    name body/lg/med, role body/md/reg tertiary, optional email body/md/reg content/link, gap 4.
+  Awards (27096:9988): "Trusted by industry leaders" body/lg/bold and four 95×95 badges, gap 40; mobile stacks.
+*/
+@layer components {
+    .root {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-3xl);
+        }
+
+        &[data-layout="split"] .inner {
+            display: grid;
+            grid-template-columns: 416fr 744fr;
+            gap: var(--spacing-5xl);
+        }
+
+        @container (max-width: 47.9375rem) {
+            &[data-layout="split"] .inner {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-2xl);
+            }
+        }
+    }
+    .items {
+        display: flex;
+        flex-direction: column;
+    }
+    .cta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+    .cta-text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+
+        & p {
+            margin: 0;
+            color: var(--color-shared-content-secondary);
+        }
+    }
+    .intro {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+    }
+    .faq {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+
+        & h3 {
+            margin: 0;
+        }
+    }
+    .stack {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+            padding-block: var(--spacing-4xl);
+        }
+    }
+    .stack-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+
+        & p {
+            max-width: 27.5rem;
+            margin: 0;
+            color: var(--color-shared-content-secondary);
+        }
+    }
+    .stack-title {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        margin: 0;
+    }
+    .stack-goal {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        padding-top: var(--spacing-xl);
+    }
+    .stack-goal-intro {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        max-width: 47.5rem;
+
+        & p {
+            margin: 0;
+        }
+    }
+    .stack-system {
+        color: var(--color-shared-content-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+    .stack-partners {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--spacing-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .offices {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4xl);
+            padding-block: var(--spacing-4xl);
+        }
+    }
+    .offices-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    .offices-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--spacing-4xl);
+
+        & h2 {
+            margin: 0;
+            flex: 1;
+        }
+
+        & p {
+            flex: 1;
+            margin: 0;
+            color: var(--color-shared-content-tertiary);
+        }
+    }
+    .leadership {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4xl);
+            padding-block: var(--spacing-4xl);
+        }
+    }
+    .leadership-people {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--spacing-lg);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .person {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+
+        &[data-plain] {
+            padding-block: var(--spacing-sm);
+            box-shadow: inset 0 var(--shared-width-1) 0
+                var(--color-shared-border-2);
+        }
+    }
+    .person-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+    }
+    .person-role {
+        color: var(--color-shared-content-tertiary);
+    }
+    .person-email {
+        color: var(--color-shared-content-link);
+        text-decoration: none;
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    .awards {
+        & .inner {
+            padding-top: 0;
+            padding-bottom: var(--spacing-4xl);
+        }
+    }
+    .awards-row {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2xl);
+        margin: 0;
+    }
+    .awards-title {
+        flex: 1;
+        margin: 0;
+    }
+    .awards-badges {
+        display: flex;
+        gap: var(--spacing-2xl);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .awards-badge {
+        width: 5.9375rem;
+    }
+
+    @container (max-width: 47.9375rem) {
+        .stack-header,
+        .offices-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-lg);
+        }
+        .stack-partners {
+            grid-template-columns: 1fr;
+        }
+        .leadership-people {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--spacing-sm);
+        }
+        .awards-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-lg);
+        }
+        .awards-badges {
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+        }
+    }
+}

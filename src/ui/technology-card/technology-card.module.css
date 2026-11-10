@@ -1,0 +1,63 @@
+/*
+  Technology Card (Figma 26721:87). surface/base-2, radius card, padding 24, gap 24.
+  Horizontal: logo tile | text | 40px outline arrow (items centred). Vertical: top row logo + arrow
+  (space-between), text below. Logo tile 120×40, white in both modes (partner logos keep their colours).
+  Text gap 8: name body/lg/med primary (+ optional level body/xs/med secondary, gap 4),
+  description body/sm/reg secondary. Hover: shared red reveal.
+*/
+@layer components {
+    .root {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+        height: 100%;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+
+        &[data-vertical] {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 7.5rem;
+        height: 2.5rem;
+        border-radius: var(--shared-radius-4);
+        background: var(--color-shared-surface-fixed-light);
+        color: var(--color-shared-content-fixed-dark);
+
+        & img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .text {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        min-width: 0;
+    }
+    .heading {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+    }
+    .level,
+    .desc {
+        color: var(--color-shared-content-secondary);
+    }
+}

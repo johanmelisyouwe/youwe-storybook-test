@@ -1,0 +1,95 @@
+/*
+  Pagination — Figma 6284:7106; _Pagination buttons 7496:8631 (Page, Prev, Next, First, Last ×
+  Rest, Hover, Focused, Active, Disabled).
+  Buttons: 48 high, radius 2, surface/base-1; hover and active surface/base-2. Labels body/md/reg underlined;
+  the active page and disabled buttons are not underlined; disabled uses disabled/content/default.
+  Prev/Next: chevron 24 + label, padding 8/12/8/8 (mirrored for Next). First/Last: icon only, 48 square.
+  View amount: "View max." + Compact dropdown component (Dropdown/Compact M) + "per page", body/md/reg secondary.
+*/
+.page-btn {
+    composes: root from "../../shared/focus-ring/focus-ring.module.css";
+}
+
+@layer components {
+    .root {
+        display: flex;
+        align-items: center;
+        color: var(--color-shared-content-primary);
+
+        & ol {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    }
+
+    .page-btn {
+        --focus-ring-inset: 0;
+        --focus-ring-radius: var(--shared-radius-2);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3rem;
+        height: 3rem;
+        padding: var(--spacing-2xs);
+        border: 0;
+        border-radius: var(--shared-radius-2);
+        background: var(--color-shared-surface-base-1);
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+        cursor: pointer;
+        transition: background-color var(--motion-duration-fast)
+            var(--motion-ease-standard);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background: var(--color-shared-surface-base-2);
+            }
+        }
+
+        &[aria-current="page"] {
+            background: var(--color-shared-surface-base-2);
+            text-decoration: none;
+            cursor: default;
+        }
+
+        &.page-btn-prev {
+            padding-right: var(--spacing-xs);
+        }
+
+        &.page-btn-next {
+            padding-left: var(--spacing-xs);
+        }
+
+        &:disabled {
+            background: var(--color-shared-surface-base-1);
+            color: var(--color-component-disabled-content-default);
+            text-decoration: none;
+            cursor: not-allowed;
+        }
+    }
+    .page-gap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3rem;
+        height: 3rem;
+        text-decoration: underline;
+    }
+
+    .view-amount {
+        display: flex;
+        align-items: center;
+        color: var(--color-shared-content-secondary);
+
+        & > span {
+            padding: var(--spacing-2xs);
+        }
+
+        & > span:first-child {
+            padding-left: 0;
+        }
+    }
+}

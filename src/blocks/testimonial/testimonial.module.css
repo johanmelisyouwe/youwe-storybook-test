@@ -1,0 +1,103 @@
+/*
+  Content blocks/Testimonial (Figma 26535:238). Padding 120/80; optional full-bleed image with the
+  surface/tint-1 overlay. Content 848 wide, gap 32: 40×2 content/brand accent, quote heading/lg primary,
+  attribution (client logo 190×100, person: name body/md/bold, role body/sm/reg secondary, gap 4; gap 24).
+  Motion (Figma): quote switch with a View Transition: the old quote blurs 6px and lifts distance/md
+  (duration/slow, ease/exit), the new one rises in (duration/reveal, ease/emphasized). Auto-advance 7s;
+  pauses on hover, focus and when off-screen.
+*/
+.dot {
+    composes: root from "../../shared/focus-ring/focus-ring.module.css";
+}
+
+@layer components {
+    .root {
+        overflow: hidden;
+
+        & .inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        & blockquote {
+            margin: 0;
+        }
+    }
+    .image {
+        position: absolute !important;
+        z-index: 0;
+        inset: 0;
+        border-radius: 0 !important;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--color-shared-surface-tint-1);
+        }
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        max-width: 53rem;
+        margin: 0;
+    }
+    .accent {
+        width: 2.5rem;
+        height: 2px;
+        background: var(--color-shared-surface-fixed-brand-red);
+    }
+    .attribution {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+    }
+    .logo {
+        display: flex;
+        flex-shrink: 0;
+        width: 11.875rem;
+        color: var(--color-shared-content-primary);
+    }
+    .person {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+    }
+    .role {
+        color: var(--color-shared-content-secondary);
+    }
+    .dots {
+        display: flex;
+        gap: var(--spacing-2xs);
+    }
+
+    .dot {
+        width: 1.5rem;
+        height: 0.25rem;
+        padding: 0;
+        border: 0;
+        border-radius: var(--shared-radius-2);
+        background: var(--color-shared-surface-base-3);
+        cursor: pointer;
+
+        &[aria-current="true"] {
+            background: var(--color-shared-surface-fixed-brand-red);
+        }
+    }
+
+    @keyframes quote-in {
+        from {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-md));
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    .swap {
+        animation: quote-in var(--motion-duration-reveal)
+            var(--motion-ease-emphasized);
+    }
+}

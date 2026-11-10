@@ -1,118 +1,263 @@
-import { useRef, useSyncExternalStore, type CSSProperties, type ReactNode } from 'react';
-import { Header, type HeaderProps } from '../components/components/Header/Header';
-import { Footer, type FooterColumn } from '../components/components/Footer/Footer';
-import { Logo } from '../components/logos/Logo';
-import { AskDock } from '../components/components/AskYouwe/AskYouwe';
-import { useMotion } from '../components/shared/motion';
-import type { Mode } from '../components/shared/ModeFrame';
-import './templates.css';
+import {
+    useRef,
+    useSyncExternalStore,
+    type CSSProperties,
+    type ReactNode,
+} from 'react'
+import { Header, type HeaderProps } from '../site/header'
+import { Footer, type FooterColumn } from '../site/footer'
+import { Logo } from '../shared/logos/logo'
+import { AskDock } from '../site/ask-youwe'
+import { useMotion } from '../shared/motion/motion'
+import type { Mode } from '../shared/mode-frame'
 
 /*
   Shared pieces for the page templates (FIGMA-SYNC.md step 5). Copy comes from the Figma templates.
   Sections are stacked without extra spacing: each block's own padding sets the rhythm.
 */
 
-export type Device = 'Desktop' | 'Mobile';
+export type Device = 'Desktop' | 'Mobile'
 
-const PHONE = '(max-width: 767px)';
-const subscribe = (cb: () => void) => { const m = window.matchMedia(PHONE); m.addEventListener('change', cb); return () => m.removeEventListener('change', cb); };
+const PHONE = '(max-width: 767px)'
+const subscribe = (cb: () => void) => {
+    const m = window.matchMedia(PHONE)
+    m.addEventListener('change', cb)
+    return () => m.removeEventListener('change', cb)
+}
 /**
   The Desktop template follows the screen: below 768px it renders the mobile variants (cards, slider,
   hero, filter bar…), so the page works on a real phone. The Mobile story always renders mobile.
 */
 export function useDevice(story: Device): Device {
-  const phone = useSyncExternalStore(subscribe, () => window.matchMedia(PHONE).matches, () => false);
-  return story === 'Mobile' || phone ? 'Mobile' : 'Desktop';
+    const phone = useSyncExternalStore(
+        subscribe,
+        () => window.matchMedia(PHONE).matches,
+        () => false
+    )
+    return story === 'Mobile' || phone ? 'Mobile' : 'Desktop'
 }
 /** Story frame width: desktop is fluid (full viewport), mobile 360 as in Figma. */
-export const WIDTH: Record<Device, number | string> = { Desktop: '100%', Mobile: 360 };
+export const WIDTH: Record<Device, number | string> = {
+    Desktop: '100%',
+    Mobile: 360,
+}
 
-export const NAV: HeaderProps['nav'] = ['Services', 'Work', 'Industries', 'Tech Partners', 'Insights', 'About Us'].map((label) => ({ label, href: '#' }));
+export const NAV: HeaderProps['nav'] = [
+    'Services',
+    'Work',
+    'Industries',
+    'Tech Partners',
+    'Insights',
+    'About Us',
+].map((label) => ({ label, href: '#' }))
 /** Desktop templates use Auto: on a phone or tablet the header switches to the hamburger by itself. */
 /** Fixed header: hides on scroll down, comes back on scroll up (Figma header motion). */
-export const header = (Device: Device) => <Header Device={Device === 'Desktop' ? 'Auto' : 'Mobile'} nav={NAV} fixed />;
+export const header = (Device: Device) => (
+    <Header Device={Device === 'Desktop' ? 'Auto' : 'Mobile'} nav={NAV} fixed />
+)
 
 /** Client and technology logos in their Figma logo box (190×100) at the slot width: case card 140, stat 80, hero bar 118. */
-export const logo = (name: string, width = 140) => <Logo name={name} width={width} />;
+export const logo = (name: string, width = 140) => (
+    <Logo name={name} width={width} />
+)
 /** Partner logos on technology cards (Figma Logos/*, 120×40 box). */
-export const partnerLogo = (name: string) => <Logo name={name} kind="partner" width={120} />;
+export const partnerLogo = (name: string) => (
+    <Logo name={name} kind="partner" width={120} />
+)
 
-export const OFFICES = ['Rotterdam', 'Groningen', 'London', 'Leeds', 'Shrewsbury', 'Stockholm', 'Bandung', 'Kyiv'];
+export const OFFICES = [
+    'Rotterdam',
+    'Groningen',
+    'London',
+    'Leeds',
+    'Shrewsbury',
+    'Stockholm',
+    'Bandung',
+    'Kyiv',
+]
 
 /** The "Work with us" sub-footer of the desktop templates. The mobile frames have other copy; desktop is correct (decided 9 November). */
 export const WORK_WITH_US = {
-  title: 'Work with us',
-  body: 'Tell us what you want to achieve and we will think along with you.',
-  primary: { label: 'Get in touch', href: '#' },
-  offices: ['Rotterdam', 'Groningen', 'London', 'Shrewsbury', 'Leeds', 'Stockholm', 'Kyiv', 'Bandung'],
-};
-export const CLIENT_LOGOS = ['Exigent', 'G-Star', 'GoCardless', 'ING', 'LaSalle', 'Munich Re', 'Newland', 'Subway'];
+    title: 'Work with us',
+    body: 'Tell us what you want to achieve and we will think along with you.',
+    primary: { label: 'Get in touch', href: '#' },
+    offices: [
+        'Rotterdam',
+        'Groningen',
+        'London',
+        'Shrewsbury',
+        'Leeds',
+        'Stockholm',
+        'Kyiv',
+        'Bandung',
+    ],
+}
+export const CLIENT_LOGOS = [
+    'Exigent',
+    'G-Star',
+    'GoCardless',
+    'ING',
+    'LaSalle',
+    'Munich Re',
+    'Newland',
+    'Subway',
+]
 
-const l = (labels: string[]) => labels.map((label) => ({ label, href: '#' }));
+const l = (labels: string[]) => labels.map((label) => ({ label, href: '#' }))
 const SERVICE_COLUMNS: FooterColumn[] = [
-  { heading: 'Digital Infrastructure', links: l(['B2B Enterprise Commerce', 'D2C Commerce', 'PIM/MDM', 'Digital Experience (DXP)', 'Customer & Partner Portals', 'Cloud Architecture']) },
-  { heading: 'Operational Optimization & Intelligence', links: l(['Pricing Intelligence', 'Agentic AI', 'AI Process Intelligence', 'Contract & Supply Chain', 'Product Lifecycle Management (PLM)', 'Sustainability & ESG']) },
-  { heading: 'Foundation for Data & Integrations', links: l(['Enterprise Data Architecture', 'Data Compliance & Security', 'Data Engineering & API', 'AI & Analytics', 'ACI Weave']) },
-];
+    {
+        heading: 'Digital Infrastructure',
+        links: l([
+            'B2B Enterprise Commerce',
+            'D2C Commerce',
+            'PIM/MDM',
+            'Digital Experience (DXP)',
+            'Customer & Partner Portals',
+            'Cloud Architecture',
+        ]),
+    },
+    {
+        heading: 'Operational Optimization & Intelligence',
+        links: l([
+            'Pricing Intelligence',
+            'Agentic AI',
+            'AI Process Intelligence',
+            'Contract & Supply Chain',
+            'Product Lifecycle Management (PLM)',
+            'Sustainability & ESG',
+        ]),
+    },
+    {
+        heading: 'Foundation for Data & Integrations',
+        links: l([
+            'Enterprise Data Architecture',
+            'Data Compliance & Security',
+            'Data Engineering & API',
+            'AI & Analytics',
+            'ACI Weave',
+        ]),
+    },
+]
 /** The Youwe column differs per template in Figma; pass the links the template shows. */
-export const YOUWE_PAGES = ['Home', 'Services', 'Work', 'Industries', 'Tech Partners', 'Insights', 'About Us'];
-export const YOUWE_SITEMAP = ['Work', 'Services', 'Industries', 'About us', 'Contact'];
+export const YOUWE_PAGES = [
+    'Home',
+    'Services',
+    'Work',
+    'Industries',
+    'Tech Partners',
+    'Insights',
+    'About Us',
+]
+export const YOUWE_SITEMAP = [
+    'Work',
+    'Services',
+    'Industries',
+    'About us',
+    'Contact',
+]
 export const footer = (Device: Device, youwe: string[] = YOUWE_PAGES) => (
-  <Footer
-    Variant="Newsletter"
-    Device={Device === 'Desktop' ? 'Auto' : 'Mobile'}
-    columns={[{ heading: 'Youwe', links: l(youwe) }, ...SERVICE_COLUMNS]}
-    newsletter={{ text: 'Tell us what you want to achieve and we will think along with you.', cta: { label: 'Contact us', href: '#' } }}
-  />
-);
+    <Footer
+        Variant="Newsletter"
+        Device={Device === 'Desktop' ? 'Auto' : 'Mobile'}
+        columns={[{ heading: 'Youwe', links: l(youwe) }, ...SERVICE_COLUMNS]}
+        newsletter={{
+            text: 'Tell us what you want to achieve and we will think along with you.',
+            cta: { label: 'Contact us', href: '#' },
+        }}
+    />
+)
 
 /** A section in a Figma Mode (Dark / Light); blocks take their surface from data-theme. */
-export function Section({ Mode = 'Dark', flush, children }: { Mode?: Mode; flush?: 'top' | 'bottom' | 'both'; children: ReactNode }) {
-  const cls = flush ? [flush !== 'bottom' && 'yw-flush-top', flush !== 'top' && 'yw-flush-bottom'].filter(Boolean).join(' ') : undefined;
-  return <div className={cls} data-theme={Mode.toLowerCase()} style={{ background: 'var(--color-shared-surface-base-1)', color: 'var(--color-shared-content-primary)' }}>{children}</div>;
+export function Section({
+    Mode = 'Dark',
+    flush,
+    children,
+}: {
+    Mode?: Mode
+    flush?: 'top' | 'bottom' | 'both'
+    children: ReactNode
+}) {
+    return (
+        <div
+            data-flush={flush === 'both' ? 'top bottom' : flush}
+            data-theme={Mode.toLowerCase()}
+            style={{
+                background: 'var(--color-shared-surface-base-1)',
+                color: 'var(--color-shared-content-primary)',
+            }}
+        >
+            {children}
+        </div>
+    )
 }
 
 /** A hand-built Figma frame that is not a component (step 5.4): same height, clearly marked. */
-export function NotAComponent({ name, height, uses }: { name: string; height: number; uses?: string[] }) {
-  return (
-    <div
-      role="note"
-      style={{
-        display: 'grid',
-        placeContent: 'center',
-        gap: 'var(--spacing-2xs)',
-        height,
-        padding: 'var(--spacing-lg)',
-        background: 'repeating-linear-gradient(135deg, var(--color-shared-surface-base-2) 0 12px, var(--color-shared-surface-base-1) 12px 24px)',
-        color: 'var(--color-shared-content-secondary)',
-        textAlign: 'center',
-      }}
-    >
-      <strong className="yw-body-md-bold">{`Not a component yet: ${name}`}</strong>
-      {uses && <span className="yw-body-sm-reg">{`Uses ${uses.join(', ')}`}</span>}
-    </div>
-  );
+export function NotAComponent({
+    name,
+    height,
+    uses,
+}: {
+    name: string
+    height: number
+    uses?: string[]
+}) {
+    return (
+        <div
+            role="note"
+            style={{
+                display: 'grid',
+                placeContent: 'center',
+                gap: 'var(--spacing-2xs)',
+                height,
+                padding: 'var(--spacing-lg)',
+                background:
+                    'repeating-linear-gradient(135deg, var(--color-shared-surface-base-2) 0 12px, var(--color-shared-surface-base-1) 12px 24px)',
+                color: 'var(--color-shared-content-secondary)',
+                textAlign: 'center',
+            }}
+        >
+            <strong className="yw-body-md-bold">{`Not a component yet: ${name}`}</strong>
+            {uses && (
+                <span className="yw-body-sm-reg">{`Uses ${uses.join(', ')}`}</span>
+            )}
+        </div>
+    )
 }
 
 const ASK_PREVIEW = {
-  Answer: 'Ask Youwe is shown here as a preview: in Storybook it is not connected to an answer service yet, so every question gets this placeholder answer.',
-  cta: { label: 'Contact an expert', href: '#' },
-};
+    Answer: 'Ask Youwe is shown here as a preview: in Storybook it is not connected to an answer service yet, so every question gets this placeholder answer.',
+    cta: { label: 'Contact an expert', href: '#' },
+}
 
 /**
  * Template page: dark theme, page column (360 wide in Mobile stories), the docked Ask Youwe bar and the
- * page motion (scroll reveals, card staggers, image clip reveals; see components/shared/motion.ts).
+ * page motion (scroll reveals, card staggers, image clip reveals; see shared/motion/motion.ts).
  * `ask` is the page's contextual question on the bar.
  */
-export function Page({ Device: story, ask, children }: { Device: Device; ask?: string; children: ReactNode }) {
-  const Device = useDevice(story);
-  const ref = useRef<HTMLDivElement>(null);
-  useMotion(ref);
-  const style = { width: '100%', maxWidth: WIDTH[story], margin: '0 auto', overflowX: 'clip', background: 'var(--color-shared-surface-base-1)', '--yw-page-max': story === 'Mobile' ? `${WIDTH.Mobile}px` : undefined } as CSSProperties;
-  return (
-    <div ref={ref} data-theme="dark" data-page="" style={style}>
-      {children}
-      <AskDock Device={Device} context={ask} answer={ASK_PREVIEW} />
-    </div>
-  );
+export function Page({
+    Device: story,
+    ask,
+    children,
+}: {
+    Device: Device
+    ask?: string
+    children: ReactNode
+}) {
+    const Device = useDevice(story)
+    const ref = useRef<HTMLDivElement>(null)
+    useMotion(ref)
+    const style = {
+        width: '100%',
+        maxWidth: WIDTH[story],
+        margin: '0 auto',
+        overflowX: 'clip',
+        background: 'var(--color-shared-surface-base-1)',
+        '--yw-page-max': story === 'Mobile' ? `${WIDTH.Mobile}px` : undefined,
+    } as CSSProperties
+    return (
+        <div ref={ref} data-theme="dark" data-page="" style={style}>
+            {children}
+            <AskDock Device={Device} context={ask} answer={ASK_PREVIEW} />
+        </div>
+    )
 }

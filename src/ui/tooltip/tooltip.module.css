@@ -1,0 +1,98 @@
+/*
+  Tooltip (Figma 14683:4523) and Icon tooltip (6284:7455). Read per variant on 2026-11-09.
+  Tooltip: surface/base-2, radius 4, shadow/outer/sm/drop, text body/xs/reg content/primary.
+    M: 220 wide, padding 12. S: padding 4/8 (short values like "9,999").
+    Point: 10×10 square rotated 45° at the bottom centre, same surface.
+  Icon tooltip: info icon (24 / 16); the tooltip shows on hover (Active) and keyboard focus (Focused),
+    centred 10px above the icon. Circular Focus Ring (28 / 22 box in Figma).
+  Motion (Figma): appears with opacity + small rise (distance/xs), duration/fast ease/standard.
+*/
+@layer components {
+    .root {
+        position: relative;
+        display: inline-block;
+        border-radius: var(--shared-radius-4);
+        background: var(--color-shared-surface-base-2);
+        box-shadow: var(--effect-shadow-outer-sm-drop-shadow);
+        color: var(--color-shared-content-primary);
+
+        &[data-size="m"] {
+            width: 13.75rem;
+            padding: var(--spacing-xs);
+        }
+
+        &[data-size="s"] {
+            padding: var(--spacing-3xs) var(--spacing-2xs);
+            white-space: nowrap;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            width: 0.625rem;
+            height: 0.625rem;
+            background: inherit;
+            transform: translateX(-50%) rotate(45deg);
+        }
+    }
+
+    .text {
+        position: relative;
+        z-index: 1;
+        display: block;
+    }
+
+    /* Icon tooltip */
+    .icon-tooltip {
+        position: relative;
+        display: inline-flex;
+
+        &[data-size="s"] .icon-tooltip-trigger {
+            --focus-ring-inset: -3px;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .icon-tooltip-bubble {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, 0);
+            }
+        }
+    }
+
+    .icon-tooltip-trigger {
+        --focus-ring-radius: var(--shared-radius-circular);
+        --focus-ring-inset: -2px;
+
+        display: inline-flex;
+        padding: 0;
+        border: 0;
+        border-radius: var(--shared-radius-circular);
+        background: transparent;
+        color: var(--color-shared-content-tertiary);
+        cursor: help;
+
+        &:focus-visible + .icon-tooltip-bubble {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+    }
+
+    .icon-tooltip-bubble {
+        position: absolute;
+        z-index: 20;
+        left: 50%;
+        bottom: calc(100% + 0.625rem);
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%, var(--motion-distance-xs));
+        pointer-events: none;
+        transition:
+            opacity var(--motion-duration-fast) var(--motion-ease-standard),
+            transform var(--motion-duration-fast) var(--motion-ease-standard),
+            visibility var(--motion-duration-fast) allow-discrete;
+    }
+}

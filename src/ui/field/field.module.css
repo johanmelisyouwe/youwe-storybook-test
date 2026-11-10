@@ -1,0 +1,399 @@
+/*
+  Shared form-field building block for Text Input, Text Area, Phone Input and Dropdown
+  (Figma "– Input/…" pages). Values read per variant on 2026-11-09.
+
+  Static labels: title (label body/sm/med + required "*" body/sm/bold in forms/content/required, gap 2),
+    4px gap, control 44 high, padding 8/8/8/12, hint row (2px padding, body/sm/reg).
+  Floating labels: control 48 high, padding 0/8/0/12; the label sits in the field (body/md/reg)
+    and floats up (body/xs/reg) when focused, filled or showing a placeholder.
+  Control: radius component/radius/input-fields, surface forms/surface/default,
+    1px border forms/border/rest; hover forms/border/hover; filled forms/border/filled;
+    focused/active 2px shared/border/system/focus + shadow/outer/md/focus;
+    success 1px border/system/positive; error surface/system/negative-1 + 2px border/system/negative
+    + shadow/outer/md/error; disabled disabled surface/border/content.
+  Hover: shadow/outer/md/hover ring (4px).
+  Hint: content/tertiary; content/system/positive (success), content/system/negative (error).
+  The floating-label move uses duration/fast + ease/standard (Figma says "animated", no motion line).
+*/
+@layer components {
+    .root {
+        --_border: var(--color-component-forms-border-rest);
+        --_border-width: var(--shared-width-1);
+        --_bg: var(--color-component-forms-surface-default);
+        --_fx: 0 0 transparent;
+
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+        width: 100%;
+
+        /* :where keeps "filled" weak, so Success / Error / Disabled borders still win on a filled field. */
+        &:where([data-filled], :has(.input:not(:placeholder-shown))) .control {
+            --_border: var(--color-component-forms-border-filled);
+        }
+
+        &[data-success] .control {
+            --_border: var(--color-shared-border-system-positive);
+        }
+
+        &[data-success] .hint {
+            color: var(--color-shared-content-system-positive);
+        }
+
+        &[data-error] .control {
+            --_bg: var(--color-shared-surface-system-negative-1);
+            --_border: var(--color-shared-border-system-negative);
+            --_border-width: var(--shared-width-2);
+            --_fx: var(--effect-shadow-outer-md-error-shadow);
+        }
+
+        &[data-error] .hint {
+            color: var(--color-shared-content-system-negative);
+        }
+
+        &[data-disabled] .control {
+            --_bg: var(--color-component-disabled-surface-1);
+            --_border: var(--color-component-disabled-border-default);
+            --_border-width: var(--shared-width-1);
+            --_fx: 0 0 transparent;
+            cursor: not-allowed;
+        }
+
+        &[data-disabled]
+            :is(.title, .required, .hint, .input, .input::placeholder) {
+            color: var(--color-component-disabled-content-default);
+        }
+
+        /*
+  ---- floating labels ----
+*/
+
+        &:where([data-labels="floating"]) .control {
+            min-height: 3rem;
+            padding-block: 0;
+        }
+
+        &:where([data-labels="floating"]):is(
+                [data-floated],
+                [data-filled],
+                :has(.control:focus-within),
+                :has(.input:not(:placeholder-shown))
+            )
+            .stack {
+            gap: var(--spacing-3xs);
+        }
+
+        &:where([data-labels="floating"]) .input {
+            height: 0;
+            opacity: 0;
+            transition: opacity var(--motion-duration-fast)
+                var(--motion-ease-standard);
+        }
+
+        &:where([data-labels="floating"]):is(
+                [data-floated],
+                [data-filled],
+                :has(.control:focus-within),
+                :has(.input:not(:placeholder-shown))
+            )
+            .float-label {
+            font-size: var(--font-size-body-xs);
+        }
+
+        &:where([data-labels="floating"]):is(
+                [data-filled],
+                :has(.input:not(:placeholder-shown))
+            ):not(:has(.control:focus-within))
+            .float-label {
+            color: var(--color-component-forms-content-label-floating);
+        }
+
+        &:where([data-labels="floating"]):is(
+                [data-floated],
+                [data-filled],
+                :has(.control:focus-within),
+                :has(.input:not(:placeholder-shown))
+            )
+            .input {
+            height: auto;
+            opacity: 1;
+        }
+
+        &[data-disabled] .float-label {
+            color: var(--color-component-disabled-content-default);
+        }
+    }
+
+    .title {
+        display: flex;
+        gap: var(--spacing-4xs);
+        color: var(--color-component-forms-content-label);
+    }
+
+    .required {
+        color: var(--color-component-forms-content-required);
+    }
+
+    .control {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        min-height: 2.75rem;
+        padding: var(--spacing-2xs) var(--spacing-2xs) var(--spacing-2xs)
+            var(--spacing-xs);
+        border-radius: var(--component-radius-input-fields);
+        background: var(--_bg);
+        box-shadow:
+            inset 0 0 0 var(--_border-width) var(--_border),
+            var(--_fx);
+        color: var(--color-shared-content-primary);
+        cursor: text;
+        transition:
+            box-shadow var(--motion-duration-fast) var(--motion-ease-standard),
+            background-color var(--motion-duration-fast)
+            var(--motion-ease-standard);
+
+        /*
+  ---- states ----
+*/
+
+        @media (hover: hover) and (pointer: fine) {
+            /* Hover: forms/border/hover + shadow/outer/md/hover ring (Figma: Dropdown, Phone, Text Area, Compact; Text Input follows for consistency) */
+            &:hover {
+                --_border: var(--color-component-forms-border-hover);
+                --_fx: var(--effect-shadow-outer-md-hover-shadow);
+            }
+        }
+
+        &:focus-within {
+            --_border: var(--color-shared-border-system-focus);
+            --_border-width: var(--shared-width-2);
+            --_fx: var(--effect-shadow-outer-md-focus-shadow);
+        }
+    }
+
+    .input {
+        flex: 1;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--color-shared-content-primary);
+        outline: none;
+
+        &::placeholder {
+            color: var(--color-shared-content-placeholder);
+            opacity: 1;
+        }
+    }
+
+    .suffix {
+        display: inline-flex;
+        flex-shrink: 0;
+        color: var(--color-shared-content-primary);
+    }
+
+    .hint {
+        padding-block: var(--spacing-4xs);
+        color: var(--color-shared-content-tertiary);
+    }
+
+    .stack {
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .float-label {
+        display: flex;
+        gap: var(--spacing-4xs);
+        color: var(--color-component-forms-content-label);
+        font-family: var(--font-family-body);
+        font-weight: var(--font-weight-regular);
+        font-size: var(--font-size-body-md);
+        line-height: 1.3;
+        transition:
+            font-size var(--motion-duration-fast) var(--motion-ease-standard),
+            color var(--motion-duration-fast) var(--motion-ease-standard);
+
+        & .required {
+            font-size: var(--font-size-body-xs);
+        }
+    }
+}
+
+/*
+  Text Area (Figma "Text Area/Static Label" 18505:19110, "Text Area/Floating Labels" 18505:19469).
+  Control 128 high, padding 8/8/8/12, text body/md/reg. The resize corner drawn in Figma is the
+  browser's own resize handle here (vertical resize).
+*/
+@layer components {
+    .textarea {
+        & .control {
+            align-items: stretch;
+            min-height: 8rem;
+            padding: var(--spacing-2xs) var(--spacing-2xs) var(--spacing-2xs)
+                var(--spacing-xs);
+        }
+
+        & .input {
+            min-height: 7rem;
+            resize: vertical;
+        }
+
+        &.root[data-labels="floating"] .stack {
+            justify-content: flex-start;
+        }
+
+        &.root[data-labels="floating"] .input {
+            min-height: 0;
+        }
+
+        &.root[data-labels="floating"]:is(
+                [data-floated],
+                :has(.control:focus-within),
+                :has(.input:not(:placeholder-shown))
+            )
+            .input {
+            min-height: 5.4375rem;
+        }
+    }
+}
+
+/*
+  Dropdown (Figma "Dropdown/Static Labels" 18505:20713, "Dropdown/Floating Labels" 18505:21072).
+  Static: label body/sm/bold (bold here, medium on the text inputs — as in Figma); control padding
+  8/12, value body/md/reg, chevron 24 in a 24×44 container. Floating: control 48, padding 0/12.
+  Open ("Active"): the chevron points up (Figma swaps to chevron-top-up) and the options panel shows.
+*/
+@layer components {
+    .dropdown {
+        & .control {
+            padding-inline: var(--spacing-xs);
+            cursor: pointer;
+        }
+
+        &[data-open] .dropdown-chevron {
+            transform: rotate(180deg);
+        }
+
+        &.root[data-labels="floating"] .dropdown-button {
+            height: 0;
+            opacity: 0;
+        }
+
+        &.root[data-labels="floating"]:is(
+                [data-floated],
+                [data-filled],
+                [data-open]
+            )
+            .dropdown-button {
+            height: auto;
+            opacity: 1;
+        }
+
+        &[data-disabled] .dropdown-button,
+        &[data-disabled] .dropdown-chevron {
+            color: var(--color-component-disabled-content-default);
+            cursor: not-allowed;
+        }
+    }
+
+    .dropdown-button {
+        display: block;
+        flex: 1;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--color-shared-content-primary);
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        outline: none;
+
+        &[data-placeholder] {
+            color: var(--color-shared-content-placeholder);
+        }
+    }
+
+    .dropdown-chevron {
+        display: inline-flex;
+        flex-shrink: 0;
+        color: var(--color-shared-content-primary);
+        transition: transform var(--motion-duration-fast)
+            var(--motion-ease-standard);
+    }
+}
+
+/*
+  Phone Input (Figma "Phone Input/Static Labels" 18709:10372, "Phone Input/Floating Labels" 18709:10502)
+  with _Locale select (18781:13057). Row: locale select (22×16 flag, 24 arrow, country code body/md/reg
+  in content/tertiary) and the number body/md/reg, gap 4. Floating: the label is always up
+  (body/xs/reg) with the row below, 4px bottom padding — as in every Figma floating variant.
+  Locale open: the arrow points up and the options panel lists flags + codes.
+*/
+@layer components {
+    .phone-row {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        width: 100%;
+    }
+    .phone {
+        & .input {
+            height: auto;
+            opacity: 1;
+        }
+
+        &.root[data-labels="floating"] .stack {
+            gap: var(--spacing-3xs);
+            padding-bottom: var(--spacing-3xs);
+        }
+
+        &.root[data-labels="floating"] .float-label {
+            font-size: var(--font-size-body-xs);
+        }
+
+        &[data-disabled] .locale {
+            cursor: not-allowed;
+        }
+    }
+
+    .locale {
+        position: static;
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        height: 1.5rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--color-shared-content-primary);
+        cursor: pointer;
+        border-radius: var(--shared-radius-2);
+
+        &:focus-visible {
+            outline: var(--shared-width-2) solid
+                var(--color-shared-border-system-focus);
+            outline-offset: var(--shared-width-2);
+        }
+    }
+
+    .locale-flag {
+        display: block;
+        width: 1.375rem;
+        height: 1rem;
+    }
+
+    .locale-code {
+        color: var(--color-shared-content-tertiary);
+    }
+}

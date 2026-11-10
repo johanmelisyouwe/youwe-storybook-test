@@ -1,0 +1,64 @@
+/*
+  Service Card (Figma 26763:51) and System Card (26751:66). Read per variant on 2026-11-09.
+  surface/base-2, radius component/radius/card, padding 24 (lg), gap 24.
+  Heading: eyebrow body/sm/bold content/link (Hover: content/brand), gap 4, title body/xl/med primary.
+  Service: heading row with a 40px outline arrow (border/5), gap 24; body body/md/reg secondary; text gap 16.
+  System: description body/md/reg secondary; media (image radius 4, 368×208, caption body/sm/reg tertiary, gap 12);
+          Button/Link md at the bottom.
+  Hover: the shared red reveal with lift (card-reveal.css).
+*/
+@layer components {
+    .root {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        height: 100%;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+
+        &:focus-visible .eyebrow {
+            color: var(--color-shared-content-brand);
+        }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover .eyebrow {
+                color: var(--color-shared-content-brand);
+            }
+        }
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    .top {
+        display: flex;
+        gap: var(--spacing-lg);
+    }
+    .heading {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+        min-width: 0;
+    }
+
+    .eyebrow {
+        color: var(--color-shared-content-link);
+        transition: color var(--motion-duration-card) var(--motion-ease-card);
+    }
+
+    .body {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .media {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    .caption {
+        color: var(--color-shared-content-tertiary);
+    }
+}

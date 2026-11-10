@@ -1,0 +1,116 @@
+/*
+  Content blocks/Technology logos (Figma 26851:1733). Grid 4 / 5 / 6 / 8 = fixed logo slots per row; slots have
+  a 1px border/2 and overlap (-1px), 110 high, padding 24; an empty slot keeps its space without a border.
+  Grid layouts: text (heading/xl + body/md/reg secondary, 632) above; Default: giant drifting rows (as in
+  Statement), heading/lg + body/lg/reg, 6-slot grid; Outline button "All tech partners" below. Padding 120/80
+  (Default 80), gap 40, centred. Mobile: 2 slots per row.
+  Motion (Figma): logos reveal staggered; logo hover opacity duration/fast.
+*/
+@layer components {
+    /* Same as block.module.css: keyframe names are scoped per module. */
+    @keyframes block-in {
+        from {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-md));
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    .root {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-2xl);
+        }
+
+        &[data-default] .inner {
+            padding-block: var(--spacing-4xl);
+        }
+
+        &[data-default] .text {
+            gap: var(--spacing-2xs);
+            max-width: none;
+        }
+    }
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        align-self: flex-start;
+        max-width: 39.5rem;
+
+        & h2,
+        & p {
+            margin: 0;
+        }
+
+        & p {
+            color: var(--color-shared-content-secondary);
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(var(--_n, 6), minmax(0, 1fr));
+        width: 100%;
+        margin: 0;
+        padding: 0 0 0 1px;
+        list-style: none;
+
+        & > li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 6.875rem;
+            margin: 0 0 -1px -1px;
+            padding: var(--spacing-lg);
+            box-shadow: inset 0 0 0 var(--shared-width-1)
+                var(--color-shared-border-2);
+            color: var(--color-shared-content-primary);
+            transition: opacity var(--motion-duration-fast)
+                var(--motion-ease-standard);
+        }
+
+        & > li[data-empty] {
+            box-shadow: none;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            & > li:not([data-empty]):hover {
+                opacity: 0.7;
+            }
+        }
+
+        & img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            @supports (animation-timeline: view()) {
+                & > li {
+                    animation: block-in var(--motion-duration-reveal)
+                        var(--motion-ease-emphasized) both;
+                    animation-delay: calc(
+                        var(--_i, 0) *
+                        var(--motion-stagger) /
+                        2
+                    );
+                    animation-timeline: view();
+                    animation-range: entry 0% entry 40%;
+                }
+            }
+        }
+    }
+
+    @container (max-width: 47.9375rem) {
+        .grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+}

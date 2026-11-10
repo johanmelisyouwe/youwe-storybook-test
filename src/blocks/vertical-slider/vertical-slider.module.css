@@ -1,0 +1,467 @@
+/*
+  Vertical slider (Figma 26715:410), _Vertical slider/Index item (26713:47), _Vertical slider/Slide (26713:174).
+  Desktop: full-viewport section (1440×900), surface/base-1, padding 80, gap 80. Header: kicker (24×2 brand-red
+  line + body/sm/bold, gap 8) and tagline body/sm/bold, space-between. Body: slide (760) and index (gap 0),
+  space-between, centred; Index=Left swaps the order. Index item: 2px bar + label body/sm/bold, 64 high, gap 16;
+  Rest bar surface/base-3 + label tertiary, Hover bar content/tertiary + label primary, Active bar brand-red +
+  label content/brand. Optional progress bar (2px, surface/base-3 with brand-red fill) at the bottom.
+  Mobile: padding 40/12, stacked, no pinning; step bars (2px, gap 4) and "01 / 03 · Label" in content/brand.
+  Slides (gap 40): Service (eyebrow body/sm/bold, title heading/3xl, body body/lg/reg, Pills S, Button Solid M),
+  Quote (heading/2xl quote, name body/lg/med, role body/md/reg secondary, Outline button),
+  Stat (eyebrow, value heading/3xl content/brand, statement heading/md, Outline button),
+  Case (image 320×400 radius 4 | eyebrow, title heading/xl, body body/lg/reg secondary, Solid button),
+  Content (eyebrow, title heading/xl, body, list with 16×2 brand-red dashes, body/md/med).
+  Motion (Figma, implemented as on the v2 site "What we do"): the section is 140vh per chapter and pins; scroll
+  progress picks the chapter; the title rises in a mask and the rest fades up after 220ms; each chapter's
+  background opens with a circular wipe at 72% 50% and settles from scale 1.15 to 1; index bars fill with
+  progress; optional 2px progress bar.
+*/
+@layer components {
+    .root {
+        position: relative;
+        background: var(--color-shared-surface-base-1);
+        color: var(--color-shared-content-primary);
+
+        &[data-pinned] {
+            height: calc(var(--_steps, 3) * 140vh);
+        }
+
+        &[data-pinned] .frame {
+            position: sticky;
+            top: 0;
+            height: 100svh;
+            min-height: 0;
+        }
+
+        &[data-left] .bg {
+            clip-path: circle(var(--r, 0%) at 28% 50%);
+        }
+
+        &[data-left] .frame:has(.bg)::after {
+            background:
+                linear-gradient(
+                    270deg,
+                    var(--color-shared-surface-base-1) 0%,
+                    var(--color-neutral-900-50) 48%,
+                    transparent 75%
+                ),
+                linear-gradient(
+                    0deg,
+                    var(--color-shared-surface-base-1) 0%,
+                    transparent 30%
+                ),
+                linear-gradient(
+                    180deg,
+                    var(--color-shared-surface-base-1) 0%,
+                    transparent 22%
+                );
+        }
+
+        &[data-left] .body {
+            flex-direction: row-reverse;
+        }
+
+        /*
+  Mobile
+*/
+
+        &[data-mobile] .frame {
+            gap: var(--spacing-2xl);
+            min-height: 0;
+            padding: var(--spacing-2xl) var(--spacing-xs);
+        }
+
+        &[data-mobile] .header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--spacing-2xs);
+        }
+
+        &[data-mobile] .slide[data-case] {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        &[data-mobile] .slide[data-case] > .slide-image {
+            flex-basis: auto;
+        }
+    } /* v2 site: 420vh for 3 chapters */
+
+    .frame {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4xl);
+        min-height: 56.25rem;
+        padding: var(--spacing-4xl)
+            max(var(--spacing-4xl), calc((100% - var(--yw-container-max)) / 2));
+        overflow: hidden;
+
+        &:has(.bg)::after {
+            content: "";
+            position: absolute;
+            z-index: 0;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--color-shared-surface-base-1) 0%,
+                    var(--color-neutral-900-50) 48%,
+                    transparent 75%
+                ),
+                linear-gradient(
+                    0deg,
+                    var(--color-shared-surface-base-1) 0%,
+                    transparent 30%
+                ),
+                linear-gradient(
+                    180deg,
+                    var(--color-shared-surface-base-1) 0%,
+                    transparent 22%
+                );
+        }
+
+        & > :not(.bg):not(.progress) {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    /* Chapter media: full-bleed, opens with a circular wipe at 72% 50% and settles from scale 1.15 to 1 (v2 site) */
+    /*
+      Scroll progress --p (0 to 1) is set on the root; each item has its index --_i.
+      --r: smoothstep around the chapter start, 150% radius when open. --k: image settle. --f: index bar fill.
+    */
+    .bg {
+        --_t: clamp(
+            0,
+            (var(--p, 0) - var(--_i) / var(--_steps) + 0.035) /
+            0.08,
+            1
+        );
+        --r: calc(var(--_t) * var(--_t) * (3 - 2 * var(--_t)) * 150%);
+        --k: clamp(0, var(--p, 0) * var(--_steps) - var(--_i) + 0.5, 1);
+        position: absolute !important;
+        z-index: 0;
+        inset: 0;
+        border-radius: 0 !important;
+        clip-path: circle(var(--r, 0%) at 72% 50%);
+
+        & > img {
+            transform: scale(calc(1.15 - 0.15 * var(--k, 0)));
+        }
+    }
+    .progress {
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: var(--color-shared-surface-base-3);
+
+        & > span {
+            display: block;
+            height: 100%;
+            background: var(--color-shared-surface-fixed-brand-red);
+            transform: scaleX(var(--p, 0));
+            transform-origin: left;
+        }
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+    }
+    .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        margin: 0;
+    }
+    .line {
+        width: 1.5rem;
+        height: 2px;
+        background: var(--color-shared-surface-fixed-brand-red);
+    }
+
+    .body {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-4xl);
+    }
+    .chapters {
+        display: grid;
+        flex: 0 1 47.5rem;
+        min-width: 0;
+    }
+    .chapter {
+        grid-area: 1 / 1;
+        pointer-events: none;
+
+        &[data-active] {
+            pointer-events: auto;
+        }
+
+        & .mask > span {
+            transform: translateY(calc(105% + 0.24em));
+            transition: transform var(--motion-duration-zoom)
+                var(--motion-ease-emphasized);
+        }
+
+        &[data-active] .mask > span {
+            transform: none;
+        }
+
+        &[data-past] .mask > span {
+            transform: translateY(calc(-105% - 0.24em));
+        }
+
+        & .slide > :not(.slide-heading):not(.slide-text),
+        & .slide-heading > :not(.mask),
+        & .slide-text > :not(.mask):not(.slide-heading) {
+            opacity: 0;
+            transform: translateY(var(--motion-distance-md));
+            transition:
+                opacity var(--motion-duration-slow) var(--motion-ease-standard),
+                transform var(--motion-duration-reveal)
+                var(--motion-ease-emphasized);
+        }
+
+        &[data-active] .slide > :not(.slide-heading):not(.slide-text),
+        &[data-active] .slide-heading > :not(.mask),
+        &[data-active] .slide-text > :not(.mask):not(.slide-heading) {
+            opacity: 1;
+            transform: none;
+            transition-delay: 220ms; /* legacy-ok: v2 site chapter delay */
+        }
+
+        & .slide[data-case] > .slide-image {
+            opacity: 1;
+            transform: none;
+            animation: none;
+            clip-path: circle(0% at 50% 50%);
+            transition: clip-path var(--motion-duration-zoom)
+                var(--motion-ease-emphasized);
+        }
+
+        &[data-active] .slide[data-case] > .slide-image {
+            clip-path: circle(75% at 50% 50%);
+        }
+    }
+
+    .index {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        & > li {
+            --f: clamp(0, var(--p, 0) * var(--_steps) - var(--_i), 1);
+        }
+    }
+
+    .vindex {
+        --focus-ring-radius: var(--shared-radius-2);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        height: 4rem;
+        padding: 0 var(--spacing-xs) 0 0;
+        border: 0;
+        background: none;
+        color: var(--color-shared-content-tertiary);
+        text-align: start;
+        cursor: pointer;
+        transition: color var(--motion-duration-base)
+            var(--motion-ease-standard);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: var(--color-shared-content-primary);
+            }
+
+            &:hover .vindex-bar {
+                background: var(--color-shared-content-tertiary);
+            }
+        }
+
+        &[aria-current="true"] {
+            color: var(--color-shared-content-brand);
+        }
+
+        &[aria-current="true"] .vindex-bar {
+            background: var(--color-shared-surface-fixed-brand-red);
+        }
+    }
+
+    .vindex-bar {
+        position: relative;
+        align-self: stretch;
+        width: 2px;
+        overflow: hidden;
+        background: var(--color-shared-surface-base-3);
+        transition: background-color var(--motion-duration-base)
+            var(--motion-ease-standard);
+
+        /*
+  The bar fills as you scroll through its chapter (v2 site)
+*/
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--color-shared-surface-fixed-brand-red);
+            transform: scaleY(var(--f, 0));
+            transform-origin: top;
+        }
+    }
+
+    /* Slides */
+    @keyframes circle-wipe {
+        from {
+            clip-path: circle(0% at 50% 50%);
+            transform: scale(1.15);
+        }
+        to {
+            clip-path: circle(75% at 50% 50%);
+            transform: scale(1);
+        }
+    }
+
+    /* Chapter switch (v2 site): the title rises in a mask from below (past titles leave upwards, 900ms ease/emphasized);
+     the other parts fade and rise distance/md (duration/slow, duration/reveal) after 220ms. */
+    .slide {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-2xl);
+
+        & p {
+            margin: 0;
+        }
+
+        & blockquote {
+            margin: 0;
+        }
+
+        &[data-case] {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &[data-case] > .slide-image {
+            flex: 0 0 20rem;
+            aspect-ratio: 320 / 400;
+        }
+
+        &[data-case] .slide-text {
+            flex: 1;
+            min-width: 0;
+            align-items: flex-start;
+        }
+    }
+    .mask {
+        display: block;
+        overflow: hidden;
+        padding-block: 0.12em 0.16em;
+
+        & > span {
+            display: block;
+        }
+    }
+
+    .slide-text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    .slide-heading {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        margin: 0;
+    }
+    .slide-secondary {
+        color: var(--color-shared-content-secondary);
+    }
+    .slide-value {
+        color: var(--color-shared-surface-fixed-brand-red);
+    }
+    .slide-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2xs);
+    }
+    .slide-attribution {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+        width: 100%;
+    }
+    .slide-person {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+    }
+    .slide-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        & li {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        & li::before {
+            content: "";
+            flex-shrink: 0;
+            width: 1rem;
+            height: 2px;
+            background: var(--color-shared-surface-fixed-brand-red);
+        }
+    }
+    .stack {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xl);
+    }
+    .step {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+    }
+    .current {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        color: var(--color-shared-content-brand);
+    }
+    .steps {
+        display: flex;
+        gap: var(--spacing-3xs);
+
+        & > span {
+            flex: 1;
+            height: 2px;
+            background: var(--color-shared-surface-base-3);
+        }
+
+        & > span[data-done] {
+            background: var(--color-shared-surface-fixed-brand-red);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+/*
+  Focus Ring (Figma building block used by Button/Basic, Pills, Button/Filter …):
+  2px shared/border/system/focus, inside stroke on a layer 4px outside the control,
+  plus the effect style shadow/outer/md/focus. The gap between control and ring stays
+  transparent, so it is drawn as a pseudo-element, not as an outline or box-shadow.
+  Pull it into a component with `composes: root from '…/focus-ring.module.css'`.
+  Components can set --focus-ring-radius (e.g. Checkbox: 4px ring around a 2px box)
+  and --focus-ring-inset (Tab: the ring sits 4px INSIDE the tab).
+*/
+@layer components {
+    .root {
+        position: relative;
+
+        &:focus-visible {
+            outline: none;
+        }
+
+        &:focus-visible::after {
+            content: "";
+            position: absolute;
+            inset: var(--focus-ring-inset, calc(var(--spacing-3xs) * -1));
+            border: var(--shared-width-2) solid
+                var(--color-shared-border-system-focus);
+            border-radius: var(--focus-ring-radius, inherit);
+            box-shadow: var(--effect-shadow-outer-md-focus-shadow);
+            pointer-events: none;
+        }
+    }
+}
