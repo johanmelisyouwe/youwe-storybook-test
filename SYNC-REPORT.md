@@ -1,48 +1,40 @@
-# Sync report — 10 November 2026 (text contrast)
+# Sync report — 10 November 2026 (new blocks, header, Ask Youwe dock)
 
-Backlog batch 3: every text colour pair now passes WCAG AA (4.5:1).
+Backlog batch 4 plus three requests added today: hero logo loop, header on scroll up, docked Ask Youwe bar.
 
-## What the audit found
+## New blocks (no more placeholders)
 
-axe-core colour-contrast over all 282 Storybook stories: **677 failing text nodes** before, **0** after (bar one known false positive, below). Almost all came from a handful of semantic colours that fail on the standard surfaces (base-1 / base-2).
+- **Content blocks/ACI Weave** (Home). Built from the hand-built frames (desktop *Frame 6*, mobile *ACI Weave · video + nudge*): kicker, title, body, Ask Youwe nudge snippet, *Explore ACI Weave* button, next to three video frames with captions. On desktop the text column stays in view while the videos scroll; mobile stacks. The frames show an abstract poster with a play button; give a video `src` and it plays inline. Figma desktop copy.
+- **Content blocks/Insights overview** (Insights). Built from the hand-built *All insights* frames: heading, type filters (desktop: tiles in the Filter bar box; mobile: a sideways pill row), *Showing 12 of 174*, the Insight Card grid and *Show more*. In Storybook the filters and Show more work on the 12 Figma sample cards (Show more repeats them up to the type's total; Video has no samples, so it shows an empty message).
+  - The selected type tile uses the Filter bar's pressed outline (brand red), as on Work. Figma shows the Focused state (blue focus ring) as "selected", which reads as keyboard focus.
+- **Insights desktop "Latest"** is now composed from Insight Card (Featured) + Upcoming events, as in the frame.
+- Home and Insights templates have **no placeholders left**.
 
-## Colour changes (nearest passing primitive)
+## Compact dropdown
 
-| Token | Mode | Figma now | Code now | Before → after (worst surface) | Where you see it |
-|---|---|---|---|---|---|
-| shared/content/brand | dark | brand-red/400 | brand-red/200 | 3.16 → 5.01 | Footer headings, feature card numbers, event months, two-column labels, kickers |
-| shared/content/brand | light | brand-red/400 | brand-red/500 | 4.25 → 5.83 | Feature card numbers on light cards |
-| shared/content/link | dark | brand-red/300 | brand-red/200 | 3.99 → 5.01 | Service card eyebrow |
-| shared/content/placeholder | dark | neutral/600 | neutral/400 | 2.05 → 5.20 | Input and dropdown placeholders, Industry list idle rows |
-| shared/content/placeholder | light | neutral/300 | neutral/500 | 1.94 → 4.69 | Industry list idle rows (light) |
-| shared/content/tertiary | light | neutral/500 | neutral/600 | 4.17 → 6.57 | Service card caption on light cards |
-| component/tag/content | dark | neutral/450 | neutral/400 | 3.73 → 5.20 | Card type tags |
-| component/tag/content | light | neutral/500 | neutral/600 | 4.17 → 6.57 | Card type tags (light) |
+**Dropdown/Compact** is now its own component (Components/Input/Compact dropdown): sizes M and S, all nine states (Rest, Hover, Active, Filled, Filled Hover, Disabled, Focused, Success, Error) and the hint. It uses the shared input-field states. Pagination's *View max. … per page* now uses it. It's a native select, so *Active* is the platform's own option list.
 
-Buttons (white on brand red, 4.79) already passed and are unchanged.
+## Requested today
 
-**Design note for review:** in light mode, content/tertiary now equals content/secondary (neutral/600), because there is no primitive between neutral/500 and neutral/600. Brand red text on dark is now the lighter brand-red/200; surfaces, buttons and borders keep brand-red/400.
+- **Hero logo bar loops seamlessly.** The logos repeat as often as the screen needs (2 sets at 1440, 3 at 2560) and each set slides by exactly its own width, so the loop restarts on an identical frame: no empty end, no jump.
+- **Header appears on scroll up.** On every template the header is fixed: it slides away when you scroll down and comes back as soon as you scroll up (Figma header motion, duration/slow). Once scrolled it becomes dark glass (base-1 80% + blur), so it stays readable over light sections; on mobile the whole top bar gets the glass.
+- **Docked Ask Youwe bar** on every template: bottom centre, slides in after the first 480px, steps aside while the footer is on screen. Desktop shows the page's question as the Contextual chip (e.g. Home *Which service fits my problem?*, Services detail *What does "Build it" include?*); mobile shows the plain bar (no room for the chip). Asking opens the answer panel above the bar (Esc or close returns). The answer is a placeholder saying Ask Youwe isn't connected in Storybook. Over light sections the glass sits on a dark base so the text stays readable.
+  - The per-page questions other than Services detail are my suggestions; Figma has the bar, not its placement on pages.
 
-## Section intro scroll highlight
+## Figma
 
-Unread words were drawn at 28% opacity (1.4–1.6:1). They now use **content/tertiary** (the Figma body colour, which passes) and light up to **content/secondary** as the paragraph scrolls. The effect is kept and every state passes AA. With reduced motion all words show as read.
-
-## Figma: blocked
-
-Changing the eight Figma variables (color_semantics, dark/light modes) was **denied by the edit permission check** ("Modify Shared Resources"). As agreed, I did not work around it. Until Figma is updated, the code values live in `src/tokens/contrast-overrides.css` (a small, documented override on top of the generated tokens, using only existing primitives). Once the Figma variables are changed and the tokens re-exported, delete that file. Listed on the backlog.
-
-## Known false positive
-
-Ask Youwe *Related case* snippet: axe reads the white text against the grey placeholder behind the image, but the snippet has a dark scrim (82–96% base-1) under the text, giving 12:1 or more. Checked visually.
+- **Proposed components added** on a new page *Proposed components (review)*: Content blocks/ACI Weave and Content blocks/Insights overview, Desktop and Mobile, made from copies of the hand-built template frames. The template frames themselves are unchanged. For design to review.
+- Contrast variables (batch 3) are still waiting: that change was blocked by the permission check; I did not retry it.
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
-- `check-coverage`: clean
-- axe colour-contrast, 282 stories: 0 failures (excluding the false positive above)
+- `check-coverage`: clean (76 complete components, 19 templates)
+- axe colour-contrast on the new and changed stories: 0 failures (plus the known Ask Youwe case-snippet false positive)
+- No horizontal scroll on Home and Insights (1440 and iPhone 13); header and dock tested on desktop, phone and the Mobile stories.
 
 ## Backlog
 
-Removed: Text contrast. Added: Contrast colours in Figma. Next: batch 4 (ACI Weave section, Insights overview, compact dropdown).
+Removed: ACI Weave section, Insights overview, Dropdown/Compact. Added: review the proposed components in Figma, docked Ask Youwe bar in Figma. Next: batch 5 (Figma alignment).

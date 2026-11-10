@@ -46,7 +46,7 @@ const BADGES = [{ name: 'Northern Digital Award' }, { name: 'LRQA certificate' }
 function AboutPage({ Device: story }: { Device: Device }) {
   const Device = useDevice(story);
   return (
-    <Page Device={story}>
+    <Page Device={story} ask="Where are your offices?">
       <Hero
         Device={Device}
         image={abstract('015')}

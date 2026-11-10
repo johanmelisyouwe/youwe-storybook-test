@@ -1,0 +1,43 @@
+/* Content blocks/ACI Weave — see AciWeave.tsx for the Figma frames and measurements. */
+@layer components {
+  .yw-weave .yw-block__inner { --_py: var(--spacing-4xl); }
+  .yw-weave__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--spacing-4xl); align-items: start; }
+  .yw-weave__content { position: sticky; top: var(--spacing-5xl); display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+  .yw-weave__text { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+  .yw-weave__text h2 { margin: 0; }
+  .yw-weave__body { margin: 0; }
+  .yw-weave__videos { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+
+  .yw-weave__video { display: flex; flex-direction: column; gap: var(--spacing-sm); margin: 0; }
+  .yw-weave__frame { position: relative; display: block; overflow: hidden; aspect-ratio: 16 / 9; border-radius: var(--shared-radius-4); background: var(--color-shared-surface-base-2); }
+  .yw-weave__frame > video, .yw-weave__frame > .yw-card-media { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .yw-weave__caption { color: var(--color-shared-content-tertiary); }
+
+  .yw-weave__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-shared-surface-fixed-brand-red);
+    color: var(--color-shared-content-fixed-light);
+    transform: translate(-50%, -50%);
+    transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+  }
+  button.yw-weave__play { cursor: pointer; }
+  button.yw-weave__play:hover { transform: translate(-50%, -50%) scale(1.08); }
+
+  @container (max-width: 1023px) {
+    .yw-weave__grid { grid-template-columns: minmax(0, 1fr); gap: calc(var(--spacing-2xl) + var(--spacing-2xs)); } /* 48: Figma mobile gap */
+    .yw-weave__content { position: static; }
+  }
+
+  @container (max-width: 767px) {
+    .yw-weave .yw-block__inner { --_py: var(--spacing-4xl); }
+  }
+}

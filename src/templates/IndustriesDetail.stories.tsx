@@ -38,7 +38,7 @@ const COUNTRIES = ['The Netherlands', 'United Kingdom', 'Sweden', 'Belgium', 'Ge
 function IndustriesDetailPage() {
   const Device = useDevice('Desktop');
   return (
-    <Page Device="Desktop">
+    <Page Device="Desktop" ask="Which clients do you work for in this industry?">
       <Hero
         Device={Device}
         image={caseImage('heidelberg', 'wide')}

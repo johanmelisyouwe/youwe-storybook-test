@@ -162,7 +162,7 @@ function HeaderView({
       </div>
     );
     return (
-      <header className={cx('yw-header', 'yw-header--mobile', fixed && 'yw-header--fixed', hidden && !open && 'is-hidden')}>
+      <header className={cx('yw-header', 'yw-header--mobile', fixed && 'yw-header--fixed', scrolled && 'is-scrolled', hidden && !open && 'is-hidden')}>
         {open && inline ? sheet : (
           <div className="yw-header__top">
             <a href="/" className="yw-header__logo yw-focus-ring"><YouweLogo /></a>

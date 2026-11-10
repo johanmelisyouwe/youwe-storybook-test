@@ -56,7 +56,7 @@
   }
 
   /* Bar */
-  @keyframes yw-marquee { to { transform: translateX(-50%); } }
+  @keyframes yw-marquee { to { transform: translateX(-100%); } }
 
   .yw-hero-bar {
     position: relative;
@@ -67,8 +67,10 @@
   }
 
   .yw-hero-bar--stats { padding-block: var(--spacing-xl); }
-  .yw-hero-bar__track { display: flex; align-items: center; gap: var(--spacing-3xl); width: max-content; padding-inline: var(--spacing-xl); animation: yw-marquee 40s linear infinite; } /* legacy-ok: Figma "marquee linear 40s" */
-  .yw-hero-bar:hover .yw-hero-bar__track, .yw-hero-bar:focus-within .yw-hero-bar__track { animation-play-state: paused; }
+  .yw-hero-bar__track { display: flex; width: max-content; }
+  /* Each group carries its trailing gap as padding, so translateX(-100%) moves exactly one period. */
+  .yw-hero-bar__group { display: flex; flex-shrink: 0; align-items: center; gap: var(--spacing-3xl); padding-right: var(--spacing-3xl); animation: yw-marquee 40s linear infinite; } /* legacy-ok: Figma "marquee linear 40s" */
+  .yw-hero-bar:hover .yw-hero-bar__group, .yw-hero-bar:focus-within .yw-hero-bar__group { animation-play-state: paused; }
   .yw-hero-bar::before, .yw-hero-bar::after { content: ''; position: absolute; z-index: 1; top: 0; bottom: 0; width: 160px; pointer-events: none; }
   .yw-hero-bar::before { left: 0; background: linear-gradient(to right, var(--color-shared-surface-base-1), transparent); }
   .yw-hero-bar::after { right: 0; background: linear-gradient(to left, var(--color-shared-surface-base-1), transparent); }

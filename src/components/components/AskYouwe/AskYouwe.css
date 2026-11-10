@@ -207,4 +207,28 @@
   .yw-ask-snippet__content { display: flex; flex-direction: column; gap: var(--spacing-2xs); }
   .yw-ask-snippet--case .yw-ask-label { color: var(--color-shared-content-fixed-light); }
   .yw-ask-snippet__actions { display: flex; flex-wrap: wrap; gap: var(--spacing-2xs); padding-top: var(--spacing-2xs); }
+
+  /* Docked bar: fixed bottom centre, slides up after the hero, out of the way over the footer. */
+  .yw-ask-dock {
+    position: fixed;
+    z-index: 40;
+    right: 0;
+    bottom: var(--spacing-lg);
+    left: 0;
+    display: flex;
+    justify-content: center;
+    max-width: var(--yw-page-max, none);
+    margin-inline: auto;
+    padding-inline: var(--spacing-md);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(calc(100% + var(--spacing-lg)));
+    transition: opacity var(--motion-duration-slow) var(--motion-ease-emphasized), transform var(--motion-duration-slow) var(--motion-ease-emphasized);
+  }
+
+  .yw-ask-dock.is-shown { pointer-events: auto; opacity: 1; transform: none; }
+  /* Floating over any section, light ones included: lay the glass on a dark base so the text keeps its contrast. */
+  .yw-ask-dock > .yw-ask-glass { background: linear-gradient(var(--color-component-ask-surface), var(--color-component-ask-surface)), color-mix(in srgb, var(--color-shared-surface-base-1) 88%, transparent); }
+  .yw-ask-dock.is-open > .yw-ask-panel { max-height: calc(100vh - 2 * var(--spacing-lg)); overflow-y: auto; }
+  .yw-ask-dock--mobile { bottom: var(--spacing-md); }
 }

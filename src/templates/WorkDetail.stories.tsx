@@ -38,7 +38,7 @@ const RELATED: CaseCardProps[] = [
 function WorkDetailPage({ Device: story }: { Device: Device }) {
   const Device = useDevice(story);
   return (
-    <Page Device={story}>
+    <Page Device={story} ask="How did Quooker expand to 17 countries?">
       {header(Device)}
       <Hero
         Variant="Title + image"

@@ -6,7 +6,9 @@ import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel
 import { TechnologyLogos } from '../components/components/TechnologyLogos/TechnologyLogos';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
-import { CLIENT_LOGOS, NotAComponent, Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
+import { AciWeave } from '../components/components/AciWeave/AciWeave';
+import { ACI_WEAVE } from '../components/components/AciWeave/aciWeave.copy';
+import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, clientPhoto } from '../media/media';
 
 /*
@@ -80,7 +82,7 @@ function HomePage({ Device: story }: { Device: Device }) {
   const Device = useDevice(story);
   const mobile = Device === 'Mobile';
   return (
-    <Page Device={story}>
+    <Page Device={story} ask="Which service fits my problem?">
       <Hero
         Device={Device}
         image={abstract('016')}
@@ -103,9 +105,7 @@ function HomePage({ Device: story }: { Device: Device }) {
       <Section Mode="Light">
         <VerticalSlider Device={Device} Index="Left" Kicker="In their words" Tagline={mobile ? undefined : 'What our clients say about working with us.'} items={mobile ? IN_THEIR_WORDS.slice(0, 3) : IN_THEIR_WORDS} />
       </Section>
-      {mobile
-        ? <NotAComponent name="ACI Weave · video + nudge" height={1637} uses={['Ask Youwe/Snippet', 'Button/Basic']} />
-        : <NotAComponent name="Frame 6 (ACI Weave · videos + snippet)" height={1356} uses={['Ask Youwe/Snippet', 'Button/Basic']} />}
+      <AciWeave Device={Device} {...ACI_WEAVE} />
       <Section Mode="Light">
         <TechnologyLogos Layout="Default" Device={Device} Title="The technology we build on" Body="We pick the platform that fits your business, then connect it to the rest of your landscape." rows={['We pick the platforms', 'that fit your business']} logos={TECH} button={{ label: 'All tech partners', href: '#' }} />
       </Section>
@@ -117,7 +117,7 @@ function HomePage({ Device: story }: { Device: Device }) {
 
 const meta: Meta = {
   title: 'Templates/Home',
-  parameters: { layout: 'fullscreen', controls: { disable: true }, docs: { description: { component: 'Home page template: hero with client logos, What we do slider, client stats, case reel, client quotes, ACI Weave section (not a component yet), technology logos, sub-footer and footer.' } } },
+  parameters: { layout: 'fullscreen', controls: { disable: true }, docs: { description: { component: 'Home page template: hero with client logos, What we do slider, client stats, case reel, client quotes, ACI Weave section, technology logos, sub-footer and footer.' } } },
 };
 export default meta;
 type Story = StoryObj;
