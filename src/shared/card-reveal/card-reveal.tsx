@@ -25,7 +25,10 @@ export function CardReveal({
 
 export function CardArrow({ className }: { className?: string }) {
     return (
-        <span className={cx(styles.cardArrow, className)} aria-hidden="true">
+        <span
+            className={cx(styles['card-arrow'], className)}
+            aria-hidden="true"
+        >
             <Icon name="arrow-forward" size={24} />
         </span>
     )

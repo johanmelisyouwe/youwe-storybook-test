@@ -7,7 +7,7 @@
   Bottom: 1px divider border/2, gap 24; legal bar (Terms, Privacy body/sm/reg secondary, gap 16) and
   socials (24px icons, gap 16) + language pill (border/3, body/sm/reg, padding 8/16).
 */
-.footerLink {
+.footer-link {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
@@ -91,7 +91,7 @@
         }
     }
 
-    .footerLink {
+    .footer-link {
         --focus-ring-radius: var(--shared-radius-2);
         color: var(--color-shared-content-secondary);
         text-decoration: none;
@@ -122,11 +122,11 @@
         justify-content: space-between;
         gap: var(--spacing-lg);
     }
-    .legalLinks {
+    .legal-links {
         display: flex;
         gap: var(--spacing-sm);
 
-        & .footerLink {
+        & .footer-link {
             color: var(--color-shared-content-secondary);
         }
     }

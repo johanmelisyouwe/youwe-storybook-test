@@ -36,7 +36,7 @@ export function NavLink({
             data-l={Size === 'L' || undefined}
             data-plain={plain || undefined}
             className={cx(
-                styles.navLink,
+                styles['nav-link'],
                 ring.root,
                 Size === 'L' ? 'yw-body-xl-med' : 'yw-body-md-med',
                 className
@@ -51,7 +51,7 @@ export function NavLink({
 /* _Utility link */
 export function UtilityLink({ label, href }: { label: string; href: string }) {
     return (
-        <a href={href} className={cx(styles.utilityLink, 'yw-body-xs-reg')}>
+        <a href={href} className={cx(styles['utility-link'], 'yw-body-xs-reg')}>
             {label}
         </a>
     )
@@ -99,11 +99,13 @@ export function MegaMenu({
             onMouseLeave={onMouseLeave}
         >
             {columns.slice(0, 3).map((c) => (
-                <div key={c.heading} className={styles.megaCol}>
-                    <span className={cx(styles.megaHeading, 'yw-body-xs-med')}>
+                <div key={c.heading} className={styles['mega-col']}>
+                    <span
+                        className={cx(styles['mega-heading'], 'yw-body-xs-med')}
+                    >
                         {c.heading}
                     </span>
-                    <ul className={styles.megaLinks}>
+                    <ul className={styles['mega-links']}>
                         {c.links.map((l) => (
                             <li key={l.label}>
                                 <NavLink label={l.label} href={l.href} plain />
@@ -113,23 +115,33 @@ export function MegaMenu({
                 </div>
             ))}
             {Feature === 'ACI Weave' ? (
-                <a href={featureHref} className={styles.megaFeature}>
+                <a href={featureHref} className={styles['mega-feature']}>
                     <CardMedia src={featureImage} ratio="314 / 120" />
-                    <span className={styles.megaFeatureText}>
+                    <span className={styles['mega-feature-text']}>
                         <span
-                            className={cx(styles.megaEyebrow, 'yw-body-xs-med')}
+                            className={cx(
+                                styles['mega-eyebrow'],
+                                'yw-body-xs-med'
+                            )}
                         >
                             {Eyebrow}
                         </span>
                         <span className="yw-body-md-med">{Title}</span>
-                        <span className={cx(styles.megaMore, 'yw-body-sm-med')}>
+                        <span
+                            className={cx(
+                                styles['mega-more'],
+                                'yw-body-sm-med'
+                            )}
+                        >
                             {Link}
                         </span>
                     </span>
                 </a>
             ) : (
-                <div className={styles.megaCol}>
-                    <span className={cx(styles.megaHeading, 'yw-body-xs-med')}>
+                <div className={styles['mega-col']}>
+                    <span
+                        className={cx(styles['mega-heading'], 'yw-body-xs-med')}
+                    >
                         Not sure where to start?
                     </span>
                     <AskYouwe {...{ 'Show shortcut': false }} />
@@ -225,7 +237,7 @@ export function Header({
                 aria-modal={!inline}
                 aria-label="Menu"
             >
-                <div className={styles.sheetTop}>
+                <div className={styles['sheet-top']}>
                     <a href="/" className={styles.logo}>
                         <YouweLogo />
                     </a>
@@ -235,7 +247,7 @@ export function Header({
                         onClick={() => setOpen(false)}
                     />
                 </div>
-                <ul className={styles.sheetLinks}>
+                <ul className={styles['sheet-links']}>
                     {nav.map((n) => (
                         <li key={n.label}>
                             <NavLink
@@ -247,17 +259,17 @@ export function Header({
                         </li>
                     ))}
                 </ul>
-                <div className={styles.sheetDivider} />
-                <div className={styles.sheetUtility}>
+                <div className={styles['sheet-divider']} />
+                <div className={styles['sheet-utility']}>
                     {utility.map((u) => (
                         <UtilityLink key={u.label} {...u} />
                     ))}
-                    <span className={styles.sheetLang}>
+                    <span className={styles['sheet-lang']}>
                         <Icon name="language" size={16} />
                         <UtilityLink label={language} href="#" />
                     </span>
                 </div>
-                <div className={styles.sheetCta}>
+                <div className={styles['sheet-cta']}>
                     <Button
                         Variant="Primary"
                         Size="M"
@@ -284,7 +296,7 @@ export function Header({
                         <div className={styles.mright}>
                             <button
                                 type="button"
-                                className={styles.menuBtn}
+                                className={styles['menu-btn']}
                                 aria-label="Open menu"
                                 aria-expanded={open}
                                 aria-controls={`${id}-sheet`}
@@ -322,7 +334,7 @@ export function Header({
                                 <a
                                     href={n.href}
                                     className={cx(
-                                        styles.navLink,
+                                        styles['nav-link'],
                                         'yw-body-md-med'
                                     )}
                                     aria-current={
@@ -360,7 +372,7 @@ export function Header({
                             key={u.label}
                             href={u.href}
                             data-plain
-                            className={cx(styles.navLink, 'yw-body-md-med')}
+                            className={cx(styles['nav-link'], 'yw-body-md-med')}
                         >
                             {u.label}
                         </a>

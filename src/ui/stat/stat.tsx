@@ -116,5 +116,5 @@ export function Stat({
 }
 
 export function StatRow({ children }: { children: ReactNode }) {
-    return <div className={styles.statRow}>{children}</div>
+    return <div className={styles['stat-row']}>{children}</div>
 }

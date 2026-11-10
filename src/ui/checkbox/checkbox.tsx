@@ -59,12 +59,12 @@ export function Checkbox({
             />
             <span className={styles.box} aria-hidden="true">
                 <Icon
-                    className={cx(styles.icon, styles.iconCheck)}
+                    className={cx(styles.icon, styles['icon-check'])}
                     name="check"
                     size={ICON[Size]}
                 />
                 <Icon
-                    className={cx(styles.icon, styles.iconRemove)}
+                    className={cx(styles.icon, styles['icon-remove'])}
                     name="remove"
                     size={ICON[Size]}
                 />
@@ -94,7 +94,7 @@ export function CheckboxLabel({
     return (
         <label
             data-size={Size.toLowerCase()}
-            className={[styles.checkboxLabel].join(' ')}
+            className={[styles['checkbox-label']].join(' ')}
         >
             <Checkbox Size={Size} className={className} {...props} />
             <span className={TEXT[Size]}>{label}</span>

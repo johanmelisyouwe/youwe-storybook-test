@@ -29,7 +29,7 @@
         align-items: flex-start;
         gap: var(--spacing-sm);
     }
-    .ctaText {
+    .cta-text {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-2xs);
@@ -65,7 +65,7 @@
         gap: var(--spacing-xl);
         padding-block: var(--spacing-4xl);
     }
-    .stackHeader {
+    .stack-header {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
@@ -77,19 +77,19 @@
             color: var(--color-shared-content-secondary);
         }
     }
-    .stackTitle {
+    .stack-title {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-lg);
         margin: 0;
     }
-    .stackGoal {
+    .stack-goal {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-xl);
         padding-top: var(--spacing-xl);
     }
-    .stackGoalIntro {
+    .stack-goal-intro {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-xs);
@@ -99,12 +99,12 @@
             margin: 0;
         }
     }
-    .stackSystem {
+    .stack-system {
         color: var(--color-shared-content-tertiary);
         text-transform: uppercase;
         letter-spacing: 0.08em;
     }
-    .stackPartners {
+    .stack-partners {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: var(--spacing-sm);
@@ -118,12 +118,12 @@
         gap: var(--spacing-4xl);
         padding-block: var(--spacing-4xl);
     }
-    .officesHeader {
+    .offices-header {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-lg);
     }
-    .officesRow {
+    .offices-row {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
@@ -147,7 +147,7 @@
         gap: var(--spacing-4xl);
         padding-block: var(--spacing-4xl);
     }
-    .leadershipPeople {
+    .leadership-people {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: var(--spacing-lg);
@@ -167,15 +167,15 @@
                 var(--color-shared-border-2);
         }
     }
-    .personInfo {
+    .person-info {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-3xs);
     }
-    .personRole {
+    .person-role {
         color: var(--color-shared-content-tertiary);
     }
-    .personEmail {
+    .person-email {
         color: var(--color-shared-content-link);
         text-decoration: none;
 
@@ -188,24 +188,24 @@
         padding-top: 0;
         padding-bottom: var(--spacing-4xl);
     }
-    .awardsRow {
+    .awards-row {
         display: flex;
         align-items: center;
         gap: var(--spacing-2xl);
         margin: 0;
     }
-    .awardsTitle {
+    .awards-title {
         flex: 1;
         margin: 0;
     }
-    .awardsBadges {
+    .awards-badges {
         display: flex;
         gap: var(--spacing-2xl);
         margin: 0;
         padding: 0;
         list-style: none;
     }
-    .awardsBadge {
+    .awards-badge {
         width: 5.9375rem;
     }
 
@@ -214,25 +214,25 @@
             grid-template-columns: 1fr;
             gap: var(--spacing-2xl);
         }
-        .stackHeader,
-        .officesRow {
+        .stack-header,
+        .offices-row {
             flex-direction: column;
             align-items: flex-start;
             gap: var(--spacing-lg);
         }
-        .stackPartners {
+        .stack-partners {
             grid-template-columns: 1fr;
         }
-        .leadershipPeople {
+        .leadership-people {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: var(--spacing-sm);
         }
-        .awardsRow {
+        .awards-row {
             flex-direction: column;
             align-items: flex-start;
             gap: var(--spacing-lg);
         }
-        .awardsBadges {
+        .awards-badges {
             flex-wrap: wrap;
             gap: var(--spacing-lg);
         }

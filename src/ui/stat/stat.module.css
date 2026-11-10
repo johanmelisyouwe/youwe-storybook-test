@@ -5,7 +5,7 @@
   Motion (Figma): count up on scroll, 1.6s ease-out, once.
 */
 @layer components {
-    .statRow {
+    .stat-row {
         display: flex;
 
         & > * + * {

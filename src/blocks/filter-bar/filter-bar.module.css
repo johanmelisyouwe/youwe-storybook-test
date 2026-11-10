@@ -4,7 +4,7 @@
   dropdowns. Mobile: system pills scroll sideways; Button/Filter + "N cases" (body/sm/reg); "Filters" opens a
   bottom sheet (handle 40×4, "Filters" heading/sm + Outline S "Clear all", five dropdowns, Primary M "Show N cases").
 */
-.filterTile {
+.filter-tile {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
@@ -34,7 +34,7 @@
         list-style: none;
     }
 
-    .filterTile {
+    .filter-tile {
         display: flex;
         align-items: flex-end;
         justify-content: flex-start;
@@ -96,7 +96,7 @@
         }
     }
 
-    .filterSheet {
+    .filter-sheet {
         position: fixed;
         z-index: 70;
         right: 0;
@@ -125,14 +125,14 @@
             width: 100%;
         }
     }
-    .filterSheetHandle {
+    .filter-sheet-handle {
         align-self: center;
         width: 2.5rem;
         height: 0.25rem;
         border-radius: var(--shared-radius-2);
         background: var(--color-shared-border-3);
     }
-    .filterSheetHead {
+    .filter-sheet-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -143,12 +143,12 @@
             color: var(--color-component-forms-content-label);
         }
     }
-    .filterSheetFields {
+    .filter-sheet-fields {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-sm);
     }
-    .filterScrim {
+    .filter-scrim {
         position: fixed;
         z-index: 69;
         inset: 0;

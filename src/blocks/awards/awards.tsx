@@ -21,15 +21,20 @@ export function Awards({
     return (
         <section className={cx(block.root, styles.awards)} aria-label={Title}>
             <div className={cx(block.inner, styles.inner)}>
-                <div className={cx(styles.awardsRow, block.reveal)}>
-                    <h2 className={cx(styles.awardsTitle, 'yw-body-lg-bold')}>
+                <div className={cx(styles['awards-row'], block.reveal)}>
+                    <h2
+                        className={cx(
+                            styles['awards-title'],
+                            'yw-body-lg-bold'
+                        )}
+                    >
                         {Title}
                     </h2>
-                    <ul className={styles.awardsBadges}>
+                    <ul className={styles['awards-badges']}>
                         {badges.map((b) => (
                             <li
                                 key={b.name}
-                                className={styles.awardsBadge}
+                                className={styles['awards-badge']}
                                 title={b.name}
                             >
                                 <CardMedia

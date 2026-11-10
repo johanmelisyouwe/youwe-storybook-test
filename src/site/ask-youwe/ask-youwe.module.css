@@ -8,13 +8,13 @@
   Active: panel 560 wide, padding 32, gap 24; opens from the bar with a clip reveal (duration/cinematic).
   Default: the aura breathes on a ~6s loop.
 */
-.askChip {
+.ask-chip {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
 @layer components {
     /* Orb: brand gradient sphere (Figma raw gradient colours, not tokens) */
-    .askOrb {
+    .ask-orb {
         display: inline-block;
         flex-shrink: 0;
         width: var(--_orb, 1.25rem);
@@ -59,7 +59,7 @@
         }
     }
 
-    .askAura {
+    .ask-aura {
         position: absolute;
         z-index: 0;
         top: -40px;
@@ -96,7 +96,7 @@
     }
 
     /* Glass surfaces */
-    .askGlass {
+    .ask-glass {
         position: relative;
         overflow: hidden;
         isolation: isolate;
@@ -114,15 +114,15 @@
             backdrop-filter: blur(var(--effect-ask-glass-flat-blur));
         }
 
-        & > :not(.askAura) {
+        & > :not(.ask-aura) {
             position: relative;
             z-index: 1;
         }
     }
 
     /* Buttons and chips */
-    .askBtn,
-    .askChip {
+    .ask-btn,
+    .ask-chip {
         display: inline-flex;
         flex-shrink: 0;
         align-items: center;
@@ -142,50 +142,50 @@
             box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
     }
 
-    .askBtn[data-variant="primary"] {
+    .ask-btn[data-variant="primary"] {
         background: var(--color-shared-surface-fixed-brand-red);
         box-shadow: none;
         color: var(--color-shared-content-fixed-light);
     }
-    .askBtn[data-variant="primary"]:hover {
+    .ask-btn[data-variant="primary"]:hover {
         background: var(--color-component-brand-red-3);
     }
-    .askBtn[data-variant="glass"]:hover,
-    .askChip[data-suggestion]:hover {
+    .ask-btn[data-variant="glass"]:hover,
+    .ask-chip[data-suggestion]:hover {
         background: var(--color-component-ask-border);
     }
-    .askBtn[data-variant="disabled"] {
+    .ask-btn[data-variant="disabled"] {
         box-shadow: none;
         color: var(--color-shared-content-tertiary);
         cursor: not-allowed;
     }
-    .askBtn[data-icon] {
+    .ask-btn[data-icon] {
         justify-content: center;
         width: 2.5rem;
         height: 2.5rem;
         padding: 0;
     }
-    .askBtn[data-icon].askBtn[data-s] {
+    .ask-btn[data-icon].ask-btn[data-s] {
         width: 2rem;
         height: 2rem;
     }
 
-    .askChip[data-context] {
+    .ask-chip[data-context] {
         gap: var(--spacing-3xs);
         padding: var(--spacing-3xs) var(--spacing-xs);
         cursor: default;
     }
-    .askChip[data-context] .askChipMeta {
+    .ask-chip[data-context] .ask-chip-meta {
         color: var(--color-shared-content-tertiary);
     }
-    .askChip[data-key] {
+    .ask-chip[data-key] {
         padding: 2px var(--spacing-2xs);
         box-shadow: none;
         color: var(--color-shared-content-secondary);
         cursor: default;
     } /* 2px: Figma padding */
 
-    .askLabel {
+    .ask-label {
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-2xs);
@@ -193,7 +193,7 @@
     }
 
     /* Bar */
-    .askBar {
+    .ask-bar {
         display: flex;
         align-items: center;
         gap: var(--spacing-xs);
@@ -217,13 +217,13 @@
                 var(--color-shared-border-system-focus);
         }
     }
-    .askBarPrompt {
+    .ask-bar-prompt {
         flex: 1;
         min-width: 0;
         color: var(--color-shared-content-secondary);
     }
 
-    .askBarInput {
+    .ask-bar-input {
         flex: 1;
         min-width: 0;
         padding: 0;
@@ -245,7 +245,7 @@
             opacity: 1;
         }
     }
-    .askBarContext {
+    .ask-bar-context {
         animation: fade-in var(--motion-duration-base)
             var(--motion-ease-standard) 640ms both;
     }
@@ -263,7 +263,7 @@
         }
     }
 
-    .askPanel {
+    .ask-panel {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-lg);
@@ -277,7 +277,7 @@
             padding: var(--spacing-lg);
         }
 
-        & .askAura {
+        & .ask-aura {
             --_aura-op: 0.55;
             top: -150px;
             left: -140px;
@@ -285,7 +285,7 @@
             height: 18.75rem;
         }
     }
-    .askPanelHeader {
+    .ask-panel-header {
         display: flex;
         align-items: center;
         gap: var(--spacing-2xs);
@@ -294,12 +294,12 @@
             flex: 1;
         }
     }
-    .askPanelQuestion {
+    .ask-panel-question {
         display: flex;
         justify-content: flex-end;
     }
 
-    .askPanelBubble {
+    .ask-panel-bubble {
         max-width: 80%;
         margin: 0;
         padding: var(--spacing-xs) var(--spacing-sm);
@@ -307,7 +307,7 @@
         background: var(--color-component-ask-surface-raised);
     }
 
-    .askPanelAnswer {
+    .ask-panel-answer {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-sm);
@@ -316,16 +316,16 @@
             margin: 0;
         }
     }
-    .askPanelSource {
+    .ask-panel-source {
         color: var(--color-shared-content-tertiary);
     }
-    .askPanelFollowups {
+    .ask-panel-followups {
         display: flex;
         flex-wrap: wrap;
         gap: var(--spacing-2xs);
     }
 
-    .askPanelComposer {
+    .ask-panel-composer {
         display: flex;
         align-items: center;
         gap: var(--spacing-xs);
@@ -338,7 +338,7 @@
     }
 
     /* Snippets */
-    .askSnippet {
+    .ask-snippet {
         display: flex;
         align-items: center;
         gap: var(--spacing-xs);
@@ -346,7 +346,7 @@
         max-width: 37.5rem;
         padding: var(--spacing-lg);
 
-        & .askAura {
+        & .ask-aura {
             --_aura-op: 0.45;
             top: -60px;
             left: -90px;
@@ -355,7 +355,7 @@
             animation: none;
         }
 
-        &[data-type="nudge"] .askSnippetText {
+        &[data-type="nudge"] .ask-snippet-text {
             flex-direction: row;
             align-items: center;
             gap: var(--spacing-xs);
@@ -369,22 +369,22 @@
             color: var(--color-shared-content-fixed-light);
         }
 
-        &[data-type="case"].askSnippet[data-mobile] {
+        &[data-type="case"].ask-snippet[data-mobile] {
             min-height: 23.75rem;
         }
 
-        &[data-type="case"] .askLabel {
+        &[data-type="case"] .ask-label {
             color: var(--color-shared-content-fixed-light);
         }
     }
-    .askSnippetText {
+    .ask-snippet-text {
         display: flex;
         flex: 1;
         flex-direction: column;
         gap: var(--spacing-3xs);
         min-width: 0;
     }
-    .askSnippetImage {
+    .ask-snippet-image {
         position: absolute !important;
         z-index: 0 !important;
         inset: 0;
@@ -407,12 +407,12 @@
         }
     }
 
-    .askSnippetContent {
+    .ask-snippet-content {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-2xs);
     }
-    .askSnippetActions {
+    .ask-snippet-actions {
         display: flex;
         flex-wrap: wrap;
         gap: var(--spacing-2xs);

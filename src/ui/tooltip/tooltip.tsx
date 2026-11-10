@@ -52,12 +52,12 @@ export function IconTooltip({
     return (
         <span
             data-size={Size.toLowerCase()}
-            className={cx(styles.iconTooltip, className)}
+            className={cx(styles['icon-tooltip'], className)}
         >
             <button
                 type="button"
                 className={cx(
-                    styles.iconTooltipTrigger,
+                    styles['icon-tooltip-trigger'],
                     ring.root,
                     triggerClassName
                 )}
@@ -66,7 +66,7 @@ export function IconTooltip({
             >
                 <Icon name="info-filled" size={Size === 'S' ? 16 : 24} />
             </button>
-            <span className={styles.iconTooltipBubble}>
+            <span className={styles['icon-tooltip-bubble']}>
                 <Tooltip id={id} Size={tooltipSize} text={text} />
             </span>
         </span>

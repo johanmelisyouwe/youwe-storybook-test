@@ -101,7 +101,10 @@ export function Dropdown({
                 className={styles.dropdown}
                 onControlClick={() => !disabled && lb.setOpen(!lb.open)}
                 trailing={
-                    <span className={styles.dropdownChevron} aria-hidden="true">
+                    <span
+                        className={styles['dropdown-chevron']}
+                        aria-hidden="true"
+                    >
                         <Icon name="chevron-down" size={24} />
                     </span>
                 }
@@ -124,7 +127,7 @@ export function Dropdown({
                     }
                     disabled={disabled}
                     data-placeholder={selectedIndex < 0 || undefined}
-                    className={cx(styles.dropdownButton, 'yw-body-md-reg')}
+                    className={cx(styles['dropdown-button'], 'yw-body-md-reg')}
                     onKeyDown={lb.onKeyDown}
                 >
                     {shown}

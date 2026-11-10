@@ -95,7 +95,7 @@ export function IndustryList({
     return (
         <ul
             data-mobile={Device === 'Mobile' || undefined}
-            className={cx(styles.industryList)}
+            className={cx(styles['industry-list'])}
         >
             {items.map((it, i) => (
                 <IndustryListItem

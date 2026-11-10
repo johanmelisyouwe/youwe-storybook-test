@@ -100,7 +100,7 @@
             --_border: var(--color-component-brand-red-2);
         }
 
-        &:checked + .box .iconCheck {
+        &:checked + .box .icon-check {
             display: block;
         }
 
@@ -114,11 +114,11 @@
             --_fx: var(--effect-shadow-outer-md-pressed-shadow);
         }
 
-        &:indeterminate + .box .iconCheck {
+        &:indeterminate + .box .icon-check {
             display: none;
         }
 
-        &:indeterminate + .box .iconRemove {
+        &:indeterminate + .box .icon-remove {
             display: block;
         }
 
@@ -162,7 +162,7 @@
     }
 
     /* labelled */
-    .checkboxLabel {
+    .checkbox-label {
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-xs);

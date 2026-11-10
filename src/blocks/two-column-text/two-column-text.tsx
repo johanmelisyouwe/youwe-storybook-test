@@ -26,13 +26,13 @@ export function TwoColumnText({
             <div className={block.inner}>
                 <div
                     data-split={Split === '4/8' ? '4-8' : undefined}
-                    className={cx(styles.twoCol, block.reveal)}
+                    className={cx(styles['two-col'], block.reveal)}
                 >
-                    <div className={styles.twoColLead}>
+                    <div className={styles['two-col-lead']}>
                         {label && (
                             <span
                                 className={cx(
-                                    styles.twoColLabel,
+                                    styles['two-col-label'],
                                     'yw-body-md-bold'
                                 )}
                             >
@@ -41,7 +41,7 @@ export function TwoColumnText({
                         )}
                         <Lead>{lead}</Lead>
                     </div>
-                    <div className={styles.twoColBody}>
+                    <div className={styles['two-col-body']}>
                         <Body paragraphs={body} />
                     </div>
                 </div>

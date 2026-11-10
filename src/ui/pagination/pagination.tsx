@@ -54,12 +54,15 @@ export function Pagination({
         return (
             <div
                 className={cx(
-                    cx(styles.viewAmount, 'yw-body-md-reg'),
+                    cx(styles['view-amount'], 'yw-body-md-reg'),
                     className
                 )}
             >
                 <span id="yw-view-max">View max.</span>
-                <span className={styles.compactSelect} style={{ padding: 0 }}>
+                <span
+                    className={styles['compact-select']}
+                    style={{ padding: 0 }}
+                >
                     <select
                         className={cx(ring.root, 'yw-body-md-reg')}
                         aria-labelledby="yw-view-max yw-per-page"
@@ -83,7 +86,7 @@ export function Pagination({
 
     const go = (p: number) => onPageChange?.(Math.min(total, Math.max(1, p)))
     const btn = (cls = '') =>
-        cx(cx(styles.pageBtn, 'yw-body-md-reg'), cls, buttonClassName)
+        cx(cx(styles['page-btn'], 'yw-body-md-reg'), cls, buttonClassName)
     const first = page <= 1
     const last = page >= total
 
@@ -102,7 +105,7 @@ export function Pagination({
             )}
             <button
                 type="button"
-                className={btn(styles.pageBtnPrev)}
+                className={btn(styles['page-btn-prev'])}
                 disabled={first}
                 onClick={() => go(page - 1)}
                 aria-label="Previous page"
@@ -117,7 +120,7 @@ export function Pagination({
                             {it === 'gap' ? (
                                 <span
                                     className={cx(
-                                        styles.pageGap,
+                                        styles['page-gap'],
                                         'yw-body-md-reg'
                                     )}
                                     aria-hidden="true"
@@ -143,7 +146,7 @@ export function Pagination({
             </ol>
             <button
                 type="button"
-                className={btn(styles.pageBtnNext)}
+                className={btn(styles['page-btn-next'])}
                 disabled={last}
                 onClick={() => go(page + 1)}
                 aria-label="Next page"

@@ -49,20 +49,29 @@ export function HeroBar({
     const items =
         Type === 'Logos'
             ? logos.map((l, i) => (
-                  <span key={i} className={styles.heroBarLogo}>
+                  <span key={i} className={styles['hero-bar-logo']}>
                       {l}
                   </span>
               ))
             : stats.map((s) => (
-                  <span key={s.client + s.value} className={styles.heroBarStat}>
+                  <span
+                      key={s.client + s.value}
+                      className={styles['hero-bar-stat']}
+                  >
                       <span className="yw-heading-lg">{s.value}</span>
                       <span
-                          className={cx(styles.heroBarLabel, 'yw-body-sm-reg')}
+                          className={cx(
+                              styles['hero-bar-label'],
+                              'yw-body-sm-reg'
+                          )}
                       >
                           {s.label}
                       </span>
                       <span
-                          className={cx(styles.heroBarClient, 'yw-body-sm-med')}
+                          className={cx(
+                              styles['hero-bar-client'],
+                              'yw-body-sm-med'
+                          )}
                       >
                           {s.client}
                       </span>
@@ -72,9 +81,9 @@ export function HeroBar({
     return (
         <div
             data-stats={Type === 'Stats' || undefined}
-            className={cx(styles.heroBar)}
+            className={cx(styles['hero-bar'])}
         >
-            <div className={styles.heroBarTrack}>
+            <div className={styles['hero-bar-track']}>
                 {items}
                 <span aria-hidden="true" style={{ display: 'contents' }}>
                     {items}

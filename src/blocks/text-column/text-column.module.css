@@ -12,10 +12,10 @@
     .longform p {
         margin: 0;
     }
-    .longformLead {
+    .longform-lead {
         color: var(--color-shared-content-primary);
     }
-    .longformBody {
+    .longform-body {
         display: flex;
         flex-direction: column;
         gap: 1.5em;
@@ -32,7 +32,7 @@
         margin-inline: auto;
     }
 
-    .twoCol {
+    .two-col {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-sm);
@@ -41,29 +41,29 @@
             grid-template-columns: 416fr 848fr;
         }
 
-        &[data-split="4-8"] .twoColLead {
+        &[data-split="4-8"] .two-col-lead {
             max-width: none;
         }
 
-        &[data-split="4-8"] .twoColBody {
+        &[data-split="4-8"] .two-col-body {
             justify-self: end;
             max-width: 46.25rem;
         }
     }
-    .twoColLead {
+    .two-col-lead {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-2xs);
         max-width: 32.75rem;
     }
-    .twoColLabel {
+    .two-col-label {
         color: var(--color-shared-content-brand);
     }
-    .twoColBody {
+    .two-col-body {
         padding-top: var(--spacing-xl);
     }
 
-    .caseIntro {
+    .case-intro {
         display: flex;
         justify-content: space-between;
         gap: var(--spacing-lg);
@@ -72,19 +72,19 @@
             flex-direction: row-reverse;
         }
     }
-    .caseIntroMeta {
+    .case-intro-meta {
         display: flex;
         flex: 0 1 26rem;
         flex-direction: column;
         gap: var(--spacing-md);
         margin: 0;
     }
-    .caseIntroItem {
+    .case-intro-item {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-2xs);
 
-        & + .caseIntroItem {
+        & + .case-intro-item {
             padding-top: var(--spacing-md);
             box-shadow: inset 0 var(--shared-width-1) 0
                 var(--color-shared-border-2);
@@ -99,7 +99,7 @@
             white-space: pre-line;
         }
     }
-    .caseIntroText {
+    .case-intro-text {
         display: flex;
         flex: 0 1 46.25rem;
         flex-direction: column;
@@ -107,20 +107,20 @@
     }
 
     @container (max-width: 47.9375rem) {
-        .twoCol,
-        .twoCol[data-split="4-8"] {
+        .two-col,
+        .two-col[data-split="4-8"] {
             grid-template-columns: 1fr;
         }
-        .twoColBody {
+        .two-col-body {
             padding-top: var(--spacing-lg);
         }
-        .caseIntro,
-        .caseIntro[data-meta-right] {
+        .case-intro,
+        .case-intro[data-meta-right] {
             flex-direction: column;
             gap: var(--spacing-2xl);
         }
-        .caseIntroMeta,
-        .caseIntroText {
+        .case-intro-meta,
+        .case-intro-text {
             flex-basis: auto;
         }
     }

@@ -68,7 +68,7 @@ function LocaleSelect({
                 onKeyDown={lb.onKeyDown}
             >
                 <img
-                    className={styles.localeFlag}
+                    className={styles['locale-flag']}
                     src={cur.flag}
                     alt=""
                     width={22}
@@ -78,7 +78,7 @@ function LocaleSelect({
                     name={lb.open ? 'arrow-drop-up' : 'arrow-drop-down'}
                     size={24}
                 />
-                <span className={cx(styles.localeCode, 'yw-body-md-reg')}>
+                <span className={cx(styles['locale-code'], 'yw-body-md-reg')}>
                     {cur.label}
                 </span>
             </button>
@@ -169,7 +169,7 @@ export function PhoneInput({
                 ) : null
             }
         >
-            <span className={styles.phoneRow}>
+            <span className={styles['phone-row']}>
                 <LocaleSelect
                     value={code}
                     disabled={disabled}

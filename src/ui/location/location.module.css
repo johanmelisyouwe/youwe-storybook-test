@@ -66,7 +66,7 @@
         perspective: 12.5rem;
     }
 
-    .clockDigit {
+    .clock-digit {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -81,7 +81,7 @@
             animation: clock-flip 520ms var(--motion-ease-emphasized);
         }
     }
-    .clockSep {
+    .clock-sep {
         display: inline-flex;
         justify-content: center;
         width: 0.5rem;

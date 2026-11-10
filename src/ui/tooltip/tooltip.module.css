@@ -45,16 +45,16 @@
     }
 
     /* Icon tooltip */
-    .iconTooltip {
+    .icon-tooltip {
         position: relative;
         display: inline-flex;
 
-        &[data-size="s"] .iconTooltipTrigger {
+        &[data-size="s"] .icon-tooltip-trigger {
             --focus-ring-inset: -3px;
         }
     }
 
-    .iconTooltipTrigger {
+    .icon-tooltip-trigger {
         --focus-ring-radius: var(--shared-radius-circular);
         --focus-ring-inset: -2px;
 
@@ -67,7 +67,7 @@
         cursor: help;
     }
 
-    .iconTooltipBubble {
+    .icon-tooltip-bubble {
         position: absolute;
         z-index: 20;
         left: 50%;
@@ -82,8 +82,8 @@
             visibility var(--motion-duration-fast) allow-discrete;
     }
 
-    .iconTooltip:hover .iconTooltipBubble,
-    .iconTooltipTrigger:focus-visible + .iconTooltipBubble {
+    .icon-tooltip:hover .icon-tooltip-bubble,
+    .icon-tooltip-trigger:focus-visible + .icon-tooltip-bubble {
         opacity: 1;
         visibility: visible;
         transform: translate(-50%, 0);

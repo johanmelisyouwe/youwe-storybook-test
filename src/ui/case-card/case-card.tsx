@@ -44,7 +44,7 @@ export function CaseStat({
     const l = Size === 'L' ? 'yw-body-sm-reg' : 'yw-body-xs-reg'
     const icon = Size === 'L' ? 24 : 16
     const attrs = {
-        className: styles.caseStat,
+        className: styles['case-stat'],
         'data-size': Size.toLowerCase(),
         'data-stack':
             Type === 'Before-after' || Type === 'Stacked' || undefined,
@@ -53,12 +53,15 @@ export function CaseStat({
     if (Type === 'Pair') {
         return (
             <span {...attrs}>
-                <span className={styles.caseStatPair}>
+                <span className={styles['case-stat-pair']}>
                     <span className={v}>{value}</span>
                     <span className={l}>{label}</span>
                 </span>
-                <span className={styles.caseStatDivider} aria-hidden="true" />
-                <span className={styles.caseStatPair}>
+                <span
+                    className={styles['case-stat-divider']}
+                    aria-hidden="true"
+                />
+                <span className={styles['case-stat-pair']}>
                     <span className={v}>{value2}</span>
                     <span className={l}>{label2}</span>
                 </span>
@@ -68,14 +71,14 @@ export function CaseStat({
     let main: ReactNode = <span className={v}>{value}</span>
     if (Type === 'Trend')
         main = (
-            <span className={styles.caseStatValue}>
+            <span className={styles['case-stat-value']}>
                 <Icon name="arrow-upward" size={icon} />
                 <span className={v}>{value}</span>
             </span>
         )
     if (Type === 'Before-after')
         main = (
-            <span className={styles.caseStatValues}>
+            <span className={styles['case-stat-values']}>
                 <span className={v}>{before}</span>
                 <Icon name="arrow-forward" size={icon} />
                 <span className="yw-visually-hidden">to</span>

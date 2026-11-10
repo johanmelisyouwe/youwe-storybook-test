@@ -59,7 +59,7 @@ export function TextMedia({
                             src={image}
                             alt={alt}
                             ratio="608 / 474"
-                            className={styles.clipReveal}
+                            className={styles['clip-reveal']}
                         />
                     )}
                 </div>

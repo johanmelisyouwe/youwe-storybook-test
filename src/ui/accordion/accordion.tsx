@@ -46,13 +46,13 @@ export function Accordion({
                 ) : (
                     <>
                         <span
-                            className={cx(styles.icon, styles.iconClosed)}
+                            className={cx(styles.icon, styles['icon-closed'])}
                             aria-hidden="true"
                         >
                             <Icon name="add" size={24} />
                         </span>
                         <span
-                            className={cx(styles.icon, styles.iconOpen)}
+                            className={cx(styles.icon, styles['icon-open'])}
                             aria-hidden="true"
                         >
                             <Icon name="remove" size={24} />

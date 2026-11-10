@@ -25,7 +25,7 @@ export function FeatureList({
     items,
 }: FeatureListProps) {
     const head = (
-        <div className={styles.featureListHead}>
+        <div className={styles['feature-list-head']}>
             {kicker && (
                 <span className={cx(block.kicker, 'yw-body-sm-bold')}>
                     {kicker}
@@ -40,18 +40,18 @@ export function FeatureList({
     return (
         <section
             data-split={Layout === 'Split' || undefined}
-            className={cx(block.root, styles.featureList)}
+            className={cx(block.root, styles['feature-list'])}
         >
             <div
                 className={cx(
                     block.inner,
                     styles.inner,
-                    styles.featureListInner
+                    styles['feature-list-inner']
                 )}
             >
                 {head}
                 {Layout === 'Grid' ? (
-                    <ul className={styles.featureListGrid}>
+                    <ul className={styles['feature-list-grid']}>
                         {items.map((it) => (
                             <li key={it.Title}>
                                 <FeatureCard {...it} Variant="Card" reveal />
@@ -59,7 +59,7 @@ export function FeatureList({
                         ))}
                     </ul>
                 ) : (
-                    <ol className={styles.featureListItems}>
+                    <ol className={styles['feature-list-items']}>
                         {items.map((it, i) => (
                             <li key={it.Title}>
                                 <FeatureCard

@@ -173,7 +173,7 @@
         }
     }
 
-    .heroBar {
+    .hero-bar {
         position: relative;
         z-index: 1;
         overflow: hidden;
@@ -185,8 +185,8 @@
             padding-block: var(--spacing-xl);
         }
 
-        &:hover .heroBarTrack,
-        &:focus-within .heroBarTrack {
+        &:hover .hero-bar-track,
+        &:focus-within .hero-bar-track {
             animation-play-state: paused;
         }
 
@@ -219,7 +219,7 @@
             );
         }
     }
-    .heroBarTrack {
+    .hero-bar-track {
         display: flex;
         align-items: center;
         gap: var(--spacing-3xl);
@@ -227,7 +227,7 @@
         padding-inline: var(--spacing-xl);
         animation: marquee 40s linear infinite; /* legacy-ok: Figma "marquee linear 40s" */
     }
-    .heroBarLogo {
+    .hero-bar-logo {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -236,16 +236,16 @@
         height: 3.875rem;
         color: var(--color-shared-content-primary);
     }
-    .heroBarStat {
+    .hero-bar-stat {
         display: inline-flex;
         align-items: baseline;
         gap: var(--spacing-xs);
         white-space: nowrap;
     }
-    .heroBarLabel {
+    .hero-bar-label {
         color: var(--color-shared-content-tertiary);
     }
-    .heroBarClient {
+    .hero-bar-client {
         color: var(--color-shared-content-link);
     }
     .logo {

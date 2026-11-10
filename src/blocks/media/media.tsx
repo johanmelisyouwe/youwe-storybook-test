@@ -40,18 +40,18 @@ export function Media({
                 }
             >
                 {two ? (
-                    <div className={styles.mediaTwo}>
+                    <div className={styles['media-two']}>
                         <CardMedia
                             src={image}
                             alt={alt}
                             ratio="632 / 736"
-                            className={styles.clipReveal}
+                            className={styles['clip-reveal']}
                         />
                         <CardMedia
                             src={image2}
                             alt={alt2}
                             ratio="632 / 736"
-                            className={styles.clipReveal}
+                            className={styles['clip-reveal']}
                         />
                     </div>
                 ) : (
@@ -61,7 +61,7 @@ export function Media({
                         ratio={
                             Layout === 'Full bleed' ? '16 / 9' : '1280 / 666'
                         }
-                        className={styles.clipReveal}
+                        className={styles['clip-reveal']}
                     />
                 )}
             </div>

@@ -99,7 +99,7 @@ export function GiantRows({
 
 export function Statement({ text, rows }: StatementProps) {
     return (
-        <section className={cx(block.root, styles.root)}>
+        <section className={block.root}>
             {rows && rows.length > 0 && <GiantRows rows={rows} />}
             <div className={block.inner}>
                 <p className={cx(styles.text, 'yw-heading-xl')}>{text}</p>

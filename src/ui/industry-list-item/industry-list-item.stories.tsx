@@ -56,7 +56,7 @@ const meta: Meta<Args> = {
     render: ({ Device, Expanded, Mode }) => (
         <ModeFrame Mode={Mode}>
             <div style={{ maxWidth: W[Device], paddingTop: 120 }}>
-                <ul className={styles.industryList}>
+                <ul className={styles['industry-list']}>
                     <IndustryListItem
                         {...ITEMS[0]}
                         Device={Device}
@@ -100,7 +100,7 @@ export const AllVariants: Story = {
                     >
                         {(['No', 'Yes'] as const).map((e) => (
                             <div key={e} style={{ maxWidth: 1280 }}>
-                                <ul className={styles.industryList}>
+                                <ul className={styles['industry-list']}>
                                     <IndustryListItem
                                         {...ITEMS[0]}
                                         Expanded={e}
@@ -109,7 +109,7 @@ export const AllVariants: Story = {
                             </div>
                         ))}
                         <div style={{ width: 336 }}>
-                            <ul data-mobile className={styles.industryList}>
+                            <ul data-mobile className={styles['industry-list']}>
                                 {(['No', 'Yes'] as const).map((e) => (
                                     <IndustryListItem
                                         key={e}

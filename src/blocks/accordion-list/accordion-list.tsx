@@ -42,7 +42,7 @@ export function AccordionList({
     cta,
 }: AccordionListProps) {
     const head = (
-        <div className={stats.featureListHead}>
+        <div className={stats['feature-list-head']}>
             {kicker && (
                 <span className={cx(block.kicker, 'yw-body-sm-bold')}>
                     {kicker}
@@ -56,7 +56,7 @@ export function AccordionList({
     )
     const ctaEl = cta && (
         <div className={cx(styles.cta, block.reveal)}>
-            <div className={styles.ctaText}>
+            <div className={styles['cta-text']}>
                 <span className="yw-body-xl-med">{cta.title}</span>
                 <p className="yw-body-md-reg">{cta.body}</p>
             </div>

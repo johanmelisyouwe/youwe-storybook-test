@@ -14,7 +14,7 @@ export function Words({ text }: { text: string }) {
             <span className="yw-visually-hidden">
                 {text.replace(/\n/g, ' ')}
             </span>
-            <span className={styles.words} aria-hidden="true">
+            <span aria-hidden="true">
                 {lines.map((line, li) => (
                     <span
                         key={li}
@@ -140,14 +140,14 @@ export function SectionIntro({
     return (
         <div
             data-stacked={Layout === 'Stacked' || undefined}
-            className={cx(styles.sectionIntro, className)}
+            className={cx(styles['section-intro'], className)}
         >
             {Kicker && (
                 <span className={cx(block.kicker, 'yw-body-sm-bold')}>
                     {Kicker}
                 </span>
             )}
-            <div className={styles.sectionIntroRow}>
+            <div className={styles['section-intro-row']}>
                 <h2 className="yw-heading-xl">
                     <Words text={Title} />
                 </h2>
@@ -155,7 +155,7 @@ export function SectionIntro({
                     <p
                         ref={ref}
                         className={cx(
-                            styles.sectionIntroBody,
+                            styles['section-intro-body'],
                             'yw-body-md-reg'
                         )}
                     >

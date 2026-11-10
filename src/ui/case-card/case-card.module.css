@@ -79,7 +79,7 @@
     }
 
     /* _Case Card/Stat */
-    .caseStat {
+    .case-stat {
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-xs);
@@ -99,7 +99,7 @@
             gap: var(--spacing-3xs);
         }
 
-        &[data-size="m"] .caseStatValues {
+        &[data-size="m"] .case-stat-values {
             gap: var(--spacing-2xs);
         }
 
@@ -107,31 +107,31 @@
             gap: var(--spacing-md);
         }
 
-        &[data-pair].caseStat[data-size="m"] {
+        &[data-pair].case-stat[data-size="m"] {
             gap: 0.875rem;
         }
 
-        &[data-size="m"] .caseStatDivider {
+        &[data-size="m"] .case-stat-divider {
             height: 2rem;
         }
     }
-    .caseStatValue {
+    .case-stat-value {
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-3xs);
     }
-    .caseStatValues {
+    .case-stat-values {
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-xs);
     }
-    .caseStatPair {
+    .case-stat-pair {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-4xs);
     }
 
-    .caseStatDivider {
+    .case-stat-divider {
         align-self: center;
         width: 1px;
         height: 2.5rem;

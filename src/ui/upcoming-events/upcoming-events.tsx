@@ -30,14 +30,14 @@ export function EventCard({
 }: EventItem & { className?: string }) {
     return (
         <a href={href} className={cx(reveal.root, styles.event, className)}>
-            <span className={styles.eventDate} aria-hidden="true">
+            <span className={styles['event-date']} aria-hidden="true">
                 <span className="yw-heading-2xl">{Day}</span>
-                <span className={cx(styles.eventMonth, 'yw-body-xs-bold')}>
+                <span className={cx(styles['event-month'], 'yw-body-xs-bold')}>
                     {Month}
                 </span>
             </span>
             <span className="yw-visually-hidden">{date}: </span>
-            <span className={styles.eventText}>
+            <span className={styles['event-text']}>
                 <span className="yw-body-md-med">{Title}</span>
                 <span className={reveal.tags}>
                     <span

@@ -62,7 +62,7 @@
             height: auto;
         }
     }
-    .colOffset {
+    .col-offset {
         padding-top: var(--spacing-xl);
     }
 
@@ -76,7 +76,7 @@
         flex-direction: column;
         gap: var(--spacing-sm);
     }
-    .groupLabel {
+    .group-label {
         margin: 0;
         color: var(--color-shared-content-secondary);
         text-transform: uppercase;
@@ -94,7 +94,7 @@
         .cols {
             grid-template-columns: 1fr;
         }
-        .colOffset {
+        .col-offset {
             padding-top: 0;
         }
         .intro {

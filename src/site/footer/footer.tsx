@@ -23,7 +23,7 @@ export function FooterLink({
             href={href}
             data-s={Size === 'S' || undefined}
             className={cx(
-                styles.footerLink,
+                styles['footer-link'],
                 ring.root,
                 Size === 'S' ? 'yw-body-sm-reg' : 'yw-body-md-reg'
             )}
@@ -113,13 +113,13 @@ export function Footer({
             <div className={styles.bottom}>
                 <div className={styles.divider} />
                 <div className={styles.legal}>
-                    <div className={styles.legalLinks}>
+                    <div className={styles['legal-links']}>
                         {legal.map((l) => (
                             <a
                                 key={l.label}
                                 href={l.href}
                                 className={cx(
-                                    styles.footerLink,
+                                    styles['footer-link'],
                                     'yw-body-sm-reg'
                                 )}
                             >

@@ -90,7 +90,7 @@ export function FilterBar({
                         <li key={s}>
                             <button
                                 type="button"
-                                className={styles.filterTile}
+                                className={styles['filter-tile']}
                                 aria-pressed={system === s}
                                 onClick={() => pick(system === s ? null : s)}
                             >
@@ -109,13 +109,16 @@ export function FilterBar({
         <div
             id={sheetId}
             data-static={inline || undefined}
-            className={styles.filterSheet}
+            className={styles['filter-sheet']}
             role="dialog"
             aria-modal={!inline}
             aria-label="Filters"
         >
-            <span className={styles.filterSheetHandle} aria-hidden="true" />
-            <div className={styles.filterSheetHead}>
+            <span
+                className={styles['filter-sheet-handle']}
+                aria-hidden="true"
+            />
+            <div className={styles['filter-sheet-head']}>
                 <h2 className="yw-heading-sm">Filters</h2>
                 <Button
                     Variant="Outline"
@@ -127,7 +130,7 @@ export function FilterBar({
                     }}
                 />
             </div>
-            <div className={styles.filterSheetFields}>{dropdowns}</div>
+            <div className={styles['filter-sheet-fields']}>{dropdowns}</div>
             <Button
                 Variant="Primary"
                 Size="M"
@@ -184,7 +187,7 @@ export function FilterBar({
                 ) : (
                     <>
                         <div
-                            className={styles.filterScrim}
+                            className={styles['filter-scrim']}
                             onClick={() => setOpen(false)}
                         />
                         {sheet}

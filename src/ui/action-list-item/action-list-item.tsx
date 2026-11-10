@@ -178,7 +178,7 @@ export function ActionList({
     label?: string
 }) {
     return (
-        <ul className={styles.actionList} aria-label={label}>
+        <ul className={styles['action-list']} aria-label={label}>
             {children}
         </ul>
     )

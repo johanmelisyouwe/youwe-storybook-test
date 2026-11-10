@@ -111,7 +111,7 @@
         }
     }
 
-    .tabPanel:focus-visible {
+    .tab-panel:focus-visible {
         outline: var(--shared-width-2) solid
             var(--color-shared-border-system-focus);
         outline-offset: var(--shared-width-2);

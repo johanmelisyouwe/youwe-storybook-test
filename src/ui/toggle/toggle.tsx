@@ -47,12 +47,12 @@ export function Toggle({
         >
             <span className={styles.handle} aria-hidden="true">
                 <Icon
-                    className={cx(styles.icon, styles.iconOff)}
+                    className={cx(styles.icon, styles['icon-off'])}
                     name="close-md"
                     size={icon}
                 />
                 <Icon
-                    className={cx(styles.icon, styles.iconOn)}
+                    className={cx(styles.icon, styles['icon-on'])}
                     name="check"
                     size={icon}
                 />

@@ -43,8 +43,8 @@ export function BuildYourStack({
     return (
         <section className={cx(block.root, styles.stack)} aria-label={title}>
             <div className={cx(block.inner, styles.inner)}>
-                <div className={styles.stackHeader}>
-                    <h2 className={styles.stackTitle}>
+                <div className={styles['stack-header']}>
+                    <h2 className={styles['stack-title']}>
                         <span className={cx(block.kicker, 'yw-body-sm-bold')}>
                             {kicker}
                         </span>
@@ -59,12 +59,12 @@ export function BuildYourStack({
                     selected={tab}
                     onChange={setTab}
                     panels={goals.map((g) => (
-                        <div key={g.label} className={styles.stackGoal}>
-                            <div className={styles.stackGoalIntro}>
+                        <div key={g.label} className={styles['stack-goal']}>
+                            <div className={styles['stack-goal-intro']}>
                                 {g.system && (
                                     <span
                                         className={cx(
-                                            styles.stackSystem,
+                                            styles['stack-system'],
                                             'yw-body-xs-bold'
                                         )}
                                     >
@@ -76,7 +76,7 @@ export function BuildYourStack({
                                 )}
                             </div>
                             {g.partners && (
-                                <ul className={styles.stackPartners}>
+                                <ul className={styles['stack-partners']}>
                                     {g.partners.map((p) => (
                                         <li key={p.Name}>
                                             <TechnologyCard

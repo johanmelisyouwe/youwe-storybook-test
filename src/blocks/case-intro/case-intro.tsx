@@ -27,17 +27,20 @@ export function CaseIntro({
             <div className={block.inner}>
                 <div
                     data-meta-right={pos === 'Right' || undefined}
-                    className={cx(styles.caseIntro, block.reveal)}
+                    className={cx(styles['case-intro'], block.reveal)}
                 >
-                    <dl className={styles.caseIntroMeta}>
+                    <dl className={styles['case-intro-meta']}>
                         {meta.map((m) => (
-                            <div key={m.label} className={styles.caseIntroItem}>
+                            <div
+                                key={m.label}
+                                className={styles['case-intro-item']}
+                            >
                                 <dt className="yw-body-xs-bold">{m.label}</dt>
                                 <dd className="yw-body-md-reg">{m.value}</dd>
                             </div>
                         ))}
                     </dl>
-                    <div className={styles.caseIntroText}>
+                    <div className={styles['case-intro-text']}>
                         <Lead>{lead}</Lead>
                         <Body paragraphs={body} />
                     </div>

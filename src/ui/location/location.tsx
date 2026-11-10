@@ -42,14 +42,14 @@ export function Clock({ timeZone, time, label }: ClockProps) {
             {[h1, h2].map((d, i) => (
                 <span
                     key={`h${i}`}
-                    className={cx(styles.clockDigit, 'yw-heading-sm')}
+                    className={cx(styles['clock-digit'], 'yw-heading-sm')}
                     aria-hidden="true"
                 >
                     <span key={d}>{d}</span>
                 </span>
             ))}
             <span
-                className={cx(styles.clockSep, 'yw-heading-sm')}
+                className={cx(styles['clock-sep'], 'yw-heading-sm')}
                 aria-hidden="true"
             >
                 :
@@ -57,7 +57,7 @@ export function Clock({ timeZone, time, label }: ClockProps) {
             {[m1, m2].map((d, i) => (
                 <span
                     key={`m${i}`}
-                    className={cx(styles.clockDigit, 'yw-heading-sm')}
+                    className={cx(styles['clock-digit'], 'yw-heading-sm')}
                     aria-hidden="true"
                 >
                     <span key={d}>{d}</span>

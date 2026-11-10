@@ -60,8 +60,8 @@ export function Slide(props: SlideData) {
         case 'Service':
             return (
                 <div className={styles.slide}>
-                    <div className={styles.slideText}>
-                        <h3 className={styles.slideHeading}>
+                    <div className={styles['slide-text']}>
+                        <h3 className={styles['slide-heading']}>
                             <span className="yw-body-sm-bold">
                                 {props.eyebrow}
                             </span>
@@ -72,7 +72,7 @@ export function Slide(props: SlideData) {
                         <p className="yw-body-lg-reg">{props.body}</p>
                     </div>
                     {props.pills && (
-                        <div className={styles.slidePills}>
+                        <div className={styles['slide-pills']}>
                             {props.pills.map((p) => (
                                 <span
                                     key={p}
@@ -99,13 +99,13 @@ export function Slide(props: SlideData) {
                     <blockquote className="yw-heading-2xl">
                         {props.quote}
                     </blockquote>
-                    <figcaption className={styles.slideAttribution}>
-                        <span className={styles.slidePerson}>
+                    <figcaption className={styles['slide-attribution']}>
+                        <span className={styles['slide-person']}>
                             <span className="yw-body-lg-med">{props.name}</span>
                             {props.role && (
                                 <span
                                     className={cx(
-                                        styles.slideSecondary,
+                                        styles['slide-secondary'],
                                         'yw-body-md-reg'
                                     )}
                                 >
@@ -127,11 +127,11 @@ export function Slide(props: SlideData) {
         case 'Stat':
             return (
                 <div className={styles.slide}>
-                    <h3 className={styles.slideHeading}>
+                    <h3 className={styles['slide-heading']}>
                         <span className="yw-body-sm-bold">{props.eyebrow}</span>
                         <span
                             className={cx(
-                                styles.slideValue,
+                                styles['slide-value'],
                                 'yw-heading-3xl',
                                 styles.mask
                             )}
@@ -155,9 +155,9 @@ export function Slide(props: SlideData) {
                 <div data-case className={cx(styles.slide)}>
                     <CardMedia
                         src={props.image}
-                        className={styles.slideImage}
+                        className={styles['slide-image']}
                     />
-                    <div className={styles.slideText}>
+                    <div className={styles['slide-text']}>
                         <span className="yw-body-sm-bold">{props.eyebrow}</span>
                         <h3
                             className={cx('yw-heading-xl', styles.mask)}
@@ -167,7 +167,7 @@ export function Slide(props: SlideData) {
                         </h3>
                         <p
                             className={cx(
-                                styles.slideSecondary,
+                                styles['slide-secondary'],
                                 'yw-body-lg-reg'
                             )}
                         >
@@ -187,17 +187,22 @@ export function Slide(props: SlideData) {
         default:
             return (
                 <div className={styles.slide}>
-                    <h3 className={styles.slideHeading}>
+                    <h3 className={styles['slide-heading']}>
                         <span className="yw-body-sm-bold">{props.eyebrow}</span>
                         <span className={cx('yw-heading-xl', styles.mask)}>
                             <span>{props.Title}</span>
                         </span>
                     </h3>
-                    <p className={cx(styles.slideSecondary, 'yw-body-lg-reg')}>
+                    <p
+                        className={cx(
+                            styles['slide-secondary'],
+                            'yw-body-lg-reg'
+                        )}
+                    >
                         {props.body}
                     </p>
                     {props.list && (
-                        <ul className={styles.slideList}>
+                        <ul className={styles['slide-list']}>
                             {props.list.map((l) => (
                                 <li key={l} className="yw-body-md-med">
                                     {l}
@@ -233,7 +238,7 @@ export function IndexItem({
             onMouseEnter={hoverSelect ? onSelect : undefined}
             onFocus={hoverSelect ? onSelect : undefined}
         >
-            <span className={styles.vindexBar} aria-hidden="true" />
+            <span className={styles['vindex-bar']} aria-hidden="true" />
             <span className="yw-body-sm-bold">{label}</span>
         </button>
     )

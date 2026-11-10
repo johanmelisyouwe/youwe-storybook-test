@@ -6,7 +6,7 @@
   Prev/Next: chevron 24 + label, padding 8/12/8/8 (mirrored for Next). First/Last: icon only, 48 square.
   View amount: "View max." + compact dropdown (Dropdown/Compact M, 72×44) + "per page", body/md/reg secondary.
 */
-.pageBtn {
+.page-btn {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
@@ -24,7 +24,7 @@
         }
     }
 
-    .pageBtn {
+    .page-btn {
         --focus-ring-inset: 0;
         --focus-ring-radius: var(--shared-radius-2);
         display: inline-flex;
@@ -53,11 +53,11 @@
             cursor: default;
         }
 
-        &.pageBtnPrev {
+        &.page-btn-prev {
             padding-right: var(--spacing-xs);
         }
 
-        &.pageBtnNext {
+        &.page-btn-next {
             padding-left: var(--spacing-xs);
         }
 
@@ -68,7 +68,7 @@
             cursor: not-allowed;
         }
     }
-    .pageGap {
+    .page-gap {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -77,7 +77,7 @@
         text-decoration: underline;
     }
 
-    .viewAmount {
+    .view-amount {
         display: flex;
         align-items: center;
         color: var(--color-shared-content-secondary);
@@ -90,7 +90,7 @@
             padding-left: 0;
         }
     }
-    .compactSelect {
+    .compact-select {
         position: relative;
         display: inline-flex;
 

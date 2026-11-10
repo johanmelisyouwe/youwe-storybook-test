@@ -47,11 +47,11 @@
             transform: translateX(calc(var(--_w) - var(--_h)));
         }
 
-        &[aria-checked="true"] .iconOn {
+        &[aria-checked="true"] .icon-on {
             display: inline-flex;
         }
 
-        &[aria-checked="true"] .iconOff {
+        &[aria-checked="true"] .icon-off {
             display: none;
         }
 
@@ -100,7 +100,7 @@
             var(--motion-ease-emphasized);
     }
 
-    .iconOn {
+    .icon-on {
         display: none;
     }
 }

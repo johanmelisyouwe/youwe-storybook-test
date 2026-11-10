@@ -14,11 +14,11 @@
   Interaction: mega menu opens on hover immediately, closes 300ms after the pointer leaves; Enter/ArrowDown
   opens, Esc closes. Mobile: full-screen sheet, page scroll locked.
 */
-.utilityLink {
+.utility-link {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
-.megaFeature {
+.mega-feature {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
@@ -26,11 +26,11 @@
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
-.menuBtn {
+.menu-btn {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
-.navLink {
+.nav-link {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
@@ -119,7 +119,7 @@
     }
 
     /* _Nav link */
-    .navLink {
+    .nav-link {
         --focus-ring-radius: var(--shared-radius-4);
         display: inline-flex;
         align-items: center;
@@ -154,7 +154,7 @@
     }
 
     /* _Utility link */
-    .utilityLink {
+    .utility-link {
         color: var(--color-shared-content-primary);
         text-decoration: none;
 
@@ -192,15 +192,15 @@
             margin-top: var(--spacing-3xs);
         }
     }
-    .megaCol {
+    .mega-col {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-sm);
     }
-    .megaHeading {
+    .mega-heading {
         color: var(--color-shared-content-tertiary);
     }
-    .megaLinks {
+    .mega-links {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -209,7 +209,7 @@
         padding: 0;
         list-style: none;
     }
-    .megaFeature {
+    .mega-feature {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-xs);
@@ -217,15 +217,15 @@
         text-decoration: none;
         border-radius: var(--shared-radius-4);
     }
-    .megaFeatureText {
+    .mega-feature-text {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-2xs);
     }
-    .megaEyebrow {
+    .mega-eyebrow {
         color: var(--color-shared-content-tertiary);
     }
-    .megaMore {
+    .mega-more {
         color: var(--color-shared-content-link);
         text-decoration: underline;
     }
@@ -235,7 +235,7 @@
         gap: var(--spacing-2xs);
     }
 
-    .menuBtn {
+    .menu-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -281,13 +281,13 @@
             min-height: 48.75rem;
         }
     }
-    .sheetTop {
+    .sheet-top {
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: 5rem;
     }
-    .sheetLinks {
+    .sheet-links {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-lg);
@@ -295,21 +295,21 @@
         padding: 0;
         list-style: none;
     }
-    .sheetDivider {
+    .sheet-divider {
         height: 1px;
         background: var(--color-shared-border-2);
     }
-    .sheetUtility {
+    .sheet-utility {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-sm);
     }
-    .sheetLang {
+    .sheet-lang {
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-3xs);
     }
-    .sheetCta > * {
+    .sheet-cta > * {
         width: 100%;
     }
 }

@@ -206,7 +206,7 @@ export function TabGroup({
                     aria-labelledby={`${base}-tab-${i}`}
                     hidden={i !== selected}
                     tabIndex={0}
-                    className={styles.tabPanel}
+                    className={styles['tab-panel']}
                 >
                     {p}
                 </div>

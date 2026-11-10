@@ -59,7 +59,7 @@ export type RadioLabelProps = Omit<RadioProps, 'Size' | 'aria-label'> & {
 /** Radio button label — Figma node 14649:9859 (one size, M) */
 export function RadioLabel({ label, ...props }: RadioLabelProps) {
     return (
-        <label className={styles.radioLabel}>
+        <label className={styles['radio-label']}>
             <Radio Size="M" {...props} />
             <span className="yw-body-md-reg">{label}</span>
         </label>

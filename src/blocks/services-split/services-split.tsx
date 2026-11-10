@@ -78,7 +78,7 @@ export function ServicesSplit({
                             </li>
                         ))}
                     </ul>
-                    <ul className={cx(styles.col, styles.colOffset)}>
+                    <ul className={cx(styles.col, styles['col-offset'])}>
                         {b.map((s) => (
                             <li key={s.Title} className={block.reveal}>
                                 <ServiceCard {...s} />

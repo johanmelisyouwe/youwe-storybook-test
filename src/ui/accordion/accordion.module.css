@@ -20,12 +20,12 @@
             transform: rotate(180deg);
         }
 
-        &[data-style="plus-minus"] .iconOpen,
-        &[data-style="plus-minus"][open] .iconClosed {
+        &[data-style="plus-minus"] .icon-open,
+        &[data-style="plus-minus"][open] .icon-closed {
             display: none;
         }
 
-        &[data-style="plus-minus"][open] .iconOpen {
+        &[data-style="plus-minus"][open] .icon-open {
             display: inline-flex;
         }
 

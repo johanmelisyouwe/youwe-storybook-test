@@ -90,7 +90,7 @@ export function FieldShell({
             >
                 {labels === 'Floating' ? (
                     <span className={styles.stack}>
-                        <label className={styles.floatLabel} htmlFor={id}>
+                        <label className={styles['float-label']} htmlFor={id}>
                             <span>{label}</span>
                             {req}
                         </label>

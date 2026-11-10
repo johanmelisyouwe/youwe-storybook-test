@@ -6,13 +6,15 @@ import styles from './text-column.module.css'
 
 export function Lead({ children }: { children: string }) {
     return (
-        <p className={cx(styles.longformLead, 'yw-body-2xl-med')}>{children}</p>
+        <p className={cx(styles['longform-lead'], 'yw-body-2xl-med')}>
+            {children}
+        </p>
     )
 }
 
 export function Body({ paragraphs }: { paragraphs: string[] }) {
     return (
-        <div className={cx(styles.longformBody, 'yw-body-lg-reg')}>
+        <div className={cx(styles['longform-body'], 'yw-body-lg-reg')}>
             {paragraphs.map((p, i) => (
                 <p key={i}>{p}</p>
             ))}

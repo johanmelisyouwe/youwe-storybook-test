@@ -29,7 +29,7 @@ export function Offices({
         >
             <div className={cx(block.inner, styles.inner)}>
                 {(Kicker || Title) && (
-                    <div className={cx(styles.officesHeader, block.reveal)}>
+                    <div className={cx(styles['offices-header'], block.reveal)}>
                         {Kicker && (
                             <span
                                 className={cx(block.kicker, 'yw-body-sm-bold')}
@@ -37,7 +37,7 @@ export function Offices({
                                 {Kicker}
                             </span>
                         )}
-                        <div className={styles.officesRow}>
+                        <div className={styles['offices-row']}>
                             {Title && (
                                 <h2 className="yw-heading-xl">{Title}</h2>
                             )}

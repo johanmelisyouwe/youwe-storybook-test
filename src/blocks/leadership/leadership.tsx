@@ -30,16 +30,16 @@ export function PersonCard({
             {Photo === 'Yes' && (
                 <CardMedia src={image} alt={name} style={{ height: 320 }} />
             )}
-            <div className={styles.personInfo}>
+            <div className={styles['person-info']}>
                 <h3 className="yw-body-lg-med" style={{ margin: 0 }}>
                     {name}
                 </h3>
-                <span className={cx(styles.personRole, 'yw-body-md-reg')}>
+                <span className={cx(styles['person-role'], 'yw-body-md-reg')}>
                     {role}
                 </span>
                 {email && (
                     <a
-                        className={cx(styles.personEmail, 'yw-body-md-reg')}
+                        className={cx(styles['person-email'], 'yw-body-md-reg')}
                         href={`mailto:${email}`}
                     >
                         {email}
@@ -73,7 +73,7 @@ export function Leadership({
         >
             <div className={cx(block.inner, styles.inner)}>
                 <SectionIntro Layout="Stacked" Kicker={kicker} Title={title} />
-                <ul className={styles.leadershipPeople}>
+                <ul className={styles['leadership-people']}>
                     {people.map((p) => (
                         <li key={p.name} className={block.reveal}>
                             <PersonCard {...p} Photo={photos ? 'Yes' : 'No'} />

@@ -148,7 +148,7 @@ export function ContactCTA({
                             Size="M"
                             type="submit"
                             label={submit}
-                            className={styles.btnAuto}
+                            className={styles['btn-auto']}
                         />
                     </form>
                 </div>
