@@ -11,6 +11,7 @@
   .yw-block {
     container-type: inline-size;
     position: relative;
+    overflow-x: clip; /* bleeding rows (carousels, giant text) never widen the page */
     background: var(--color-shared-surface-base-1);
     color: var(--color-shared-content-primary);
   }

@@ -29,12 +29,12 @@ const meta: Meta<Args> = {
   title: 'Components/Header/Corporate',
   parameters: { layout: 'fullscreen', docs: { description: { component: 'Corporate site navigation, transparent over the hero. The Services mega menu opens on hover (closes 300ms after leaving), with Enter/ArrowDown, and closes with Esc. Mobile: full-screen menu sheet, page scroll locked. With `fixed`: glass once scrolled, hides on scroll down and returns on scroll up (duration/slow, ease/emphasized).' } } },
   argTypes: {
-    Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
+    Device: { control: 'inline-radio', options: ['Desktop', 'Mobile', 'Auto'], description: 'Auto: both render, the screen width picks (hamburger below 1024px)' },
     Expanded: { control: 'inline-radio', options: ['No', 'Yes'] },
   },
   args: { Device: 'Desktop', Expanded: 'No' },
   render: (args) => (
-    <div style={{ maxWidth: args.Device === 'Mobile' ? 360 : 1440, minHeight: args.Expanded === 'Yes' ? (args.Device === 'Mobile' ? 780 : 460) : 140 }}>
+    <div style={{ maxWidth: args.Device === 'Mobile' ? 360 : undefined, minHeight: args.Expanded === 'Yes' ? (args.Device === 'Mobile' ? 780 : 460) : 140 }}>
       <Header key={`${args.Device}${args.Expanded}`} {...args} nav={NAV} current="Services" inline />
     </div>
   ),
@@ -76,3 +76,6 @@ export const AllVariants: Story = {
     </div>
   ),
 };
+
+/** Device=Auto, as the templates use it: resize the canvas below 1024px to get the hamburger. */
+export const Responsive: Story = { args: { Device: 'Auto' } };

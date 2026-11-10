@@ -4,12 +4,7 @@ Work agreed with the team that is not part of a sync batch yet. Newest first.
 
 | Item | Why | Status |
 |---|---|---|
-| Cards on mobile: no hover, always a link | The red hover overlay works on desktop but not on touch. On mobile, turn the hover off and always show a link or button on the card (the top-right arrow button is fine). Applies to all cards with the hover reveal (Case, Service, System, Insight, Feature, Image). (Johan, 2026-11-10) | To do |
-| Card hover: keep the arrow button still | On desktop the card's own arrow button moves up during the hover animation, which feels jumpy next to the hover arrow that appears. Keep it static. (Johan, 2026-11-10) | To do |
-| Mobile footer not used on mobile | Header and footer switch by the Device setting, not by screen width, so a real phone gets the desktop footer. Make them switch on width (like the content blocks do). (Johan, 2026-11-10) | To do |
-| Mobile header: hamburger instead of full nav | Same cause as the footer: on a phone the desktop navigation shows. Below the mobile breakpoint the header should show the logo and the hamburger button. (Johan, 2026-11-10) | To do |
 | More motion on the templates | Motion feels thin on the pages. Proposal to make: scroll reveals per section (blocks, card staggers, image clip reveals, count-ups) applied consistently, hero entrance, slider and carousel transitions, all from the Figma motion tokens and with reduced-motion respected. (Johan, 2026-11-10) | To propose |
-| Horizontal scroll on desktop and mobile | The page scrolls sideways. Likely the case carousel bleeding off the right edge (and possibly the hero logo marquee or the Statement giant rows). Clip horizontal overflow on the page and check each block. (Johan, 2026-11-10) | To do |
 | Case card logo padding | The client logo on case cards sits too close to the edges. Use the Figma logo slot: the logo inside a box with padding and margins. (Johan, 2026-11-10) | To do |
 | Logos: same box as in Figma everywhere | All logos (case cards, stats, hero bar, technology grid, partner cards) should use the Figma logo box (190×100 frame with the logo centred and inner margins), so sizes and spacing match. (Johan, 2026-11-10) | To do |
 | Stat card hover | The hover state on the (client) stat cards is missing. Build it from the Figma Stat component. (Johan, 2026-11-10) | To do |

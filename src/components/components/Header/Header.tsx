@@ -7,6 +7,7 @@ import { AskYouwe } from '../AskYouwe/AskYouwe';
 import { CardMedia } from '../../shared/CardMedia';
 import '../../shared/focus-ring.css';
 import '../../shared/block.css';
+import '../../shared/responsive.css';
 import './Header.css';
 
 /* Header/Corporate — Figma 24999:631; _Nav link 24998:575; _Utility link 24998:583; _Mega menu 26977:1552. */
@@ -75,8 +76,8 @@ export function MegaMenu({ Feature = 'ACI Weave', columns, Eyebrow = 'Our own pl
 }
 
 export type HeaderProps = {
-  /** Figma: Device */
-  Device?: 'Desktop' | 'Mobile';
+  /** Figma: Device. 'Auto' renders both and lets the screen width choose (hamburger below 1024px). */
+  Device?: 'Desktop' | 'Mobile' | 'Auto';
   /** Figma: Expanded (desktop: mega menu open; mobile: menu sheet open) */
   Expanded?: 'No' | 'Yes';
   nav: NavItem[];
@@ -107,7 +108,19 @@ function useScrollState(enabled: boolean) {
   return state;
 }
 
-export function Header({
+export function Header(props: HeaderProps) {
+  if (props.Device === 'Auto') {
+    return (
+      <>
+        <div className="yw-only-lg"><HeaderView {...props} Device="Desktop" /></div>
+        <div className="yw-below-lg"><HeaderView {...props} Device="Mobile" /></div>
+      </>
+    );
+  }
+  return <HeaderView {...props} />;
+}
+
+function HeaderView({
   Device = 'Desktop', Expanded = 'No', nav, current, utility = [{ label: 'Careers', href: '#' }],
   language = 'The Netherlands', cta = { label: 'Contact', href: '#' }, fixed = false, inline = false,
 }: HeaderProps) {

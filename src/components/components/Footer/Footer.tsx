@@ -2,6 +2,7 @@ import { Icon } from '../../icons/Icon';
 import { Button } from '../Button/Button';
 import '../../shared/focus-ring.css';
 import '../../shared/block.css';
+import '../../shared/responsive.css';
 import './Footer.css';
 
 /* Footer/Corporate — Figma 25022:751; _Footer link — 25034:672 (page "Footer"). */
@@ -26,8 +27,8 @@ export type FooterColumn = { heading: string; links: Link[] };
 export type FooterProps = {
   /** Figma: Variant */
   Variant?: 'Sitemap' | 'Newsletter';
-  /** Figma: Device */
-  Device?: 'Desktop' | 'Mobile';
+  /** Figma: Device. 'Auto' renders both and lets the screen width choose (mobile below 768px). */
+  Device?: 'Desktop' | 'Mobile' | 'Auto';
   /** First column ("Youwe") and the three service columns */
   columns: FooterColumn[];
   legal?: Link[];
@@ -37,7 +38,19 @@ export type FooterProps = {
   language?: string;
 };
 
-export function Footer({ Variant = 'Sitemap', Device = 'Desktop', columns, legal = [{ label: 'Terms & Conditions', href: '#' }, { label: 'Privacy Policy', href: '#' }], social = { Instagram: '#', LinkedIn: '#' }, newsletter, language = 'The Netherlands' }: FooterProps) {
+export function Footer(props: FooterProps) {
+  if (props.Device === 'Auto') {
+    return (
+      <>
+        <div className="yw-only-md"><FooterView {...props} Device="Desktop" /></div>
+        <div className="yw-below-md"><FooterView {...props} Device="Mobile" /></div>
+      </>
+    );
+  }
+  return <FooterView {...props} />;
+}
+
+function FooterView({ Variant = 'Sitemap', Device = 'Desktop', columns, legal = [{ label: 'Terms & Conditions', href: '#' }, { label: 'Privacy Policy', href: '#' }], social = { Instagram: '#', LinkedIn: '#' }, newsletter, language = 'The Netherlands' }: FooterProps) {
   return (
     <footer className={cx('yw-footer', Variant === 'Newsletter' && 'yw-footer--newsletter', Device === 'Mobile' && 'yw-footer--mobile')}>
       <div className="yw-footer__columns">

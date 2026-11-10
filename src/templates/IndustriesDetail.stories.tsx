@@ -8,7 +8,7 @@ import { ServiceCard } from '../components/components/ServiceCard/ServiceCard';
 import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import '../components/shared/block.css';
-import { CLIENT_LOGOS, Page, Section, footer, header, logo } from './shared';
+import { CLIENT_LOGOS, Page, Section, footer, header, logo, useDevice } from './shared';
 import { abstract, caseImage, clientPhoto } from '../media/media';
 
 /*
@@ -36,9 +36,9 @@ const CASES = [
 const COUNTRIES = ['The Netherlands', 'United Kingdom', 'Sweden', 'Belgium', 'Germany', 'Other'].map((x) => ({ value: x, label: x }));
 
 function IndustriesDetailPage() {
-  const Device = 'Desktop' as const;
+  const Device = useDevice('Desktop');
   return (
-    <Page Device={Device}>
+    <Page Device="Desktop">
       <Hero
         Device={Device}
         image={caseImage('heidelberg', 'wide')}

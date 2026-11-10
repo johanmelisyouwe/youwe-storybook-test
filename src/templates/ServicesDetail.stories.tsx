@@ -11,7 +11,7 @@ import { ServiceCard } from '../components/components/ServiceCard/ServiceCard';
 import { TechnologyLogos } from '../components/components/TechnologyLogos/TechnologyLogos';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import type { Mode } from '../components/shared/ModeFrame';
-import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, caseImage, clientPhoto } from '../media/media';
 
 /*
@@ -127,9 +127,10 @@ function Body({ Device }: { Device: Device }) {
   );
 }
 
-function ServicesDetailPage({ Device }: { Device: Device }) {
+function ServicesDetailPage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       <Hero
         Device={Device}
         image={abstract('008')}

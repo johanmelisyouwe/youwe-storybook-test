@@ -14,8 +14,9 @@
 @layer components {
   .yw-hero { overflow: hidden; }
 
-  .yw-hero--gradient { display: flex; flex-direction: column; justify-content: flex-end; min-height: 840px; }
-  .yw-hero--mobile.yw-hero--gradient { min-height: 640px; }
+  .yw-hero--gradient { display: flex; flex-direction: column; justify-content: flex-end; min-height: 840px; padding-top: var(--spacing-5xl); }
+  .yw-hero--mobile.yw-hero--gradient { min-height: 640px; padding-top: var(--spacing-4xl); }
+  /* the header overlays the hero: long titles never run under it */
 
   .yw-hero__media { position: absolute !important; z-index: 0; inset: 0; border-radius: 0 !important; background: var(--color-shared-surface-base-1) !important; }
   .yw-hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, var(--color-shared-surface-base-1)); }

@@ -7,7 +7,7 @@ import { Offices, type OfficesProps } from '../components/components/Offices/Off
 import { Leadership } from '../components/components/Leadership/Leadership';
 import { Awards } from '../components/components/Awards/Awards';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
-import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, caseImage } from '../media/media';
 
 /*
@@ -43,9 +43,10 @@ const PEOPLE = [
 
 const BADGES = [{ name: 'Northern Digital Award' }, { name: 'LRQA certificate' }, { name: 'Award-winning B2B implementation' }, { name: 'Great Place To Work' }];
 
-function AboutPage({ Device }: { Device: Device }) {
+function AboutPage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       <Hero
         Device={Device}
         image={abstract('015')}

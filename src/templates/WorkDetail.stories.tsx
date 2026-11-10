@@ -11,7 +11,7 @@ import { CaseCarousel } from '../components/components/CaseCarousel/CaseCarousel
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import { CASE_INTRO, TEXT_COLUMN, TWO_COLUMN } from '../components/components/TextColumn/longform.copy';
 import type { CaseCardProps } from '../components/components/CaseCard/CaseCard';
-import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, caseImage, clientPhoto } from '../media/media';
 
 /*
@@ -35,9 +35,10 @@ const RELATED: CaseCardProps[] = [
   c('Adobe Commerce Headless implementation', 'PostNL', ['41%', 'IT cost reduction']),
 ];
 
-function WorkDetailPage({ Device }: { Device: Device }) {
+function WorkDetailPage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       {header(Device)}
       <Hero
         Variant="Title + image"

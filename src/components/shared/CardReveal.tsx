@@ -4,6 +4,9 @@ import './card-reveal.css';
 /* The "Hover · red overlay" layer shared by the linked cards. Place inside an element with class `yw-reveal`. */
 export function CardReveal({ cta, context }: { cta: string; context?: string }) {
   return (
+    <>
+    {/* Touch screens: no hover, an always-visible arrow button top-right instead (decided 2026-11-10) */}
+    <span className="yw-reveal__touch" aria-hidden="true"><Icon name="arrow-forward" size={24} /></span>
     <span className="yw-reveal__overlay" aria-hidden="true">
       <span className="yw-reveal__arrow"><Icon name="arrow-forward" size={24} /></span>
       <span className="yw-reveal__message">
@@ -11,6 +14,7 @@ export function CardReveal({ cta, context }: { cta: string; context?: string }) 
         {context && <span className="yw-body-sm-reg">{context}</span>}
       </span>
     </span>
+    </>
   );
 }
 

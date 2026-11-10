@@ -4,7 +4,7 @@ import { CardGrid } from '../components/components/CardGrid/CardGrid';
 import { CaseCard, type CaseCardProps } from '../components/components/CaseCard/CaseCard';
 import { SystemCard } from '../components/components/ServiceCard/ServiceCard';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
-import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, caseImage, clientPhoto } from '../media/media';
 
 /*
@@ -48,9 +48,10 @@ const SYSTEMS = [
   ['03', 'Systems that scale', 'Data architectures and integration layers that connect systems, improve data quality and enable analytics and AI.', 'Proven at Quooker · 17 markets supported', 'Foundation for Data & Integrations'],
 ];
 
-function IndustriesPage({ Device }: { Device: Device }) {
+function IndustriesPage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       <Hero
         Device={Device}
         image={abstract('006')}

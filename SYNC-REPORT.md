@@ -1,24 +1,26 @@
-# Sync report — 9 November 2026 (fluid container)
+# Sync report — 10 November 2026 (mobile & layout fixes)
 
-The layout no longer stops at 1440px. Decided 9 November: fluid with a maximum.
+First batch of the backlog from the 10 November review. Decisions: arrow button top-right on touch cards; hamburger below 1024px; templates follow the screen width.
 
-## What changed
+## Fixed
 
-- **Backgrounds are full width** on every screen size; the 1440px page frame around templates and Desktop stories is gone (the black side bars).
-- **Content is fluid**: it keeps the Figma 80px side gutters and grows with the screen up to `--yw-container-max` (1760px, a 1920 screen), then centres. At 1440 nothing changes (1280px content, as in Figma).
-- **One variable**: `--yw-container-max` in `src/components/shared/block.css` (`legacy-ok`: a layout decision, not a Figma token). Used by the block frame, the bleeding carousels and scroll grids, the Vertical slider, the footer and the header bar (which stays 56px outside the content edge, as in Figma).
-- **Stories**: Desktop stories and templates fill the canvas; Mobile stays at 360px. The side-by-side AllVariants stories keep their fixed 1440/360 frames.
-- **Unchanged**: tablet and mobile breakpoints, vertical rhythm, text-line widths (intros, bodies) — those keep their readable maximum widths.
+- **Templates work on a real phone.** The Desktop template stories now follow the screen: below 768px they render the mobile variants (slider, cards, hero, filter bar, footer…), so opening a Desktop template on a phone shows the mobile design instead of a squeezed desktop. The Mobile stories still always render mobile at 360px. (`useDevice` in `src/templates/shared.tsx`.)
+- **Header: hamburger below 1024px.** Header and Footer have a new `Device="Auto"`: both versions render and the screen width picks one (header below 1024px, footer below 768px). Templates use it; the Header and Footer stories have a *Responsive* story to try it by resizing.
+- **Mobile footer** now shows on phones (same mechanism).
+- **Horizontal scroll.** Found on Work (mobile): the filter pills row stretched its grid wider than the screen. Fixed, and as a safeguard every content block and template page clips sideways overflow (`overflow-x: clip`, which keeps sticky/pinned sections working). Bleeding rows (case carousel, giant text, logo marquee) stay inside the page. The case carousel itself still swipes sideways, by design.
+- **Cards on touch screens:** no red hover overlay; an always-visible round arrow button top-right (the Figma hover arrow tile). Cards that already show their own arrow button (Service, Technology, Feature) keep theirs. On case cards the client logo moves left of the arrow.
+- **Static arrow on hover (desktop):** on Service and System cards the card's own arrow button no longer moves up with the text when the red overlay comes in.
+- **Hero:** long titles no longer run under the header (top padding equal to the header area). At 1440 the hero looks the same.
 
-Visual check: Home and Services detail at 1440 (unchanged), 1920 (content 1760) and 2560 (content centred, header, slider and footer aligned with the blocks).
+Checked on an emulated iPhone 13 (Home, Work, Services detail, Tech Partners, Industries, Work detail: no sideways scroll, hamburger, mobile footer, touch arrows) and at 1440 (unchanged).
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
-- `check-coverage`: clean (75 components complete, 19 of 19 templates)
+- `check-coverage`: clean
 
-## For the design team
+## Backlog
 
-1. The Figma designs stay at 1440; this is the rule for wider screens: full-width backgrounds, content up to 1760px. Worth adding to Brand / Page guidelines.
+The five items above are removed from BACKLOG.md. Next batch: logos (Figma logo boxes, case card padding, remaining exports) and the stat card hover.

@@ -6,7 +6,7 @@ import { CardGrid } from '../components/components/CardGrid/CardGrid';
 import { CaseCard } from '../components/components/CaseCard/CaseCard';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import '../components/shared/block.css';
-import { Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, clientPhoto } from '../media/media';
 
 /*
@@ -38,9 +38,10 @@ const CASES: [string, string, string[]][] = [
   ['A PIM system and SAP integration', 'Heidelberg', ['PIM/MDM', 'Manufacturing']],
 ];
 
-function WorkPage({ Device }: { Device: Device }) {
+function WorkPage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       <Hero
         Device={Device}
         image={abstract('001')}
@@ -51,7 +52,7 @@ function WorkPage({ Device }: { Device: Device }) {
       />
       <Section Mode="Dark">
         <section className="yw-block" aria-label="Our work">
-          <div className="yw-block__inner" style={{ display: 'grid', gap: 'var(--spacing-3xl)', paddingBottom: 0 }}>
+          <div className="yw-block__inner" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: 'var(--spacing-3xl)', paddingBottom: 0 }}>
             <SectionIntro Layout="Split" Kicker="Our work" Title={'Pick a system.\nSee it running.'} Body="Cases are tagged by system, industry and tech partner. Combine filters to narrow the results." />
             <FilterBar Device={Device} systems={SYSTEMS} system={Device === 'Desktop' ? 'eCommerce' : null} fields={FIELDS} count={9} />
           </div>

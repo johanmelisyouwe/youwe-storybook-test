@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useSyncExternalStore, type ReactNode } from 'react';
 import { Header, type HeaderProps } from '../components/components/Header/Header';
 import { Footer, type FooterColumn } from '../components/components/Footer/Footer';
 import { Logo } from '../components/logos/Logo';
@@ -11,11 +11,23 @@ import './templates.css';
 */
 
 export type Device = 'Desktop' | 'Mobile';
+
+const PHONE = '(max-width: 767px)';
+const subscribe = (cb: () => void) => { const m = window.matchMedia(PHONE); m.addEventListener('change', cb); return () => m.removeEventListener('change', cb); };
+/**
+  The Desktop template follows the screen: below 768px it renders the mobile variants (cards, slider,
+  hero, filter bar…), so the page works on a real phone. The Mobile story always renders mobile.
+*/
+export function useDevice(story: Device): Device {
+  const phone = useSyncExternalStore(subscribe, () => window.matchMedia(PHONE).matches, () => false);
+  return story === 'Mobile' || phone ? 'Mobile' : 'Desktop';
+}
 /** Story frame width: desktop is fluid (full viewport), mobile 360 as in Figma. */
 export const WIDTH: Record<Device, number | string> = { Desktop: '100%', Mobile: 360 };
 
 export const NAV: HeaderProps['nav'] = ['Services', 'Work', 'Industries', 'Tech Partners', 'Insights', 'About Us'].map((label) => ({ label, href: '#' }));
-export const header = (Device: Device) => <Header Device={Device} nav={NAV} />;
+/** Desktop templates use Auto: on a phone or tablet the header switches to the hamburger by itself. */
+export const header = (Device: Device) => <Header Device={Device === 'Desktop' ? 'Auto' : 'Mobile'} nav={NAV} />;
 
 /** Client and technology logos exported from Figma (name as text when there is no logo yet). */
 export const logo = (name: string, width = 96) => <Logo name={name} box={[width, Math.round(width / 3)]} />;
@@ -43,7 +55,7 @@ export const YOUWE_SITEMAP = ['Work', 'Services', 'Industries', 'About us', 'Con
 export const footer = (Device: Device, youwe: string[] = YOUWE_PAGES) => (
   <Footer
     Variant="Newsletter"
-    Device={Device}
+    Device={Device === 'Desktop' ? 'Auto' : 'Mobile'}
     columns={[{ heading: 'Youwe', links: l(youwe) }, ...SERVICE_COLUMNS]}
     newsletter={{ text: 'Tell us what you want to achieve and we will think along with you.', cta: { label: 'Contact us', href: '#' } }}
   />
@@ -78,5 +90,5 @@ export function NotAComponent({ name, height, uses }: { name: string; height: nu
 }
 
 export function Page({ Device, children }: { Device: Device; children: ReactNode }) {
-  return <div data-theme="dark" style={{ width: '100%', maxWidth: WIDTH[Device], margin: '0 auto', background: 'var(--color-shared-surface-base-1)' }}>{children}</div>;
+  return <div data-theme="dark" style={{ width: '100%', maxWidth: WIDTH[Device], margin: '0 auto', overflowX: 'clip', background: 'var(--color-shared-surface-base-1)' }}>{children}</div>;
 }

@@ -8,7 +8,7 @@ import type { TechnologyCardProps } from '../components/components/TechnologyCar
 import { AskSnippet } from '../components/components/AskYouwe/AskYouwe';
 import { ContactCTA } from '../components/components/ContactCTA/ContactCTA';
 import '../components/shared/block.css';
-import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device } from './shared';
+import { CLIENT_LOGOS, Page, Section, WORK_WITH_US, footer, header, logo, type Device, useDevice } from './shared';
 import { abstract, logoFor } from '../media/media';
 
 /*
@@ -67,9 +67,10 @@ const SPLITS: (Omit<TechPartnersSplitProps, 'Device'> & { key: string })[] = [
   },
 ];
 
-function TechPartnersPage({ Device }: { Device: Device }) {
+function TechPartnersPage({ Device: story }: { Device: Device }) {
+  const Device = useDevice(story);
   return (
-    <Page Device={Device}>
+    <Page Device={story}>
       <Hero
         Device={Device}
         image={abstract('007')}
