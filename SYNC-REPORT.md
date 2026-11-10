@@ -1,40 +1,39 @@
-# Sync report — 10 November 2026 (new blocks, header, Ask Youwe dock)
+# Sync report — 10 November 2026 (Figma alignment)
 
-Backlog batch 4 plus three requests added today: hero logo loop, header on scroll up, docked Ask Youwe bar.
+Backlog batch 5: Figma brought in line with what is built in code (desktop leading). All edits below were made in the Figma file and checked there; nothing was deleted (sections that desktop doesn't have are hidden and renamed).
 
-## New blocks (no more placeholders)
+## Components in Figma
 
-- **Content blocks/ACI Weave** (Home). Built from the hand-built frames (desktop *Frame 6*, mobile *ACI Weave · video + nudge*): kicker, title, body, Ask Youwe nudge snippet, *Explore ACI Weave* button, next to three video frames with captions. On desktop the text column stays in view while the videos scroll; mobile stacks. The frames show an abstract poster with a play button; give a video `src` and it plays inline. Figma desktop copy.
-- **Content blocks/Insights overview** (Insights). Built from the hand-built *All insights* frames: heading, type filters (desktop: tiles in the Filter bar box; mobile: a sideways pill row), *Showing 12 of 174*, the Insight Card grid and *Show more*. In Storybook the filters and Show more work on the 12 Figma sample cards (Show more repeats them up to the type's total; Video has no samples, so it shows an empty message).
-  - The selected type tile uses the Filter bar's pressed outline (brand red), as on Work. Figma shows the Focused state (blue focus ring) as "selected", which reads as keyboard focus.
-- **Insights desktop "Latest"** is now composed from Insight Card (Featured) + Upcoming events, as in the frame.
-- Home and Insights templates have **no placeholders left**.
+- **Stat → State=Hover** (new axis, Rest/Hover). Client cards: surface/base-2, round arrow filled surface/fixed/brand-red with a content/fixed/light arrow, in Dark and Light, L and M. Matches the code hover from batch 2. Plain cards have State=Rest only.
+- **_breadcrumb-link → State=Hover**: text content/primary, as in code.
+- **Breadcrumbs/Desktop → back button**: the existing "Show back button" property now controls a real layer (Button/Basic Outline, Leading chevron-left, S, "Back") before the crumbs. Its default is now **off**, so none of the 11 existing instances changed. Built in code too: `Show back button` prop, Back links to the parent page; new *Back button* story.
+- **New text style body/xs/caps** (body/xs/bold + 6% letter spacing + uppercase, same font variables) applied to the INTEGRATION / DATA PLATFORMS / CLOUD labels in Tech partners split (12 labels, which used raw values). Code now uses the generated `.yw-body-xs-caps` class; letter spacing goes from 8% (guessed) to Figma's 6%. The token export and build now carry text case (`text-transform`).
 
-## Compact dropdown
+## Template frames in Figma (mobile follows desktop)
 
-**Dropdown/Compact** is now its own component (Components/Input/Compact dropdown): sizes M and S, all nine states (Rest, Hover, Active, Filled, Filled Hover, Disabled, Focused, Success, Error) and the hint. It uses the shared input-field states. Pagination's *View max. … per page* now uses it. It's a native select, so *Active* is the platform's own option list.
+- **Sub-footers** on 8 mobile frames (Home, Services detail, Industries, Work, Work detail, Tech Partners, Insights, About Us) now have the desktop copy: *Work with us*, the desktop body, one *Get in touch* button (the second button is hidden) and the desktop office order. Services already matched.
+- **Footer/Corporate mobile** now has the same Youwe links as desktop (Home, Services, Work, Industries, Tech Partners, Insights, About Us) in the component, so every mobile frame matches; the Home mobile footer's different links are cleared.
+- **Services detail mobile**: *How we work*, *Proof · Chadwicks* and *FAQ* are hidden (renamed "… (hidden: not on desktop)").
+- **Industries mobile**: the parked Industry List is hidden; in its place an *Industry cards* frame with the 14 desktop industry cards (Case Card, Size=One third, Device=Mobile, the only mobile Case Card; gap spacing/lg).
 
-## Requested today
+## Not done
 
-- **Hero logo bar loops seamlessly.** The logos repeat as often as the screen needs (2 sets at 1440, 3 at 2560) and each set slides by exactly its own width, so the loop restarts on an identical frame: no empty end, no jump.
-- **Header appears on scroll up.** On every template the header is fixed: it slides away when you scroll down and comes back as soon as you scroll up (Figma header motion, duration/slow). Once scrolled it becomes dark glass (base-1 80% + blur), so it stays readable over light sections; on mobile the whole top bar gets the glass.
-- **Docked Ask Youwe bar** on every template: bottom centre, slides in after the first 480px, steps aside while the footer is on screen. Desktop shows the page's question as the Contextual chip (e.g. Home *Which service fits my problem?*, Services detail *What does "Build it" include?*); mobile shows the plain bar (no room for the chip). Asking opens the answer panel above the bar (Esc or close returns). The answer is a placeholder saying Ask Youwe isn't connected in Storybook. Over light sections the glass sits on a dark base so the text stays readable.
-  - The per-page questions other than Services detail are my suggestions; Figma has the bar, not its placement on pages.
+- **Contrast colours (batch 3)**: retried as part of this batch and **blocked again** by the edit permission check ("Modify Shared Resources"). Not worked around. The code override (`src/tokens/contrast-overrides.css`) stays. To finish it, either change the eight variables in Figma yourself (table in the batch 3 report) or allow the edit.
+- **Statement giant rows**: skipped. The backlog decision (9 Nov) is to leave the Figma component for now, and the earlier attempt was blocked as well.
 
-## Figma
+## Sync bookkeeping
 
-- **Proposed components added** on a new page *Proposed components (review)*: Content blocks/ACI Weave and Content blocks/Insights overview, Desktop and Mobile, made from copies of the hand-built template frames. The template frames themselves are unchanged. For design to review.
-- Contrast variables (batch 3) are still waiting: that change was blocked by the permission check; I did not retry it.
+`figma-sync.json` has the new signatures and axes for Stat, _breadcrumb-link, Breadcrumbs/Desktop, Tech partners split and Footer/Corporate. The edited mobile template frames will show as changed at the next template sync; that is expected (the code already follows desktop).
 
 ## Checks
 
 - `npm run typecheck`: pass
 - `npm run build-storybook`: pass
 - `check-legacy`: clean
-- `check-coverage`: clean (76 complete components, 19 templates)
-- axe colour-contrast on the new and changed stories: 0 failures (plus the known Ask Youwe case-snippet false positive)
-- No horizontal scroll on Home and Insights (1440 and iPhone 13); header and dock tested on desktop, phone and the Mobile stories.
+- `check-coverage`: clean (76 complete, 19 templates)
+
+Visual check in Figma (Stat set, an Industries mobile card) and Storybook (Breadcrumbs, Tech partners split labels).
 
 ## Backlog
 
-Removed: ACI Weave section, Insights overview, Dropdown/Compact. Added: review the proposed components in Figma, docked Ask Youwe bar in Figma. Next: batch 5 (Figma alignment).
+Removed: group label text style, Breadcrumbs back button, breadcrumb hover, Home mobile frame, Industries mobile frame, mobile template frames, Stat hover in Figma. Still open in Figma: contrast colours, Statement giant rows (later), proposed components review, docked Ask Youwe bar placement. Next: batch 6 (expressive motion).

@@ -22,7 +22,7 @@
 
   .yw-split__groups { display: flex; flex-direction: column; gap: var(--spacing-2xl); }
   .yw-split__group { display: flex; flex-direction: column; gap: var(--spacing-sm); }
-  .yw-split__group-label { margin: 0; color: var(--color-shared-content-secondary); text-transform: uppercase; letter-spacing: 0.08em; }
+  .yw-split__group-label { margin: 0; color: var(--color-shared-content-secondary); } /* text style body/xs/caps */
 
   @container (max-width: 1023px) {
     .yw-split .yw-block__inner { grid-template-columns: 1fr; gap: var(--spacing-2xl); }

@@ -509,18 +509,19 @@
         "nodeId": "15409:8869",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=15409-8869",
         "variantAxes": [
-          "State(3)"
+          "State(4)"
         ],
         "axes": {
           "State": [
             "Rest",
             "Active",
-            "Focused"
+            "Focused",
+            "Hover"
           ]
         },
         "props": "",
-        "variantCount": 3,
-        "signature": "12kvzjw"
+        "variantCount": 4,
+        "signature": "iox31s"
       },
       "storybook": {
         "title": null,
@@ -535,8 +536,8 @@
         "src/components/components/Breadcrumbs/Breadcrumbs.stories.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "12kvzjw",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "iox31s",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -548,7 +549,7 @@
         "axes": {},
         "props": "Show back button:B,Breadcrumb slot:S",
         "variantCount": 1,
-        "signature": "18m0or7"
+        "signature": "6y5xsi"
       },
       "storybook": {
         "title": "Components/Breadcrumbs",
@@ -563,8 +564,8 @@
         "src/components/components/Breadcrumbs/Breadcrumbs.stories.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "18m0or7",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "6y5xsi",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -1795,7 +1796,7 @@
       ],
       "locked": false,
       "lastSyncedSignature": "1g9sth0",
-      "lastSynced": "2026-11-09"
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -2095,7 +2096,8 @@
         "variantAxes": [
           "Type(2)",
           "Size(2)",
-          "Mode(2)"
+          "Mode(2)",
+          "State(2)"
         ],
         "axes": {
           "Type": [
@@ -2109,11 +2111,15 @@
           "Mode": [
             "Dark",
             "Light"
+          ],
+          "State": [
+            "Rest",
+            "Hover"
           ]
         },
         "props": "Value:T,Label:T,Logo:I,Show button:B",
-        "variantCount": 8,
-        "signature": "mbed16"
+        "variantCount": 12,
+        "signature": "kpnfco"
       },
       "storybook": {
         "title": "Components/Stat",
@@ -2132,8 +2138,8 @@
         "src/components/shared/ModeFrame.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "mbed16",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "kpnfco",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -2382,7 +2388,7 @@
         },
         "props": "",
         "variantCount": 4,
-        "signature": "109lrvd"
+        "signature": "1q5dyh8"
       },
       "storybook": {
         "title": "Components/Footer/Corporate",
@@ -2397,8 +2403,8 @@
         "src/components/components/Footer/Footer.stories.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "109lrvd",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "1q5dyh8",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {

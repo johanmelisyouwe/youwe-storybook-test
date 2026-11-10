@@ -108,7 +108,7 @@ for (const t of src._textStyles || []) {
   const w = isAlias(t.weight) ? val(t.weight) : (WEIGHT[t.weight] ?? 400);
   const size = isAlias(t.size) ? val(t.size) : `${t.size}px`;
   const lh = isAlias(t.lineHeight) ? val(t.lineHeight) : t.lineHeight;
-  classes.push(`.yw-${slug(t.name)} {\n  font-family: ${fam};\n  font-weight: ${w};\n  font-size: ${size};\n  line-height: ${lh};\n  letter-spacing: ${t.letterSpacing};\n}`);
+  classes.push(`.yw-${slug(t.name)} {\n  font-family: ${fam};\n  font-weight: ${w};\n  font-size: ${size};\n  line-height: ${lh};\n  letter-spacing: ${t.letterSpacing};${t.textCase ? `\n  text-transform: ${{ UPPER: 'uppercase', LOWER: 'lowercase', TITLE: 'capitalize' }[t.textCase] || 'none'};` : ''}\n}`);
 }
 
 // Reduced motion: every duration becomes 1ms, reveals do not move
