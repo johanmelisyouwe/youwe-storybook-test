@@ -2839,7 +2839,7 @@
         },
         "props": "Required:B,Hint:B,Label:T,Hint text:T",
         "variantCount": 13,
-        "signature": "1ijdmm3"
+        "signature": "1jvq5ui"
       },
       "storybook": {
         "title": "Components/Input/Dropdown",
@@ -2861,8 +2861,8 @@
         "src/components/icons/Icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "1ijdmm3",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "1jvq5ui",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -2942,7 +2942,7 @@
         },
         "props": "Hint:B",
         "variantCount": 18,
-        "signature": "8ne4ya"
+        "signature": "2rb913"
       },
       "storybook": {
         "title": "Components/Input/Compact dropdown",
@@ -2958,7 +2958,7 @@
         "src/components/components/Field/Field.css"
       ],
       "locked": false,
-      "lastSyncedSignature": "8ne4ya",
+      "lastSyncedSignature": "2rb913",
       "lastSynced": "2026-11-10"
     },
     {
@@ -3064,7 +3064,7 @@
         },
         "props": "Required:B,Hint:B,Suffix:B,Label:T,Hint text:T",
         "variantCount": 8,
-        "signature": "9ea031"
+        "signature": "4xi80c"
       },
       "storybook": {
         "title": "Components/Input/Phone",
@@ -3086,8 +3086,8 @@
         "src/components/icons/Icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "9ea031",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "4xi80c",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -3149,7 +3149,7 @@
         },
         "props": "Required:B,Hint:B,Suffix:B,Label:T,Hint text:T",
         "variantCount": 13,
-        "signature": "10glfpo"
+        "signature": "170ngkr"
       },
       "storybook": {
         "title": "Components/Input/Text",
@@ -3167,8 +3167,8 @@
         "src/components/icons/Icon.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "10glfpo",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "170ngkr",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
@@ -3289,7 +3289,7 @@
         },
         "props": "Required:B,Hint:B,Label:T,Hint text:T",
         "variantCount": 13,
-        "signature": "g0yoo8"
+        "signature": "ubfmrr"
       },
       "storybook": {
         "title": "Components/Input/Text Area",
@@ -3307,8 +3307,8 @@
         "src/components/components/Field/fieldStory.tsx"
       ],
       "locked": false,
-      "lastSyncedSignature": "g0yoo8",
-      "lastSynced": "2026-11-09"
+      "lastSyncedSignature": "ubfmrr",
+      "lastSynced": "2026-11-10"
     },
     {
       "figma": {
