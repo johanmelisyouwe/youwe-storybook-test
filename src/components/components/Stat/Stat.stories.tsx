@@ -8,7 +8,7 @@ import { ModeFrame, type Mode } from '../../shared/ModeFrame';
   Values and labels from the Figma Stats content block.
 */
 
-type Args = Pick<StatProps, 'Type' | 'Size'> & { Mode: Mode };
+type Args = Pick<StatProps, 'Type' | 'Size'> & { Mode: Mode; State: 'Rest' | 'Hover' };
 const W = { L: 320, M: 336 };
 const ABOUT = [
   { Value: '25', Label: 'Years building digital commerce' },
@@ -25,11 +25,12 @@ const meta: Meta<Args> = {
     Type: { control: 'inline-radio', options: ['Client', 'Plain'] },
     Size: { control: 'inline-radio', options: ['L', 'M'] },
     Mode: { control: 'inline-radio', options: ['Dark', 'Light'] },
+    State: { control: 'inline-radio', options: ['Rest', 'Hover'], description: 'Type=Client only' },
   },
-  args: { Type: 'Plain', Size: 'L', Mode: 'Dark' },
-  render: ({ Type, Size = 'L', Mode }) => (
+  args: { Type: 'Plain', Size: 'L', Mode: 'Dark', State: 'Rest' },
+  render: ({ Type, Size = 'L', Mode, State }) => (
     <ModeFrame Mode={Mode}>
-      <div style={{ width: W[Size] }}>{Type === 'Client' ? <Stat Type="Client" Size={Size} {...CLIENT} /> : <Stat Size={Size} {...ABOUT[1]} />}</div>
+      <div style={{ width: W[Size] }}>{Type === 'Client' ? <Stat Type="Client" Size={Size} {...CLIENT} className={State === 'Hover' ? 'pseudo-hover' : undefined} /> : <Stat Size={Size} {...ABOUT[1]} />}</div>
     </ModeFrame>
   ),
 };
@@ -67,7 +68,7 @@ export const AllVariants: Story = {
   ),
 };
 
-/** Client stat: rest and hover (whole card is the link; not in Figma yet, decided 10 November). */
+/** Client stat: State=Rest and State=Hover (whole card is the link). */
 export const Hover: Story = {
   parameters: { controls: { disable: true } },
   render: () => (

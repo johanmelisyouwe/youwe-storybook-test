@@ -3,7 +3,7 @@
   so borders overlap (Figma description). Value heading/2xl (L) or heading/xl (M) primary;
   label body/md/reg secondary. Type=Client: top row with client logo (80×42) and a 40px round arrow (border/4).
   Motion (Figma): count up on scroll, 1.6s ease-out, once.
-  Hover (Client with a link; not in Figma yet, decided 2026-11-10): the whole card is the link; surface/base-2
+  State=Hover (Client with a link; in Figma since 10 Nov): the whole card is the link; surface/base-2
   and the arrow fills surface/fixed/brand-red with a fixed-light arrow, duration/fast. Touch: no hover.
 */
 @layer components {

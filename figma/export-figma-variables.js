@@ -50,6 +50,7 @@ out._textStyles = ts.map((s) => ({
   size: ref(s, 'fontSize') || s.fontSize,
   lineHeight: ref(s, 'lineHeight') || (s.lineHeight.unit === 'AUTO' ? 'normal' : s.lineHeight.unit === 'PERCENT' ? +(s.lineHeight.value / 100).toFixed(3) : s.lineHeight.value + 'px'),
   letterSpacing: s.letterSpacing.unit === 'PERCENT' ? +(s.letterSpacing.value / 100).toFixed(4) + 'em' : s.letterSpacing.value + 'px',
+  ...(s.textCase && s.textCase !== 'ORIGINAL' ? { textCase: s.textCase } : {}),
 }));
 const es = await figma.getLocalEffectStylesAsync();
 out._effectStyles = es.map((s) => ({

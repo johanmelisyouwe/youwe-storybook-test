@@ -26,7 +26,7 @@ export function TechPartnersSplit({ kicker, title, body, link, snippets, groups 
         <div className="yw-split__groups">
           {groups.map((g) => (
             <section key={g.label} className="yw-split__group yw-block-reveal" aria-label={g.label}>
-              <h3 className="yw-split__group-label yw-body-xs-bold">{g.label}</h3>
+              <h3 className="yw-split__group-label yw-body-xs-caps">{g.label}</h3>
               <ul className="yw-split__cols" style={{ margin: 0, padding: 0, listStyle: 'none' }}>
                 {g.partners.map((p) => <li key={p.Name}><TechnologyCard {...p} Layout="Vertical" /></li>)}
               </ul>
