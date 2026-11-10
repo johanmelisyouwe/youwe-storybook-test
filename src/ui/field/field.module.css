@@ -228,33 +228,35 @@
   browser's own resize handle here (vertical resize).
 */
 @layer components {
-    .textarea .control {
-        align-items: stretch;
-        min-height: 8rem;
-        padding: var(--spacing-2xs) var(--spacing-2xs) var(--spacing-2xs)
-            var(--spacing-xs);
-    }
+    .textarea {
+        & .control {
+            align-items: stretch;
+            min-height: 8rem;
+            padding: var(--spacing-2xs) var(--spacing-2xs) var(--spacing-2xs)
+                var(--spacing-xs);
+        }
 
-    .textarea .input {
-        min-height: 7rem;
-        resize: vertical;
-    }
+        & .input {
+            min-height: 7rem;
+            resize: vertical;
+        }
 
-    .textarea.root[data-labels="floating"] .stack {
-        justify-content: flex-start;
-    }
+        &.root[data-labels="floating"] .stack {
+            justify-content: flex-start;
+        }
 
-    .textarea.root[data-labels="floating"] .input {
-        min-height: 0;
-    }
+        &.root[data-labels="floating"] .input {
+            min-height: 0;
+        }
 
-    .textarea.root[data-labels="floating"]:is(
-            [data-floated],
-            :has(.control:focus-within),
-            :has(.input:not(:placeholder-shown))
-        )
-        .input {
-        min-height: 5.4375rem;
+        &.root[data-labels="floating"]:is(
+                [data-floated],
+                :has(.control:focus-within),
+                :has(.input:not(:placeholder-shown))
+            )
+            .input {
+            min-height: 5.4375rem;
+        }
     }
 }
 
@@ -265,9 +267,36 @@
   Open ("Active"): the chevron points up (Figma swaps to chevron-top-up) and the options panel shows.
 */
 @layer components {
-    .dropdown .control {
-        padding-inline: var(--spacing-xs);
-        cursor: pointer;
+    .dropdown {
+        & .control {
+            padding-inline: var(--spacing-xs);
+            cursor: pointer;
+        }
+
+        &[data-open] .dropdown-chevron {
+            transform: rotate(180deg);
+        }
+
+        &.root[data-labels="floating"] .dropdown-button {
+            height: 0;
+            opacity: 0;
+        }
+
+        &.root[data-labels="floating"]:is(
+                [data-floated],
+                [data-filled],
+                [data-open]
+            )
+            .dropdown-button {
+            height: auto;
+            opacity: 1;
+        }
+
+        &[data-disabled] .dropdown-button,
+        &[data-disabled] .dropdown-chevron {
+            color: var(--color-component-disabled-content-default);
+            cursor: not-allowed;
+        }
     }
 
     .dropdown-button {
@@ -297,31 +326,6 @@
         transition: transform var(--motion-duration-fast)
             var(--motion-ease-standard);
     }
-
-    .dropdown[data-open] .dropdown-chevron {
-        transform: rotate(180deg);
-    }
-
-    .dropdown.root[data-labels="floating"] .dropdown-button {
-        height: 0;
-        opacity: 0;
-    }
-
-    .dropdown.root[data-labels="floating"]:is(
-            [data-floated],
-            [data-filled],
-            [data-open]
-        )
-        .dropdown-button {
-        height: auto;
-        opacity: 1;
-    }
-
-    .dropdown[data-disabled] .dropdown-button,
-    .dropdown[data-disabled] .dropdown-chevron {
-        color: var(--color-component-disabled-content-default);
-        cursor: not-allowed;
-    }
 }
 
 /*
@@ -338,19 +342,24 @@
         gap: var(--spacing-3xs);
         width: 100%;
     }
+    .phone {
+        & .input {
+            height: auto;
+            opacity: 1;
+        }
 
-    .phone .input {
-        height: auto;
-        opacity: 1;
-    }
+        &.root[data-labels="floating"] .stack {
+            gap: var(--spacing-3xs);
+            padding-bottom: var(--spacing-3xs);
+        }
 
-    .phone.root[data-labels="floating"] .stack {
-        gap: var(--spacing-3xs);
-        padding-bottom: var(--spacing-3xs);
-    }
+        &.root[data-labels="floating"] .float-label {
+            font-size: var(--font-size-body-xs);
+        }
 
-    .phone.root[data-labels="floating"] .float-label {
-        font-size: var(--font-size-body-xs);
+        &[data-disabled] .locale {
+            cursor: not-allowed;
+        }
     }
 
     .locale {
@@ -381,9 +390,5 @@
 
     .locale-code {
         color: var(--color-shared-content-tertiary);
-    }
-
-    .phone[data-disabled] .locale {
-        cursor: not-allowed;
     }
 }

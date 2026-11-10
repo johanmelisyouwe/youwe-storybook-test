@@ -141,7 +141,13 @@
         }
     }
     .progress {
+        position: absolute;
         z-index: 1;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: var(--color-shared-surface-base-3);
 
         & > span {
             display: block;
@@ -299,15 +305,6 @@
             transform: scaleY(var(--f, 0));
             transform-origin: top;
         }
-    }
-
-    .progress {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        height: 2px;
-        background: var(--color-shared-surface-base-3);
     }
 
     /* Slides */

@@ -14,10 +14,25 @@
   Awards (27096:9988): "Trusted by industry leaders" body/lg/bold and four 95×95 badges, gap 40; mobile stacks.
 */
 @layer components {
-    .root .inner {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-3xl);
+    .root {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-3xl);
+        }
+
+        &[data-layout="split"] .inner {
+            display: grid;
+            grid-template-columns: 416fr 744fr;
+            gap: var(--spacing-5xl);
+        }
+
+        @container (max-width: 47.9375rem) {
+            &[data-layout="split"] .inner {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-2xl);
+            }
+        }
     }
     .items {
         display: flex;
@@ -39,11 +54,6 @@
             color: var(--color-shared-content-secondary);
         }
     }
-    .root[data-layout="split"] .inner {
-        display: grid;
-        grid-template-columns: 416fr 744fr;
-        gap: var(--spacing-5xl);
-    }
     .intro {
         display: flex;
         flex-direction: column;
@@ -58,12 +68,13 @@
             margin: 0;
         }
     }
-
-    .stack .inner {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-xl);
-        padding-block: var(--spacing-4xl);
+    .stack {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+            padding-block: var(--spacing-4xl);
+        }
     }
     .stack-header {
         display: flex;
@@ -112,11 +123,13 @@
         padding: 0;
         list-style: none;
     }
-    .offices .inner {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-4xl);
-        padding-block: var(--spacing-4xl);
+    .offices {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4xl);
+            padding-block: var(--spacing-4xl);
+        }
     }
     .offices-header {
         display: flex;
@@ -140,12 +153,13 @@
             color: var(--color-shared-content-tertiary);
         }
     }
-
-    .leadership .inner {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-4xl);
-        padding-block: var(--spacing-4xl);
+    .leadership {
+        & .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4xl);
+            padding-block: var(--spacing-4xl);
+        }
     }
     .leadership-people {
         display: grid;
@@ -183,10 +197,11 @@
             text-decoration: underline;
         }
     }
-
-    .awards .inner {
-        padding-top: 0;
-        padding-bottom: var(--spacing-4xl);
+    .awards {
+        & .inner {
+            padding-top: 0;
+            padding-bottom: var(--spacing-4xl);
+        }
     }
     .awards-row {
         display: flex;
@@ -210,10 +225,6 @@
     }
 
     @container (max-width: 47.9375rem) {
-        .root[data-layout="split"] .inner {
-            grid-template-columns: 1fr;
-            gap: var(--spacing-2xl);
-        }
         .stack-header,
         .offices-row {
             flex-direction: column;

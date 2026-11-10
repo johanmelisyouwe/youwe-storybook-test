@@ -76,6 +76,10 @@
             padding: 0 var(--spacing-xs);
         }
 
+        &[data-mobile] .sheet[data-static] {
+            margin-inline: calc(var(--spacing-xs) * -1);
+        }
+
         &[data-mobile] .top {
             display: flex;
             align-items: center;
@@ -309,13 +313,9 @@
         align-items: center;
         gap: var(--spacing-3xs);
     }
-    .sheet-cta > * {
-        width: 100%;
-    }
-}
-
-@layer components {
-    .root[data-mobile] .sheet[data-static] {
-        margin-inline: calc(var(--spacing-xs) * -1);
+    .sheet-cta {
+        & > * {
+            width: 100%;
+        }
     }
 }

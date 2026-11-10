@@ -12,6 +12,11 @@
         margin: 0;
         color: inherit;
         text-decoration: none;
+
+        /* Only the linked card (an <a>) zooms */
+        &:is(a):hover .media > img {
+            transform: scale(1.04);
+        }
     }
     .media {
         flex: 1;
@@ -21,9 +26,6 @@
             transition: transform var(--motion-duration-zoom)
                 var(--motion-ease-emphasized);
         }
-    }
-    a.root:hover .media > img {
-        transform: scale(1.04);
     }
     .caption {
         color: var(--color-shared-content-secondary);

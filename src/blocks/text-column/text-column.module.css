@@ -9,8 +9,10 @@
   Motion (Figma): block reveal on scroll.
 */
 @layer components {
-    .longform p {
-        margin: 0;
+    .longform {
+        & p {
+            margin: 0;
+        }
     }
     .longform-lead {
         color: var(--color-shared-content-primary);
@@ -28,8 +30,10 @@
         gap: var(--spacing-xl);
         max-width: 39.5rem;
     }
-    .root[data-centered] .text {
-        margin-inline: auto;
+    .root {
+        &[data-centered] .text {
+            margin-inline: auto;
+        }
     }
 
     .two-col {
@@ -48,6 +52,13 @@
         &[data-split="4-8"] .two-col-body {
             justify-self: end;
             max-width: 46.25rem;
+        }
+
+        @container (max-width: 47.9375rem) {
+            &,
+            &[data-split="4-8"] {
+                grid-template-columns: 1fr;
+            }
         }
     }
     .two-col-lead {
@@ -70,6 +81,14 @@
 
         &[data-meta-right] {
             flex-direction: row-reverse;
+        }
+
+        @container (max-width: 47.9375rem) {
+            &,
+            &[data-meta-right] {
+                flex-direction: column;
+                gap: var(--spacing-2xl);
+            }
         }
     }
     .case-intro-meta {
@@ -107,17 +126,8 @@
     }
 
     @container (max-width: 47.9375rem) {
-        .two-col,
-        .two-col[data-split="4-8"] {
-            grid-template-columns: 1fr;
-        }
         .two-col-body {
             padding-top: var(--spacing-lg);
-        }
-        .case-intro,
-        .case-intro[data-meta-right] {
-            flex-direction: column;
-            gap: var(--spacing-2xl);
         }
         .case-intro-meta,
         .case-intro-text {

@@ -141,48 +141,60 @@
             var(--motion-ease-standard),
             box-shadow var(--motion-duration-fast) var(--motion-ease-standard);
     }
+    .ask-btn {
+        &[data-variant="primary"] {
+            background: var(--color-shared-surface-fixed-brand-red);
+            box-shadow: none;
+            color: var(--color-shared-content-fixed-light);
+        }
 
-    .ask-btn[data-variant="primary"] {
-        background: var(--color-shared-surface-fixed-brand-red);
-        box-shadow: none;
-        color: var(--color-shared-content-fixed-light);
-    }
-    .ask-btn[data-variant="primary"]:hover {
-        background: var(--color-component-brand-red-3);
-    }
-    .ask-btn[data-variant="glass"]:hover,
-    .ask-chip[data-suggestion]:hover {
-        background: var(--color-component-ask-border);
-    }
-    .ask-btn[data-variant="disabled"] {
-        box-shadow: none;
-        color: var(--color-shared-content-tertiary);
-        cursor: not-allowed;
-    }
-    .ask-btn[data-icon] {
-        justify-content: center;
-        width: 2.5rem;
-        height: 2.5rem;
-        padding: 0;
-    }
-    .ask-btn[data-icon].ask-btn[data-s] {
-        width: 2rem;
-        height: 2rem;
-    }
+        &[data-variant="primary"]:hover {
+            background: var(--color-component-brand-red-3);
+        }
 
-    .ask-chip[data-context] {
-        gap: var(--spacing-3xs);
-        padding: var(--spacing-3xs) var(--spacing-xs);
-        cursor: default;
+        &[data-variant="glass"]:hover {
+            background: var(--color-component-ask-border);
+        }
+
+        &[data-variant="disabled"] {
+            box-shadow: none;
+            color: var(--color-shared-content-tertiary);
+            cursor: not-allowed;
+        }
+
+        &[data-icon] {
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0;
+        }
+
+        &[data-icon].ask-btn[data-s] {
+            width: 2rem;
+            height: 2rem;
+        }
     }
-    .ask-chip[data-context] .ask-chip-meta {
-        color: var(--color-shared-content-tertiary);
-    }
-    .ask-chip[data-key] {
-        padding: 2px var(--spacing-2xs);
-        box-shadow: none;
-        color: var(--color-shared-content-secondary);
-        cursor: default;
+    .ask-chip {
+        &[data-suggestion]:hover {
+            background: var(--color-component-ask-border);
+        }
+
+        &[data-context] {
+            gap: var(--spacing-3xs);
+            padding: var(--spacing-3xs) var(--spacing-xs);
+            cursor: default;
+        }
+
+        &[data-context] .ask-chip-meta {
+            color: var(--color-shared-content-tertiary);
+        }
+
+        &[data-key] {
+            padding: 2px var(--spacing-2xs);
+            box-shadow: none;
+            color: var(--color-shared-content-secondary);
+            cursor: default;
+        }
     } /* 2px: Figma padding */
 
     .ask-label {

@@ -7,11 +7,24 @@
   Mobile: one column. Motion (Figma): block reveal staggered.
 */
 @layer components {
-    .root .inner {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: var(--spacing-4xl);
-        padding-block: var(--spacing-4xl);
+    .root {
+        & .inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: var(--spacing-4xl);
+            padding-block: var(--spacing-4xl);
+        }
+
+        &[data-layout="tech"] .intro p {
+            color: var(--color-shared-content-secondary);
+        }
+
+        @container (max-width: 63.9375rem) {
+            & .inner {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-2xl);
+            }
+        }
     }
     .left {
         display: flex;
@@ -34,9 +47,6 @@
         flex-direction: column;
         gap: var(--spacing-2xs);
         margin: 0;
-    }
-    .root[data-layout="tech"] .intro p {
-        color: var(--color-shared-content-secondary);
     }
     .snippets {
         display: flex;
@@ -81,13 +91,6 @@
         color: var(--color-shared-content-secondary);
         text-transform: uppercase;
         letter-spacing: 0.08em;
-    }
-
-    @container (max-width: 63.9375rem) {
-        .root .inner {
-            grid-template-columns: 1fr;
-            gap: var(--spacing-2xl);
-        }
     }
 
     @container (max-width: 47.9375rem) {

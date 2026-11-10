@@ -9,11 +9,39 @@
   Motion (Figma): block reveal; image variants use the media clip reveal.
 */
 @layer components {
-    .root[data-layout="form"] .inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: var(--spacing-3xl);
+    .root {
+        &[data-layout="form"] .inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: var(--spacing-3xl);
+        }
+
+        &[data-layout="split"] .inner {
+            display: flex;
+            justify-content: flex-end;
+            max-width: none;
+            margin: 0;
+        }
+
+        &[data-layout="background"] {
+            overflow: hidden;
+        }
+
+        &[data-layout="background"] .content {
+            max-width: 55rem;
+        }
+
+        &[data-layout="background"] .inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        @container (max-width: 47.9375rem) {
+            &[data-layout="form"] .inner {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
     }
     .text {
         display: flex;
@@ -52,6 +80,12 @@
         & > .btn-auto {
             width: auto;
         }
+
+        @container (max-width: 47.9375rem) {
+            & > .btn-auto {
+                width: 100%;
+            }
+        }
     }
     .row {
         display: grid;
@@ -62,12 +96,10 @@
     .split {
         display: grid;
         grid-template-columns: 1fr 1fr;
-    }
-    .root[data-layout="split"] .inner {
-        display: flex;
-        justify-content: flex-end;
-        max-width: none;
-        margin: 0;
+
+        @container (max-width: 47.9375rem) {
+            grid-template-columns: minmax(0, 1fr);
+        }
     }
     .content {
         display: flex;
@@ -92,13 +124,6 @@
         border-radius: 0 !important;
         min-height: 100%;
     }
-
-    .root[data-layout="background"] {
-        overflow: hidden;
-    }
-    .root[data-layout="background"] .content {
-        max-width: 55rem;
-    }
     .bg {
         position: absolute !important;
         z-index: 0;
@@ -117,21 +142,10 @@
             );
         }
     }
-    .root[data-layout="background"] .inner {
-        position: relative;
-        z-index: 1;
-    }
 
     @container (max-width: 47.9375rem) {
-        .root[data-layout="form"] .inner,
-        .split {
-            grid-template-columns: minmax(0, 1fr);
-        }
         .text {
             padding-right: 0;
-        }
-        .form > .btn-auto {
-            width: 100%;
         }
         .image {
             order: -1;

@@ -41,76 +41,89 @@
         & > li > * {
             flex: 1;
         }
-    }
 
-    .root[data-layout="wide-1"] .grid {
-        grid-template-columns: 2fr 1fr;
-    }
-    .root[data-layout="1-wide"] .grid {
-        grid-template-columns: 1fr 2fr;
-    }
-    .root[data-layout="feature-4"] .grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-    .root[data-layout="feature-2"] .grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    .root[data-layout="feature-4"] .grid > :first-child,
-    .root[data-layout="feature-2"] .grid > :first-child {
-        grid-column: span 2;
-        grid-row: span 2;
-    }
-
-    .root[data-layout="scroll"] .inner {
-        max-width: none;
-        padding-right: 0;
-        margin-left: max(
-            0px,
-            calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)
-        );
-    }
-    .root[data-layout="scroll"] .intro {
-        padding-right: var(--_pad);
-        max-width: calc(var(--yw-container-max) + var(--_pad));
-    }
-    .root[data-layout="scroll"] .grid {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-padding-inline: var(--_pad);
-        padding-right: var(--_pad);
-        scrollbar-width: none;
-    }
-    .root[data-layout="scroll"] .grid > li {
-        flex: 0 0 26rem;
-        scroll-snap-align: start;
-    }
-
-    @supports (animation-timeline: view()) {
-        .grid > li {
-            animation: block-in var(--motion-duration-reveal)
-                var(--motion-ease-emphasized) both;
-            animation-delay: calc(var(--_i, 0) * var(--motion-stagger));
-            animation-timeline: view();
-            animation-range: entry 0% entry 35%;
+        @supports (animation-timeline: view()) {
+            & > li {
+                animation: block-in var(--motion-duration-reveal)
+                    var(--motion-ease-emphasized) both;
+                animation-delay: calc(var(--_i, 0) * var(--motion-stagger));
+                animation-timeline: view();
+                animation-range: entry 0% entry 35%;
+            }
         }
-    }
 
-    @container (max-width: 47.9375rem) {
-        .grid,
-        .root[data-layout="wide-1"] .grid,
-        .root[data-layout="1-wide"] .grid,
-        .root[data-layout="feature-4"] .grid,
-        .root[data-layout="feature-2"] .grid {
+        @container (max-width: 47.9375rem) {
             grid-template-columns: 1fr;
         }
-        .root[data-layout="feature-4"] .grid > :first-child,
-        .root[data-layout="feature-2"] .grid > :first-child {
-            grid-column: auto;
-            grid-row: auto;
+    }
+    .root {
+        &[data-layout="wide-1"] .grid {
+            grid-template-columns: 2fr 1fr;
         }
-        .root[data-layout="scroll"] .grid > li {
-            flex-basis: 85%;
+
+        &[data-layout="1-wide"] .grid {
+            grid-template-columns: 1fr 2fr;
+        }
+
+        &[data-layout="feature-4"] .grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        &[data-layout="feature-2"] .grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        &[data-layout="feature-4"] .grid > :first-child,
+        &[data-layout="feature-2"] .grid > :first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        &[data-layout="scroll"] .inner {
+            max-width: none;
+            padding-right: 0;
+            margin-left: max(
+                0px,
+                calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)
+            );
+        }
+
+        &[data-layout="scroll"] .intro {
+            padding-right: var(--_pad);
+            max-width: calc(var(--yw-container-max) + var(--_pad));
+        }
+
+        &[data-layout="scroll"] .grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding-inline: var(--_pad);
+            padding-right: var(--_pad);
+            scrollbar-width: none;
+        }
+
+        &[data-layout="scroll"] .grid > li {
+            flex: 0 0 26rem;
+            scroll-snap-align: start;
+        }
+
+        @container (max-width: 47.9375rem) {
+            &[data-layout="wide-1"] .grid,
+            &[data-layout="1-wide"] .grid,
+            &[data-layout="feature-4"] .grid,
+            &[data-layout="feature-2"] .grid {
+                grid-template-columns: 1fr;
+            }
+
+            &[data-layout="feature-4"] .grid > :first-child,
+            &[data-layout="feature-2"] .grid > :first-child {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            &[data-layout="scroll"] .grid > li {
+                flex-basis: 85%;
+            }
         }
     }
 }

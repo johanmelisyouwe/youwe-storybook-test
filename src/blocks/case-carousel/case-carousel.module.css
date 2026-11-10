@@ -9,16 +9,46 @@
   Interaction: tabbing to a card scrolls it fully into view.
 */
 @layer components {
-    .root[data-layout="short"] .inner {
-        display: grid;
-        grid-template-columns: 39.5rem minmax(0, 1fr);
-        gap: var(--spacing-sm);
-        max-width: none;
-        padding-right: 0;
-        margin-left: max(
-            0px,
-            calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)
-        );
+    .root {
+        &[data-layout="short"] .inner {
+            display: grid;
+            grid-template-columns: 39.5rem minmax(0, 1fr);
+            gap: var(--spacing-sm);
+            max-width: none;
+            padding-right: 0;
+            margin-left: max(
+                0px,
+                calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)
+            );
+        }
+
+        &[data-layout="grid"] .inner,
+        &[data-layout="scroll"] .inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4xl);
+        }
+
+        &[data-layout="scroll"] .inner {
+            max-width: none;
+            padding-right: 0;
+            margin-left: max(
+                0px,
+                calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)
+            );
+        }
+
+        &[data-layout="scroll"] .head {
+            padding-right: var(--_pad);
+            max-width: calc(var(--yw-container-max) + var(--_pad));
+        }
+
+        @container (max-width: 47.9375rem) {
+            &[data-layout="short"] .inner {
+                grid-template-columns: 1fr;
+                padding-right: 0;
+            }
+        }
     }
     .aside {
         display: flex;
@@ -67,12 +97,6 @@
             margin: 0;
         }
     }
-    .root[data-layout="grid"] .inner,
-    .root[data-layout="scroll"] .inner {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-4xl);
-    }
 
     .track {
         display: flex;
@@ -89,18 +113,12 @@
             flex: 0 0 26rem;
             scroll-snap-align: start;
         }
-    }
-    .root[data-layout="scroll"] .inner {
-        max-width: none;
-        padding-right: 0;
-        margin-left: max(
-            0px,
-            calc((100% - var(--yw-container-max) - 2 * var(--_pad)) / 2)
-        );
-    }
-    .root[data-layout="scroll"] .head {
-        padding-right: var(--_pad);
-        max-width: calc(var(--yw-container-max) + var(--_pad));
+
+        @container (max-width: 47.9375rem) {
+            & > li {
+                flex-basis: 85%;
+            }
+        }
     }
 
     .grid {
@@ -113,18 +131,11 @@
     }
 
     @container (max-width: 47.9375rem) {
-        .root[data-layout="short"] .inner {
-            grid-template-columns: 1fr;
-            padding-right: 0;
-        }
         .aside {
             padding-right: var(--_pad);
         }
         .grid {
             grid-template-columns: 1fr;
-        }
-        .track > li {
-            flex-basis: 85%;
         }
         .titlebar {
             flex-direction: column;
