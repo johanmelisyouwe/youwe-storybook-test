@@ -1,7 +1,9 @@
 /*
   Technology Card (Figma 26721:87). surface/base-2, radius card, padding 24, gap 24.
-  Horizontal: logo tile | text | 40px outline arrow (items centred). Vertical: top row logo + arrow
-  (space-between), text below. Logo tile 120×40, white in both modes (partner logos keep their colours).
+  Horizontal: logo | text | 40px outline arrow (items centred). Vertical: top row logo + arrow
+  (space-between), text below. Logo slot 120×40 with no fill (Figma Logo instance has none); the logo
+  sits left in the slot, vertically centred, in content/primary so it follows the mode. The partner
+  SVGs are the Figma 120×40 frames, so each logo keeps its Figma offset inside the slot.
   Text gap 8: name body/lg/med primary (+ optional level body/xs/med secondary, gap 4),
   description body/sm/reg secondary. Hover: shared red reveal.
 */
@@ -30,12 +32,12 @@
         display: flex;
         flex-shrink: 0;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         width: 7.5rem;
         height: 2.5rem;
-        border-radius: var(--shared-radius-4);
-        background: var(--color-shared-surface-fixed-light);
-        color: var(--color-shared-content-fixed-dark);
+        overflow: hidden;
+        color: var(--color-shared-content-primary);
+        text-align: start;
 
         & img {
             max-width: 100%;
