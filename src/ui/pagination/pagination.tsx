@@ -95,7 +95,7 @@ export function Pagination({
                 className={btn(styles['page-btn-prev'])}
                 disabled={first}
                 onClick={() => go(page - 1)}
-                aria-label="Previous page"
+                aria-label="Prev page"
             >
                 <Icon name="chevron-left" size={24} />
                 Prev

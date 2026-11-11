@@ -195,7 +195,8 @@
         }
 
         &[data-l][aria-current="page"] {
-            color: var(--color-shared-surface-fixed-brand-red);
+            /* content/brand, not the fixed brand red: on mobile this is 18px, which needs 4.5:1 */
+            color: var(--color-shared-content-brand);
         }
         @media (hover: hover) and (pointer: fine) {
             &[data-l]:hover {
