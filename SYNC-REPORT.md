@@ -12,6 +12,8 @@ Open review items 5–12, each checked against Figma.
 - **Mobile What we do, doubled labels:** each slide showed its number twice ("01 / 03 · Digital Infrastructure" above the slide's own "01 · Digital Infrastructure"). The extra label is gone in both mobile layouts; the step bars still show where you are.
 - **Mobile sub-footer, office list:** on mobile the text runs the full width over the photo, but the overlay only darkened from the left. On mobile it now darkens from the bottom, so the office list stays readable on any photo.
 
+- **Quooker title capitalisation:** the Work detail hero (and the Hero story) used Title Case. It's now "Scaling smart: Quooker’s expansion to 17 countries", like everywhere else.
+
 ## Checked, matches Figma (no change)
 
 - **Challenges grid gap:** Figma has the same five tiles in three columns with an open sixth spot.

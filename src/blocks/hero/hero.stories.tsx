@@ -54,7 +54,7 @@ const GRADIENT: HeroProps = {
 const CASE: HeroProps = {
     image: caseImage('quooker-1', 'wide'),
     Variant: 'Title + image',
-    title: ['Scaling Smart: Quooker’s Expansion to 17 Countries'],
+    title: ['Scaling smart: Quooker’s expansion to 17 countries'],
     label: {
         Type: 'Breadcrumb',
         crumbs: [

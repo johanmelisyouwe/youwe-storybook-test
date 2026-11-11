@@ -89,7 +89,7 @@ function WorkDetailPage({ Device: story }: { Device: Device }) {
             <Hero
                 Variant="Title + image"
                 Device={Device}
-                title={['Scaling Smart: Quooker’s Expansion to 17 Countries']}
+                title={['Scaling smart: Quooker’s expansion to 17 countries']}
                 label={{
                     Type: 'Breadcrumb',
                     crumbs: [
