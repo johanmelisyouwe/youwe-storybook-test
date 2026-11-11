@@ -147,6 +147,10 @@
     }
     .line {
         display: block;
+        /* Shrink to fit: on narrow heroes the title scales with the hero width (13cqi), so the longest single
+           word in a title ("Manufacturing", 6.7em) fits on one line instead of breaking mid-word. 1em keeps the
+           Figma heading/3xl size wherever that already fits (from about 430px wide up). */
+        font-size: min(1em, 13cqi); /* legacy-ok: fit factor, not a design value */
         /* Mask for the line rise. A clip shape instead of overflow: hidden, reaching past the line box
            (line-height 1 from Figma) so descenders (g, p, y) and accented capitals aren't cut off, with no
            change to layout or line spacing. */
