@@ -5,7 +5,8 @@ import ring from '../../shared/focus-ring/focus-ring.module.css'
 import styles from './video-player.module.css'
 
 /*
-  Video Player — not a Figma component (Figma has a "Video" placeholder frame in the ACI Weave block on Home,
+  Video Player — not a Figma component. Used on its own (ACI Weave) and inside Content blocks/Media, where it
+  takes the place of an image (Media video / video2) (Figma has a "Video" placeholder frame in the ACI Weave block on Home,
   26598:4074): a 16:9 poster with the red play button, playing a native <video>.
   Autoplay "Off": the poster and play button; play starts the video with the browser's own controls.
   Autoplay "In view": plays muted and looped while at least half of it is on screen, pauses when it leaves.
@@ -23,6 +24,8 @@ export type VideoPlayerProps = {
     Autoplay?: 'Off' | 'In view'
     /** WebVTT captions file */
     captions?: string
+    /** Frame ratio, default 16 / 9 (the Media block passes its own, e.g. 632 / 736 for Two-up) */
+    ratio?: string
     className?: string
 }
 
@@ -47,6 +50,7 @@ export function VideoPlayer({
     title,
     Autoplay = 'Off',
     captions,
+    ratio = '16 / 9',
     className,
 }: VideoPlayerProps) {
     const ref = useRef<HTMLVideoElement>(null)
@@ -78,8 +82,11 @@ export function VideoPlayer({
 
     if (!src) {
         return (
-            <span className={cx(styles.root, className)}>
-                <CardMedia src={poster} ratio="16 / 9" />
+            <span
+                className={cx(styles.root, className)}
+                style={{ aspectRatio: ratio }}
+            >
+                <CardMedia src={poster} ratio={ratio} />
                 <span className={styles.play} aria-hidden="true">
                     <PlayGlyph />
                 </span>
@@ -106,6 +113,7 @@ export function VideoPlayer({
     return (
         <span
             className={cx(styles.root, className)}
+            style={{ aspectRatio: ratio }}
             data-autoplay={auto || undefined}
         >
             <video

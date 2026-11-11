@@ -25,7 +25,7 @@ import {
     type Device,
     useDevice,
 } from './shared'
-import { abstract, caseImage, clientPhoto } from '../media/media'
+import { abstract, caseImage, clientPhoto, video } from '../media/media'
 
 /*
   Templates/Work detail — Figma "Page / Work detail": Desktop 26829:20476, Mobile 26924:2198. Copy, props
@@ -34,7 +34,8 @@ import { abstract, caseImage, clientPhoto } from '../media/media'
   throughout (decided 9 November), using the Quooker case copy from the Figma long-form components. The
   Testimonial keeps the stand-in quote from the Figma template (decided 9 November). Sub-footer: the
   desktop copy on both devices. Related work leaves out Quooker itself (this is the Quooker case). Each photo
-  is used once on the page (the Figma stand-ins repeated one photo three times).
+  is used once on the page (the Figma stand-ins repeated one photo three times). The full-bleed media is a
+  video (Media video, Autoplay "In view"; placeholder clip until the real case video arrives).
 */
 
 const c = (
@@ -125,6 +126,8 @@ function WorkDetailPage({ Device: story }: { Device: Device }) {
                     Layout="Full bleed"
                     Device={Device}
                     image={caseImage('xxl', 'wide')}
+                    video={video('xxl')}
+                    alt="Case video (placeholder)"
                 />
                 <TextColumn
                     Alignment="Centered"
