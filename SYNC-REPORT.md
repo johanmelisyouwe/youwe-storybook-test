@@ -1,26 +1,25 @@
-# Sync report — 11 November 2026 (event dates and partner logos)
+# Sync report — 11 November 2026 (review polish)
 
-## Upcoming events: date matches Figma
+Open review items 5–12, each checked against Figma.
 
-Checked against Upcoming events (26740:42) and its row (26887:988).
+## Fixed
 
-- **Before:** the date sat in a dark, centred tile, 76 px wide.
-- **In Figma:** the Date frame's base-1 fill is switched off. The day and month are **left-aligned with no background**, and the frame hugs the text. The day uses heading/2xl and the month sits 4 px below it.
-- **Now:** the date matches Figma. The day number lines up with the title and the place tag below it.
+- **Work detail, repeated photo:** one stand-in photo was used three times (inline, full-bleed and two-up). Each photo is now used once: full-bleed is XXL and the two-up is Quooker + G-Star.
+- **Work detail, Related work:** the carousel on the Quooker case listed the Quooker case itself. It now leaves it out.
+- **Stats, thousands separator (found while checking):** "110,000+" ended its count-up as "110.000+" and "3,360" as "3.360", because the comma was read as a decimal point. A comma followed by groups of three digits now counts as a thousands separator and stays in the count.
+- **Services detail, What we build:** the feature tile used the tight portrait Bunzl crop, which zoomed in on the icon and showed a red sliver at the edge. It now uses the wide Bunzl photo from Figma (new `wide-bunzl.webp`), with the calendar and BunzlOne icons visible as in Figma.
+- **Services detail, Proof quote card:** Figma puts a **light** quote card in the dark Proof grid; ours was dark. Quote Card has a new optional `Mode` prop (Figma axis Mode) for a card whose mode differs from its section, and Proof uses `Mode="Light"`. The space between the quote and the name matches Figma (the name sits at the bottom of the card).
+- **Mobile What we do, doubled labels:** each slide showed its number twice ("01 / 03 · Digital Infrastructure" above the slide's own "01 · Digital Infrastructure"). The extra label is gone in both mobile layouts; the step bars still show where you are.
+- **Mobile sub-footer, office list:** on mobile the text runs the full width over the photo, but the overlay only darkened from the left. On mobile it now darkens from the bottom, so the office list stays readable on any photo.
 
-## Technology Card: logo position, no white background
+## Checked, matches Figma (no change)
 
-Checked against Technology Card (26721:87), its logo slot (26721:29) and the cards on Tech Partners and Tech partners split.
-
-- **White background removed.** The 120×40 logo slot has no fill in Figma. Logos are drawn in the content colour, so they're white on dark and dark on light, like Figma.
-- **Logo position:** the logo now sits **left in its slot and vertically centred**. Before, it was centred in a white box. Each partner SVG is the Figma 120×40 frame, so every logo keeps its exact Figma offset. For example, AWS sits at the left and fills the height; Alumio is full width with the height centred.
-- A partner without a logo file still shows its name, now left-aligned in the content colour.
-- The Technology Card stories now use the real partner logos instead of name placeholders.
-
-Small difference from Figma: in Figma the Databricks mark is red. Logos here are one colour, so that they follow the mode.
+- **Challenges grid gap:** Figma has the same five tiles in three columns with an open sixth spot.
+- **ACI Weave paragraph spacing:** body, nudge and button spacing match Figma (24, 24, 40).
+- **Repeated footer sentence:** "Tell us what you want to achieve and we will think along with you." is in both the Work with us block and the footer in Figma too. That's a copy decision for Figma; not changed here.
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`: pass
 - `pnpm build-storybook`: pass
-- Compared with Figma screenshots: Upcoming events at desktop size, all Technology Card variants (dark and light, rest and hover), and Tech Partners → Systems that scale.
+- Looked at each change: Services detail (What we build, Proof), Work detail (results, two-up, Related work) at 1440, and Home on an iPhone 13 (What we do, sub-footer).

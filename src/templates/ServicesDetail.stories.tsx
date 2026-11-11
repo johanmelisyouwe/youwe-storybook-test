@@ -254,6 +254,7 @@ const UNIPART = (Device: Device, Size: 'Two thirds' | 'One third') => (
 const UNIPART_QUOTE = (
     <QuoteCard
         key="quote"
+        Mode="Light"
         Quote="“Garage owners can easily search parts, have a look at the available stock and spread out their ordering throughout the day.”"
         Name="James Billington"
         Role="eCommerce Consultant, Unipart Autoparts"
@@ -349,7 +350,10 @@ function Body({ Device }: { Device: Device }) {
                             Title,
                             Description,
                             'Show arrow': true,
-                            image: i === 0 ? caseImage('bunzl') : undefined,
+                            image:
+                                i === 0
+                                    ? caseImage('bunzl', 'wide')
+                                    : undefined,
                             link:
                                 i === 2
                                     ? { label: 'View case study', href: '#' }

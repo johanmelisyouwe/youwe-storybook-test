@@ -15,6 +15,7 @@
         padding: var(--spacing-lg);
         border-radius: var(--component-radius-card);
         background: var(--color-shared-surface-base-2);
+        color: var(--color-shared-content-primary);
 
         & blockquote {
             margin: 0;
