@@ -240,14 +240,21 @@ function VimeoPlayer({
             if (d.player_id && d.player_id !== playerId) return
             if (d.event === 'ready') {
                 ready.current = true
-                for (const ev of ['play', 'pause', 'timeupdate'])
+                // Vimeo's postMessage API reports progress as "playProgress" (timeupdate is the player.js name)
+                for (const ev of [
+                    'play',
+                    'pause',
+                    'playProgress',
+                    'timeupdate',
+                ])
                     send('addEventListener', ev)
                 if (auto && inView.current && !held.current) send('play')
             }
             if (d.event === 'play') setPlaying(true)
             if (d.event === 'pause') setPlaying(false)
             // Fade the video in once frames are actually moving (no black flash)
-            if (d.event === 'timeupdate') setShown(true)
+            if (d.event === 'playProgress' || d.event === 'timeupdate')
+                setShown(true)
         }
         window.addEventListener('message', onMessage)
         return () => window.removeEventListener('message', onMessage)
