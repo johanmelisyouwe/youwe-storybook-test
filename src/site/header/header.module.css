@@ -66,6 +66,10 @@
         &[data-hidden] {
             transform: translateY(-100%);
         }
+        /* Keyboard: tabbing back into a hidden header brings it back, so the focused link is on screen */
+        &[data-hidden]:focus-within {
+            transform: none;
+        }
 
         /* Once scrolled the bar becomes dark glass, so it stays readable over light sections too. */
         &[data-scrolled] .bar {
@@ -363,6 +367,24 @@
     .sheet-cta {
         & > * {
             width: 100%;
+        }
+    }
+
+    /* Skip link: off screen until it has keyboard focus, then a solid pill at the top left */
+    .root > .skip {
+        position: absolute;
+        z-index: 2;
+        top: var(--spacing-xs);
+        left: var(--spacing-xs);
+        padding: var(--spacing-2xs) var(--spacing-sm);
+        border-radius: var(--shared-radius-4);
+        background: var(--color-shared-surface-fixed-light);
+        color: var(--color-shared-content-fixed-dark);
+        text-decoration: none;
+        transform: translateY(-200%);
+
+        &:focus-visible {
+            transform: none;
         }
     }
 }

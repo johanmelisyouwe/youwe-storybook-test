@@ -1,27 +1,30 @@
-# Sync report — 11 November 2026 (review polish)
+# Sync report — 11 November 2026 (keyboard navigation, Video Player)
 
-Open review items 5–12, each checked against Figma.
+## Keyboard navigation
 
-## Fixed
+Tested with the keyboard only on the templates (desktop and iPhone 13). Four fixes:
 
-- **Work detail, repeated photo:** one stand-in photo was used three times (inline, full-bleed and two-up). Each photo is now used once: full-bleed is XXL and the two-up is Quooker + G-Star.
-- **Work detail, Related work:** the carousel on the Quooker case listed the Quooker case itself. It now leaves it out.
-- **Stats, thousands separator (found while checking):** "110,000+" ended its count-up as "110.000+" and "3,360" as "3.360", because the comma was read as a decimal point. A comma followed by groups of three digits now counts as a thousands separator and stays in the count.
-- **Services detail, What we build:** the feature tile used the tight portrait Bunzl crop, which zoomed in on the icon and showed a red sliver at the edge. It now uses the wide Bunzl photo from Figma (new `wide-bunzl.webp`), with the calendar and BunzlOne icons visible as in Figma.
-- **Services detail, Proof quote card:** Figma puts a **light** quote card in the dark Proof grid; ours was dark. Quote Card has a new optional `Mode` prop (Figma axis Mode) for a card whose mode differs from its section, and Proof uses `Mode="Light"`. The space between the quote and the name matches Figma (the name sits at the bottom of the card).
-- **Mobile What we do, doubled labels:** each slide showed its number twice ("01 / 03 · Digital Infrastructure" above the slide's own "01 · Digital Infrastructure"). The extra label is gone in both mobile layouts; the step bars still show where you are.
-- **Mobile sub-footer, office list:** on mobile the text runs the full width over the photo, but the overlay only darkened from the left. On mobile it now darkens from the bottom, so the office list stays readable on any photo.
+- **Skip to content:** the first Tab on every page now shows a "Skip to content" link at the top left. Enter moves focus past the menu to the page title, so the next Tab lands on the first link in the page (e.g. "See our work" on Home).
+- **Header comes back on focus:** the header hides while you scroll down. Tabbing (or Shift+Tab) back into it now brings it back, so the focused link is never off screen.
+- **Nothing hides the focused item:** the page keeps a margin below the fixed header and above the Ask Youwe bar when it scrolls to the focused element. "All cases" and "Get in touch" used to end up under the Ask bar (WCAG 2.4.11).
+- **Mobile menu holds focus:** opening the menu moves focus into it, Tab and Shift+Tab stay inside the menu while it's open, and Esc or Close puts focus back on the menu button.
 
-- **Quooker title capitalisation:** the Work detail hero (and the Hero story) used Title Case. It's now "Scaling smart: Quooker’s expansion to 17 countries", like everywhere else.
+Already fine: every link and button has a visible focus ring, the tab order follows the page, and Esc closes the menu, the mega menu and the Ask panel.
 
-## Checked, matches Figma (no change)
+## Video Player (new component)
 
-- **Challenges grid gap:** Figma has the same five tiles in three columns with an open sixth spot.
-- **ACI Weave paragraph spacing:** body, nudge and button spacing match Figma (24, 24, 40).
-- **Repeated footer sentence:** "Tell us what you want to achieve and we will think along with you." is in both the Work with us block and the footer in Figma too. That's a copy decision for Figma; not changed here.
+`Components/Video Player`: a basic player for the "Video" frames. There's no Figma component for it (registered as code-only in figma-sync.json; a Figma component is proposed for design review).
+
+- **Autoplay "Off":** the poster with the red play button. Click or Enter plays the video with the browser's own controls.
+- **Autoplay "In view":** plays muted and looped while at least half of it is on screen, and pauses when it scrolls away. A small pause button sits in the corner (WCAG 2.2.2). Once someone pauses a video, it doesn't start again by itself.
+- **Reduced motion:** never autoplays; it shows the play button instead.
+- Optional WebVTT captions (`captions`). Without a `src` it shows the poster only.
+
+**ACI Weave** now uses the Video Player with Autoplay "In view" (new `Autoplay` prop, default "In view"; the story has a control to switch to "Off"). Until the real videos arrive, the three videos are 8-second placeholder clips made from their poster images (`public/media/video/`, about 140 KB each, no sound; `video()` in `media.ts`).
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`: pass
 - `pnpm build-storybook`: pass
-- Looked at each change: Services detail (What we build, Proof), Work detail (results, two-up, Related work) at 1440, and Home on an iPhone 13 (What we do, sub-footer).
+- Keyboard (Playwright): skip link moves focus to the h1; a hidden header shows when a link in it gets focus; no focused item under the header or Ask bar on Home; mobile menu keeps focus inside and returns it on Esc.
+- Video: in-view videos play when half visible and pause off screen; a paused video stays paused after scrolling back; "Off" plays on Enter with controls; with reduced motion nothing autoplays. On Home the first two ACI Weave videos play when the section is in view.

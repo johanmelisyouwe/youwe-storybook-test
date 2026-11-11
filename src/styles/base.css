@@ -4,6 +4,9 @@
         color-scheme: dark;
         /* Also behind the page, so the overscroll bounce (macOS) shows the page colour, not white. */
         background: var(--color-shared-surface-base-1);
+        /* Keyboard focus and anchor jumps keep clear of the fixed header (top) and the Ask Youwe dock (bottom),
+           so a focused element is never hidden under them (WCAG 2.4.11). */
+        scroll-padding-block: 6rem 7.5rem;
     }
 
     [data-theme="light"] {

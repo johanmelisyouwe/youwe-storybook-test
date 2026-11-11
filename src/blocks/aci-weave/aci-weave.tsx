@@ -1,17 +1,16 @@
-import { useRef, useState } from 'react'
 import { AskSnippet, type AskSnippetProps } from '../../site/ask-youwe'
 import block from '../../shared/block/block.module.css'
-import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
-import ring from '../../shared/focus-ring/focus-ring.module.css'
 import { Button } from '../../ui/button'
+import { VideoPlayer, type VideoPlayerProps } from '../../ui/video-player'
 import styles from './aci-weave.module.css'
 
 /*
   Content blocks/ACI Weave — built from the hand-built Home frames: desktop "Frame 6" (26598:4074),
   mobile "ACI Weave · video + nudge" (26924:10755). Not a Figma component yet (proposed for design review).
   Left: red-line kicker, heading/xl title, body/lg/reg body, Ask Youwe Nudge snippet, Primary M button.
-  Right: video stack (16:9 frames on surface/base-2, caption body/sm/reg tertiary, gap 16; items gap 40).
+  Right: video stack (Video Player 16:9, caption body/sm/reg tertiary, gap 16; items gap 40). The videos
+  autoplay muted while in view (Autoplay "In view", the default); "Off" shows the play button instead.
   Desktop: two equal columns, gap 80, padding 80; the text column stays in view while the videos scroll.
   Mobile: stacked, gap 48, padding 80/12.
 */
@@ -28,50 +27,24 @@ export type AciWeaveProps = {
     snippet?: Pick<AskSnippetProps, 'Title' | 'href' | 'onAsk'>
     button?: { label: string; href: string }
     videos: WeaveVideo[]
+    /** Video Player autoplay: "In view" (default) plays each video muted while it's on screen */
+    Autoplay?: VideoPlayerProps['Autoplay']
 }
 
-const PlayGlyph = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-        <path d="M6 3.5v13l11-6.5z" fill="currentColor" />
-    </svg>
-)
-
-function Video({ caption, poster, src }: WeaveVideo) {
-    const ref = useRef<HTMLVideoElement>(null)
-    const [playing, setPlaying] = useState(false)
+function Video({
+    caption,
+    poster,
+    src,
+    Autoplay,
+}: WeaveVideo & { Autoplay: VideoPlayerProps['Autoplay'] }) {
     return (
         <figure className={styles.video}>
-            <span className={styles.frame}>
-                {src ? (
-                    <video
-                        ref={ref}
-                        src={src}
-                        poster={poster}
-                        controls={playing}
-                        playsInline
-                        preload="none"
-                        onPause={() => setPlaying(false)}
-                        onPlay={() => setPlaying(true)}
-                    />
-                ) : (
-                    <CardMedia src={poster} ratio="16 / 9" />
-                )}
-                {!playing &&
-                    (src ? (
-                        <button
-                            type="button"
-                            className={cx(styles.play, ring.root)}
-                            aria-label={`Play video: ${caption}`}
-                            onClick={() => ref.current?.play()}
-                        >
-                            <PlayGlyph />
-                        </button>
-                    ) : (
-                        <span className={styles.play} aria-hidden="true">
-                            <PlayGlyph />
-                        </span>
-                    ))}
-            </span>
+            <VideoPlayer
+                src={src}
+                poster={poster}
+                title={caption}
+                Autoplay={Autoplay}
+            />
             <figcaption className={cx(styles.caption, 'yw-body-sm-reg')}>
                 {caption}
             </figcaption>
@@ -87,6 +60,7 @@ export function AciWeave({
     snippet,
     button,
     videos,
+    Autoplay = 'In view',
 }: AciWeaveProps) {
     return (
         <section className={cx(block.root, styles.root)}>
@@ -124,7 +98,7 @@ export function AciWeave({
                     </div>
                     <div data-stagger className={styles.videos}>
                         {videos.map((v) => (
-                            <Video key={v.caption} {...v} />
+                            <Video key={v.caption} {...v} Autoplay={Autoplay} />
                         ))}
                     </div>
                 </div>
