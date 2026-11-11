@@ -2,8 +2,9 @@
   Upcoming events (Figma 26740:42) and _Upcoming events/Row (26887:988).
   Heading: eyebrow body/sm/bold secondary + title heading/md primary (gap 8); block gap 20.
   Desktop: up to four event cards in a row (gap 16); mobile: stacked (gap 16). "All events" Button/Link md.
-  Event card: surface/base-2, radius 4, padding 16, gap 16. Date tile 76×84 surface/base-1, radius 4:
-  day heading/2xl primary, month body/xs/bold content/brand (gap 4). Title body/md/med; place tag
+  Event card: surface/base-2, radius 4, padding 16, gap 16. Date: hugs its text, left-aligned, no
+  background (the base-1 fill on the Figma Date frame is hidden): day heading/2xl primary, month
+  body/xs/bold content/brand below it (gap 4). Title body/md/med; place tag
   (pill, border/2, body/xs/reg component/tag/content) with 8px top. Hover: shared red reveal.
 */
 @layer components {
@@ -49,12 +50,9 @@
     .event-date {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        align-self: flex-start;
         gap: var(--spacing-3xs);
-        width: 4.75rem;
-        padding-bottom: var(--spacing-3xs);
-        border-radius: var(--shared-radius-4);
-        background: var(--color-shared-surface-base-1);
     }
 
     .event-month {

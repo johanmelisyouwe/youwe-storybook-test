@@ -1,16 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { TechnologyCard, type TechnologyCardProps } from './'
 import { ModeFrame, type Mode } from '../../shared/mode-frame'
+import { Logo } from '../../shared/logos'
+import { logoFor } from '../../media/media'
 
 /*
   Technology Card — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26721-87
   Partners and descriptions from the Figma "Technology Card — All partners" overview.
-  Partner logos are not exported yet; the tile shows the name as a wordmark, like the Figma logo placeholder.
+  Partner logos are the Figma Logos/* frames (120×40). A partner without a logo file shows its name as a
+  wordmark, like the Figma logo placeholder.
 */
 
 type State = 'Rest' | 'Hover'
 type Args = Pick<TechnologyCardProps, 'Layout'> & { Mode: Mode; State: State }
 const PSEUDO: Record<State, string> = { Rest: '', Hover: 'pseudo-hover' }
+const withLogo = (p: Omit<TechnologyCardProps, 'href'>) => ({
+    ...p,
+    logo: logoFor(p.Name, 'partner') ? (
+        <Logo name={p.Name} kind="partner" width={120} />
+    ) : undefined,
+})
 const PARTNERS: Omit<TechnologyCardProps, 'href'>[] = [
     {
         Name: 'Databricks',
@@ -22,7 +31,7 @@ const PARTNERS: Omit<TechnologyCardProps, 'href'>[] = [
     },
     { Name: 'Pimcore', Level: 'Strategic Partner' },
     { Name: 'Shopify Plus', Level: 'Certified Partner' },
-]
+].map(withLogo)
 const W = { Horizontal: 448, Vertical: 292 }
 
 const meta: Meta<Args> = {
@@ -32,7 +41,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Technology partner card. Horizontal for 2-column lists, Vertical for grids. The logo tile stays white in both modes. Hover/focus: red reveal (duration/card, ease/card).',
+                    'Technology partner card. Horizontal for 2-column lists, Vertical for grids. The logo sits left in its 120×40 slot with no background and takes the content colour of the mode. Hover/focus: red reveal (duration/card, ease/card).',
             },
         },
     },

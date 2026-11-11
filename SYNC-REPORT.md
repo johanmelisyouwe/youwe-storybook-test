@@ -1,18 +1,26 @@
-# Sync report — 11 November 2026 (AI cards ask Youwe)
+# Sync report — 11 November 2026 (event dates and partner logos)
 
-## AI Feature Cards open Ask Youwe
+## Upcoming events: date matches Figma
 
-On the site, the "Learn more" link on an AI card opens the Ask Youwe bar with the card's question. That's now simulated in Storybook:
+Checked against Upcoming events (26740:42) and its row (26887:988).
 
-- **Services detail → Challenges we solve:** "Learn more" on any of the five AI cards opens the docked Ask Youwe bar's answer panel with the card's question, e.g. *How does Youwe solve "A legacy platform that limits growth"?*, and the placeholder answer (Ask Youwe isn't connected in Storybook). Focus moves to the follow-up field; Esc or close returns to the bar. Works on desktop and mobile.
-- **How it's wired:** a small page-wide "ask Youwe this" request (`src/shared/ask`: `askYouwe(question)` and `useAskYouwe()`). The card only sends the question; the docked bar listens. They don't import each other, so on the real site the same request can go to the real Ask Youwe service.
-- **Feature Card:** new `ask` prop (AI variant). With `ask` the link is a button that asks Youwe instead of going to a page. New story *AI asks Youwe* shows the question it would send (there's no docked bar in a single-component story).
-- The questions are derived from the card titles (*How does Youwe solve "<title>"?*); replace them when the real copy is known.
+- **Before:** the date sat in a dark, centred tile, 76 px wide.
+- **In Figma:** the Date frame's base-1 fill is switched off. The day and month are **left-aligned with no background**, and the frame hugs the text. The day uses heading/2xl and the month sits 4 px below it.
+- **Now:** the date matches Figma. The day number lines up with the title and the place tag below it.
 
-Not in Figma: the `ask` behaviour (Figma has the AI card and the bar, not the link between them).
+## Technology Card: logo position, no white background
+
+Checked against Technology Card (26721:87), its logo slot (26721:29) and the cards on Tech Partners and Tech partners split.
+
+- **White background removed.** The 120×40 logo slot has no fill in Figma. Logos are drawn in the content colour, so they're white on dark and dark on light, like Figma.
+- **Logo position:** the logo now sits **left in its slot and vertically centred**. Before, it was centred in a white box. Each partner SVG is the Figma 120×40 frame, so every logo keeps its exact Figma offset. For example, AWS sits at the left and fills the height; Alumio is full width with the height centred.
+- A partner without a logo file still shows its name, now left-aligned in the content colour.
+- The Technology Card stories now use the real partner logos instead of name placeholders.
+
+Small difference from Figma: in Figma the Databricks mark is red. Logos here are one colour, so that they follow the mode.
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`: pass
 - `pnpm build-storybook`: pass
-- Tested on Services detail at 1440 and on an iPhone 13: the panel opens with the question, focus lands in the follow-up field, Esc closes it.
+- Compared with Figma screenshots: Upcoming events at desktop size, all Technology Card variants (dark and light, rest and hover), and Tech Partners → Systems that scale.
