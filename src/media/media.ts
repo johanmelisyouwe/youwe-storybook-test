@@ -182,6 +182,10 @@ export const logoFor = (name: string, kind: LogoKind = 'client') => {
     return undefined
 }
 
+/** Quooker case video on Vimeo ("INTER | Late summer video", 30 s, 16:9), used on Work detail. */
+export const QUOOKER_VIDEO =
+    'https://player.vimeo.com/video/1105401252?dnt=1&background=1&autoplay=0'
+
 /** Placeholder video clip until the real videos arrive, made from the poster image: video('011') for
     abstract('011'), video('xxl') for caseImage('xxl', 'wide'). 8–10 s, 16:9, no sound. */
 export const video = (n: string) => `${BASE}video/placeholder-${n}.mp4`
