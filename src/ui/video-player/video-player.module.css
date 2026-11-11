@@ -21,6 +21,22 @@
         }
     }
 
+    /* Vimeo iframe over the poster; fades in once the video is really playing */
+    .root > .embed {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        opacity: 0;
+        transition: opacity var(--motion-duration-slow)
+            var(--motion-ease-standard);
+
+        &[data-shown] {
+            opacity: 1;
+        }
+    }
+
     /* .root > so position wins over the focus ring's position: relative (same layer) */
     .root > .play {
         position: absolute;

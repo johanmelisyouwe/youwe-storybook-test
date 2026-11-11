@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { VideoPlayer, type VideoPlayerProps } from './video-player'
-import { abstract, video } from '../../media/media'
+import { QUOOKER_VIDEO, abstract, caseImage, video } from '../../media/media'
 
 /*
   Video Player — not a Figma component. Matches the "Video" frames in the ACI Weave block on Home
@@ -44,6 +44,22 @@ export const Default: Story = {}
 export const AutoplayInView: Story = {
     name: 'Autoplay in view',
     args: { Autoplay: 'In view' },
+}
+
+/** A Vimeo URL as src: background mode for "In view", the Vimeo player with sound for "Off". */
+export const Vimeo: Story = {
+    args: { Autoplay: 'In view' },
+    render: ({ Autoplay }) => (
+        <div style={{ maxWidth: 800 }}>
+            <VideoPlayer
+                key={Autoplay}
+                Autoplay={Autoplay}
+                src={QUOOKER_VIDEO}
+                poster={caseImage('quooker-1', 'wide')}
+                title="Quooker: late summer video"
+            />
+        </div>
+    ),
 }
 
 /** Without a video file: poster and a decorative play button only. */
