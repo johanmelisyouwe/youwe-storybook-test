@@ -370,13 +370,20 @@ export function VerticalSlider({
                 aria-label={Kicker}
             >
                 <div className={styles.frame}>
-                    {bgOn && (
-                        <CardMedia
-                            src={items[0].image ?? fallback}
-                            className={styles.bg}
-                            placeholder={false}
-                        />
-                    )}
+                    {/* Each chapter's image opens with the same circular wipe as on desktop */}
+                    {bgOn &&
+                        items.map((it, i) => (
+                            <CardMedia
+                                key={i}
+                                src={it.image ?? fallback}
+                                className={styles.bg}
+                                placeholder={false}
+                                style={{
+                                    ['--_i' as string]: i,
+                                    ['--r' as string]: i === 0 ? '150%' : undefined,
+                                }}
+                            />
+                        ))}
                     {header}
                     <div className={styles.current}>
                         {steps && (

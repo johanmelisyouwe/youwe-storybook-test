@@ -4,7 +4,7 @@
   line + body/sm/bold, gap 8) and tagline body/sm/bold, space-between. Body: slide (760) and index (gap 0),
   space-between, centred; Index=Left swaps the order. Index item: 2px bar + label body/sm/bold, 64 high, gap 16;
   Rest bar surface/base-3 + label tertiary, Hover bar content/tertiary + label primary, Active bar brand-red +
-  label content/brand. Optional progress bar (2px, surface/base-3 with brand-red fill) at the bottom.
+  label content/brand. Optional progress bar (4px, surface/base-3 with brand-red fill) at the bottom.
   Mobile: padding 40/12, stacked, no pinning; step bars (2px, gap 4) and "01 / 03 · Label" in content/brand.
   Slides (gap 40): Service (eyebrow body/sm/bold, title heading/3xl, body body/lg/reg, Pills S, Button Solid M),
   Quote (heading/2xl quote, name body/lg/med, role body/md/reg secondary, Outline button),
@@ -51,6 +51,15 @@
 
         &[data-pinned][data-mobile] .slide {
             gap: var(--spacing-lg);
+        }
+
+        /* Text runs over the whole image on mobile: an even base-1 tint keeps it readable */
+        &[data-pinned][data-mobile] .frame:has(.bg)::after {
+            background: color-mix(
+                in srgb,
+                var(--color-shared-surface-base-1) 78%,
+                transparent
+            );
         }
 
         &[data-pinned][data-mobile] .chapters {
@@ -129,6 +138,13 @@
             inset: 0;
             pointer-events: none;
             background:
+                /* right edge: keeps the index labels readable over bright chapter images */
+                linear-gradient(
+                    270deg,
+                    var(--color-shared-surface-base-1) 0%,
+                    var(--color-neutral-900-50) 30%,
+                    transparent 48%
+                ),
                 linear-gradient(
                     90deg,
                     var(--color-shared-surface-base-1) 0%,
@@ -183,7 +199,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        height: 2px;
+        height: var(--shared-width-4); /* 4px (was 2px), so the scroll progress reads clearly */
         background: var(--color-shared-surface-base-3);
 
         & > span {

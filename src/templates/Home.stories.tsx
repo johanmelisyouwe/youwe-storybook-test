@@ -53,6 +53,7 @@ const practice = (
 const WHAT_WE_DO: VerticalSliderProps['items'] = [
     {
         label: 'Digital Infrastructure',
+        image: abstract('001'),
         slide: {
             Type: 'Service',
             eyebrow: '01 · Digital Infrastructure',
@@ -71,6 +72,7 @@ const WHAT_WE_DO: VerticalSliderProps['items'] = [
     },
     {
         label: 'Operational Optimization & Intelligence',
+        image: abstract('009'),
         slide: practice(
             '02',
             'Operational Optimization & Intelligence',
@@ -88,6 +90,7 @@ const WHAT_WE_DO: VerticalSliderProps['items'] = [
     },
     {
         label: 'Foundation for Data & Integrations',
+        image: abstract('016'),
         slide: practice(
             '03',
             'Foundation for Data & Integrations',
@@ -242,7 +245,6 @@ function HomePage({ Device: story }: { Device: Device }) {
                     Kicker="What we do"
                     Tagline="Three kinds of work, built to fit together."
                     items={WHAT_WE_DO}
-                    backgroundImage={mobile ? undefined : abstract('001')}
                     Behaviour="Scroll"
                 />
             </Section>
