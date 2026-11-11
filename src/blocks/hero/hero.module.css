@@ -147,7 +147,10 @@
     }
     .line {
         display: block;
-        overflow: hidden;
+        /* Mask for the line rise. A clip shape instead of overflow: hidden, reaching past the line box
+           (line-height 1 from Figma) so descenders (g, p, y) and accented capitals aren't cut off, with no
+           change to layout or line spacing. */
+        clip-path: inset(-0.15em -0.1em -0.3em -0.1em); /* legacy-ok: optical room for glyphs, not a design value */
 
         & > span {
             display: block;
@@ -166,7 +169,7 @@
     }
     @keyframes hero-line {
         from {
-            transform: translateY(105%);
+            transform: translateY(140%); /* starts fully below the extended clip */
         }
         to {
             transform: none;
