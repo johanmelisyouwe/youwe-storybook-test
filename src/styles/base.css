@@ -2,6 +2,8 @@
 @layer typography {
     html {
         color-scheme: dark;
+        /* Also behind the page, so the overscroll bounce (macOS) shows the page colour, not white. */
+        background: var(--color-shared-surface-base-1);
     }
 
     [data-theme="light"] {

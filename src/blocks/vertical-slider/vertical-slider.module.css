@@ -33,6 +33,31 @@
             min-height: 0;
         }
 
+        /* Mobile, Behaviour Scroll: 100vh per slide, one slide at a time in the pinned frame */
+        &[data-pinned][data-mobile] {
+            height: calc(var(--_steps, 3) * 100svh);
+        }
+
+        &[data-pinned][data-mobile] .frame {
+            justify-content: flex-start;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-4xl) var(--spacing-xs) var(--spacing-xl); /* top clears the fixed header */
+        }
+
+        /* The whole slide has to fit one screen: no tagline, tighter slide spacing */
+        &[data-pinned][data-mobile] .header > :not(.kicker) {
+            display: none;
+        }
+
+        &[data-pinned][data-mobile] .slide {
+            gap: var(--spacing-lg);
+        }
+
+        &[data-pinned][data-mobile] .chapters {
+            flex: 1 1 auto;
+            align-content: start;
+        }
+
         &[data-left] .bg {
             clip-path: circle(var(--r, 0%) at 28% 50%);
         }

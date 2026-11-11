@@ -1,3 +1,4 @@
+import type React from 'react'
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import {
     IndexItem,
@@ -73,7 +74,10 @@ const BASE = {
     items: ITEMS,
 }
 
-type Args = Pick<VerticalSliderProps, 'Index' | 'Device' | 'Show progress'> & {
+type Args = Pick<
+    VerticalSliderProps,
+    'Index' | 'Device' | 'Show progress' | 'Behaviour'
+> & {
     Mode: Mode
 }
 
@@ -84,12 +88,17 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Full-viewport section that pins while you scroll and switches slide per scroll step (Pinned story). Index items are buttons; hover and focus also switch slides. Slide text rolls in per line (duration/zoom); case media opens with a circular wipe and settles from 1.15 to 1. Mobile: stacked, no pinning.',
+                    'Full-viewport chapters section with two behaviours. **Click** (default): index items are buttons; hover, focus and click switch slides; mobile is stacked. **Scroll**: the section stays in the viewport while you scroll through it, the progress line at the bottom fills with the scroll and the slides change one by one, on desktop and mobile (Scroll stories). With reduced motion Scroll falls back to Click. Slide text rolls in per line (duration/zoom); case media opens with a circular wipe and settles from 1.15 to 1.',
             },
         },
     },
     argTypes: {
         Index: { control: 'inline-radio', options: ['Right', 'Left'] },
+        Behaviour: {
+            control: 'inline-radio',
+            options: ['Click', 'Scroll'],
+            description: 'Code variant: Scroll pins the section and follows scroll',
+        },
         Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
         Mode: { control: 'inline-radio', options: ['Dark', 'Light'] },
     },
@@ -97,6 +106,7 @@ const meta: Meta<Args> = {
         Index: 'Right',
         Device: 'Desktop',
         Mode: 'Dark',
+        Behaviour: 'Click',
         'Show progress': false,
     },
     render: ({ Mode, Device, ...args }) => (
@@ -117,21 +127,40 @@ export const Mobile: Story = {
     globals: { viewport: { value: 'mobile' } },
 }
 
-/** Scroll the canvas: the section pins and the active item follows scroll. */
-export const Pinned: Story = {
-    args: { 'Show progress': true },
-    render: ({ Mode, ...args }) => (
-        <ModeFrame Mode={Mode} padding={0}>
-            <div
-                style={{ height: 200, display: 'grid', placeItems: 'center' }}
-                className="yw-body-md-reg"
-            >
-                Scroll down
-            </div>
-            <VerticalSlider {...BASE} {...args} Device="Desktop" pin />
-            <div style={{ height: 400 }} />
-        </ModeFrame>
-    ),
+const scrollFrame = (node: React.ReactNode, Mode: Mode) => (
+    <ModeFrame Mode={Mode} padding={0}>
+        <div
+            style={{ height: 200, display: 'grid', placeItems: 'center' }}
+            className="yw-body-md-reg"
+        >
+            Scroll down
+        </div>
+        {node}
+        <div style={{ height: 400 }} />
+    </ModeFrame>
+)
+
+/** Behaviour Scroll: scroll the canvas. The section stays in view, the line at the bottom fills and the slides change one by one. */
+export const Scroll: Story = {
+    args: { Behaviour: 'Scroll' },
+    render: ({ Mode, ...args }) =>
+        scrollFrame(
+            <VerticalSlider {...BASE} {...args} Device="Desktop" />,
+            Mode
+        ),
+}
+
+/** Behaviour Scroll on mobile: one slide at a time in a pinned full-screen frame, with step bars and the progress line. */
+export const ScrollMobile: Story = {
+    args: { Behaviour: 'Scroll', Device: 'Mobile' },
+    globals: { viewport: { value: 'mobile' } },
+    render: ({ Mode, ...args }) =>
+        scrollFrame(
+            <div style={{ maxWidth: 360 }}>
+                <VerticalSlider {...BASE} {...args} Device="Mobile" />
+            </div>,
+            Mode
+        ),
 }
 
 /** The five slide types and the index item states (Active, Rest, Hover). */

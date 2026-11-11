@@ -1,0 +1,233 @@
+/* Introduction page: dark site surface, tokens and .yw-* text styles only. */
+@layer components {
+    .root {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4xl);
+        padding: var(--spacing-4xl) clamp(var(--spacing-xs), 5vw, var(--spacing-4xl));
+        background: var(--color-shared-surface-base-1);
+        color: var(--color-shared-content-primary);
+        font-family: var(--font-family-body);
+    }
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+        padding-bottom: var(--spacing-3xl);
+        border-bottom: 1px solid var(--color-shared-border-2);
+    }
+
+    .hero-text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        max-width: 56rem;
+    }
+
+    .title,
+    .lead {
+        margin: 0;
+    }
+
+    .lead,
+    .muted {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        margin: 0;
+
+        &::before {
+            content: "";
+            width: 1.5rem;
+            height: 2px;
+            background: var(--color-shared-surface-fixed-brand-red);
+        }
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        margin: 0;
+        border: 1px solid var(--color-shared-border-2);
+    }
+
+    .stat {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        gap: var(--spacing-2xs);
+        padding: var(--spacing-lg);
+        border-right: 1px solid var(--color-shared-border-2);
+
+        &:last-child {
+            border-right: 0;
+        }
+    }
+
+    .stat-label {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .stat-value {
+        margin: 0;
+    }
+
+    .section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+    }
+
+    .cards,
+    .grid,
+    .flow {
+        display: grid;
+        gap: var(--spacing-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* Four items each: two columns (2 × 2), one on narrow screens, never 3 + 1 */
+    .cards {
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    }
+
+    .card {
+        --focus-ring-radius: var(--component-radius-card);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        height: 100%;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+        color: inherit;
+        text-decoration: none;
+        transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background: var(--color-shared-surface-base-3);
+            }
+
+            &:hover .card-link svg {
+                transform: translateX(var(--spacing-3xs));
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-shared-border-system-focus);
+            outline-offset: 2px;
+        }
+    }
+
+    .card-n {
+        color: var(--color-shared-content-brand);
+    }
+
+    .card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        margin-top: auto;
+        padding-top: var(--spacing-sm);
+
+        & svg {
+            transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+        }
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+        gap: var(--spacing-2xl) var(--spacing-xl);
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        padding-top: var(--spacing-sm);
+        border-top: 2px solid var(--color-shared-surface-base-3);
+    }
+
+    .flow {
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        gap: 0;
+    }
+
+    .step {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        padding: var(--spacing-sm) var(--spacing-lg) 0 0;
+        border-top: 2px solid var(--color-shared-surface-fixed-brand-red);
+    }
+
+    .dev {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        max-width: 56rem;
+
+        & p {
+            margin: 0;
+        }
+
+        & code {
+            padding: 0 var(--spacing-3xs);
+            border-radius: var(--shared-radius-2);
+            background: var(--color-shared-surface-base-2);
+            color: var(--color-shared-content-primary);
+            font-size: 0.9em;
+        }
+    }
+
+    .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 3rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--component-radius-button);
+        background: var(--color-component-brand-red-2);
+        color: var(--color-shared-content-fixed-light);
+        font-size: var(--font-size-body-md);
+        font-weight: var(--font-weight-medium);
+        text-decoration: none;
+        transition: background-color var(--motion-duration-fast) var(--motion-ease-standard);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background: var(--color-component-brand-red-3);
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-shared-border-system-focus);
+            outline-offset: 2px;
+        }
+    }
+
+    .button-outline {
+        background: transparent;
+        box-shadow: inset 0 0 0 1px var(--color-shared-border-4);
+        color: var(--color-shared-content-primary);
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background: var(--color-shared-surface-base-2);
+            }
+        }
+    }
+}

@@ -1884,7 +1884,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Pinned scroll on desktop (pin), stacked on mobile. Background image placeholder only.",
+      "note": "Pinned scroll on desktop (pin), stacked on mobile. Background image placeholder only. Code variant Behaviour (Click | Scroll), 11 Nov: Scroll pins the section, fills the progress line with scroll and shows the slides one by one, desktop and mobile; not in Figma yet.",
       "code": [
         "src/blocks/vertical-slider/vertical-slider.tsx",
         "src/blocks/vertical-slider/vertical-slider.module.css",
@@ -4242,7 +4242,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Title and four award badges (placeholders until the badges are exported).",
+      "note": "Title and four award badges (placeholders until the badges are exported). Badge artwork exported from Figma (Awards/*, Certificates/*) to public/media/awards, 11 Nov.",
       "code": [
         "src/blocks/awards/awards.tsx",
         "src/blocks/awards/awards.stories.tsx",

@@ -243,7 +243,7 @@ function HomePage({ Device: story }: { Device: Device }) {
                     Tagline="Three kinds of work, built to fit together."
                     items={WHAT_WE_DO}
                     backgroundImage={mobile ? undefined : abstract('001')}
-                    {...{ 'Show progress': !mobile }}
+                    Behaviour="Scroll"
                 />
             </Section>
             <Section Mode="Light">

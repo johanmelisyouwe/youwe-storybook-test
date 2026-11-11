@@ -8,9 +8,11 @@ import styles from './vertical-slider.module.css'
 
 /*
   Vertical slider — Figma 26715:410; _Vertical slider/Index item 26713:47; _Vertical slider/Slide 26713:174.
-  Interaction (Figma): index items are buttons (hover and focus also switch slides; when pinned, a click
-  scrolls to that chapter). Desktop pins and follows scroll (`pin`), with the behaviour of the v2 site's
-  "What we do" section; mobile is stacked without pinning.
+  Behaviour (code variant, next to the Figma variants):
+  - Click (default): index items are buttons; hover, focus and click switch slides. Mobile is stacked.
+  - Scroll: the section stays in the viewport while you scroll through it; the progress line at the bottom
+    fills with the scroll and the slides change one by one (desktop and mobile), as the v2 site's "What we
+    do". A click on an index item scrolls to that chapter. With reduced motion it falls back to Click.
 */
 
 type Btn = { label: string; href: string }
@@ -256,11 +258,13 @@ export type VerticalSliderProps = {
     items: { label: string; slide: SlideData; image?: string }[]
     /** Figma: Show background image */
     backgroundImage?: string | true
-    /** Figma: Show progress */
+    /** Figma: Show progress (default on for Behaviour Scroll) */
     'Show progress'?: boolean
     /** Figma: Show steps (mobile) */
     'Show steps'?: boolean
-    /** Desktop: pin the section and follow scroll */
+    /** Click: hover / click switches slides. Scroll: the section pins, the progress line fills with scroll and slides change one by one (desktop and mobile). */
+    Behaviour?: 'Click' | 'Scroll'
+    /** @deprecated Use Behaviour="Scroll" */
     pin?: boolean
     /** Initially active item */
     initial?: number
@@ -275,23 +279,29 @@ export function VerticalSlider({
     Tagline,
     items,
     backgroundImage,
-    'Show progress': progress = false,
+    'Show progress': progressProp,
     'Show steps': steps = true,
-    pin = false,
+    Behaviour,
+    pin: pinProp = false,
     initial = 0,
 }: VerticalSliderProps) {
     const [active, setActive] = useState(initial)
     const ref = useRef<HTMLElement>(null)
     const N = items.length
+    // Scroll behaviour, unless the visitor prefers reduced motion (then the slides switch on click instead)
+    const [reduce, setReduce] = useState(false)
+    useEffect(() => {
+        setReduce(
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        )
+    }, [])
+    const pin = (Behaviour === 'Scroll' || pinProp) && !reduce
+    // The progress line is part of the Scroll behaviour; for Click it's the Figma 'Show progress' option
+    const progress = progressProp ?? Behaviour === 'Scroll'
 
     // Pinned: progress p (0–1) through the section drives the active chapter, media wipes and index bars (as on the v2 site)
     useEffect(() => {
-        if (
-            !pin ||
-            Device !== 'Desktop' ||
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        )
-            return
+        if (!pin) return
         let raf = 0
         const update = () => {
             raf = 0
@@ -314,7 +324,7 @@ export function VerticalSlider({
             window.removeEventListener('scroll', on)
             cancelAnimationFrame(raf)
         }
-    }, [pin, Device, N])
+    }, [pin, N])
 
     const select = (i: number) => {
         if (!pin) {
@@ -346,6 +356,65 @@ export function VerticalSlider({
     const bgOn = !!backgroundImage || items.some((it) => it.image)
     const fallback =
         typeof backgroundImage === 'string' ? backgroundImage : undefined
+
+    if (Device === 'Mobile' && pin) {
+        // Mobile, Scroll: one slide at a time in a pinned full-screen frame; step bars, "01 / 03 · Label"
+        // and the progress line follow the scroll
+        return (
+            <section
+                ref={ref}
+                data-mobile
+                data-pinned
+                className={cx(styles.root)}
+                style={{ ['--_steps' as string]: N }}
+                aria-label={Kicker}
+            >
+                <div className={styles.frame}>
+                    {bgOn && (
+                        <CardMedia
+                            src={items[0].image ?? fallback}
+                            className={styles.bg}
+                            placeholder={false}
+                        />
+                    )}
+                    {header}
+                    <div className={styles.current}>
+                        {steps && (
+                            <span className={styles.steps} aria-hidden="true">
+                                {items.map((_, j) => (
+                                    <span
+                                        key={j}
+                                        data-done={j <= active || undefined}
+                                    />
+                                ))}
+                            </span>
+                        )}
+                        {/* Counter only: the slide's own eyebrow already names the chapter */}
+                        <span className="yw-body-sm-bold">{`${String(active + 1).padStart(2, '0')} / ${String(N).padStart(2, '0')}`}</span>
+                    </div>
+                    <div className={styles.chapters} aria-live="polite">
+                        {items.map((it, i) => (
+                            <div
+                                key={it.label}
+                                data-active={i === active || undefined}
+                                data-past={i < active || undefined}
+                                className={cx(styles.chapter)}
+                                aria-hidden={i !== active}
+                                inert={i !== active ? true : undefined}
+                            >
+                                <Slide {...it.slide} />
+                            </div>
+                        ))}
+                    </div>
+                    {progress && (
+                        <div className={styles.progress} aria-hidden="true">
+                            <span />
+                        </div>
+                    )}
+                </div>
+            </section>
+        )
+    }
 
     if (Device === 'Mobile') {
         return (

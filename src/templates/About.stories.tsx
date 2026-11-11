@@ -18,7 +18,7 @@ import {
     type Device,
     useDevice,
 } from './shared'
-import { abstract, caseImage } from '../media/media'
+import { abstract, award, caseImage } from '../media/media'
 
 /*
   Templates/About Us — Figma "Page / About Us": Desktop 26661:7478, Mobile 26815:1094. Copy, props and order
@@ -121,10 +121,13 @@ const PEOPLE = [
 ].map(([name, role]) => ({ name, role }))
 
 const BADGES = [
-    { name: 'Northern Digital Award' },
-    { name: 'LRQA certificate' },
-    { name: 'Award-winning B2B implementation' },
-    { name: 'Great Place To Work' },
+    { name: 'Northern Digital Award', image: award('northern-digital-award') },
+    { name: 'LRQA certificate', image: award('lrqa') },
+    {
+        name: 'Award-winning B2B implementation',
+        image: award('award-winning-b2b-implementation'),
+    },
+    { name: 'Great Place To Work', image: award('great-place-to-work') },
 ]
 
 function AboutPage({ Device: story }: { Device: Device }) {

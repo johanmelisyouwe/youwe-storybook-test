@@ -19,6 +19,15 @@ export const caseImage = (
 /** Abstract background by the Figma number, e.g. abstract('016'). */
 export const abstract = (n: string) => `${BASE}abstract/abstract-${n}.webp`
 
+/** Award and certificate badges (Figma Awards/*, Certificates/*): one-colour line art, drawn in the text colour. */
+export const award = (
+    name:
+        | 'northern-digital-award'
+        | 'lrqa'
+        | 'award-winning-b2b-implementation'
+        | 'great-place-to-work'
+) => `${BASE}awards/${name}.svg`
+
 /** The portrait photo the Figma templates use per client (Case/Portrait/<key>). */
 const CLIENT_PHOTO: Record<string, string> = {
     BunzlOne: 'bunzl',

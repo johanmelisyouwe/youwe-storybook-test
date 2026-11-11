@@ -10,7 +10,7 @@ export type AwardsProps = {
     Device?: 'Desktop' | 'Mobile'
     /** Figma: Title */
     Title?: string
-    /** Badges (95×95); `image` is the badge artwork, `name` its accessible name */
+    /** Badges (95×95); `image` is the badge artwork (one-colour SVG, drawn in the text colour), `name` its accessible name */
     badges: { name: string; image?: string }[]
 }
 
@@ -37,14 +37,28 @@ export function Awards({
                                 className={styles['awards-badge']}
                                 title={b.name}
                             >
-                                <CardMedia
-                                    src={b.image}
-                                    alt={b.name}
-                                    ratio="1 / 1"
-                                />
-                                <span className="yw-visually-hidden">
-                                    {b.name}
-                                </span>
+                                {b.image ? (
+                                    <span
+                                        role="img"
+                                        aria-label={b.name}
+                                        className={styles['awards-art']}
+                                        style={{
+                                            WebkitMaskImage: `url(${b.image})`,
+                                            maskImage: `url(${b.image})`,
+                                        }}
+                                    />
+                                ) : (
+                                    <>
+                                        <CardMedia
+                                            src={b.image}
+                                            alt={b.name}
+                                            ratio="1 / 1"
+                                        />
+                                        <span className="yw-visually-hidden">
+                                            {b.name}
+                                        </span>
+                                    </>
+                                )}
                             </li>
                         ))}
                     </ul>

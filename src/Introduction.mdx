@@ -1,24 +1,8 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks'
+import { Introduction } from './docs/introduction'
 
 <Meta title="Introduction" />
 
-# Youwe design system
-
-This Storybook mirrors the Youwe Figma file. **Figma is the source of truth**: components, variants, tokens and page templates are built from Figma, and updated by running the Figma → Storybook sync (see `FIGMA-SYNC.md` in the repo).
-
-## What's here
-
-- **Foundations**: colours, typography, spacing, radius, motion and effects. From Figma variables & styles → `tokens/figma-variables.json` → `pnpm tokens`.
-- **Components**: buttons, cards, inputs… with every Figma variant as a story. From Figma component sets.
-- **Content blocks**: page sections such as hero, card grid, case carousel and stats. From the Figma “Content blocks/…” components.
-- **Templates**: approved page templates (desktop + mobile). From the Figma Templates page, frames named `Page / …`.
-
-## Toolbar
-
-- **Mode**: dark / light, the two modes of the Figma `color_semantics` collection.
-- **Viewport**: Mobile (360) and Desktop (1440) match the Figma frame widths.
-- **Accessibility**: every story is checked for contrast and labels (a11y panel).
-
-## Fonts
-
-Aktiv Grotesk (Regular, Medium, Bold), the family and weights the Figma text styles use, served from `public/fonts/aktiv-grotesk/`.
+<Unstyled>
+    <Introduction />
+</Unstyled>
