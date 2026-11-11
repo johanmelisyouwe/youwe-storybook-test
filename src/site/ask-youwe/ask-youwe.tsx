@@ -445,7 +445,8 @@ export type AskDockProps = {
 
 /**
  * Fixed to the bottom of the viewport, centred on the page column. Slides in after the hero, steps aside
- * while the footer is on screen, and opens the answer panel above itself; Esc or close returns to the bar.
+ * while the footer is on screen or a pinned full-screen section fills the view (e.g. Vertical slider, Behaviour
+ * Scroll), and opens the answer panel above itself; Esc or close returns to the bar.
  */
 export function AskDock({
     Device = 'Desktop',
@@ -460,7 +461,14 @@ export function AskDock({
         const root = ref.current?.closest('[data-page]') ?? document
         const footer = root.querySelector('footer')
         let footerInView = false
-        const update = () => setShown(window.scrollY > after && !footerInView)
+        // A pinned section that fills the viewport (its frame is stuck) gets the full screen: the bar steps aside
+        const pinnedInView = () =>
+            [...root.querySelectorAll('section[data-pinned]')].some((sec) => {
+                const r = sec.getBoundingClientRect()
+                return r.top <= 0 && r.bottom >= window.innerHeight
+            })
+        const update = () =>
+            setShown(window.scrollY > after && !footerInView && !pinnedInView())
         const io =
             footer && typeof IntersectionObserver !== 'undefined'
                 ? new IntersectionObserver(([e]) => {

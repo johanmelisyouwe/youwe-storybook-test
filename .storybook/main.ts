@@ -15,10 +15,13 @@ const config: StorybookConfig = {
     staticDirs: ['../public'],
     // Keep the published Storybook out of search engines (GitHub Pages can't send
     // X-Robots-Tag headers, and a robots.txt only counts at the domain root).
+    // The page behind Storybook is dark too, so the macOS overscroll bounce doesn't flash white.
     managerHead: (head) => `${head}
-    <meta name="robots" content="noindex, nofollow, noarchive">`,
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <style>html, body { background: #04151c; /* legacy-ok: the manager page loads no tokens; neutral/900 */ }</style>`,
     previewHead: (head) => `${head}
     <meta name="robots" content="noindex, nofollow, noarchive">
+    <style>html { background: var(--color-shared-surface-base-1); }</style>
     ${weights.map((w) => `<link rel="preload" href="./fonts/aktiv-grotesk/aktiv-grotesk-${w}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n    ')}`,
     core: { disableTelemetry: true },
 }

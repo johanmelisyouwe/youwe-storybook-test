@@ -9,3 +9,7 @@ Images and logos exported from the Figma file for the Storybook presentation. Th
 `media.ts` maps Figma names to these files (`caseImage`, `abstract`, `clientPhoto`, `logoFor`). Components only take plain URLs (`image`, `src`) or a `logo` node, so connecting the CMS means replacing these lookups, not changing components. `components/logos/Logo.tsx` draws a logo as a mask in the text colour, so it works in dark and light mode; names without a logo fall back to text.
 
 To add an image: export the Figma component (download_assets in the Figma MCP server), convert to WebP at the sizes above, and add the name to `media.ts`.
+
+## Award badges
+
+`public/media/awards/*.svg`: the Figma Awards/* and Certificates/* badges (white line art, 95×95, no tile), with the Figma page backgrounds removed. Use `award(name)` from `media.ts`; the Awards block draws them as a mask in `content/primary`, so they follow the mode.

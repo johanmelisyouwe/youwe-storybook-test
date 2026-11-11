@@ -1,5 +1,21 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import { create } from 'storybook/theming'
 import '../src/styles/globals.css'
+
+// Docs pages (Introduction, autodocs) on the same dark surface as the site and the Storybook UI.
+// Hex values: the docs theme is set before the tokens load (same values as .storybook/manager.ts).
+const docsTheme = create({
+    base: 'dark',
+    appBg: '#04151c', // legacy-ok: neutral/900, docs theme has no tokens
+    appContentBg: '#04151c', // legacy-ok: neutral/900
+    appPreviewBg: '#04151c', // legacy-ok: neutral/900
+    appBorderColor: '#253f4b', // legacy-ok: neutral/700
+    barBg: '#0f2934', // legacy-ok: neutral/800
+    colorPrimary: '#e40046', // legacy-ok: brand-red/400
+    colorSecondary: '#e40046', // legacy-ok: brand-red/400
+    textColor: '#ffffff', // legacy-ok: neutral/0
+    fontBase: '"Aktiv Grotesk", system-ui, sans-serif',
+})
 
 // Figma is built at two device widths; these match the Figma frames.
 const viewports = {
@@ -55,6 +71,7 @@ const preview: Preview = {
         },
     ],
     parameters: {
+        docs: { theme: docsTheme },
         layout: 'fullscreen',
         viewport: { options: viewports },
         backgrounds: { disable: true },

@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Awards, type AwardsProps } from './'
+import { award } from '../../media/media'
 
-/* Content blocks/Awards — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27096-9988 (badge artwork not exported yet: placeholders) */
+/* Content blocks/Awards — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27096-9988 (badges: Figma Awards/* and Certificates/* artwork) */
 
 const BADGES = [
-    { name: 'Northern Digital Award' },
-    { name: 'LRQA certificate' },
-    { name: 'Award-winning B2B implementation' },
-    { name: 'Great Place To Work' },
+    { name: 'Northern Digital Award', image: award('northern-digital-award') },
+    { name: 'LRQA certificate', image: award('lrqa') },
+    {
+        name: 'Award-winning B2B implementation',
+        image: award('award-winning-b2b-implementation'),
+    },
+    { name: 'Great Place To Work', image: award('great-place-to-work') },
 ]
 type Args = Pick<AwardsProps, 'Device'>
 const W = { Desktop: '100%', Mobile: 360 }
