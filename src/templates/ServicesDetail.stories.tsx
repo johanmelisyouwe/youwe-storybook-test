@@ -392,6 +392,8 @@ function Body({ Device }: { Device: Device }) {
                             Title,
                             Description,
                             link: { label: 'Learn more', href: '#' },
+                            // Learn more opens the docked Ask Youwe bar with this question
+                            ask: `How does Youwe solve "${Title}"?`,
                         })
                     ),
                 ],

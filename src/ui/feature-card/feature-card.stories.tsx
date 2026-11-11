@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { FeatureCard, type FeatureCardProps } from './'
 import { ModeFrame, type Mode } from '../../shared/mode-frame'
+import { useState } from 'react'
+import { useAskYouwe } from '../../shared/ask'
 
 /*
   Feature Card — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26533-129
@@ -41,7 +43,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Text-only card for features, solutions and numbered benefits. Card sits on a surface, Plain uses a top divider for lists, AI uses the Ask Youwe surface and aura. Motion: scroll block reveal (`reveal` prop).',
+                    'Text-only card for features, solutions and numbered benefits. Card sits on a surface, Plain uses a top divider for lists, AI uses the Ask Youwe surface and aura; with `ask` its link opens Ask Youwe with that question (on the templates: the docked bar, see Services detail). Motion: scroll block reveal (`reveal` prop).',
             },
         },
     },
@@ -65,6 +67,43 @@ type Story = StoryObj<Args>
 export const Default: Story = {}
 export const Plain: Story = { args: { Variant: 'Plain' } }
 export const AI: Story = { args: { Variant: 'AI' } }
+
+function AskNote() {
+    const [q, setQ] = useState<string | null>(null)
+    useAskYouwe(setQ)
+    return (
+        <p
+            className="yw-body-sm-reg"
+            style={{ margin: 'var(--spacing-sm) 0 0', color: 'var(--color-shared-content-secondary)' }}
+            aria-live="polite"
+        >
+            {q
+                ? `Opens Ask Youwe with: “${q}” (on the templates the docked bar opens).`
+                : 'Click "Learn more": it asks Ask Youwe instead of going to a page.'}
+        </p>
+    )
+}
+
+/** AI card that hands its question to Ask Youwe. On a template the docked bar opens with it (Services detail). */
+export const AIAsksYouwe: Story = {
+    name: 'AI asks Youwe',
+    parameters: { controls: { include: ['Mode'] } },
+    render: ({ Mode }) => (
+        <ModeFrame Mode={Mode} padding={32}>
+            <div style={{ maxWidth: 420 }}>
+                <FeatureCard
+                    Variant="AI"
+                    Number="01"
+                    Title="A legacy platform that limits growth"
+                    Description="Adding customers, assortments and markets takes months."
+                    link={{ label: 'Learn more' }}
+                    ask='How does Youwe solve "A legacy platform that limits growth"?'
+                />
+                <AskNote />
+            </div>
+        </ModeFrame>
+    ),
+}
 
 /** Optional parts switched on: image, arrow, tags, button and link. */
 export const WithOptions: Story = {

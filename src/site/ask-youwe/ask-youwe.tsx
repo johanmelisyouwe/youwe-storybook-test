@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
+import { useAskYouwe } from '../../shared/ask'
 import ring from '../../shared/focus-ring/focus-ring.module.css'
 import styles from './ask-youwe.module.css'
 
@@ -446,7 +447,8 @@ export type AskDockProps = {
 /**
  * Fixed to the bottom of the viewport, centred on the page column. Slides in after the hero, steps aside
  * while the footer is on screen or a pinned full-screen section fills the view (e.g. Vertical slider, Behaviour
- * Scroll), and opens the answer panel above itself; Esc or close returns to the bar.
+ * Scroll), and opens the answer panel above itself; Esc or close returns to the bar. A question asked
+ * elsewhere on the page (askYouwe(), e.g. an AI Feature Card's link) opens the panel with that question.
  */
 export function AskDock({
     Device = 'Desktop',
@@ -457,6 +459,18 @@ export function AskDock({
     const ref = useRef<HTMLDivElement>(null)
     const [shown, setShown] = useState(false)
     const [q, setQ] = useState<string | null>(null)
+    // Asked from elsewhere on the page: open with that question and move focus into the panel (keyboard users
+    // land on the follow-up field instead of staying on the card behind it)
+    const focusPanel = useRef(false)
+    useAskYouwe((question) => {
+        focusPanel.current = true
+        setQ(question)
+    })
+    useEffect(() => {
+        if (q === null || !focusPanel.current) return
+        focusPanel.current = false
+        ref.current?.querySelector<HTMLElement>('input, textarea')?.focus({ preventScroll: true })
+    }, [q])
     useEffect(() => {
         const root = ref.current?.closest('[data-page]') ?? document
         const footer = root.querySelector('footer')
