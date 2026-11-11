@@ -182,5 +182,6 @@ export const logoFor = (name: string, kind: LogoKind = 'client') => {
     return undefined
 }
 
-/** Placeholder video clip until the real videos arrive, e.g. video('011') (8 s, 1280×720, no sound). */
+/** Placeholder video clip until the real videos arrive, made from the poster image: video('011') for
+    abstract('011'), video('xxl') for caseImage('xxl', 'wide'). 8–10 s, 16:9, no sound. */
 export const video = (n: string) => `${BASE}video/placeholder-${n}.mp4`
