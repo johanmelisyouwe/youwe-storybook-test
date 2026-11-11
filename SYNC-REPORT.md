@@ -1,25 +1,17 @@
-# Sync report — 10 November 2026 (polish: accessibility + Work detail statement)
+# Sync report — 11 November 2026 (hero title descenders)
 
-Four items from the component and template review.
+## Problem
 
-## 1. Reduced motion fully respected
+Hero titles cut off descenders (the g in "Manufacturing", the p in "products"). Each title line sits in a mask for the line-rise animation (`overflow: hidden`), and the heading styles have line-height 1 from Figma, so the mask was exactly 1em tall and the tails of g, p, y and j fell outside it. The mask stayed after the animation, so the clipping was permanent.
 
-The scroll-driven animations (section title word rise, card grid and logo grid reveals, feature cards, Text + media and sub-footer image clips, hero recede) follow the scroll position, not a duration, so the reduced-motion safety net (1ms durations) didn't stop them. They now only exist under `prefers-reduced-motion: no-preference`. With reduced motion every page loads fully visible with no scroll animations (checked: 0 scroll-linked animations, nothing left hidden). The JS motion (template reveals, count-ups, drift, pinned slider, testimonial transition) already stopped for reduced motion.
+## Fix
 
-## 2. Tap targets of 24px or more
+The hero line mask is now a clip shape (`clip-path: inset(-0.15em -0.1em -0.3em -0.1em)`) instead of `overflow: hidden`. It reaches past the line box, so descenders and accented capitals stay visible, and nothing in the layout or line spacing changes (still line-height 1, as in Figma). The rise starts at 140% (was 105%) so the text still begins fully hidden below the larger clip.
 
-Footer links (about 25 per page) and the header's plain links (Careers) were under 24px tall, below the WCAG 2.2 target size. They get 4px padding above and below with an equal negative margin, so the target grows and the Figma spacing stays the same. No links under 24px are left on the templates.
-
-## 3. Heading order on Home
-
-The What we do slider had h3 slide titles with no h2 above them. Its kicker ("What we do") is now the section's h2 (looks the same), so the outline reads h1 → h2 → h3 with no jumps on any template.
-
-## 4. Work detail statement
-
-The centred statement ("Quooker transitioned from B2B to B2B2C…") was a narrow tower of about 14 lines with centred body text. The Centered Section header now has an 860px measure (6 lines) and the body is a left-aligned 632px reading column under it. Section header Centered is only used here. Figma's 524px measure suits short headings; listed as a deliberate deviation.
+Checked the other masks with large type: the What we do slider titles already have room (0.12em / 0.16em padding) and the giant rows have 40px above and below, so neither clips. Section title words rise without a mask.
 
 ## Checks
 
-- `npm run typecheck`: pass
-- `npm run build-storybook`: pass
-- `check-legacy`, `check-coverage`: clean
+- `pnpm typecheck`, `pnpm check`: pass
+- `pnpm build-storybook`: pass
+- Visual: Industries detail ("Manufacturing", desktop and iPhone) and Home ("Complex products.") show full descenders.
