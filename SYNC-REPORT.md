@@ -1,26 +1,32 @@
-# Sync report — 11 November 2026 (event dates and partner logos)
+# Sync report — 11 November 2026 (stagger on every row, sweep fixes)
 
-## Upcoming events: date matches Figma
+## Stagger on every row
 
-Checked against Upcoming events (26740:42) and its row (26887:988).
+On Industries only the first two rows of cards staggered. Each card's delay was counted from the top of the whole grid and capped at the 8th card, so from row 3 on every card got the same maximum delay and they appeared together.
 
-- **Before:** the date sat in a dark, centred tile, 76 px wide.
-- **In Figma:** the Date frame's base-1 fill is switched off. The day and month are **left-aligned with no background**, and the frame hugs the text. The day uses heading/2xl and the month sits 4 px below it.
-- **Now:** the date matches Figma. The day number lines up with the title and the place tag below it.
+- **Now:** the delay is counted per group of cards that scrolls in together. Every row staggers left to right (0, 80, 160, 240 ms), however long the grid is.
+- This is fixed in the shared page motion, so it applies to **every grid** on every template, not only Industries: card grids, insight grids, logo grids, stat rows.
+- Reduced motion is unchanged: nothing is hidden or moved.
 
-## Technology Card: logo position, no white background
+## Fixes from the full sweep
 
-Checked against Technology Card (26721:87), its logo slot (26721:29) and the cards on Tech Partners and Tech partners split.
+I checked all 20 templates (desktop and iPhone 13) and all 276 component stories for errors, broken images, overflow, clipped text, reveals that never play, keyboard focus and accessibility.
 
-- **White background removed.** The 120×40 logo slot has no fill in Figma. Logos are drawn in the content colour, so they're white on dark and dark on light, like Figma.
-- **Logo position:** the logo now sits **left in its slot and vertically centred**. Before, it was centred in a white box. Each partner SVG is the Figma 120×40 frame, so every logo keeps its exact Figma offset. For example, AWS sits at the left and fills the height; Alumio is full width with the height centred.
-- A partner without a logo file still shows its name, now left-aligned in the content colour.
-- The Technology Card stories now use the real partner logos instead of name placeholders.
+- **Ask Youwe case snippet, light mode:** the "Ask about it" button was dark on the photo's dark overlay, so it was almost invisible. The text over the photo now always uses the dark-mode colours, so the button shows as a light outline.
+- **Mobile menu, current page:** the fixed brand red failed contrast at 18 px (3.9:1, AA needs 4.5:1). It now uses content/brand, like the other small red text.
+- **Linked stat cards** (Home, Services detail, Work detail, About): the screen-reader name left out text that is visible on the card, so voice control ("click 17 markets") could miss it. The name now comes from the card content, with "Read the case" added.
+- **Pagination:** the "Prev" button was named "Previous page", which doesn't contain the visible word. It's now "Prev page".
 
-Small difference from Figma: in Figma the Databricks mark is red. Logos here are one colour, so that they follow the mode.
+## Checked, nothing to fix
+
+- No console errors, failed requests or broken images on any template.
+- No sideways scroll on any template, desktop or mobile.
+- Keyboard: a visible focus ring on all ~120 tab stops per template.
+- Every scroll reveal plays. Exceptions: cards in hidden tabs and off-screen carousel slides, which play when they're shown.
+- Accessibility check (axe) on all templates: 0 serious or critical issues.
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`: pass
 - `pnpm build-storybook`: pass
-- Compared with Figma screenshots: Upcoming events at desktop size, all Technology Card variants (dark and light, rest and hover), and Tech Partners → Systems that scale.
+- Industries: every row checked, staggers 0, 80, 160, 240 ms.

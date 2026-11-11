@@ -5,7 +5,8 @@ import block from '../block/block.module.css'
   Page motion (batch 6, "expressive like the v2 site"). One IntersectionObserver for the whole page, so it
   works in every browser (the scroll-timeline reveals only run in some) and staggers are real time delays.
   - rise:  block reveals and [data-rise] fade in and rise distance/lg (duration/reveal, ease/emphasized)
-  - stagger: children of [data-stagger] (card grids, logo grids, stat rows, insight grids) rise one after another
+  - stagger: children of [data-stagger] (card grids, logo grids, stat rows, insight grids) rise one after another,
+             counted per group that scrolls in together, so every row of a grid staggers
   - clip:  CardMedia frames with data-clip open from an inset clip while the image settles from a slight zoom
   Everything plays once. With prefers-reduced-motion nothing is hidden or moved.
   The page root gets data-motion="on" only while this runs, so without JS everything is simply visible.
@@ -23,11 +24,11 @@ export function useMotion(root: RefObject<HTMLElement | null>) {
             return
 
         const targets = new Set<HTMLElement>()
-        const mark = (node: Element, kind: string, delay = 0) => {
+        const mark = (node: Element, kind: string) => {
             if (!(node instanceof HTMLElement) || node.dataset.motionReveal)
                 return
             node.dataset.motionReveal = kind
-            node.style.setProperty('--_reveal-delay', `${delay}ms`)
+            node.style.setProperty('--_reveal-delay', '0ms')
             targets.add(node)
         }
         const stagger =
@@ -36,10 +37,14 @@ export function useMotion(root: RefObject<HTMLElement | null>) {
             ) || 80
 
         for (const n of el.querySelectorAll(RISE)) mark(n, 'rise')
+        // Stagger children get their delay when they scroll in, counted within the group that enters
+        // together. So every row of a long grid staggers, not only the first rows on screen.
+        const staggered = new Set<Element>()
         for (const list of el.querySelectorAll('[data-stagger]')) {
-            Array.from(list.children).forEach((child, i) => {
-                mark(child, 'rise', Math.min(i, 7) * stagger)
-            })
+            for (const child of list.children) {
+                mark(child, 'rise')
+                staggered.add(child)
+            }
         }
         for (const m of el.querySelectorAll('[data-clip]')) mark(m, 'clip')
 
@@ -54,10 +59,19 @@ export function useMotion(root: RefObject<HTMLElement | null>) {
         }
         const io = new IntersectionObserver(
             (entries) => {
+                const batch = new Map<Element | null, number>()
                 for (const e of entries) {
                     if (!e.isIntersecting || !(e.target instanceof HTMLElement))
                         continue
                     const t = e.target
+                    if (staggered.has(t)) {
+                        const k = batch.get(t.parentElement) ?? 0
+                        batch.set(t.parentElement, k + 1)
+                        t.style.setProperty(
+                            '--_reveal-delay',
+                            `${Math.min(k, 7) * stagger}ms`
+                        )
+                    }
                     t.dataset.motionIn = ''
                     io.unobserve(t)
                     const delay =
