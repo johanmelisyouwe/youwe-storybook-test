@@ -122,9 +122,9 @@ export function Stat({
                 href={href}
                 data-link
                 className={cx(reveal.root, styles.root, className)}
-                aria-label={`${cta}: ${Value} ${Label}`}
             >
                 {body}
+                <span className="yw-visually-hidden">, {cta}</span>
                 <CardReveal cta={cta} context={context} />
             </a>
         )
