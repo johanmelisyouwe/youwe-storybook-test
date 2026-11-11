@@ -58,6 +58,30 @@ export function UtilityLink({ label, href }: { label: string; href: string }) {
     )
 }
 
+/* Skip link: first Tab stop on the page; moves focus past the header to #main-content, or the page's h1. */
+function SkipLink() {
+    return (
+        <a
+            href="#main-content"
+            className={cx(styles.skip, ring.root, 'yw-body-md-med')}
+            onClick={(e) => {
+                const target =
+                    document.getElementById('main-content') ??
+                    Array.from(document.querySelectorAll('h1')).find(
+                        (h) => h.getClientRects().length > 0
+                    )
+                if (!(target instanceof HTMLElement)) return
+                e.preventDefault()
+                if (!target.hasAttribute('tabindex'))
+                    target.setAttribute('tabindex', '-1')
+                target.focus()
+            }}
+        >
+            Skip to content
+        </a>
+    )
+}
+
 /* _Mega menu */
 export type MegaMenuProps = {
     /** Figma: Feature */
@@ -232,18 +256,51 @@ function HeaderView({
         setOpen(Expanded === 'Yes')
     }
 
-    // Esc closes; mobile sheet locks page scroll
+    const sheetRef = useRef<HTMLDivElement>(null)
+    const menuBtn = useRef<HTMLButtonElement>(null)
+
+    // Esc closes; the mobile sheet locks page scroll, takes focus, keeps Tab inside it (it's a modal dialog)
+    // and gives focus back to the menu button when it closes.
     useEffect(() => {
         if (!open) return
+        const modal = Device === 'Mobile' && !inline
+        const focusables = () =>
+            Array.from(
+                sheetRef.current?.querySelectorAll<HTMLElement>(
+                    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                ) ?? []
+            )
         const onKey = (e: KeyboardEvent) => {
             if (e.key === 'Escape') setOpen(false)
+            if (!modal || e.key !== 'Tab') return
+            const f = focusables()
+            if (!f.length) return
+            const first = f[0]
+            const last = f[f.length - 1]
+            const inside = sheetRef.current?.contains(document.activeElement)
+            if (e.shiftKey && (document.activeElement === first || !inside)) {
+                e.preventDefault()
+                last.focus()
+            } else if (
+                !e.shiftKey &&
+                (document.activeElement === last || !inside)
+            ) {
+                e.preventDefault()
+                first.focus()
+            }
         }
         window.addEventListener('keydown', onKey)
-        const lock = Device === 'Mobile' && !inline
-        if (lock) document.documentElement.style.overflow = 'hidden'
+        if (modal) {
+            document.documentElement.style.overflow = 'hidden'
+            focusables()[0]?.focus()
+        }
+        const btn = menuBtn.current
         return () => {
             window.removeEventListener('keydown', onKey)
-            if (lock) document.documentElement.style.overflow = ''
+            if (modal) {
+                document.documentElement.style.overflow = ''
+                btn?.focus()
+            }
         }
     }, [open, Device, inline])
 
@@ -265,6 +322,7 @@ function HeaderView({
                 role="dialog"
                 aria-modal={!inline}
                 aria-label="Menu"
+                ref={sheetRef}
             >
                 <div className={styles['sheet-top']}>
                     <a href="/" className={styles.logo}>
@@ -316,6 +374,7 @@ function HeaderView({
                 data-hidden={(hidden && !open) || undefined}
                 className={styles.root}
             >
+                {!inline && <SkipLink />}
                 {open && inline ? (
                     sheet
                 ) : (
@@ -326,6 +385,7 @@ function HeaderView({
                         <div className={styles.mright}>
                             <button
                                 type="button"
+                                ref={menuBtn}
                                 className={styles['menu-btn']}
                                 aria-label="Open menu"
                                 aria-expanded={open}
@@ -349,6 +409,7 @@ function HeaderView({
             data-hidden={(hidden && !open) || undefined}
             className={styles.root}
         >
+            {!inline && <SkipLink />}
             <nav className={styles.bar} aria-label="Main">
                 <a href="/" className={styles.logo}>
                     <YouweLogo />

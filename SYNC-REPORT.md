@@ -1,26 +1,30 @@
-# Sync report — 11 November 2026 (event dates and partner logos)
+# Sync report — 11 November 2026 (keyboard navigation, Video Player)
 
-## Upcoming events: date matches Figma
+## Keyboard navigation
 
-Checked against Upcoming events (26740:42) and its row (26887:988).
+Tested with the keyboard only on the templates (desktop and iPhone 13). Four fixes:
 
-- **Before:** the date sat in a dark, centred tile, 76 px wide.
-- **In Figma:** the Date frame's base-1 fill is switched off. The day and month are **left-aligned with no background**, and the frame hugs the text. The day uses heading/2xl and the month sits 4 px below it.
-- **Now:** the date matches Figma. The day number lines up with the title and the place tag below it.
+- **Skip to content:** the first Tab on every page now shows a "Skip to content" link at the top left. Enter moves focus past the menu to the page title, so the next Tab lands on the first link in the page (e.g. "See our work" on Home).
+- **Header comes back on focus:** the header hides while you scroll down. Tabbing (or Shift+Tab) back into it now brings it back, so the focused link is never off screen.
+- **Nothing hides the focused item:** the page keeps a margin below the fixed header and above the Ask Youwe bar when it scrolls to the focused element. "All cases" and "Get in touch" used to end up under the Ask bar (WCAG 2.4.11).
+- **Mobile menu holds focus:** opening the menu moves focus into it, Tab and Shift+Tab stay inside the menu while it's open, and Esc or Close puts focus back on the menu button.
 
-## Technology Card: logo position, no white background
+Already fine: every link and button has a visible focus ring, the tab order follows the page, and Esc closes the menu, the mega menu and the Ask panel.
 
-Checked against Technology Card (26721:87), its logo slot (26721:29) and the cards on Tech Partners and Tech partners split.
+## Video Player (new component)
 
-- **White background removed.** The 120×40 logo slot has no fill in Figma. Logos are drawn in the content colour, so they're white on dark and dark on light, like Figma.
-- **Logo position:** the logo now sits **left in its slot and vertically centred**. Before, it was centred in a white box. Each partner SVG is the Figma 120×40 frame, so every logo keeps its exact Figma offset. For example, AWS sits at the left and fills the height; Alumio is full width with the height centred.
-- A partner without a logo file still shows its name, now left-aligned in the content colour.
-- The Technology Card stories now use the real partner logos instead of name placeholders.
+`Components/Video Player`: a basic player for the "Video" frames. There's no Figma component for it (registered as code-only in figma-sync.json; a Figma component is proposed for design review).
 
-Small difference from Figma: in Figma the Databricks mark is red. Logos here are one colour, so that they follow the mode.
+- **Autoplay "Off":** the poster with the red play button. Click or Enter plays the video with the browser's own controls.
+- **Autoplay "In view":** plays muted and looped while at least half of it is on screen, and pauses when it scrolls away. A small pause button sits in the corner (WCAG 2.2.2). Once someone pauses a video, it doesn't start again by itself.
+- **Reduced motion:** never autoplays; it shows the play button instead.
+- Optional WebVTT captions (`captions`). Without a `src` it shows the poster only.
+
+**ACI Weave** now uses the Video Player with Autoplay "In view" (new `Autoplay` prop, default "In view"; the story has a control to switch to "Off"). Until the real videos arrive, the three videos are 8-second placeholder clips made from their poster images (`public/media/video/`, about 140 KB each, no sound; `video()` in `media.ts`).
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`: pass
 - `pnpm build-storybook`: pass
-- Compared with Figma screenshots: Upcoming events at desktop size, all Technology Card variants (dark and light, rest and hover), and Tech Partners → Systems that scale.
+- Keyboard (Playwright): skip link moves focus to the h1; a hidden header shows when a link in it gets focus; no focused item under the header or Ask bar on Home; mobile menu keeps focus inside and returns it on Esc.
+- Video: in-view videos play when half visible and pause off screen; a paused video stays paused after scrolling back; "Off" plays on Enter with controls; with reduced motion nothing autoplays. On Home the first two ACI Weave videos play when the section is in view.

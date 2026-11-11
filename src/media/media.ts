@@ -181,3 +181,6 @@ export const logoFor = (name: string, kind: LogoKind = 'client') => {
         if (files[key]) return { src: `${BASE}logos/${files[key]}.svg`, ratio }
     return undefined
 }
+
+/** Placeholder video clip until the real videos arrive, e.g. video('011') (8 s, 1280×720, no sound). */
+export const video = (n: string) => `${BASE}video/placeholder-${n}.mp4`

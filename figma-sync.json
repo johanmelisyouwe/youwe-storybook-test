@@ -5046,6 +5046,34 @@
     },
     {
       "figma": {
+        "name": "Video Player",
+        "page": "Templates (Page / Home, Frame 6, video frames)",
+        "nodeId": "26598:4074",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26598-4074",
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Video Player",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Not a Figma component: built for the \"Video\" frames in the ACI Weave block. Autoplay Off (play on click) or In view (muted, looped, with a pause button). A Figma component is proposed for design review.",
+      "code": [
+        "src/ui/video-player/video-player.tsx",
+        "src/ui/video-player/video-player.module.css",
+        "src/ui/video-player/video-player.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-11"
+    },
+    {
+      "figma": {
         "name": "Content blocks/Insights overview",
         "page": "Templates (Page / Insights, All insights)",
         "nodeId": "26734:89",
