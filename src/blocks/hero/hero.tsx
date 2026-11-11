@@ -175,7 +175,10 @@ export function Hero({
                 className={cx(block.root, styles.root)}
             >
                 {header && <div className={styles.header}>{header}</div>}
-                <div className={block.inner} style={{ paddingBottom: 0 }}>
+                <div
+                    className={cx(block.inner, styles['image-inner'])}
+                    style={{ paddingBottom: 0 }}
+                >
                     <div className={styles.row}>
                         <div className={styles.titlecol}>
                             {label && <HeroLabel Device={Device} {...label} />}
