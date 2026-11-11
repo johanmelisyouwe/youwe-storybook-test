@@ -377,7 +377,11 @@ export function AskSnippet({
                     className={styles['ask-snippet-image']}
                     placeholder={false}
                 />
-                <div className={styles['ask-snippet-content']}>
+                {/* Over the photo's dark scrim: dark tokens in both modes, so the outline button stays visible */}
+                <div
+                    className={styles['ask-snippet-content']}
+                    data-theme="dark"
+                >
                     <AskLabel
                         label={`Ask Youwe · ${reason ?? 'Related case'}`}
                     />
@@ -469,7 +473,9 @@ export function AskDock({
     useEffect(() => {
         if (q === null || !focusPanel.current) return
         focusPanel.current = false
-        ref.current?.querySelector<HTMLElement>('input, textarea')?.focus({ preventScroll: true })
+        ref.current
+            ?.querySelector<HTMLElement>('input, textarea')
+            ?.focus({ preventScroll: true })
     }, [q])
     useEffect(() => {
         const root = ref.current?.closest('[data-page]') ?? document
