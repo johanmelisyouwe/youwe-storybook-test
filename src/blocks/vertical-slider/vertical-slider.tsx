@@ -291,9 +291,7 @@ export function VerticalSlider({
     // Scroll behaviour, unless the visitor prefers reduced motion (then the slides switch on click instead)
     const [reduce, setReduce] = useState(false)
     useEffect(() => {
-        setReduce(
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        )
+        setReduce(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
     }, [])
     const pin = (Behaviour === 'Scroll' || pinProp) && !reduce
     // The progress line is part of the Scroll behaviour; for Click it's the Figma 'Show progress' option
@@ -358,7 +356,7 @@ export function VerticalSlider({
         typeof backgroundImage === 'string' ? backgroundImage : undefined
 
     if (Device === 'Mobile' && pin) {
-        // Mobile, Scroll: one slide at a time in a pinned full-screen frame; step bars, "01 / 03 · Label"
+        // Mobile, Scroll: one slide at a time in a pinned full-screen frame; step bars, the slide eyebrow numbers it
         // and the progress line follow the scroll
         return (
             <section
@@ -380,7 +378,8 @@ export function VerticalSlider({
                                 placeholder={false}
                                 style={{
                                     ['--_i' as string]: i,
-                                    ['--r' as string]: i === 0 ? '150%' : undefined,
+                                    ['--r' as string]:
+                                        i === 0 ? '150%' : undefined,
                                 }}
                             />
                         ))}
@@ -396,8 +395,7 @@ export function VerticalSlider({
                                 ))}
                             </span>
                         )}
-                        {/* Counter only: the slide's own eyebrow already names the chapter */}
-                        <span className="yw-body-sm-bold">{`${String(active + 1).padStart(2, '0')} / ${String(N).padStart(2, '0')}`}</span>
+                        {/* No counter: the slide's own eyebrow ("01 · Label") already numbers the chapter */}
                     </div>
                     <div className={styles.chapters} aria-live="polite">
                         {items.map((it, i) => (
@@ -463,7 +461,6 @@ export function VerticalSlider({
                                             ))}
                                         </span>
                                     )}
-                                    <span className="yw-body-sm-bold">{`${String(i + 1).padStart(2, '0')} / ${String(N).padStart(2, '0')} · ${it.label}`}</span>
                                 </div>
                                 <Slide {...it.slide} />
                             </div>

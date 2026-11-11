@@ -27,14 +27,20 @@ export type StatProps = {
     className?: string
 }
 
-/* Splits "+12.7%" into prefix "+", number 12.7 (1 decimal) and suffix "%" */
+/* Splits "+12.7%" into prefix "+", number 12.7 (1 decimal) and suffix "%". A comma followed by groups of
+   three digits ("110,000+", "3,360") is a thousands separator and is kept in the count. */
 function parse(v: string) {
     const m = v.match(/^(\D*)([\d.,]+)(.*)$/)
     if (!m) return null
-    const num = parseFloat(m[2].replace(',', '.'))
-    const dec = (m[2].split(/[.,]/)[1] || '').length
-    return { pre: m[1], num, dec, post: m[3] }
+    const digits = m[2]
+    const grouped = /^\d{1,3}(,\d{3})+(\.\d+)?$/.test(digits)
+    const plain = grouped ? digits.replace(/,/g, '') : digits.replace(',', '.')
+    const num = parseFloat(plain)
+    const dec = (plain.split('.')[1] || '').length
+    return { pre: m[1], num, dec, grouped, post: m[3] }
 }
+
+const group = (s: string) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
 function useCountUp(value: string, on: boolean) {
     const ref = useRef<HTMLSpanElement>(null)
@@ -55,7 +61,10 @@ function useCountUp(value: string, on: boolean) {
         )
             return
         const show = (n: number) => {
-            node.nodeValue = `${p.pre}${n.toFixed(p.dec)}${p.post}`
+            const [int, frac] = n.toFixed(p.dec).split('.')
+            const text =
+                (p.grouped ? group(int) : int) + (frac ? `.${frac}` : '')
+            node.nodeValue = `${p.pre}${text}${p.post}`
         }
         show(0)
         let raf = 0

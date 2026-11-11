@@ -6,6 +6,8 @@ import styles from './quote-card.module.css'
 /* Quote Card — Figma 26895:260 (page "Cards"). */
 
 export type QuoteCardProps = {
+    /** Figma: Mode — only set it to differ from the section (Figma puts a Light card in the dark Proof grid) */
+    Mode?: 'Dark' | 'Light'
     Quote: string
     Name: string
     /** Figma: Role (Show role) */
@@ -20,6 +22,7 @@ export type QuoteCardProps = {
 }
 
 export function QuoteCard({
+    Mode,
     Quote,
     Name,
     Role,
@@ -29,7 +32,10 @@ export function QuoteCard({
     className,
 }: QuoteCardProps) {
     return (
-        <figure className={cx(styles.root, className)}>
+        <figure
+            data-theme={Mode?.toLowerCase()}
+            className={cx(styles.root, className)}
+        >
             <div className={styles.quote}>
                 {mark && (
                     <span className={styles.mark} aria-hidden="true">

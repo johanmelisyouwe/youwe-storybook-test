@@ -1,32 +1,27 @@
-# Sync report — 11 November 2026 (stagger on every row, sweep fixes)
+# Sync report — 11 November 2026 (review polish)
 
-## Stagger on every row
+Open review items 5–12, each checked against Figma.
 
-On Industries only the first two rows of cards staggered. Each card's delay was counted from the top of the whole grid and capped at the 8th card, so from row 3 on every card got the same maximum delay and they appeared together.
+## Fixed
 
-- **Now:** the delay is counted per group of cards that scrolls in together. Every row staggers left to right (0, 80, 160, 240 ms), however long the grid is.
-- This is fixed in the shared page motion, so it applies to **every grid** on every template, not only Industries: card grids, insight grids, logo grids, stat rows.
-- Reduced motion is unchanged: nothing is hidden or moved.
+- **Work detail, repeated photo:** one stand-in photo was used three times (inline, full-bleed and two-up). Each photo is now used once: full-bleed is XXL and the two-up is Quooker + G-Star.
+- **Work detail, Related work:** the carousel on the Quooker case listed the Quooker case itself. It now leaves it out.
+- **Stats, thousands separator (found while checking):** "110,000+" ended its count-up as "110.000+" and "3,360" as "3.360", because the comma was read as a decimal point. A comma followed by groups of three digits now counts as a thousands separator and stays in the count.
+- **Services detail, What we build:** the feature tile used the tight portrait Bunzl crop, which zoomed in on the icon and showed a red sliver at the edge. It now uses the wide Bunzl photo from Figma (new `wide-bunzl.webp`), with the calendar and BunzlOne icons visible as in Figma.
+- **Services detail, Proof quote card:** Figma puts a **light** quote card in the dark Proof grid; ours was dark. Quote Card has a new optional `Mode` prop (Figma axis Mode) for a card whose mode differs from its section, and Proof uses `Mode="Light"`. The space between the quote and the name matches Figma (the name sits at the bottom of the card).
+- **Mobile What we do, doubled labels:** each slide showed its number twice ("01 / 03 · Digital Infrastructure" above the slide's own "01 · Digital Infrastructure"). The extra label is gone in both mobile layouts; the step bars still show where you are.
+- **Mobile sub-footer, office list:** on mobile the text runs the full width over the photo, but the overlay only darkened from the left. On mobile it now darkens from the bottom, so the office list stays readable on any photo.
 
-## Fixes from the full sweep
+- **Quooker title capitalisation:** the Work detail hero (and the Hero story) used Title Case. It's now "Scaling smart: Quooker’s expansion to 17 countries", like everywhere else.
 
-I checked all 20 templates (desktop and iPhone 13) and all 276 component stories for errors, broken images, overflow, clipped text, reveals that never play, keyboard focus and accessibility.
+## Checked, matches Figma (no change)
 
-- **Ask Youwe case snippet, light mode:** the "Ask about it" button was dark on the photo's dark overlay, so it was almost invisible. The text over the photo now always uses the dark-mode colours, so the button shows as a light outline.
-- **Mobile menu, current page:** the fixed brand red failed contrast at 18 px (3.9:1, AA needs 4.5:1). It now uses content/brand, like the other small red text.
-- **Linked stat cards** (Home, Services detail, Work detail, About): the screen-reader name left out text that is visible on the card, so voice control ("click 17 markets") could miss it. The name now comes from the card content, with "Read the case" added.
-- **Pagination:** the "Prev" button was named "Previous page", which doesn't contain the visible word. It's now "Prev page".
-
-## Checked, nothing to fix
-
-- No console errors, failed requests or broken images on any template.
-- No sideways scroll on any template, desktop or mobile.
-- Keyboard: a visible focus ring on all ~120 tab stops per template.
-- Every scroll reveal plays. Exceptions: cards in hidden tabs and off-screen carousel slides, which play when they're shown.
-- Accessibility check (axe) on all templates: 0 serious or critical issues.
+- **Challenges grid gap:** Figma has the same five tiles in three columns with an open sixth spot.
+- **ACI Weave paragraph spacing:** body, nudge and button spacing match Figma (24, 24, 40).
+- **Repeated footer sentence:** "Tell us what you want to achieve and we will think along with you." is in both the Work with us block and the footer in Figma too. That's a copy decision for Figma; not changed here.
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`: pass
 - `pnpm build-storybook`: pass
-- Industries: every row checked, staggers 0, 80, 160, 240 ms.
+- Looked at each change: Services detail (What we build, Proof), Work detail (results, two-up, Related work) at 1440, and Home on an iPhone 13 (What we do, sub-footer).

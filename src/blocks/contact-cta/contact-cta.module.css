@@ -147,6 +147,15 @@
         .text {
             padding-right: 0;
         }
+        /* Mobile: the text spans the full width, so the overlay darkens from the bottom instead of the left */
+        .bg::after {
+            background: linear-gradient(
+                0deg,
+                var(--color-shared-surface-base-1) 0%,
+                var(--color-neutral-900-50) 55%,
+                transparent 100%
+            );
+        }
         .image {
             order: -1;
             min-height: 0;

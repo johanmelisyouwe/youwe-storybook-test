@@ -33,7 +33,8 @@ import { abstract, caseImage, clientPhoto } from '../media/media'
   Title + image. Figma pairs the Quooker title with JC-Electronics body copy; the template shows Quooker
   throughout (decided 9 November), using the Quooker case copy from the Figma long-form components. The
   Testimonial keeps the stand-in quote from the Figma template (decided 9 November). Sub-footer: the
-  desktop copy on both devices.
+  desktop copy on both devices. Related work leaves out Quooker itself (this is the Quooker case). Each photo
+  is used once on the page (the Figma stand-ins repeated one photo three times).
 */
 
 const c = (
@@ -88,7 +89,7 @@ function WorkDetailPage({ Device: story }: { Device: Device }) {
             <Hero
                 Variant="Title + image"
                 Device={Device}
-                title={['Scaling Smart: Quooker’s Expansion to 17 Countries']}
+                title={['Scaling smart: Quooker’s expansion to 17 countries']}
                 label={{
                     Type: 'Breadcrumb',
                     crumbs: [
@@ -123,7 +124,7 @@ function WorkDetailPage({ Device: story }: { Device: Device }) {
                 <Media
                     Layout="Full bleed"
                     Device={Device}
-                    image={caseImage('fairphone', 'wide')}
+                    image={caseImage('xxl', 'wide')}
                 />
                 <TextColumn
                     Alignment="Centered"
@@ -170,7 +171,7 @@ function WorkDetailPage({ Device: story }: { Device: Device }) {
                 <Media
                     Layout="Two-up"
                     Device={Device}
-                    image={caseImage('fairphone')}
+                    image={caseImage('quooker-1')}
                     image2={caseImage('g-star')}
                 />
                 <CaseCarousel
@@ -179,7 +180,7 @@ function WorkDetailPage({ Device: story }: { Device: Device }) {
                     Kicker="Proven in practice"
                     Title="Related work"
                     button={{ label: 'All cases', href: '#' }}
-                    cases={RELATED}
+                    cases={RELATED.filter((r) => r.Client !== 'Quooker')}
                 />
             </Section>
             <ContactCTA
