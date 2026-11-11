@@ -1,9 +1,14 @@
-# Sync report — 11 November 2026 (Vimeo fade-in fix)
+# Sync report — 11 November 2026 (hero title spacing)
 
-Follow-up to #37, found while checking the live page. The Quooker video played on Work detail but stayed invisible. It was waiting for a `timeupdate` message to fade in, but Vimeo's postMessage API reports progress as `playProgress` (`timeupdate` is the name in Vimeo's player.js). The player now listens for both, so the video fades in as soon as it plays.
+## Hero "Title + image": top padding as in Figma
+
+On Work detail the breadcrumbs and title sat directly under the header. In Figma (Page / Work detail, Content blocks/Hero, Title + image) there is room above them: hero padding 80 + text padding 80, so the breadcrumbs start 160 below the 122 header.
+
+- **Desktop:** our header overlays the hero, so the top padding is now header + 160 (120 + 80 + 80). The breadcrumbs start at 280 from the top of the page (Figma 282). The 80 gap to the image is unchanged.
+- **Mobile:** header 80 + 24, as in the mobile frame. The breadcrumbs used to start under the mobile header.
+- Applies to every page that uses the Title + image hero.
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass
-- Live page (before the fix): Vimeo reported play and `playProgress` (seconds 11.9 → 12.7), so the video was running behind the poster.
-- Stand-in Vimeo player test with `playProgress`: fades in when in view, pause works.
+- Work detail measured at 1440: header 0–122, breadcrumbs 280, title 320–480, image at 560. On iPhone 13: breadcrumbs at 104, below the 80 header.
