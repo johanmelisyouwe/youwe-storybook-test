@@ -4,6 +4,7 @@ import { Pills } from '../pills'
 import { Button } from '../button'
 import { ButtonLink } from '../button-link'
 import { cx } from '../../shared/cx'
+import { askYouwe } from '../../shared/ask'
 import styles from './feature-card.module.css'
 
 /* Feature Card — Figma 26533:129 (page "Cards"). Static card; tags, button and link are separate links where used. */
@@ -25,6 +26,8 @@ export type FeatureCardProps = {
     button?: { label: string; href?: string }
     /** Figma: Show link — link label */
     link?: { label: string; href?: string }
+    /** AI variant: the link opens Ask Youwe with this question (instead of going to href) */
+    ask?: string
     /** Scroll reveal (Figma motion); off in Storybook grids by default */
     reveal?: boolean
     className?: string
@@ -40,6 +43,7 @@ export function FeatureCard({
     'Show arrow': arrow = false,
     button,
     link,
+    ask,
     reveal = false,
     className,
 }: FeatureCardProps) {
@@ -104,13 +108,21 @@ export function FeatureCard({
                         />
                     </div>
                 )}
-                {link && (
-                    <ButtonLink
-                        Size="md"
-                        label={link.label}
-                        href={link.href ?? '#'}
-                    />
-                )}
+                {link &&
+                    (ask ? (
+                        // Opens Ask Youwe on this page, so it's a button, not a link
+                        <ButtonLink
+                            Size="md"
+                            label={link.label}
+                            onClick={() => askYouwe(ask)}
+                        />
+                    ) : (
+                        <ButtonLink
+                            Size="md"
+                            label={link.label}
+                            href={link.href ?? '#'}
+                        />
+                    ))}
             </div>
         </article>
     )
