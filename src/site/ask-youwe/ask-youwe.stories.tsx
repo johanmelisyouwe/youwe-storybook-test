@@ -43,7 +43,7 @@ const meta: Meta<Args> = {
     argTypes: {
         State: {
             control: 'inline-radio',
-            options: ['Default', 'Contextual', 'Active'],
+            options: ['Default', 'Contextual', 'Docked', 'Active'],
         },
         Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
         Mode: { control: 'inline-radio', options: ['Dark', 'Light'] },
@@ -68,6 +68,8 @@ type Story = StoryObj<Args>
 
 export const Default: Story = {}
 export const Contextual: Story = { args: { State: 'Contextual' } }
+/** The sticky bar's look (AskDock): Contextual on frosted glass. */
+export const Docked: Story = { args: { State: 'Docked' } }
 export const Active: Story = { args: { State: 'Active' } }
 
 /** Click the bar's suggestion, type and press Enter to open the panel; Esc or close goes back to the bar. */
@@ -249,7 +251,12 @@ export const AllVariants: Story = {
                     >
                         {(['Desktop', 'Mobile'] as const).flatMap((d) =>
                             (
-                                ['Default', 'Contextual', 'Active'] as State[]
+                                [
+                                    'Default',
+                                    'Contextual',
+                                    'Docked',
+                                    'Active',
+                                ] as State[]
                             ).map((s) => (
                                 <div key={d + s} style={{ width: W[d] }}>
                                     <AskYouwe

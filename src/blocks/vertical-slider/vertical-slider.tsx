@@ -8,7 +8,7 @@ import styles from './vertical-slider.module.css'
 
 /*
   Vertical slider — Figma 26715:410; _Vertical slider/Index item 26713:47; _Vertical slider/Slide 26713:174.
-  Behaviour (code variant, next to the Figma variants):
+  Behaviour (Figma axis since the design-system update: Click, Scroll):
   - Click (default): index items are buttons; hover, focus and click switch slides. Mobile is stacked.
   - Scroll: the section stays in the viewport while you scroll through it; the progress line at the bottom
     fills with the scroll and the slides change one by one (desktop and mobile), as the v2 site's "What we

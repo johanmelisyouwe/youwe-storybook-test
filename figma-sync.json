@@ -172,7 +172,7 @@
         "nodeId": "27019:3067",
         "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27019-3067",
         "variantAxes": [
-          "State(3)",
+          "State(4)",
           "Mode(2)",
           "Device(2)"
         ],
@@ -180,6 +180,7 @@
           "State": [
             "Default",
             "Contextual",
+            "Docked",
             "Active"
           ],
           "Mode": [
@@ -192,8 +193,8 @@
           ]
         },
         "props": "Prompt:T,Show shortcut:B,Question:T,Answer:T,Source:T",
-        "variantCount": 12,
-        "signature": "7oqovh"
+        "variantCount": 16,
+        "signature": null
       },
       "storybook": {
         "title": "Components/Ask Youwe",
@@ -201,7 +202,7 @@
       },
       "internal": false,
       "status": "complete",
-      "note": "Default, Contextual, Active. UI only; onAsk callback for a real answer service. ⌘K focuses the bar, Esc closes the panel.",
+      "note": "Default, Contextual, Docked (the sticky bar on frosted glass), Active. UI only; onAsk callback for a real answer service. ⌘K focuses the bar, Esc closes the panel.",
       "code": [
         "src/site/ask-youwe/ask-youwe.tsx",
         "src/site/ask-youwe/ask-youwe.module.css",
@@ -1858,7 +1859,8 @@
         "variantAxes": [
           "Index(2)",
           "Mode(2)",
-          "Device(2)"
+          "Device(2)",
+          "Behaviour(2)"
         ],
         "axes": {
           "Index": [
@@ -1872,11 +1874,15 @@
           "Device": [
             "Desktop",
             "Mobile"
+          ],
+          "Behaviour": [
+            "Click",
+            "Scroll"
           ]
         },
         "props": "Kicker:T,Tagline:T,Show tagline:B,Show background image:B,Show progress:B,Show item 4:B,Show steps:B,Background image:I",
-        "variantCount": 8,
-        "signature": "1k4ziwt"
+        "variantCount": 16,
+        "signature": null
       },
       "storybook": {
         "title": "Content blocks/Vertical slider",
@@ -5018,13 +5024,20 @@
     {
       "figma": {
         "name": "Content blocks/ACI Weave",
-        "page": "Templates (Page / Home, Frame 6)",
-        "nodeId": "26598:4074",
-        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26598-4074",
-        "variantAxes": [],
-        "axes": {},
+        "page": "– Content blocks/ACI Weave",
+        "nodeId": "27239:117",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27239-117",
+        "variantAxes": [
+          "Device(2)"
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
         "props": "",
-        "variantCount": 0,
+        "variantCount": 2,
         "signature": null
       },
       "storybook": {
@@ -5032,8 +5045,8 @@
         "current": "AllVariants"
       },
       "internal": false,
-      "status": "code-only",
-      "note": "Built from the hand-built Home frames (desktop Frame 6 26598:4074, mobile 26924:10755). A Figma component is proposed for design review.",
+      "status": "complete",
+      "note": "Figma component set (Desktop 27192:120, Mobile 27192:147); videos are Video Player instances (Autoplay In view).",
       "code": [
         "src/blocks/aci-weave/aci-weave.tsx",
         "src/blocks/aci-weave/aci-weave.module.css",
@@ -5047,22 +5060,29 @@
     {
       "figma": {
         "name": "Video Player",
-        "page": "Templates (Page / Home, Frame 6, video frames)",
-        "nodeId": "26598:4074",
-        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26598-4074",
-        "variantAxes": [],
-        "axes": {},
-        "props": "",
-        "variantCount": 0,
+        "page": "– Video Player",
+        "nodeId": "27239:102",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27239-102",
+        "variantAxes": [
+          "Autoplay(2)"
+        ],
+        "axes": {
+          "Autoplay": [
+            "Off",
+            "In view"
+          ]
+        },
+        "props": "Poster:I",
+        "variantCount": 2,
         "signature": null
       },
       "storybook": {
         "title": "Components/Video Player",
-        "current": "Default"
+        "current": "AllVariants"
       },
       "internal": false,
-      "status": "code-only",
-      "note": "Not a Figma component: built for the \"Video\" frames in the ACI Weave block. Autoplay Off (play on click) or In view (muted, looped, with a pause button). A Figma component is proposed for design review.",
+      "status": "complete",
+      "note": "Figma component set. Also the video option of Content blocks/Media (Image swap lists Video Player). Vimeo URLs play in Vimeo's player.",
       "code": [
         "src/ui/video-player/video-player.tsx",
         "src/ui/video-player/video-player.module.css",
@@ -5075,13 +5095,20 @@
     {
       "figma": {
         "name": "Content blocks/Insights overview",
-        "page": "Templates (Page / Insights, All insights)",
-        "nodeId": "26734:89",
-        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26734-89",
-        "variantAxes": [],
-        "axes": {},
+        "page": "– Content blocks/Insights overview",
+        "nodeId": "27239:155",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27239-155",
+        "variantAxes": [
+          "Device(2)"
+        ],
+        "axes": {
+          "Device": [
+            "Desktop",
+            "Mobile"
+          ]
+        },
         "props": "",
-        "variantCount": 0,
+        "variantCount": 2,
         "signature": null
       },
       "storybook": {
@@ -5089,8 +5116,8 @@
         "current": "AllVariants"
       },
       "internal": false,
-      "status": "code-only",
-      "note": "Built from the hand-built All insights frames (desktop 26734:89, mobile 26816:3083). A Figma component is proposed for design review.",
+      "status": "complete",
+      "note": "Figma component set (Desktop 27192:182, Mobile 27192:207). Filters and Show more work on the 12 sample cards.",
       "code": [
         "src/blocks/insights-overview/insights-overview.tsx",
         "src/blocks/insights-overview/insights-overview.module.css",

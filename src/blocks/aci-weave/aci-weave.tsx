@@ -6,8 +6,8 @@ import { VideoPlayer, type VideoPlayerProps } from '../../ui/video-player'
 import styles from './aci-weave.module.css'
 
 /*
-  Content blocks/ACI Weave — built from the hand-built Home frames: desktop "Frame 6" (26598:4074),
-  mobile "ACI Weave · video + nudge" (26924:10755). Not a Figma component yet (proposed for design review).
+  Content blocks/ACI Weave — Figma component set 27239:117 (Device: Desktop 27192:120, Mobile 27192:147),
+  made from the hand-built Home frames; its videos are Video Player instances (Autoplay In view).
   Left: red-line kicker, heading/xl title, body/lg/reg body, Ask Youwe Nudge snippet, Primary M button.
   Right: video stack (Video Player 16:9, caption body/sm/reg tertiary, gap 16; items gap 40). The videos
   autoplay muted while in view (Autoplay "In view", the default); "Off" shows the play button instead.

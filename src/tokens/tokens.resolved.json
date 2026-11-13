@@ -85,7 +85,7 @@
   },
   "--color-shared-content-tertiary": {
     "dark": "var(--color-neutral-400)",
-    "light": "var(--color-neutral-500)"
+    "light": "var(--color-neutral-600)"
   },
   "--color-shared-content-inverse-1": {
     "dark": "var(--color-neutral-900)",
@@ -96,11 +96,11 @@
     "light": "var(--color-neutral-300)"
   },
   "--color-shared-content-brand": {
-    "dark": "var(--color-brand-red-400-base)",
-    "light": "var(--color-brand-red-400-base)"
+    "dark": "var(--color-brand-red-200)",
+    "light": "var(--color-brand-red-500)"
   },
   "--color-shared-content-link": {
-    "dark": "var(--color-brand-red-300)",
+    "dark": "var(--color-brand-red-200)",
     "light": "var(--color-brand-red-700)"
   },
   "--color-shared-content-fixed-light": {
@@ -132,8 +132,8 @@
     "light": "var(--color-yellow-600)"
   },
   "--color-shared-content-placeholder": {
-    "dark": "var(--color-neutral-600)",
-    "light": "var(--color-neutral-300)"
+    "dark": "var(--color-neutral-400)",
+    "light": "var(--color-neutral-500)"
   },
   "--color-shared-surface-fixed-dark": {
     "dark": "var(--color-neutral-900)",
@@ -360,8 +360,8 @@
     "light": "var(--color-blue-500)"
   },
   "--color-component-tag-content": {
-    "dark": "var(--color-neutral-450)",
-    "light": "var(--color-neutral-500)"
+    "dark": "var(--color-neutral-400)",
+    "light": "var(--color-neutral-600)"
   },
   "--color-component-ask-meta": {
     "dark": "var(--color-neutral-400)",
