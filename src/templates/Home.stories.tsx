@@ -11,7 +11,9 @@ import { TechnologyLogos } from '../blocks/technology-logos'
 import { ContactCTA } from '../blocks/contact-cta'
 import type { CaseCardProps } from '../ui/case-card'
 import { AciWeave } from '../blocks/aci-weave'
-import { ACI_WEAVE_MOSAIC } from '../blocks/aci-weave/aci-weave.copy'
+import { Testimonial } from '../blocks/testimonial'
+import { IN_THEIR_WORDS } from '../blocks/testimonial/testimonial.copy'
+import { ACI_WEAVE } from '../blocks/aci-weave/aci-weave.copy'
 import {
     CLIENT_LOGOS,
     Page,
@@ -29,8 +31,8 @@ import { abstract, clientPhoto } from '../media/media'
   Templates/Home — Figma "Page / Home": Desktop 26584:5280, Mobile 26805:3646. Copy, props and order from
   figma/templates.js. Images are placeholders (not imported yet).
   Vertical slider "What we do": Figma only fills chapter 1; chapters 2 and 3 use the copy from the v2 site
-  screenshots (titles, bodies, pills), with the Figma index labels. "In their words": Figma has one quote; the
-  other chapters show "Quote to follow" until the copy is supplied.
+  screenshots (titles, bodies, pills), with the Figma index labels. "In their words": Testimonial
+  Layout Tabs with the four client quotes.
   Sub-footer and footer: the desktop copy is the correct one (decided 9 November) and is used on mobile too.
 */
 
@@ -105,28 +107,6 @@ const WHAT_WE_DO: VerticalSliderProps['items'] = [
         ),
     },
 ]
-const quote = (client: string): SlideData => ({
-    Type: 'Quote',
-    quote: '“Quote to follow.”',
-    name: client,
-    button: { label: 'Read the case', href: '#' },
-})
-const IN_THEIR_WORDS: VerticalSliderProps['items'] = [
-    {
-        label: 'BunzlOne',
-        slide: {
-            Type: 'Quote',
-            quote: '“We turned the vision into a platform. Now we’re adding new customers and suppliers.”',
-            name: 'Frank Daamen',
-            role: 'Digital Director Bunzl & Founder of BunzlOne',
-            button: { label: 'Read the case', href: '#' },
-        },
-    },
-    { label: 'Chadwicks Group', slide: quote('Chadwicks Group') },
-    { label: 'Thomas Telford', slide: quote('Thomas Telford') },
-    { label: 'Symson', slide: quote('Symson') },
-]
-
 const STATS = [
     {
         Value: '+12.7%',
@@ -219,7 +199,6 @@ const TECH = [
 
 function HomePage({ Device: story }: { Device: Device }) {
     const Device = useDevice(story)
-    const mobile = Device === 'Mobile'
     return (
         <Page Device={story} ask="Which service fits my problem?">
             <Hero
@@ -271,19 +250,14 @@ function HomePage({ Device: story }: { Device: Device }) {
                 />
             </Section>
             <Section Mode="Light">
-                <VerticalSlider
+                <Testimonial
+                    Layout="Tabs"
                     Device={Device}
-                    Index="Left"
-                    Kicker="In their words"
-                    Tagline={
-                        mobile
-                            ? undefined
-                            : 'What our clients say about working with us.'
-                    }
-                    items={mobile ? IN_THEIR_WORDS.slice(0, 3) : IN_THEIR_WORDS}
+                    kicker="In their words"
+                    quotes={IN_THEIR_WORDS}
                 />
             </Section>
-            <AciWeave Device={Device} {...ACI_WEAVE_MOSAIC} />
+            <AciWeave Device={Device} {...ACI_WEAVE} />
             <Section Mode="Light">
                 <TechnologyLogos
                     Layout="Default"

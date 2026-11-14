@@ -84,9 +84,10 @@
     /* Background WebGL: canvas over the still image; fades in after its first frame (hero-webgl.tsx) */
     .gl {
         --gl-1: var(--color-shared-surface-base-1);
-        --gl-2: var(--color-purple-500);
-        --gl-3: var(--color-brand-red-400-base);
-        --gl-4: var(--color-yellow-400);
+        --gl-2: var(--color-brand-red-400-base);
+        --gl-3: var(--color-purple-500);
+        --gl-4: var(--color-blue-500);
+        --gl-5: var(--color-brand-red-100);
 
         position: absolute;
         z-index: 0;

@@ -1,8 +1,13 @@
 /* Content blocks/ACI Weave: see aci-weave.tsx for the Figma frames and measurements. */
 @layer components {
     .root {
+        position: relative;
+        overflow: hidden;
+
         & .inner {
             --_py: var(--spacing-4xl);
+            position: relative;
+            z-index: 1;
         }
     }
 
@@ -54,46 +59,60 @@
         gap: var(--spacing-2xl);
     }
 
+    /* Panel: media + caption bar on surface/base-2 */
     .video {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-sm);
         margin: 0;
+        overflow: hidden;
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+
+        & > :first-child {
+            border-radius: 0;
+        }
     }
 
     .caption {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
+        color: var(--color-shared-content-secondary);
+    }
+
+    .tag {
         color: var(--color-shared-content-tertiary);
+    }
+
+    /* Background image behind the section, kept quiet: 85% surface/base-1 over it */
+    .bg {
+        position: absolute !important;
+        z-index: 0;
+        inset: 0;
+        border-radius: 0 !important;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: color-mix(
+                in srgb,
+                var(--color-shared-surface-base-1) 85%,
+                transparent
+            );
+        }
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     .actions {
         display: flex;
         flex-wrap: wrap;
         gap: var(--spacing-sm);
-    }
-
-    /* Mosaic: wide, then two portraits (the second offset down), then wide */
-    .mosaic {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: var(--spacing-sm);
-
-        & > .tile:first-child,
-        & > .tile:nth-child(4) {
-            grid-column: 1 / -1;
-        }
-
-        & > .tile:nth-child(3) {
-            margin-top: var(--spacing-4xl);
-        }
-
-        @container (max-width: 63.9375rem) {
-            & > .tile:nth-child(3) {
-                margin-top: var(--spacing-2xl);
-            }
-        }
-    }
-
-    .tile {
-        align-self: start;
     }
 }

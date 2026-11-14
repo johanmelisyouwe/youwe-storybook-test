@@ -88,7 +88,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Full-viewport chapters section with two behaviours. Used twice on Home: "What we do" (Index Right, Scroll: chapters pin while you scroll) and "In their words" (Index Left, Light, Click: one tab per client with their quote; see that story). **Click** (default): index items are buttons; hover, focus and click switch slides; mobile is stacked. **Scroll**: the section stays in the viewport while you scroll through it, the progress line at the bottom fills with the scroll and the slides change one by one, on desktop and mobile (Scroll stories). With reduced motion Scroll falls back to Click. Slide text rolls in per line (duration/zoom); case media opens with a circular wipe and settles from 1.15 to 1.',
+                    'Full-viewport chapters section with two behaviours. Home "What we do" uses Index Right with Behaviour Scroll (chapters pin while you scroll). **Click** (default): index items are buttons; hover, focus and click switch slides; mobile is stacked. **Scroll**: the section stays in the viewport while you scroll through it, the progress line at the bottom fills with the scroll and the slides change one by one, on desktop and mobile (Scroll stories). With reduced motion Scroll falls back to Click. Slide text rolls in per line (duration/zoom); case media opens with a circular wipe and settles from 1.15 to 1.',
             },
         },
     },
@@ -124,48 +124,6 @@ type Story = StoryObj<Args>
 export const Default: Story = {}
 export const IndexLeft: Story = { args: { Index: 'Left' } }
 
-/**
- * "In their words" (Home): the client testimonial block with a tab per client. Index Left, Mode Light, Click:
- * each client in the index is a tab that shows that client's quote (Quote slide). No timer: the visitor
- * chooses. This is the Home testimonial block; the Testimonial block (7-second quote rotator) is a different one.
- */
-export const InTheirWords: Story = {
-    name: 'In their words (tabs per client)',
-    args: { Index: 'Left', Mode: 'Light' },
-    render: ({ Mode, Device, ...args }) => (
-        <ModeFrame Mode={Mode} padding={0}>
-            <div style={{ maxWidth: Device === 'Mobile' ? 360 : 1440 }}>
-                <VerticalSlider
-                    {...args}
-                    Device={Device}
-                    Kicker="In their words"
-                    Tagline="What our clients say about working with us."
-                    items={[
-                        { label: 'BunzlOne', slide: QUOTE },
-                        {
-                            label: 'Chadwicks Group',
-                            slide: {
-                                ...QUOTE,
-                                quote: '“Quote to follow.”',
-                                name: 'Chadwicks Group',
-                                role: undefined,
-                            },
-                        },
-                        {
-                            label: 'Thomas Telford',
-                            slide: {
-                                ...QUOTE,
-                                quote: '“Quote to follow.”',
-                                name: 'Thomas Telford',
-                                role: undefined,
-                            },
-                        },
-                    ]}
-                />
-            </div>
-        </ModeFrame>
-    ),
-}
 export const Mobile: Story = {
     args: { Device: 'Mobile' },
     globals: { viewport: { value: 'mobile' } },

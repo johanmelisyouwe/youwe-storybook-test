@@ -6,7 +6,8 @@
   (duration/slow, ease/exit), the new one rises in (duration/reveal, ease/emphasized). Auto-advance 7s;
   pauses on hover, focus and when off-screen.
 */
-.dot {
+.dot,
+.tab {
     composes: root from "../../shared/focus-ring/focus-ring.module.css";
 }
 
@@ -99,5 +100,103 @@
     .swap {
         animation: quote-in var(--motion-duration-reveal)
             var(--motion-ease-emphasized);
+    }
+
+    /* Layout Tabs: kicker, then tabs (3 of 12 columns) and the quote; tabs on a 2px rail, the selected one
+       brand red with a red bar (as the Vertical slider index). Mobile: tabs scroll sideways above the quote. */
+    .root[data-layout="tabs"] .inner {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+    }
+
+    .tabsgrid {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+        gap: var(--spacing-4xl);
+        align-items: start;
+
+        @container (max-width: 63.9375rem) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--spacing-xl);
+        }
+    }
+
+    .tabs {
+        display: flex;
+        flex-direction: column;
+        border-left: 2px solid var(--color-shared-border-2);
+
+        @container (max-width: 63.9375rem) {
+            flex-direction: row;
+            overflow-x: auto;
+            border-left: 0;
+            /* inset line, so the selected bar (inside the scroller) is not clipped */
+            box-shadow: inset 0 -2px 0 var(--color-shared-border-2);
+            scrollbar-width: none;
+        }
+    }
+
+    .tab {
+        position: relative;
+        padding: var(--spacing-xs) var(--spacing-md);
+        border: 0;
+        background: none;
+        color: var(--color-shared-content-secondary);
+        text-align: left;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: color var(--motion-duration-base)
+            var(--motion-ease-standard);
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -2px;
+            width: 2px;
+            background: transparent;
+            transition: background-color var(--motion-duration-base)
+                var(--motion-ease-standard);
+        }
+
+        &:hover {
+            color: var(--color-shared-content-primary);
+        }
+
+        &[aria-selected="true"] {
+            color: var(--color-shared-content-primary);
+
+            &::before {
+                background: var(--color-shared-surface-fixed-brand-red);
+            }
+        }
+
+        @container (max-width: 63.9375rem) {
+            &::before {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: auto;
+                height: 2px;
+            }
+        }
+    }
+
+    .tabpanel {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        margin: 0;
+    }
+
+    .tabfoot {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
     }
 }

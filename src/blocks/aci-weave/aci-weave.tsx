@@ -14,14 +14,21 @@ import styles from './aci-weave.module.css'
   autoplay muted while in view (Autoplay "In view", the default); "Off" shows the play button instead.
   Desktop: two equal columns, gap 80, padding 80; the text column stays in view while the videos scroll.
   Mobile: stacked, gap 48, padding 80/12.
-  Layout "Mosaic" (code layout, the Home block as on the v2 site): the right column is a mosaic of still images
-  (wide, two portraits, wide; two columns, gap 16, the second portrait offset down) instead of the videos, and the
-  text column has two buttons (Primary + Solid). The images open with the page clip reveal.
+  As on the v2 site: each item is a panel (surface/base-2, card radius) with the media on top and a caption bar
+  (caption left, tag right); an item without a video file is a still screenshot. Optional background image
+  behind the whole section (85% surface/base-1 over it). Two buttons: Primary + Solid.
 */
 
-export type WeaveImage = { src: string; alt?: string }
-
-export type WeaveVideo = { caption: string; poster?: string; src?: string }
+export type WeaveVideo = {
+    caption: string
+    /** Right side of the caption bar, e.g. Demo */
+    tag?: string
+    poster?: string
+    /** Video file or Vimeo URL; without it the panel shows the poster as a still screenshot */
+    src?: string
+    /** Still screenshot: alt text */
+    alt?: string
+}
 
 export type AciWeaveProps = {
     /** Figma: Device (layout follows the block width) */
@@ -34,31 +41,36 @@ export type AciWeaveProps = {
     button?: { label: string; href: string }
     /** Second button (Solid), next to the first */
     button2?: { label: string; href: string }
-    /** "Videos" (default): stacked Video Players. "Mosaic": still images (4 used: wide, portrait, portrait, wide) */
-    Layout?: 'Videos' | 'Mosaic'
-    videos?: WeaveVideo[]
-    /** Mosaic images */
-    images?: WeaveImage[]
+    videos: WeaveVideo[]
+    /** Background image behind the section (kept quiet under 85% surface/base-1) */
+    background?: string
     /** Video Player autoplay: "In view" (default) plays each video muted while it's on screen */
     Autoplay?: VideoPlayerProps['Autoplay']
 }
 
 function Video({
     caption,
+    tag,
     poster,
     src,
+    alt,
     Autoplay,
 }: WeaveVideo & { Autoplay: VideoPlayerProps['Autoplay'] }) {
     return (
         <figure className={styles.video}>
-            <VideoPlayer
-                src={src}
-                poster={poster}
-                title={caption}
-                Autoplay={Autoplay}
-            />
+            {src ? (
+                <VideoPlayer
+                    src={src}
+                    poster={poster}
+                    title={caption}
+                    Autoplay={Autoplay}
+                />
+            ) : (
+                <CardMedia src={poster} alt={alt} ratio="16 / 9" />
+            )}
             <figcaption className={cx(styles.caption, 'yw-body-sm-reg')}>
-                {caption}
+                <span>{caption}</span>
+                {tag && <span className={styles.tag}>{tag}</span>}
             </figcaption>
         </figure>
     )
@@ -72,16 +84,19 @@ export function AciWeave({
     snippet,
     button,
     button2,
-    Layout = 'Videos',
-    videos = [],
-    images = [],
+    videos,
+    background,
     Autoplay = 'In view',
 }: AciWeaveProps) {
     return (
-        <section
-            data-layout={Layout.toLowerCase()}
-            className={cx(block.root, styles.root)}
-        >
+        <section className={cx(block.root, styles.root)}>
+            {background && (
+                <CardMedia
+                    src={background}
+                    placeholder={false}
+                    className={styles.bg}
+                />
+            )}
             <div className={cx(block.inner, styles.inner)}>
                 <div className={styles.grid}>
                     <div data-rise className={styles.content}>
@@ -124,31 +139,11 @@ export function AciWeave({
                             </div>
                         )}
                     </div>
-                    {Layout === 'Mosaic' ? (
-                        <div className={styles.mosaic}>
-                            {images.slice(0, 4).map((m, i) => (
-                                <CardMedia
-                                    key={m.src}
-                                    src={m.src}
-                                    alt={m.alt}
-                                    ratio={
-                                        i === 0 || i === 3 ? '16 / 9' : '4 / 5'
-                                    }
-                                    className={styles.tile}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div data-stagger className={styles.videos}>
-                            {videos.map((v) => (
-                                <Video
-                                    key={v.caption}
-                                    {...v}
-                                    Autoplay={Autoplay}
-                                />
-                            ))}
-                        </div>
-                    )}
+                    <div data-stagger className={styles.videos}>
+                        {videos.map((v) => (
+                            <Video key={v.caption} {...v} Autoplay={Autoplay} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
