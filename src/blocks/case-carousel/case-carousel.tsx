@@ -1,45 +1,15 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Button } from '../../ui/button'
-import { CaseCard, CaseStat, type CaseCardProps } from '../../ui/case-card'
-import { CardMedia } from '../../shared/card-reveal/card-media'
-import { Icon } from '../../shared/icons/icon'
+import { CaseCard, type CaseCardProps } from '../../ui/case-card'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
 import styles from './case-carousel.module.css'
 
 /* Content blocks/Case carousel — Figma 24985:700.
    Pinned (code layout, the Home "Selected work" reel, as on the v2 site): the section stays in view while
-   vertical scroll moves a row of wide reel cards sideways (image 2:1 with the stat on it, client, title and a
-   round arrow). Each image shifts slightly against the movement; the 01 / 09 counter above the button follows
-   the card at the middle of the screen; a 2px line at the bottom fills with the progress. Mobile and reduced
-   motion: the same cards in a swipe row. Tabbing to a card scrolls the page to where that card is in view. */
-
-/* _Case reel card (code part, used by Pinned): one link */
-function ReelCard({ Title, Client, image, stat, href }: CaseCardProps) {
-    return (
-        <a href={href} className={styles.reelcard}>
-            <span className={styles.reelmedia}>
-                <CardMedia src={image} ratio="2 / 1" clip={false} />
-                {stat && (
-                    <span className={styles.reelstat}>
-                        <CaseStat {...stat} Size="L" />
-                    </span>
-                )}
-            </span>
-            <span className={styles.reelmeta}>
-                <span className={styles.reeltext}>
-                    <span className={cx(styles.reelclient, 'yw-body-sm-reg')}>
-                        {Client}
-                    </span>
-                    <span className="yw-body-lg-med">{Title}</span>
-                </span>
-                <span className={styles.reelgo} aria-hidden="true">
-                    <Icon name="arrow-forward" size={20} />
-                </span>
-            </span>
-        </a>
-    )
-}
+   vertical scroll moves the row of Case Cards sideways; the 01 / 09 counter above the button follows the card at
+   the middle of the screen; a 2px line at the bottom fills with the progress. Mobile and reduced motion: the
+   Scroll row (swipe). Tabbing to a card scrolls the page to where that card is in view. */
 
 export type CaseCarouselProps = {
     /** Figma: Layout */
@@ -97,18 +67,12 @@ export function CaseCarousel({
             const span = Math.max(1, el.offsetHeight - window.innerHeight)
             const p = Math.min(1, Math.max(0, -r.top / span))
             el.style.setProperty('--p', p.toFixed(4))
-            // Counter: the last card whose left edge has passed the middle of the screen; each image shifts
-            // against the movement (−6% at the edges, 0 in the middle)
+            // Counter: the last card whose left edge has passed the middle of the screen
             const vw = window.innerWidth
             let cur = 0
             row.querySelectorAll<HTMLElement>(':scope > li').forEach(
                 (li, i) => {
-                    const b = li.getBoundingClientRect()
-                    li.style.setProperty(
-                        '--px',
-                        (((b.left + b.width / 2 - vw / 2) / vw) * -6).toFixed(2)
-                    )
-                    if (b.left < vw * 0.5) cur = i
+                    if (li.getBoundingClientRect().left < vw * 0.5) cur = i
                 }
             )
             setIndex(cur)
@@ -177,16 +141,10 @@ export function CaseCarousel({
                       })
             }
         >
-            {Layout === 'Pinned' ? (
-                <ReelCard {...c} />
-            ) : (
-                <CaseCard
-                    {...c}
-                    Size={
-                        Layout === 'Full width 4' ? 'One quarter' : 'One third'
-                    }
-                />
-            )}
+            <CaseCard
+                {...c}
+                Size={Layout === 'Full width 4' ? 'One quarter' : 'One third'}
+            />
         </li>
     ))
     const pad = (n: number) => String(n).padStart(2, '0')
@@ -291,7 +249,6 @@ export function CaseCarousel({
                         {head}
                         <ul
                             ref={track}
-                            data-reel={Layout === 'Pinned' || undefined}
                             className={styles.track}
                             onScroll={pinned ? undefined : onScroll}
                         >

@@ -13,7 +13,6 @@ export const ACI_WEAVE: Omit<AciWeaveProps, 'Device'> = {
     },
     button: { label: 'Explore ACI Weave', href: '#' },
     button2: { label: 'Kingspan case', href: '#' },
-    background: abstract('001'),
     videos: [
         {
             caption: 'ACI Weave in action',

@@ -81,10 +81,12 @@ export function GiantRows({
                         key={i}
                         data-style={style !== 'solid' ? style : undefined}
                         className={cx(styles.row)}
+                        // Inline background-image, not a custom property: a relative URL in a custom property
+                        // resolves against the stylesheet (assets/), not the page, and the image 404s
                         style={
                             r.image
                                 ? ({
-                                      ['--img' as string]: `url('${r.image}')`,
+                                      backgroundImage: `url('${r.image}')`,
                                   } as CSSProperties)
                                 : undefined
                         }

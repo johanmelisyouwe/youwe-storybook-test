@@ -15,8 +15,7 @@ import styles from './aci-weave.module.css'
   Desktop: two equal columns, gap 80, padding 80; the text column stays in view while the videos scroll.
   Mobile: stacked, gap 48, padding 80/12.
   As on the v2 site: each item is a panel (surface/base-2, card radius) with the media on top and a caption bar
-  (caption left, tag right); an item without a video file is a still screenshot. Optional background image
-  behind the whole section (85% surface/base-1 over it). Two buttons: Primary + Solid.
+  (caption left, tag right); an item without a video file is a still screenshot. Two buttons: Primary + Solid.
 */
 
 export type WeaveVideo = {
@@ -42,8 +41,6 @@ export type AciWeaveProps = {
     /** Second button (Solid), next to the first */
     button2?: { label: string; href: string }
     videos: WeaveVideo[]
-    /** Background image behind the section (kept quiet under 85% surface/base-1) */
-    background?: string
     /** Video Player autoplay: "In view" (default) plays each video muted while it's on screen */
     Autoplay?: VideoPlayerProps['Autoplay']
 }
@@ -85,18 +82,10 @@ export function AciWeave({
     button,
     button2,
     videos,
-    background,
     Autoplay = 'In view',
 }: AciWeaveProps) {
     return (
         <section className={cx(block.root, styles.root)}>
-            {background && (
-                <CardMedia
-                    src={background}
-                    placeholder={false}
-                    className={styles.bg}
-                />
-            )}
             <div className={cx(block.inner, styles.inner)}>
                 <div className={styles.grid}>
                     <div data-rise className={styles.content}>
