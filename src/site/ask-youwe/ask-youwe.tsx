@@ -143,8 +143,8 @@ export function AskLabel({ label = 'Ask Youwe' }: { label?: string }) {
 }
 
 export type AskYouweProps = {
-    /** Figma: State */
-    State?: 'Default' | 'Contextual' | 'Active'
+    /** Figma: State. Docked is the sticky bar (AskDock): Contextual on frosted glass. */
+    State?: 'Default' | 'Contextual' | 'Docked' | 'Active'
     /** Figma: Device */
     Device?: 'Desktop' | 'Mobile'
     /** Figma: Prompt */
@@ -305,8 +305,9 @@ export function AskYouwe({
         <form
             role="search"
             data-contextual={
-                (State === 'Contextual' && Device === 'Desktop') || undefined
+                (State !== 'Default' && Device === 'Desktop') || undefined
             }
+            data-docked={State === 'Docked' || undefined}
             className={cx(styles['ask-glass'], styles['ask-bar'], className)}
             onSubmit={submit}
             onClick={() => input.current?.focus()}
@@ -321,7 +322,7 @@ export function AskYouwe({
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
             />
-            {State === 'Contextual' && context && (
+            {State !== 'Default' && context && (
                 <span className={styles['ask-bar-context']}>
                     <AskChip label={context} onClick={() => onAsk?.(context)} />
                 </span>
@@ -437,7 +438,7 @@ export function AskSnippet({
     )
 }
 
-/* Docked bar (code: the site's sticky Ask Youwe bar; Figma only has the bar itself, not its placement) */
+/* Docked bar: the site's sticky Ask Youwe bar (Figma: State=Docked is the bar; its placement is code) */
 export type AskDockProps = {
     Device?: 'Desktop' | 'Mobile'
     /** Page-specific question shown as the Contextual chip (desktop; on mobile the bar stays Default, there is no room) */
@@ -526,11 +527,7 @@ export function AskDock({
             ) : (
                 <AskYouwe
                     key="bar"
-                    State={
-                        context && Device === 'Desktop'
-                            ? 'Contextual'
-                            : 'Default'
-                    }
+                    State="Docked"
                     Device={Device}
                     context={context}
                     onAsk={setQ}

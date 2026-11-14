@@ -3,9 +3,9 @@ import { VideoPlayer, type VideoPlayerProps } from './video-player'
 import { QUOOKER_VIDEO, abstract, caseImage, video } from '../../media/media'
 
 /*
-  Video Player — not a Figma component. Matches the "Video" frames in the ACI Weave block on Home
-  (https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26598-4074). The clip is a placeholder made
-  from the poster image.
+  Video Player — Figma 27239:102 (Autoplay: Off, In view).
+  https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27239-102
+  The clip is a placeholder made from the poster image.
 */
 
 type Args = Pick<VideoPlayerProps, 'Autoplay'>
@@ -58,6 +58,30 @@ export const Vimeo: Story = {
                 poster={caseImage('quooker-1', 'wide')}
                 title="Quooker: late summer video"
             />
+        </div>
+    ),
+}
+
+/** Every Figma variant: Autoplay Off and In view. */
+export const AllVariants: Story = {
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <div
+            style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: 'var(--spacing-xl)',
+            }}
+        >
+            {(['Off', 'In view'] as const).map((a) => (
+                <VideoPlayer
+                    key={a}
+                    Autoplay={a}
+                    src={video('011')}
+                    poster={abstract('011')}
+                    title={`Autoplay ${a}`}
+                />
+            ))}
         </div>
     ),
 }

@@ -9,9 +9,8 @@ import filter from '../filter-bar/filter-bar.module.css'
 import styles from './insights-overview.module.css'
 
 /*
-  Content blocks/Insights overview — built from the hand-built "All insights" frames on Page / Insights:
-  desktop 26734:89 (inside "Insights · content" 26661:7329), mobile 26816:3083. Not a Figma component yet
-  (proposed for design review).
+  Content blocks/Insights overview — Figma component set 27239:155 (Device: Desktop 27192:182, Mobile 27192:207),
+  made from the hand-built "All insights" frames on Page / Insights.
   Heading: red-line kicker + heading/xl (gap 12). Desktop: type filters in the Filter bar box (tiles
   "All · 174" etc., label + arrow, 120 high, gap 16; the selected tile has the Filter bar's pressed outline),
   "Showing 12 of 174" body/sm/reg tertiary, a 3-column Insight Card grid (gap 16, rows 40), Show more

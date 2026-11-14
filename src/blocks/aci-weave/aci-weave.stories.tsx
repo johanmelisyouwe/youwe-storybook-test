@@ -3,9 +3,9 @@ import { AciWeave } from './aci-weave'
 import { ACI_WEAVE } from './aci-weave.copy'
 
 /*
-  Content blocks/ACI Weave — from the hand-built Home frames (desktop 26598:4074, mobile 26924:10755).
-  https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26598-4074
-  Not a Figma component yet. Videos are placeholder clips made from the posters until the real videos arrive.
+  Content blocks/ACI Weave — Figma 27239:117 (Device: Desktop, Mobile).
+  https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27239-117
+  Videos are placeholder clips made from the posters until the real videos arrive.
 */
 
 type Args = { Device: 'Desktop' | 'Mobile'; Autoplay: 'In view' | 'Off' }

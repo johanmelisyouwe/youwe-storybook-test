@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { InsightsOverviewDemo } from './insights-overview.demo'
 
 /*
-  Content blocks/Insights overview — from the hand-built "All insights" frames on Page / Insights
-  (desktop 26734:89, mobile 26816:3083). https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26734-89
-  Not a Figma component yet. Filters and Show more work on the 12 Figma sample cards.
+  Content blocks/Insights overview — Figma 27239:155 (Device: Desktop, Mobile).
+  https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=27239-155
+  Filters and Show more work on the 12 Figma sample cards.
 */
 
 type Args = { Device: 'Desktop' | 'Mobile' }

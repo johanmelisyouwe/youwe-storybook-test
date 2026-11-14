@@ -5,9 +5,9 @@ import ring from '../../shared/focus-ring/focus-ring.module.css'
 import styles from './video-player.module.css'
 
 /*
-  Video Player — not a Figma component. Used on its own (ACI Weave) and inside Content blocks/Media, where it
-  takes the place of an image (Media video / video2) (Figma has a "Video" placeholder frame in the ACI Weave block on Home,
-  26598:4074): a 16:9 poster with the red play button, playing a native <video>.
+  Video Player — Figma 27239:102 (Autoplay: Off, In view; Poster instance swap). Used on its own (ACI Weave) and
+  inside Content blocks/Media, where it takes the place of an image (Media video / video2; in Figma the Media
+  Image swap lists Video Player): a 16:9 poster with the red play button, playing a native <video>.
   Autoplay "Off": the poster and play button; play starts the video with the browser's own controls.
   Autoplay "In view": plays muted and looped while at least half of it is on screen, pauses when it leaves.
   A small pause button stays on the video (WCAG 2.2.2: moving content can be paused); once someone pauses,
