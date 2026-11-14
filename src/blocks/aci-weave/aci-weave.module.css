@@ -64,4 +64,36 @@
     .caption {
         color: var(--color-shared-content-tertiary);
     }
+
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+
+    /* Mosaic: wide, then two portraits (the second offset down), then wide */
+    .mosaic {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--spacing-sm);
+
+        & > .tile:first-child,
+        & > .tile:nth-child(4) {
+            grid-column: 1 / -1;
+        }
+
+        & > .tile:nth-child(3) {
+            margin-top: var(--spacing-4xl);
+        }
+
+        @container (max-width: 63.9375rem) {
+            & > .tile:nth-child(3) {
+                margin-top: var(--spacing-2xl);
+            }
+        }
+    }
+
+    .tile {
+        align-self: start;
+    }
 }

@@ -43,6 +43,38 @@
             max-width: calc(var(--yw-container-max) + var(--_pad));
         }
 
+        /* Pinned: the frame sticks for 100svh plus the distance the row travels; vertical scroll moves the cards
+           sideways (--p 0–1 × --_dist, set in case-carousel.tsx). */
+        &[data-pinned] {
+            height: calc(100svh + var(--_dist, 0px));
+            padding-block: 0;
+            overflow-x: clip;
+        }
+
+        &[data-pinned] .frame {
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            height: 100svh;
+        }
+
+        &[data-pinned] .inner {
+            width: 100%;
+        }
+
+        &[data-pinned] .track {
+            overflow: visible;
+            scroll-snap-type: none;
+
+            & > li {
+                transform: translateX(
+                    calc(var(--p, 0) * -1 * var(--_dist, 0px))
+                );
+                will-change: transform;
+            }
+        }
+
         @container (max-width: 47.9375rem) {
             &[data-layout="short"] .inner {
                 grid-template-columns: 1fr;
@@ -87,6 +119,12 @@
         flex-direction: column;
         gap: var(--spacing-lg);
     }
+    .titleactions {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-lg);
+    }
+
     .titlebar {
         display: flex;
         align-items: center;

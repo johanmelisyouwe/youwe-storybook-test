@@ -1,5 +1,5 @@
 import type { AciWeaveProps } from './aci-weave'
-import { abstract, video } from '../../media/media'
+import { abstract, caseImage, video } from '../../media/media'
 
 /** Figma desktop copy (Home, Frame 6), shared by the story and the Home template. Videos: placeholder clips
     made from the poster images until the real ACI Weave videos arrive. */
@@ -28,5 +28,21 @@ export const ACI_WEAVE: Omit<AciWeaveProps, 'Device'> = {
             poster: abstract('016'),
             src: video('016'),
         },
+    ],
+}
+
+/** Home: the Mosaic layout (still images, two buttons). */
+export const ACI_WEAVE_MOSAIC: Omit<AciWeaveProps, 'Device'> = {
+    ...ACI_WEAVE,
+    Layout: 'Mosaic',
+    button2: { label: 'Book a demo', href: '#' },
+    images: [
+        { src: abstract('011'), alt: '' },
+        {
+            src: caseImage('kingspan-1'),
+            alt: 'Kingspan Insulated Panels',
+        },
+        { src: abstract('015'), alt: '' },
+        { src: abstract('016'), alt: '' },
     ],
 }

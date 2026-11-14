@@ -35,7 +35,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Client quote with attribution; optional full-bleed photo with the tint-1 overlay. With several quotes it auto-advances every 7s (View Transition: old quote blurs and lifts, new one rises in) and pauses on hover, focus and when off-screen.',
+                    'Client quote with attribution; optional full-bleed photo with the tint-1 overlay. With several quotes it auto-advances every 7s (View Transition: old quote blurs and lifts, new one rises in) and pauses on hover, focus and when off-screen. Used on Work detail and Industries detail. For the Home "In their words" block with a tab per client, use the Vertical slider (story "In their words").',
             },
         },
     },

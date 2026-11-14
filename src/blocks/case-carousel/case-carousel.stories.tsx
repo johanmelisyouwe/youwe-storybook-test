@@ -82,14 +82,20 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Section header and Case Cards: Short (prev/next + counter, cards bleed off the right edge), Full width 3 / 4 (a row of cards), Scroll (one row off the edge). Snapping native scroll; tabbing to a card scrolls it into view. Cards use the Case Card hover.',
+                    'Section header and Case Cards: Short (prev/next + counter, cards bleed off the right edge), Full width 3 / 4 (a row of cards), Scroll (one row off the edge), Pinned (code layout for the Home reel: the section stays in view while scrolling moves the cards sideways, with a 01 / 09 counter; mobile and reduced motion swipe). Snapping native scroll; tabbing to a card scrolls it into view. Cards use the Case Card hover.',
             },
         },
     },
     argTypes: {
         Layout: {
             control: 'inline-radio',
-            options: ['Short', 'Full width 3', 'Full width 4', 'Scroll'],
+            options: [
+                'Short',
+                'Full width 3',
+                'Full width 4',
+                'Scroll',
+                'Pinned',
+            ],
         },
         Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
     },
@@ -98,6 +104,7 @@ const meta: Meta<Args> = {
         <div style={{ maxWidth: W[Device] }}>
             <CaseCarousel
                 Layout={Layout}
+                Device={Device}
                 {...props(Layout)}
                 cases={CASES.slice(0, count(Layout))}
             />
@@ -110,6 +117,23 @@ type Story = StoryObj<Args>
 export const Default: Story = {}
 export const FullWidth3: Story = { args: { Layout: 'Full width 3' } }
 export const Scroll: Story = { args: { Layout: 'Scroll' } }
+
+/** Pinned: scroll the canvas. The reel stays in view, the cards move sideways and the counter follows. */
+export const Pinned: Story = {
+    args: { Layout: 'Pinned' },
+    render: ({ Device = 'Desktop' }) => (
+        <div style={{ maxWidth: W[Device] }}>
+            <div style={{ height: '50vh' }} />
+            <CaseCarousel
+                Layout="Pinned"
+                Device={Device}
+                {...WIDE}
+                cases={CASES}
+            />
+            <div style={{ height: '80vh' }} />
+        </div>
+    ),
+}
 
 /** Every Figma variant: Layout × Device. */
 export const AllVariants: Story = {

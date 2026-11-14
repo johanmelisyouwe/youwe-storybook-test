@@ -11,7 +11,7 @@ import { TechnologyLogos } from '../blocks/technology-logos'
 import { ContactCTA } from '../blocks/contact-cta'
 import type { CaseCardProps } from '../ui/case-card'
 import { AciWeave } from '../blocks/aci-weave'
-import { ACI_WEAVE } from '../blocks/aci-weave/aci-weave.copy'
+import { ACI_WEAVE_MOSAIC } from '../blocks/aci-weave/aci-weave.copy'
 import {
     CLIENT_LOGOS,
     Page,
@@ -225,6 +225,7 @@ function HomePage({ Device: story }: { Device: Device }) {
             <Hero
                 Device={Device}
                 image={abstract('016')}
+                Background="WebGL"
                 title={['Complex products.', 'Clear platforms.']}
                 body="Digital transformation is about reshaping how platforms, processes, data and people work together. We design connected digital ecosystems and help teams adopt new ways of working, so change leads to lasting performance."
                 label={{
@@ -261,7 +262,7 @@ function HomePage({ Device: story }: { Device: Device }) {
             </Section>
             <Section Mode="Dark">
                 <CaseCarousel
-                    Layout="Scroll"
+                    Layout="Pinned"
                     Device={Device}
                     Kicker="Selected work"
                     Title="Commerce, portals and AI in production"
@@ -282,7 +283,7 @@ function HomePage({ Device: story }: { Device: Device }) {
                     items={mobile ? IN_THEIR_WORDS.slice(0, 3) : IN_THEIR_WORDS}
                 />
             </Section>
-            <AciWeave Device={Device} {...ACI_WEAVE} />
+            <AciWeave Device={Device} {...ACI_WEAVE_MOSAIC} />
             <Section Mode="Light">
                 <TechnologyLogos
                     Layout="Default"

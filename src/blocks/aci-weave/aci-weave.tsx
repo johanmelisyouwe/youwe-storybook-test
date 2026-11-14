@@ -1,5 +1,6 @@
 import { AskSnippet, type AskSnippetProps } from '../../site/ask-youwe'
 import block from '../../shared/block/block.module.css'
+import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
 import { Button } from '../../ui/button'
 import { VideoPlayer, type VideoPlayerProps } from '../../ui/video-player'
@@ -13,7 +14,12 @@ import styles from './aci-weave.module.css'
   autoplay muted while in view (Autoplay "In view", the default); "Off" shows the play button instead.
   Desktop: two equal columns, gap 80, padding 80; the text column stays in view while the videos scroll.
   Mobile: stacked, gap 48, padding 80/12.
+  Layout "Mosaic" (code layout, the Home block as on the v2 site): the right column is a mosaic of still images
+  (wide, two portraits, wide; two columns, gap 16, the second portrait offset down) instead of the videos, and the
+  text column has two buttons (Primary + Solid). The images open with the page clip reveal.
 */
+
+export type WeaveImage = { src: string; alt?: string }
 
 export type WeaveVideo = { caption: string; poster?: string; src?: string }
 
@@ -26,7 +32,13 @@ export type AciWeaveProps = {
     /** Ask Youwe/Snippet (Nudge) under the body */
     snippet?: Pick<AskSnippetProps, 'Title' | 'href' | 'onAsk'>
     button?: { label: string; href: string }
-    videos: WeaveVideo[]
+    /** Second button (Solid), next to the first */
+    button2?: { label: string; href: string }
+    /** "Videos" (default): stacked Video Players. "Mosaic": still images (4 used: wide, portrait, portrait, wide) */
+    Layout?: 'Videos' | 'Mosaic'
+    videos?: WeaveVideo[]
+    /** Mosaic images */
+    images?: WeaveImage[]
     /** Video Player autoplay: "In view" (default) plays each video muted while it's on screen */
     Autoplay?: VideoPlayerProps['Autoplay']
 }
@@ -59,11 +71,17 @@ export function AciWeave({
     body,
     snippet,
     button,
-    videos,
+    button2,
+    Layout = 'Videos',
+    videos = [],
+    images = [],
     Autoplay = 'In view',
 }: AciWeaveProps) {
     return (
-        <section className={cx(block.root, styles.root)}>
+        <section
+            data-layout={Layout.toLowerCase()}
+            className={cx(block.root, styles.root)}
+        >
             <div className={cx(block.inner, styles.inner)}>
                 <div className={styles.grid}>
                     <div data-rise className={styles.content}>
@@ -85,22 +103,52 @@ export function AciWeave({
                                 />
                             )}
                         </div>
-                        {button && (
-                            <div>
-                                <Button
-                                    Variant="Primary"
-                                    Size="M"
-                                    label={button.label}
-                                    href={button.href}
-                                />
+                        {(button || button2) && (
+                            <div className={styles.actions}>
+                                {button && (
+                                    <Button
+                                        Variant="Primary"
+                                        Size="M"
+                                        label={button.label}
+                                        href={button.href}
+                                    />
+                                )}
+                                {button2 && (
+                                    <Button
+                                        Variant="Solid"
+                                        Size="M"
+                                        label={button2.label}
+                                        href={button2.href}
+                                    />
+                                )}
                             </div>
                         )}
                     </div>
-                    <div data-stagger className={styles.videos}>
-                        {videos.map((v) => (
-                            <Video key={v.caption} {...v} Autoplay={Autoplay} />
-                        ))}
-                    </div>
+                    {Layout === 'Mosaic' ? (
+                        <div className={styles.mosaic}>
+                            {images.slice(0, 4).map((m, i) => (
+                                <CardMedia
+                                    key={m.src}
+                                    src={m.src}
+                                    alt={m.alt}
+                                    ratio={
+                                        i === 0 || i === 3 ? '16 / 9' : '4 / 5'
+                                    }
+                                    className={styles.tile}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <div data-stagger className={styles.videos}>
+                            {videos.map((v) => (
+                                <Video
+                                    key={v.caption}
+                                    {...v}
+                                    Autoplay={Autoplay}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

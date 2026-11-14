@@ -5,6 +5,7 @@ import { CardMedia } from '../../shared/card-reveal/card-media'
 import { CountUp } from '../../ui/stat'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
+import { HeroWebGL } from './hero-webgl'
 import styles from './hero.module.css'
 
 /* Content blocks/Hero — Figma 24985:698; _Hero/Bar — 26880:273; _Hero/Label — 26882:927. */
@@ -137,6 +138,9 @@ export type HeroProps = {
     bar?: HeroBarProps
     /** Figma: Image (background for Gradient, wide image for Title + image) */
     image?: string
+    /** Gradient: 'WebGL' draws moving silk ribbons over the image (the image stays as the fallback and for
+        reduced motion); 'Image' is the still background */
+    Background?: 'Image' | 'WebGL'
     /** Title + image: client logo */
     logo?: ReactNode
     /** Figma: Show header — the Header/Corporate instance on top */
@@ -154,6 +158,7 @@ export function Hero({
     buttons = [],
     bar,
     image,
+    Background = 'Image',
     logo,
     header,
     recede = false,
@@ -208,6 +213,7 @@ export function Hero({
                 className={styles.media}
                 placeholder={false}
             />
+            {Background === 'WebGL' && <HeroWebGL />}
             {header && <div className={styles.header}>{header}</div>}
             <div className={cx(block.inner, styles.content)}>
                 <div className={styles.titlecol}>
