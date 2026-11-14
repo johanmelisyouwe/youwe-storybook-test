@@ -1,48 +1,29 @@
-# Sync report — 13 November 2026 (Figma design system updated to match Storybook)
+# Sync report — 14 November 2026 (Home: feedback from the v2 site comparison)
 
-This time the direction is reversed: Figma was updated so it matches what Storybook has. This PR records those Figma changes in code.
+Rob compared our Storybook with the v2 site (youwe-website-v2-test.onrender.com) for the Home page. Storybook is the source of truth, so the missing parts are now components or options here. They use our tokens. The v2 site was the reference for behaviour and layout, checked against the live page and its scripts.
 
-## Figma changes (file IP237ISXsaciooPrSykYMh)
+| Feedback | Change |
+|---|---|
+| Hero: the moving WebGL background is missing | **Hero `Background="WebGL"`** (new `hero-webgl.tsx`), ported from the v2 fluid stage. Glossy ribbons light up in brand red, purple, blue and red-100 on the surface colour, and stay dark on the left behind the text. They lean towards the pointer and drift as you scroll. The still image stays underneath. **Desktop only:** phones, tablets and screens under 1024 keep the image. With reduced motion it shows one still frame. If a frame is slow, it draws fewer pixels. Home uses it. |
+| Chapters: "Keep it running" comes before "Connect it" | The Home Vertical slider order is now Build it → Connect it → Keep it running. |
+| "In their words": no block with tabs per client, and a 7s rotator instead | **Testimonial `Layout="Tabs"`**. The kicker sits above, with a tab per client on the left (real tabs, arrow keys) and the quote, name, role and "Read the case" on the right. It moves to the next client every 7s while in view, pauses on hover or focus, and animates the switch with a View Transition. With reduced motion there is no timer. On mobile the tabs scroll sideways above the quote. Home uses it with the four client quotes from the v2 site (`testimonial.copy.ts`). |
+| Case reel: the version that stays fixed while you scroll is not built, and the counter is only on Short | **Case carousel `Layout="Pinned"`**. The section stays in view while scrolling moves a row of wide reel cards sideways. Each card is min(760, 70vw) with an image twice as wide as tall, the stat on the image, the client, the title and a round arrow that turns red on hover. Each image shifts slightly as the card passes. The 01 / 09 counter sits above the button. A 2px line at the bottom fills with progress. Tabbing to a card scrolls the page to it. On mobile and with reduced motion the cards are swiped instead. Home uses it. |
+| ACI Weave: stacked videos and one button, instead of the v2 layout with two buttons | **ACI Weave** now matches v2. Each item is a panel with a caption bar (caption on the left, tag on the right, e.g. "Demo"). An item without a video file shows a still screenshot. Optional `background` image (kept quiet under 85% surface). Optional `button2` (Solid): "Kingspan case". |
+| Technologies: the image fill is missing | **Technology logos `rows`** accept a GiantRow (`style: 'image'`, `image`). On Home, row 1 is filled with an image and row 2 is outlined. |
 
-- **Video Player (new component, 27239:102):** has its own page. Autoplay Off shows the red play button. Autoplay In view shows a pause button on glass in the corner. There is a Poster instance swap. Content blocks/Media lists Video Player in both of its Image swaps.
-- **Content blocks/ACI Weave (new component set, 27239:117):** made from the loose Home "Frame 6", with Device Desktop and Mobile. The six video placeholders are now Video Player instances, and the mobile nudge copy matches desktop.
-- **Content blocks/Insights overview (new component set, 27239:155):** made from the loose "All insights" frames, with Device Desktop and Mobile.
-- **Vertical slider:** new Behaviour axis with Click and Scroll (now 16 variants). The Scroll variants always show the progress line. Mobile Scroll shows the background image and steps. The progress line is 4px everywhere.
-- **Ask Youwe:** new State Docked, which is the sticky bar on frosted glass (65% base-1 with a 32 blur).
-- **Contrast colours:** the 8 semantic colour variables now have the WCAG AA values that code was overriding:
-  - dark: brand and link use brand-red/200; placeholder and tag use neutral/400
-  - light: brand uses brand-red/500; placeholder uses neutral/500; tertiary and tag use neutral/600
-- **Templates:**
-  - Home: ACI Weave is now an instance, and both Vertical sliders use Behaviour Scroll.
-  - Insights: "All insights" is now an Insights overview instance.
-  - Work detail:
-    - The title is in sentence case: "Scaling smart: Quooker’s expansion to 17 countries".
-    - The hero image is quooker-1.
-    - The full-bleed media is a Video Player (In view) with the quooker-1 poster.
-    - The two-up shows quooker-1 and g-star.
-    - Related work no longer shows Quooker.
+## Notes
 
-## Code changes
-
-- **Ask Youwe:** new `State="Docked"`. It is Contextual on frosted glass, and the sticky AskDock bar now uses it. The glass style moved from `.dock > .ask-glass` to `.ask-glass[data-docked]`. A Docked story was added and AllVariants now includes it.
-- **Video Player:** new AllVariants story. The comments now point to the Figma component.
-- **ACI Weave, Insights overview:** the comments point to the new component sets.
-- **Tokens:** `tokens/figma-variables.json` now has the new contrast aliases, and `tokens.css` was rebuilt from it. `src/tokens/contrast-overrides.css` was deleted. Because the values are the same as the overrides, nothing changes on screen.
-- **figma-sync.json:**
-  - Video Player, ACI Weave and Insights overview are now `complete`, with their new node IDs and axes.
-  - Vertical slider has Behaviour(2).
-  - Ask Youwe has State(4).
-- **BACKLOG:**
-  - The "Contrast colours in Figma" item is done.
-  - New item: the Tech partners split in Figma needs a repeatable group. See the section below.
-  - The Section intro colour note is now its own item.
-
-## Not changed in Figma
-
-- **Tech Partners "Systems that optimize" and "Systems that drive revenue"** are still loose frames. The Tech partners split component has a fixed 3 groups with up to 2+2 cards. These sections have 3 and 6 groups with up to 3+2 cards. I tried adding hidden extra groups to the component, but instances in the file did not pick them up, so I reverted that change. This needs a component with a repeatable group, using Figma slots or a nested `_Partner group` component.
-- The other loose frames (Industries, Work, Industries detail, Insights detail, Tech Partners detail "Get in touch") have no code block of their own yet.
+- Copy stays as it was. The copy differences with v2 were left out on purpose, except the client quotes, which were missing.
+- The Symson role was cut off when it was read from the v2 data. "CEO, Symson" is assumed.
+- The Home reel uses the case photos we have. The ACI Weave panels 2 and 3 use placeholder stills until the product screenshots are added.
+- No Figma axes changed. Pinned, Tabs and Background are code options, so `figma-sync.json` is unchanged.
 
 ## Checks
 
-- `pnpm typecheck`, `pnpm check` (79 complete, 19 templates, coverage clean), `pnpm build-storybook`: pass
-- Ask Youwe Docked and Video Player AllVariants checked visually. Figma Home and Work detail templates checked with screenshots.
+- `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass
+- Checked in a browser at 1440 and on an iPhone 13:
+  - The WebGL hero renders.
+  - The reel stays in place and moves sideways; the counter follows and the line fills.
+  - The tabs work, including on mobile.
+  - The ACI Weave panels and both buttons show.
+  - No console errors.

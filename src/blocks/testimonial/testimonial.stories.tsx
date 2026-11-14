@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Testimonial, type Quote, type TestimonialProps } from './'
 import { ClientLogo } from '../../shared/logos/client-logo'
 import { abstract } from '../../media/media'
+import { ModeFrame } from '../../shared/mode-frame'
+import { IN_THEIR_WORDS } from './testimonial.copy'
 
 /*
   Content blocks/Testimonial — https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26535-238
@@ -35,7 +37,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Client quote with attribution; optional full-bleed photo with the tint-1 overlay. With several quotes it auto-advances every 7s (View Transition: old quote blurs and lifts, new one rises in) and pauses on hover, focus and when off-screen.',
+                    'Client quote with attribution; optional full-bleed photo with the tint-1 overlay. With several quotes it auto-advances every 7s (View Transition: old quote blurs and lifts, new one rises in) and pauses on hover, focus and when off-screen. Layout Tabs (Home "In their words"): a tab per client on the left, with the same 7s rotation.',
             },
         },
     },
@@ -64,6 +66,42 @@ export const Rotating: Story = {
         <div style={{ maxWidth: 1440 }}>
             <Testimonial quotes={QUOTES} />
         </div>
+    ),
+}
+
+/**
+ * Layout Tabs — Home "In their words": a tab per client (arrow keys move between them) and the quote with
+ * Read the case. Moves to the next client every 7s while in view; hover or focus pauses it.
+ */
+export const Tabs: Story = {
+    name: 'Tabs (In their words)',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <ModeFrame Mode="Light" padding={0}>
+            <div style={{ maxWidth: 1440 }}>
+                <Testimonial
+                    Layout="Tabs"
+                    kicker="In their words"
+                    quotes={IN_THEIR_WORDS}
+                />
+            </div>
+        </ModeFrame>
+    ),
+}
+export const TabsMobile: Story = {
+    name: 'Tabs mobile',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <ModeFrame Mode="Light" padding={0}>
+            <div style={{ maxWidth: 360 }}>
+                <Testimonial
+                    Layout="Tabs"
+                    Device="Mobile"
+                    kicker="In their words"
+                    quotes={IN_THEIR_WORDS}
+                />
+            </div>
+        </ModeFrame>
     ),
 }
 

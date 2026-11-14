@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { Button } from '../../ui/button'
-import { GiantRows } from '../statement'
+import { GiantRows, type GiantRow } from '../statement'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
 import styles from './technology-logos.module.css'
@@ -17,8 +17,9 @@ export type TechnologyLogosProps = {
     Title: string
     /** Figma: Body (Show body) */
     Body?: string
-    /** Default layout: the giant drifting rows */
-    rows?: string[]
+    /** Default layout: the giant drifting rows. A string alternates solid / outline; a GiantRow sets its own
+        style ('image' fills the letters with `image`, as on the v2 site; 'outline'; 'solid'). */
+    rows?: (string | GiantRow)[]
     /** Logo slots; null = empty slot (keeps its space, no border) */
     logos: TechLogo[]
     /** Figma: Show button */
@@ -43,10 +44,11 @@ export function TechnologyLogos({
         >
             {isDefault && rows && rows.length > 0 && (
                 <GiantRows
-                    rows={rows.map((t, i) => ({
-                        text: t,
-                        style: i % 2 ? 'outline' : 'solid',
-                    }))}
+                    rows={rows.map((r, i) =>
+                        typeof r === 'string'
+                            ? { text: r, style: i % 2 ? 'outline' : 'solid' }
+                            : r
+                    )}
                 />
             )}
             <div className={cx(block.inner, styles.inner)}>

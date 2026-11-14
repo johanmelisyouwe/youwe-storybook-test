@@ -8,6 +8,10 @@
   code uses a snapping scroller with prev/next and a 01 / 08 counter (see SYNC-REPORT.md).
   Interaction: tabbing to a card scrolls it fully into view.
 */
+.reelcard {
+    composes: root from "../../shared/focus-ring/focus-ring.module.css";
+}
+
 @layer components {
     .root {
         &[data-layout="short"] .inner {
@@ -41,6 +45,38 @@
         &[data-layout="scroll"] .head {
             padding-right: var(--_pad);
             max-width: calc(var(--yw-container-max) + var(--_pad));
+        }
+
+        /* Pinned: the frame sticks for 100svh plus the distance the row travels; vertical scroll moves the cards
+           sideways (--p 0–1 × --_dist, set in case-carousel.tsx). */
+        &[data-pinned] {
+            height: calc(100svh + var(--_dist, 0px));
+            padding-block: 0;
+            overflow-x: clip;
+        }
+
+        &[data-pinned] .frame {
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            height: 100svh;
+        }
+
+        &[data-pinned] .inner {
+            width: 100%;
+        }
+
+        &[data-pinned] .track {
+            overflow: visible;
+            scroll-snap-type: none;
+
+            & > li {
+                transform: translateX(
+                    calc(var(--p, 0) * -1 * var(--_dist, 0px))
+                );
+                will-change: transform;
+            }
         }
 
         @container (max-width: 47.9375rem) {
@@ -87,6 +123,14 @@
         flex-direction: column;
         gap: var(--spacing-lg);
     }
+    /* Pinned: counter above the button, right aligned */
+    .titleactions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: var(--spacing-sm);
+    }
+
     .titlebar {
         display: flex;
         align-items: center;
@@ -140,6 +184,105 @@
         .titlebar {
             flex-direction: column;
             align-items: flex-start;
+        }
+    }
+
+    /* _Case reel card (Pinned): min(760, 70vw) wide; image 2:1 that shifts with --px; stat on the image;
+       client, title and a 48 round arrow that turns red and rotates on hover */
+    .track[data-reel] {
+        gap: var(--spacing-lg);
+
+        & > li {
+            flex: 0 0 min(47.5rem, 70vw);
+        }
+    }
+
+    .reelcard {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        color: var(--color-shared-content-primary);
+        text-decoration: none;
+    }
+
+    .reelmedia {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        border-radius: var(--component-radius-card);
+
+        & img {
+            transform: translate3d(calc(var(--px, 0) * 1%), 0, 0) scale(1.08);
+        }
+    }
+
+    .reelstat {
+        position: absolute;
+        bottom: var(--spacing-lg);
+        left: var(--spacing-lg);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--component-radius-card);
+        background: color-mix(
+            in srgb,
+            var(--color-shared-surface-base-1) 80%,
+            transparent
+        );
+        backdrop-filter: blur(var(--effect-blur-background-blur-blur));
+    }
+
+    .reelmeta {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+    }
+
+    .reeltext {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+        min-width: 0;
+    }
+
+    .reelclient {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .reelgo {
+        display: inline-grid;
+        flex: 0 0 auto;
+        place-items: center;
+        width: 3rem;
+        height: 3rem;
+        border: var(--shared-width-1) solid var(--color-shared-border-2);
+        border-radius: var(--component-radius-pill);
+        transition:
+            background-color var(--motion-duration-base)
+            var(--motion-ease-standard),
+            transform var(--motion-duration-base) var(--motion-ease-emphasized);
+    }
+
+    .reelcard:hover .reelgo,
+    .reelcard:focus-visible .reelgo {
+        border-color: var(--color-shared-border-brand-1);
+        background: var(--color-shared-border-brand-1);
+        transform: rotate(-45deg);
+    }
+
+    /* Pinned: progress line, fills with --p */
+    .rail {
+        position: relative;
+        height: 2px;
+        margin-right: var(--_pad);
+        background: var(--color-shared-border-2);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--color-shared-surface-fixed-brand-red);
+            transform: scaleX(var(--p, 0));
+            transform-origin: left;
         }
     }
 }

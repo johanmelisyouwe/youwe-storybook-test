@@ -11,6 +11,8 @@ import { TechnologyLogos } from '../blocks/technology-logos'
 import { ContactCTA } from '../blocks/contact-cta'
 import type { CaseCardProps } from '../ui/case-card'
 import { AciWeave } from '../blocks/aci-weave'
+import { Testimonial } from '../blocks/testimonial'
+import { IN_THEIR_WORDS } from '../blocks/testimonial/testimonial.copy'
 import { ACI_WEAVE } from '../blocks/aci-weave/aci-weave.copy'
 import {
     CLIENT_LOGOS,
@@ -29,8 +31,8 @@ import { abstract, clientPhoto } from '../media/media'
   Templates/Home — Figma "Page / Home": Desktop 26584:5280, Mobile 26805:3646. Copy, props and order from
   figma/templates.js. Images are placeholders (not imported yet).
   Vertical slider "What we do": Figma only fills chapter 1; chapters 2 and 3 use the copy from the v2 site
-  screenshots (titles, bodies, pills), with the Figma index labels. "In their words": Figma has one quote; the
-  other chapters show "Quote to follow" until the copy is supplied.
+  screenshots (titles, bodies, pills), with the Figma index labels. "In their words": Testimonial
+  Layout Tabs with the four client quotes.
   Sub-footer and footer: the desktop copy is the correct one (decided 9 November) and is used on mobile too.
 */
 
@@ -71,10 +73,26 @@ const WHAT_WE_DO: VerticalSliderProps['items'] = [
         },
     },
     {
+        label: 'Foundation for Data & Integrations',
+        image: abstract('016'),
+        slide: practice(
+            '02',
+            'Foundation for Data & Integrations',
+            'Connect it.',
+            'Data architecture, APIs and governance, so your platforms, processes and AI all work from the same data.',
+            [
+                'Enterprise Data Architecture',
+                'Data Compliance & Security',
+                'Data Engineering & API',
+                'AI & Analytics',
+            ]
+        ),
+    },
+    {
         label: 'Operational Optimization & Intelligence',
         image: abstract('009'),
         slide: practice(
-            '02',
+            '03',
             'Operational Optimization & Intelligence',
             'Keep it running.',
             'AI agents, process mining and pricing tools that take repeat work off your teams. We automate the steps worth automating, and people approve the ones that matter.',
@@ -88,45 +106,7 @@ const WHAT_WE_DO: VerticalSliderProps['items'] = [
             ]
         ),
     },
-    {
-        label: 'Foundation for Data & Integrations',
-        image: abstract('016'),
-        slide: practice(
-            '03',
-            'Foundation for Data & Integrations',
-            'Connect it.',
-            'Data architecture, APIs and governance, so your platforms, processes and AI all work from the same data.',
-            [
-                'Enterprise Data Architecture',
-                'Data Compliance & Security',
-                'Data Engineering & API',
-                'AI & Analytics',
-            ]
-        ),
-    },
 ]
-const quote = (client: string): SlideData => ({
-    Type: 'Quote',
-    quote: '“Quote to follow.”',
-    name: client,
-    button: { label: 'Read the case', href: '#' },
-})
-const IN_THEIR_WORDS: VerticalSliderProps['items'] = [
-    {
-        label: 'BunzlOne',
-        slide: {
-            Type: 'Quote',
-            quote: '“We turned the vision into a platform. Now we’re adding new customers and suppliers.”',
-            name: 'Frank Daamen',
-            role: 'Digital Director Bunzl & Founder of BunzlOne',
-            button: { label: 'Read the case', href: '#' },
-        },
-    },
-    { label: 'Chadwicks Group', slide: quote('Chadwicks Group') },
-    { label: 'Thomas Telford', slide: quote('Thomas Telford') },
-    { label: 'Symson', slide: quote('Symson') },
-]
-
 const STATS = [
     {
         Value: '+12.7%',
@@ -219,12 +199,12 @@ const TECH = [
 
 function HomePage({ Device: story }: { Device: Device }) {
     const Device = useDevice(story)
-    const mobile = Device === 'Mobile'
     return (
         <Page Device={story} ask="Which service fits my problem?">
             <Hero
                 Device={Device}
                 image={abstract('016')}
+                Background="WebGL"
                 title={['Complex products.', 'Clear platforms.']}
                 body="Digital transformation is about reshaping how platforms, processes, data and people work together. We design connected digital ecosystems and help teams adopt new ways of working, so change leads to lasting performance."
                 label={{
@@ -261,7 +241,7 @@ function HomePage({ Device: story }: { Device: Device }) {
             </Section>
             <Section Mode="Dark">
                 <CaseCarousel
-                    Layout="Scroll"
+                    Layout="Pinned"
                     Device={Device}
                     Kicker="Selected work"
                     Title="Commerce, portals and AI in production"
@@ -270,16 +250,11 @@ function HomePage({ Device: story }: { Device: Device }) {
                 />
             </Section>
             <Section Mode="Light">
-                <VerticalSlider
+                <Testimonial
+                    Layout="Tabs"
                     Device={Device}
-                    Index="Left"
-                    Kicker="In their words"
-                    Tagline={
-                        mobile
-                            ? undefined
-                            : 'What our clients say about working with us.'
-                    }
-                    items={mobile ? IN_THEIR_WORDS.slice(0, 3) : IN_THEIR_WORDS}
+                    kicker="In their words"
+                    quotes={IN_THEIR_WORDS}
                 />
             </Section>
             <AciWeave Device={Device} {...ACI_WEAVE} />
@@ -289,7 +264,14 @@ function HomePage({ Device: story }: { Device: Device }) {
                     Device={Device}
                     Title="The technology we build on"
                     Body="We pick the platform that fits your business, then connect it to the rest of your landscape."
-                    rows={['We pick the platforms', 'that fit your business']}
+                    rows={[
+                        {
+                            text: 'We pick the platforms',
+                            style: 'image',
+                            image: abstract('016'),
+                        },
+                        { text: 'that fit your business', style: 'outline' },
+                    ]}
                     logos={TECH}
                     button={{ label: 'All tech partners', href: '#' }}
                 />

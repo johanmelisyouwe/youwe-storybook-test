@@ -88,7 +88,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Full-viewport chapters section with two behaviours. **Click** (default): index items are buttons; hover, focus and click switch slides; mobile is stacked. **Scroll**: the section stays in the viewport while you scroll through it, the progress line at the bottom fills with the scroll and the slides change one by one, on desktop and mobile (Scroll stories). With reduced motion Scroll falls back to Click. Slide text rolls in per line (duration/zoom); case media opens with a circular wipe and settles from 1.15 to 1.',
+                    'Full-viewport chapters section with two behaviours. Home "What we do" uses Index Right with Behaviour Scroll (chapters pin while you scroll). **Click** (default): index items are buttons; hover, focus and click switch slides; mobile is stacked. **Scroll**: the section stays in the viewport while you scroll through it, the progress line at the bottom fills with the scroll and the slides change one by one, on desktop and mobile (Scroll stories). With reduced motion Scroll falls back to Click. Slide text rolls in per line (duration/zoom); case media opens with a circular wipe and settles from 1.15 to 1.',
             },
         },
     },
@@ -97,7 +97,8 @@ const meta: Meta<Args> = {
         Behaviour: {
             control: 'inline-radio',
             options: ['Click', 'Scroll'],
-            description: 'Code variant: Scroll pins the section and follows scroll',
+            description:
+                'Code variant: Scroll pins the section and follows scroll',
         },
         Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
         Mode: { control: 'inline-radio', options: ['Dark', 'Light'] },
@@ -122,6 +123,7 @@ type Story = StoryObj<Args>
 
 export const Default: Story = {}
 export const IndexLeft: Story = { args: { Index: 'Left' } }
+
 export const Mobile: Story = {
     args: { Device: 'Mobile' },
     globals: { viewport: { value: 'mobile' } },

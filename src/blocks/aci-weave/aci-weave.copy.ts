@@ -1,8 +1,8 @@
 import type { AciWeaveProps } from './aci-weave'
 import { abstract, video } from '../../media/media'
 
-/** Figma desktop copy (Home, Frame 6), shared by the story and the Home template. Videos: placeholder clips
-    made from the poster images until the real ACI Weave videos arrive. */
+/** Figma desktop copy (Home, Frame 6), shared by the story and the Home template. First panel: placeholder clip made from the
+    poster; panels 2 and 3 are stills (placeholders for the product screenshots), as on the v2 site. */
 export const ACI_WEAVE: Omit<AciWeaveProps, 'Device'> = {
     kicker: 'ACI Weave',
     title: 'AI agents that work inside your systems',
@@ -12,21 +12,24 @@ export const ACI_WEAVE: Omit<AciWeaveProps, 'Device'> = {
         href: '#',
     },
     button: { label: 'Explore ACI Weave', href: '#' },
+    button2: { label: 'Kingspan case', href: '#' },
+    background: abstract('001'),
     videos: [
         {
-            caption: 'Demo: ACI Weave in action',
+            caption: 'ACI Weave in action',
+            tag: 'Demo',
             poster: abstract('011'),
             src: video('011'),
         },
         {
             caption: 'Workflows, approvals and audit log',
+            tag: 'Dashboard',
             poster: abstract('015'),
-            src: video('015'),
         },
         {
             caption: 'Agents connected to ERP, PIM, CRM and commerce',
+            tag: 'Agents',
             poster: abstract('016'),
-            src: video('016'),
         },
     ],
 }

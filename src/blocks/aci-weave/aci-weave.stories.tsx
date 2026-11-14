@@ -18,7 +18,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'ACI Weave section (Home): kicker, title, body, Ask Youwe nudge and button next to a stack of demo videos. On desktop the text stays in view while the videos scroll; mobile stacks. Videos use the Video Player: they play muted while in view (Autoplay "In view", with a pause button), or on click with Autoplay "Off". With reduced motion they never autoplay.',
+                    'ACI Weave section (Home): kicker, title, body, Ask Youwe nudge and button next to a stack of demo videos: each a panel with a caption bar (caption and tag); a panel without a video file is a still screenshot. Two buttons, optional background image. On desktop the text stays in view while the videos scroll; mobile stacks. Videos use the Video Player: they play muted while in view (Autoplay "In view", with a pause button), or on click with Autoplay "Off". With reduced motion they never autoplay.',
             },
         },
     },

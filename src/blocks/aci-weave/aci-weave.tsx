@@ -1,5 +1,6 @@
 import { AskSnippet, type AskSnippetProps } from '../../site/ask-youwe'
 import block from '../../shared/block/block.module.css'
+import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
 import { Button } from '../../ui/button'
 import { VideoPlayer, type VideoPlayerProps } from '../../ui/video-player'
@@ -13,9 +14,21 @@ import styles from './aci-weave.module.css'
   autoplay muted while in view (Autoplay "In view", the default); "Off" shows the play button instead.
   Desktop: two equal columns, gap 80, padding 80; the text column stays in view while the videos scroll.
   Mobile: stacked, gap 48, padding 80/12.
+  As on the v2 site: each item is a panel (surface/base-2, card radius) with the media on top and a caption bar
+  (caption left, tag right); an item without a video file is a still screenshot. Optional background image
+  behind the whole section (85% surface/base-1 over it). Two buttons: Primary + Solid.
 */
 
-export type WeaveVideo = { caption: string; poster?: string; src?: string }
+export type WeaveVideo = {
+    caption: string
+    /** Right side of the caption bar, e.g. Demo */
+    tag?: string
+    poster?: string
+    /** Video file or Vimeo URL; without it the panel shows the poster as a still screenshot */
+    src?: string
+    /** Still screenshot: alt text */
+    alt?: string
+}
 
 export type AciWeaveProps = {
     /** Figma: Device (layout follows the block width) */
@@ -26,27 +39,38 @@ export type AciWeaveProps = {
     /** Ask Youwe/Snippet (Nudge) under the body */
     snippet?: Pick<AskSnippetProps, 'Title' | 'href' | 'onAsk'>
     button?: { label: string; href: string }
+    /** Second button (Solid), next to the first */
+    button2?: { label: string; href: string }
     videos: WeaveVideo[]
+    /** Background image behind the section (kept quiet under 85% surface/base-1) */
+    background?: string
     /** Video Player autoplay: "In view" (default) plays each video muted while it's on screen */
     Autoplay?: VideoPlayerProps['Autoplay']
 }
 
 function Video({
     caption,
+    tag,
     poster,
     src,
+    alt,
     Autoplay,
 }: WeaveVideo & { Autoplay: VideoPlayerProps['Autoplay'] }) {
     return (
         <figure className={styles.video}>
-            <VideoPlayer
-                src={src}
-                poster={poster}
-                title={caption}
-                Autoplay={Autoplay}
-            />
+            {src ? (
+                <VideoPlayer
+                    src={src}
+                    poster={poster}
+                    title={caption}
+                    Autoplay={Autoplay}
+                />
+            ) : (
+                <CardMedia src={poster} alt={alt} ratio="16 / 9" />
+            )}
             <figcaption className={cx(styles.caption, 'yw-body-sm-reg')}>
-                {caption}
+                <span>{caption}</span>
+                {tag && <span className={styles.tag}>{tag}</span>}
             </figcaption>
         </figure>
     )
@@ -59,11 +83,20 @@ export function AciWeave({
     body,
     snippet,
     button,
+    button2,
     videos,
+    background,
     Autoplay = 'In view',
 }: AciWeaveProps) {
     return (
         <section className={cx(block.root, styles.root)}>
+            {background && (
+                <CardMedia
+                    src={background}
+                    placeholder={false}
+                    className={styles.bg}
+                />
+            )}
             <div className={cx(block.inner, styles.inner)}>
                 <div className={styles.grid}>
                     <div data-rise className={styles.content}>
@@ -85,14 +118,24 @@ export function AciWeave({
                                 />
                             )}
                         </div>
-                        {button && (
-                            <div>
-                                <Button
-                                    Variant="Primary"
-                                    Size="M"
-                                    label={button.label}
-                                    href={button.href}
-                                />
+                        {(button || button2) && (
+                            <div className={styles.actions}>
+                                {button && (
+                                    <Button
+                                        Variant="Primary"
+                                        Size="M"
+                                        label={button.label}
+                                        href={button.href}
+                                    />
+                                )}
+                                {button2 && (
+                                    <Button
+                                        Variant="Solid"
+                                        Size="M"
+                                        label={button2.label}
+                                        href={button2.href}
+                                    />
+                                )}
                             </div>
                         )}
                     </div>

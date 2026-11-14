@@ -66,7 +66,7 @@ const CASE: HeroProps = {
     logo: <ClientLogo name="Quooker" width={150} />,
 }
 
-type Args = Pick<HeroProps, 'Variant' | 'Device'> & {
+type Args = Pick<HeroProps, 'Variant' | 'Device' | 'Background'> & {
     Bar: 'Logos' | 'Stats' | 'None'
     'Show header': boolean
 }
@@ -77,7 +77,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Hero. Gradient: kicker + heading/3xl title (2nd line brand red), body and up to 2 buttons, optional bottom bar (client logos or stats, slow marquee). Title + image: case/detail pages. Motion: title rises line by line in a mask; with `recede`, the hero recedes over the first 860px of scroll.',
+                    'Hero. Gradient: optional moving WebGL background (`Background="WebGL"`, the image stays as fallback and for reduced motion), kicker + heading/3xl title (2nd line brand red), body and up to 2 buttons, optional bottom bar (client logos or stats, slow marquee). Title + image: case/detail pages. Motion: title rises line by line in a mask; with `recede`, the hero recedes over the first 860px of scroll.',
             },
         },
     },
@@ -88,14 +88,21 @@ const meta: Meta<Args> = {
         },
         Device: { control: 'inline-radio', options: ['Desktop', 'Mobile'] },
         Bar: { control: 'inline-radio', options: ['Logos', 'Stats', 'None'] },
+        Background: {
+            control: 'inline-radio',
+            options: ['Image', 'WebGL'],
+            description:
+                'Gradient: moving WebGL ribbons over the image (the image is the fallback and stays for reduced motion)',
+        },
     },
     args: {
         Variant: 'Gradient',
         Device: 'Desktop',
         Bar: 'Logos',
+        Background: 'Image',
         'Show header': true,
     },
-    render: ({ Variant, Device, Bar, 'Show header': sh }) => {
+    render: ({ Variant, Device, Bar, Background, 'Show header': sh }) => {
         const base = Variant === 'Gradient' ? GRADIENT : CASE
         const bar =
             Bar === 'None'
@@ -108,6 +115,7 @@ const meta: Meta<Args> = {
                 <Hero
                     {...base}
                     Device={Device}
+                    Background={Background}
                     bar={Variant === 'Gradient' ? bar : undefined}
                     header={
                         sh ? <Header Device={Device} nav={NAV} /> : undefined
@@ -121,6 +129,11 @@ export default meta
 type Story = StoryObj<Args>
 
 export const Default: Story = {}
+/** The Home hero: moving WebGL background (silk ribbons in the brand colours) with the client logo bar. */
+export const WebGLBackground: Story = {
+    name: 'WebGL background',
+    args: { Background: 'WebGL' },
+}
 export const StatsBar: Story = { args: { Bar: 'Stats' } }
 export const TitleImage: Story = {
     args: { Variant: 'Title + image', 'Show header': false },
