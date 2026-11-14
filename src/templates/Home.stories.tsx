@@ -71,10 +71,26 @@ const WHAT_WE_DO: VerticalSliderProps['items'] = [
         },
     },
     {
+        label: 'Foundation for Data & Integrations',
+        image: abstract('016'),
+        slide: practice(
+            '02',
+            'Foundation for Data & Integrations',
+            'Connect it.',
+            'Data architecture, APIs and governance, so your platforms, processes and AI all work from the same data.',
+            [
+                'Enterprise Data Architecture',
+                'Data Compliance & Security',
+                'Data Engineering & API',
+                'AI & Analytics',
+            ]
+        ),
+    },
+    {
         label: 'Operational Optimization & Intelligence',
         image: abstract('009'),
         slide: practice(
-            '02',
+            '03',
             'Operational Optimization & Intelligence',
             'Keep it running.',
             'AI agents, process mining and pricing tools that take repeat work off your teams. We automate the steps worth automating, and people approve the ones that matter.',
@@ -85,22 +101,6 @@ const WHAT_WE_DO: VerticalSliderProps['items'] = [
                 'Contract & Supply Chain',
                 'Product Lifecycle Management (PLM)',
                 'Sustainability & ESG',
-            ]
-        ),
-    },
-    {
-        label: 'Foundation for Data & Integrations',
-        image: abstract('016'),
-        slide: practice(
-            '03',
-            'Foundation for Data & Integrations',
-            'Connect it.',
-            'Data architecture, APIs and governance, so your platforms, processes and AI all work from the same data.',
-            [
-                'Enterprise Data Architecture',
-                'Data Compliance & Security',
-                'Data Engineering & API',
-                'AI & Analytics',
             ]
         ),
     },
@@ -289,7 +289,14 @@ function HomePage({ Device: story }: { Device: Device }) {
                     Device={Device}
                     Title="The technology we build on"
                     Body="We pick the platform that fits your business, then connect it to the rest of your landscape."
-                    rows={['We pick the platforms', 'that fit your business']}
+                    rows={[
+                        {
+                            text: 'We pick the platforms',
+                            style: 'image',
+                            image: abstract('016'),
+                        },
+                        { text: 'that fit your business', style: 'outline' },
+                    ]}
                     logos={TECH}
                     button={{ label: 'All tech partners', href: '#' }}
                 />
