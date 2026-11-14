@@ -17,7 +17,6 @@ Rob compared our Storybook with the v2 site (youwe-website-v2-test.onrender.com)
 - The Symson role was cut off when it was read from the v2 data. "CEO, Symson" is assumed.
 - The Home reel uses the case photos we have. The ACI Weave panels 2 and 3 use placeholder stills until the product screenshots are added.
 - No Figma axes changed. Pinned, Tabs and Background are code options, so `figma-sync.json` is unchanged.
-- This branch includes PR #40 (Figma alignment). Merge #40 first.
 
 ## Checks
 
