@@ -109,6 +109,20 @@
             }
         }
     }
+    /* Media Gallery: 3 columns, gap 16; 2 on mobile */
+    .media-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--spacing-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        @container (max-width: 47.9375rem) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
     .media-two {
         display: grid;
         grid-template-columns: 1fr 1fr;

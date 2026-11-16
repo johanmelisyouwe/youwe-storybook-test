@@ -1,3 +1,4 @@
+import { type ImageInput, assetSrc } from '../../shared/asset'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
@@ -11,7 +12,7 @@ export type AwardsProps = {
     /** Figma: Title */
     Title?: string
     /** Badges (95×95); `image` is the badge artwork (one-colour SVG, drawn in the text colour), `name` its accessible name */
-    badges: { name: string; image?: string }[]
+    badges: { name: string; image?: ImageInput }[]
 }
 
 export function Awards({
@@ -43,8 +44,8 @@ export function Awards({
                                         aria-label={b.name}
                                         className={styles['awards-art']}
                                         style={{
-                                            WebkitMaskImage: `url(${b.image})`,
-                                            maskImage: `url(${b.image})`,
+                                            WebkitMaskImage: `url(${assetSrc(b.image)})`,
+                                            maskImage: `url(${assetSrc(b.image)})`,
                                         }}
                                     />
                                 ) : (

@@ -1,3 +1,4 @@
+import { type LogoInput, Logo } from '../../shared/asset'
 import type { CSSProperties, ReactNode } from 'react'
 import { Button } from '../../ui/button'
 import { GiantRows, type GiantRow } from '../statement'
@@ -7,7 +8,7 @@ import styles from './technology-logos.module.css'
 
 /* Content blocks/Technology logos — Figma 26851:1733. */
 
-export type TechLogo = { name: string; logo?: ReactNode } | null
+export type TechLogo = { name: string; logo?: LogoInput } | null
 
 export type TechnologyLogosProps = {
     /** Figma: Layout */
@@ -84,7 +85,9 @@ export function TechnologyLogos({
                             }
                         >
                             {l &&
-                                (l.logo ?? (
+                                (l.logo ? (
+                                    <Logo value={l.logo} alt={l.name} />
+                                ) : (
                                     <span className="yw-body-md-bold">
                                         {l.name}
                                     </span>

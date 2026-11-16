@@ -1,3 +1,4 @@
+import { fmt } from '../../shared/labels'
 import { useId, useState } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { FieldShell, type FieldLabels, type FieldStatus } from '../field'
@@ -26,12 +27,19 @@ export const FIGMA_LOCALES: (Option & { country: string })[] = [
     { value: '+38', label: '+38', flag: FLAG('UA'), country: 'Ukraine' },
 ]
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const PHONE_INPUT_LABELS = {
+    code: 'Country code',
+    current: 'Country code {code} ({country})',
+}
+
 type LocaleSelectProps = {
     value: string
     onChange: (v: string) => void
     disabled?: boolean
     defaultOpen?: boolean
     locales?: typeof FIGMA_LOCALES
+    L: typeof PHONE_INPUT_LABELS
 }
 
 /** _Locale select — Figma 18781:13057 (building block, no own story). */
@@ -41,6 +49,7 @@ function LocaleSelect({
     disabled,
     defaultOpen,
     locales = FIGMA_LOCALES,
+    L,
 }: LocaleSelectProps) {
     const id = useId()
     const idx = locales.findIndex((l) => l.value === value)
@@ -59,7 +68,10 @@ function LocaleSelect({
                 aria-haspopup="listbox"
                 aria-expanded={lb.open}
                 aria-controls={`${id}-list`}
-                aria-label={`Country code ${cur.label} (${cur.country})`}
+                aria-label={fmt(L.current, {
+                    code: cur.label,
+                    country: cur.country,
+                })}
                 disabled={disabled}
                 onClick={(e) => {
                     e.stopPropagation()
@@ -88,7 +100,7 @@ function LocaleSelect({
                     options={locales}
                     selected={value}
                     activeIndex={lb.active}
-                    label="Country code"
+                    label={L.code}
                     onHover={lb.setActive}
                     onSelect={(v) => {
                         onChange(v)
@@ -123,6 +135,8 @@ export type PhoneInputProps = {
     defaultLocaleOpen?: boolean
     name?: string
     controlClassName?: string
+    /** UI text, for translations: { ...PHONE_INPUT_LABELS } */
+    labels?: Partial<typeof PHONE_INPUT_LABELS>
 }
 
 export function PhoneInput({
@@ -142,7 +156,9 @@ export function PhoneInput({
     defaultLocaleOpen,
     name,
     controlClassName,
+    labels,
 }: PhoneInputProps) {
+    const L = { ...PHONE_INPUT_LABELS, ...labels }
     const id = useId()
     const [code, setCode] = useState(countryCode)
     const [num, setNum] = useState(defaultValue ?? '')
@@ -171,6 +187,7 @@ export function PhoneInput({
         >
             <span className={styles['phone-row']}>
                 <LocaleSelect
+                    L={L}
                     value={code}
                     disabled={disabled}
                     defaultOpen={defaultLocaleOpen}

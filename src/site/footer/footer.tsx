@@ -1,3 +1,5 @@
+import { fmt } from '../../shared/labels'
+import { type Region, RegionSwitch } from '../region-switch'
 import { Icon } from '../../shared/icons/icon'
 import { Button } from '../../ui/button'
 import { cx } from '../../shared/cx'
@@ -48,6 +50,14 @@ function SocialIcon({ name }: { name: 'Instagram' | 'LinkedIn' }) {
 }
 
 export type FooterColumn = { heading: string; links: Link[] }
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const FOOTER_LABELS = {
+    instagram: 'Youwe on Instagram',
+    linkedin: 'Youwe on LinkedIn',
+    region: 'Region',
+    language: 'Language: {language}',
+}
+
 export type FooterProps = {
     /** Figma: Variant */
     Variant?: 'Sitemap' | 'Newsletter'
@@ -60,6 +70,10 @@ export type FooterProps = {
     /** Newsletter variant: text + button; language selector label */
     newsletter?: { text: string; cta: Link }
     language?: string
+    /** Region / locale switch (Newsletter variant); one entry per CMS locale */
+    regions?: Region[]
+    /** UI text, for translations: { ...FOOTER_LABELS } */
+    labels?: Partial<typeof FOOTER_LABELS>
 }
 
 export function Footer(props: FooterProps) {
@@ -89,7 +103,10 @@ function FooterView({
     social = { Instagram: '#', LinkedIn: '#' },
     newsletter,
     language = 'The Netherlands',
+    regions,
+    labels,
 }: FooterProps) {
+    const L = { ...FOOTER_LABELS, ...labels }
     return (
         <footer
             data-newsletter={Variant === 'Newsletter' || undefined}
@@ -149,7 +166,7 @@ function FooterView({
                             <a
                                 href={social.Instagram}
                                 className={ring.root}
-                                aria-label="Youwe on Instagram"
+                                aria-label={L.instagram}
                             >
                                 <SocialIcon name="Instagram" />
                             </a>
@@ -158,20 +175,33 @@ function FooterView({
                             <a
                                 href={social.LinkedIn}
                                 className={ring.root}
-                                aria-label="Youwe on LinkedIn"
+                                aria-label={L.linkedin}
                             >
                                 <SocialIcon name="LinkedIn" />
                             </a>
                         )}
-                        {Variant === 'Newsletter' && (
-                            <button
-                                type="button"
-                                className={cx(styles.lang, 'yw-body-sm-reg')}
-                                aria-label={`Language: ${language}`}
-                            >
-                                <Icon name="language" size={16} />
-                                {language}
-                            </button>
+                        {Variant === 'Newsletter' && regions?.length ? (
+                            <RegionSwitch
+                                regions={regions}
+                                label={L.region}
+                                direction="up"
+                            />
+                        ) : (
+                            Variant === 'Newsletter' && (
+                                <button
+                                    type="button"
+                                    className={cx(
+                                        styles.lang,
+                                        'yw-body-sm-reg'
+                                    )}
+                                    aria-label={fmt(L.language, {
+                                        language: language ?? '',
+                                    })}
+                                >
+                                    <Icon name="language" size={16} />
+                                    {language}
+                                </button>
+                            )
                         )}
                     </div>
                 </div>

@@ -10,6 +10,7 @@ import { StatsBlock } from '../blocks/stats-block'
 import { ServiceCard } from '../ui/service-card'
 import { TechnologyLogos } from '../blocks/technology-logos'
 import { ContactCTA } from '../blocks/contact-cta'
+import { AccordionList } from '../blocks/accordion-list'
 import type { Mode } from '../shared/mode-frame'
 import {
     Page,
@@ -28,6 +29,8 @@ import { abstract, caseImage, clientPhoto } from '../media/media'
   Mobile 26920:28. Copy, props and order from figma/templates.js. Desktop is leading (decided 9 November):
   mobile shows the desktop composition in the mobile variants; the Figma mobile frame has extra sections
   (How we work, a second proof, FAQ) that are not used. Sub-footer: the desktop copy on both devices.
+  CMS options from the v2 site (16 November): the phased approach (Feature list Split, numbered steps) and the
+  FAQ (Accordion list Split) after the related services.
 */
 
 const HERO_STATS = [
@@ -421,6 +424,70 @@ function Body({ Device }: { Device: Device }) {
                 <StatsBlock Type="Client" Device={Device} stats={STATS} />
             </Section>
             <Shared Device={Device} />
+            <Section Mode="Dark">
+                <FeatureList
+                    Layout="Split"
+                    Device={Device}
+                    kicker="How we work"
+                    heading="Phased, so trading never stops."
+                    items={[
+                        [
+                            'Discover',
+                            'Business goals, buyer journeys and integration dependencies first.',
+                        ],
+                        [
+                            'Design',
+                            'Account model, pricing logic and who owns which data: ERP, PIM or commerce.',
+                        ],
+                        [
+                            'Build and integrate',
+                            'Core integrations and high-value journeys first, through stable APIs.',
+                        ],
+                        [
+                            'Launch without disruption',
+                            'Accounts, contract prices, order history, SEO and redirects move with care.',
+                        ],
+                        [
+                            'Grow',
+                            'Measure self-service adoption, online share, reorders and quote turnaround.',
+                        ],
+                    ].map(([Title, Description]) => ({ Title, Description }))}
+                />
+            </Section>
+            <Section Mode="Light">
+                <AccordionList
+                    Layout="Split"
+                    Device={Device}
+                    kicker="FAQ"
+                    heading="Frequently asked questions."
+                    items={[
+                        {
+                            label: 'What problems does B2B enterprise commerce solve?',
+                            content:
+                                'It replaces manual ordering, scattered price lists and disconnected systems with account-specific pricing, approvals and self-service purchasing.',
+                        },
+                        {
+                            label: 'Can dealers, distributors and direct buyers use one platform?',
+                            content:
+                                'Yes. Account hierarchies, roles and customer-specific catalogues let one platform serve each group with its own prices and range.',
+                        },
+                        {
+                            label: 'How do you connect it to our ERP?',
+                            content: (
+                                <>
+                                    <p>
+                                        Through stable APIs, core flows first:
+                                    </p>
+                                    <ul>
+                                        <li>Prices and stock</li>
+                                        <li>Orders and invoices</li>
+                                    </ul>
+                                </>
+                            ),
+                        },
+                    ]}
+                />
+            </Section>
         </>
     )
 }

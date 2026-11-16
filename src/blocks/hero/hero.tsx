@@ -1,3 +1,4 @@
+import { type ImageInput, type LogoInput, Logo } from '../../shared/asset'
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { Button } from '../../ui/button'
 import { Breadcrumbs, type Crumb } from '../../ui/breadcrumbs'
@@ -40,7 +41,7 @@ export function HeroLabel({
 export type HeroStat = { value: string; label: string; client: string }
 export type HeroBarProps = {
     Type?: 'Logos' | 'Stats'
-    logos?: ReactNode[]
+    logos?: LogoInput[]
     stats?: HeroStat[]
 }
 export function HeroBar({
@@ -52,7 +53,7 @@ export function HeroBar({
         Type === 'Logos'
             ? logos.map((l, i) => (
                   <span key={i} className={styles['hero-bar-logo']}>
-                      {l}
+                      <Logo value={l} />
                   </span>
               ))
             : stats.map((s) => (
@@ -137,12 +138,12 @@ export type HeroProps = {
     /** Figma: Show bar */
     bar?: HeroBarProps
     /** Figma: Image (background for Gradient, wide image for Title + image) */
-    image?: string
+    image?: ImageInput
     /** Gradient: 'WebGL' draws moving silk ribbons over the image (the image stays as the fallback and for
         reduced motion); 'Image' is the still background */
     Background?: 'Image' | 'WebGL'
     /** Title + image: client logo */
-    logo?: ReactNode
+    logo?: LogoInput
     /** Figma: Show header — the Header/Corporate instance on top */
     header?: ReactNode
     /** Scroll: hero recedes over the first 860px */
@@ -189,7 +190,11 @@ export function Hero({
                             {label && <HeroLabel Device={Device} {...label} />}
                             {lines}
                         </div>
-                        {logo && <span className={styles.logo}>{logo}</span>}
+                        {logo && (
+                            <span className={styles.logo}>
+                                <Logo value={logo} />
+                            </span>
+                        )}
                     </div>
                 </div>
                 <CardMedia

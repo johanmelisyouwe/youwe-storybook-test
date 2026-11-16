@@ -1,3 +1,4 @@
+import { type LogoInput, Logo } from '../../shared/asset'
 import { useLayoutEffect, useRef, type ReactNode } from 'react'
 import { CardArrow, CardReveal } from '../../shared/card-reveal'
 import { cx } from '../../shared/cx'
@@ -15,7 +16,7 @@ export type StatProps = {
     Value: string
     Label: string
     /** Type=Client: Figma Logo */
-    logo?: ReactNode
+    logo?: LogoInput
     /** Type=Client: link of the round arrow (Show button) */
     href?: string
     /** Hover overlay CTA (linked Client stat) */
@@ -107,7 +108,9 @@ export function Stat({
         <>
             {Type === 'Client' && (
                 <div className={styles.top}>
-                    <span className={styles.logo}>{logo}</span>
+                    <span className={styles.logo}>
+                        <Logo value={logo} />
+                    </span>
                     {href && <CardArrow className={styles.arrow} />}
                 </div>
             )}

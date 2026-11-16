@@ -1,3 +1,5 @@
+import { fmt } from '../../shared/labels'
+import { type ImageInput, type LogoInput, Logo } from '../../shared/asset'
 import {
     type KeyboardEvent,
     type ReactNode,
@@ -22,19 +24,24 @@ export type Quote = {
     Quote: string
     Name?: string
     Role?: string
-    logo?: ReactNode
+    logo?: LogoInput
     /** Tabs: the tab label (the client) */
     client?: string
     /** Tabs: the button under the quote, e.g. Read the case */
     cta?: { label: string; href: string }
 }
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const TESTIMONIAL_LABELS = {
+    dot: 'Quote {n} of {total}',
+}
+
 export type TestimonialProps = {
     /** Figma: Device (layout follows the block width) */
     Device?: 'Desktop' | 'Mobile'
     /** One or more quotes; with several, the block auto-advances every 7s */
     quotes: Quote[]
     /** Figma: Show image — full-bleed photo with the tint-1 overlay */
-    image?: string | true
+    image?: ImageInput | true
     /** Figma: Show logo */
     'Show logo'?: boolean
     autoAdvance?: boolean
@@ -42,6 +49,8 @@ export type TestimonialProps = {
     Layout?: 'Default' | 'Tabs'
     /** Tabs: kicker above the block */
     kicker?: string
+    /** UI text, for translations: { ...TESTIMONIAL_LABELS } */
+    labels?: Partial<typeof TESTIMONIAL_LABELS>
 }
 
 export function Testimonial({
@@ -52,7 +61,9 @@ export function Testimonial({
     Layout = 'Default',
     Device = 'Desktop',
     kicker,
+    labels,
 }: TestimonialProps) {
+    const L = { ...TESTIMONIAL_LABELS, ...labels }
     const uid = useId()
     const tabsRef = useRef<HTMLDivElement>(null)
     const [i, setI] = useState(0)
@@ -218,7 +229,7 @@ export function Testimonial({
         >
             {image && (
                 <CardMedia
-                    src={typeof image === 'string' ? image : undefined}
+                    src={image === true ? undefined : image}
                     className={styles.image}
                     placeholder={false}
                 />
@@ -237,7 +248,9 @@ export function Testimonial({
                     {(q.Name || (showLogo && q.logo)) && (
                         <figcaption className={styles.attribution}>
                             {showLogo && q.logo && (
-                                <span className={styles.logo}>{q.logo}</span>
+                                <span className={styles.logo}>
+                                    <Logo value={q.logo} />
+                                </span>
                             )}
                             <span className={styles.person}>
                                 {q.Name && (
@@ -265,7 +278,10 @@ export function Testimonial({
                                     key={n}
                                     type="button"
                                     className={styles.dot}
-                                    aria-label={`Quote ${n + 1} of ${quotes.length}`}
+                                    aria-label={fmt(L.dot, {
+                                        n: n + 1,
+                                        total: quotes.length,
+                                    })}
                                     aria-current={n === i ? 'true' : undefined}
                                     onClick={() => go(n)}
                                 />

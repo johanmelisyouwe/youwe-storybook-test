@@ -87,6 +87,26 @@ type Story = StoryObj<Args>
 
 export const Default: Story = {}
 export const Plain: Story = { args: { Type: 'Plain' } }
+/** Outcomes: a list of results under the stats (v2 case "The results"); also takes CMS rich text. */
+export const WithOutcomes: Story = {
+    args: { Type: 'Plain' },
+    render: ({ Device = 'Desktop', Mode }) => (
+        <ModeFrame Mode={Mode} padding={0}>
+            <div style={{ maxWidth: W[Device] }}>
+                <StatsBlock
+                    Type="Plain"
+                    {...copy('Plain')}
+                    outcomes={[
+                        'A consistent global brand across 17 markets',
+                        'Faster rollout of new markets',
+                        'More efficient content creation',
+                        'Front end and back end evolve independently',
+                    ]}
+                />
+            </div>
+        </ModeFrame>
+    ),
+}
 
 /** Every Figma variant: Type × Mode × Device. */
 export const AllVariants: Story = {

@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { CardReveal } from '../../shared/card-reveal'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { ButtonLink } from '../button-link'
@@ -6,6 +7,11 @@ import reveal from '../../shared/card-reveal/card-reveal.module.css'
 import styles from './insight-card.module.css'
 
 /* Insight Card — Figma 26733:125 (page "Cards"). Blog, whitepaper, event, video or news. Whole card is one link. */
+
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const INSIGHT_CARD_LABELS = {
+    readMore: 'Read more',
+}
 
 export type InsightCardProps = {
     /** Figma: Variant (Featured = the large "Latest" card) */
@@ -17,11 +23,13 @@ export type InsightCardProps = {
     Title: string
     /** Figma: Meta (Show meta) — e.g. "Whitepaper · 6 min read" */
     Meta?: string
-    image?: string
+    image?: ImageInput
     'Hover CTA'?: string
     'Hover context'?: string
     href: string
     className?: string
+    /** UI text, for translations: { ...INSIGHT_CARD_LABELS } */
+    labels?: Partial<typeof INSIGHT_CARD_LABELS>
 }
 
 const RATIO = {
@@ -40,7 +48,9 @@ export function InsightCard({
     'Hover context': ctx,
     href,
     className,
+    labels,
 }: InsightCardProps) {
+    const L = { ...INSIGHT_CARD_LABELS, ...labels }
     const featured = Variant === 'Featured'
     return (
         <a
@@ -69,7 +79,7 @@ export function InsightCard({
                     </span>
                 )}
             </span>
-            {featured && <ButtonLink as="span" Size="md" label="Read more" />}
+            {featured && <ButtonLink as="span" Size="md" label={L.readMore} />}
             <CardReveal cta={cta} context={ctx ?? Title} />
         </a>
     )

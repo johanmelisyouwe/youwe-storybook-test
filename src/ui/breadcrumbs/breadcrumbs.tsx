@@ -13,6 +13,13 @@ import styles from './breadcrumbs.module.css'
 
 export type Crumb = { label: string; href?: string }
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const BREADCRUMBS_LABELS = {
+    nav: 'Breadcrumb',
+    filter: 'Filter',
+    back: 'Back',
+}
+
 export type BreadcrumbsProps = {
     /** Path from Home to the current page; the last item is the current page (State=Active) */
     items: Crumb[]
@@ -26,6 +33,8 @@ export type BreadcrumbsProps = {
     className?: string
     /** Story helper: class on every link (e.g. pseudo-focus-visible) */
     linkClassName?: string
+    /** UI text, for translations: { ...BREADCRUMBS_LABELS } */
+    labels?: Partial<typeof BREADCRUMBS_LABELS>
 }
 
 export function Breadcrumbs({
@@ -36,12 +45,14 @@ export function Breadcrumbs({
     onFilter,
     className,
     linkClassName,
+    labels,
 }: BreadcrumbsProps) {
+    const L = { ...BREADCRUMBS_LABELS, ...labels }
     if (Device === 'Mobile') {
         const parent = items[items.length - 2] ?? items[0]
         return (
             <nav
-                aria-label="Breadcrumb"
+                aria-label={L.nav}
                 data-mobile
                 className={cx(styles.root, className)}
             >
@@ -56,7 +67,7 @@ export function Breadcrumbs({
                 {filter && (
                     <ButtonFilter
                         Size="S"
-                        label="Filter"
+                        label={L.filter}
                         {...{ 'Active Filter': false }}
                         onClick={onFilter}
                     />
@@ -66,7 +77,7 @@ export function Breadcrumbs({
     }
     return (
         <nav
-            aria-label="Breadcrumb"
+            aria-label={L.nav}
             data-back={back || undefined}
             className={cx(styles.root, className)}
         >
@@ -76,7 +87,7 @@ export function Breadcrumbs({
                     Icon="Leading"
                     Size="S"
                     iconName="chevron-left"
-                    label="Back"
+                    label={L.back}
                     href={(items[items.length - 2] ?? items[0]).href ?? '#'}
                 />
             )}

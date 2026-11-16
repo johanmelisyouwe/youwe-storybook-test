@@ -1,3 +1,4 @@
+import { Prose, type RichText } from '../../shared/prose'
 import { useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
@@ -57,7 +58,8 @@ export type SectionHeaderProps = {
     /** Figma: Kicker (shown on Left) */
     kicker?: string
     heading: string
-    body?: string
+    /** A paragraph, or CMS rich text */
+    body?: RichText
 }
 
 export function SectionHeader({
@@ -81,7 +83,7 @@ export function SectionHeader({
                     <h2 className="yw-heading-xl">
                         <Words text={heading} />
                     </h2>
-                    {body && <p className="yw-body-md-reg">{body}</p>}
+                    {body && <Prose className="yw-body-md-reg">{body}</Prose>}
                 </div>
             </div>
         </section>

@@ -1,3 +1,5 @@
+import { type Region, RegionSwitch } from '../region-switch'
+import type { ImageInput } from '../../shared/asset'
 import { useEffect, useId, useRef, useState } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { YouweLogo } from '../../shared/logos/youwe-logo'
@@ -59,7 +61,7 @@ export function UtilityLink({ label, href }: { label: string; href: string }) {
 }
 
 /* Skip link: first Tab stop on the page; moves focus past the header to #main-content, or the page's h1. */
-function SkipLink() {
+function SkipLink({ label }: { label: string }) {
     return (
         <a
             href="#main-content"
@@ -77,7 +79,7 @@ function SkipLink() {
                 target.focus()
             }}
         >
-            Skip to content
+            {label}
         </a>
     )
 }
@@ -92,7 +94,7 @@ export type MegaMenuProps = {
     Title?: string
     Link?: string
     featureHref?: string
-    featureImage?: string
+    featureImage?: ImageInput
     id?: string
     /** Rendered in place (stories, mobile sheet) instead of as a dropdown */
     inline?: boolean
@@ -176,6 +178,17 @@ export function MegaMenu({
     )
 }
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const HEADER_LABELS = {
+    skip: 'Skip to content',
+    main: 'Main',
+    home: 'Youwe home',
+    menu: 'Menu',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    region: 'Region',
+}
+
 export type HeaderProps = {
     /** Figma: Device. 'Auto' renders both and lets the screen width choose (hamburger below 1024px). */
     Device?: 'Desktop' | 'Mobile' | 'Auto'
@@ -185,8 +198,15 @@ export type HeaderProps = {
     /** Label of the current page */
     current?: string
     utility?: { label: string; href: string }[]
+    /** Region / locale switch (Global, UK, NL, SE…); one entry per CMS locale */
+    regions?: Region[]
+    /** @deprecated use `regions`. Label shown when there is no regions list (mobile sheet only) */
     language?: string
+    /** Logo link, e.g. the locale home: /nl */
+    homeHref?: string
     cta?: { label: string; href: string }
+    /** UI text, for translations: { ...HEADER_LABELS } */
+    labels?: Partial<typeof HEADER_LABELS>
     /** Fixed to the top with scroll behaviour (glass, hide on scroll down) */
     fixed?: boolean
     /** Story helper: render the open sheet / mega menu in the flow instead of fixed */
@@ -238,11 +258,15 @@ function HeaderView({
     nav,
     current,
     utility = [{ label: 'Careers', href: '#' }],
+    regions,
     language = 'The Netherlands',
+    homeHref = '/',
     cta = { label: 'Contact', href: '#' },
     fixed = false,
     inline = false,
+    labels,
 }: HeaderProps) {
+    const L = { ...HEADER_LABELS, ...labels }
     const id = useId()
     const megaItem = nav.find((n) => n.mega)
     const [open, setOpen] = useState(Expanded === 'Yes')
@@ -321,16 +345,20 @@ function HeaderView({
                 id={`${id}-sheet`}
                 role="dialog"
                 aria-modal={!inline}
-                aria-label="Menu"
+                aria-label={L.menu}
                 ref={sheetRef}
             >
                 <div className={styles['sheet-top']}>
-                    <a href="/" className={styles.logo}>
+                    <a
+                        href={homeHref}
+                        className={styles.logo}
+                        aria-label={L.home}
+                    >
                         <YouweLogo />
                     </a>
                     <ButtonUtility
                         Size="M"
-                        label="Close menu"
+                        label={L.closeMenu}
                         onClick={() => setOpen(false)}
                     />
                 </div>
@@ -351,10 +379,18 @@ function HeaderView({
                     {utility.map((u) => (
                         <UtilityLink key={u.label} {...u} />
                     ))}
-                    <span className={styles['sheet-lang']}>
-                        <Icon name="language" size={16} />
-                        <UtilityLink label={language} href="#" />
-                    </span>
+                    {regions?.length ? (
+                        <RegionSwitch
+                            regions={regions}
+                            label={L.region}
+                            align="start"
+                        />
+                    ) : (
+                        <span className={styles['sheet-lang']}>
+                            <Icon name="language" size={16} />
+                            <UtilityLink label={language} href="#" />
+                        </span>
+                    )}
                 </div>
                 <div className={styles['sheet-cta']}>
                     <Button
@@ -374,12 +410,16 @@ function HeaderView({
                 data-hidden={(hidden && !open) || undefined}
                 className={styles.root}
             >
-                {!inline && <SkipLink />}
+                {!inline && <SkipLink label={L.skip} />}
                 {open && inline ? (
                     sheet
                 ) : (
                     <div className={styles.top}>
-                        <a href="/" className={styles.logo}>
+                        <a
+                            href={homeHref}
+                            className={styles.logo}
+                            aria-label={L.home}
+                        >
                             <YouweLogo />
                         </a>
                         <div className={styles.mright}>
@@ -387,7 +427,7 @@ function HeaderView({
                                 type="button"
                                 ref={menuBtn}
                                 className={styles['menu-btn']}
-                                aria-label="Open menu"
+                                aria-label={L.openMenu}
                                 aria-expanded={open}
                                 aria-controls={`${id}-sheet`}
                                 onClick={() => setOpen(true)}
@@ -409,9 +449,9 @@ function HeaderView({
             data-hidden={(hidden && !open) || undefined}
             className={styles.root}
         >
-            {!inline && <SkipLink />}
-            <nav className={styles.bar} aria-label="Main">
-                <a href="/" className={styles.logo}>
+            {!inline && <SkipLink label={L.skip} />}
+            <nav className={styles.bar} aria-label={L.main}>
+                <a href={homeHref} className={styles.logo} aria-label={L.home}>
                     <YouweLogo />
                 </a>
                 <ul className={styles.menu}>
@@ -458,6 +498,9 @@ function HeaderView({
                     )}
                 </ul>
                 <div className={styles.right}>
+                    {regions?.length ? (
+                        <RegionSwitch regions={regions} label={L.region} />
+                    ) : null}
                     {utility.map((u) => (
                         <a
                             key={u.label}

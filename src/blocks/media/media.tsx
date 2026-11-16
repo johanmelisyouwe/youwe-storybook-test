@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
@@ -13,12 +14,20 @@ import styles from '../text-media/text-media.module.css'
 
 export type MediaProps = {
     /** Figma: Layout */
-    Layout?: 'Contained' | 'Full bleed' | 'Two-up staggered' | 'Two-up'
+    /** Figma: Layout. Gallery (code layout, v2 case gallery): any number of images in a 3-column grid (2 on mobile) */
+    Layout?:
+        | 'Contained'
+        | 'Full bleed'
+        | 'Two-up staggered'
+        | 'Two-up'
+        | 'Gallery'
     /** Figma: Device (layout follows the block width) */
     Device?: 'Desktop' | 'Mobile'
     /** Figma: Image / Image 2 */
-    image?: string
-    image2?: string
+    image?: ImageInput
+    image2?: ImageInput
+    /** Gallery: the images (URL or { src, alt }) */
+    images?: ImageInput[]
     alt?: string
     alt2?: string
     /** Video in place of Image (Image becomes the poster); not a Figma property */
@@ -37,11 +46,12 @@ export function Media({
     video,
     video2,
     Autoplay = 'In view',
+    images,
 }: MediaProps) {
     const two = Layout === 'Two-up' || Layout === 'Two-up staggered'
     // One frame: the Video Player when there's a video, otherwise the image
     const frame = (
-        src: string | undefined,
+        src: ImageInput | undefined,
         vid: string | undefined,
         label: string | undefined,
         ratio: string
@@ -72,12 +82,24 @@ export function Media({
             <div
                 className={cx(block.inner, styles.inner)}
                 style={
-                    Layout === 'Contained' || two
+                    Layout === 'Contained' || Layout === 'Gallery' || two
                         ? { paddingBlock: 'var(--spacing-4xl)' }
                         : undefined
                 }
             >
-                {two ? (
+                {Layout === 'Gallery' ? (
+                    <ul className={styles['media-gallery']}>
+                        {(images ?? []).map((im, i) => (
+                            <li key={i}>
+                                <CardMedia
+                                    src={im}
+                                    ratio="4 / 3"
+                                    className={styles['clip-reveal']}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                ) : two ? (
                     <div className={styles['media-two']}>
                         {frame(image, video, alt, '632 / 736')}
                         {frame(image2, video2, alt2, '632 / 736')}

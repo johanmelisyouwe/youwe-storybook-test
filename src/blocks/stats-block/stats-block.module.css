@@ -111,4 +111,35 @@
                 var(--color-shared-border-2);
         }
     }
+
+    /* Outcomes: a two-column list of results under the stats, ticked with the brand colour */
+    .outcomes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-sm) var(--spacing-2xl);
+        margin: 0;
+        padding: 0;
+        color: var(--color-shared-content-secondary);
+        list-style: none;
+
+        & li {
+            position: relative;
+            padding-left: var(--spacing-lg);
+        }
+
+        & li::before {
+            content: "";
+            position: absolute;
+            top: 0.55em;
+            left: 0;
+            width: var(--spacing-xs);
+            height: var(--spacing-xs);
+            border-radius: var(--component-radius-pill);
+            background: var(--color-shared-surface-fixed-brand-red);
+        }
+
+        @container (max-width: 47.9375rem) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
 }

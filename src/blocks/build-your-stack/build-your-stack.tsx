@@ -21,6 +21,11 @@ export type StackGoal = {
     case?: CaseCardProps
 }
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const BUILD_YOUR_STACK_LABELS = {
+    goals: 'Goals',
+}
+
 export type BuildYourStackProps = {
     /** Figma: Device (layout follows the block width) */
     Device?: 'Desktop' | 'Mobile'
@@ -30,6 +35,8 @@ export type BuildYourStackProps = {
     goals: StackGoal[]
     /** Initially selected goal */
     selected?: number
+    /** UI text, for translations: { ...BUILD_YOUR_STACK_LABELS } */
+    labels?: Partial<typeof BUILD_YOUR_STACK_LABELS>
 }
 
 export function BuildYourStack({
@@ -38,7 +45,9 @@ export function BuildYourStack({
     body,
     goals,
     selected = 0,
+    labels,
 }: BuildYourStackProps) {
+    const L = { ...BUILD_YOUR_STACK_LABELS, ...labels }
     const [tab, setTab] = useState(selected)
     return (
         <section className={cx(block.root, styles.stack)} aria-label={title}>
@@ -53,7 +62,7 @@ export function BuildYourStack({
                     <p className="yw-body-md-reg">{body}</p>
                 </div>
                 <TabGroup
-                    label="Goals"
+                    label={L.goals}
                     tabs={goals.map((g) => g.label)}
                     {...{ 'Trailing action': false }}
                     selected={tab}

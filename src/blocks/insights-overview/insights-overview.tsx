@@ -1,3 +1,4 @@
+import { fmt } from '../../shared/labels'
 import type { CSSProperties } from 'react'
 import block from '../../shared/block/block.module.css'
 import { cx } from '../../shared/cx'
@@ -24,6 +25,13 @@ export type InsightItem = Omit<
     'Device' | 'Variant' | 'className'
 >
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const INSIGHTS_OVERVIEW_LABELS = {
+    type: 'Insight type',
+    showing: 'Showing {shown} of {total}',
+    more: 'Show more',
+}
+
 export type InsightsOverviewProps = {
     /** Figma: Device (layout follows the block width) */
     Device?: 'Desktop' | 'Mobile'
@@ -41,6 +49,8 @@ export type InsightsOverviewProps = {
     onShowMore?: () => void
     /** Shown when the selected type has no cards */
     empty?: string
+    /** UI text, for translations: { ...INSIGHTS_OVERVIEW_LABELS } */
+    labels?: Partial<typeof INSIGHTS_OVERVIEW_LABELS>
 }
 
 export function InsightsOverview({
@@ -54,7 +64,9 @@ export function InsightsOverview({
     total,
     onShowMore,
     empty = 'Nothing here yet.',
+    labels,
 }: InsightsOverviewProps) {
+    const L = { ...INSIGHTS_OVERVIEW_LABELS, ...labels }
     const label = (t: InsightType) => `${t.label} · ${t.count}`
     return (
         <section className={cx(block.root, styles.root)}>
@@ -69,7 +81,7 @@ export function InsightsOverview({
                     {Device === 'Mobile' ? (
                         <ul
                             className={cx(filter.pills, styles.pills)}
-                            aria-label="Insight type"
+                            aria-label={L.type}
                         >
                             {types.map((t) => (
                                 <li key={t.label}>
@@ -90,7 +102,7 @@ export function InsightsOverview({
                         <div
                             className={filter.root}
                             role="group"
-                            aria-label="Insight type"
+                            aria-label={L.type}
                         >
                             <ul
                                 data-stagger
@@ -129,7 +141,7 @@ export function InsightsOverview({
                         className={cx(styles.count, 'yw-body-sm-reg')}
                         aria-live="polite"
                     >
-                        {`Showing ${items.length} of ${total}`}
+                        {fmt(L.showing, { shown: items.length, total })}
                     </p>
                     {items.length === 0 && (
                         <p className={cx(styles.count, 'yw-body-md-reg')}>
@@ -148,7 +160,7 @@ export function InsightsOverview({
                             <Button
                                 Variant="Outline"
                                 Size="M"
-                                label="Show more"
+                                label={L.more}
                                 onClick={onShowMore}
                             />
                         </div>

@@ -1,3 +1,5 @@
+import { fmt } from '../../shared/labels'
+import { type ImageInput, assetSrc } from '../../shared/asset'
 import { useEffect, useId, useRef, useState } from 'react'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
@@ -18,10 +20,18 @@ import styles from './video-player.module.css'
   video fades in, so there's no black flash or jump.
 */
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const VIDEO_PLAYER_LABELS = {
+    play: 'Play video: {title}',
+    pause: 'Pause video: {title}',
+    captions: 'English',
+    captionsLang: 'en',
+}
+
 export type VideoPlayerProps = {
     /** Video file. Without it only the poster and a decorative play button are shown. */
     src?: string
-    poster?: string
+    poster?: ImageInput
     /** Accessible name, e.g. the caption: "Demo: ACI Weave in action" */
     title: string
     /** Off: plays on click. In view: plays muted and looped while visible. */
@@ -31,6 +41,8 @@ export type VideoPlayerProps = {
     /** Frame ratio, default 16 / 9 (the Media block passes its own, e.g. 632 / 736 for Two-up) */
     ratio?: string
     className?: string
+    /** UI text, for translations: { ...VIDEO_PLAYER_LABELS } */
+    labels?: Partial<typeof VIDEO_PLAYER_LABELS>
 }
 
 const PlayGlyph = ({ size = 20 }: { size?: number }) => (
@@ -56,7 +68,9 @@ export function VideoPlayer({
     captions,
     ratio = '16 / 9',
     className,
+    labels,
 }: VideoPlayerProps) {
+    const L = { ...VIDEO_PLAYER_LABELS, ...labels }
     const ref = useRef<HTMLVideoElement>(null)
     const [auto, setAuto] = useState(
         () => Autoplay === 'In view' && !reducedMotion()
@@ -93,6 +107,7 @@ export function VideoPlayer({
                 auto={auto}
                 ratio={ratio}
                 className={className}
+                L={L}
             />
         )
 
@@ -135,7 +150,7 @@ export function VideoPlayer({
             <video
                 ref={ref}
                 src={src}
-                poster={poster}
+                poster={assetSrc(poster)}
                 aria-label={title}
                 playsInline
                 muted={auto}
@@ -150,8 +165,8 @@ export function VideoPlayer({
                     <track
                         kind="captions"
                         src={captions}
-                        srcLang="en"
-                        label="English"
+                        srcLang={L.captionsLang}
+                        label={L.captions}
                     />
                 )}
             </video>
@@ -159,7 +174,7 @@ export function VideoPlayer({
                 <button
                     type="button"
                     className={cx(styles.toggle, ring.root)}
-                    aria-label={`${playing ? 'Pause' : 'Play'} video: ${title}`}
+                    aria-label={fmt(playing ? L.pause : L.play, { title })}
                     onClick={toggle}
                 >
                     {playing ? <PauseGlyph /> : <PlayGlyph size={16} />}
@@ -169,7 +184,7 @@ export function VideoPlayer({
                     <button
                         type="button"
                         className={cx(styles.play, ring.root)}
-                        aria-label={`Play video: ${title}`}
+                        aria-label={fmt(L.play, { title })}
                         onClick={start}
                     >
                         <PlayGlyph />
@@ -191,13 +206,15 @@ function VimeoPlayer({
     auto,
     ratio,
     className,
+    L,
 }: {
     src: string
-    poster?: string
+    poster?: ImageInput
     title: string
     auto: boolean
     ratio: string
     className?: string
+    L: typeof VIDEO_PLAYER_LABELS
 }) {
     const ref = useRef<HTMLIFrameElement>(null)
     const playerId = useId().replace(/[^a-zA-Z0-9]/g, '')
@@ -308,7 +325,7 @@ function VimeoPlayer({
                 <button
                     type="button"
                     className={cx(styles.toggle, ring.root)}
-                    aria-label={`${playing ? 'Pause' : 'Play'} video: ${title}`}
+                    aria-label={fmt(playing ? L.pause : L.play, { title })}
                     onClick={toggle}
                 >
                     {playing ? <PauseGlyph /> : <PlayGlyph size={16} />}
@@ -318,7 +335,7 @@ function VimeoPlayer({
                     <button
                         type="button"
                         className={cx(styles.play, ring.root)}
-                        aria-label={`Play video: ${title}`}
+                        aria-label={fmt(L.play, { title })}
                         onClick={() => setStarted(true)}
                     >
                         <PlayGlyph />
