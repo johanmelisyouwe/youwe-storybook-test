@@ -1,6 +1,6 @@
 /*
   Content blocks/Hero (Figma 24985:698), _Hero/Bar (26880:273), _Hero/Label (26882:927).
-  Gradient: 840 high (mobile 640), surface/base-1 with a background image/video and a dark fade.
+  Gradient: the viewport height (Figma 840 / mobile 640 at the frame size; decided 16 November), surface/base-1 with a background image/video and a dark fade.
   Content padding 80, gap 24, aligned to the bottom: title column (label + heading/3xl, 2nd line content/brand,
   gap 24) and text column 480 (body/lg/reg + up to 2 buttons: Primary M + Solid M, gap 8). Mobile stacks.
   Bar: 1px top component/alpha/1, padding 16/32, client logos (118×62) gap 64 as a slow marquee (linear 40s),
@@ -20,13 +20,14 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            min-height: 52.5rem;
+            /* viewport height (svh: mobile browser bars don't cause a jump); content can make it taller */
+            min-height: 100vh; /* legacy-ok: fallback for browsers without svh */
+            min-height: 100svh;
             /* the header overlays the hero: long titles never run under it */
             padding-top: var(--spacing-5xl);
         }
 
         &[data-mobile].root[data-gradient] {
-            min-height: 40rem;
             padding-top: var(--spacing-4xl);
         }
 
