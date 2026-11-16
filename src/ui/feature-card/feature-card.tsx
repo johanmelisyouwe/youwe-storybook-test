@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { CardArrow } from '../../shared/card-reveal'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { Pills } from '../pills'
@@ -17,7 +18,7 @@ export type FeatureCardProps = {
     Title: string
     Description: string
     /** Figma: Show image */
-    image?: string | true
+    image?: ImageInput | true
     /** Figma: Show tags (up to 3) */
     tags?: string[]
     /** Figma: Show arrow */
@@ -59,7 +60,7 @@ export function FeatureCard({
             {image && (
                 <CardMedia
                     className={styles.image}
-                    src={typeof image === 'string' ? image : undefined}
+                    src={image === true ? undefined : image}
                     ratio="16 / 9"
                     style={{ borderRadius: 0 }}
                 />

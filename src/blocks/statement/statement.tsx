@@ -1,3 +1,4 @@
+import { type ImageInput, assetSrc } from '../../shared/asset'
 import { useEffect, useRef, type CSSProperties } from 'react'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
@@ -8,7 +9,7 @@ import styles from './statement.module.css'
 export type GiantRow = {
     text: string /** image-filled text, outlined text, or solid */
     style?: 'image' | 'outline' | 'solid'
-    image?: string
+    image?: ImageInput
 }
 
 export type StatementProps = {
@@ -86,7 +87,7 @@ export function GiantRows({
                         style={
                             r.image
                                 ? ({
-                                      backgroundImage: `url('${r.image}')`,
+                                      backgroundImage: `url('${assetSrc(r.image)}')`,
                                   } as CSSProperties)
                                 : undefined
                         }

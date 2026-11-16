@@ -7,6 +7,9 @@ import { CardGrid } from '../blocks/card-grid'
 import { ServiceCard } from '../ui/service-card'
 import { CaseCarousel } from '../blocks/case-carousel'
 import { ContactCTA } from '../blocks/contact-cta'
+import { ContentTabs } from '../blocks/content-tabs'
+import { Offices } from '../blocks/offices'
+import { OFFICES } from '../blocks/offices/offices.copy'
 import {
     CLIENT_LOGOS,
     Page,
@@ -23,7 +26,9 @@ import block from '../shared/block/block.module.css'
   Templates/Industries detail — Figma "Page / Industries detail" (Manufacturing): Desktop 26926:34632.
   Figma has no mobile frame for this template. Copy, props and order from figma/templates.js.
   "Frame 6" (intro text next to a Case Card) is hand-built in Figma; it is built with Text + media (8/4)
-  with the Case Card as its media (decided 9 November). "Frame 7" wraps a full-width Case Card. Country options for the contact form are examples (not in Figma).
+  with the Case Card as its media (decided 9 November). "Frame 7" wraps a full-width Case Card.
+  CMS options from the v2 site (16 November): "Who we work with" (Content tabs, one tab per audience with an
+  optional related case) after the intro, and "Work with us" (Offices) before the contact form. Country options for the contact form are examples (not in Figma).
 */
 
 const SERVICES = [
@@ -139,6 +144,33 @@ function IndustriesDetailPage() {
                         />
                     }
                 />
+                <ContentTabs
+                    Device={Device}
+                    kicker="Who we work with"
+                    title="Teams we build for in manufacturing"
+                    tabs={[
+                        {
+                            label: 'Product data teams',
+                            body: 'Teams that keep product information accurate across brands, suppliers and markets, with one governed source for every channel.',
+                            case: {
+                                Device,
+                                Title: 'A Magento platform for motorists and partner garages, linked to SAP',
+                                Client: 'Unipart Autoparts',
+                                logo: logo('Unipart Autoparts'),
+                                image: caseImage('unipart'),
+                                href: '#',
+                            },
+                        },
+                        {
+                            label: 'Channel and portal teams',
+                            body: 'Teams that run dealer portals, storefronts and service portals and need reliable product and order data in every channel.',
+                        },
+                        {
+                            label: 'Integration and platform owners',
+                            body: 'Architects and platform owners who connect ERP, PIM and commerce so orders, stock and prices stay in sync.',
+                        },
+                    ]}
+                />
                 <section className={block.root} aria-label="Featured case">
                     <div className={block.inner} style={{ paddingTop: 0 }}>
                         <CaseCard
@@ -189,6 +221,12 @@ function IndustriesDetailPage() {
                     Kicker="Manufacturing"
                     Title="Manufacturing case studies"
                     cases={CASES}
+                />
+                <Offices
+                    Device={Device}
+                    Kicker="Work with us"
+                    Title="Eight offices, one team"
+                    offices={OFFICES}
                 />
             </Section>
             <Section Mode="Dark">

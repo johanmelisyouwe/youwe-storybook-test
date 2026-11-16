@@ -109,6 +109,28 @@ type Story = StoryObj<Args>
 
 export const Default: Story = {}
 export const MegaMenuOpen: Story = { args: { Expanded: 'Yes' } }
+
+/** Region / locale switch (one entry per CMS locale) and the logo linking to the locale home. */
+export const WithRegions: Story = {
+    name: 'With regions',
+    render: (args) => (
+        <div style={{ minHeight: 260 }}>
+            <Header
+                {...args}
+                nav={NAV}
+                current="Services"
+                inline
+                homeHref="/nl"
+                regions={[
+                    { label: 'Global', href: '/', hreflang: 'en' },
+                    { label: 'UK', href: '/en-gb', hreflang: 'en-GB' },
+                    { label: 'NL', href: '/nl', hreflang: 'nl', current: true },
+                    { label: 'SE', href: '/sv', hreflang: 'sv' },
+                ]}
+            />
+        </div>
+    ),
+}
 export const Mobile: Story = {
     args: { Device: 'Mobile' },
     globals: { viewport: { value: 'mobile' } },

@@ -1,3 +1,4 @@
+import { fmt } from '../../shared/labels'
 import { useId, useState } from 'react'
 import { Dropdown } from '../../ui/dropdown'
 import { Pills } from '../../ui/pills'
@@ -13,6 +14,16 @@ export type FilterField = {
     label: string
     options: { value: string; label: string }[]
 }
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const FILTER_BAR_LABELS = {
+    region: 'Filter',
+    sheet: 'Filters',
+    open: 'Filters',
+    clear: 'Clear all',
+    all: 'All',
+    show: 'Show {count} {noun}',
+}
+
 export type FilterBarProps = {
     /** Figma: Device */
     Device?: 'Desktop' | 'Mobile'
@@ -33,6 +44,8 @@ export type FilterBarProps = {
     noun?: string
     /** Render the open sheet in place instead of fixed to the viewport (stories) */
     inline?: boolean
+    /** UI text, for translations: { ...FILTER_BAR_LABELS } */
+    labels?: Partial<typeof FILTER_BAR_LABELS>
 }
 
 const ALL = { value: '', label: 'All' }
@@ -51,7 +64,9 @@ export function FilterBar({
     count,
     noun = 'cases',
     inline,
+    labels,
 }: FilterBarProps) {
+    const L = { ...FILTER_BAR_LABELS, ...labels }
     const [sysState, setSys] = useState<string | null>(sysProp ?? null)
     const [valState, setVals] = useState<Record<string, string>>(valProp ?? {})
     const [open, setOpen] = useState(State === 'Open')
@@ -89,7 +104,7 @@ export function FilterBar({
 
     if (Device === 'Desktop') {
         return (
-            <div className={styles.root} role="search" aria-label="Filter">
+            <div className={styles.root} role="search" aria-label={L.region}>
                 <ul data-stagger className={styles.systems}>
                     {systems.map((s) => (
                         <li key={s}>
@@ -117,18 +132,18 @@ export function FilterBar({
             className={styles['filter-sheet']}
             role="dialog"
             aria-modal={!inline}
-            aria-label="Filters"
+            aria-label={L.sheet}
         >
             <span
                 className={styles['filter-sheet-handle']}
                 aria-hidden="true"
             />
             <div className={styles['filter-sheet-head']}>
-                <h2 className="yw-heading-sm">Filters</h2>
+                <h2 className="yw-heading-sm">{L.sheet}</h2>
                 <Button
                     Variant="Outline"
                     Size="S"
-                    label="Clear all"
+                    label={L.clear}
                     onClick={() => {
                         setVals({})
                         onChange?.({})
@@ -139,7 +154,7 @@ export function FilterBar({
             <Button
                 Variant="Primary"
                 Size="M"
-                label={`Show ${count} ${noun}`}
+                label={fmt(L.show, { count, noun })}
                 onClick={() => setOpen(false)}
             />
         </div>
@@ -150,13 +165,13 @@ export function FilterBar({
             data-layout="mobile"
             className={styles.root}
             role="search"
-            aria-label="Filter"
+            aria-label={L.region}
         >
             <ul className={styles.pills}>
                 <li>
                     <Pills
                         Variant={system === null ? 'Primary' : 'Neutral'}
-                        label="All"
+                        label={L.all}
                         pressed={system === null}
                         onClick={() => pick(null)}
                     />
@@ -175,7 +190,7 @@ export function FilterBar({
             <div className={styles.bar}>
                 <ButtonFilter
                     Size="M"
-                    label="Filters"
+                    label={L.open}
                     {...{ 'Active Filter': active > 0 }}
                     count={active}
                     aria-expanded={open}

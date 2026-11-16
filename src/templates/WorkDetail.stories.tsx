@@ -170,6 +170,12 @@ function WorkDetailPage({ Device: story }: { Device: Device }) {
                         { Value: '17', Label: 'Markets supported' },
                         { Value: '110,000+', Label: 'Units sold every year' },
                     ]}
+                    outcomes={[
+                        'A consistent global brand across 17 markets',
+                        'Faster rollout of new markets and campaigns',
+                        'More efficient content creation in Contentful',
+                        'Front end and back end now evolve independently',
+                    ]}
                 />
                 <Media
                     Layout="Two-up"

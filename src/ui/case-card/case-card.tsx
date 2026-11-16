@@ -1,3 +1,4 @@
+import { type ImageInput, type LogoInput, Logo } from '../../shared/asset'
 import type { ReactNode } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { CardReveal } from '../../shared/card-reveal'
@@ -102,9 +103,9 @@ export type CaseCardProps = {
     Title: string
     Client: string
     /** Figma: Client logo */
-    logo?: ReactNode
+    logo?: LogoInput
     /** Figma: Image — case photo (without it: the image placeholder) */
-    image?: string
+    image?: ImageInput
     /** Figma: Show stat */
     stat?: Omit<CaseStatProps, 'Size'>
     /** Figma: Show tags */
@@ -138,7 +139,11 @@ export function CaseCard({
             className={cx(reveal.root, styles.root, className)}
         >
             <CardMedia src={image} className={styles.image}>
-                {logo && <span className={styles.logo}>{logo}</span>}
+                {logo && (
+                    <span className={styles.logo}>
+                        <Logo value={logo} />
+                    </span>
+                )}
                 {stat && (
                     <span className={styles.stat}>
                         <CaseStat

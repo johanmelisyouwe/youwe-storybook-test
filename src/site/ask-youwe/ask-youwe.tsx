@@ -1,3 +1,5 @@
+import { fmt } from '../../shared/labels'
+import type { ImageInput } from '../../shared/asset'
 import { useEffect, useId, useRef, useState } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { CardMedia } from '../../shared/card-reveal/card-media'
@@ -142,6 +144,20 @@ export function AskLabel({ label = 'Ask Youwe' }: { label?: string }) {
     )
 }
 
+/** Fixed UI text (English defaults); pass `labels` to AskYouwe / AskSnippet to translate (NL, SV) */
+export const ASK_YOUWE_LABELS = {
+    name: 'Ask Youwe',
+    close: 'Close',
+    followUp: 'Ask a follow-up',
+    followUpPlaceholder: 'Ask a follow-up…',
+    send: 'Send',
+    reasonDefault: 'Related case',
+    readCase: 'Read the case',
+    askAbout: 'Ask about it',
+    read: 'Read',
+    askTitle: 'Ask: {title}',
+}
+
 export type AskYouweProps = {
     /** Figma: State. Docked is the sticky bar (AskDock): Contextual on frosted glass. */
     State?: 'Default' | 'Contextual' | 'Docked' | 'Active'
@@ -162,6 +178,8 @@ export type AskYouweProps = {
     onAsk?: (q: string) => void
     onClose?: () => void
     className?: string
+    /** UI text, for translations: { ...ASK_YOUWE_LABELS } */
+    labels?: Partial<typeof ASK_YOUWE_LABELS>
 }
 
 export function AskYouwe({
@@ -178,7 +196,9 @@ export function AskYouwe({
     onAsk,
     onClose,
     className,
+    labels,
 }: AskYouweProps) {
+    const L = { ...ASK_YOUWE_LABELS, ...labels }
     const id = useId()
     const input = useRef<HTMLInputElement>(null)
     const [q, setQ] = useState('')
@@ -230,7 +250,7 @@ export function AskYouwe({
                         Type="Icon"
                         Size="S"
                         icon="close"
-                        label="Close"
+                        label={L.close}
                         onClick={onClose}
                     />
                 </div>
@@ -285,15 +305,15 @@ export function AskYouwe({
                             styles['ask-bar-input'],
                             'yw-body-md-reg'
                         )}
-                        placeholder="Ask a follow-up…"
-                        aria-label="Ask a follow-up"
+                        placeholder={L.followUpPlaceholder}
+                        aria-label={L.followUp}
                         value={q}
                         onChange={(e) => setQ(e.target.value)}
                     />
                     <AskButton
                         Type="Icon"
                         Variant={q ? 'Primary' : 'Disabled'}
-                        label="Send"
+                        label={L.send}
                         onClick={() => q && onAsk?.(q)}
                     />
                 </form>
@@ -344,12 +364,14 @@ export type AskSnippetProps = {
     Meta?: string
     /** Eyebrow reason, e.g. "Related case" */
     reason?: string
-    image?: string
+    image?: ImageInput
     /** Case: Show second button */
     'Show second button'?: boolean
     href?: string
     onAsk?: (q: string) => void
     className?: string
+    /** UI text, for translations: { ...ASK_YOUWE_LABELS } */
+    labels?: Partial<typeof ASK_YOUWE_LABELS>
 }
 
 export function AskSnippet({
@@ -363,7 +385,9 @@ export function AskSnippet({
     href = '#',
     onAsk,
     className,
+    labels,
 }: AskSnippetProps) {
+    const L = { ...ASK_YOUWE_LABELS, ...labels }
     const base = {
         className: cx(styles['ask-glass'], styles['ask-snippet'], className),
         'data-flat': true,
@@ -384,7 +408,7 @@ export function AskSnippet({
                     data-theme="dark"
                 >
                     <AskLabel
-                        label={`Ask Youwe · ${reason ?? 'Related case'}`}
+                        label={`${L.name} · ${reason ?? L.reasonDefault}`}
                     />
                     <h3 className="yw-body-xl-med" style={{ margin: 0 }}>
                         {Title}
@@ -393,12 +417,12 @@ export function AskSnippet({
                     <div className={styles['ask-snippet-actions']}>
                         <AskButton
                             Variant="Primary"
-                            label="Read the case"
+                            label={L.readCase}
                             href={href}
                         />
                         {second && (
                             <AskButton
-                                label="Ask about it"
+                                label={L.askAbout}
                                 onClick={() => onAsk?.(Title)}
                             />
                         )}
@@ -415,7 +439,7 @@ export function AskSnippet({
                     <AskOrb />
                     <span className="yw-body-sm-reg">{Title}</span>
                 </span>
-                <AskButton label="Read" href={href} />
+                <AskButton label={L.read} href={href} />
             </aside>
         )
     }
@@ -423,15 +447,13 @@ export function AskSnippet({
         <aside {...base}>
             <AskAura />
             <span className={styles['ask-snippet-text']}>
-                <AskLabel
-                    label={reason ? `Ask Youwe · ${reason}` : 'Ask Youwe'}
-                />
+                <AskLabel label={reason ? `${L.name} · ${reason}` : L.name} />
                 <span className="yw-body-md-reg">{Title}</span>
             </span>
             <AskButton
                 Type="Icon"
                 Variant="Primary"
-                label={`Ask: ${Title}`}
+                label={fmt(L.askTitle, { title: Title })}
                 onClick={() => onAsk?.(Title)}
             />
         </aside>
@@ -447,6 +469,9 @@ export type AskDockProps = {
     answer?: Partial<AskYouweProps>
     /** Scroll distance before the bar slides in (px) */
     after?: number
+    /** UI text and the bar prompt, for translations */
+    labels?: Partial<typeof ASK_YOUWE_LABELS>
+    Prompt?: string
 }
 
 /**
@@ -460,6 +485,8 @@ export function AskDock({
     context,
     answer,
     after = 480,
+    labels,
+    Prompt,
 }: AskDockProps) {
     const ref = useRef<HTMLDivElement>(null)
     const [shown, setShown] = useState(false)
@@ -516,6 +543,8 @@ export function AskDock({
         >
             {open ? (
                 <AskYouwe
+                    labels={labels}
+                    {...(Prompt ? { Prompt } : {})}
                     key="panel"
                     State="Active"
                     Device={Device}
@@ -526,6 +555,8 @@ export function AskDock({
                 />
             ) : (
                 <AskYouwe
+                    labels={labels}
+                    {...(Prompt ? { Prompt } : {})}
                     key="bar"
                     State="Docked"
                     Device={Device}

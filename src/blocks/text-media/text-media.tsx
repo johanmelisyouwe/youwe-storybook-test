@@ -1,3 +1,5 @@
+import { Prose, type RichText } from '../../shared/prose'
+import type { ImageInput } from '../../shared/asset'
 import type { ReactNode } from 'react'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
@@ -16,8 +18,9 @@ export type TextMediaProps = {
     /** Figma: Theme */
     Theme?: 'Dark' | 'Deep blue' | 'Light'
     heading: string
-    body: string
-    image?: string
+    /** A paragraph, or CMS rich text (links, lists, bold) */
+    body: RichText
+    image?: ImageInput
     alt?: string
     /** Other media in place of the image, e.g. a Case Card (Industries detail template) */
     media?: ReactNode
@@ -50,9 +53,9 @@ export function TextMedia({
                         >
                             {heading}
                         </h2>
-                        <p className={cx(styles.body, 'yw-body-md-reg')}>
+                        <Prose className={cx(styles.body, 'yw-body-md-reg')}>
                             {body}
-                        </p>
+                        </Prose>
                     </div>
                     {media ?? (
                         <CardMedia

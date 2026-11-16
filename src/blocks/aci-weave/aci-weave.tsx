@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { AskSnippet, type AskSnippetProps } from '../../site/ask-youwe'
 import block from '../../shared/block/block.module.css'
 import { CardMedia } from '../../shared/card-reveal/card-media'
@@ -22,7 +23,7 @@ export type WeaveVideo = {
     caption: string
     /** Right side of the caption bar, e.g. Demo */
     tag?: string
-    poster?: string
+    poster?: ImageInput
     /** Video file or Vimeo URL; without it the panel shows the poster as a still screenshot */
     src?: string
     /** Still screenshot: alt text */

@@ -1,3 +1,4 @@
+import { type LogoInput, Logo } from '../../shared/asset'
 import type { ReactNode } from 'react'
 import { Button } from '../button'
 import { cx } from '../../shared/cx'
@@ -13,7 +14,7 @@ export type QuoteCardProps = {
     /** Figma: Role (Show role) */
     Role?: string
     /** Figma: Logo (Show logo) */
-    logo?: ReactNode
+    logo?: LogoInput
     /** Figma: Show quote mark */
     'Show quote mark'?: boolean
     /** Figma: Show buttons (up to 3) */
@@ -54,7 +55,11 @@ export function QuoteCard({
                             </span>
                         )}
                     </span>
-                    {logo && <span className={styles.logo}>{logo}</span>}
+                    {logo && (
+                        <span className={styles.logo}>
+                            <Logo value={logo} />
+                        </span>
+                    )}
                 </figcaption>
                 {buttons && buttons.length > 0 && (
                     <div className={styles.actions}>

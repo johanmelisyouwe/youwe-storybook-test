@@ -53,18 +53,28 @@ export function EventCard({
     )
 }
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const UPCOMING_EVENTS_LABELS = {
+    title: 'Upcoming events',
+    all: 'All events',
+}
+
 export type UpcomingEventsProps = {
     /** Figma: Device */
     Device?: 'Desktop' | 'Mobile'
     events: EventItem[]
     allHref?: string
+    /** UI text, for translations: { ...UPCOMING_EVENTS_LABELS } */
+    labels?: Partial<typeof UPCOMING_EVENTS_LABELS>
 }
 
 export function UpcomingEvents({
     Device = 'Desktop',
     events,
     allHref = '#',
+    labels,
 }: UpcomingEventsProps) {
+    const L = { ...UPCOMING_EVENTS_LABELS, ...labels }
     return (
         <section
             data-mobile={Device === 'Mobile' || undefined}
@@ -74,7 +84,7 @@ export function UpcomingEvents({
                 <span className={cx(styles.eyebrow, 'yw-body-sm-bold')}>
                     Events
                 </span>
-                <span className="yw-heading-md">Upcoming events</span>
+                <span className="yw-heading-md">{L.title}</span>
             </h2>
             <ul className={styles.list}>
                 {events.slice(0, 4).map((e) => (
@@ -83,7 +93,7 @@ export function UpcomingEvents({
                     </li>
                 ))}
             </ul>
-            <ButtonLink Size="md" label="All events" href={allHref} />
+            <ButtonLink Size="md" label={L.all} href={allHref} />
         </section>
     )
 }

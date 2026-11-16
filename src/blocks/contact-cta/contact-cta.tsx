@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { TextInput } from '../../ui/text-input'
 import { Dropdown } from '../../ui/dropdown'
 import { TextArea } from '../../ui/text-area'
@@ -14,6 +15,11 @@ export type ContactCTAVariant =
     | 'Form'
     | 'Sub-footer split'
     | 'Sub-footer background'
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const CONTACT_CTA_LABELS = {
+    consent: 'Yes, I would like to learn more about Youwe’s services',
+}
+
 export type ContactCTAProps = {
     /** Figma: Variant */
     Variant?: ContactCTAVariant
@@ -33,8 +39,10 @@ export type ContactCTAProps = {
     /** Form: country options */
     countries?: { value: string; label: string }[]
     /** Sub-footer image (placeholder when absent) */
-    image?: string
+    image?: ImageInput
     onSubmit?: (data: FormData) => void
+    /** UI text, for translations: { ...CONTACT_CTA_LABELS } */
+    labels?: Partial<typeof CONTACT_CTA_LABELS>
 }
 
 export function ContactCTA({
@@ -50,7 +58,9 @@ export function ContactCTA({
     submit = 'Send message',
     image,
     onSubmit,
+    labels,
 }: ContactCTAProps) {
+    const L = { ...CONTACT_CTA_LABELS, ...labels }
     if (Variant === 'Form') {
         return (
             <section
@@ -141,7 +151,7 @@ export function ContactCTA({
                         <CheckboxLabel
                             Size="S"
                             name="optIn"
-                            label="Yes, I would like to learn more about Youwe’s services"
+                            label={L.consent}
                         />
                         <Button
                             Variant="Primary"

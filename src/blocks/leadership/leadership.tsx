@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { SectionIntro } from '../section-header'
 import { cx } from '../../shared/cx'
@@ -12,7 +13,7 @@ export type PersonCardProps = {
     name: string
     role: string
     email?: string
-    image?: string
+    image?: ImageInput
 }
 
 export function PersonCard({

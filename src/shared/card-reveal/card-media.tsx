@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from 'react'
 import { cx } from '../cx'
 import { Icon } from '../icons/icon'
 import styles from './card-reveal.module.css'
+import { assetAlt, assetSrc, type ImageInput } from '../asset'
 
 /*
   Card image frame. Without `src` it shows the Figma placeholder (surface/base-3 + image icon),
@@ -18,7 +19,8 @@ export function CardMedia({
     style,
     children,
 }: {
-    src?: string
+    /** A URL or a CMS asset ({ src, alt }); an asset's alt wins over `alt` */
+    src?: ImageInput
     alt?: string
     ratio?: string
     placeholder?: boolean
@@ -33,8 +35,12 @@ export function CardMedia({
             className={cx(styles.media, className)}
             style={{ display: 'block', aspectRatio: ratio, ...style }}
         >
-            {src ? (
-                <img src={src} alt={alt} loading="lazy" />
+            {assetSrc(src) ? (
+                <img
+                    src={assetSrc(src)}
+                    alt={assetAlt(src, alt)}
+                    loading="lazy"
+                />
             ) : (
                 placeholder && (
                     <span className={styles.placeholder} aria-hidden="true">

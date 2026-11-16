@@ -1,3 +1,4 @@
+import { type LogoInput, Logo } from '../../shared/asset'
 import type { ReactNode } from 'react'
 import { CardArrow, CardReveal } from '../../shared/card-reveal'
 import { cx } from '../../shared/cx'
@@ -15,7 +16,7 @@ export type TechnologyCardProps = {
     /** Figma: Description (Show description) */
     Description?: string
     /** Figma: Logo — partner logo; without it the name is shown as a wordmark (Figma logo placeholder) */
-    logo?: ReactNode
+    logo?: LogoInput
     /** Figma: Show button */
     'Show button'?: boolean
     'Hover CTA'?: string
@@ -38,7 +39,11 @@ export function TechnologyCard({
 }: TechnologyCardProps) {
     const tile = (
         <span className={styles.logo} aria-hidden="true">
-            {logo ?? <span className="yw-body-md-bold">{Name}</span>}
+            {logo ? (
+                <Logo value={logo} alt={Name} />
+            ) : (
+                <span className="yw-body-md-bold">{Name}</span>
+            )}
         </span>
     )
     const text = (

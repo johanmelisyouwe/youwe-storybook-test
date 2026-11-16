@@ -1,3 +1,4 @@
+import { fmt } from '../../shared/labels'
 import { Icon } from '../../shared/icons/icon'
 import { CompactDropdown } from '../compact-dropdown'
 import { cx } from '../../shared/cx'
@@ -20,6 +21,16 @@ export function pageItems(page: number, total: number): (number | 'gap')[] {
     return items
 }
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const PAGINATION_LABELS = {
+    nav: 'Pagination',
+    first: 'First page',
+    prev: 'Prev page',
+    page: 'Page {n}',
+    next: 'Next page',
+    last: 'Last page',
+}
+
 export type PaginationProps = {
     /** Figma: Variant */
     Variant?: 'View amount' | 'Pagination'
@@ -37,6 +48,8 @@ export type PaginationProps = {
     /** Story helper: classes per button for pseudo states */
     buttonClassName?: string
     className?: string
+    /** UI text, for translations: { ...PAGINATION_LABELS } */
+    labels?: Partial<typeof PAGINATION_LABELS>
 }
 
 export function Pagination({
@@ -50,7 +63,9 @@ export function Pagination({
     onPerPageChange,
     buttonClassName,
     className,
+    labels,
 }: PaginationProps) {
+    const L = { ...PAGINATION_LABELS, ...labels }
     if (Variant === 'View amount') {
         return (
             <div
@@ -78,14 +93,14 @@ export function Pagination({
     const last = page >= total
 
     return (
-        <nav className={cx(styles.root, className)} aria-label="Pagination">
+        <nav className={cx(styles.root, className)} aria-label={L.nav}>
             {Device === 'Mobile' && (
                 <button
                     type="button"
                     className={btn()}
                     disabled={first}
                     onClick={() => go(1)}
-                    aria-label="First page"
+                    aria-label={L.first}
                 >
                     <Icon name="first-page" size={24} />
                 </button>
@@ -95,7 +110,7 @@ export function Pagination({
                 className={btn(styles['page-btn-prev'])}
                 disabled={first}
                 onClick={() => go(page - 1)}
-                aria-label="Prev page"
+                aria-label={L.prev}
             >
                 <Icon name="chevron-left" size={24} />
                 Prev
@@ -121,7 +136,7 @@ export function Pagination({
                                     aria-current={
                                         it === page ? 'page' : undefined
                                     }
-                                    aria-label={`Page ${it}`}
+                                    aria-label={fmt(L.page, { n: it })}
                                     onClick={() => go(it)}
                                 >
                                     {it}
@@ -136,7 +151,7 @@ export function Pagination({
                 className={btn(styles['page-btn-next'])}
                 disabled={last}
                 onClick={() => go(page + 1)}
-                aria-label="Next page"
+                aria-label={L.next}
             >
                 Next
                 <Icon name="chevron-right" size={24} />
@@ -147,7 +162,7 @@ export function Pagination({
                     className={btn()}
                     disabled={last}
                     onClick={() => go(total)}
-                    aria-label="Last page"
+                    aria-label={L.last}
                 >
                     <Icon name="last-page" size={24} />
                 </button>

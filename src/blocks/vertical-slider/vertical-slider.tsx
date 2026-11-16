@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '../../ui/button'
 import { CardMedia } from '../../shared/card-reveal/card-media'
@@ -45,7 +46,7 @@ export type SlideData =
           eyebrow: string
           Title: string
           body: string
-          image?: string
+          image?: ImageInput
           button?: Btn
       }
     | {
@@ -255,9 +256,9 @@ export type VerticalSliderProps = {
     /** Figma: Tagline (Show tagline) */
     Tagline?: string
     /** Chapters; `image` is the chapter's full-bleed background (opens with a circular wipe) */
-    items: { label: string; slide: SlideData; image?: string }[]
+    items: { label: string; slide: SlideData; image?: ImageInput }[]
     /** Figma: Show background image */
-    backgroundImage?: string | true
+    backgroundImage?: ImageInput | true
     /** Figma: Show progress (default on for Behaviour Scroll) */
     'Show progress'?: boolean
     /** Figma: Show steps (mobile) */
@@ -352,8 +353,7 @@ export function VerticalSlider({
         </div>
     )
     const bgOn = !!backgroundImage || items.some((it) => it.image)
-    const fallback =
-        typeof backgroundImage === 'string' ? backgroundImage : undefined
+    const fallback = backgroundImage === true ? undefined : backgroundImage
 
     if (Device === 'Mobile' && pin) {
         // Mobile, Scroll: one slide at a time in a pinned full-screen frame; step bars, the slide eyebrow numbers it

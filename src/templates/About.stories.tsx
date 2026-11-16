@@ -3,7 +3,8 @@ import { Hero, HeroBar } from '../blocks/hero'
 import { CardGrid } from '../blocks/card-grid'
 import { SystemCard } from '../ui/service-card'
 import { StatsBlock } from '../blocks/stats-block'
-import { Offices, type OfficesProps } from '../blocks/offices'
+import { Offices } from '../blocks/offices'
+import { OFFICES } from '../blocks/offices/offices.copy'
 import { Leadership } from '../blocks/leadership'
 import { Awards } from '../blocks/awards'
 import { ContactCTA } from '../blocks/contact-cta'
@@ -55,57 +56,6 @@ const SYSTEM_PHOTO: Record<string, string> = {
     '02': caseImage('kingspan-1'),
     '03': caseImage('quooker-1'),
 }
-
-const OFFICES: OfficesProps['offices'] = [
-    {
-        City: 'Rotterdam',
-        Country: 'The Netherlands',
-        Timezone: 'GMT+1',
-        timeZone: 'Europe/Amsterdam',
-    },
-    {
-        City: 'Groningen',
-        Country: 'The Netherlands',
-        Timezone: 'GMT+1',
-        timeZone: 'Europe/Amsterdam',
-    },
-    {
-        City: 'London',
-        Country: 'United Kingdom',
-        Timezone: 'GMT+0',
-        timeZone: 'Europe/London',
-    },
-    {
-        City: 'Leeds',
-        Country: 'United Kingdom',
-        Timezone: 'GMT+0',
-        timeZone: 'Europe/London',
-    },
-    {
-        City: 'Shrewsbury',
-        Country: 'United Kingdom',
-        Timezone: 'GMT+0',
-        timeZone: 'Europe/London',
-    },
-    {
-        City: 'Stockholm',
-        Country: 'Sweden',
-        Timezone: 'GMT+1',
-        timeZone: 'Europe/Stockholm',
-    },
-    {
-        City: 'Bandung',
-        Country: 'Indonesia',
-        Timezone: 'GMT+7',
-        timeZone: 'Asia/Jakarta',
-    },
-    {
-        City: 'Kyiv',
-        Country: 'Ukraine',
-        Timezone: 'GMT+2',
-        timeZone: 'Europe/Kyiv',
-    },
-]
 
 const PEOPLE = [
     ['Rob Wiek', 'CEO'],

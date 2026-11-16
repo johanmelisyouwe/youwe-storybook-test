@@ -35,6 +35,40 @@ type Story = StoryObj<Args>
 export const Default: Story = {}
 export const Second: Story = { name: 'Left', args: { Alignment: 'Left' } }
 
+/** CMS rich text as the body (e.g. Contentful rich text rendered to elements): links, bold, lists, H3. */
+export const RichTextBody: Story = {
+    name: 'Rich text body',
+    render: (args) => (
+        <div style={{ maxWidth: W[args.Device ?? 'Desktop'] }}>
+            <TextColumn
+                {...args}
+                lead={TEXT_COLUMN.lead}
+                body={
+                    <>
+                        <p>
+                            Quooker’s original Magento platform could not keep
+                            up with <strong>17 markets</strong>. Youwe moved it
+                            to a headless set-up, described in{' '}
+                            <a href="#case">the full case</a>.
+                        </p>
+                        <h3>What changed</h3>
+                        <ul>
+                            <li>Content managed in Contentful</li>
+                            <li>Product data from Pimcore</li>
+                            <li>Checkout on Magento Open Source</li>
+                        </ul>
+                        <ol>
+                            <li>Measure</li>
+                            <li>Experiment</li>
+                            <li>Roll out per market</li>
+                        </ol>
+                    </>
+                }
+            />
+        </div>
+    ),
+}
+
 /** Every Figma variant: Device × Alignment. */
 export const AllVariants: Story = {
     parameters: { controls: { disable: true } },

@@ -11,6 +11,12 @@ import styles from './case-carousel.module.css'
    the middle of the screen; a 2px line at the bottom fills with the progress. Mobile and reduced motion: the
    Scroll row (swipe). Tabbing to a card scrolls the page to where that card is in view. */
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const CASE_CAROUSEL_LABELS = {
+    previous: 'Previous case',
+    next: 'Next case',
+}
+
 export type CaseCarouselProps = {
     /** Figma: Layout */
     Layout?: 'Short' | 'Full width 3' | 'Full width 4' | 'Scroll' | 'Pinned'
@@ -24,6 +30,8 @@ export type CaseCarouselProps = {
     /** Figma: Show button */
     button?: { label: string; href: string }
     cases: CaseCardProps[]
+    /** UI text, for translations: { ...CASE_CAROUSEL_LABELS } */
+    labels?: Partial<typeof CASE_CAROUSEL_LABELS>
 }
 
 export function CaseCarousel({
@@ -34,7 +42,9 @@ export function CaseCarousel({
     body,
     button,
     cases,
+    labels,
 }: CaseCarouselProps) {
+    const L = { ...CASE_CAROUSEL_LABELS, ...labels }
     const track = useRef<HTMLUListElement>(null)
     const root = useRef<HTMLElement>(null)
     const [index, setIndex] = useState(0)
@@ -169,7 +179,7 @@ export function CaseCarousel({
                                 Icon="Only"
                                 Size="M"
                                 iconName="chevron-left"
-                                label="Previous case"
+                                label={L.previous}
                                 disabled={index === 0}
                                 onClick={() => step(-1)}
                             />
@@ -178,7 +188,7 @@ export function CaseCarousel({
                                 Icon="Only"
                                 Size="M"
                                 iconName="chevron-right"
-                                label="Next case"
+                                label={L.next}
                                 disabled={atEnd && index > 0}
                                 onClick={() => step(1)}
                             />

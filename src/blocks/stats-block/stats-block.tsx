@@ -1,3 +1,4 @@
+import { Prose, type RichText } from '../../shared/prose'
 import type { CSSProperties } from 'react'
 import { Stat, type StatProps } from '../../ui/stat'
 import { cx } from '../../shared/cx'
@@ -15,9 +16,16 @@ export type StatsBlockProps = {
     intro?: { kicker?: string; title: string; body?: string }
     /** Figma: Show stat 3 / Show stat 4 — 2 to 4 stats */
     stats: Omit<StatProps, 'Type' | 'Size'>[]
+    /** Outcomes under the stats (v2 case "The results"): a list of results, or CMS rich text */
+    outcomes?: string[] | RichText
 }
 
-export function StatsBlock({ Type = 'Client', intro, stats }: StatsBlockProps) {
+export function StatsBlock({
+    Type = 'Client',
+    intro,
+    stats,
+    outcomes,
+}: StatsBlockProps) {
     return (
         <section
             className={cx(block.root, styles.root)}
@@ -56,6 +64,21 @@ export function StatsBlock({ Type = 'Client', intro, stats }: StatsBlockProps) {
                         />
                     ))}
                 </div>
+                {outcomes &&
+                    (Array.isArray(outcomes) &&
+                    outcomes.every((o) => typeof o === 'string') ? (
+                        <ul className={cx(styles.outcomes, 'yw-body-lg-reg')}>
+                            {(outcomes as string[]).map((o) => (
+                                <li key={o}>{o}</li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <Prose
+                            className={cx(styles.outcomes, 'yw-body-lg-reg')}
+                        >
+                            {outcomes}
+                        </Prose>
+                    ))}
             </div>
         </section>
     )

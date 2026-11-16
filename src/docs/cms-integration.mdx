@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Introduction/CMS integration" />
+
+# CMS integration (Contentful)
+
+This Storybook is the source of truth for the Youwe site. Every template is built from blocks, and every block takes its content as props. This page lists the data shapes so a Contentful entry can be mapped onto a block one to one.
+
+## Conventions
+
+| What | Prop type | From Contentful |
+|---|---|---|
+| **Image** (every `image`, `poster`, `images[]`, `featureImage`, `backgroundImage`) | `string \| { src, alt?, width?, height? }` | `{ src: 'https:' + asset.fields.file.url, alt: asset.fields.description }` |
+| **Logo** (Case Card, Stat, Hero logo bar, Technology logos, Testimonial, Quote Card, Technology Card) | `ReactNode \| { src, alt }` (a code logo or an asset) | An SVG/PNG asset: `{ src, alt: the client }` |
+| **Rich text** (Text column, Text + media, Case intro, Two-column text, Section header, Accordion items, Content tabs, Stats outcomes) | `string \| string[] \| ReactNode` | `documentToReactComponents(field)` from `@contentful/rich-text-react-renderer`. Use plain elements (`p`, `h3`, `h4`, `ul`, `ol`, `li`, `a`, `strong`, `em`, `blockquote`, `img`, `hr`). The block styles them. |
+| **Links** | `{ label, href }` | A link entry, or `{ label: entry.title, href: '/' + locale + '/' + entry.slug }` |
+| **Video** | `string` (file URL or Vimeo URL) | An asset URL or a Vimeo URL field |
+| **UI text** (buttons, aria labels) | `labels?: Partial<…_LABELS>` | Translations per locale; every component exports its English defaults, e.g. `CASE_CAROUSEL_LABELS`. Placeholders such as `{count}` are filled by the component. |
+| **Regions / locales** | Header and Footer `regions: { label, href, hreflang, current }[]` | One entry per Contentful locale (Global `/`, UK `/en-gb`, NL `/nl`, SE `/sv`). The Header's `homeHref` points the logo to the locale home. |
+| **Device** | `'Desktop' \| 'Mobile'` | Not from the CMS: `useDevice()` (below 768px is Mobile), or pass `Device="Auto"` to Header and Footer |
+
+Components with `labels`: Header, Footer, Ask Youwe (bar, snippet, dock), Case carousel, Filter bar, Insights overview, Build your stack, Contact CTA, Testimonial, Breadcrumbs, Insight Card, Pagination, Video Player, Phone input, Cookie banner, Upcoming events. Other button texts are already props (`cta`, `button`, `submit`, `Hover CTA`, `closeLabel`).
+
+## Templates and their blocks
+
+Each template is a list of sections. Sections marked *optional* can be left out when an entry has no data for them.
+
+| Template | Sections, in order |
+|---|---|
+| **Home** | Hero (Gradient, `Background="WebGL"`, logo bar) · Vertical slider (Scroll, chapters) · Stats · Case carousel (Pinned) · Testimonial (Tabs, quotes per client) · ACI Weave · Technology logos · Contact CTA |
+| **Work** | Hero · Filter bar · Card grid of Case Cards · Pagination · Contact CTA |
+| **Work detail** (case) | Hero (Title + image, client logo) · Case intro (meta list: platforms, role…; lead; rich text body) · Media (Full bleed, image or video) · Section header · Media · Text column · Text + media · Testimonial *optional* · Stats with `outcomes` *optional* · Media (Two-up, or Gallery with any number of images) *optional* · Case carousel (related cases) · Contact CTA |
+| **Industries** | Hero · Card grid (industries) · Card grid · Card grid · Contact CTA |
+| **Industry detail** | Hero (logo bar) · Text + media (with a Case Card) · Content tabs ("Who we work with", one tab per audience, optional case) *optional* · Case Card (featured) · Testimonial · Card grid (related services) · Case carousel · Offices ("Work with us") *optional* · Contact CTA |
+| **Services** | Hero · Services split × 3 (one per proposition) · Case carousel · Contact CTA |
+| **Service detail** | Hero (stats bar) · Card grids · Technology logos · Feature list · Stats · Card grid (more cases) · Technology logos · Card grid (related services) · Feature list Split (numbered steps, "phased approach") *optional* · Accordion list (FAQ, rich text answers) *optional* · Contact CTA |
+| **Tech partners** | Hero · Build your stack · Tech partners split × 3 · Contact CTA |
+| **Insights** | Hero · Insight Card (Featured) + Upcoming events · Insights overview (filters by type with counts, Show more: controlled, so the list can come from a paginated query) · Contact CTA |
+| **About** | Hero · Card grid · Stats · Offices · Leadership · Stats · Hero bar · Stats · Awards · Contact CTA |
+
+Every page also has the **Header** (nav with mega menu, utility links, CTA, regions), the **Footer** (columns, legal links, social, regions) and the **Ask Youwe** dock (`context` question per page).
+
+## Contentful mapping tips
+
+- **One content type per block.** Model a page as a list of section entries (a reference field allowing the block types above), with a `Device`-free entry per block. A small switch maps each entry's content type to its block.
+- **Variants are Figma names.** Props such as `Layout`, `Mode`, `Variant` and `Type` take the exact Figma variant names (for example `'Two-up'` or `'Full width 3'`). Use Contentful "dropdown" validations with the same values.
+- **Mode per section.** Wrap a block in `Section Mode="Dark" | "Light"` (or set `data-theme` on its wrapper). Store `mode` on the section entry.
+- **Optional sections render nothing when empty.** Leave the section out of the list instead of passing empty arrays.

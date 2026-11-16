@@ -8,6 +8,13 @@ import styles from './cookie-banner.module.css'
   Interaction (Figma): focus moves into the banner; decline is as prominent as accept.
 */
 
+/** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
+export const COOKIE_BANNER_LABELS = {
+    region: 'Cookie consent',
+    accept: 'Accept',
+    settings: 'Cookie settings',
+}
+
 export type CookieBannerProps = {
     /** Figma: Device */
     Device?: 'Desktop' | 'Mobile'
@@ -18,6 +25,8 @@ export type CookieBannerProps = {
     onSettings?: () => void
     /** Move focus into the banner when it appears (Figma interaction note) */
     autoFocus?: boolean
+    /** UI text, for translations: { ...COOKIE_BANNER_LABELS } */
+    labels?: Partial<typeof COOKIE_BANNER_LABELS>
 }
 
 export function CookieBanner({
@@ -27,7 +36,9 @@ export function CookieBanner({
     onAccept,
     onSettings,
     autoFocus = false,
+    labels,
 }: CookieBannerProps) {
+    const L = { ...COOKIE_BANNER_LABELS, ...labels }
     const ref = useRef<HTMLElement>(null)
     useEffect(() => {
         if (autoFocus) ref.current?.focus()
@@ -37,7 +48,7 @@ export function CookieBanner({
             ref={ref}
             tabIndex={-1}
             role="region"
-            aria-label="Cookie consent"
+            aria-label={L.region}
             data-mobile={Device === 'Mobile' || undefined}
             data-fixed={fixed || undefined}
             className={cx(styles.root)}
@@ -50,13 +61,13 @@ export function CookieBanner({
                 <Button
                     Variant="Primary"
                     Size="M"
-                    label="Accept"
+                    label={L.accept}
                     onClick={onAccept}
                 />
                 <Button
                     Variant="Solid"
                     Size="M"
-                    label="Cookie settings"
+                    label={L.settings}
                     onClick={onSettings}
                 />
             </div>

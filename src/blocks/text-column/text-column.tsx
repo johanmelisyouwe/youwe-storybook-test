@@ -1,4 +1,5 @@
 import { cx } from '../../shared/cx'
+import { Prose, type RichText } from '../../shared/prose'
 import block from '../../shared/block/block.module.css'
 import styles from './text-column.module.css'
 
@@ -12,13 +13,12 @@ export function Lead({ children }: { children: string }) {
     )
 }
 
-export function Body({ paragraphs }: { paragraphs: string[] }) {
+/** Long-form body: paragraphs (string[]) or CMS rich text (ReactNode), see shared/prose */
+export function Body({ paragraphs }: { paragraphs: RichText }) {
     return (
-        <div className={cx(styles['longform-body'], 'yw-body-lg-reg')}>
-            {paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-            ))}
-        </div>
+        <Prose className={cx(styles['longform-body'], 'yw-body-lg-reg')}>
+            {paragraphs}
+        </Prose>
     )
 }
 
@@ -28,7 +28,8 @@ export type TextColumnProps = {
     /** Figma: Device (layout follows the block width) */
     Device?: 'Desktop' | 'Mobile'
     lead: string
-    body: string[]
+    /** Paragraphs, or CMS rich text (links, lists, bold, H3) */
+    body: RichText
 }
 
 export function TextColumn({

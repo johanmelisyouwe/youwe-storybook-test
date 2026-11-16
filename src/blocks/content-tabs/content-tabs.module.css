@@ -1,0 +1,42 @@
+/* Content tabs (content-tabs.tsx): head (kicker, heading/xl, intro max 632), Tab group, panel 7/5 */
+@layer components {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+    }
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        max-width: 39.5rem;
+    }
+
+    .intro {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--spacing-2xl);
+        padding-top: var(--spacing-xl);
+
+        &[data-case] {
+            grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+            align-items: start;
+        }
+
+        @container (max-width: 63.9375rem) {
+            &[data-case] {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    }
+
+    .body {
+        max-width: 39.5rem;
+        color: var(--color-shared-content-secondary);
+    }
+}

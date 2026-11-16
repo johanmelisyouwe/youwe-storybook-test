@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import block from '../../shared/block/block.module.css'
 
@@ -9,7 +10,7 @@ import block from '../../shared/block/block.module.css'
 
 export type SolutionsGridProps = {
     title?: string
-    items: { title: string; body: string; image?: string; href?: string }[]
+    items: { title: string; body: string; image?: ImageInput; href?: string }[]
 }
 
 export function SolutionsGrid({

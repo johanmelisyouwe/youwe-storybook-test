@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { useState } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { CardMedia } from '../../shared/card-reveal/card-media'
@@ -15,7 +16,7 @@ export type Industry = {
     Title: string
     Subtitle?: string
     /** Preview image (desktop) and the customer shown on it (Figma: Show preview image) */
-    preview?: { image?: string; customer: string }
+    preview?: { image?: ImageInput; customer: string }
     href: string
 }
 

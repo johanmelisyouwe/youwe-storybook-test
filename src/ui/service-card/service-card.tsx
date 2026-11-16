@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { CardArrow, CardReveal } from '../../shared/card-reveal'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { ButtonLink } from '../button-link'
@@ -69,7 +70,7 @@ export type SystemCardProps = Common & {
     /** Figma: Caption under the image */
     Caption?: string
     /** Figma: Show image — the case photo */
-    image?: string
+    image?: ImageInput
     'Show image'?: boolean
     /** Figma: Show link — the Button/Link label */
     link?: string

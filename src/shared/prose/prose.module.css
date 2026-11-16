@@ -1,0 +1,82 @@
+/* Prose: element styles inside rich text bodies (prose.tsx). Inherits the body text style of its block. */
+@layer components {
+    .prose {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        & > * {
+            margin: 0;
+        }
+
+        & h3 {
+            margin-top: 0.5em;
+            color: var(--color-shared-content-primary);
+            font-family: var(--font-family-headings);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-heading-md);
+            line-height: 1.2; /* legacy-ok: heading-md is line-height 1, too tight for wrapping body headings */
+            letter-spacing: -0.01em;
+        }
+
+        & h4 {
+            margin-top: 0.25em;
+            color: var(--color-shared-content-primary);
+            font-weight: var(--font-weight-bold);
+        }
+
+        & a {
+            color: var(--color-shared-content-link);
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+        }
+
+        & a:hover {
+            text-decoration-thickness: 2px;
+        }
+
+        & strong,
+        & b {
+            color: var(--color-shared-content-primary);
+            font-weight: var(--font-weight-bold);
+        }
+
+        & ul,
+        & ol {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            padding-left: 1.25em;
+        }
+
+        & ul {
+            list-style: disc;
+        }
+
+        & ol {
+            list-style: decimal;
+        }
+
+        & li::marker {
+            color: var(--color-shared-content-brand);
+        }
+
+        & blockquote {
+            padding-left: var(--spacing-md);
+            border-left: 2px solid var(--color-shared-border-brand-1);
+            color: var(--color-shared-content-primary);
+        }
+
+        & img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--component-radius-card);
+        }
+
+        & hr {
+            width: 100%;
+            border: 0;
+            border-top: var(--shared-width-1) solid var(--color-shared-border-2);
+        }
+    }
+}

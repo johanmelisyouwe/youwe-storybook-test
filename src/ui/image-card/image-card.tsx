@@ -1,3 +1,4 @@
+import type { ImageInput } from '../../shared/asset'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
 import styles from './image-card.module.css'
@@ -6,7 +7,7 @@ import ring from '../../shared/focus-ring/focus-ring.module.css'
 /* Image Card — Figma 26904:35 (page "Cards"). */
 
 export type ImageCardProps = {
-    image?: string
+    image?: ImageInput
     alt?: string
     /** Figma: Caption (Show caption) */
     Caption?: string

@@ -1,3 +1,4 @@
+import type { RichText } from '../../shared/prose'
 import { Body, Lead } from '../text-column'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
@@ -13,7 +14,8 @@ export type CaseIntroProps = {
     /** e.g. Platforms / Role / Solution */
     meta: { label: string; value: string }[]
     lead: string
-    body: string[]
+    /** Paragraphs, or CMS rich text (links, lists, bold, H3) */
+    body: RichText
 }
 
 export function CaseIntro({

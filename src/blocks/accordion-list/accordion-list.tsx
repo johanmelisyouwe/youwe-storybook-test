@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { Prose, type RichText } from '../../shared/prose'
 import { Accordion } from '../../ui/accordion'
 import { Button } from '../../ui/button'
 import { List, ListItem } from '../../ui/list-item'
@@ -22,7 +22,8 @@ export type AccordionListProps = {
     bullets?: string[]
     /** Split layouts: title above the accordions */
     'Accordion title'?: string
-    items: { label: string; content: ReactNode }[]
+    /** content: a paragraph, paragraphs or CMS rich text */
+    items: { label: string; content: RichText }[]
     /** Figma: Show CTA */
     cta?: {
         title: string
@@ -78,7 +79,7 @@ export function AccordionList({
                     label={it.label}
                     className={block.reveal}
                 >
-                    {it.content}
+                    <Prose>{it.content}</Prose>
                 </Accordion>
             ))}
         </div>
