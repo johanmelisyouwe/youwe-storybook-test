@@ -1,37 +1,27 @@
-# Sync report — 17 November 2026 (Services overview: mosaic alternative)
+# Sync report — 17 November 2026 (Services detail: card hovers)
 
-An alternative Services overview, with the practices laid out as on the v2 site. The hero, the cases, the sub-footer and the footer are the same as on the current page.
+On Services detail, the clickable-looking Feature Cards had no hover. These were the building blocks, which have an arrow, and the "Where B2B ordering gets stuck" AI cards, which have a "Learn more" link.
 
-## New block: Content blocks/Services mosaic (code-only)
+## Feature Card: whole-card hover (code option)
 
-One practice per section, on a 12-column grid with gap 16:
+- **`href`:** the whole card becomes one link, with the shared **card hover**: the red reveal with `Hover CTA` + the card title, the text lifts, and it also works on keyboard focus. This is the same as Service, Case and Stat cards.
+- **`ask`** (and no `button`): the whole card becomes a button that opens Ask Youwe with the question, with the same hover. The reveal shows the link label ("Learn more").
+- **Link label:** in both cases it shows as text, so there are no nested links.
+- **No change for cards without `href`/`ask`.** Static info cards keep no hover.
+- **Scroll reveal:** the scroll reveal attribute moved from `data-reveal` to `data-scroll`, so it doesn't clash with the card-reveal `data-reveal="lift"`.
 
-- **Head:** the kicker across the full width, the heading/xl title on the left and a one-line tagline on the right.
-- **Lead tile:** 6 columns × 3 rows. A full image with a text card at the bottom left (eyebrow + body).
-- **Service tiles:** Service Cards, 2 per row next to the lead. An odd last card spans both columns.
-- **Case tile:** 8 columns. An image with a stat card ("800+ / Categories active / BunzlOne · Read the case").
-- **Ask tile:** 4 columns. "Ask Youwe about …" with the question and an Ask pill. Clicking it asks through `askYouwe()`, so the page's dock answers it.
-- **Hover:** the case and Ask tiles now have the **card hover** (red reveal, also on keyboard focus), like the Service Cards.
-- **`Lead="Left" | "Right"`** mirrors the top part (alternate per practice).
-- **Cards follow the section Mode:** dark cards on dark sections, light cards (surface/base-2) on light sections.
-- **Tablet:** the tiles are stacked and the services stay in 2 columns. **Phone:** a single column.
+## Services detail template
 
-## Template
-
-- **Templates / Services** has new stories, **Mosaic desktop** and **Mosaic mobile**: the three practices as Services mosaic (dark, light, dark).
-- The original Desktop and Mobile stories are unchanged.
-- **Content is the v1 content.** The titles, bodies and services are the same desktop/mobile copy as the current page. The case tiles use the hero stats (Quooker 17 markets, Symson 93%, PostNL 41%), and the Ask tile uses the v1 Ask Youwe question.
-- **Added only where the mosaic needs it:**
-  - a lead image per practice (abstract 016 / 011 / 005)
-  - the case photos
-  - the eyebrow "6 services"
-- No tagline.
+- **B2B commerce building blocks:** the 8 tiles with arrows now have `href` and "Explore the building block" as the hover. The "View case study" link on the third tile is removed.
+- **Where B2B ordering gets stuck:** the 5 AI cards are now whole-card Ask buttons with the hover.
+- **Info cards without arrow or link** (such as "Why B2B commerce") stay static.
 
 ## Checks
 
-- `pnpm typecheck`, `pnpm check` (Services mosaic is in `figma-sync.json` as `code-only`), `pnpm build-storybook`: pass.
-- Checked in a browser at 1440:
-  - Practice 1 (dark, lead left) and 2 (light, lead right, light cards) render.
-  - Hovering the case tile shows the red reveal.
-  - On an iPhone 13 everything is in one column.
+- `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass.
+- In a browser at 1440:
+  - Hovering a building block shows the red reveal "Explore the building block".
+  - Hovering an AI card shows "Learn more".
+  - Clicking an AI card opens the Ask Youwe dock with that question.
   - No console errors.
+- New story: Feature Card / Clickable.

@@ -45,13 +45,26 @@
             padding: var(--spacing-lg) 0 0;
         }
 
+        /* Clickable (href / ask): a link or button reset to the card look */
+        &[data-whole] {
+            display: flex;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            color: inherit;
+            font: inherit;
+            text-align: left;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         &[data-variant="plain"] .image {
             border-radius: var(--shared-radius-4);
         }
 
         @media (prefers-reduced-motion: no-preference) {
             @supports (animation-timeline: view()) {
-                &[data-reveal] {
+                &[data-scroll] {
                     animation: block-reveal var(--motion-duration-reveal)
                         var(--motion-ease-emphasized) both;
                     animation-timeline: view();
@@ -114,5 +127,12 @@
     }
     .bottom {
         padding-top: var(--spacing-2xs);
+    }
+
+    .linklabel {
+        display: inline-flex;
+        color: var(--color-shared-content-primary);
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
     }
 }

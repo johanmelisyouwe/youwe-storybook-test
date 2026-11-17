@@ -1,5 +1,6 @@
 import type { ImageInput } from '../../shared/asset'
-import { CardArrow } from '../../shared/card-reveal'
+import { CardArrow, CardReveal } from '../../shared/card-reveal'
+import cardReveal from '../../shared/card-reveal/card-reveal.module.css'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { Pills } from '../pills'
 import { Button } from '../button'
@@ -8,7 +9,12 @@ import { cx } from '../../shared/cx'
 import { askYouwe } from '../../shared/ask'
 import styles from './feature-card.module.css'
 
-/* Feature Card — Figma 26533:129 (page "Cards"). Static card; tags, button and link are separate links where used. */
+/*
+  Feature Card — Figma 26533:129 (page "Cards"). Static card; tags, button and link are separate links where used.
+  Clickable (code, 17 November): with `href` the whole card is one link, and with `ask` (and no href) the whole
+  card is a button that opens Ask Youwe. Both get the shared card hover (red reveal with `Hover CTA`, text lifts,
+  also on keyboard focus), like the Service and Case Cards. The link label then shows as text, not a second link.
+*/
 
 export type FeatureCardProps = {
     /** Figma: Variant */
@@ -29,6 +35,10 @@ export type FeatureCardProps = {
     link?: { label: string; href?: string }
     /** AI variant: the link opens Ask Youwe with this question (instead of going to href) */
     ask?: string
+    /** The whole card links here (card hover: red reveal) */
+    href?: string
+    /** Card hover CTA (default: the link label, else "Read more"; "Ask Youwe" for ask cards) */
+    'Hover CTA'?: string
     /** Scroll reveal (Figma motion); off in Storybook grids by default */
     reveal?: boolean
     className?: string
@@ -45,14 +55,36 @@ export function FeatureCard({
     button,
     link,
     ask,
+    href,
+    'Hover CTA': hoverCta,
     reveal = false,
     className,
 }: FeatureCardProps) {
+    // Whole card interactive: a link (href) or an Ask Youwe button (ask without href, and no separate button)
+    const whole = href ? 'link' : ask && !button ? 'ask' : null
+    const cta =
+        hoverCta ??
+        (whole === 'ask'
+            ? (link?.label ?? 'Ask Youwe')
+            : (link?.label ?? 'Read more'))
+    const Root = whole === 'link' ? 'a' : whole === 'ask' ? 'button' : 'article'
+    const rootProps =
+        whole === 'link'
+            ? { href }
+            : whole === 'ask'
+              ? {
+                    type: 'button' as const,
+                    onClick: () => askYouwe(ask ?? Title),
+                }
+              : {}
     return (
-        <article
+        <Root
+            {...rootProps}
             data-variant={Variant.toLowerCase()}
-            data-reveal={reveal || undefined}
-            className={cx(styles.root, className)}
+            data-reveal={whole ? 'lift' : undefined}
+            data-scroll={reveal || undefined}
+            data-whole={whole ?? undefined}
+            className={cx(styles.root, whole && cardReveal.root, className)}
         >
             {Variant === 'AI' && (
                 <span className={styles.aura} aria-hidden="true" />
@@ -65,7 +97,7 @@ export function FeatureCard({
                     style={{ borderRadius: 0 }}
                 />
             )}
-            <div className={styles.content}>
+            <div className={cx(styles.content, whole && cardReveal.lift)}>
                 <div className={styles.header}>
                     <div className={styles.heading}>
                         {Number && (
@@ -99,7 +131,7 @@ export function FeatureCard({
                         ))}
                     </div>
                 )}
-                {button && (
+                {button && !whole && (
                     <div className={styles.bottom}>
                         <Button
                             Variant="Outline"
@@ -109,7 +141,13 @@ export function FeatureCard({
                         />
                     </div>
                 )}
-                {link &&
+                {link && whole ? (
+                    // The whole card is the link/button: the label is text
+                    <span className={cx(styles.linklabel, 'yw-body-md-med')}>
+                        {link.label}
+                    </span>
+                ) : (
+                    link &&
                     (ask ? (
                         // Opens Ask Youwe on this page, so it's a button, not a link
                         <ButtonLink
@@ -123,8 +161,10 @@ export function FeatureCard({
                             label={link.label}
                             href={link.href ?? '#'}
                         />
-                    ))}
+                    ))
+                )}
             </div>
-        </article>
+            {whole && <CardReveal cta={cta} context={Title} />}
+        </Root>
     )
 }
