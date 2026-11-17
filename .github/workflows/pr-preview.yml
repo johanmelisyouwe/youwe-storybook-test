@@ -1,0 +1,33 @@
+name: Storybook PR preview
+
+# Deploys each PR's Storybook to gh-pages under pr-preview/pr-<n>/ and removes it
+# when the PR is merged or closed. Doesn't work for fork PRs (read-only token).
+on:
+    pull_request:
+        types: [opened, reopened, synchronize, closed]
+
+permissions:
+    contents: write
+    pull-requests: write
+
+# One group per PR, not shared with the main deploy: a shared group drops pending
+# runs, and the dropped one could be a removal.
+concurrency: preview-${{ github.ref }}
+
+jobs:
+    preview:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - uses: pnpm/action-setup@v4
+              if: github.event.action != 'closed'
+            - uses: actions/setup-node@v5
+              if: github.event.action != 'closed'
+              with:
+                  node-version-file: .nvmrc
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile && pnpm build-storybook
+              if: github.event.action != 'closed'
+            - uses: rossjrw/pr-preview-action@v1
+              with:
+                  source-dir: storybook-static
