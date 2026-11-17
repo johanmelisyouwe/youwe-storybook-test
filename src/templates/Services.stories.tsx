@@ -269,87 +269,70 @@ const CASES: CaseCardProps[] = [
     href: '#',
 }))
 
-/* Mosaic alternative: the practices as Services mosaic, alternating lead side and Mode */
+/*
+  Mosaic alternative: the practices as Services mosaic, with the v1 content (titles, body, services; the
+  desktop and mobile copy as above, the hero stats as the case tiles, the v1 Ask Youwe question). Added only
+  what the mosaic needs: a lead image per practice and the case photos.
+*/
 type MosaicPractice = Omit<ServicesMosaicProps, 'Device'> & {
     Mode: 'Dark' | 'Light'
 }
-const MOSAIC: MosaicPractice[] = [
+const ASK_Q = 'How did Kingspan connect its systems with AI agents?'
+const MOSAIC_EXTRA: (Pick<MosaicPractice, 'Lead' | 'case'> & {
+    image: string
+})[] = [
     {
-        Mode: 'Dark',
         Lead: 'Left',
-        kicker: 'Practice 01',
-        title: 'Digital Infrastructure',
-        tagline: 'Commerce, product data and portals that carry revenue.',
-        lead: {
-            image: abstract('016'),
-            eyebrow: '01 · Infrastructure · 6 services',
-            body: MOBILE[0].body,
-        },
-        services: MOBILE[0].services,
-        case: {
-            image: { src: caseImage('bunzl', 'wide'), alt: 'The BunzlOne app' },
-            value: '800+',
-            label: 'Categories active',
-            client: 'BunzlOne',
-            href: '#',
-        },
-        ask: {
-            label: 'Ask Youwe about Infrastructure',
-            question: 'Which commerce platforms do you build on?',
-        },
-    },
-    {
-        Mode: 'Light',
-        Lead: 'Right',
-        kicker: 'Practice 02',
-        title: 'Operational Optimization & Intelligence',
-        tagline: 'AI and automation that take friction out of operations.',
-        lead: {
-            image: abstract('011'),
-            eyebrow: '02 · Optimization · 6 services',
-            body: MOBILE[1].body,
-        },
-        services: MOBILE[1].services,
+        image: abstract('016'),
         case: {
             image: {
-                src: caseImage('chadwicks'),
-                alt: 'A Chadwicks builders merchant store',
+                src: caseImage('quooker-1', 'wide'),
+                alt: 'A Quooker tap in a kitchen',
             },
-            value: '+43%',
-            label: 'Marketable catalog uplift',
-            client: 'Chadwicks Group',
+            value: STATS[0].value,
+            label: STATS[0].label,
+            client: STATS[0].client,
             href: '#',
-        },
-        ask: {
-            label: 'Ask Youwe about Optimization',
-            question: 'How would AI agents work with our ERP?',
         },
     },
     {
-        Mode: 'Dark',
-        Lead: 'Left',
-        kicker: 'Practice 03',
-        title: 'Foundation for Data & Integrations',
-        tagline: 'Data and integrations that everything else can build on.',
-        lead: {
-            image: abstract('005'),
-            eyebrow: '03 · Data · 5 services',
-            body: MOBILE[2].body,
-        },
-        services: MOBILE[2].services,
+        Lead: 'Right',
+        image: abstract('011'),
         case: {
-            image: { src: caseImage('postnl'), alt: 'PostNL' },
-            value: '41%',
-            label: 'IT cost reduction',
-            client: 'PostNL',
+            image: { src: caseImage('symson'), alt: 'Symson' },
+            value: STATS[2].value,
+            label: STATS[2].label,
+            client: STATS[2].client,
             href: '#',
         },
-        ask: {
-            label: 'Ask Youwe about Data',
-            question: 'How do we connect our ERP, PIM and commerce data?',
+    },
+    {
+        Lead: 'Left',
+        image: abstract('005'),
+        case: {
+            image: { src: caseImage('postnl'), alt: 'PostNL' },
+            value: STATS[3].value,
+            label: STATS[3].label,
+            client: STATS[3].client,
+            href: '#',
         },
     },
 ]
+const mosaic = (mobile: boolean): MosaicPractice[] =>
+    (mobile ? MOBILE : PRACTICES).map((p, i) => ({
+        Mode: p.Mode,
+        Lead: MOSAIC_EXTRA[i].Lead,
+        kicker: p.kicker,
+        title: p.title,
+        lead: {
+            image: MOSAIC_EXTRA[i].image,
+            eyebrow: `${p.services.length} services`,
+            body: p.body,
+        },
+        services: p.services,
+        case: MOSAIC_EXTRA[i].case,
+        ask: { label: 'Ask Youwe', question: ASK_Q },
+    }))
 
 function ServicesPage({
     Device: story,
@@ -380,7 +363,7 @@ function ServicesPage({
                 header={header(Device)}
             />
             {Practices === 'Mosaic'
-                ? MOSAIC.map(({ Mode, ...p }) => (
+                ? mosaic(mobile).map(({ Mode, ...p }) => (
                       <Section key={p.title} Mode={Mode}>
                           <ServicesMosaic Device={Device} {...p} />
                       </Section>

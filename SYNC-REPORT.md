@@ -5,6 +5,7 @@ An alternative Services overview, with the practices laid out as on the v2 site.
 ## New block: Content blocks/Services mosaic (code-only)
 
 One practice per section, on a 12-column grid with gap 16:
+
 - **Head:** the kicker across the full width, the heading/xl title on the left and a one-line tagline on the right.
 - **Lead tile:** 6 columns × 3 rows. A full image with a text card at the bottom left (eyebrow + body).
 - **Service tiles:** Service Cards, 2 per row next to the lead. An odd last card spans both columns.
@@ -19,6 +20,12 @@ One practice per section, on a 12-column grid with gap 16:
 
 - **Templates / Services** has new stories, **Mosaic desktop** and **Mosaic mobile**: the three practices as Services mosaic (dark, light, dark).
 - The original Desktop and Mobile stories are unchanged.
+- **Content is the v1 content.** The titles, bodies and services are the same desktop/mobile copy as the current page. The case tiles use the hero stats (Quooker 17 markets, Symson 93%, PostNL 41%), and the Ask tile uses the v1 Ask Youwe question.
+- **Added only where the mosaic needs it:**
+  - a lead image per practice (abstract 016 / 011 / 005)
+  - the case photos
+  - the eyebrow "6 services"
+- No tagline.
 
 ## Checks
 
