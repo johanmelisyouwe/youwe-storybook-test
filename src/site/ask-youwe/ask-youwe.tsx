@@ -4,14 +4,57 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { Icon } from '../../shared/icons/icon'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
-import { useAskYouwe } from '../../shared/ask'
+import { askYouwe, useAskYouwe } from '../../shared/ask'
+import { Prose, type RichText } from '../../shared/prose'
 import ring from '../../shared/focus-ring/focus-ring.module.css'
 import styles from './ask-youwe.module.css'
 
 /*
   Ask Youwe — Figma 27019:3067; Ask Youwe/Snippet — 26692:106; parts _Ask Youwe/Orb, Aura, Button, Chip, Label.
-  The UI only: wiring to a real answer service is out of scope (onAsk callback).
+  Answer service: the site passes AskDock an async `onAsk(question, locale, { signal })` that calls its own
+  server-side API route (no key in the browser) and resolves with an AskAnswer. The dock shows loading, the
+  answer (text + source links + optional follow-ups / CTA), an error with Try again, or the fallback text when
+  no service is connected (no onAsk, or onAsk rejects with AskUnavailableError). A newer question aborts the
+  previous request. Focus: opening moves focus into the panel; closing returns it to where it came from.
 */
+
+/** A source link under an answer */
+export type AskSource = { title: string; url: string }
+
+/** What the site's answer service resolves with */
+export type AskAnswer = {
+    /** Plain text (blank lines = paragraphs) or rendered rich text */
+    text: RichText
+    sources?: AskSource[]
+    /** Suggested next questions (chips) */
+    followUps?: string[]
+    /** A button under the answer, e.g. Book a call */
+    cta?: { label: string; href: string }
+}
+
+/** The site's answer service: call your own API route here. Reject with AskUnavailableError for the fallback. */
+export type AskHandler = (
+    question: string,
+    locale: string,
+    options: { signal: AbortSignal }
+) => Promise<AskAnswer>
+
+/** Throw from onAsk when the service isn't available yet: the panel shows the fallback text, not an error */
+export class AskUnavailableError extends Error {
+    constructor(message = 'Ask Youwe is not available') {
+        super(message)
+        this.name = 'AskUnavailableError'
+    }
+}
+
+/** Answer text: a string with blank lines becomes paragraphs; anything else renders as rich text */
+const answerText = (t: RichText): RichText =>
+    typeof t === 'string'
+        ? t
+              .split(/\n\s*\n/)
+              .map((x) => x.trim())
+              .filter(Boolean)
+        : t
 
 /* _Ask Youwe/Orb */
 export function AskOrb({
@@ -156,6 +199,13 @@ export const ASK_YOUWE_LABELS = {
     askAbout: 'Ask about it',
     read: 'Read',
     askTitle: 'Ask: {title}',
+    panelTitle: 'Ask Youwe',
+    loading: 'Looking for an answer…',
+    error: 'Something went wrong. Please try again.',
+    retry: 'Try again',
+    sources: 'Sources',
+    unavailable:
+        'Ask Youwe can’t answer questions yet. Please contact us and we’ll help you right away.',
 }
 
 export type AskYouweProps = {
@@ -175,6 +225,18 @@ export type AskYouweProps = {
     Source?: string
     followUp?: string
     cta?: { label: string; href: string }
+    /** Active: where the answer is (answered shows Answer / sources) */
+    status?: 'answered' | 'loading' | 'error' | 'unavailable'
+    /** Active: source links under the answer */
+    sources?: AskSource[]
+    /** Active: suggested next questions (chips); `followUp` is the single Figma chip */
+    followUps?: string[]
+    /** Active: rich answer (overrides Answer) */
+    answerText?: RichText
+    /** Active, unavailable: the fallback text (default labels.unavailable) */
+    fallback?: RichText
+    /** Active, error: Try again */
+    onRetry?: () => void
     onAsk?: (q: string) => void
     onClose?: () => void
     className?: string
@@ -193,6 +255,12 @@ export function AskYouwe({
     Source,
     followUp,
     cta,
+    status = 'answered',
+    sources,
+    followUps,
+    answerText: rich,
+    fallback,
+    onRetry,
     onAsk,
     onClose,
     className,
@@ -226,8 +294,12 @@ export function AskYouwe({
 
     const submit = (e: React.FormEvent) => {
         e.preventDefault()
-        if (q.trim()) onAsk?.(q.trim())
+        if (q.trim()) {
+            onAsk?.(q.trim())
+            setQ('')
+        }
     }
+    const chips = [...(followUps ?? []), ...(followUp ? [followUp] : [])]
 
     if (State === 'Active') {
         return (
@@ -244,7 +316,7 @@ export function AskYouwe({
                 <div className={styles['ask-panel-header']}>
                     <AskOrb />
                     <span id={`${id}-t`} className="yw-body-md-bold">
-                        Ask Youwe
+                        {L.panelTitle}
                     </span>
                     <AskButton
                         Type="Icon"
@@ -266,27 +338,98 @@ export function AskYouwe({
                         </p>
                     </div>
                 )}
-                <div className={styles['ask-panel-answer']} aria-live="polite">
-                    <p className="yw-body-md-reg">{Answer}</p>
-                    {Source && (
-                        <span
+                <div
+                    className={styles['ask-panel-answer']}
+                    aria-live="polite"
+                    aria-busy={status === 'loading' || undefined}
+                    data-status={status}
+                >
+                    {status === 'loading' ? (
+                        <p
                             className={cx(
-                                styles['ask-panel-source'],
-                                'yw-body-xs-reg'
+                                styles['ask-panel-loading'],
+                                'yw-body-md-reg'
                             )}
                         >
-                            {Source}
-                        </span>
+                            <span
+                                className={styles['ask-panel-dots']}
+                                aria-hidden="true"
+                            >
+                                <i />
+                                <i />
+                                <i />
+                            </span>
+                            {L.loading}
+                        </p>
+                    ) : status === 'error' ? (
+                        <div role="alert" className={styles['ask-panel-error']}>
+                            <p className="yw-body-md-reg">{L.error}</p>
+                            {onRetry && (
+                                <AskButton label={L.retry} onClick={onRetry} />
+                            )}
+                        </div>
+                    ) : status === 'unavailable' ? (
+                        <Prose className="yw-body-md-reg">
+                            {fallback ?? L.unavailable}
+                        </Prose>
+                    ) : (
+                        <>
+                            <Prose className="yw-body-md-reg">
+                                {answerText(rich ?? Answer ?? '')}
+                            </Prose>
+                            {sources?.length ? (
+                                <nav
+                                    aria-label={L.sources}
+                                    className={styles['ask-panel-sources']}
+                                >
+                                    <span
+                                        className={cx(
+                                            styles['ask-panel-source'],
+                                            'yw-body-xs-med'
+                                        )}
+                                    >
+                                        {L.sources}
+                                    </span>
+                                    <ul>
+                                        {sources.map((src) => (
+                                            <li key={src.url}>
+                                                <a
+                                                    href={src.url}
+                                                    className={cx(
+                                                        ring.root,
+                                                        'yw-body-sm-reg'
+                                                    )}
+                                                >
+                                                    {src.title}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </nav>
+                            ) : (
+                                Source && (
+                                    <span
+                                        className={cx(
+                                            styles['ask-panel-source'],
+                                            'yw-body-xs-reg'
+                                        )}
+                                    >
+                                        {Source}
+                                    </span>
+                                )
+                            )}
+                        </>
                     )}
                 </div>
-                {(followUp || cta) && (
+                {status === 'answered' && (chips.length > 0 || cta) && (
                     <div className={styles['ask-panel-followups']}>
-                        {followUp && (
+                        {chips.map((c) => (
                             <AskChip
-                                label={followUp}
-                                onClick={() => onAsk?.(followUp)}
+                                key={c}
+                                label={c}
+                                onClick={() => onAsk?.(c)}
                             />
-                        )}
+                        ))}
                         {cta && (
                             <AskButton
                                 Variant="Primary"
@@ -314,7 +457,11 @@ export function AskYouwe({
                         Type="Icon"
                         Variant={q ? 'Primary' : 'Disabled'}
                         label={L.send}
-                        onClick={() => q && onAsk?.(q)}
+                        onClick={() => {
+                            if (!q.trim()) return
+                            onAsk?.(q.trim())
+                            setQ('')
+                        }}
                     />
                 </form>
             </section>
@@ -368,6 +515,7 @@ export type AskSnippetProps = {
     /** Case: Show second button */
     'Show second button'?: boolean
     href?: string
+    /** "Ask about it" / Ask: default askYouwe(), so the page's AskDock answers it through its onAsk */
     onAsk?: (q: string) => void
     className?: string
     /** UI text, for translations: { ...ASK_YOUWE_LABELS } */
@@ -383,7 +531,7 @@ export function AskSnippet({
     image,
     'Show second button': second = true,
     href = '#',
-    onAsk,
+    onAsk = askYouwe,
     className,
     labels,
 }: AskSnippetProps) {
@@ -465,7 +613,16 @@ export type AskDockProps = {
     Device?: 'Desktop' | 'Mobile'
     /** Page-specific question shown as the Contextual chip (desktop; on mobile the bar stays Default, there is no room) */
     context?: string
-    /** Static answer shown in the panel (no AI service is connected) */
+    /**
+     * The answer service: (question, locale, { signal }) => Promise<AskAnswer>. Call your own server-side API
+     * route here (no key in the browser). Leave it out, or reject with AskUnavailableError, for the fallback.
+     */
+    onAsk?: AskHandler
+    /** Passed to onAsk, e.g. the Contentful locale: en, en-GB, nl, sv */
+    locale?: string
+    /** Shown when no answer service is connected (default labels.unavailable) */
+    fallback?: RichText
+    /** Storybook only: a static answer when there is no onAsk and no fallback */
     answer?: Partial<AskYouweProps>
     /** Scroll distance before the bar slides in (px) */
     after?: number
@@ -474,15 +631,27 @@ export type AskDockProps = {
     Prompt?: string
 }
 
+type DockState =
+    | { status: 'loading' }
+    | { status: 'answered'; answer: AskAnswer }
+    | { status: 'error' }
+    | { status: 'unavailable' }
+    | { status: 'static' }
+
 /**
  * Fixed to the bottom of the viewport, centred on the page column. Slides in after the hero, steps aside
  * while the footer is on screen or a pinned full-screen section fills the view (e.g. Vertical slider, Behaviour
  * Scroll), and opens the answer panel above itself; Esc or close returns to the bar. A question asked
- * elsewhere on the page (askYouwe(), e.g. an AI Feature Card's link) opens the panel with that question.
+ * elsewhere on the page (askYouwe(), e.g. an AI Feature Card's link or an Ask snippet) opens the panel with
+ * that question. Questions go to onAsk; the newest question wins (the previous request is aborted).
+ * Focus: opening moves it to the panel's follow-up field; closing returns it to where it was before.
  */
 export function AskDock({
     Device = 'Desktop',
     context,
+    onAsk,
+    locale = 'en',
+    fallback,
     answer,
     after = 480,
     labels,
@@ -491,20 +660,76 @@ export function AskDock({
     const ref = useRef<HTMLDivElement>(null)
     const [shown, setShown] = useState(false)
     const [q, setQ] = useState<string | null>(null)
-    // Asked from elsewhere on the page: open with that question and move focus into the panel (keyboard users
-    // land on the follow-up field instead of staying on the card behind it)
-    const focusPanel = useRef(false)
-    useAskYouwe((question) => {
-        focusPanel.current = true
+    const [state, setState] = useState<DockState>({ status: 'static' })
+    const controller = useRef<AbortController | null>(null)
+    // Where focus was before the panel opened (the bar, a snippet's button…): it goes back there on close
+    const opener = useRef<HTMLElement | null>(null)
+    const restore = useRef(false)
+
+    const ask = (question: string) => {
+        if (q === null) {
+            const active = document.activeElement
+            opener.current =
+                active instanceof HTMLElement && active !== document.body
+                    ? active
+                    : null
+        }
         setQ(question)
-    })
+        controller.current?.abort()
+        if (!onAsk) {
+            setState(
+                fallback !== undefined || !answer
+                    ? { status: 'unavailable' }
+                    : { status: 'static' }
+            )
+            return
+        }
+        const c = new AbortController()
+        controller.current = c
+        setState({ status: 'loading' })
+        onAsk(question, locale, { signal: c.signal }).then(
+            (res) => {
+                if (!c.signal.aborted)
+                    setState({ status: 'answered', answer: res })
+            },
+            (err: unknown) => {
+                if (c.signal.aborted) return
+                setState(
+                    err instanceof AskUnavailableError
+                        ? { status: 'unavailable' }
+                        : { status: 'error' }
+                )
+            }
+        )
+    }
+    const close = () => {
+        controller.current?.abort()
+        restore.current = true
+        setQ(null)
+    }
+    useEffect(() => () => controller.current?.abort(), [])
+
+    useAskYouwe((question) => ask(question))
+    // Opened: move focus into the panel (the bar it came from is replaced by the panel)
+    const open = q !== null
     useEffect(() => {
-        if (q === null || !focusPanel.current) return
-        focusPanel.current = false
+        if (!open) return
         ref.current
-            ?.querySelector<HTMLElement>('input, textarea')
+            ?.querySelector<HTMLElement>('section input')
             ?.focus({ preventScroll: true })
-    }, [q])
+    }, [open])
+    // Closed: back to the opener if it is still on the page, else the bar's field
+    useEffect(() => {
+        if (open || !restore.current) return
+        restore.current = false
+        const back = opener.current
+        if (back && back.isConnected && !ref.current?.contains(back))
+            back.focus({ preventScroll: true })
+        else
+            ref.current
+                ?.querySelector<HTMLElement>('input')
+                ?.focus({ preventScroll: true })
+    }, [open])
     useEffect(() => {
         const root = ref.current?.closest('[data-page]') ?? document
         const footer = root.querySelector('footer')
@@ -532,7 +757,19 @@ export function AskDock({
             io?.disconnect()
         }
     }, [after])
-    const open = q !== null
+
+    const panel: Partial<AskYouweProps> =
+        state.status === 'static'
+            ? { ...answer }
+            : state.status === 'answered'
+              ? {
+                    status: 'answered',
+                    answerText: state.answer.text,
+                    sources: state.answer.sources,
+                    followUps: state.answer.followUps,
+                    cta: state.answer.cta,
+                }
+              : { status: state.status }
     return (
         <div
             ref={ref}
@@ -548,10 +785,12 @@ export function AskDock({
                     key="panel"
                     State="Active"
                     Device={Device}
-                    {...answer}
+                    {...panel}
+                    fallback={fallback}
                     Question={q}
-                    onClose={() => setQ(null)}
-                    onAsk={setQ}
+                    onRetry={() => ask(q)}
+                    onClose={close}
+                    onAsk={ask}
                 />
             ) : (
                 <AskYouwe
@@ -561,7 +800,7 @@ export function AskDock({
                     State="Docked"
                     Device={Device}
                     context={context}
-                    onAsk={setQ}
+                    onAsk={ask}
                 />
             )}
         </div>

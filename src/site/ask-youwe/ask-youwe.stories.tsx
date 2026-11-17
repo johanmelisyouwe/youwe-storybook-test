@@ -3,6 +3,9 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import {
     AskButton,
     AskChip,
+    AskDock,
+    type AskHandler,
+    AskUnavailableError,
     AskLabel,
     AskOrb,
     AskSnippet,
@@ -36,7 +39,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Ask Youwe: Default (bar with breathing aura, ⌘K focuses it), Contextual (bar widens, page question chip fades in), Active (answer panel opens from the bar with a clip reveal; Esc closes). Snippets are in-page entry points.',
+                    'Ask Youwe: Default (bar with breathing aura, ⌘K focuses it), Contextual (bar widens, page question chip fades in), Active (answer panel opens from the bar with a clip reveal; Esc closes). Snippets are in-page entry points. Answer service: AskDock takes `onAsk(question, locale, { signal })` returning `{ text, sources, followUps, cta }`, with loading, error and fallback states (see "Dock with answer service" and Introduction / CMS integration).',
             },
         },
     },
@@ -99,6 +102,105 @@ export const Interactive: Story = {
             </ModeFrame>
         )
     },
+}
+
+const SOURCES = [
+    { title: 'Kingspan: AI order intake in SAP', url: '#kingspan' },
+    { title: 'ACI Weave', url: '#aci-weave' },
+]
+
+/** The panel's states for the answer service: loading, answer with source links, error, no service yet. */
+export const AnswerStates: Story = {
+    name: 'Answer states',
+    parameters: { controls: { include: ['Mode'] } },
+    render: ({ Mode }) => (
+        <ModeFrame Mode={Mode} padding={48}>
+            <div
+                style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, 560px)',
+                    gap: 32,
+                }}
+            >
+                <AskYouwe
+                    State="Active"
+                    Question={ACTIVE.Question}
+                    status="loading"
+                />
+                <AskYouwe
+                    State="Active"
+                    Question={ACTIVE.Question}
+                    answerText={
+                        'Kingspan Insulated Panels turns order emails into SAP orders with ACI Weave.\n\nA person approves each order before it is booked.'
+                    }
+                    sources={SOURCES}
+                    followUps={['What does it cost?', 'How long does it take?']}
+                />
+                <AskYouwe
+                    State="Active"
+                    Question={ACTIVE.Question}
+                    status="error"
+                    onRetry={() => {}}
+                />
+                <AskYouwe
+                    State="Active"
+                    Question={ACTIVE.Question}
+                    status="unavailable"
+                />
+            </div>
+        </ModeFrame>
+    ),
+}
+
+/**
+ * AskDock with an answer service: a mock `onAsk` that answers after a second (ask something with "fail" in
+ * it to see the error, "unavailable" for the fallback). On the site, onAsk calls its own API route.
+ */
+export const DockWithService: Story = {
+    name: 'Dock with answer service',
+    parameters: { controls: { include: ['Mode'] }, layout: 'fullscreen' },
+    render: ({ Mode }) => {
+        const onAsk: AskHandler = (question, locale, { signal }) =>
+            new Promise((resolve, reject) => {
+                const t = setTimeout(() => {
+                    if (/unavailable/i.test(question))
+                        reject(new AskUnavailableError())
+                    else if (/fail/i.test(question)) reject(new Error('500'))
+                    else
+                        resolve({
+                            text: `You asked (${locale}): “${question}”.\n\nThis answer comes from the mock service.`,
+                            sources: SOURCES,
+                            followUps: ['Tell me more about ACI Weave'],
+                        })
+                }, 1000)
+                signal.addEventListener('abort', () => clearTimeout(t))
+            })
+        return (
+            <ModeFrame Mode={Mode} padding={48}>
+                <div style={{ minHeight: '120vh' }}>
+                    <AskDock
+                        after={-1}
+                        locale="en"
+                        context={CONTEXT}
+                        onAsk={onAsk}
+                    />
+                </div>
+            </ModeFrame>
+        )
+    },
+}
+
+/** AskDock without a service yet: every question shows the fallback text (labels.unavailable, or `fallback`). */
+export const DockWithoutService: Story = {
+    name: 'Dock without service (fallback)',
+    parameters: { controls: { include: ['Mode'] }, layout: 'fullscreen' },
+    render: ({ Mode }) => (
+        <ModeFrame Mode={Mode} padding={48}>
+            <div style={{ minHeight: '120vh' }}>
+                <AskDock after={-1} context={CONTEXT} />
+            </div>
+        </ModeFrame>
+    ),
 }
 
 const SNIPPET_TITLE = {
