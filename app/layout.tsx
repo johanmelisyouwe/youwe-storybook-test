@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import '../src/styles/globals.css'
 
 export const metadata: Metadata = {
-    title: 'Youwe',
+    title: 'Youwe test page',
     description: 'Youwe website, built from the Youwe design system.',
     robots: { index: false, follow: false }, // test project: keep out of search engines
 }
