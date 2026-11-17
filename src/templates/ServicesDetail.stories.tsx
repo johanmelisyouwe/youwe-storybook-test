@@ -359,10 +359,6 @@ function Body({ Device }: { Device: Device }) {
                                 i === 0
                                     ? caseImage('bunzl', 'wide')
                                     : undefined,
-                            link:
-                                i === 2
-                                    ? { label: 'View case study', href: '#' }
-                                    : undefined,
                         })
                     ),
                 },

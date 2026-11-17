@@ -12,7 +12,7 @@ On Services detail, the clickable-looking Feature Cards had no hover. These were
 
 ## Services detail template
 
-- **B2B commerce building blocks:** the 8 tiles with arrows now have `href` and "Explore the building block" as the hover.
+- **B2B commerce building blocks:** the 8 tiles with arrows now have `href` and "Explore the building block" as the hover. The "View case study" link on the third tile is removed.
 - **Where B2B ordering gets stuck:** the 5 AI cards are now whole-card Ask buttons with the hover.
 - **Info cards without arrow or link** (such as "Why B2B commerce") stay static.
 
