@@ -21,6 +21,36 @@ This Storybook is the source of truth for the Youwe site. Every template is buil
 
 Components with `labels`: Header, Footer, Ask Youwe (bar, snippet, dock), Case carousel, Filter bar, Insights overview, Build your stack, Contact CTA, Testimonial, Breadcrumbs, Insight Card, Pagination, Video Player, Phone input, Cookie banner, Upcoming events. Other button texts are already props (`cta`, `button`, `submit`, `Hover CTA`, `closeLabel`).
 
+## Ask Youwe (answer service)
+
+`AskDock` (on every page) sends questions to the site; the site answers through its own server-side API route, so no key reaches the browser.
+
+```tsx
+<AskDock
+    locale={locale} // e.g. 'nl'
+    context={page.askQuestion}
+    labels={askLabels} // panelTitle, loading, error, retry, sources, unavailable, close, send, followUp…
+    Prompt={askLabels.prompt}
+    fallback={askLabels.unavailable} // shown while there is no service
+    onAsk={async (question, locale, { signal }) => {
+        const res = await fetch('/api/ask', {
+            method: 'POST',
+            body: JSON.stringify({ question, locale }),
+            signal,
+        })
+        if (res.status === 503) throw new AskUnavailableError() // → fallback text
+        if (!res.ok) throw new Error(String(res.status)) // → error + Try again
+        return res.json() // { text, sources?: [{ title, url }], followUps?: string[], cta?: { label, href } }
+    }}
+/>
+```
+
+- **States:** loading (dots and `labels.loading`), answered (text with blank lines as paragraphs, or rich text; source links; follow-up chips; CTA), error (`labels.error` plus Try again), unavailable (`fallback`, or `labels.unavailable`).
+- **No `onAsk`:** every question shows the fallback text.
+- **Newest question wins:** a new question aborts the previous request through `signal`.
+- **Focus:** opening moves focus into the panel's follow-up field. Closing (Esc or the close button) returns focus to where it was: the bar, or the snippet or card that asked.
+- **Questions from elsewhere on the page:** Ask snippets ("Ask about it"), AI Feature Cards and `askYouwe(question)` all open the dock and go through the same `onAsk`.
+
 ## Templates and their blocks
 
 Each template is a list of sections. Sections marked *optional* can be left out when an entry has no data for them.
