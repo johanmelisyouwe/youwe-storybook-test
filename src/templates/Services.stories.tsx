@@ -7,6 +7,10 @@ import {
 import { AskSnippet } from '../site/ask-youwe'
 import { CaseCarousel } from '../blocks/case-carousel'
 import { ContactCTA } from '../blocks/contact-cta'
+import {
+    ServicesMosaic,
+    type ServicesMosaicProps,
+} from '../blocks/services-mosaic'
 import type { CaseCardProps } from '../ui/case-card'
 import {
     OFFICES,
@@ -23,6 +27,8 @@ import { abstract, caseImage, clientPhoto } from '../media/media'
 /*
   Templates/Services — Figma "Page / Services": Desktop 26586:8230, Mobile 26809:28. Copy, props and order
   from figma/templates.js. The mobile practices use longer copy and a second Ask Youwe snippet in Figma.
+  Alternative (stories "Mosaic …", 17 November): the practices as Services mosaic, as on the v2 site; the rest of
+  the page is the same.
 */
 
 const STATS = [
@@ -263,7 +269,95 @@ const CASES: CaseCardProps[] = [
     href: '#',
 }))
 
-function ServicesPage({ Device: story }: { Device: Device }) {
+/* Mosaic alternative: the practices as Services mosaic, alternating lead side and Mode */
+type MosaicPractice = Omit<ServicesMosaicProps, 'Device'> & {
+    Mode: 'Dark' | 'Light'
+}
+const MOSAIC: MosaicPractice[] = [
+    {
+        Mode: 'Dark',
+        Lead: 'Left',
+        kicker: 'Practice 01',
+        title: 'Digital Infrastructure',
+        tagline: 'Commerce, product data and portals that carry revenue.',
+        lead: {
+            image: abstract('016'),
+            eyebrow: '01 · Infrastructure · 6 services',
+            body: MOBILE[0].body,
+        },
+        services: MOBILE[0].services,
+        case: {
+            image: { src: caseImage('bunzl', 'wide'), alt: 'The BunzlOne app' },
+            value: '800+',
+            label: 'Categories active',
+            client: 'BunzlOne',
+            href: '#',
+        },
+        ask: {
+            label: 'Ask Youwe about Infrastructure',
+            question: 'Which commerce platforms do you build on?',
+        },
+    },
+    {
+        Mode: 'Light',
+        Lead: 'Right',
+        kicker: 'Practice 02',
+        title: 'Operational Optimization & Intelligence',
+        tagline: 'AI and automation that take friction out of operations.',
+        lead: {
+            image: abstract('011'),
+            eyebrow: '02 · Optimization · 6 services',
+            body: MOBILE[1].body,
+        },
+        services: MOBILE[1].services,
+        case: {
+            image: {
+                src: caseImage('chadwicks'),
+                alt: 'A Chadwicks builders merchant store',
+            },
+            value: '+43%',
+            label: 'Marketable catalog uplift',
+            client: 'Chadwicks Group',
+            href: '#',
+        },
+        ask: {
+            label: 'Ask Youwe about Optimization',
+            question: 'How would AI agents work with our ERP?',
+        },
+    },
+    {
+        Mode: 'Dark',
+        Lead: 'Left',
+        kicker: 'Practice 03',
+        title: 'Foundation for Data & Integrations',
+        tagline: 'Data and integrations that everything else can build on.',
+        lead: {
+            image: abstract('005'),
+            eyebrow: '03 · Data · 5 services',
+            body: MOBILE[2].body,
+        },
+        services: MOBILE[2].services,
+        case: {
+            image: { src: caseImage('postnl'), alt: 'PostNL' },
+            value: '41%',
+            label: 'IT cost reduction',
+            client: 'PostNL',
+            href: '#',
+        },
+        ask: {
+            label: 'Ask Youwe about Data',
+            question: 'How do we connect our ERP, PIM and commerce data?',
+        },
+    },
+]
+
+function ServicesPage({
+    Device: story,
+    Practices = 'Split',
+}: {
+    Device: Device
+    Practices?: 'Split' | 'Mosaic'
+}) {
     const Device = useDevice(story)
     const mobile = Device === 'Mobile'
     return (
@@ -285,11 +379,17 @@ function ServicesPage({ Device: story }: { Device: Device }) {
                 bar={{ Type: 'Stats', stats: STATS }}
                 header={header(Device)}
             />
-            {(mobile ? MOBILE : PRACTICES).map(({ Mode, ...p }) => (
-                <Section key={p.title} Mode={Mode}>
-                    <ServicesSplit Device={Device} {...p} />
-                </Section>
-            ))}
+            {Practices === 'Mosaic'
+                ? MOSAIC.map(({ Mode, ...p }) => (
+                      <Section key={p.title} Mode={Mode}>
+                          <ServicesMosaic Device={Device} {...p} />
+                      </Section>
+                  ))
+                : (mobile ? MOBILE : PRACTICES).map(({ Mode, ...p }) => (
+                      <Section key={p.title} Mode={Mode}>
+                          <ServicesSplit Device={Device} {...p} />
+                      </Section>
+                  ))}
             <Section Mode="Dark">
                 <CaseCarousel
                     Layout="Full width 3"
@@ -323,7 +423,7 @@ const meta: Meta = {
         docs: {
             description: {
                 component:
-                    'Services page template: hero with client stats, the three practices (Services split, alternating dark/light), selected cases, sub-footer and footer.',
+                    'Services page template: hero with client stats, the three practices (Services split, alternating dark/light), selected cases, sub-footer and footer. The "Mosaic" stories are the alternative with the practices as Services mosaic (v2 layout); the rest of the page is the same.',
             },
         },
     },
@@ -336,5 +436,16 @@ export const Desktop: Story = {
 }
 export const Mobile: Story = {
     render: () => <ServicesPage Device="Mobile" />,
+    globals: { viewport: { value: 'mobile' } },
+}
+
+/** Alternative: the practices as Services mosaic (v2 layout). Hero, cases, sub-footer and footer as above. */
+export const MosaicDesktop: Story = {
+    name: 'Mosaic desktop',
+    render: () => <ServicesPage Device="Desktop" Practices="Mosaic" />,
+}
+export const MosaicMobile: Story = {
+    name: 'Mosaic mobile',
+    render: () => <ServicesPage Device="Mobile" Practices="Mosaic" />,
     globals: { viewport: { value: 'mobile' } },
 }

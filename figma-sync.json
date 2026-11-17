@@ -5155,6 +5155,34 @@
       "locked": false,
       "lastSyncedSignature": null,
       "lastSynced": "2026-11-16"
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Services mosaic",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Content blocks/Services mosaic",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Alternative to Services split (v2 services overview): lead image tile, Service Cards, case tile with a stat and an Ask Youwe tile; all tiles have the card hover. Used by the Services template's Mosaic stories. Not in Figma yet.",
+      "code": [
+        "src/blocks/services-mosaic/services-mosaic.tsx",
+        "src/blocks/services-mosaic/services-mosaic.module.css",
+        "src/blocks/services-mosaic/services-mosaic.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-17"
     }
   ],
   "templates": [

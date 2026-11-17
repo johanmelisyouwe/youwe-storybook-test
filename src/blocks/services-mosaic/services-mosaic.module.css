@@ -1,0 +1,240 @@
+/* Services mosaic (services-mosaic.tsx). Desktop: 12 columns, gap 16. Cards take the section Mode's surfaces. */
+.svc {
+    height: 100%;
+}
+
+@layer components {
+    .inner {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xl);
+    }
+
+    /* Head: kicker full width; title left (7 columns), tagline right, aligned to the bottom */
+    .head {
+        display: grid;
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        gap: var(--spacing-sm) var(--spacing-4xl);
+        align-items: end;
+
+        @container (max-width: 63.9375rem) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    .kicker {
+        grid-column: 1 / -1;
+    }
+
+    .tagline {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-auto-flow: row dense;
+        gap: var(--spacing-sm);
+    }
+
+    /* Lead: 6 columns × the three service rows */
+    .lead {
+        position: relative;
+        grid-row: 1 / span 3;
+        grid-column: 1 / span 6;
+        display: flex;
+        align-items: flex-end;
+        min-height: 25rem;
+        padding: var(--spacing-sm);
+        overflow: hidden;
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
+
+    .leadimg {
+        position: absolute !important;
+        inset: 0;
+        border-radius: 0 !important;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .leadcard {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        max-width: 33.5rem;
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-1);
+
+        & p {
+            margin: 0;
+        }
+    }
+
+    .eyebrow {
+        color: var(--color-shared-content-brand);
+    }
+
+    /* Service tiles: 2 per row next to the lead (3 columns each); an odd last tile spans both */
+    .services {
+        grid-row: 1 / span 3;
+        grid-column: 7 / span 6;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: var(--spacing-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        & > li:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+        }
+    }
+
+    .root[data-lead="right"] {
+        & .lead {
+            grid-column: 7 / span 6;
+        }
+
+        & .services {
+            grid-column: 1 / span 6;
+        }
+    }
+
+    /* Case: 8 columns; image with the stat card bottom-left */
+    .case {
+        grid-column: span 8;
+        display: flex;
+        align-items: flex-end;
+        min-height: 21.5rem;
+        padding: var(--spacing-sm);
+        overflow: hidden;
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
+
+    .caseimg {
+        position: absolute !important;
+        inset: 0;
+        border-radius: 0 !important;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .stat {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xs);
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-1);
+    }
+
+    .value {
+        color: var(--color-shared-content-primary);
+        font-family: var(--font-family-headings);
+        font-size: var(--font-size-heading-3xl);
+        font-weight: var(--font-weight-medium);
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    .label {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .client {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-3xs);
+        margin-top: var(--spacing-sm);
+        color: var(--color-shared-content-primary);
+    }
+
+    /* Ask: 4 columns; card surface/base-2 with the border, question as heading/sm, Ask pill bottom-left */
+    .ask {
+        grid-column: span 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+        min-height: 21.5rem;
+        padding: var(--spacing-lg);
+        border: var(--shared-width-1) solid var(--color-shared-border-2);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+        color: var(--color-shared-content-primary);
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .asktop {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        color: var(--color-shared-content-secondary);
+    }
+
+    .question {
+        margin-top: auto;
+    }
+
+    .askbtn {
+        display: inline-flex;
+        align-self: flex-start;
+        align-items: center;
+        gap: var(--spacing-2xs);
+        padding: var(--spacing-2xs) var(--spacing-sm);
+        border-radius: var(--component-radius-pill);
+        background: var(--color-shared-surface-fixed-light);
+        color: var(--color-shared-content-fixed-dark);
+    }
+
+    /* Tablet: lead full width, services two columns, case and ask stacked */
+    @container (max-width: 63.9375rem) {
+        .lead,
+        .root[data-lead="right"] .lead,
+        .services,
+        .root[data-lead="right"] .services,
+        .case,
+        .ask {
+            grid-row: auto;
+            grid-column: 1 / -1;
+        }
+
+        .lead {
+            min-height: 28rem;
+        }
+    }
+
+    /* Phone: services one column */
+    @container (max-width: 37.4375rem) {
+        .services {
+            grid-template-columns: minmax(0, 1fr);
+            grid-auto-rows: auto;
+        }
+
+        .case,
+        .ask {
+            min-height: 18rem;
+        }
+
+        .value {
+            font-size: var(--font-size-heading-2xl);
+        }
+    }
+}
