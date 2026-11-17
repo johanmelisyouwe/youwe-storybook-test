@@ -43,7 +43,7 @@ const meta: Meta<Args> = {
         docs: {
             description: {
                 component:
-                    'Text-only card for features, solutions and numbered benefits. Card sits on a surface, Plain uses a top divider for lists, AI uses the Ask Youwe surface and aura; with `ask` its link opens Ask Youwe with that question (on the templates: the docked bar, see Services detail). Motion: scroll block reveal (`reveal` prop).',
+                    'Text-only card for features, solutions and numbered benefits. Card sits on a surface, Plain uses a top divider for lists, AI uses the Ask Youwe surface and aura; with `ask` the whole card opens Ask Youwe with that question (on the templates: the docked bar, see Services detail). With `href` the whole card is a link. Both get the card hover (red reveal with `Hover CTA`, also on keyboard focus). Motion: scroll block reveal (`reveal` prop).',
             },
         },
     },
@@ -74,12 +74,15 @@ function AskNote() {
     return (
         <p
             className="yw-body-sm-reg"
-            style={{ margin: 'var(--spacing-sm) 0 0', color: 'var(--color-shared-content-secondary)' }}
+            style={{
+                margin: 'var(--spacing-sm) 0 0',
+                color: 'var(--color-shared-content-secondary)',
+            }}
             aria-live="polite"
         >
             {q
                 ? `Opens Ask Youwe with: “${q}” (on the templates the docked bar opens).`
-                : 'Click "Learn more": it asks Ask Youwe instead of going to a page.'}
+                : 'Click the card: it asks Ask Youwe instead of going to a page.'}
         </p>
     )
 }
@@ -106,6 +109,26 @@ export const AIAsksYouwe: Story = {
 }
 
 /** Optional parts switched on: image, arrow, tags, button and link. */
+/** Clickable: with `href` the whole card is a link with the card hover (red reveal). Hover or tab to it. */
+export const Clickable: Story = {
+    parameters: { controls: { include: ['Mode'] } },
+    render: ({ Mode }) => (
+        <ModeFrame Mode={Mode} padding={32}>
+            <div style={{ maxWidth: 420 }}>
+                <FeatureCard
+                    Title="Dealer & distributor portals"
+                    Description="One platform for every channel, with its own range and prices."
+                    {...{
+                        'Show arrow': true,
+                        'Hover CTA': 'Explore the building block',
+                    }}
+                    href="#"
+                />
+            </div>
+        </ModeFrame>
+    ),
+}
+
 export const WithOptions: Story = {
     render: ({ Variant, Device, Mode }) => (
         <ModeFrame Mode={Mode}>

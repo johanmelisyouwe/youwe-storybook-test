@@ -353,6 +353,8 @@ function Body({ Device }: { Device: Device }) {
                             Title,
                             Description,
                             'Show arrow': true,
+                            href: '#',
+                            'Hover CTA': 'Explore the building block',
                             image:
                                 i === 0
                                     ? caseImage('bunzl', 'wide')
@@ -377,6 +379,8 @@ function Body({ Device }: { Device: Device }) {
                             Title,
                             Description,
                             'Show arrow': true,
+                            href: '#',
+                            'Hover CTA': 'Explore the building block',
                         })
                     ),
                 },
