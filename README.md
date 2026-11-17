@@ -4,6 +4,13 @@ The Youwe design system as a Next.js + React project with Storybook. **Figma is 
 
 Live Storybook: https://johanmelisyouwe.github.io/youwe-storybook-test/ (deployed automatically on every push to `main`).
 
+## Deployment and PR previews
+
+- **Main:** every push to `main` builds Storybook and publishes it to the `gh-pages` branch (`.github/workflows/deploy-storybook.yml`). GitHub Pages serves that branch (Settings → Pages → Deploy from a branch → `gh-pages` / root).
+- **Pull requests:** every PR from a branch in this repo gets its own Storybook at `https://johanmelisyouwe.github.io/youwe-storybook-test/pr-preview/pr-<number>/` (`.github/workflows/pr-preview.yml`). The link is posted as a comment on the PR and updates with every push. The preview is removed when the PR is merged or closed.
+- **Fork PRs** don't get a preview, because their token can't write to `gh-pages`.
+- **Failed runs:** a main deploy and a preview that push at the same moment can make one run fail. Re-run it; nothing is lost.
+
 ## Stack
 
 The same stack as the main Youwe Storybook, so results can be compared:
