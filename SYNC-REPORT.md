@@ -75,8 +75,11 @@ This follows f3bw's review comment on error handling and error boundaries.
 - **Try again** calls `reset`, the error boundary's retry. Without a reset it reloads the page.
 - **Error reference:** an optional `digest` (e.g. a server log id) is shown, so support can find it. See the "With reference" story.
 - **Shared module:** the 404 and Error pages now live in `src/templates/error-pages.tsx` (`NotFoundPage`, `ErrorPage`), so the site can render them from its 404 route and its error boundary.
-- **Framework-neutral on purpose:** we don't know which framework the site uses, so there are no framework-specific files (such as Next.js `app/error.tsx`).
-- **CMS integration doc:** a new "404 and error pages" section explains the wiring: 404 for unknown URLs; the Error page from an error boundary with `reset` and `digest`; a bare last-resort fallback with the same copy if the layout itself can fail.
+- **Next.js app router files** (the site uses Next.js 16.4.5 with the app router, the same as this repo):
+  - `app/not-found.tsx` shows the 404 page.
+  - `app/error.tsx` is the error boundary. It shows the Error page with `reset` and `error.digest`, and logs the error (the place to hook up an error tracker).
+  - `app/global-error.tsx` is a bare last-resort fallback for when the root layout itself fails: own html/body, no header or footer, same copy.
+- **CMS integration doc:** a new "404 and error pages" section with these files and when each one applies.
 - **Hero:** a button without `href` can have `onClick`, which the "Try again" button uses.
 
 ## New code-only components (in figma-sync.json)

@@ -7,9 +7,8 @@ import { ASK, ERROR, HERO, PAGES, PAGES_INTRO } from './not-found.copy'
 
 /*
   The 404 and Error pages (19 November; not in Figma), used by Templates/404 and Templates/Error.
-  Framework-neutral: the site shows the 404 page for unknown URLs, and the Error page from its error
-  boundary (whatever the framework calls it), passing `reset` (retry the part that failed) and, if
-  there is one, a `digest` (a reference to the server log entry).
+  The site (Next.js app router) shows them from app/not-found.tsx and app/error.tsx: the Error page
+  gets `reset` (retry the part that failed) and the error `digest` (a reference to the server log entry).
   - Gradient hero (as on Home, moving WebGL background) with the message and two buttons.
   - Popular pages: four clickable Feature Cards (arrow and card hover).
   - Footer; no sub-footer CTA (the hero has the buttons).

@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { NotFoundPage } from './error-pages'
 
 /*
-  Templates/404 — not in Figma (19 November). The page lives in error-pages.tsx; the site shows it for
-  unknown URLs.
+  Templates/404 — not in Figma (19 November). The page lives in error-pages.tsx and is the Next.js
+  app/not-found.tsx, so Storybook and the site show the same 404.
 */
 
 const meta: Meta = {

@@ -83,12 +83,15 @@ Every page also has the **Header** (nav with mega menu, utility links, CTA, regi
 
 ## 404 and error pages
 
-- **Unknown URLs:** show the 404 page (`NotFoundPage`, Templates/404).
-- **Errors:** wrap pages in an error boundary, in whatever form the site's framework provides. When something on a page fails while rendering, the boundary shows the Error page (`ErrorPage`, Templates/Error) instead of a blank screen.
-  - Pass the boundary's retry function as `reset` ("Try again").
-  - Pass an error reference as `digest` if the server gives one, so support can find it.
-  - Report the error to the error tracker from the boundary.
-- **Last resort:** if the shared layout itself can fail, keep a bare fallback without header and footer, using the same copy (`ERROR` in not-found.copy.tsx).
+The site runs on Next.js (app router). The `app` folder in this repo has working examples:
+
+| File | Shows | Notes |
+|---|---|---|
+| `app/not-found.tsx` | `NotFoundPage` (Templates/404) | Unknown URLs and `notFound()` |
+| `app/error.tsx` | `ErrorPage` (Templates/Error) | Error boundary: when a page throws, this replaces it and the layout stays. `reset` → "Try again"; `error.digest` → the error reference (find it in the server logs). Report the error to the error tracker here. |
+| `app/global-error.tsx` | A bare fallback with the same copy (`ERROR`) | Only when the root layout itself fails: own `<html>`/`<body>`, no header or footer |
+
+Nested routes can add their own `error.tsx` to keep the failure local (for example only the Insights overview).
 
 ## Contentful mapping tips
 

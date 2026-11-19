@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { ErrorPage } from './error-pages'
 
 /*
-  Templates/Error — not in Figma (19 November). The page lives in error-pages.tsx; the site shows it
-  from its error boundary when something on a page fails. "Try again" calls the boundary's reset (here
+  Templates/Error — not in Figma (19 November). The page lives in error-pages.tsx and is the Next.js
+  app/error.tsx (error boundary): the site shows it when something on a page fails. "Try again" calls the boundary's reset (here
   it reloads the story). "With reference" shows an error reference (e.g. a server log id).
 */
 
