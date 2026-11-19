@@ -5323,6 +5323,34 @@
       "locked": false,
       "lastSyncedSignature": null,
       "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Hero aside",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Content blocks/Hero aside",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Panel (e.g. Event details) beside the Title + image hero title, sticky over the hero image until it rests beside the intro; in the flow below 1024. Event (and later Whitepaper) template. Not in Figma yet.",
+      "code": [
+        "src/blocks/hero-aside/hero-aside.tsx",
+        "src/blocks/hero-aside/hero-aside.module.css",
+        "src/blocks/hero-aside/hero-aside.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
     }
   ],
   "templates": [

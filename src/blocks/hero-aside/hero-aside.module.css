@@ -1,0 +1,58 @@
+/*
+  Hero aside (code block, 19 November).
+  Desktop (block >= 1024): the rail lies over the hero and the children (absolute, inset 0, above the
+  hero image), from the hero title (top padding 280 = the Title + image hero's) to the end of the
+  children minus their bottom padding (120). Inside: the content container with an 8fr / 4fr grid, gap
+  64 (same as Text + media 8/4); the panel is in the 4fr column and sticky at 120 (below the fixed header).
+  The rail lets clicks through except on the panel.
+  Smaller: the panel is in the flow between hero and children, in the content container, 32 below the
+  hero image.
+*/
+@layer components {
+    .root {
+        container-type: inline-size;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: var(--color-shared-surface-base-1);
+    }
+
+    .rail {
+        background: var(--color-shared-surface-base-1);
+    }
+
+    .inner {
+        padding-block: var(--spacing-xl) 0;
+    }
+
+    @container (min-width: 64rem) {
+        .rail {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            padding-block: calc(var(--spacing-5xl) + 2 * var(--spacing-4xl))
+                var(--spacing-5xl);
+            background: none;
+            pointer-events: none;
+        }
+
+        .inner {
+            display: grid;
+            grid-template-columns: 8fr 4fr;
+            gap: var(--spacing-3xl);
+            height: 100%;
+            padding-block: 0;
+        }
+
+        .aside {
+            grid-column: 2;
+            min-width: 0;
+        }
+
+        .sticky {
+            position: sticky;
+            top: var(--spacing-5xl);
+            pointer-events: auto;
+        }
+    }
+}

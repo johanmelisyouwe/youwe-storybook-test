@@ -70,3 +70,16 @@ The Figma page has no form, only "Register now" and "Register your interest" but
 - At 390 everything stacks: intro, details panel, meta, the "On this page" bar, sections and form.
 - No console errors.
 - `figma-sync.json`: the three components are added as code-only. The CMS integration doc has a row for Event.
+
+# Update — 19 November 2026 (Event details beside the hero title, sticky)
+
+- **New block Hero aside** (Content blocks / Hero aside, code-only):
+  - The Event details panel now starts next to the hero title, in the right 4 of 12 columns.
+  - It stays in view below the fixed header while the hero image scrolls by, so it moves over the image.
+  - It stops beside the intro, where the panel was before. Measured at 1440: it starts at 280, sticks at 120, and is released at the end of the intro.
+  - It is meant for the Event and, later, the Whitepaper template.
+- **Hero (Title + image):** inside Hero aside, the title keeps to the left 8 columns, so the panel never covers it. Other heroes are unchanged.
+- **Intro:** Text + media 8/4 with the right column left empty. The panel rests there.
+- **Clicks:** the layer over the page lets clicks through, except on the panel. "Register now" still jumps to the form.
+- **Below 1024:** no sticky panel. It sits in the flow under the hero image, above the intro.
+- `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass. No console errors.

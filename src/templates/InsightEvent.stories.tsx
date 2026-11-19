@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Hero } from '../blocks/hero'
 import { TextMedia } from '../blocks/text-media'
+import { HeroAside } from '../blocks/hero-aside'
 import { Article } from '../blocks/article'
 import { CardGrid } from '../blocks/card-grid'
 import { ContactCTA } from '../blocks/contact-cta'
@@ -40,8 +41,9 @@ import {
 
 /*
   Templates/Insight detail/Event — first version (19 November). Copy from Figma 27263:17242 (copy only);
-  layout follows Blog v2: Title + image hero; the intro beside the Event details panel (date, time,
-  venue, "Register now" to the form and "Plan your route"), as Text + media 8/4; then the Article block
+  layout follows Blog v2: Title + image hero with the Event details panel (date, time, venue, "Register
+  now" to the form and "Plan your route") beside the title, sticky over the hero image until it rests
+  beside the intro (Hero aside, decided 19 November); then the Article block
   with the meta and the "On this page" nav on the left and the sections on the right: why attend,
   agenda, timetable (Timetable), takeaways, venue, and the Registration form (not in Figma: it only has
   "Register now" buttons). More events, sub-footer and footer close the page. Placeholder images.
@@ -55,27 +57,25 @@ function InsightEventPage({ Device: story }: { Device: Device }) {
     return (
         <Page Device={story} ask="What happens at Higher Ground?">
             {header(Device)}
-            <Hero
-                Variant="Title + image"
-                Device={Device}
-                title={[TITLE]}
-                label={{
-                    Type: 'Breadcrumb',
-                    crumbs: [
-                        { label: 'Home', href: '#' },
-                        { label: 'Insights', href: '#' },
-                        { label: 'Event' },
-                    ],
-                }}
-                image={abstract('001')}
-            />
-            <TextMedia
-                Device={Device}
-                Theme="Dark"
-                Split="8/4"
-                heading={INTRO_HEADING}
-                body={INTRO_BODY}
-                media={
+            <HeroAside
+                label="Event details"
+                hero={
+                    <Hero
+                        Variant="Title + image"
+                        Device={Device}
+                        title={[TITLE]}
+                        label={{
+                            Type: 'Breadcrumb',
+                            crumbs: [
+                                { label: 'Home', href: '#' },
+                                { label: 'Insights', href: '#' },
+                                { label: 'Event' },
+                            ],
+                        }}
+                        image={abstract('001')}
+                    />
+                }
+                aside={
                     <EventDetails
                         Device={Device}
                         items={DETAILS}
@@ -83,7 +83,16 @@ function InsightEventPage({ Device: story }: { Device: Device }) {
                         secondary={{ label: 'Plan your route', href: ROUTE }}
                     />
                 }
-            />
+            >
+                <TextMedia
+                    Device={Device}
+                    Theme="Dark"
+                    Split="8/4"
+                    heading={INTRO_HEADING}
+                    body={INTRO_BODY}
+                    media={<div aria-hidden="true" />}
+                />
+            </HeroAside>
             <Section Mode="Dark" flush="top">
                 <Article
                     Device={Device}

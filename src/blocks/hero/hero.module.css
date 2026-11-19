@@ -60,6 +60,12 @@
             flex: 0 1 64.125rem;
         }
 
+        /* Inside Hero aside (Event, Whitepaper): the panel takes the right 4 of 12 columns (gap 64),
+           so the title keeps to the left 8 */
+        [data-hero-aside] &[data-image] .titlecol {
+            flex-basis: calc((100% - var(--spacing-3xl)) * 2 / 3);
+        }
+
         @media (prefers-reduced-motion: no-preference) {
             @supports (animation-timeline: scroll()) {
                 &[data-recede] .content {
