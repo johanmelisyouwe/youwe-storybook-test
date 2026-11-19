@@ -4,6 +4,7 @@ import { Button } from '../../ui/button'
 import { Breadcrumbs, type Crumb } from '../../ui/breadcrumbs'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { CountUp } from '../../ui/stat'
+import { VideoPlayer } from '../../ui/video-player'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
 import { HeroWebGL } from './hero-webgl'
@@ -133,15 +134,27 @@ export type HeroProps = {
     body?: string
     /** Figma: Show label */
     label?: HeroLabelProps
-    /** Figma: Show buttons / Show second button */
-    buttons?: { label: string; href: string }[]
+    /** Figma: Show buttons / Show second button. A button without `href` is a <button> with `onClick`
+        (e.g. "Try again" on the error page) */
+    buttons?: { label: string; href?: string; onClick?: () => void }[]
     /** Figma: Show bar */
     bar?: HeroBarProps
-    /** Figma: Image (background for Gradient, wide image for Title + image) */
+    /** Figma: Image (background for Gradient, wide image for Title + image). Title + image without image
+        or video: the title area only (legal pages, 19 November). */
     image?: ImageInput
     /** Gradient: 'WebGL' draws moving silk ribbons over the image (the image stays as the fallback and for
         reduced motion); 'Image' is the still background */
     Background?: 'Image' | 'WebGL'
+    /** Tags above the title (code option, 19 November; insight detail pages): the content type first
+        (filled brand red), then topics (outlined pills) */
+    tags?: string[]
+    /** A date shown after the tags, e.g. "October 21, 2026" */
+    date?: string
+    /** Title + image: a video in place of the wide image (code option, 19 November; Video template). The
+        image becomes the poster; plays with sound on click (Video Player, Autoplay Off). */
+    video?: string
+    /** Accessible name of the video */
+    videoTitle?: string
     /** Title + image: client logo */
     logo?: LogoInput
     /** Figma: Show header — the Header/Corporate instance on top */
@@ -160,10 +173,32 @@ export function Hero({
     bar,
     image,
     Background = 'Image',
+    video,
+    videoTitle,
+    tags,
+    date,
     logo,
     header,
     recede = false,
 }: HeroProps) {
+    const tagRow = (tags?.length || date) && (
+        <div className={styles.tags}>
+            {tags?.map((t, i) => (
+                <span
+                    key={t}
+                    data-type={i === 0 || undefined}
+                    className={cx(styles.tag, 'yw-body-sm-reg')}
+                >
+                    {t}
+                </span>
+            ))}
+            {date && (
+                <span className={cx(styles.date, 'yw-body-sm-reg')}>
+                    {date}
+                </span>
+            )}
+        </div>
+    )
     const lines = (
         <h1 className={cx(styles.title, 'yw-heading-3xl')}>
             {title.map((t, i) => (
@@ -188,6 +223,7 @@ export function Hero({
                     <div className={styles.row}>
                         <div className={styles.titlecol}>
                             {label && <HeroLabel Device={Device} {...label} />}
+                            {tagRow}
                             {lines}
                         </div>
                         {logo && (
@@ -197,12 +233,23 @@ export function Hero({
                         )}
                     </div>
                 </div>
-                <CardMedia
-                    src={image}
-                    ratio="16 / 9"
-                    clip={false}
-                    className={styles.image}
-                />
+                {video ? (
+                    <VideoPlayer
+                        src={video}
+                        poster={image}
+                        title={videoTitle ?? title.join(' ')}
+                        Autoplay="Off"
+                        ratio="16 / 9"
+                        className={cx(styles.image, styles['image-video'])}
+                    />
+                ) : image ? (
+                    <CardMedia
+                        src={image}
+                        ratio="16 / 9"
+                        clip={false}
+                        className={styles.image}
+                    />
+                ) : null}
             </section>
         )
     }
@@ -237,6 +284,7 @@ export function Hero({
                                         Size="M"
                                         label={b.label}
                                         href={b.href}
+                                        onClick={b.onClick}
                                     />
                                 ))}
                             </div>

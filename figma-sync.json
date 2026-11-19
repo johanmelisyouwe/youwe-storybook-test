@@ -5183,6 +5183,258 @@
       "locked": false,
       "lastSyncedSignature": null,
       "lastSynced": "2026-11-17"
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Article",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Content blocks/Article",
+        "current": "Desktop"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Long-form article body (Blog v2): sticky 'On this page' Anchor nav on the left, sections (H2, rich text, optional numbered steps and FAQ accordions) in one reading column. Not in Figma yet.",
+      "code": [
+        "src/blocks/article/article.tsx",
+        "src/blocks/article/article.module.css",
+        "src/blocks/article/article.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Anchor nav",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Anchor nav",
+        "current": "Desktop"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "'On this page' in-page links with scroll spy (current section marked); Desktop list, Mobile disclosure. Used by the Article block. Not in Figma yet.",
+      "code": [
+        "src/ui/anchor-nav/anchor-nav.tsx",
+        "src/ui/anchor-nav/anchor-nav.module.css",
+        "src/ui/anchor-nav/anchor-nav.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Event details",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Event details",
+        "current": "Desktop"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Date, time and venue of an event with Register now / Plan your route buttons (Event template). Not in Figma yet.",
+      "code": [
+        "src/ui/event-details/event-details.tsx",
+        "src/ui/event-details/event-details.module.css",
+        "src/ui/event-details/event-details.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Timetable",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Timetable",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Event programme: time | what happens, one row per slot (Event template). Not in Figma yet.",
+      "code": [
+        "src/ui/timetable/timetable.tsx",
+        "src/ui/timetable/timetable.module.css",
+        "src/ui/timetable/timetable.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Registration form",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Registration form",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Event sign-up from the form components, with sending, confirmation and error states (Event template; Figma only has Register buttons). Not in Figma yet.",
+      "code": [
+        "src/ui/registration-form/registration-form.tsx",
+        "src/ui/registration-form/registration-form.module.css",
+        "src/ui/registration-form/registration-form.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Hero aside",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Content blocks/Hero aside",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Panel (e.g. Event details) beside the Title + image hero title, sticky over the hero image until it rests beside the intro; in the flow below 1024. Event (and later Whitepaper) template. Not in Figma yet.",
+      "code": [
+        "src/blocks/hero-aside/hero-aside.tsx",
+        "src/blocks/hero-aside/hero-aside.module.css",
+        "src/blocks/hero-aside/hero-aside.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Map embed",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Map embed",
+        "current": "Dark"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Google Maps embed of one place (keyless embed URL), Dark theme via a colour filter; routeUrl() for the Plan your route link. Event template venue. Not in Figma yet.",
+      "code": [
+        "src/ui/map-embed/map-embed.tsx",
+        "src/ui/map-embed/map-embed.module.css",
+        "src/ui/map-embed/map-embed.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "File Input",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/File Input",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Attachment field on the Field shell: Choose file button and file name / hint (Contact form). Not in Figma as a component yet.",
+      "code": [
+        "src/ui/file-input/file-input.tsx",
+        "src/ui/file-input/file-input.module.css",
+        "src/ui/file-input/file-input.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Cookie preferences",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Cookie preferences",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Cookie categories with Toggles (Necessary locked on) and Save preferences (Cookies page). Not in Figma as a component yet.",
+      "code": [
+        "src/ui/cookie-preferences/cookie-preferences.tsx",
+        "src/ui/cookie-preferences/cookie-preferences.module.css",
+        "src/ui/cookie-preferences/cookie-preferences.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
     }
   ],
   "templates": [

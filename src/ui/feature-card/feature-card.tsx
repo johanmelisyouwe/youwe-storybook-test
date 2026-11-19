@@ -22,7 +22,8 @@ export type FeatureCardProps = {
     /** Figma: Number (Show number) — e.g. "01" */
     Number?: string
     Title: string
-    Description: string
+    /** Optional (e.g. Whitepaper chapter tiles: a title only) */
+    Description?: string
     /** Figma: Show image */
     image?: ImageInput | true
     /** Figma: Show tags (up to 3) */
@@ -113,12 +114,14 @@ export function FeatureCard({
                     </div>
                     {arrow && <CardArrow />}
                 </div>
-                <p
-                    className={cx(styles.desc, 'yw-body-md-reg')}
-                    style={{ margin: 0 }}
-                >
-                    {Description}
-                </p>
+                {Description && (
+                    <p
+                        className={cx(styles.desc, 'yw-body-md-reg')}
+                        style={{ margin: 0 }}
+                    >
+                        {Description}
+                    </p>
+                )}
                 {tags && tags.length > 0 && (
                     <div className={styles.tags}>
                         {tags.slice(0, 3).map((t) => (

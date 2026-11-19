@@ -14,6 +14,8 @@ export type RadioProps = {
     /** Selected (Figma State=Active…) */
     checked?: boolean
     disabled?: boolean
+    /** Native required (one of the group must be picked before the form submits) */
+    required?: boolean
     name?: string
     value?: string
     'aria-label'?: string

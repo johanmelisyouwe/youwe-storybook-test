@@ -1,0 +1,75 @@
+/*
+  Event details (code component, 19 November). Our styling: surface/base-2 panel (no border, 19 November), radius
+  card, padding 24. Rows like the Case intro meta: label body/xs/bold content/brand,
+  value body/md/reg (first row body/2xl/med), gap 8; rows 20 apart with 1px border/2 dividers.
+  Buttons in a row (wrap), gap 12, 32 below the rows; full width when the panel is narrow.
+*/
+@layer components {
+    .root {
+        container-type: inline-size;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        padding: var(--spacing-lg);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+        color: var(--color-shared-content-primary);
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        margin: 0;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+
+        & + .item {
+            padding-top: var(--spacing-md);
+            box-shadow: inset 0 var(--shared-width-1) 0
+                var(--color-shared-border-2);
+        }
+
+        & dd {
+            margin: 0;
+            white-space: pre-line;
+        }
+    }
+
+    /* The first row (date, phone): body/2xl/med; in a narrow panel (content < 320, e.g. 292 wide at 1100
+       or on mobile) body/xl/med, so a phone number or date stays on one line */
+    .headline {
+        font-family: var(--font-family-body);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--font-size-body-2xl);
+        line-height: 1.4; /* legacy-ok: same as the body/2xl and body/xl text styles */
+    }
+
+    @container (max-width: 20rem) {
+        .headline {
+            font-size: var(--font-size-body-xl);
+        }
+    }
+
+    .label {
+        color: var(--color-shared-content-brand);
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+
+        @container (max-width: 20rem) {
+            flex-direction: column;
+
+            & > * {
+                width: 100%;
+            }
+        }
+    }
+}

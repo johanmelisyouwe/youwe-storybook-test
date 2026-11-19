@@ -20,7 +20,7 @@ export type AccordionListProps = {
     body?: string
     /** Split list: bullets under the header */
     bullets?: string[]
-    /** Split layouts: title above the accordions */
+    /** Split layouts: title above the accordions ('' hides it, when the heading already says FAQ) */
     'Accordion title'?: string
     /** content: a paragraph, paragraphs or CMS rich text */
     items: { label: string; content: RichText }[]
@@ -110,7 +110,7 @@ export function AccordionList({
                     {ctaEl}
                 </div>
                 <div className={styles.faq}>
-                    <h3 className="yw-heading-lg">{faqTitle}</h3>
+                    {faqTitle && <h3 className="yw-heading-lg">{faqTitle}</h3>}
                     {list}
                 </div>
             </div>

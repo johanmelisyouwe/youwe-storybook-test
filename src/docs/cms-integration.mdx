@@ -66,9 +66,32 @@ Each template is a list of sections. Sections marked *optional* can be left out 
 | **Service detail** | Hero (stats bar) · Card grids · Technology logos · Feature list · Stats · Card grid (more cases) · Technology logos · Card grid (related services) · Feature list Split (numbered steps, "phased approach") *optional* · Accordion list (FAQ, rich text answers) *optional* · Contact CTA |
 | **Tech partners** | Hero · Build your stack · Tech partners split × 3 · Contact CTA |
 | **Insights** | Hero · Insight Card (Featured) + Upcoming events · Insights overview (filters by type with counts, Show more: controlled, so the list can come from a paginated query) · Contact CTA |
+| **Insight detail: Blog** | Hero (Title + image, breadcrumb) · Case intro (meta: published, type, topics; lead; rich text) · Stats (key figures) · Media · Two-column text 4/8 × n (rich text) · Feature list Split (steps) *optional* · Text + media (example) *optional* · Text column · Accordion list (FAQ) *optional* · Two-column text (sources) · Card grid of Insight Cards · Contact CTA |
+| **Insight detail: Blog v2** | Hero · Case intro (meta + lead, no body) · Stats · Media · Article (sections with `id`, nav label, heading, rich text, optional `steps`, `faq` or other content; the "On this page" nav is built from the sections) · Card grid of Insight Cards · Contact CTA |
+| **Insight detail: Event** | Hero (Title + image, breadcrumb) · Text + media 8/4 (intro + Event details: date, time, venue rows; Register now → `#register`, Plan your route) · Article (meta; sections: why attend, agenda, Timetable, takeaways, venue, Registration form with `onSubmit(FormData)`) · Card grid of Insight Cards (more events) · Contact CTA |
+| **Insight detail: Whitepaper** | Hero aside (Hero Title + image · details panel: whitepaper, published, Download → `#download` · Text + media 8/4 intro) · Card grid of Feature Cards (chapters, title only) · Article (meta; sections: what you will get, why download it, Registration form with `phone`, `optIn={false}`, privacy `notice`; FAQ) · Card grid of Insight Cards (more whitepapers) · Contact CTA |
+| **Insight detail: Video** | Hero (Title + image with `video` + poster image) · Text + media 8/4 (intro + details panel: video type, published, expert; Download → `#download`) · Article (meta; sections: about, topics as numbered `steps`, Registration form with `company={false}`, `jobTitle={false}`, `phone`, `countries`, multiline `question`, `optInLabel`, privacy `notice`) · Card grid of Insight Cards (more videos) · Contact CTA |
+| **Insight detail: News** | Hero (Title + image, breadcrumb) · Article (meta: published, type, topic; `lead`; sections: the announcement with rich text, Quote Cards and a link; a whitepaper teaser with buttons) · Card grid of Insight Cards (more news) · Contact CTA |
+| **Contact** | Hero aside (title-only Hero with Contact tag · contact panel: Event details rows + Call us, Ask Youwe question) · Article without nav (lead, intro; Registration form with `topics`, `attachment`, required multiline `question`) · Offices (live local time) · Contact CTA Sub-footer background (work) |
+| **Legal: Cookies** | Hero (Title + image without image, `tags={['Legal']}`) · Article without nav (lead; Cookie preferences with categories and `onSave`) |
+| **Legal: Privacy Policy / Terms & Conditions** | Hero (title only, Legal tag) · Article (nav, or `labels.title` "Articles" with a PDF `navFooter`; `lead`, `intro`; one section per numbered heading, rich text) |
+| **404** | Hero (Gradient, WebGL; label 404, title, body, Back to home + Contact us) · Card grid of clickable Feature Cards (popular pages) |
+| **Error** | As 404, with Try again (`reset`) + Back to home and an optional error reference (`digest`) |
 | **About** | Hero · Card grid · Stats · Offices · Leadership · Stats · Hero bar · Stats · Awards · Contact CTA |
 
 Every page also has the **Header** (nav with mega menu, utility links, CTA, regions), the **Footer** (columns, legal links, social, regions) and the **Ask Youwe** dock (`context` question per page).
+
+## 404 and error pages
+
+The site runs on Next.js (app router). The `app` folder in this repo has working examples:
+
+| File | Shows | Notes |
+|---|---|---|
+| `app/not-found.tsx` | `NotFoundPage` (Templates/404) | Unknown URLs and `notFound()` |
+| `app/error.tsx` | `ErrorPage` (Templates/Error) | Error boundary: when a page throws, this replaces it and the layout stays. `reset` → "Try again"; `error.digest` → the error reference (find it in the server logs). Report the error to the error tracker here. |
+| `app/global-error.tsx` | A bare fallback with the same copy (`ERROR`) | Only when the root layout itself fails: own `<html>`/`<body>`, no header or footer |
+
+Nested routes can add their own `error.tsx` to keep the failure local (for example only the Insights overview).
 
 ## Contentful mapping tips
 

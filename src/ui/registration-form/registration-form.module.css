@@ -1,0 +1,125 @@
+/*
+  Registration form (code component, 19 November). Laid out like the Contact CTA form: fields full width,
+  gap 24; two-column rows (gap 16) that stack below 480; the submit button at its own width (full width
+  when narrow). The form sits on a surface/base-2 panel (no border, radius card, padding 32; 24/20
+  when narrow); the fields inside use surface/base-1 so they stand out from the panel. Choice: a fieldset with the field label style (body/sm/med) and the radios under it, gap 12.
+  Confirmation: surface/base-2 panel, radius card, padding 32; a 40px brand-red circle with a
+  check, then heading/lg and body/md/reg secondary.
+*/
+@layer components {
+    .root {
+        container-type: inline-size;
+    }
+
+    /* The form sits on a panel (19 November), same surface as the confirmation and Event details */
+    .form {
+        /* Fields on the panel: base-1 (in dark mode the field surface is base-2, the panel's own colour) */
+        --color-component-forms-surface-default: var(
+            --color-shared-surface-base-1
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
+        padding: var(--spacing-xl);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+
+        @container (max-width: 30rem) {
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+
+        & > * {
+            width: 100%;
+        }
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-sm);
+
+        @container (max-width: 30rem) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--spacing-lg);
+        }
+    }
+
+    .choice {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin: 0;
+        padding: 0;
+        border: 0;
+        min-width: 0;
+    }
+
+    .legend {
+        margin-bottom: var(--spacing-2xs);
+        padding: 0;
+        color: var(--color-shared-content-primary);
+    }
+
+    .required {
+        color: var(--color-shared-content-brand);
+    }
+
+    .notice {
+        color: var(--color-shared-content-secondary);
+
+        & p {
+            margin: 0;
+        }
+
+        & a {
+            color: var(--color-shared-content-primary);
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+        }
+    }
+
+    .form > .submit {
+        width: auto;
+
+        @container (max-width: 30rem) {
+            width: 100%;
+        }
+    }
+
+    .success {
+        outline: none;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+        padding: var(--spacing-xl);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
+
+    .check {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: var(--color-shared-surface-fixed-brand-red);
+        color: var(--color-shared-content-fixed-light);
+    }
+
+    .success-text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+
+        & p {
+            margin: 0;
+        }
+
+        & p + p {
+            color: var(--color-shared-content-secondary);
+        }
+    }
+}

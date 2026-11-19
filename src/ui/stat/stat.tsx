@@ -160,9 +160,20 @@ export function CountUp({
     )
 }
 
-export function StatRow({ children }: { children: ReactNode }) {
+/** Stats edge to edge, borders overlapping. `vertical`: stacked (e.g. beside text in Text + media). */
+export function StatRow({
+    children,
+    vertical,
+}: {
+    children: ReactNode
+    vertical?: boolean
+}) {
     return (
-        <div data-stagger className={styles['stat-row']}>
+        <div
+            data-stagger
+            data-vertical={vertical || undefined}
+            className={styles['stat-row']}
+        >
             {children}
         </div>
     )
