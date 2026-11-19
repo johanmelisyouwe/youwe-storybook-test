@@ -1,6 +1,6 @@
 # Sync report — 19 November 2026 (Insight detail templates, combined)
 
-This is one PR for all insight detail templates. It replaces #53 (Blog), #54 (Event) and #55 (Whitepaper), and it stays a draft until every page is in. Still to come: News.
+This is one PR for all insight detail templates. It replaces #53 (Blog), #54 (Event) and #55 (Whitepaper). All five Figma insight detail pages are in: Blog (with v2), News, Whitepaper, Event and Video.
 
 The copy comes only from the Figma insight detail frames (27263:16299). Layouts are built from our own components, as long-form editorial pages modelled on the case page. Images are placeholders.
 
@@ -23,6 +23,13 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
   - The hero's wide image is the video: a poster with the play button, which plays with sound in the Vimeo player. The film is a placeholder, the Quooker film.
   - **No sticky panel here:** it would cover the video while it plays. The details panel (on-demand webinar, published, expert, Download webinar) sits beside the intro, as in Blog v2.
   - Article sections: about the webinar, the topics (numbered), and the download form as in Figma (no company or job title; phone, country, the PWA question as a text area, the PWA opt-in, the privacy text).
+
+- **News:**
+  - A short page, so there is no panel beside the hero. The Title + image hero leads straight into the Article.
+  - Left: meta (published, type, topic) and "On this page". Right: the intro as the lead, then the reading column.
+  - **The announcement:** paragraphs, the two quotes (Henk Mensinga, Benjamin Lang) as Quote Cards, and the closing lines with the link.
+  - **The eCommerce comparison guide teaser:** "Download now" and "Contact us".
+  - The Figma Shopify Plus logo image is replaced by a placeholder.
 
 ## New code-only components (in figma-sync.json)
 
