@@ -1,0 +1,1 @@
+import{a as r,g as a}from"./iframe-CNsxMot_.js";var t=r();const e=a(t);export{e as R,t as r};
