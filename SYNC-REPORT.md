@@ -112,11 +112,11 @@ New template **Templates / Insight detail / Blog v2** (Desktop and Mobile), next
 
 This follows Rob's idea: the key figures sit higher, next to the intro, like the Industries detail intro (text left, case card right).
 
-- **Order:** under the hero image, a Text + media (6/6).
+- **Order:** under the hero image, a Text + media (8/4, the same split as the Industries detail intro; was 6/6 at first).
   - Left: the intro, with its first sentence as the heading and the rest as the body.
   - Right: the three key figures stacked.
   - Below that: the article, with the meta and menu on the left and the text on the right.
-- **Why 6/6 and not 8/4:** with 8/4 the figure "€151–187bn" broke over two lines.
+- **Stat size:** the stats use Size M (heading/xl), so "€151–187bn" stays on one line in the narrower column (checked at 1280, 1440 and 1920).
 - **Stat row:** new `vertical` option that stacks the Stat cards with overlapping borders. Existing rows are unchanged.
 - **Spacing:** the article section starts closer to the intro (`flush="top"`), so the two read as one opening.
 - **Mobile:** intro, then the stacked figures, the meta, the "On this page" bar and the article.

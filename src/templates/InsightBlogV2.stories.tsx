@@ -80,17 +80,13 @@ function InsightBlogV2Page({ Device: story }: { Device: Device }) {
             <TextMedia
                 Device={Device}
                 Theme="Dark"
-                Split="6/6"
+                Split="8/4"
                 heading={INTRO_HEADING}
                 body={INTRO_BODY}
                 media={
                     <StatRow vertical>
                         {KEY_FIGURES.map((f) => (
-                            <Stat
-                                key={f.Label}
-                                {...f}
-                                Size={Device === 'Mobile' ? 'M' : 'L'}
-                            />
+                            <Stat key={f.Label} {...f} Size="M" />
                         ))}
                     </StatRow>
                 }
