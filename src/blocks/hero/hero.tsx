@@ -134,8 +134,9 @@ export type HeroProps = {
     body?: string
     /** Figma: Show label */
     label?: HeroLabelProps
-    /** Figma: Show buttons / Show second button */
-    buttons?: { label: string; href: string }[]
+    /** Figma: Show buttons / Show second button. A button without `href` is a <button> with `onClick`
+        (e.g. "Try again" on the error page) */
+    buttons?: { label: string; href?: string; onClick?: () => void }[]
     /** Figma: Show bar */
     bar?: HeroBarProps
     /** Figma: Image (background for Gradient, wide image for Title + image). Title + image without image
@@ -283,6 +284,7 @@ export function Hero({
                                         Size="M"
                                         label={b.label}
                                         href={b.href}
+                                        onClick={b.onClick}
                                     />
                                 ))}
                             </div>

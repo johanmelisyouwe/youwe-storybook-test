@@ -76,9 +76,19 @@ Each template is a list of sections. Sections marked *optional* can be left out 
 | **Legal: Cookies** | Hero (Title + image without image, `tags={['Legal']}`) · Article without nav (lead; Cookie preferences with categories and `onSave`) |
 | **Legal: Privacy Policy / Terms & Conditions** | Hero (title only, Legal tag) · Article (nav, or `labels.title` "Articles" with a PDF `navFooter`; `lead`, `intro`; one section per numbered heading, rich text) |
 | **404** | Hero (Gradient, WebGL; label 404, title, body, Back to home + Contact us) · Card grid of clickable Feature Cards (popular pages) |
+| **Error** | As 404, with Try again (`reset`) + Back to home and an optional error reference (`digest`) |
 | **About** | Hero · Card grid · Stats · Offices · Leadership · Stats · Hero bar · Stats · Awards · Contact CTA |
 
 Every page also has the **Header** (nav with mega menu, utility links, CTA, regions), the **Footer** (columns, legal links, social, regions) and the **Ask Youwe** dock (`context` question per page).
+
+## 404 and error pages
+
+- **Unknown URLs:** show the 404 page (`NotFoundPage`, Templates/404).
+- **Errors:** wrap pages in an error boundary, in whatever form the site's framework provides. When something on a page fails while rendering, the boundary shows the Error page (`ErrorPage`, Templates/Error) instead of a blank screen.
+  - Pass the boundary's retry function as `reset` ("Try again").
+  - Pass an error reference as `digest` if the server gives one, so support can find it.
+  - Report the error to the error tracker from the boundary.
+- **Last resort:** if the shared layout itself can fail, keep a bare fallback without header and footer, using the same copy (`ERROR` in not-found.copy.tsx).
 
 ## Contentful mapping tips
 

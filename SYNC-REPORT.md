@@ -1,4 +1,4 @@
-# Sync report — 19 November 2026 (Insight detail, Contact, Legal and 404 templates, combined)
+# Sync report — 19 November 2026 (Insight detail, Contact, Legal, 404 and Error templates, combined)
 
 This is one PR for all insight detail templates. It replaces #53 (Blog), #54 (Event) and #55 (Whitepaper). All five Figma insight detail pages are in: Blog (with v2), News, Whitepaper, Event and Video.
 
@@ -67,6 +67,18 @@ The copy comes only from the Figma frames in section 27263:19276 (Contact 27263:
 - **Popular pages:** Services, Work, Industries and Insights as clickable Feature Cards, with an arrow and the card hover. The descriptions are the hero lines of those templates.
 - Footer. No sub-footer, because the hero already has the contact button.
 
+## Error page (Templates / Error), after the review
+
+This follows f3bw's review comment on error handling and error boundaries.
+
+- **Not in Figma.** Same build as the 404: the Gradient hero with "Error", "Something went wrong. / It’s not you, it’s us.", a short body, **Try again** and **Back to home**, then the popular pages and the footer.
+- **Try again** calls `reset`, the error boundary's retry. Without a reset it reloads the page.
+- **Error reference:** an optional `digest` (e.g. a server log id) is shown, so support can find it. See the "With reference" story.
+- **Shared module:** the 404 and Error pages now live in `src/templates/error-pages.tsx` (`NotFoundPage`, `ErrorPage`), so the site can render them from its 404 route and its error boundary.
+- **Framework-neutral on purpose:** we don't know which framework the site uses, so there are no framework-specific files (such as Next.js `app/error.tsx`).
+- **CMS integration doc:** a new "404 and error pages" section explains the wiring: 404 for unknown URLs; the Error page from an error boundary with `reset` and `digest`; a bare last-resort fallback with the same copy if the layout itself can fail.
+- **Hero:** a button without `href` can have `onClick`, which the "Try again" button uses.
+
 ## New code-only components (in figma-sync.json)
 
 | Component | What it does |
@@ -117,7 +129,7 @@ The copy comes only from the Figma frames in section 27263:19276 (Contact 27263:
   - The "Download" and "Register" nav labels.
 - **Contact:** "Send us a message", the panel labels (Call us, Response time, Offices) and the confirmation are mine. The "Who do you want to contact?" options are mine too (Start a new project, Support for an existing project, Partnerships, Press and media, Careers, Something else). Figma only has the label.
 - **Cookies:** the "Save preferences" button and the "Your preferences are saved." line are mine, because Figma has toggles only.
-- **404:** the hero texts and the Ask question are mine.
+- **404 and Error:** the hero texts and the Ask question are mine.
 - **Left out on purpose:** the prototype and design notes in these frames:
   - the Contact "This prototype form does not send data…";
   - the Cookies "design-complete preferences view…", "Source framing…" and "Design mock only…";
