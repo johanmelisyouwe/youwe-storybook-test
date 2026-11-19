@@ -3,6 +3,7 @@ import { AnchorNav, type ANCHOR_NAV_LABELS } from '../../ui/anchor-nav'
 import { Accordion } from '../../ui/accordion'
 import { FeatureCard } from '../../ui/feature-card'
 import { Prose, type RichText } from '../../shared/prose'
+import { Lead } from '../text-column'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
 import stats from '../stats-block/stats-block.module.css'
@@ -10,8 +11,10 @@ import styles from './article.module.css'
 
 /*
   Content blocks/Article (code block, not in Figma; added 19 November for the long-form insight pages).
-  The body of an article: a sticky "On this page" Anchor nav in the left column (4 of 12) and the
-  sections in a reading column on the right (740, like the Case intro text). Each section has an id
+  The body of an article: a narrow left column (288) with an optional meta list and the sticky "On this
+  page" Anchor nav, and the reading column (740) right next to it, 80 apart, so the links sit close to
+  the text (changed 19 November: the 4/8 grid left a wide gap on large screens). An optional lead opens
+  the reading column. Each section has an id
   (the nav links to it), an H2 and rich text, plus optional numbered steps (Feature Card Plain, as in
   Feature list Split), FAQ accordions (as in Accordion list) or any other content.
   Mobile: one column; the nav is a collapsed "On this page" disclosure above the sections.
@@ -39,6 +42,10 @@ export type ArticleProps = {
     /** Figma-style Device (layout also follows the block width) */
     Device?: 'Desktop' | 'Mobile'
     sections: ArticleSection[]
+    /** Meta list above the nav (published, type, topics…), styled like the Case intro meta */
+    meta?: { label: string; value: string }[]
+    /** Lead paragraph at the top of the reading column (body/2xl/med) */
+    lead?: string
     /** Show the "On this page" nav (default true) */
     nav?: boolean
     /** UI text, for translations: { ...ANCHOR_NAV_LABELS } */
@@ -48,29 +55,51 @@ export type ArticleProps = {
 export function Article({
     Device = 'Desktop',
     sections,
+    meta,
+    lead,
     nav = true,
     labels,
 }: ArticleProps) {
     return (
         <div
-            data-nav={nav || undefined}
+            data-nav={nav || meta ? true : undefined}
             className={cx(block.root, styles.root)}
         >
             <div className={cx(block.inner, styles.inner)}>
-                {nav && (
+                {(nav || meta) && (
                     <aside className={styles.aside}>
-                        <AnchorNav
-                            Device={Device}
-                            labels={labels}
-                            items={sections.map((s) => ({
-                                id: s.id,
-                                label: s.nav ?? s.heading,
-                            }))}
-                            className={styles.nav}
-                        />
+                        {meta && (
+                            <dl className={styles.meta}>
+                                {meta.map((m) => (
+                                    <div
+                                        key={m.label}
+                                        className={styles['meta-item']}
+                                    >
+                                        <dt className="yw-body-xs-bold">
+                                            {m.label}
+                                        </dt>
+                                        <dd className="yw-body-md-reg">
+                                            {m.value}
+                                        </dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        )}
+                        {nav && (
+                            <AnchorNav
+                                Device={Device}
+                                labels={labels}
+                                items={sections.map((s) => ({
+                                    id: s.id,
+                                    label: s.nav ?? s.heading,
+                                }))}
+                                className={styles.nav}
+                            />
+                        )}
                     </aside>
                 )}
                 <div className={styles.content}>
+                    {lead && <Lead>{lead}</Lead>}
                     {sections.map((s) => (
                         <section
                             key={s.id}

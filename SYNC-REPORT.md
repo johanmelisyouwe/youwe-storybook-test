@@ -88,3 +88,22 @@ New template **Templates / Insight detail / Blog v2** (Desktop and Mobile), next
   - Clicking "FAQ" jumps to the FAQ with the header space kept, and marks FAQ.
 - At 390: the "On this page" bar opens and closes, and shows the current section.
 - No console errors.
+
+# Update — 19 November 2026 (spacing and alignment fixes)
+
+## Blog v2: nav closer to the text
+
+- **Article block:** the 4/8 grid left a wide gap between the links and the text on large screens. The layout is now a narrow left column (288) with the reading column (740) right next to it, 80 apart, at every width.
+- **Meta in the left column:** the Article block can now take `meta` and `lead`.
+  - The published date, type and topics now sit above "On this page", in the same style as the case intro.
+  - The lead opens the reading column.
+- **The v2 page:** hero, key figures, then the article. The separate intro block and the extra image were dropped, so the meta, the links and the text share one grid.
+
+## v1: columns line up
+
+- **Feature list (Split) and Accordion list (Split):** the right column is now 740 wide and right-aligned, like the Case intro text and the Two-column text 4/8 body.
+  - On wide screens the steps and FAQ started further left than the text above them.
+  - At 1440 the change is 4px.
+  - This applies wherever these blocks are used, such as Service detail.
+- **Checked at 1440 and 1920:**
+  - The intro text, the two-column bodies, the steps and the FAQ all start at the same x (620 at 1440, 1100 at 1920).

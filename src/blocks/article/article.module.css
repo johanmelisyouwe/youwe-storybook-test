@@ -1,37 +1,69 @@
 /*
-  Article (code block, 19 November). Desktop: grid 416fr / 848fr like Two-column text 4/8, gap 16; the
-  nav column is sticky (top 120 = below the fixed header, max 288 wide); the content column is 740 wide,
-  right-aligned (lines up with the Case intro text above it). Sections gap 80, each: head (kicker +
-  heading/lg, gap 8), then the body (body/lg/reg content/secondary, Prose), gap 32. Anchor targets keep
-  120 clear of the top. Mobile (block < 768): one column, nav above, sections gap 64.
+  Article (code block, 19 November). Desktop: grid 288 | 740 with an 80 gap, left-aligned in the
+  container, so the nav sits close to the text at every screen width. Left column: meta list (label
+  body/xs/bold content/brand, value body/md/reg; 1px border/2 dividers, like the Case intro meta), then
+  the nav, sticky at 120 (below the fixed header). Reading column: optional lead (body/2xl/med), then the
+  sections, gap 80; each: head (kicker + heading/lg, gap 8), then the body (body/lg/reg
+  content/secondary, Prose), gap 32. Anchor targets keep 120 clear of the top.
+  Mobile (block < 768): one column, meta and nav above the sections, sections gap 64.
 */
 @layer components {
     .inner {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
+        grid-template-columns: minmax(0, 46.25rem);
+        justify-content: center;
+        gap: var(--spacing-xl);
 
         @container (min-width: 48rem) {
             .root[data-nav] & {
-                grid-template-columns: 416fr 848fr;
+                grid-template-columns: minmax(0, 18rem) minmax(0, 46.25rem);
+                justify-content: start;
+                column-gap: var(--spacing-4xl);
             }
+        }
+        @container (max-width: 47.9375rem) {
+            grid-template-columns: minmax(0, 1fr);
         }
     }
 
     .aside {
-        @container (min-width: 48rem) {
-            height: 100%;
-        }
-        @container (max-width: 47.9375rem) {
-            margin-bottom: var(--spacing-xl);
-        }
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3xl);
     }
 
     .nav {
         @container (min-width: 48rem) {
             position: sticky;
             top: var(--spacing-5xl);
-            max-width: 18rem;
+        }
+    }
+
+    .meta {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        margin: 0;
+    }
+
+    .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+
+        & + .meta-item {
+            padding-top: var(--spacing-md);
+            box-shadow: inset 0 var(--shared-width-1) 0
+                var(--color-shared-border-2);
+        }
+
+        & dt {
+            color: var(--color-shared-content-brand);
+        }
+
+        & dd {
+            margin: 0;
+            white-space: pre-line;
         }
     }
 
@@ -39,19 +71,15 @@
         display: flex;
         flex-direction: column;
         gap: var(--spacing-4xl);
-        width: 100%;
-        max-width: 46.25rem;
+        min-width: 0;
 
-        @container (min-width: 48rem) {
-            justify-self: end;
+        & > p {
+            margin: 0;
         }
+
         @container (max-width: 47.9375rem) {
             gap: var(--spacing-3xl);
         }
-    }
-
-    .root:not([data-nav]) .content {
-        justify-self: center;
     }
 
     .section {

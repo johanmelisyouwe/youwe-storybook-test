@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Hero } from '../blocks/hero'
-import { CaseIntro } from '../blocks/case-intro'
 import { StatsBlock } from '../blocks/stats-block'
-import { Media } from '../blocks/media'
 import { Article } from '../blocks/article'
 import { CardGrid } from '../blocks/card-grid'
 import { InsightCard } from '../ui/insight-card'
@@ -48,9 +46,9 @@ import {
 
 /*
   Templates/Insight detail/Blog v2 — the Blog template with an "On this page" anchor nav (decided
-  19 November). The top is the same as v1 (hero, intro with meta, key figures, image). From there the
-  article runs in the Article block: a sticky Anchor nav on the left, the sections in one reading column
-  on the right, with the steps, the Kingspan example and the FAQ inside their sections, so every nav item
+  19 November). Hero and key figures, then the Article block: the meta (published, type,
+  topics) and a sticky Anchor nav in a narrow left column, the lead and the sections in one reading
+  column right next to it, with the steps, the Kingspan example and the FAQ inside their sections, so every nav item
   points into the same column. Copy from Figma 27263:16555 (copy only), our own styling.
 */
 
@@ -77,20 +75,11 @@ function InsightBlogV2Page({ Device: story }: { Device: Device }) {
                 image={abstract('016')}
             />
             <Section Mode="Dark">
-                <CaseIntro
-                    Device={Device}
-                    {...{ 'Meta position': 'Left' as const }}
-                    meta={META}
-                    lead={INTRO}
-                />
                 <StatsBlock Type="Plain" Device={Device} stats={KEY_FIGURES} />
-                <Media
-                    Layout="Contained"
-                    Device={Device}
-                    image={abstract('011')}
-                />
                 <Article
                     Device={Device}
+                    meta={META}
+                    lead={INTRO}
                     sections={[
                         {
                             id: 'in-brief',

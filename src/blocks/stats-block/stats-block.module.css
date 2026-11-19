@@ -90,6 +90,14 @@
             gap: var(--spacing-5xl);
         }
 
+        /* The list column is 740 wide, right-aligned: lines up with the Case intro text and Two-column
+           text 4/8 body on wide screens (at 1440 the column is 744 anyway) */
+        &[data-split] .feature-list-inner > :last-child {
+            justify-self: end;
+            width: 100%;
+            max-width: 46.25rem;
+        }
+
         @container (max-width: 47.9375rem) {
             &[data-split] .feature-list-inner {
                 grid-template-columns: 1fr;

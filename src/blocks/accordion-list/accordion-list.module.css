@@ -27,6 +27,13 @@
             gap: var(--spacing-5xl);
         }
 
+        /* Accordion column 740, right-aligned, like Feature list Split and Two-column text 4/8 */
+        &[data-layout="split"] .inner > :last-child {
+            justify-self: end;
+            width: 100%;
+            max-width: 46.25rem;
+        }
+
         @container (max-width: 47.9375rem) {
             &[data-layout="split"] .inner {
                 grid-template-columns: 1fr;
