@@ -143,6 +143,11 @@ export type HeroProps = {
     /** Gradient: 'WebGL' draws moving silk ribbons over the image (the image stays as the fallback and for
         reduced motion); 'Image' is the still background */
     Background?: 'Image' | 'WebGL'
+    /** Tags above the title (code option, 19 November; insight detail pages): the content type first
+        (filled brand red), then topics (outlined pills) */
+    tags?: string[]
+    /** A date shown after the tags, e.g. "October 21, 2026" */
+    date?: string
     /** Title + image: a video in place of the wide image (code option, 19 November; Video template). The
         image becomes the poster; plays with sound on click (Video Player, Autoplay Off). */
     video?: string
@@ -168,10 +173,30 @@ export function Hero({
     Background = 'Image',
     video,
     videoTitle,
+    tags,
+    date,
     logo,
     header,
     recede = false,
 }: HeroProps) {
+    const tagRow = (tags?.length || date) && (
+        <div className={styles.tags}>
+            {tags?.map((t, i) => (
+                <span
+                    key={t}
+                    data-type={i === 0 || undefined}
+                    className={cx(styles.tag, 'yw-body-sm-reg')}
+                >
+                    {t}
+                </span>
+            ))}
+            {date && (
+                <span className={cx(styles.date, 'yw-body-sm-reg')}>
+                    {date}
+                </span>
+            )}
+        </div>
+    )
     const lines = (
         <h1 className={cx(styles.title, 'yw-heading-3xl')}>
             {title.map((t, i) => (
@@ -196,6 +221,7 @@ export function Hero({
                     <div className={styles.row}>
                         <div className={styles.titlecol}>
                             {label && <HeroLabel Device={Device} {...label} />}
+                            {tagRow}
                             {lines}
                         </div>
                         {logo && (

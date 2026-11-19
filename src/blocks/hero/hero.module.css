@@ -381,6 +381,38 @@
             var(--motion-ease-emphasized) both;
         animation-delay: calc(var(--motion-stagger) * 4);
     }
+    /* Tags above the title (insight detail pages, 19 November): pills like the Insight Card type tag
+       (height 32, padding 0/16, pill radius, 1px border/3 outline, body/sm/reg), gap 8; the first one (the
+       content type) filled brand red. The date follows in content/secondary (same gap, so it lines up at the start when it wraps). */
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--spacing-2xs);
+    }
+
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        height: var(--spacing-xl);
+        padding-inline: var(--spacing-sm);
+        border-radius: var(--component-radius-pill);
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--color-shared-border-3);
+        color: var(--color-shared-content-primary);
+        white-space: nowrap;
+
+        &[data-type] {
+            background: var(--color-shared-surface-fixed-brand-red);
+            box-shadow: none;
+            color: var(--color-shared-content-fixed-light);
+        }
+    }
+
+    .date {
+        color: var(--color-shared-content-secondary);
+    }
+
     /* Video in place of the image (Video template): same full-width 16:9 frame */
     .image-video {
         width: 100%;

@@ -23,11 +23,12 @@ import {
     CLOSING,
     GUIDE,
     INTRO,
-    META,
     MORE,
     MORE_INFO,
     NAV,
     QUOTES,
+    TAGS,
+    DATE,
     TITLE,
 } from './insight-news.copy'
 
@@ -49,6 +50,8 @@ function InsightNewsPage({ Device: story }: { Device: Device }) {
                 Variant="Title + image"
                 Device={Device}
                 title={[TITLE]}
+                tags={TAGS}
+                date={DATE}
                 label={{
                     Type: 'Breadcrumb',
                     crumbs: [
@@ -62,7 +65,6 @@ function InsightNewsPage({ Device: story }: { Device: Device }) {
             <Section Mode="Dark">
                 <Article
                     Device={Device}
-                    meta={META}
                     lead={INTRO}
                     sections={[
                         {

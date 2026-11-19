@@ -17,10 +17,6 @@ export const DETAILS = [
     { label: 'Expert', value: 'Elze Kool' },
 ]
 
-export const META = [
-    { label: 'Type', value: 'Video' },
-    { label: 'Topics', value: 'Headless & Composable\nE-Commerce' },
-]
 
 export const NAV = {
     about: 'About the webinar',
@@ -81,3 +77,6 @@ export const MORE: [string, string, string][] = [
         '015',
     ],
 ]
+
+/** Hero tags: type, then topics */
+export const TAGS = ['Video', 'Headless & Composable', 'E-Commerce']

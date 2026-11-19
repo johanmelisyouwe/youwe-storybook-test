@@ -21,10 +21,6 @@ export const DETAILS = [
     },
 ]
 
-export const META = [
-    { label: 'Type', value: 'Event' },
-    { label: 'Topic', value: 'Product Information Management' },
-]
 
 export const NAV = {
     why: 'Why attend',
@@ -111,3 +107,6 @@ export const MORE: [string, string, string][] = [
     ['Conquer Peak Seasons with Confidence', 'Event · E-Commerce', '004'],
     ['Turn AI into ROI: Steps to Elevate Your eCommerce Game', 'Event', '008'],
 ]
+
+/** Hero tags: type, then topic */
+export const TAGS = ['Event', 'Product Information Management']

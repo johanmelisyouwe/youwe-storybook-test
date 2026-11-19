@@ -8,11 +8,6 @@ export const TITLE = 'Youwe Announces Partnership with Shopify Plus'
 export const INTRO =
     'Youwe, a leading digital agency known for its innovative and platform-agnostic solutions, is thrilled to announce a strategic partnership with Shopify Plus, a renowned eCommerce platform.'
 
-export const META = [
-    { label: 'Published', value: 'July 11, 2024' },
-    { label: 'Type', value: 'News' },
-    { label: 'Topic', value: 'E-Commerce' },
-]
 
 export const NAV = {
     announcement: 'The announcement',
@@ -62,3 +57,7 @@ export const MORE: [string, string, string][] = [
     ['Youwe B2B Award', 'News · E-Commerce', '008'],
     ['Youwe upgraded to Premium Sendcloud Partner', 'News · E-Commerce', '011'],
 ]
+
+/** Hero tags: type, then topic */
+export const TAGS = ['News', 'E-Commerce']
+export const DATE = 'July 11, 2024'

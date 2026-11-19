@@ -176,11 +176,6 @@ export const leadIns = (items: string[][]) => (
 export const TITLE =
     'The Wennink report: what it means for your AI and digital plans'
 
-export const META = [
-    { label: 'Published', value: 'October 21, 2026' },
-    { label: 'Type', value: 'Blog' },
-    { label: 'Topics', value: 'Artificial Intelligence\nConsulting' },
-]
 
 export const INTRO =
     'The Dutch Wennink report calls for €151 to €187 billion in additional, mostly private investment by 2035. Digitalization and AI is one of its four focus domains. The Dutch government has adopted the growth target and launched the National Investment Institution. Here is how to prepare your AI projects.'
@@ -248,3 +243,7 @@ export const NAV = {
     faq: 'FAQ',
     sources: 'Sources',
 }
+
+/** Hero tags: type, then topics */
+export const TAGS = ['Blog', 'Artificial Intelligence', 'Consulting']
+export const DATE = 'October 21, 2026'

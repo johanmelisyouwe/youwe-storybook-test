@@ -28,12 +28,12 @@ import {
     DETAILS,
     INTRO_BODY,
     INTRO_HEADING,
-    META,
     MORE,
     NAV,
     QUESTION,
     TAKEAWAYS,
     TIMETABLE,
+    TAGS,
     TITLE,
     VENUE,
     WHY,
@@ -64,6 +64,7 @@ function InsightEventPage({ Device: story }: { Device: Device }) {
                         Variant="Title + image"
                         Device={Device}
                         title={[TITLE]}
+                        tags={TAGS}
                         label={{
                             Type: 'Breadcrumb',
                             crumbs: [
@@ -96,7 +97,6 @@ function InsightEventPage({ Device: story }: { Device: Device }) {
             <Section Mode="Dark" flush="top">
                 <Article
                     Device={Device}
-                    meta={META}
                     sections={[
                         {
                             id: 'why-attend',

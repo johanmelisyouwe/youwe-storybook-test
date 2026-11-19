@@ -26,11 +26,11 @@ import {
     FORM_LABELS,
     INTRO_BODY,
     INTRO_HEADING,
-    META,
     MORE,
     NAV,
     OPT_IN,
     QUESTION,
+    TAGS,
     TITLE,
     TOPICS,
 } from './insight-video.copy'
@@ -55,6 +55,7 @@ function InsightVideoPage({ Device: story }: { Device: Device }) {
                 Variant="Title + image"
                 Device={Device}
                 title={[TITLE]}
+                tags={TAGS}
                 label={{
                     Type: 'Breadcrumb',
                     crumbs: [
@@ -84,7 +85,6 @@ function InsightVideoPage({ Device: story }: { Device: Device }) {
             <Section Mode="Dark" flush="top">
                 <Article
                     Device={Device}
-                    meta={META}
                     sections={[
                         {
                             id: 'about',

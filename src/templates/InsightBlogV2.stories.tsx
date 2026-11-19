@@ -35,12 +35,13 @@ import {
     KEY_FACTS,
     KEY_FIGURES,
     MEANS,
-    META,
     MORE,
     NAV,
     SOURCE_NOTE,
     SOURCES,
     STEPS,
+    TAGS,
+    DATE,
     TITLE,
     WHY,
     leadIns,
@@ -67,6 +68,8 @@ function InsightBlogV2Page({ Device: story }: { Device: Device }) {
                 Variant="Title + image"
                 Device={Device}
                 title={[TITLE]}
+                tags={TAGS}
+                date={DATE}
                 label={{
                     Type: 'Breadcrumb',
                     crumbs: [
@@ -94,7 +97,6 @@ function InsightBlogV2Page({ Device: story }: { Device: Device }) {
             <Section Mode="Dark" flush="top">
                 <Article
                     Device={Device}
-                    meta={META}
                     sections={[
                         {
                             id: 'in-brief',

@@ -30,10 +30,10 @@ import {
     INSIDE,
     INTRO_BODY,
     INTRO_HEADING,
-    META,
     MORE,
     NAV,
     PRIVACY,
+    TAGS,
     TITLE,
     WHY,
 } from './insight-whitepaper.copy'
@@ -61,6 +61,7 @@ function InsightWhitepaperPage({ Device: story }: { Device: Device }) {
                         Variant="Title + image"
                         Device={Device}
                         title={[TITLE]}
+                        tags={TAGS}
                         label={{
                             Type: 'Breadcrumb',
                             crumbs: [
@@ -107,7 +108,6 @@ function InsightWhitepaperPage({ Device: story }: { Device: Device }) {
             <Section Mode="Dark" flush="top">
                 <Article
                     Device={Device}
-                    meta={META}
                     sections={[
                         {
                             id: 'what-you-get',

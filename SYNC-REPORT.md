@@ -50,11 +50,22 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
 - **Case intro:** `body` is optional.
 - **Stat row:** `vertical` option.
 - **Feature Card:** `Description` is optional. Article steps can be titles only.
+- **Hero:** new `tags` (type and topics) and `date` above the title.
 - **Hero (Title + image):** new `video` (and `videoTitle`) shows a Video Player (Autoplay Off) in place of the wide image, with the image as poster.
 - **Registration form:** also `company` and `jobTitle` (both on by default), `countries` (dropdown), a multiline `question` (text area) and `optInLabel`.
 - **Radio:** `required` option.
 - **Hero (Title + image):** keeps its title to the left 8 columns inside Hero aside.
 - **Site-wide:** in-page anchor links scroll smoothly (`scroll-behavior: smooth`), except with reduced motion.
+
+## Hero tags instead of the meta list (all insight detail pages)
+
+- **The type and topics are now tags next to the page heading**, between the breadcrumb and the title. This follows Patrick's suggestion, in our own styling.
+  - The type comes first, filled brand red. The topics follow as outlined pills, styled like the Insight Card type tag.
+  - Blog and News also show the publish date after the tags. On Event, Whitepaper and Video the date stays in the details panel.
+- **The meta list is gone:**
+  - Article pages (Blog v2, Event, Whitepaper, Video, News): only "On this page" remains in the left column.
+  - Blog v1: the Case intro meta column is left empty, so the text keeps its column.
+- **Hero:** new `tags` and `date` props. Heroes without them are unchanged.
 
 ## Please check
 

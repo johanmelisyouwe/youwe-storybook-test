@@ -18,10 +18,6 @@ export const DETAILS = [
     { label: 'Published', value: 'October 1, 2026' },
 ]
 
-export const META = [
-    { label: 'Type', value: 'Whitepaper' },
-    { label: 'Topic', value: 'Data Management' },
-]
 
 export const CHAPTERS = [
     'Why AI projects stall on untrusted data',
@@ -92,3 +88,6 @@ export const MORE: [string, string, string][] = [
     ],
     ['2 Progressive Web App examples', 'Whitepaper · E-Commerce', '016'],
 ]
+
+/** Hero tags: type, then topic */
+export const TAGS = ['Whitepaper', 'Data Management']

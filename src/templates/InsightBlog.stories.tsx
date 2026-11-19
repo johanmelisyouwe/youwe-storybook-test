@@ -36,7 +36,8 @@ import {
     KEY_FACTS,
     KEY_FIGURES,
     MEANS,
-    META,
+    TAGS,
+    DATE,
     MORE,
     SOURCE_NOTE,
     SOURCES,
@@ -67,6 +68,8 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                 Variant="Title + image"
                 Device={Device}
                 title={[TITLE]}
+                tags={TAGS}
+                date={DATE}
                 label={{
                     Type: 'Breadcrumb',
                     crumbs: [
@@ -81,7 +84,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                 <CaseIntro
                     Device={Device}
                     {...{ 'Meta position': 'Left' as const }}
-                    meta={META}
+                    meta={[]}
                     lead={INTRO}
                     body={
                         <>
