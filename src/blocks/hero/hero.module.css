@@ -381,6 +381,11 @@
             var(--motion-ease-emphasized) both;
         animation-delay: calc(var(--motion-stagger) * 4);
     }
+    /* Video in place of the image (Video template): same full-width 16:9 frame */
+    .image-video {
+        width: 100%;
+    }
+
     .image {
         margin-top: var(--spacing-4xl);
         border-radius: 0 !important;

@@ -4,6 +4,7 @@ import { Button } from '../../ui/button'
 import { Breadcrumbs, type Crumb } from '../../ui/breadcrumbs'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { CountUp } from '../../ui/stat'
+import { VideoPlayer } from '../../ui/video-player'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
 import { HeroWebGL } from './hero-webgl'
@@ -142,6 +143,11 @@ export type HeroProps = {
     /** Gradient: 'WebGL' draws moving silk ribbons over the image (the image stays as the fallback and for
         reduced motion); 'Image' is the still background */
     Background?: 'Image' | 'WebGL'
+    /** Title + image: a video in place of the wide image (code option, 19 November; Video template). The
+        image becomes the poster; plays with sound on click (Video Player, Autoplay Off). */
+    video?: string
+    /** Accessible name of the video */
+    videoTitle?: string
     /** Title + image: client logo */
     logo?: LogoInput
     /** Figma: Show header — the Header/Corporate instance on top */
@@ -160,6 +166,8 @@ export function Hero({
     bar,
     image,
     Background = 'Image',
+    video,
+    videoTitle,
     logo,
     header,
     recede = false,
@@ -197,12 +205,23 @@ export function Hero({
                         )}
                     </div>
                 </div>
-                <CardMedia
-                    src={image}
-                    ratio="16 / 9"
-                    clip={false}
-                    className={styles.image}
-                />
+                {video ? (
+                    <VideoPlayer
+                        src={video}
+                        poster={image}
+                        title={videoTitle ?? title.join(' ')}
+                        Autoplay="Off"
+                        ratio="16 / 9"
+                        className={cx(styles.image, styles['image-video'])}
+                    />
+                ) : (
+                    <CardMedia
+                        src={image}
+                        ratio="16 / 9"
+                        clip={false}
+                        className={styles.image}
+                    />
+                )}
             </section>
         )
     }

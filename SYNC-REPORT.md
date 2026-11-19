@@ -1,6 +1,6 @@
 # Sync report — 19 November 2026 (Insight detail templates, combined)
 
-This is one PR for all insight detail templates. It replaces #53 (Blog), #54 (Event) and #55 (Whitepaper), and it stays a draft until every page is in. Still to come: News and Video.
+This is one PR for all insight detail templates. It replaces #53 (Blog), #54 (Event) and #55 (Whitepaper), and it stays a draft until every page is in. Still to come: News.
 
 The copy comes only from the Figma insight detail frames (27263:16299). Layouts are built from our own components, as long-form editorial pages modelled on the case page. Images are placeholders.
 
@@ -18,6 +18,11 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
 - **Whitepaper:**
   - The same structure as Event: the details panel with Download, the intro and the chapter tiles.
   - Article sections: what you will get, why download it, the download form (phone, Figma privacy text, no opt-in) and questions.
+
+- **Video:**
+  - The hero's wide image is the video: a poster with the play button, which plays with sound in the Vimeo player. The film is a placeholder, the Quooker film.
+  - **No sticky panel here:** it would cover the video while it plays. The details panel (on-demand webinar, published, expert, Download webinar) sits beside the intro, as in Blog v2.
+  - Article sections: about the webinar, the topics (numbered), and the download form as in Figma (no company or job title; phone, country, the PWA question as a text area, the PWA opt-in, the privacy text).
 
 ## New code-only components (in figma-sync.json)
 
@@ -37,7 +42,9 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
 - **Accordion list:** `'Accordion title': ''` hides the small title.
 - **Case intro:** `body` is optional.
 - **Stat row:** `vertical` option.
-- **Feature Card:** `Description` is optional.
+- **Feature Card:** `Description` is optional. Article steps can be titles only.
+- **Hero (Title + image):** new `video` (and `videoTitle`) shows a Video Player (Autoplay Off) in place of the wide image, with the image as poster.
+- **Registration form:** also `company` and `jobTitle` (both on by default), `countries` (dropdown), a multiline `question` (text area) and `optInLabel`.
 - **Radio:** `required` option.
 - **Hero (Title + image):** keeps its title to the left 8 columns inside Hero aside.
 - **Site-wide:** in-page anchor links scroll smoothly (`scroll-behavior: smooth`), except with reduced motion.
@@ -46,7 +53,8 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
 
 - **Copy that is not in Figma:**
   - The registration form texts: heading, the slope and dietary questions, the opt-in, and the confirmation and error messages.
-  - The whitepaper confirmation title "Thank you, {name}".
+  - The whitepaper and video confirmation title "Thank you, {name}".
+  - The video confirmation "We will send the webinar to {email}." and the "Expert: Elze Kool" row (the name is from the Figma text).
   - The "Download" and "Register" nav labels.
 - **Privacy:** on the live site, load the map only after consent for third-party content.
 

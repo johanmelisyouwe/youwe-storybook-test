@@ -1,6 +1,8 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { TextInput } from '../text-input'
 import { RadioLabel } from '../radio'
+import { TextArea } from '../text-area'
+import { Dropdown } from '../dropdown'
 import { CheckboxLabel } from '../checkbox'
 import { Button } from '../button'
 import { Toaster } from '../toaster'
@@ -13,10 +15,11 @@ import styles from './registration-form.module.css'
   Registration form — code component (not in Figma; the Figma event page only has "Register now"
   buttons; added 19 November). Sign-up for an event, built from the form components (Text Input,
   Radio, Checkbox, Button), laid out like the Contact CTA form.
-  Fields: first and last name, business email, company (required), job title, optional phone, an
+  Fields: first and last name, business email, company (required; can be hidden), job title (can be
+  hidden), optional phone and country, an
   optional choice (e.g. on or off the slopes), an optional free-text field (e.g. dietary requirements),
   an opt-in (can be hidden) and an optional notice (e.g. privacy text). Used for event sign-up and the
-  whitepaper download (19 November). Submit: `onSubmit(FormData)`; while it runs the button shows the sending label; when it
+  whitepaper and webinar downloads (19 November). Submit: `onSubmit(FormData)`; while it runs the button shows the sending label; when it
   resolves the form is replaced by a confirmation; when it throws, an error Toaster shows above the
   button and the entries stay.
 */
@@ -29,6 +32,8 @@ export const REGISTRATION_FORM_LABELS = {
     company: 'Company',
     jobTitle: 'Job title',
     phone: 'Phone number',
+    country: 'Country',
+    countryPlaceholder: 'Select your country',
     optIn: 'Keep me informed about future Youwe events',
     submit: 'Register now',
     sending: 'Sending…',
@@ -44,14 +49,27 @@ export type RegistrationFormProps = {
     Device?: 'Desktop' | 'Mobile'
     /** One choice the attendee must make, e.g. joining on or off the slopes */
     choice?: { name: string; label: string; options: string[] }
+    /** Show the company field (required; default true) */
+    company?: boolean
+    /** Show the job title field (default true) */
+    jobTitle?: boolean
     /** Show the optional phone number field (Whitepaper download) */
     phone?: boolean
+    /** Country dropdown options (Video download); leave out for no country field */
+    countries?: { value: string; label: string }[]
     /** Show the opt-in checkbox (default true) */
     optIn?: boolean
+    /** Opt-in text for this form (else labels.optIn) */
+    optInLabel?: string
     /** Text under the fields, e.g. the privacy notice with a Privacy Policy link */
     notice?: ReactNode
-    /** One optional free-text question, e.g. dietary requirements */
-    question?: { name: string; label: string; placeholder?: string }
+    /** One optional free-text question, e.g. dietary requirements; `multiline` gives a text area */
+    question?: {
+        name: string
+        label: string
+        placeholder?: string
+        multiline?: boolean
+    }
     /** Called with the form data; resolve on success, throw on failure */
     onSubmit?: (data: FormData) => Promise<void> | void
     /** Story/preview: start in the confirmation state */
@@ -65,8 +83,12 @@ export function RegistrationForm({
     Device = 'Desktop',
     choice,
     question,
+    company = true,
+    jobTitle = true,
     phone,
+    countries,
     optIn = true,
+    optInLabel,
     notice,
     onSubmit,
     defaultState = 'Form',
@@ -122,6 +144,17 @@ export function RegistrationForm({
         )
     }
 
+    const email = (
+        <TextInput
+            Label={L.email}
+            Required
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholderText={L.emailPlaceholder}
+        />
+    )
+
     return (
         <form
             className={cx(styles.root, styles.form, className)}
@@ -158,29 +191,49 @@ export function RegistrationForm({
                     placeholderText={L.lastName}
                 />
             </div>
-            <div className={styles.row}>
+            {company ? (
+                <div className={styles.row}>
+                    {email}
+                    <TextInput
+                        Label={L.company}
+                        Required
+                        name="company"
+                        autoComplete="organization"
+                        placeholderText={L.company}
+                    />
+                </div>
+            ) : (
+                email
+            )}
+            {jobTitle && (
                 <TextInput
-                    Label={L.email}
-                    Required
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholderText={L.emailPlaceholder}
+                    Label={L.jobTitle}
+                    name="jobTitle"
+                    autoComplete="organization-title"
+                    placeholderText={L.jobTitle}
                 />
-                <TextInput
-                    Label={L.company}
-                    Required
-                    name="company"
-                    autoComplete="organization"
-                    placeholderText={L.company}
-                />
-            </div>
-            <TextInput
-                Label={L.jobTitle}
-                name="jobTitle"
-                autoComplete="organization-title"
-                placeholderText={L.jobTitle}
-            />
+            )}
+            {(phone || countries) && (
+                <div className={phone && countries ? styles.row : undefined}>
+                    {phone && (
+                        <TextInput
+                            Label={L.phone}
+                            name="phone"
+                            type="tel"
+                            autoComplete="tel"
+                            placeholderText={L.phone}
+                        />
+                    )}
+                    {countries && (
+                        <Dropdown
+                            Label={L.country}
+                            name="country"
+                            placeholderText={L.countryPlaceholder}
+                            options={countries}
+                        />
+                    )}
+                </div>
+            )}
             {choice && (
                 <fieldset className={styles.choice}>
                     <legend className={cx(styles.legend, 'yw-body-sm-med')}>
@@ -203,23 +256,27 @@ export function RegistrationForm({
                     ))}
                 </fieldset>
             )}
-            {question && (
-                <TextInput
-                    Label={question.label}
-                    name={question.name}
-                    placeholderText={question.placeholder ?? question.label}
+            {question &&
+                (question.multiline ? (
+                    <TextArea
+                        Label={question.label}
+                        name={question.name}
+                        placeholderText={question.placeholder ?? question.label}
+                    />
+                ) : (
+                    <TextInput
+                        Label={question.label}
+                        name={question.name}
+                        placeholderText={question.placeholder ?? question.label}
+                    />
+                ))}
+            {optIn && (
+                <CheckboxLabel
+                    Size="S"
+                    name="optIn"
+                    label={optInLabel ?? L.optIn}
                 />
             )}
-            {phone && (
-                <TextInput
-                    Label={L.phone}
-                    name="phone"
-                    type="tel"
-                    autoComplete="tel"
-                    placeholderText={L.phone}
-                />
-            )}
-            {optIn && <CheckboxLabel Size="S" name="optIn" label={L.optIn} />}
             {notice && (
                 <div className={cx(styles.notice, 'yw-body-xs-reg')}>
                     {notice}

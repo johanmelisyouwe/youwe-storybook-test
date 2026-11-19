@@ -31,7 +31,7 @@ export type ArticleSection = {
     /** Paragraphs, or CMS rich text (lists, bold, quotes, H3, links) */
     body?: RichText
     /** Numbered steps under the body */
-    steps?: { Title: string; Description: string }[]
+    steps?: { Title: string; Description?: string }[]
     /** FAQ accordions under the body (the first one is open) */
     faq?: { label: string; content: RichText }[]
     /** Anything else under the body, e.g. a Case Card */
