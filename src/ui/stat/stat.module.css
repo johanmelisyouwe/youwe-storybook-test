@@ -13,6 +13,16 @@
         & > * + * {
             margin-left: -1px;
         }
+
+        /* Stacked (code option, 19 November): Blog v2 key figures beside the intro */
+        &[data-vertical] {
+            flex-direction: column;
+        }
+
+        &[data-vertical] > * + * {
+            margin-top: -1px;
+            margin-left: 0;
+        }
     }
 
     .root {

@@ -185,6 +185,12 @@ export const META = [
 export const INTRO =
     'The Dutch Wennink report calls for €151 to €187 billion in additional, mostly private investment by 2035. Digitalization and AI is one of its four focus domains. The Dutch government has adopted the growth target and launched the National Investment Institution. Here is how to prepare your AI projects.'
 
+/** v2: the intro split into its first sentence (heading) and the rest (body) */
+export const INTRO_HEADING =
+    'The Dutch Wennink report calls for €151 to €187 billion in additional, mostly private investment by 2035.'
+export const INTRO_BODY =
+    'Digitalization and AI is one of its four focus domains. The Dutch government has adopted the growth target and launched the National Investment Institution. Here is how to prepare your AI projects.'
+
 export const KEY_FIGURES = [
     { Value: '€151–187bn', Label: 'Investment needed by 2035' },
     { Value: '1.5–2%', Label: 'Growth target a year' },

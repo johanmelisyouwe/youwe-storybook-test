@@ -107,3 +107,17 @@ New template **Templates / Insight detail / Blog v2** (Desktop and Mobile), next
   - This applies wherever these blocks are used, such as Service detail.
 - **Checked at 1440 and 1920:**
   - The intro text, the two-column bodies, the steps and the FAQ all start at the same x (620 at 1440, 1100 at 1920).
+
+# Update — 19 November 2026 (Blog v2: intro beside the key figures)
+
+This follows Rob's idea: the key figures sit higher, next to the intro, like the Industries detail intro (text left, case card right).
+
+- **Order:** under the hero image, a Text + media (6/6).
+  - Left: the intro, with its first sentence as the heading and the rest as the body.
+  - Right: the three key figures stacked.
+  - Below that: the article, with the meta and menu on the left and the text on the right.
+- **Why 6/6 and not 8/4:** with 8/4 the figure "€151–187bn" broke over two lines.
+- **Stat row:** new `vertical` option that stacks the Stat cards with overlapping borders. Existing rows are unchanged.
+- **Spacing:** the article section starts closer to the intro (`flush="top"`), so the two read as one opening.
+- **Mobile:** intro, then the stacked figures, the meta, the "On this page" bar and the article.
+- `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass. No console errors at 1440 or 390.

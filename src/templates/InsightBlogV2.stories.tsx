@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite'
 import { Hero } from '../blocks/hero'
-import { StatsBlock } from '../blocks/stats-block'
+import { TextMedia } from '../blocks/text-media'
+import { Stat, StatRow } from '../ui/stat'
 import { Article } from '../blocks/article'
 import { CardGrid } from '../blocks/card-grid'
 import { InsightCard } from '../ui/insight-card'
@@ -29,7 +30,8 @@ import {
     GOVERNMENT_QUOTE,
     HELPS,
     HELPS_INTRO,
-    INTRO,
+    INTRO_BODY,
+    INTRO_HEADING,
     KEY_FACTS,
     KEY_FIGURES,
     MEANS,
@@ -46,7 +48,8 @@ import {
 
 /*
   Templates/Insight detail/Blog v2 — the Blog template with an "On this page" anchor nav (decided
-  19 November). Hero and key figures, then the Article block: the meta (published, type,
+  19 November). Hero; then the intro beside the key figures (Text + media 8/4 with stacked
+  Stats, like the Industries detail intro, idea from Rob, 19 November); then the Article block: the meta (published, type,
   topics) and a sticky Anchor nav in a narrow left column, the lead and the sections in one reading
   column right next to it, with the steps, the Kingspan example and the FAQ inside their sections, so every nav item
   points into the same column. Copy from Figma 27263:16555 (copy only), our own styling.
@@ -74,12 +77,28 @@ function InsightBlogV2Page({ Device: story }: { Device: Device }) {
                 }}
                 image={abstract('016')}
             />
-            <Section Mode="Dark">
-                <StatsBlock Type="Plain" Device={Device} stats={KEY_FIGURES} />
+            <TextMedia
+                Device={Device}
+                Theme="Dark"
+                Split="6/6"
+                heading={INTRO_HEADING}
+                body={INTRO_BODY}
+                media={
+                    <StatRow vertical>
+                        {KEY_FIGURES.map((f) => (
+                            <Stat
+                                key={f.Label}
+                                {...f}
+                                Size={Device === 'Mobile' ? 'M' : 'L'}
+                            />
+                        ))}
+                    </StatRow>
+                }
+            />
+            <Section Mode="Dark" flush="top">
                 <Article
                     Device={Device}
                     meta={META}
-                    lead={INTRO}
                     sections={[
                         {
                             id: 'in-brief',
@@ -195,6 +214,8 @@ function InsightBlogV2Page({ Device: story }: { Device: Device }) {
                         },
                     ]}
                 />
+            </Section>
+            <Section Mode="Dark">
                 <CardGrid
                     Layout="3 columns"
                     Device={Device}
@@ -233,7 +254,7 @@ const meta: Meta = {
         docs: {
             description: {
                 component:
-                    'Blog template with an "On this page" anchor nav: header, Title + image hero, intro with meta, key figures, image, then the Article block (sticky anchor nav + one reading column with all sections, steps, example and FAQ), more blogs, sub-footer and footer.',
+                    'Blog template with an "On this page" anchor nav: header, Title + image hero, intro beside the key figures, then the Article block (meta and sticky anchor nav + one reading column with all sections, steps, example and FAQ), more blogs, sub-footer and footer.',
             },
         },
     },
