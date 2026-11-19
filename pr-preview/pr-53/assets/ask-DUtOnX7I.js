@@ -1,0 +1,1 @@
+import{r as s}from"./iframe-BNIXmb8p.js";const t="yw:ask";function i(e){window.dispatchEvent(new CustomEvent(t,{detail:{question:e}}))}function a(e){const n=s.useRef(e);n.current=e,s.useEffect(()=>{const o=r=>n.current(r.detail.question);return window.addEventListener(t,o),()=>window.removeEventListener(t,o)},[])}export{i as a,a as u};

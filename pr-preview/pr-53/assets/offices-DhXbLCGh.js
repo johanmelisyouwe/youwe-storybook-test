@@ -1,0 +1,12 @@
+import{j as e}from"./iframe-BNIXmb8p.js";import{L as c,a as d}from"./location-DvDZc2ar.js";import{c as s}from"./cx-BDMMs1jM.js";import{b as a}from"./block.module-ifZFSSN6.js";import{s as t}from"./accordion-list.module-DJQZh_dk.js";function p({Device:l="Desktop",Kicker:i,Title:r,Body:o,offices:m}){return e.jsx("section",{className:s(a.root,t.offices),"aria-label":r??i,children:e.jsxs("div",{className:s(a.inner,t.inner),children:[(i||r)&&e.jsxs("div",{className:s(t["offices-header"],a.reveal),children:[i&&e.jsx("span",{className:s(a.kicker,"yw-body-sm-bold"),children:i}),e.jsxs("div",{className:t["offices-row"],children:[r&&e.jsx("h2",{className:"yw-heading-xl",children:r}),o&&e.jsx("p",{className:"yw-body-md-reg",children:o})]})]}),e.jsx(c,{children:m.map(n=>e.jsx(d,{...n,Device:l},n.City))})]})})}p.__docgenInfo={description:"",methods:[],displayName:"Offices",props:{Device:{required:!1,tsType:{name:"union",raw:"'Desktop' | 'Mobile'",elements:[{name:"literal",value:"'Desktop'"},{name:"literal",value:"'Mobile'"}]},description:"Figma: Device (layout follows the block width)",defaultValue:{value:"'Desktop'",computed:!1}},Kicker:{required:!1,tsType:{name:"string"},description:"Figma: Show header"},Title:{required:!1,tsType:{name:"string"},description:""},Body:{required:!1,tsType:{name:"string"},description:""},offices:{required:!0,tsType:{name:"Array",elements:[{name:"Omit",elements:[{name:"signature",type:"object",raw:`{
+    /** Figma: Device */
+    Device?: 'Desktop' | 'Mobile'
+    City: string
+    Country: string
+    /** Figma: Timezone label, e.g. "GMT+1" */
+    Timezone: string
+    /** IANA time zone for the live clock, e.g. "Europe/Amsterdam" */
+    timeZone: string
+    /** Fixed time for stories */
+    time?: string
+}`,signature:{properties:[{key:"Device",value:{name:"union",raw:"'Desktop' | 'Mobile'",elements:[{name:"literal",value:"'Desktop'"},{name:"literal",value:"'Mobile'"}],required:!1},description:"Figma: Device"},{key:"City",value:{name:"string",required:!0}},{key:"Country",value:{name:"string",required:!0}},{key:"Timezone",value:{name:"string",required:!0},description:'Figma: Timezone label, e.g. "GMT+1"'},{key:"timeZone",value:{name:"string",required:!0},description:'IANA time zone for the live clock, e.g. "Europe/Amsterdam"'},{key:"time",value:{name:"string",required:!1},description:"Fixed time for stories"}]}},{name:"literal",value:"'Device'"}],raw:"Omit<LocationProps, 'Device'>"}],raw:"Omit<LocationProps, 'Device'>[]"},description:""}}};export{p as O};
