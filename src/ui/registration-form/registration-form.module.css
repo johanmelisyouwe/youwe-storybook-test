@@ -1,7 +1,8 @@
 /*
   Registration form (code component, 19 November). Laid out like the Contact CTA form: fields full width,
   gap 24; two-column rows (gap 16) that stack below 480; the submit button at its own width (full width
-  when narrow). Choice: a fieldset with the field label style (body/sm/med) and the radios under it, gap 12.
+  when narrow). The form sits on a surface/base-2 panel (1px border/2, radius card, padding 32; 24/20
+  when narrow); the fields inside use surface/base-1 so they stand out from the panel. Choice: a fieldset with the field label style (body/sm/med) and the radios under it, gap 12.
   Confirmation: surface/base-2 panel, 1px border/2, radius card, padding 32; a 40px brand-red circle with a
   check, then heading/lg and body/md/reg secondary.
 */
@@ -10,11 +11,25 @@
         container-type: inline-size;
     }
 
+    /* The form sits on a panel (19 November), same surface as the confirmation and Event details */
     .form {
+        /* Fields on the panel: base-1 (in dark mode the field surface is base-2, the panel's own colour) */
+        --color-component-forms-surface-default: var(
+            --color-shared-surface-base-1
+        );
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-lg);
+        padding: var(--spacing-xl);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--color-shared-border-2);
+
+        @container (max-width: 30rem) {
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
 
         & > * {
             width: 100%;

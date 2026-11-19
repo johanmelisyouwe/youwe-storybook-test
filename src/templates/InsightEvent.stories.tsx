@@ -10,7 +10,7 @@ import { EventDetails } from '../ui/event-details'
 import { Timetable } from '../ui/timetable'
 import { RegistrationForm } from '../ui/registration-form'
 import { Button } from '../ui/button'
-import { CardMedia } from '../shared/card-reveal/card-media'
+import { MapEmbed, routeUrl } from '../ui/map-embed'
 import {
     Page,
     Section,
@@ -45,12 +45,12 @@ import {
   now" to the form and "Plan your route") beside the title, sticky over the hero image until it rests
   beside the intro (Hero aside, decided 19 November); then the Article block
   with the meta and the "On this page" nav on the left and the sections on the right: why attend,
-  agenda, timetable (Timetable), takeaways, venue, and the Registration form (not in Figma: it only has
+  agenda, timetable (Timetable), takeaways, venue (Google Maps embed in dark colours, Map embed), and the Registration form (not in Figma: it only has
   "Register now" buttons). More events, sub-footer and footer close the page. Placeholder images.
 */
 
-const ROUTE =
-    'https://www.google.com/maps/search/?api=1&query=SnowWorld+Zoetermeer'
+const PLACE = `${VENUE.name}, ${VENUE.address}`
+const ROUTE = routeUrl(PLACE)
 
 function InsightEventPage({ Device: story }: { Device: Device }) {
     const Device = useDevice(story)
@@ -156,14 +156,14 @@ function InsightEventPage({ Device: story }: { Device: Device }) {
                             ),
                             children: (
                                 <>
-                                    <CardMedia
-                                        src={abstract('015')}
-                                        alt=""
+                                    <MapEmbed
+                                        query={PLACE}
+                                        title={`Map: ${VENUE.name}`}
                                         ratio="740 / 420"
                                     />
                                     <div>
                                         <Button
-                                            Variant="Outline"
+                                            Variant="Primary"
                                             Size="M"
                                             label="Plan your route"
                                             href={ROUTE}

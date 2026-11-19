@@ -5351,6 +5351,34 @@
       "locked": false,
       "lastSyncedSignature": null,
       "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Map embed",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Map embed",
+        "current": "Dark"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Google Maps embed of one place (keyless embed URL), Dark theme via a colour filter; routeUrl() for the Plan your route link. Event template venue. Not in Figma yet.",
+      "code": [
+        "src/ui/map-embed/map-embed.tsx",
+        "src/ui/map-embed/map-embed.module.css",
+        "src/ui/map-embed/map-embed.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
     }
   ],
   "templates": [

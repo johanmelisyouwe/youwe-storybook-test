@@ -83,3 +83,14 @@ The Figma page has no form, only "Register now" and "Register your interest" but
 - **Clicks:** the layer over the page lets clicks through, except on the panel. "Register now" still jumps to the form.
 - **Below 1024:** no sticky panel. It sits in the flow under the hero image, above the intro.
 - `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass. No console errors.
+
+# Update — 19 November 2026 (venue map, form panel)
+
+- **New: Map embed** (Components / Map embed, code-only):
+  - The Venue section now shows a Google Maps embed of SnowWorld Zoetermeer instead of the placeholder image.
+  - **Dark theme:** the keyless embed has no style options, so a colour filter shows the map in dark colours. Water stays blue and the pin stays red. Light shows Google's own colours.
+  - `routeUrl(place)` gives a Google Maps directions link. "Plan your route", under the map and in the Event details panel, now opens directions to the venue.
+  - **Privacy:** the embed loads Google content and cookies when it scrolls into view. On the live site, show it only after consent for third-party content, or show the route button alone.
+- **Registration form on a panel:** the same surface as the Event details panel and the confirmation (base-2, a thin border, padding 32).
+  - The fields use base-1, so they stand out from the panel. In dark mode the field colour is the panel colour, so without this they disappeared.
+- `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass. No console errors.
