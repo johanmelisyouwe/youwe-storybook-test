@@ -1,0 +1,221 @@
+import { useEffect, useRef, useState } from 'react'
+import { TextInput } from '../text-input'
+import { RadioLabel } from '../radio'
+import { CheckboxLabel } from '../checkbox'
+import { Button } from '../button'
+import { Toaster } from '../toaster'
+import { Icon } from '../../shared/icons/icon'
+import { cx } from '../../shared/cx'
+import { fmt } from '../../shared/labels'
+import styles from './registration-form.module.css'
+
+/*
+  Registration form — code component (not in Figma; the Figma event page only has "Register now"
+  buttons; added 19 November). Sign-up for an event, built from the form components (Text Input,
+  Radio, Checkbox, Button), laid out like the Contact CTA form.
+  Fields: first and last name, business email, company (required), job title, an optional choice
+  (e.g. on or off the slopes) and an optional free-text field (e.g. dietary requirements), plus an
+  opt-in. Submit: `onSubmit(FormData)`; while it runs the button shows the sending label; when it
+  resolves the form is replaced by a confirmation; when it throws, an error Toaster shows above the
+  button and the entries stay.
+*/
+
+export const REGISTRATION_FORM_LABELS = {
+    firstName: 'First name',
+    lastName: 'Last name',
+    email: 'Business email',
+    emailPlaceholder: 'name@company.com',
+    company: 'Company',
+    jobTitle: 'Job title',
+    optIn: 'Keep me informed about future Youwe events',
+    submit: 'Register now',
+    sending: 'Sending…',
+    successTitle: 'You are registered',
+    successMessage:
+        'Thank you, {name}. We will send the confirmation and practical details to {email}.',
+    errorTitle: 'Something went wrong',
+    errorMessage: 'Your registration was not sent. Please try again.',
+}
+
+export type RegistrationFormProps = {
+    Device?: 'Desktop' | 'Mobile'
+    /** One choice the attendee must make, e.g. joining on or off the slopes */
+    choice?: { name: string; label: string; options: string[] }
+    /** One optional free-text question, e.g. dietary requirements */
+    question?: { name: string; label: string; placeholder?: string }
+    /** Called with the form data; resolve on success, throw on failure */
+    onSubmit?: (data: FormData) => Promise<void> | void
+    /** Story/preview: start in the confirmation state */
+    defaultState?: 'Form' | 'Registered'
+    className?: string
+    /** UI text, for translations: { ...REGISTRATION_FORM_LABELS } */
+    labels?: Partial<typeof REGISTRATION_FORM_LABELS>
+}
+
+export function RegistrationForm({
+    Device = 'Desktop',
+    choice,
+    question,
+    onSubmit,
+    defaultState = 'Form',
+    className,
+    labels: l,
+}: RegistrationFormProps) {
+    const L = { ...REGISTRATION_FORM_LABELS, ...l }
+    const [state, setState] = useState<'idle' | 'sending' | 'error' | 'done'>(
+        defaultState === 'Registered' ? 'done' : 'idle'
+    )
+    const [who, setWho] = useState({ name: '', email: '' })
+    const [picked, setPicked] = useState<string>()
+    // After a successful submit the form is replaced by the shorter confirmation: move focus (and the
+    // view) to it, so screen readers announce it and the page does not jump past it.
+    const doneRef = useRef<HTMLDivElement>(null)
+    const submitted = useRef(false)
+    useEffect(() => {
+        if (state === 'done' && submitted.current) {
+            doneRef.current?.focus({ preventScroll: true })
+            doneRef.current?.scrollIntoView({ block: 'center' })
+        }
+    }, [state])
+
+    if (state === 'done') {
+        return (
+            <div
+                ref={doneRef}
+                role="status"
+                tabIndex={-1}
+                className={cx(styles.root, styles.success, className)}
+            >
+                <span className={styles.check} aria-hidden="true">
+                    <Icon name="check" size={24} />
+                </span>
+                <div className={styles['success-text']}>
+                    <p
+                        className={
+                            Device === 'Mobile'
+                                ? 'yw-heading-md'
+                                : 'yw-heading-lg'
+                        }
+                    >
+                        {L.successTitle}
+                    </p>
+                    <p className="yw-body-md-reg">
+                        {fmt(L.successMessage, {
+                            name: who.name || '…',
+                            email: who.email || '…',
+                        })}
+                    </p>
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <form
+            className={cx(styles.root, styles.form, className)}
+            onSubmit={async (e) => {
+                e.preventDefault()
+                const data = new FormData(e.currentTarget)
+                setWho({
+                    name: String(data.get('firstName') ?? ''),
+                    email: String(data.get('email') ?? ''),
+                })
+                setState('sending')
+                submitted.current = true
+                try {
+                    await onSubmit?.(data)
+                    setState('done')
+                } catch {
+                    setState('error')
+                }
+            }}
+        >
+            <div className={styles.row}>
+                <TextInput
+                    Label={L.firstName}
+                    Required
+                    name="firstName"
+                    autoComplete="given-name"
+                    placeholderText={L.firstName}
+                />
+                <TextInput
+                    Label={L.lastName}
+                    Required
+                    name="lastName"
+                    autoComplete="family-name"
+                    placeholderText={L.lastName}
+                />
+            </div>
+            <div className={styles.row}>
+                <TextInput
+                    Label={L.email}
+                    Required
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholderText={L.emailPlaceholder}
+                />
+                <TextInput
+                    Label={L.company}
+                    Required
+                    name="company"
+                    autoComplete="organization"
+                    placeholderText={L.company}
+                />
+            </div>
+            <TextInput
+                Label={L.jobTitle}
+                name="jobTitle"
+                autoComplete="organization-title"
+                placeholderText={L.jobTitle}
+            />
+            {choice && (
+                <fieldset className={styles.choice}>
+                    <legend className={cx(styles.legend, 'yw-body-sm-med')}>
+                        {choice.label}
+                        <span className={styles.required} aria-hidden="true">
+                            {' '}
+                            *
+                        </span>
+                    </legend>
+                    {choice.options.map((o) => (
+                        <RadioLabel
+                            key={o}
+                            name={choice.name}
+                            value={o}
+                            label={o}
+                            checked={picked === o}
+                            onChange={(v) => setPicked(v)}
+                            required
+                        />
+                    ))}
+                </fieldset>
+            )}
+            {question && (
+                <TextInput
+                    Label={question.label}
+                    name={question.name}
+                    placeholderText={question.placeholder ?? question.label}
+                />
+            )}
+            <CheckboxLabel Size="S" name="optIn" label={L.optIn} />
+            {state === 'error' && (
+                <Toaster
+                    Variant="Error"
+                    Shadow="No"
+                    title={L.errorTitle}
+                    message={L.errorMessage}
+                    onClose={() => setState('idle')}
+                />
+            )}
+            <Button
+                Variant="Primary"
+                Size="M"
+                type="submit"
+                label={state === 'sending' ? L.sending : L.submit}
+                disabled={state === 'sending'}
+                className={styles.submit}
+            />
+        </form>
+    )
+}

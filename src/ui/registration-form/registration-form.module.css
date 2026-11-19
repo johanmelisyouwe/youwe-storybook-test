@@ -1,0 +1,100 @@
+/*
+  Registration form (code component, 19 November). Laid out like the Contact CTA form: fields full width,
+  gap 24; two-column rows (gap 16) that stack below 480; the submit button at its own width (full width
+  when narrow). Choice: a fieldset with the field label style (body/sm/med) and the radios under it, gap 12.
+  Confirmation: surface/base-2 panel, 1px border/2, radius card, padding 32; a 40px brand-red circle with a
+  check, then heading/lg and body/md/reg secondary.
+*/
+@layer components {
+    .root {
+        container-type: inline-size;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
+
+        & > * {
+            width: 100%;
+        }
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-sm);
+
+        @container (max-width: 30rem) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--spacing-lg);
+        }
+    }
+
+    .choice {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin: 0;
+        padding: 0;
+        border: 0;
+        min-width: 0;
+    }
+
+    .legend {
+        margin-bottom: var(--spacing-2xs);
+        padding: 0;
+        color: var(--color-shared-content-primary);
+    }
+
+    .required {
+        color: var(--color-shared-content-brand);
+    }
+
+    .form > .submit {
+        width: auto;
+
+        @container (max-width: 30rem) {
+            width: 100%;
+        }
+    }
+
+    .success {
+        outline: none;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+        padding: var(--spacing-xl);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+        box-shadow: inset 0 0 0 var(--shared-width-1)
+            var(--color-shared-border-2);
+    }
+
+    .check {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: var(--color-shared-surface-fixed-brand-red);
+        color: var(--color-shared-content-fixed-light);
+    }
+
+    .success-text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+
+        & p {
+            margin: 0;
+        }
+
+        & p + p {
+            color: var(--color-shared-content-secondary);
+        }
+    }
+}
