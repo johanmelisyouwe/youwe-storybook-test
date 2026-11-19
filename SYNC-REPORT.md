@@ -1,56 +1,56 @@
-# Sync report — 19 November 2026 (Insight detail: Whitepaper template, first version)
+# Sync report — 19 November 2026 (Insight detail templates, combined)
 
-New template **Templates / Insight detail / Whitepaper** (Desktop and Mobile). It is built like the Event template, so this PR is stacked on #54 (and #53).
+This is one PR for all insight detail templates. It replaces #53 (Blog), #54 (Event) and #55 (Whitepaper), and it stays a draft until every page is in. Still to come: News and Video.
 
-## Approach
+The copy comes only from the Figma insight detail frames (27263:16299). Layouts are built from our own components, as long-form editorial pages modelled on the case page. Images are placeholders.
 
-- **Copy only from Figma.** The text comes from "Desktop 1440 — Insight Whitepaper detail (R6)" (27263:17032), including the form, its privacy text, the FAQ and the More whitepapers cards.
-- **Same layout as Event:**
-  - The details panel sits next to the hero title and stays in view over the hero image until it rests beside the intro (Hero aside).
-  - Then the Article block, with the meta and "On this page" on the left.
-- **Images are placeholders.** The Figma red "cover" card has no image either.
+## Templates (Templates / Insight detail)
 
-## Page, in order
+- **Blog (v1):**
+  - Hero, Case intro (meta, lead, rich text), key figures and an image.
+  - The article as Two-column text 4/8 sections, numbered steps, a Kingspan example, FAQ, sources, More blogs and the contact section.
+- **Blog v2:**
+  - Hero, then the intro beside the key figures stacked (Text + media 8/4).
+  - Then the **Article** block: meta and a sticky **"On this page"** nav on the left, one reading column on the right.
+- **Event:**
+  - The **Event details** panel (date, time, venue, Register now, Plan your route) sits next to the hero title and stays in view over the hero image until it rests beside the intro (**Hero aside**).
+  - Article sections: why attend, agenda, **Timetable**, takeaways, venue with a dark **Google Maps embed**, and the **Registration form** (sending, confirmation and error states).
+- **Whitepaper:**
+  - The same structure as Event: the details panel with Download, the intro and the chapter tiles.
+  - Article sections: what you will get, why download it, the download form (phone, Figma privacy text, no opt-in) and questions.
 
-1. Header, then the hero: Home / Insights / Whitepaper, "Know what to fix before you invest in a data platform".
-2. **Details panel** (Event details component):
-   - Whitepaper: "Data foundation whitepaper" (the headline).
-   - Published: October 1, 2026.
-   - "Download the whitepaper", which jumps to the form.
-3. **Intro** (Text + media 8/4, right column for the panel):
-   - Heading: the first sentence.
-   - Body: the rest, plus the "Written by Youwe’s data team…" line from the Figma cover.
-4. **Chapter tiles:** the three Figma tiles as Feature Cards with numbers 01–03.
-5. **Article:**
-   - Meta: Type Whitepaper, Topic Data Management.
-   - Nav: What you will get · Why download it? · Download · Questions.
-   - "What you will get": intro, then "Inside you will find:" with the five items.
-   - "Why download it?": three items, plus the download button.
-   - **Download the whitepaper:** the form.
-   - **Questions you may have:** FAQ accordions.
-6. More whitepapers (three Insight Cards), "Where does growth get stuck?", footer.
+## New code-only components (in figma-sync.json)
 
-## Component changes
+| Component | What it does |
+|---|---|
+| Content blocks / Article | Sticky anchor nav and meta beside a 740 reading column; sections with rich text, steps, FAQ or any content |
+| Components / Anchor nav | "On this page" links with scroll spy; a disclosure on mobile |
+| Content blocks / Hero aside | A panel beside the hero title, sticky over the image until the end of the intro; in the flow below 1024 |
+| Components / Event details | Label/value rows (the first one as headline) with primary and secondary buttons |
+| Components / Timetable | Time and what happens, one row per slot |
+| Components / Registration form | Sign-up or download form from the form components; options `choice`, `question`, `phone`, `optIn`, `notice`; states |
+| Components / Map embed | Keyless Google Maps embed, Dark (colour filter) or Light; `routeUrl()` for directions |
 
-- **Registration form:** now also used for downloads.
-  - New `phone` (the Phone number field), `optIn` (default on; off for the whitepaper) and `notice` (text under the fields; here the Figma privacy text with a Privacy Policy link).
-  - `successTitle` can use `{name}`.
-  - The whitepaper confirmation: "Thank you, {name}" and "The whitepaper arrives in your inbox straight away." (from the Figma FAQ).
-  - New story: Download.
-- **Feature Card:** `Description` is now optional, for the chapter tiles that have a title only. Cards with a description are unchanged.
+## Changes to existing components
+
+- **Feature list (Split) and Accordion list (Split):** the right column is now 740 and right-aligned, so it lines up with the Case intro and Two-column text bodies on wide screens. At 1440 the change is 4px.
+- **Accordion list:** `'Accordion title': ''` hides the small title.
+- **Case intro:** `body` is optional.
+- **Stat row:** `vertical` option.
+- **Feature Card:** `Description` is optional.
+- **Radio:** `required` option.
+- **Hero (Title + image):** keeps its title to the left 8 columns inside Hero aside.
+- **Site-wide:** in-page anchor links scroll smoothly (`scroll-behavior: smooth`), except with reduced motion.
 
 ## Please check
 
-- **Mine:** the confirmation title "Thank you, {name}", the "Download" nav label and the "Download" kicker above the form.
-- **Left out of the form:** the Figma form has no opt-in checkbox. I left it out, so the privacy text explains the contact.
+- **Copy that is not in Figma:**
+  - The registration form texts: heading, the slope and dietary questions, the opt-in, and the confirmation and error messages.
+  - The whitepaper confirmation title "Thank you, {name}".
+  - The "Download" and "Register" nav labels.
+- **Privacy:** on the live site, load the map only after consent for third-party content.
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass.
-- At 1440:
-  - The panel starts beside the title and stays in view while scrolling.
-  - "Download the whitepaper" glides to the form.
-  - A filled-in submit shows "Sending…" and then the confirmation in view.
-- At 390 everything stacks.
-- No console errors.
-- The CMS integration doc has a row for Whitepaper.
+- Every page checked at 1440 and 390, with no console errors.
