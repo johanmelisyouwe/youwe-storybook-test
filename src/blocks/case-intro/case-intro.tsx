@@ -15,7 +15,8 @@ export type CaseIntroProps = {
     meta: { label: string; value: string }[]
     lead: string
     /** Paragraphs, or CMS rich text (links, lists, bold, H3) */
-    body: RichText
+    /** Optional: leave out when the article body follows below (Article block) */
+    body?: RichText
 }
 
 export function CaseIntro({
@@ -44,7 +45,7 @@ export function CaseIntro({
                     </dl>
                     <div className={styles['case-intro-text']}>
                         <Lead>{lead}</Lead>
-                        <Body paragraphs={body} />
+                        {body && <Body paragraphs={body} />}
                     </div>
                 </div>
             </div>

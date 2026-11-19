@@ -21,6 +21,30 @@ import {
     useDevice,
 } from './shared'
 import { abstract, clientPhoto } from '../media/media'
+import {
+    BRIEF,
+    CLOSING,
+    CTA,
+    EXAMPLE,
+    FAQ,
+    GOVERNMENT,
+    GOVERNMENT_INTRO,
+    GOVERNMENT_QUOTE,
+    HELPS,
+    HELPS_INTRO,
+    INTRO,
+    KEY_FACTS,
+    KEY_FIGURES,
+    MEANS,
+    META,
+    MORE,
+    SOURCE_NOTE,
+    SOURCES,
+    STEPS,
+    TITLE,
+    WHY,
+    leadIns,
+} from './insight-blog.copy'
 
 /*
   Templates/Insight detail/Blog — the long-form insight page. Copy from Figma "Desktop 1440 — Insight Blog
@@ -30,176 +54,6 @@ import { abstract, clientPhoto } from '../media/media'
   with rich text (lists, bold lead-ins, a pull quote), numbered steps, an example, FAQ, sources and related
   insights. Images are Storybook placeholders (abstract and case photos), not the Figma stand-ins.
 */
-
-const GOVERNMENT = [
-    [
-        '1.5% growth as the target.',
-        'The government actively steers on 1.5% structural economic growth, in line with the Wennink report.',
-    ],
-    [
-        'The same four domains.',
-        'Industrial policy focuses on digitalization and AI, security and resilience, energy and climate technology, and life sciences and biotechnology.',
-    ],
-    [
-        'National Investment Institution (NII).',
-        'On September 25, 2026, the government launched the NII together with banks, insurers and investors. Around €6.6 billion in core capital is available, and the private parties expect a total investment volume of around €30 billion. At launch, the NII focuses on the four domains.',
-    ],
-    [
-        'National Agency for Disruptive Innovation.',
-        'This agency uses the government’s purchasing power to bring about breakthrough innovations.',
-    ],
-    [
-        'WBSO and AI.',
-        'The coalition agreement announces a broadening of the WBSO, the Dutch R&D tax incentive, for AI. Together with RVO, experts and businesses, the government is mapping where AI projects currently get stuck. There will be no separate AI scheme: the WBSO stays generic. According to the plan, changes can take effect in 2028 at the earliest.',
-    ],
-    [
-        'Support for digitalization.',
-        'Through public-private partnerships, the government wants to help companies, from front-runners to SMEs, with digitalization, automation and smarter working.',
-    ],
-]
-
-const KEY_FACTS = [
-    [
-        'Presented:',
-        'on December 12, 2025 at Nieuwspoort in The Hague. The then caretaker Schoof government asked Wennink for this advice in early September 2025.',
-    ],
-    [
-        'Brief:',
-        'translate the Draghi report on European competitiveness to the Dutch situation.',
-    ],
-    [
-        'Growth target:',
-        'at least 1.5 to 2% economic growth per year. The Dutch central bank (DNB) and the CPB expect 0.5 to 0.9% in the medium term.',
-    ],
-    [
-        'Investment needed:',
-        'at least €151 to €187 billion in additional investment by 2035, mostly private. The range comes from estimates by RaboResearch and TNO Vector.',
-    ],
-    [
-        'Four domains:',
-        'digitalization and AI, security and resilience, energy and climate technology, and life sciences and biotechnology.',
-    ],
-    [
-        'Preconditions:',
-        'faster rules and permits, talent, affordable energy and strong economic infrastructure, including innovation ecosystems and digital infrastructure.',
-    ],
-    [
-        'New institutions:',
-        'a national investment bank and a national agency for breakthrough innovation.',
-    ],
-]
-
-const STEPS = [
-    [
-        'Start with the process, not the technology',
-        'Map where manual work, waiting time or errors cost the most time and money, for example in order entry, customer service, product data or quotes.',
-    ],
-    [
-        'Make the gain measurable',
-        'Define up front what a project must deliver in hours, lead time, cost or revenue, and how you will measure it.',
-    ],
-    [
-        'Check your data',
-        'AI is only as good as the data it runs on. A scan of your ERP, CRM and other core systems shows what is needed before AI works reliably.',
-    ],
-    [
-        'Prove it on a small scale',
-        'A pilot on your own data provides the evidence that leadership and financiers want to see before investing further.',
-    ],
-    [
-        'Set up governance from the start',
-        'Define which data AI may use, where an employee approves and how decisions stay traceable. This also helps with the requirements of the EU AI Act.',
-    ],
-    [
-        'Have the schemes checked',
-        'Document development work properly and have it assessed in advance whether the WBSO or another instrument applies to your project.',
-    ],
-]
-
-const HELPS = [
-    [
-        'From idea to a well-founded plan.',
-        'In the AI Kickstart Program, we assess your AI and data maturity in six weeks, scan the data quality of your core systems, develop initial business cases and draw up a prioritized roadmap. A pilot on your own data then underpins the next investment.',
-    ],
-    [
-        'From plan to working application.',
-        'We build AI-driven process automation and agentic workflows that connect to your ERP, PIM, CRM and commerce platform.',
-    ],
-    [
-        'With risks under control.',
-        'With AI governance, we set up policies, roles and controls so that AI can scale responsibly.',
-    ],
-    [
-        'On one governed platform.',
-        'ACI Weave, Youwe’s AI platform, connects AI models to your systems in workflows with guardrails, audit trails and human approval. Youwe is ISO 27001 certified.',
-    ],
-]
-
-const FAQ = [
-    {
-        label: 'What is the Wennink report?',
-        content:
-            'The Wennink report, officially ‘De route naar toekomstige welvaart’, is independent advice by Peter Wennink on the earning capacity of the Netherlands. He presented it on December 12, 2025, at the request of the then Schoof government. The report translates the Draghi report to the Dutch situation.',
-    },
-    {
-        label: 'How much investment does the report say is needed?',
-        content:
-            'At least €151 to €187 billion in additional investment by 2035, mostly private, to raise economic growth to at least 1.5% per year. The lower bound is an estimate by RaboResearch, the upper bound by TNO Vector.',
-    },
-    {
-        label: 'Which four domains does the Wennink report name?',
-        content:
-            'Digitalization and AI, security and resilience, energy and climate technology, and life sciences and biotechnology. The coalition agreement and the National Investment Institution use the same four domains.',
-    },
-    {
-        label: 'What is the National Investment Institution (NII)?',
-        content:
-            'The NII is the new Dutch national investment institution, formed partly from Invest-NL and Invest International. The government launched it on September 25, 2026 with around €6.6 billion in core capital. The NII mainly finances young, innovative companies that struggle to obtain financing and, at launch, focuses on the four domains. Its formal establishment will follow through legislation.',
-    },
-    {
-        label: 'Will the WBSO be broadened for AI?',
-        content:
-            'The coalition agreement announces a broadening of the WBSO for AI. The government is working with RVO, experts and businesses on how the scheme can better fit AI and software development. The WBSO remains generic, and changes can take effect in 2028 at the earliest. AI projects can already qualify today. Have this checked per project by your tax advisor or via RVO.',
-    },
-    {
-        label: 'What does the Wennink report mean for my organization?',
-        content:
-            'Public money, private capital and policy are moving toward projects that demonstrably increase productivity, with digitalization and AI as one of the four focus domains. Organizations with a well-founded AI plan, measurable goals, data in order and sound governance can move fastest.',
-    },
-]
-
-const SOURCES = [
-    'Rapport Wennink: De route naar toekomstige welvaart (December 12, 2025), with the full report as PDF (in Dutch)',
-    'Coalition agreement 2026-2030 ‘Aan de slag’ of D66, VVD and CDA (January 2026, in Dutch)',
-    'Government response to the Wennink report (July 10, 2026, in Dutch)',
-    'Launch of the National Investment Institution, Government of the Netherlands (September 25, 2026, in Dutch)',
-    'WBSO letter to parliament (September 15, 2026, in Dutch) and WBSO at RVO',
-]
-
-const MORE: [string, string, string][] = [
-    ['3 Proven routes to better design system adoption', 'Experience', '003'],
-    [
-        'Pimcore named Visionary in 2026 Gartner® Magic Quadrant™ PIM',
-        'Product Information Management',
-        '008',
-    ],
-    [
-        'More Cross-Border Conversions with CRO',
-        'Conversion Optimization',
-        '015',
-    ],
-]
-
-/** A list with a bold lead-in per item (rich text: ul > li > strong) */
-const leadIns = (items: string[][]) => (
-    <ul>
-        {items.map(([lead, text]) => (
-            <li key={lead}>
-                <strong>{lead}</strong> {text}
-            </li>
-        ))}
-    </ul>
-)
 
 function InsightBlogPage({ Device: story }: { Device: Device }) {
     const Device = useDevice(story)
@@ -212,9 +66,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
             <Hero
                 Variant="Title + image"
                 Device={Device}
-                title={[
-                    'The Wennink report: what it means for your AI and digital plans',
-                ]}
+                title={[TITLE]}
                 label={{
                     Type: 'Breadcrumb',
                     crumbs: [
@@ -229,48 +81,18 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                 <CaseIntro
                     Device={Device}
                     {...{ 'Meta position': 'Left' as const }}
-                    meta={[
-                        { label: 'Published', value: 'October 21, 2026' },
-                        { label: 'Type', value: 'Blog' },
-                        {
-                            label: 'Topics',
-                            value: 'Artificial Intelligence\nConsulting',
-                        },
-                    ]}
-                    lead="The Dutch Wennink report calls for €151 to €187 billion in additional, mostly private investment by 2035. Digitalization and AI is one of its four focus domains. The Dutch government has adopted the growth target and launched the National Investment Institution. Here is how to prepare your AI projects."
+                    meta={META}
+                    lead={INTRO}
                     body={
                         <>
                             <h3>The Wennink report in brief</h3>
-                            <p>
-                                The Wennink report is the independent advice ‘De
-                                route naar toekomstige welvaart’ (‘The route to
-                                future prosperity’) by Peter Wennink, former CEO
-                                of ASML, on the Netherlands’ future earning
-                                capacity. Its core message: the Netherlands must
-                                grow faster to pay for healthcare, pensions,
-                                defense and the energy transition. Because the
-                                population is aging, that growth has to come
-                                almost entirely from higher productivity.
-                                Digitalization and AI are among the most
-                                important levers.
-                            </p>
+                            <p>{BRIEF}</p>
                             <h4>The key facts</h4>
                             {leadIns(KEY_FACTS)}
                         </>
                     }
                 />
-                <StatsBlock
-                    Type="Plain"
-                    Device={Device}
-                    stats={[
-                        {
-                            Value: '€151–187bn',
-                            Label: 'Investment needed by 2035',
-                        },
-                        { Value: '1.5–2%', Label: 'Growth target a year' },
-                        { Value: '€6.6bn', Label: 'NII core capital' },
-                    ]}
-                />
+                <StatsBlock Type="Plain" Device={Device} stats={KEY_FIGURES} />
                 <Media
                     Layout="Contained"
                     Device={Device}
@@ -283,19 +105,10 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                     lead="What the Dutch government is doing with it"
                     body={
                         <>
-                            <p>
-                                The report is more than advice on paper. The
-                                coalition agreement ‘Aan de slag’ of D66, VVD
-                                and CDA (January 2026) and the government’s
-                                response of July 10, 2026 adopt its main lines:
-                            </p>
+                            <p>{GOVERNMENT_INTRO}</p>
                             {leadIns(GOVERNMENT)}
                             <blockquote>
-                                <p>
-                                    The direction is clear. Public money and
-                                    private capital will go to projects that
-                                    demonstrably increase productivity.
-                                </p>
+                                <p>{GOVERNMENT_QUOTE}</p>
                             </blockquote>
                         </>
                     }
@@ -305,11 +118,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                     Device={Device}
                     label="Why AI is central"
                     lead="Why digitalization and AI are so central"
-                    body={[
-                        'Wennink divides the digital world into three layers: hardware such as chips, an intelligence layer with AI models and, on top, the application layer, where applications for people and businesses can be developed. Each layer builds on the one below.',
-                        'The twelve investment proposals in this domain together represent more than €49 billion in investment potential, ranging from chips to concrete AI applications. The report is clear about where the return lies: by accelerating AI development and applying AI at scale in businesses, government and healthcare, a structural productivity improvement becomes possible that would be out of reach without AI.',
-                        'The report cites analyses showing that AI can raise labor productivity worldwide by 0.1 to 0.6% per year. At the same time, there is a large shortage of digital talent: around 300,000 additional technicians and IT specialists are expected to be needed by 2030. That makes applications that help existing teams achieve more especially valuable.',
-                    ]}
+                    body={WHY}
                 />
                 <Media
                     Layout="Full bleed"
@@ -321,12 +130,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                     Device={Device}
                     label="What it means for you"
                     lead="What this means for your organization"
-                    body={[
-                        'For leadership teams, the question is shifting. It is no longer whether you use AI, but which applications demonstrably deliver productivity and can therefore be funded, internally and externally.',
-                        'Financiers and assessors of public schemes largely ask the same questions as your board. What does it deliver in time, cost or revenue? How do you measure that? Is the data in order? Are the risks under control? Organizations that can already answer those questions can move faster once the instruments become concrete.',
-                        'Two caveats. The NII mainly targets young, innovative companies that struggle to obtain financing. And the WBSO is a tax scheme for research and development work: whether an AI project qualifies depends on the technical novelty and uncertainty in the work and on who carries it out. Always have this checked in advance by your tax advisor or via RVO.',
-                        'Is your organization active in one of the four domains, for example energy and grid operation, security, healthcare or life sciences? Then you are at the center of the policy focus. But the productivity challenge applies to every sector, from manufacturing and wholesale to business services.',
-                    ]}
+                    body={MEANS}
                 />
                 <FeatureList
                     Layout="Split"
@@ -345,13 +149,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                     lead="How Youwe helps"
                     body={
                         <>
-                            <p>
-                                Youwe is not a grant advisor and does not apply
-                                for grants or funding on your behalf. What we do
-                                is help you turn AI ambitions into well-founded,
-                                measurable projects, and then build those
-                                projects and make them work in your own systems.
-                            </p>
+                            <p>{HELPS_INTRO}</p>
                             {leadIns(HELPS)}
                         </>
                     }
@@ -366,13 +164,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                 heading="An example from practice"
                 body={
                     <>
-                        <p>
-                            For Kingspan Insulated Panels, Youwe built an order
-                            intake platform on ACI Weave that reads order emails
-                            and documents, checks them against Kingspan’s own
-                            rules and sends approved orders to SAP. The team
-                            retypes less and stays in control.
-                        </p>
+                        <p>{EXAMPLE}</p>
                         <p>
                             <a href="#">Read the case</a>
                         </p>
@@ -383,7 +175,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                 <TextColumn
                     Alignment="Centered"
                     Device={Device}
-                    lead="Want to know which AI applications will deliver the most in your organization, and how to make them investment-ready?"
+                    lead={CLOSING}
                     body={
                         <p>
                             <a href="#">Contact Youwe</a>
@@ -412,12 +204,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                                 ))}
                             </ol>
                             <p>
-                                <em>
-                                    This article was prompted by a contribution
-                                    from Bjorn Stolte, chair of Dutch Digital
-                                    Agencies, for DDA members (October 21,
-                                    2026).
-                                </em>
+                                <em>{SOURCE_NOTE}</em>
                             </p>
                         </>
                     }
@@ -444,9 +231,7 @@ function InsightBlogPage({ Device: story }: { Device: Device }) {
                 Variant="Sub-footer background"
                 Device={Device}
                 {...WORK_WITH_US}
-                title="Where does growth get stuck?"
-                primary={{ label: 'Contact us', href: '#' }}
-                secondary={{ label: 'Submit an RFP', href: '#' }}
+                {...CTA}
                 image={abstract('005')}
             />
             {footer(Device)}

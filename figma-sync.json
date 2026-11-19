@@ -5183,6 +5183,62 @@
       "locked": false,
       "lastSyncedSignature": null,
       "lastSynced": "2026-11-17"
+    },
+    {
+      "figma": {
+        "name": "Content blocks/Article",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Content blocks/Article",
+        "current": "Desktop"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Long-form article body (Blog v2): sticky 'On this page' Anchor nav on the left, sections (H2, rich text, optional numbered steps and FAQ accordions) in one reading column. Not in Figma yet.",
+      "code": [
+        "src/blocks/article/article.tsx",
+        "src/blocks/article/article.module.css",
+        "src/blocks/article/article.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Anchor nav",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Anchor nav",
+        "current": "Desktop"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "'On this page' in-page links with scroll spy (current section marked); Desktop list, Mobile disclosure. Used by the Article block. Not in Figma yet.",
+      "code": [
+        "src/ui/anchor-nav/anchor-nav.tsx",
+        "src/ui/anchor-nav/anchor-nav.module.css",
+        "src/ui/anchor-nav/anchor-nav.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
     }
   ],
   "templates": [

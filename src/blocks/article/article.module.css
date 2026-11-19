@@ -1,0 +1,86 @@
+/*
+  Article (code block, 19 November). Desktop: grid 416fr / 848fr like Two-column text 4/8, gap 16; the
+  nav column is sticky (top 120 = below the fixed header, max 288 wide); the content column is 740 wide,
+  right-aligned (lines up with the Case intro text above it). Sections gap 80, each: head (kicker +
+  heading/lg, gap 8), then the body (body/lg/reg content/secondary, Prose), gap 32. Anchor targets keep
+  120 clear of the top. Mobile (block < 768): one column, nav above, sections gap 64.
+*/
+@layer components {
+    .inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+
+        @container (min-width: 48rem) {
+            .root[data-nav] & {
+                grid-template-columns: 416fr 848fr;
+            }
+        }
+    }
+
+    .aside {
+        @container (min-width: 48rem) {
+            height: 100%;
+        }
+        @container (max-width: 47.9375rem) {
+            margin-bottom: var(--spacing-xl);
+        }
+    }
+
+    .nav {
+        @container (min-width: 48rem) {
+            position: sticky;
+            top: var(--spacing-5xl);
+            max-width: 18rem;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4xl);
+        width: 100%;
+        max-width: 46.25rem;
+
+        @container (min-width: 48rem) {
+            justify-self: end;
+        }
+        @container (max-width: 47.9375rem) {
+            gap: var(--spacing-3xl);
+        }
+    }
+
+    .root:not([data-nav]) .content {
+        justify-self: center;
+    }
+
+    .section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        scroll-margin-top: var(--spacing-5xl);
+    }
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+
+        & h2 {
+            margin: 0;
+        }
+    }
+
+    .kicker {
+        color: var(--color-shared-content-brand);
+    }
+
+    .body {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .faq {
+        display: flex;
+        flex-direction: column;
+    }
+}

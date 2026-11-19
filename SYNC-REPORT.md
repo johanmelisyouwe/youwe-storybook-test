@@ -42,3 +42,49 @@ New template **Templates / Insight detail / Blog** (Desktop and Mobile). It is t
 
 - `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass.
 - Desktop (1440) and mobile (390) screenshots checked. No console errors.
+
+# Update — 19 November 2026 (Blog v2: "On this page" anchor nav)
+
+New template **Templates / Insight detail / Blog v2** (Desktop and Mobile), next to v1. It adds the "On this page" quick links from the Figma copy, styled our way.
+
+## Blog v2
+
+- **Same top as v1:** hero with breadcrumb, intro with meta and lead, key figures, image.
+- **Then the article** runs in a new **Article** block:
+  - A sticky "On this page" nav sits on the left.
+  - All sections are in one reading column on the right (740 wide, the same as the intro text): the report in brief, the government, why AI, what it means, the 6 steps, how Youwe helps (with the Kingspan example as a Case Card and the closing line), FAQ and sources.
+  - Every nav item points into that column.
+- **Same end as v1:** More blogs, the contact section and the footer.
+
+## New: Anchor nav (Components / Anchor nav, code component)
+
+- **Title:** "On this page", in brand red (`labels.title`, so it can be translated).
+- **Desktop:** links on a thin rail. The section you are reading is marked in white with a red bar (scroll spy). Hover turns a link white, and the focus ring is the shared one.
+- **Mobile:** a collapsed bar that shows "On this page" and the current section. Tap it to open the list; picking a link closes it.
+- **`current`:** optional, for a fixed marked link.
+
+## New: Article (Content blocks / Article, code block)
+
+- **Sections:** `{ id, nav?, kicker?, heading, body, steps?, faq?, children? }`.
+  - The nav is built from the sections.
+  - Anchor jumps leave room for the fixed header.
+- **Layout:** 4/8 grid like Two-column text 4/8. The nav column is sticky.
+  - Mobile: one column, with the nav above the sections.
+  - `nav={false}` gives a single centred reading column.
+- **Steps** reuse Feature Card Plain with numbers, as in Feature list Split. **FAQ** reuses the Accordion (Plus-Minus).
+
+## Other changes
+
+- **Case intro:** `body` is now optional, for when the article follows below. Existing uses are unchanged.
+- **Copy file:** the Blog copy moved to `src/templates/insight-blog.copy.tsx`, which v1 and v2 share. v1 looks the same.
+- **figma-sync.json:** Article and Anchor nav added as code-only.
+- **CMS integration doc:** rows added for Blog and Blog v2.
+
+## Checks (v2)
+
+- `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass.
+- In a browser at 1440:
+  - The nav stays in view while scrolling, and the marked link follows the section being read.
+  - Clicking "FAQ" jumps to the FAQ with the header space kept, and marks FAQ.
+- At 390: the "On this page" bar opens and closes, and shows the current section.
+- No console errors.
