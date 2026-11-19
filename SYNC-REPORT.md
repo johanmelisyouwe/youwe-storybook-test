@@ -1,27 +1,44 @@
-# Sync report — 17 November 2026 (Services detail: card hovers)
+# Sync report — 19 November 2026 (Insight detail: Blog template)
 
-On Services detail, the clickable-looking Feature Cards had no hover. These were the building blocks, which have an arrow, and the "Where B2B ordering gets stuck" AI cards, which have a "Learn more" link.
+New template **Templates / Insight detail / Blog** (Desktop and Mobile). It is the first of the insight detail pages; News, Whitepaper, Event and Video follow after review.
 
-## Feature Card: whole-card hover (code option)
+## Approach
 
-- **`href`:** the whole card becomes one link, with the shared **card hover**: the red reveal with `Hover CTA` + the card title, the text lifts, and it also works on keyboard focus. This is the same as Service, Case and Stat cards.
-- **`ask`** (and no `button`): the whole card becomes a button that opens Ask Youwe with the question, with the same hover. The reveal shows the link label ("Learn more").
-- **Link label:** in both cases it shows as text, so there are no nested links.
-- **No change for cards without `href`/`ask`.** Static info cards keep no hover.
-- **Scroll reveal:** the scroll reveal attribute moved from `data-reveal` to `data-scroll`, so it doesn't clash with the card-reveal `data-reveal="lift"`.
+- **Copy only from Figma.** The text comes from "Desktop 1440 — Insight Blog detail (R6)" (27263:16555). That frame's layout and blocks are not used.
+- **Modelled on the case page (Work detail)**, so it reads as an editorial, long-form article. It uses existing components only.
+- **Images are Storybook placeholders** (abstract images and the Kingspan case photo), not the Figma stand-ins.
 
-## Services detail template
+## Page, in order
 
-- **B2B commerce building blocks:** the 8 tiles with arrows now have `href` and "Explore the building block" as the hover. The "View case study" link on the third tile is removed.
-- **Where B2B ordering gets stuck:** the 5 AI cards are now whole-card Ask buttons with the hover.
-- **Info cards without arrow or link** (such as "Why B2B commerce") stay static.
+1. Header, then a Title + image hero with the breadcrumb Home / Insights / Blog.
+2. **Case intro:**
+   - Meta: Published, Type, Topics.
+   - Lead: the intro paragraph.
+   - Rich text: "The Wennink report in brief" and "The key facts" as a list with bold lead-ins.
+3. **Key figures** as Stats (Plain): €151–187bn, 1.5–2%, €6.6bn.
+4. Contained media.
+5. **Article sections** as Two-column text 4/8 (small label, heading, rich text):
+   - What the Dutch government is doing with it: a list with a pull quote.
+   - Why digitalization and AI are so central.
+   - A full-bleed image.
+   - What this means for your organization.
+6. **Investment-ready in 6 steps** as a numbered Feature list (Split).
+7. **How Youwe helps** (Two-column text with a list), then **An example from practice** (Text + media, Kingspan, "Read the case"), then the closing question with "Contact Youwe".
+8. **FAQ** as an Accordion list (Split).
+9. **Sources** (numbered links and the note).
+10. **More blogs**: a Card grid of three Insight Cards.
+11. Contact CTA "Where does growth get stuck?" (Contact us, Submit an RFP), then the footer.
+
+## Component change
+
+- **Accordion list:** `'Accordion title': ''` now hides the small title above the accordions. Use it when the heading already says FAQ. The default is unchanged.
+
+## Not included (yet)
+
+- **The "On this page" table of contents** from the Figma copy. It needs a new part, such as a sticky in-page nav. We are trying existing components first.
+- **The "All insights" link** under More blogs. The Card grid has no button.
 
 ## Checks
 
 - `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass.
-- In a browser at 1440:
-  - Hovering a building block shows the red reveal "Explore the building block".
-  - Hovering an AI card shows "Learn more".
-  - Clicking an AI card opens the Ask Youwe dock with that question.
-  - No console errors.
-- New story: Feature Card / Clickable.
+- Desktop (1440) and mobile (390) screenshots checked. No console errors.
