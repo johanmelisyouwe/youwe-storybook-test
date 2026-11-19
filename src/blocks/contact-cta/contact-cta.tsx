@@ -4,6 +4,8 @@ import { Dropdown } from '../../ui/dropdown'
 import { TextArea } from '../../ui/text-area'
 import { CheckboxLabel } from '../../ui/checkbox'
 import { Button } from '../../ui/button'
+import { FileInput } from '../../ui/file-input'
+import { Breadcrumbs, type Crumb } from '../../ui/breadcrumbs'
 import { CardMedia } from '../../shared/card-reveal/card-media'
 import { cx } from '../../shared/cx'
 import block from '../../shared/block/block.module.css'
@@ -18,6 +20,10 @@ export type ContactCTAVariant =
 /** Fixed UI text (English defaults); pass `labels` to translate (NL, SV) */
 export const CONTACT_CTA_LABELS = {
     consent: 'Yes, I would like to learn more about Youwe’s services',
+    topic: 'Who do you want to contact?',
+    topicPlaceholder: 'Who would you like to contact?',
+    attachment: 'Attachment (optional)',
+    attachmentHint: 'PDF or DOCX, max 10 MB',
 }
 
 export type ContactCTAProps = {
@@ -41,6 +47,15 @@ export type ContactCTAProps = {
     /** Sub-footer image (placeholder when absent) */
     image?: ImageInput
     onSubmit?: (data: FormData) => void
+    /** Form as the page hero (Contact page, 19 November): breadcrumb above, heading/3xl title, top
+        padding below the fixed header */
+    crumbs?: Crumb[]
+    /** Red-line kicker above the title, e.g. "Contact" (Form, Sub-footer) */
+    kicker?: string
+    /** Form: "Who do you want to contact?" options (a required dropdown after Country) */
+    topics?: { value: string; label: string }[]
+    /** Form: an optional attachment field (PDF or DOCX) after the message */
+    attachment?: boolean
     /** UI text, for translations: { ...CONTACT_CTA_LABELS } */
     labels?: Partial<typeof CONTACT_CTA_LABELS>
 }
@@ -58,6 +73,10 @@ export function ContactCTA({
     submit = 'Send message',
     image,
     onSubmit,
+    crumbs,
+    kicker,
+    topics,
+    attachment,
     labels,
 }: ContactCTAProps) {
     const L = { ...CONTACT_CTA_LABELS, ...labels }
@@ -65,20 +84,44 @@ export function ContactCTA({
         return (
             <section
                 data-layout="form"
+                data-hero={crumbs ? true : undefined}
                 className={cx(block.root, styles.root)}
                 aria-label={title}
             >
                 <div className={cx(block.inner, styles.inner)}>
+                    {crumbs && (
+                        <div className={styles.crumbs}>
+                            <Breadcrumbs
+                                items={crumbs}
+                                Device={Device}
+                                {...{ 'Filter button': false }}
+                            />
+                        </div>
+                    )}
                     <div className={cx(styles.text, block.reveal)}>
-                        <h2
-                            className={
-                                Device === 'Mobile'
-                                    ? 'yw-heading-lg'
-                                    : 'yw-heading-xl'
-                            }
-                        >
-                            {title}
-                        </h2>
+                        {kicker && (
+                            <span
+                                className={cx(block.kicker, 'yw-body-sm-bold')}
+                            >
+                                {kicker}
+                            </span>
+                        )}
+                        {(() => {
+                            const H = crumbs ? 'h1' : 'h2'
+                            return (
+                                <H
+                                    className={
+                                        crumbs
+                                            ? 'yw-heading-3xl'
+                                            : Device === 'Mobile'
+                                              ? 'yw-heading-lg'
+                                              : 'yw-heading-xl'
+                                    }
+                                >
+                                    {title}
+                                </H>
+                            )
+                        })()}
                         <div className={styles.body}>
                             <p className="yw-body-md-reg">{body}</p>
                             {phone && (
@@ -142,12 +185,29 @@ export function ContactCTA({
                             placeholderText="Select your country"
                             options={countries}
                         />
+                        {topics && (
+                            <Dropdown
+                                Label={L.topic}
+                                Required
+                                name="topic"
+                                placeholderText={L.topicPlaceholder}
+                                options={topics}
+                            />
+                        )}
                         <TextArea
                             Label="Message"
                             Required
                             name="message"
                             placeholderText="How can we help you?"
                         />
+                        {attachment && (
+                            <FileInput
+                                Label={L.attachment}
+                                hint={L.attachmentHint}
+                                name="attachment"
+                                accept=".pdf,.docx"
+                            />
+                        )}
                         <CheckboxLabel
                             Size="S"
                             name="optIn"
@@ -168,6 +228,11 @@ export function ContactCTA({
 
     const content = (
         <div className={cx(styles.content, block.reveal)}>
+            {kicker && (
+                <span className={cx(block.kicker, 'yw-body-sm-bold')}>
+                    {kicker}
+                </span>
+            )}
             <h2
                 className={
                     Device === 'Mobile' ? 'yw-heading-xl' : 'yw-heading-3xl'

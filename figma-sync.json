@@ -5379,6 +5379,62 @@
       "locked": false,
       "lastSyncedSignature": null,
       "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "File Input",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/File Input",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Attachment field on the Field shell: Choose file button and file name / hint (Contact form). Not in Figma as a component yet.",
+      "code": [
+        "src/ui/file-input/file-input.tsx",
+        "src/ui/file-input/file-input.module.css",
+        "src/ui/file-input/file-input.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
+    },
+    {
+      "figma": {
+        "name": "Cookie preferences",
+        "page": null,
+        "nodeId": null,
+        "url": null,
+        "variantAxes": [],
+        "axes": {},
+        "props": "",
+        "variantCount": 0,
+        "signature": null
+      },
+      "storybook": {
+        "title": "Components/Cookie preferences",
+        "current": "Default"
+      },
+      "internal": false,
+      "status": "code-only",
+      "note": "Cookie categories with Toggles (Necessary locked on) and Save preferences (Cookies page). Not in Figma as a component yet.",
+      "code": [
+        "src/ui/cookie-preferences/cookie-preferences.tsx",
+        "src/ui/cookie-preferences/cookie-preferences.module.css",
+        "src/ui/cookie-preferences/cookie-preferences.stories.tsx"
+      ],
+      "locked": false,
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-19"
     }
   ],
   "templates": [

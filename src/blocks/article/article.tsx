@@ -18,6 +18,7 @@ import styles from './article.module.css'
   (the nav links to it), an H2 and rich text, plus optional numbered steps (Feature Card Plain, as in
   Feature list Split), FAQ accordions (as in Accordion list) or any other content.
   Mobile: one column; the nav is a collapsed "On this page" disclosure above the sections.
+  Without nav (`nav={false}`, no meta): one reading column on the left, under the hero title (Cookies).
 */
 
 export type ArticleSection = {
@@ -46,6 +47,10 @@ export type ArticleProps = {
     meta?: { label: string; value: string }[]
     /** Lead paragraph at the top of the reading column (body/2xl/med) */
     lead?: string
+    /** Rich text after the lead (e.g. the scope of a legal document) */
+    intro?: RichText
+    /** Under the nav, in the sticky column, e.g. a "Download the full PDF" button */
+    navFooter?: ReactNode
     /** Show the "On this page" nav (default true) */
     nav?: boolean
     /** UI text, for translations: { ...ANCHOR_NAV_LABELS } */
@@ -57,6 +62,8 @@ export function Article({
     sections,
     meta,
     lead,
+    intro,
+    navFooter,
     nav = true,
     labels,
 }: ArticleProps) {
@@ -86,20 +93,36 @@ export function Article({
                             </dl>
                         )}
                         {nav && (
-                            <AnchorNav
-                                Device={Device}
-                                labels={labels}
-                                items={sections.map((s) => ({
-                                    id: s.id,
-                                    label: s.nav ?? s.heading,
-                                }))}
-                                className={styles.nav}
-                            />
+                            <div className={styles.nav}>
+                                <AnchorNav
+                                    Device={Device}
+                                    labels={labels}
+                                    items={sections.map((s) => ({
+                                        id: s.id,
+                                        label: s.nav ?? s.heading,
+                                    }))}
+                                />
+                                {navFooter}
+                            </div>
                         )}
                     </aside>
                 )}
                 <div className={styles.content}>
-                    {lead && <Lead>{lead}</Lead>}
+                    {(lead || intro) && (
+                        <div className={styles.opening}>
+                            {lead && <Lead>{lead}</Lead>}
+                            {intro && (
+                                <Prose
+                                    className={cx(
+                                        styles.body,
+                                        'yw-body-lg-reg'
+                                    )}
+                                >
+                                    {intro}
+                                </Prose>
+                            )}
+                        </div>
+                    )}
                     {sections.map((s) => (
                         <section
                             key={s.id}

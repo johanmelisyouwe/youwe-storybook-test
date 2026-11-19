@@ -138,7 +138,8 @@ export type HeroProps = {
     buttons?: { label: string; href: string }[]
     /** Figma: Show bar */
     bar?: HeroBarProps
-    /** Figma: Image (background for Gradient, wide image for Title + image) */
+    /** Figma: Image (background for Gradient, wide image for Title + image). Title + image without image
+        or video: the title area only (legal pages, 19 November). */
     image?: ImageInput
     /** Gradient: 'WebGL' draws moving silk ribbons over the image (the image stays as the fallback and for
         reduced motion); 'Image' is the still background */
@@ -240,14 +241,14 @@ export function Hero({
                         ratio="16 / 9"
                         className={cx(styles.image, styles['image-video'])}
                     />
-                ) : (
+                ) : image ? (
                     <CardMedia
                         src={image}
                         ratio="16 / 9"
                         clip={false}
                         className={styles.image}
                     />
-                )}
+                ) : null}
             </section>
         )
     }

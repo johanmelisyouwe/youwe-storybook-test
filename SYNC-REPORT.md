@@ -1,4 +1,4 @@
-# Sync report — 19 November 2026 (Insight detail templates, combined)
+# Sync report — 19 November 2026 (Insight detail, Contact and Legal templates, combined)
 
 This is one PR for all insight detail templates. It replaces #53 (Blog), #54 (Event) and #55 (Whitepaper). All five Figma insight detail pages are in: Blog (with v2), News, Whitepaper, Event and Video.
 
@@ -31,6 +31,24 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
   - **The eCommerce comparison guide teaser:** "Download now" and "Contact us".
   - The Figma Shopify Plus logo image is replaced by a placeholder.
 
+## Contact and Legal templates
+
+The copy comes only from the Figma frames in section 27263:19276 (Contact 27263:18403, Cookies 27263:18529, Privacy Policy 27263:18605, Terms & Conditions 27263:18713).
+
+- **Contact** (Templates / Contact):
+  - **Hero:** the Contact CTA form, with breadcrumb, "Contact" kicker, title, body and phone.
+  - **Form fields from Figma:** name, business email, phone, country, **who do you want to contact**, message, an optional **attachment** and the opt-in.
+  - **Then:** the offices with live local time, an Ask Youwe question ("Where are your offices?"), and the light work CTA "See what we build with clients" (Explore our work, Our services) as Contact CTA Sub-footer split with a case photo.
+- **Legal / Cookies:**
+  - A title-only hero (breadcrumb, "Legal" tag, title), then the intro.
+  - **Cookie preferences:** Necessary is always on; Preferences, Analytics and Marketing are toggles. "Save preferences" is still to be wired to the consent platform.
+- **Legal / Privacy Policy:**
+  - Title-only hero, then the Article block: "On this page" with 8 sections, the intro as lead, numbered sections in rich text.
+  - The Figma "[To confirm]" gaps show as "To confirm" notes in quote style, so legal can fill them in.
+- **Legal / Terms & Conditions:**
+  - Title-only hero, then the Article block with an "Articles" nav (11 articles) and "Download / open full PDF" under it.
+  - The version line is the lead, the scope is the intro, and the source note comes at the end.
+
 ## New code-only components (in figma-sync.json)
 
 | Component | What it does |
@@ -41,6 +59,8 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
 | Components / Event details | Label/value rows (the first one as headline) with primary and secondary buttons |
 | Components / Timetable | Time and what happens, one row per slot |
 | Components / Registration form | Sign-up or download form from the form components; options `choice`, `question`, `phone`, `optIn`, `notice`; states |
+| Components / File Input | Attachment field on the Field shell: Choose file and the file name or hint |
+| Components / Cookie preferences | Cookie categories with Toggles (Necessary locked on) and Save preferences |
 | Components / Map embed | Keyless Google Maps embed, Dark (colour filter) or Light; `routeUrl()` for directions |
 
 ## Changes to existing components
@@ -54,6 +74,9 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
 - **Hero (Title + image):** new `video` (and `videoTitle`) shows a Video Player (Autoplay Off) in place of the wide image, with the image as poster.
 - **Registration form:** also `company` and `jobTitle` (both on by default), `countries` (dropdown), a multiline `question` (text area) and `optInLabel`.
 - **Radio:** `required` option.
+- **Contact CTA:** new `crumbs` (form as page hero: breadcrumb, h1 heading/3xl, top padding below the header), `kicker`, `topics` (the "Who do you want to contact?" dropdown) and `attachment` (File Input).
+- **Hero (Title + image):** without `image` or `video` it shows the title area only (legal pages).
+- **Article:** new `intro` (rich text after the lead) and `navFooter` (under the nav, e.g. the PDF button). Without a nav, the reading column now aligns left under the hero title (it was centred).
 - **Hero (Title + image):** keeps its title to the left 8 columns inside Hero aside.
 - **Site-wide:** in-page anchor links scroll smoothly (`scroll-behavior: smooth`), except with reduced motion.
 
@@ -74,7 +97,13 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
   - The whitepaper and video confirmation title "Thank you, {name}".
   - The video confirmation "We will send the webinar to {email}." and the "Expert: Elze Kool" row (the name is from the Figma text).
   - The "Download" and "Register" nav labels.
-- **Privacy:** on the live site, load the map only after consent for third-party content.
+- **Contact:** the "Who do you want to contact?" options are mine (Start a new project, Support for an existing project, Partnerships, Press and media, Careers, Something else). Figma only has the label.
+- **Cookies:** the "Save preferences" button and the "Your preferences are saved." line are mine, because Figma has toggles only.
+- **Left out on purpose:** the prototype and design notes in these frames:
+  - the Contact "This prototype form does not send data…";
+  - the Cookies "design-complete preferences view…", "Source framing…" and "Design mock only…";
+  - the Privacy "Live page note" and "Last structured for Site A R6 design…".
+- **Privacy:** on the live site, load the map only after consent for third-party content. The Privacy Policy "To confirm" items need legal text before launch.
 
 ## Checks
 

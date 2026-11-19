@@ -1,0 +1,80 @@
+/*
+  Cookie preferences (code component, 19 November). surface/base-2 panel, radius card, padding 32 (24/20
+  when narrow), like the Registration form. Rows divided by 1px border/2, padding 24/0: head (title
+  body/lg/med + On/Off body/sm/reg content/secondary and the Toggle, gap 12, space-between), then the
+  description body/md/reg content/secondary, gap 8. Save button below, with a status line beside it.
+*/
+@layer components {
+    .root {
+        container-type: inline-size;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        padding: var(--spacing-xl);
+        border-radius: var(--component-radius-card);
+        background: var(--color-shared-surface-base-2);
+    }
+
+    @container (max-width: 30rem) {
+        .root {
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+    }
+
+    .list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2xs);
+        padding-block: var(--spacing-lg);
+
+        & + .item {
+            box-shadow: inset 0 var(--shared-width-1) 0
+                var(--color-shared-border-2);
+        }
+
+        &:first-child {
+            padding-top: 0;
+        }
+    }
+
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-sm);
+    }
+
+    .title {
+        color: var(--color-shared-content-primary);
+    }
+
+    .control {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+    }
+
+    .state,
+    .description,
+    .saved {
+        color: var(--color-shared-content-secondary);
+    }
+
+    .description {
+        margin: 0;
+        max-width: 36rem;
+    }
+
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+}

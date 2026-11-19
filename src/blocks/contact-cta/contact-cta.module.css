@@ -17,6 +17,15 @@
             gap: var(--spacing-3xl);
         }
 
+        /* Form as the page hero (Contact): top padding below the fixed header (as the Title + image hero),
+           the breadcrumb across the top, then text and form side by side, aligned to the top */
+        &[data-hero] .inner {
+            align-items: start;
+            padding-top: calc(var(--spacing-5xl) + var(--spacing-4xl));
+        }
+        &[data-hero] .text {
+            padding-top: var(--spacing-3xl);
+        }
         &[data-layout="split"] .inner {
             display: flex;
             justify-content: flex-end;
@@ -41,6 +50,12 @@
             &[data-layout="form"] .inner {
                 grid-template-columns: minmax(0, 1fr);
             }
+            &[data-hero] .inner {
+                padding-top: calc(var(--spacing-4xl) + var(--spacing-lg));
+            }
+            &[data-hero] .text {
+                padding-top: 0;
+            }
         }
     }
     .text {
@@ -62,6 +77,9 @@
         & p {
             color: var(--color-shared-content-secondary);
         }
+    }
+    .crumbs {
+        grid-column: 1 / -1;
     }
     .phone {
         color: var(--color-shared-content-brand);
