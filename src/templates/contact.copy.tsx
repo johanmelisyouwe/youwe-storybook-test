@@ -15,7 +15,8 @@ export const INTRO_BODY =
 export const PHONE = '+31 10 466 86 38'
 
 export const PANEL = [
-    { label: 'Call us', value: PHONE },
+    /* non-breaking spaces: the number never wraps in the narrow panel */
+    { label: 'Call us', value: PHONE.replace(/ /g, '\u00a0') },
     { label: 'Response time', value: 'Within one working day' },
     {
         label: 'Offices',

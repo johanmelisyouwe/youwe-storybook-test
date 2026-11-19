@@ -24,6 +24,17 @@
         @container (max-width: 47.9375rem) {
             grid-template-columns: minmax(0, 1fr);
         }
+
+        /* Inside Hero aside (Contact): the sticky panel takes the right 4 of 12 columns (gap 64), so the
+           reading column keeps to the left 8 at every width */
+        @container (min-width: 64rem) {
+            [data-hero-aside] .root:not([data-nav]) & {
+                grid-template-columns: minmax(
+                    0,
+                    min(46.25rem, calc((100% - var(--spacing-3xl)) * 2 / 3))
+                );
+            }
+        }
     }
 
     .aside {

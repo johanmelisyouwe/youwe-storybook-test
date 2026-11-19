@@ -5,11 +5,12 @@ import styles from './event-details.module.css'
 /*
   Event details — code component (not in Figma; added 19 November for the Event detail template). The
   practical facts of an event in one panel: date, time, venue (or any label/value rows), with the
-  register and route buttons underneath. The first row is the headline (body/2xl/med), so the date
-  reads first.
+  register and route buttons underneath. The first row is the headline (body/2xl/med, body/xl/med
+  in a narrow panel), so the date or phone number reads first.
 */
 
 export type EventDetailsProps = {
+    /** Kept for the API; the layout follows the panel width (container queries) */
     Device?: 'Desktop' | 'Mobile'
     /** Rows, e.g. Date / Time / Venue. Values may have line breaks (an address). */
     items: { label: string; value: string }[]
@@ -21,7 +22,6 @@ export type EventDetailsProps = {
 }
 
 export function EventDetails({
-    Device = 'Desktop',
     items,
     primary,
     secondary,
@@ -37,11 +37,7 @@ export function EventDetails({
                         </dt>
                         <dd
                             className={
-                                i === 0
-                                    ? Device === 'Mobile'
-                                        ? 'yw-body-xl-med'
-                                        : 'yw-body-2xl-med'
-                                    : 'yw-body-md-reg'
+                                i === 0 ? styles.headline : 'yw-body-md-reg'
                             }
                         >
                             {it.value}

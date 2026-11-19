@@ -7,7 +7,6 @@ import { OFFICES } from '../blocks/offices/offices.copy'
 import { ContactCTA } from '../blocks/contact-cta'
 import { EventDetails } from '../ui/event-details'
 import { RegistrationForm } from '../ui/registration-form'
-import { AskSnippet } from '../site/ask-youwe'
 import {
     Page,
     Section,
@@ -37,8 +36,8 @@ import {
   Templates/Contact — second version (19 November): our own layout from existing components, with the
   copy of Figma "Desktop 1440 — Contact" (27263:18403). Same logic as the Event page:
   - Hero aside: a title-only hero (breadcrumb, Contact tag, title) with a contact panel beside it (Event
-    details: call us, response time, offices; "Call us" button) and the Ask Youwe question under it.
-    The panel stays in view while you fill in the form, and rests at its end.
+    details: call us, response time, offices; "Call us" button). The Ask Youwe question ("Where are
+    your offices?") is the page's Ask dock question, not a snippet in the panel (19 November). The panel stays in view while you fill in the form, and rests at its end.
   - The intro and the form in the reading column (Article without nav): the Registration form on its
     panel, with the Figma fields (name, business email, phone, country, who to contact, message,
     attachment, opt-in) and a confirmation.
@@ -68,27 +67,14 @@ function ContactPage({ Device: story }: { Device: Device }) {
                     />
                 }
                 aside={
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: 'var(--spacing-sm)',
+                    <EventDetails
+                        Device={Device}
+                        items={PANEL}
+                        primary={{
+                            label: 'Call us',
+                            href: `tel:${PHONE.replace(/[^+\d]/g, '')}`,
                         }}
-                    >
-                        <EventDetails
-                            Device={Device}
-                            items={PANEL}
-                            primary={{
-                                label: 'Call us',
-                                href: `tel:${PHONE.replace(/[^+\d]/g, '')}`,
-                            }}
-                        />
-                        <AskSnippet
-                            Type="Question"
-                            Device={Device}
-                            Title={ASK}
-                        />
-                    </div>
+                    />
                 }
             >
                 <Section Mode="Dark">

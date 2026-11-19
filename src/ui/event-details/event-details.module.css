@@ -40,6 +40,21 @@
         }
     }
 
+    /* The first row (date, phone): body/2xl/med; in a narrow panel (content < 320, e.g. 292 wide at 1100
+       or on mobile) body/xl/med, so a phone number or date stays on one line */
+    .headline {
+        font-family: var(--font-family-body);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--font-size-body-2xl);
+        line-height: 1.4; /* legacy-ok: same as the body/2xl and body/xl text styles */
+    }
+
+    @container (max-width: 20rem) {
+        .headline {
+            font-size: var(--font-size-body-xl);
+        }
+    }
+
     .label {
         color: var(--color-shared-content-brand);
     }

@@ -39,7 +39,8 @@ The copy comes only from the Figma frames in section 27263:19276 (Contact 27263:
   - An own layout from existing components, with the same logic as the Event page. The Figma layout is not copied.
   - **Hero aside:**
     - A title-only hero (breadcrumb, Contact tag, "Let’s talk about your next step").
-    - Beside it, a contact panel (Event details): Call us +31 10 466 86 38, response time within one working day, the eight offices, and a "Call us" button, with the Ask Youwe question "Where are your offices?" under it.
+    - Beside it, a contact panel (Event details): Call us +31 10 466 86 38, response time within one working day, the eight offices, and a "Call us" button.
+    - "Where are your offices?" is the page's Ask Youwe dock question. It is not a snippet in the panel.
     - The panel stays in view while you fill in the form and rests at its end.
   - **Reading column:**
     - The intro as lead and body, then "Send us a message".
@@ -81,8 +82,9 @@ The copy comes only from the Figma frames in section 27263:19276 (Contact 27263:
 - **Hero (Title + image):** new `video` (and `videoTitle`) shows a Video Player (Autoplay Off) in place of the wide image, with the image as poster.
 - **Registration form:** also `company` and `jobTitle` (both on by default), `countries` (dropdown), `topics` (a required dropdown, e.g. who to contact), `attachment` (File Input), a multiline and/or required `question` (text area) and `optInLabel`.
 - **Radio:** `required` option.
+- **Event details:** the first row (date, phone) steps down from body/2xl to body/xl in a narrow panel, so it stays on one line. The size now follows the panel width instead of `Device`.
 - **Hero (Title + image):** without `image` or `video` it shows the title area only (legal pages).
-- **Article:** new `intro` (rich text after the lead) and `navFooter` (under the nav, e.g. the PDF button). Without a nav, the reading column now aligns left under the hero title (it was centred).
+- **Article:** inside Hero aside, the reading column without nav keeps to the left 8 columns, so it never runs under the sticky panel (on screens between 1024 and about 1300 it did). New `intro` (rich text after the lead) and `navFooter` (under the nav, e.g. the PDF button). Without a nav, the reading column now aligns left under the hero title (it was centred).
 - **Hero (Title + image):** keeps its title to the left 8 columns inside Hero aside.
 - **Site-wide:** in-page anchor links scroll smoothly (`scroll-behavior: smooth`), except with reduced motion.
 
