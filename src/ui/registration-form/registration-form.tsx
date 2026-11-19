@@ -3,6 +3,7 @@ import { TextInput } from '../text-input'
 import { RadioLabel } from '../radio'
 import { TextArea } from '../text-area'
 import { Dropdown } from '../dropdown'
+import { FileInput } from '../file-input'
 import { CheckboxLabel } from '../checkbox'
 import { Button } from '../button'
 import { Toaster } from '../toaster'
@@ -16,10 +17,10 @@ import styles from './registration-form.module.css'
   buttons; added 19 November). Sign-up for an event, built from the form components (Text Input,
   Radio, Checkbox, Button), laid out like the Contact CTA form.
   Fields: first and last name, business email, company (required; can be hidden), job title (can be
-  hidden), optional phone and country, an
+  hidden), optional phone and country, an optional topic dropdown, an optional attachment, an
   optional choice (e.g. on or off the slopes), an optional free-text field (e.g. dietary requirements),
   an opt-in (can be hidden) and an optional notice (e.g. privacy text). Used for event sign-up and the
-  whitepaper and webinar downloads (19 November). Submit: `onSubmit(FormData)`; while it runs the button shows the sending label; when it
+  whitepaper and webinar downloads and the Contact page (19 November). Submit: `onSubmit(FormData)`; while it runs the button shows the sending label; when it
   resolves the form is replaced by a confirmation; when it throws, an error Toaster shows above the
   button and the entries stay.
 */
@@ -34,6 +35,8 @@ export const REGISTRATION_FORM_LABELS = {
     phone: 'Phone number',
     country: 'Country',
     countryPlaceholder: 'Select your country',
+    attachment: 'Attachment (optional)',
+    attachmentHint: 'PDF or DOCX, max 10 MB',
     optIn: 'Keep me informed about future Youwe events',
     submit: 'Register now',
     sending: 'Sending…',
@@ -57,6 +60,14 @@ export type RegistrationFormProps = {
     phone?: boolean
     /** Country dropdown options (Video download); leave out for no country field */
     countries?: { value: string; label: string }[]
+    /** A required dropdown after the country, e.g. "Who do you want to contact?" (Contact) */
+    topics?: {
+        label: string
+        placeholder: string
+        options: { value: string; label: string }[]
+    }
+    /** An optional attachment field (PDF or DOCX) after the question (Contact) */
+    attachment?: boolean
     /** Show the opt-in checkbox (default true) */
     optIn?: boolean
     /** Opt-in text for this form (else labels.optIn) */
@@ -69,6 +80,7 @@ export type RegistrationFormProps = {
         label: string
         placeholder?: string
         multiline?: boolean
+        required?: boolean
     }
     /** Called with the form data; resolve on success, throw on failure */
     onSubmit?: (data: FormData) => Promise<void> | void
@@ -87,6 +99,8 @@ export function RegistrationForm({
     jobTitle = true,
     phone,
     countries,
+    topics,
+    attachment,
     optIn = true,
     optInLabel,
     notice,
@@ -234,6 +248,15 @@ export function RegistrationForm({
                     )}
                 </div>
             )}
+            {topics && (
+                <Dropdown
+                    Label={topics.label}
+                    Required
+                    name="topic"
+                    placeholderText={topics.placeholder}
+                    options={topics.options}
+                />
+            )}
             {choice && (
                 <fieldset className={styles.choice}>
                     <legend className={cx(styles.legend, 'yw-body-sm-med')}>
@@ -260,16 +283,26 @@ export function RegistrationForm({
                 (question.multiline ? (
                     <TextArea
                         Label={question.label}
+                        Required={question.required}
                         name={question.name}
                         placeholderText={question.placeholder ?? question.label}
                     />
                 ) : (
                     <TextInput
                         Label={question.label}
+                        Required={question.required}
                         name={question.name}
                         placeholderText={question.placeholder ?? question.label}
                     />
                 ))}
+            {attachment && (
+                <FileInput
+                    Label={L.attachment}
+                    hint={L.attachmentHint}
+                    name="attachment"
+                    accept=".pdf,.docx"
+                />
+            )}
             {optIn && (
                 <CheckboxLabel
                     Size="S"

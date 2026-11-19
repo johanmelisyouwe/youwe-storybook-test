@@ -36,9 +36,16 @@ The copy comes only from the Figma insight detail frames (27263:16299). Layouts 
 The copy comes only from the Figma frames in section 27263:19276 (Contact 27263:18403, Cookies 27263:18529, Privacy Policy 27263:18605, Terms & Conditions 27263:18713).
 
 - **Contact** (Templates / Contact):
-  - **Hero:** the Contact CTA form, with breadcrumb, "Contact" kicker, title, body and phone.
-  - **Form fields from Figma:** name, business email, phone, country, **who do you want to contact**, message, an optional **attachment** and the opt-in.
-  - **Then:** the offices with live local time, an Ask Youwe question ("Where are your offices?"), and the light work CTA "See what we build with clients" (Explore our work, Our services) as Contact CTA Sub-footer split with a case photo.
+  - An own layout from existing components, with the same logic as the Event page. The Figma layout is not copied.
+  - **Hero aside:**
+    - A title-only hero (breadcrumb, Contact tag, "Let’s talk about your next step").
+    - Beside it, a contact panel (Event details): Call us +31 10 466 86 38, response time within one working day, the eight offices, and a "Call us" button, with the Ask Youwe question "Where are your offices?" under it.
+    - The panel stays in view while you fill in the form and rests at its end.
+  - **Reading column:**
+    - The intro as lead and body, then "Send us a message".
+    - The Registration form on its panel, with the Figma fields: name, business email, phone, country, who do you want to contact, message, an optional attachment, the opt-in.
+    - The confirmation reads "Thank you, {name}. One of our experts will get back to you within one working day."
+  - **Then:** offices with live local time, the work CTA "See what we build with clients" as the usual Sub-footer background, and the footer.
 - **Legal / Cookies:**
   - A title-only hero (breadcrumb, "Legal" tag, title), then the intro.
   - **Cookie preferences:** Necessary is always on; Preferences, Analytics and Marketing are toggles. "Save preferences" is still to be wired to the consent platform.
@@ -72,9 +79,8 @@ The copy comes only from the Figma frames in section 27263:19276 (Contact 27263:
 - **Feature Card:** `Description` is optional. Article steps can be titles only.
 - **Hero:** new `tags` (type and topics) and `date` above the title.
 - **Hero (Title + image):** new `video` (and `videoTitle`) shows a Video Player (Autoplay Off) in place of the wide image, with the image as poster.
-- **Registration form:** also `company` and `jobTitle` (both on by default), `countries` (dropdown), a multiline `question` (text area) and `optInLabel`.
+- **Registration form:** also `company` and `jobTitle` (both on by default), `countries` (dropdown), `topics` (a required dropdown, e.g. who to contact), `attachment` (File Input), a multiline and/or required `question` (text area) and `optInLabel`.
 - **Radio:** `required` option.
-- **Contact CTA:** new `crumbs` (form as page hero: breadcrumb, h1 heading/3xl, top padding below the header), `kicker`, `topics` (the "Who do you want to contact?" dropdown) and `attachment` (File Input).
 - **Hero (Title + image):** without `image` or `video` it shows the title area only (legal pages).
 - **Article:** new `intro` (rich text after the lead) and `navFooter` (under the nav, e.g. the PDF button). Without a nav, the reading column now aligns left under the hero title (it was centred).
 - **Hero (Title + image):** keeps its title to the left 8 columns inside Hero aside.
@@ -97,7 +103,7 @@ The copy comes only from the Figma frames in section 27263:19276 (Contact 27263:
   - The whitepaper and video confirmation title "Thank you, {name}".
   - The video confirmation "We will send the webinar to {email}." and the "Expert: Elze Kool" row (the name is from the Figma text).
   - The "Download" and "Register" nav labels.
-- **Contact:** the "Who do you want to contact?" options are mine (Start a new project, Support for an existing project, Partnerships, Press and media, Careers, Something else). Figma only has the label.
+- **Contact:** "Send us a message", the panel labels (Call us, Response time, Offices) and the confirmation are mine. The "Who do you want to contact?" options are mine too (Start a new project, Support for an existing project, Partnerships, Press and media, Careers, Something else). Figma only has the label.
 - **Cookies:** the "Save preferences" button and the "Your preferences are saved." line are mine, because Figma has toggles only.
 - **Left out on purpose:** the prototype and design notes in these frames:
   - the Contact "This prototype form does not send data…";
