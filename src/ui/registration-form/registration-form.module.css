@@ -65,6 +65,20 @@
         color: var(--color-shared-content-brand);
     }
 
+    .notice {
+        color: var(--color-shared-content-secondary);
+
+        & p {
+            margin: 0;
+        }
+
+        & a {
+            color: var(--color-shared-content-primary);
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+        }
+    }
+
     .form > .submit {
         width: auto;
 

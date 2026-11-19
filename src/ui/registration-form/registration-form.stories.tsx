@@ -57,3 +57,29 @@ export const Failed: Story = {
     },
 }
 export const Mobile: Story = { args: { Device: 'Mobile' } }
+
+/** Whitepaper download: phone field, privacy notice instead of the opt-in, own button and confirmation text */
+export const Download: Story = {
+    args: {
+        choice: undefined,
+        question: undefined,
+        phone: true,
+        optIn: false,
+        notice: (
+            <p>
+                Youwe needs the contact information you provide to us to contact
+                you about our products and services. You may unsubscribe from
+                these communications at any time. For information on how to
+                unsubscribe, as well as our privacy practices and commitment to
+                protecting your privacy, please review our{' '}
+                <a href="#">Privacy Policy</a>.
+            </p>
+        ),
+        labels: {
+            submit: 'Download the whitepaper',
+            successTitle: 'Thank you, {name}',
+            successMessage:
+                'The whitepaper arrives in your inbox straight away.',
+        },
+    },
+}

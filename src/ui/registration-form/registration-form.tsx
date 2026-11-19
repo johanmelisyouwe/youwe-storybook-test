@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { TextInput } from '../text-input'
 import { RadioLabel } from '../radio'
 import { CheckboxLabel } from '../checkbox'
@@ -13,9 +13,10 @@ import styles from './registration-form.module.css'
   Registration form — code component (not in Figma; the Figma event page only has "Register now"
   buttons; added 19 November). Sign-up for an event, built from the form components (Text Input,
   Radio, Checkbox, Button), laid out like the Contact CTA form.
-  Fields: first and last name, business email, company (required), job title, an optional choice
-  (e.g. on or off the slopes) and an optional free-text field (e.g. dietary requirements), plus an
-  opt-in. Submit: `onSubmit(FormData)`; while it runs the button shows the sending label; when it
+  Fields: first and last name, business email, company (required), job title, optional phone, an
+  optional choice (e.g. on or off the slopes), an optional free-text field (e.g. dietary requirements),
+  an opt-in (can be hidden) and an optional notice (e.g. privacy text). Used for event sign-up and the
+  whitepaper download (19 November). Submit: `onSubmit(FormData)`; while it runs the button shows the sending label; when it
   resolves the form is replaced by a confirmation; when it throws, an error Toaster shows above the
   button and the entries stay.
 */
@@ -27,9 +28,11 @@ export const REGISTRATION_FORM_LABELS = {
     emailPlaceholder: 'name@company.com',
     company: 'Company',
     jobTitle: 'Job title',
+    phone: 'Phone number',
     optIn: 'Keep me informed about future Youwe events',
     submit: 'Register now',
     sending: 'Sending…',
+    /** {name} = first name */
     successTitle: 'You are registered',
     successMessage:
         'Thank you, {name}. We will send the confirmation and practical details to {email}.',
@@ -41,6 +44,12 @@ export type RegistrationFormProps = {
     Device?: 'Desktop' | 'Mobile'
     /** One choice the attendee must make, e.g. joining on or off the slopes */
     choice?: { name: string; label: string; options: string[] }
+    /** Show the optional phone number field (Whitepaper download) */
+    phone?: boolean
+    /** Show the opt-in checkbox (default true) */
+    optIn?: boolean
+    /** Text under the fields, e.g. the privacy notice with a Privacy Policy link */
+    notice?: ReactNode
     /** One optional free-text question, e.g. dietary requirements */
     question?: { name: string; label: string; placeholder?: string }
     /** Called with the form data; resolve on success, throw on failure */
@@ -56,6 +65,9 @@ export function RegistrationForm({
     Device = 'Desktop',
     choice,
     question,
+    phone,
+    optIn = true,
+    notice,
     onSubmit,
     defaultState = 'Form',
     className,
@@ -97,7 +109,7 @@ export function RegistrationForm({
                                 : 'yw-heading-lg'
                         }
                     >
-                        {L.successTitle}
+                        {fmt(L.successTitle, { name: who.name || '…' })}
                     </p>
                     <p className="yw-body-md-reg">
                         {fmt(L.successMessage, {
@@ -198,7 +210,21 @@ export function RegistrationForm({
                     placeholderText={question.placeholder ?? question.label}
                 />
             )}
-            <CheckboxLabel Size="S" name="optIn" label={L.optIn} />
+            {phone && (
+                <TextInput
+                    Label={L.phone}
+                    name="phone"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholderText={L.phone}
+                />
+            )}
+            {optIn && <CheckboxLabel Size="S" name="optIn" label={L.optIn} />}
+            {notice && (
+                <div className={cx(styles.notice, 'yw-body-xs-reg')}>
+                    {notice}
+                </div>
+            )}
             {state === 'error' && (
                 <Toaster
                     Variant="Error"
