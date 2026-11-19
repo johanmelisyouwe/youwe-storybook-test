@@ -98,3 +98,11 @@ The Figma page has no form, only "Register now" and "Register your interest" but
 # Update — 19 November 2026 (no borders on the panels)
 
 - **Event details** (the CTA panel) and the **Registration form** panel (and its confirmation) no longer have the 1px outline. They are shown by the base-2 surface alone. The dividers between the detail rows stay.
+
+# Update — 19 November 2026 (smooth anchor scrolling)
+
+- **In-page anchor links now glide instead of jumping:** "On this page", "Register now" and every other `#` link on the site.
+  - Set once on the page: `scroll-behavior: smooth` on `html` (base.css).
+  - With "reduce motion" switched on, the reset keeps the jump.
+  - Scripted scrolls (Case carousel, Vertical slider) already set their own behaviour, so they are unchanged.
+- **Checked:** clicking "Register now" scrolls over about 0.8 s and ends with the form heading clear of the header.
