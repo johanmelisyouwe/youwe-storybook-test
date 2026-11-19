@@ -94,3 +94,7 @@ The Figma page has no form, only "Register now" and "Register your interest" but
 - **Registration form on a panel:** the same surface as the Event details panel and the confirmation (base-2, a thin border, padding 32).
   - The fields use base-1, so they stand out from the panel. In dark mode the field colour is the panel colour, so without this they disappeared.
 - `pnpm typecheck`, `pnpm check`, `pnpm build-storybook`: pass. No console errors.
+
+# Update — 19 November 2026 (no borders on the panels)
+
+- **Event details** (the CTA panel) and the **Registration form** panel (and its confirmation) no longer have the 1px outline. They are shown by the base-2 surface alone. The dividers between the detail rows stay.
