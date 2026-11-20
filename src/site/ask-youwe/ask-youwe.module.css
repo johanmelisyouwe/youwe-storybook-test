@@ -218,20 +218,16 @@
         min-height: 3.5rem;
         padding: var(--spacing-2xs) var(--spacing-md) var(--spacing-2xs)
             var(--spacing-2xs);
-        transition: max-width 640ms var(--motion-ease-emphasized);
         cursor: text;
 
         &[data-contextual] {
             max-width: 44.75rem;
         }
 
-        &:focus-within {
-            box-shadow:
-                inset 0 0 0 var(--shared-width-1)
-                var(--color-component-ask-border),
-                0 0 0 var(--shared-width-2)
-                var(--color-shared-border-system-focus);
-        }
+        transition:
+            max-width 640ms var(--motion-ease-emphasized),
+            box-shadow var(--motion-duration-base) var(--motion-ease-standard),
+            background var(--motion-duration-base) var(--motion-ease-standard);
     }
     .ask-bar-prompt {
         flex: 1;
@@ -498,6 +494,8 @@
         background: var(--color-component-ask-surface-raised);
         box-shadow: inset 0 0 0 var(--shared-width-1)
             var(--color-component-ask-border);
+        transition: box-shadow var(--motion-duration-base)
+            var(--motion-ease-standard);
     }
 
     /* Snippets */
@@ -601,6 +599,42 @@
             inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border),
             var(--effect-ask-glass-shadow);
         backdrop-filter: blur(var(--effect-ask-glass-blur)) saturate(1.6);
+    }
+
+    /* Active state (20 November): while you type in the bar or the follow-up field, or talk to it, the
+       control lights up in the Ask glow: a 2px red ring (ask/glow-1), a soft red halo (8px at 25%, and a
+       40px glow below), the raised ask surface, the aura at full strength and the Orb a little larger
+       with a stronger glow. The red ring is also the keyboard focus indicator (the field is the only
+       focusable part). After the docked glass rule, so it wins over its border. */
+    .ask-glass.ask-bar:is(:focus-within, [data-listening]),
+    .ask-panel-composer:is(:focus-within, [data-listening]) {
+        --_aura-op: 1;
+        background-color: var(--color-component-ask-surface-raised);
+        box-shadow:
+            inset 0 0 0 var(--shared-width-2) var(--color-component-ask-glow-1),
+            0 0 0 var(--spacing-2xs)
+            color-mix(in srgb, var(--color-component-ask-glow-1) 25%, transparent),
+            0 var(--spacing-xs) var(--spacing-2xl) calc(var(--spacing-xs) * -1)
+            color-mix(in srgb, var(--color-component-ask-glow-1) 50%, transparent);
+    }
+
+    .ask-bar .ask-orb {
+        transition:
+            transform var(--motion-duration-base) var(--motion-ease-emphasized),
+            box-shadow var(--motion-duration-base) var(--motion-ease-standard);
+    }
+
+    .ask-bar:is(:focus-within, [data-listening]) .ask-orb {
+        transform: scale(1.15);
+        box-shadow:
+            inset 0 0 calc(var(--_orb, 1.25rem) / 4) rgb(255 255 255 / 0.35),
+            0 0 var(--_orb, 1.25rem) var(--color-component-ask-glow-1); /* legacy-ok: Figma Orb inner highlight */
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .ask-bar .ask-orb {
+            transition: none;
+        }
     }
 
     /* Docked bar: fixed bottom centre, slides up after the hero, out of the way over the footer. */

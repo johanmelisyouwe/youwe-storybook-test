@@ -490,6 +490,7 @@ export function AskYouwe({
                     </div>
                 )}
                 <form
+                    data-listening={listening || undefined}
                     className={styles['ask-panel-composer']}
                     onSubmit={submit}
                 >
@@ -527,6 +528,7 @@ export function AskYouwe({
                 (State !== 'Default' && Device === 'Desktop') || undefined
             }
             data-docked={State === 'Docked' || undefined}
+            data-listening={listening || undefined}
             className={cx(styles['ask-glass'], styles['ask-bar'], className)}
             onSubmit={submit}
             onClick={() => input.current?.focus()}

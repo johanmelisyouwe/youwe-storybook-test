@@ -207,7 +207,10 @@ export function AskWave({
                 const ripple = 0.7 + 0.3 * Math.sin(t / 140 + i * 0.9)
                 const h = reduce
                     ? 0.5
-                    : Math.min(1, Math.max(0.12, level * (0.55 + 0.6 * mid) * ripple))
+                    : Math.min(
+                          1,
+                          Math.max(0.12, level * (0.55 + 0.6 * mid) * ripple)
+                      )
                 b.style.transform = `scaleY(${h.toFixed(3)})`
                 b.style.opacity = reduce ? String(0.4 + 0.6 * level) : ''
             })

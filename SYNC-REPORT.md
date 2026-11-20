@@ -12,7 +12,8 @@ Built from Figma "Tech Partners detail" (26906:10343, Templates page), the ACI W
 4. **Card grid 1 + Wide:** 06 Governance and security, plus the approval loop diagram.
 5. **Accordion list Split:** 10 FAQ.
 6. **Card grid 3 columns:** "What ACI Weave gives you", with the dashboard, pricing and Wickey images.
-7. **Card grid 5 columns:** "What ACI Weave agents do", the ten agents.
+7. **Feature list Split:** "What ACI Weave agents do", the ten agents as a numbered list (01–10), the same list as on Services detail.
+   - Figma has a 5-column grid of ten cards. I changed it on review because ten cards felt like a lot.
 8. **Card grid 2 columns, Light:** "Deployment and data quality".
 9. **Card grid Wide + 1 with the stacked "Get in touch" intro:** the Kingspan image and quote card (with "How ACI Weave agents work"), plus the G-Star and Wickey case cards.
 10. **Contact CTA Form**, then the footer.
@@ -50,6 +51,18 @@ There is no Figma design for this, so it is built from the Ask Youwe parts.
   - "Listening" shows the bar and the panel with a demo wave.
   - "Voice (try it)" lets you talk to it for real; it shows what it heard.
 - **CMS integration doc:** has a voice input bullet under Ask Youwe.
+
+## Ask Youwe: clearer active state
+
+**The problem:** you couldn't see when the bar was active. Its focus style existed, but the docked bar's glass border overrode it, so the docked bar showed no focus at all.
+
+**Now, while typing in the bar or the follow-up field, or while talking to it:**
+- a 2px red ring (Ask glow), with a soft red halo and a glow below;
+- the raised Ask surface;
+- the aura at full strength;
+- the Orb slightly larger, with a stronger glow.
+
+The red ring is also the keyboard focus indicator. With reduced motion, the Orb doesn't animate.
 
 ## Checks
 

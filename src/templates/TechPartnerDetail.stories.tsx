@@ -3,6 +3,7 @@ import { Hero } from '../blocks/hero'
 import { TextMedia } from '../blocks/text-media'
 import { CardGrid } from '../blocks/card-grid'
 import { AccordionList } from '../blocks/accordion-list'
+import { FeatureList } from '../blocks/feature-list'
 import { ContactCTA } from '../blocks/contact-cta'
 import { FeatureCard } from '../ui/feature-card'
 import { ImageCard } from '../ui/image-card'
@@ -36,8 +37,9 @@ import {
   Templates page), with its blocks in order:
   Gradient hero (breadcrumb, two buttons) · Text + media 6/6 (product screenshot) · Card grid Feature + 4
   (capabilities 01–05, screenshot and tags) · Card grid 1 + Wide (06 and the approval loop image) ·
-  Accordion list Split (FAQ) · Card grid 3 columns (what it gives you, with images) · Card grid 5 columns
-  (use cases: ten agents) · Card grid 2 columns in Light mode (deployment) · Card grid Wide + 1 with the
+  Accordion list Split (FAQ) · Card grid 3 columns (what it gives you, with images) · Feature list Split
+  (use cases: ten agents as a numbered list; Figma has a 5-column card grid, changed 20 November because
+  ten cards felt like a lot) · Card grid 2 columns in Light mode (deployment) · Card grid Wide + 1 with the
   stacked "Get in touch" intro (proof: image + Kingspan quote card, G-Star and Wickey case cards) ·
   Contact CTA Form · footer.
   Images: product screenshots and the Wickey photo from the Figma frame; an abstract background in the
@@ -163,17 +165,12 @@ function TechPartnerDetailPage({ Device: story }: { Device: Device }) {
                 />
             </Section>
             <Section Mode="Dark">
-                <CardGrid
-                    Layout="5 columns"
+                <FeatureList
+                    Layout="Split"
                     Device={Device}
-                    intro={{
-                        Layout: 'Split',
-                        Kicker: 'Use cases',
-                        Title: 'What ACI Weave agents do',
-                    }}
-                    cells={AGENTS.map((a) => (
-                        <FeatureCard key={a.Title} Variant="Card" {...a} />
-                    ))}
+                    kicker="Use cases"
+                    heading="What ACI Weave agents do"
+                    items={AGENTS.map((a, i) => ({ Number: num(i), ...a }))}
                 />
             </Section>
             <Section Mode="Light">
@@ -251,7 +248,7 @@ const meta: Meta = {
         docs: {
             description: {
                 component:
-                    'Tech Partners detail (ACI Weave): Gradient hero with breadcrumb, Text + media, capabilities (Feature + 4, 1 + Wide), FAQ, what it gives you, use cases (five columns), deployment (Light), proof with the Get in touch intro, contact form, footer.',
+                    'Tech Partners detail (ACI Weave): Gradient hero with breadcrumb, Text + media, capabilities (Feature + 4, 1 + Wide), FAQ, what it gives you, use cases (numbered list), deployment (Light), proof with the Get in touch intro, contact form, footer.',
             },
         },
     },
