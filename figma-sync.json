@@ -5842,6 +5842,27 @@
         "src/templates/tech-partner-detail.copy.tsx",
         "src/templates/shared.tsx"
       ]
+    },
+    {
+      "figma": {
+        "name": "Desktop 1440 — Partner detail Pimcore (R6)",
+        "device": "Desktop",
+        "nodeId": "127:2",
+        "url": "https://www.figma.com/design/hocbNSqGR6mA355cEXSa0t/?node-id=127-2"
+      },
+      "storybook": {
+        "title": "Templates/Tech Partners detail v2",
+        "story": "Desktop"
+      },
+      "status": "complete",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-20",
+      "code": [
+        "src/templates/TechPartnerDetailV2.stories.tsx",
+        "src/templates/tech-partner-detail-v2.copy.tsx",
+        "src/templates/shared.tsx"
+      ]
     }
   ],
   "migrated": "not needed: fresh repo, no old Storybook",

@@ -29,6 +29,27 @@ Built from Figma "Tech Partners detail" (26906:10343, Templates page), the ACI W
 
 **Image Card: new `Fit="Contain"`.** It shows a whole diagram or screenshot on the dark surface instead of cropping it. The approval loop uses it; at the cell's height it was cut off on both sides.
 
+## Tech Partners detail v2 (Templates / Tech Partners detail v2), Pimcore
+
+The copy comes from Figma "Partner detail Pimcore (R6)" (file "Youwe website 2026 – Homepage A (Flow)", 127:2). It is built only from existing blocks:
+
+1. **Gradient hero:** breadcrumb Home / Tech Partners / Pimcore, "One data spine / for every channel.", two buttons, and the **Stats bar**: 27 published cases, 25 clients, 9 industries, Founding partnership.
+2. **Services split:** "Where Pimcore fits", with the three services it is part of (Service Cards with the "Systems that scale / optimize" eyebrow).
+3. **Content tabs:** "Five steps, one platform", one tab per step (MDM, PIM + AI, DAM, Portal, DXP), each with its client case card.
+   - Heidelberg shows "3 SAP ERP systems integrated" and Chadwicks "20,000 products enriched".
+4. **Feature list Split, Light:** "Where our Pimcore platforms run", the case count per industry with the clients.
+5. **Text + media:** "Questions about Pimcore?" with two Ask Youwe questions.
+6. **Accordion list (Split list):** "Strategic Partner, from day one", with the three partner facts as bullets and the FAQ.
+7. **Contact CTA Sub-footer background:** "Talk to a Pimcore expert", then the footer.
+
+**Not used:**
+- the "data in / channels out" diagram, because there is no component; the five steps tell the same story;
+- the blog teaser next to the partner facts.
+
+**Images:** Heidelberg and Chadwicks case photos; abstract placeholders for FroQ, Vivisol and CMSNL.
+
+**Other pages in the same Figma file:** Symson, Hypernode and ACI Weave, not built yet.
+
 ## Ask Youwe: voice input
 
 There is no Figma design for this, so it is built from the Ask Youwe parts.
