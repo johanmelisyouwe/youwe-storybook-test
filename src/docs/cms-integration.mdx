@@ -49,6 +49,11 @@ Components with `labels`: Header, Footer, Ask Youwe (bar, snippet, dock), Case c
 - **No `onAsk`:** every question shows the fallback text.
 - **Newest question wins:** a new question aborts the previous request through `signal`.
 - **Focus:** opening moves focus into the panel's follow-up field. Closing (Esc or the close button) returns focus to where it was: the bar, or the snippet or card that asked.
+- **Voice input:** a mic button in the bar and the follow-up field, where the browser supports speech recognition (Chrome, Edge, Safari; hidden in Firefox).
+  - While listening, a live wave follows the microphone level and the words appear in the field. The question is asked through the same `onAsk` when the speaker stops.
+  - The language follows `locale`.
+  - The browser asks for microphone permission. If it is refused, the field says so.
+  - Labels: `voice`, `voiceStop`, `listening`, `voiceDenied`, `voiceError`.
 - **Questions from elsewhere on the page:** Ask snippets ("Ask about it"), AI Feature Cards and `askYouwe(question)` all open the dock and go through the same `onAsk`.
 
 ## Templates and their blocks
@@ -65,6 +70,7 @@ Each template is a list of sections. Sections marked *optional* can be left out 
 | **Services** | Hero · Services split × 3 (one per proposition) · Case carousel · Contact CTA |
 | **Service detail** | Hero (stats bar) · Card grids · Technology logos · Feature list · Stats · Card grid (more cases) · Technology logos · Card grid (related services) · Feature list Split (numbered steps, "phased approach") *optional* · Accordion list (FAQ, rich text answers) *optional* · Contact CTA |
 | **Tech partners** | Hero · Build your stack · Tech partners split × 3 · Contact CTA |
+| **Tech partner detail** | Hero (Gradient, breadcrumb, two buttons) · Text + media 6/6 · Card grid Feature + 4 (Feature Cards with image, tags) · Card grid 1 + Wide (Feature Card + Image Card) · Accordion list Split (FAQ) · Card grid 3 columns (Feature Cards with image) · Card grid 5 columns · Card grid 2 columns, Light · Card grid Wide + 1 with stacked intro (Image Card, Quote Card with button, Case Cards) · Contact CTA Form |
 | **Insights** | Hero · Insight Card (Featured) + Upcoming events · Insights overview (filters by type with counts, Show more: controlled, so the list can come from a paginated query) · Contact CTA |
 | **Insight detail: Blog** | Hero (Title + image, breadcrumb) · Case intro (meta: published, type, topics; lead; rich text) · Stats (key figures) · Media · Two-column text 4/8 × n (rich text) · Feature list Split (steps) *optional* · Text + media (example) *optional* · Text column · Accordion list (FAQ) *optional* · Two-column text (sources) · Card grid of Insight Cards · Contact CTA |
 | **Insight detail: Blog v2** | Hero · Case intro (meta + lead, no body) · Stats · Media · Article (sections with `id`, nav label, heading, rich text, optional `steps`, `faq` or other content; the "On this page" nav is built from the sections) · Card grid of Insight Cards · Contact CTA |

@@ -16,6 +16,18 @@ export const caseImage = (
     kind: 'portrait' | 'wide' = 'portrait'
 ) => `${BASE}cases/${kind}-${key}.webp`
 
+/** Product screenshots and photos from the Figma Tech Partners detail (ACI Weave) template, e.g.
+    productImage('aci-weave-marketplace'). WebP, 1600 wide. */
+export const productImage = (
+    name:
+        | 'aci-weave-marketplace'
+        | 'aci-weave-competitor-analysis'
+        | 'aci-weave-approval-loop'
+        | 'aci-weave-dashboard'
+        | 'aci-weave-pricing'
+        | 'wickey-playground'
+) => `${BASE}products/${name}.webp`
+
 /** Abstract background by the Figma number, e.g. abstract('016'). */
 export const abstract = (n: string) => `${BASE}abstract/abstract-${n}.webp`
 

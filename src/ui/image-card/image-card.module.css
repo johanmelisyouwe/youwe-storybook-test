@@ -29,6 +29,14 @@
                 var(--motion-ease-emphasized);
         }
     }
+    /* Fit Contain: the whole image, centred on surface/base-2 (give the image that background so it blends) */
+    .contain {
+        background: var(--color-shared-surface-base-2);
+
+        & > img {
+            object-fit: contain;
+        }
+    }
     .caption {
         color: var(--color-shared-content-secondary);
     }

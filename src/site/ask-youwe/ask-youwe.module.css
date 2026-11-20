@@ -218,20 +218,16 @@
         min-height: 3.5rem;
         padding: var(--spacing-2xs) var(--spacing-md) var(--spacing-2xs)
             var(--spacing-2xs);
-        transition: max-width 640ms var(--motion-ease-emphasized);
         cursor: text;
 
         &[data-contextual] {
             max-width: 44.75rem;
         }
 
-        &:focus-within {
-            box-shadow:
-                inset 0 0 0 var(--shared-width-1)
-                var(--color-component-ask-border),
-                0 0 0 var(--shared-width-2)
-                var(--color-shared-border-system-focus);
-        }
+        transition:
+            max-width 640ms var(--motion-ease-emphasized),
+            box-shadow var(--motion-duration-base) var(--motion-ease-standard),
+            background var(--motion-duration-base) var(--motion-ease-standard);
     }
     .ask-bar-prompt {
         flex: 1;
@@ -264,6 +260,72 @@
     .ask-bar-context {
         animation: fade-in var(--motion-duration-base)
             var(--motion-ease-standard) 640ms both;
+    }
+
+    /* Voice input (code, 20 November): live wave while listening — 24 bars, 3 wide with 3 gaps, up to 32
+       high, coloured from the Ask glow (red) to blue like the Orb; each bar scales with the microphone
+       level (set per frame in voice.tsx). The mic button pulses with a red ring while listening. */
+    .ask-wave {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        animation: fade-in var(--motion-duration-fast)
+            var(--motion-ease-standard) both;
+    }
+
+    .ask-wave-bars {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px; /* legacy-ok: wave bar rhythm, not a layout space */
+        height: var(--spacing-xl);
+
+        & i {
+            width: 3px; /* legacy-ok: wave bar width */
+            height: 100%;
+            border-radius: var(--shared-radius-circular);
+            background: linear-gradient(
+                to top,
+                var(--color-component-ask-glow-1),
+                var(--color-component-ask-glow-2)
+            );
+            transform: scaleY(0.12);
+            transform-origin: center;
+            transition: opacity var(--motion-duration-fast)
+                var(--motion-ease-standard);
+        }
+    }
+
+    @keyframes ask-mic-pulse {
+        from {
+            box-shadow: 0 0 0 0
+                color-mix(
+                    in srgb,
+                    var(--color-component-ask-glow-1) 55%,
+                    transparent
+                );
+        }
+        to {
+            box-shadow: 0 0 0 var(--spacing-xs) transparent;
+        }
+    }
+
+    .ask-mic-live {
+        animation: ask-mic-pulse 1.2s var(--motion-ease-standard) infinite; /* legacy-ok: pulse length */
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .ask-mic-live {
+            animation: none;
+        }
     }
 
     /* Active panel */
@@ -432,6 +494,8 @@
         background: var(--color-component-ask-surface-raised);
         box-shadow: inset 0 0 0 var(--shared-width-1)
             var(--color-component-ask-border);
+        transition: box-shadow var(--motion-duration-base)
+            var(--motion-ease-standard);
     }
 
     /* Snippets */
@@ -535,6 +599,133 @@
             inset 0 0 0 var(--shared-width-1) var(--color-component-ask-border),
             var(--effect-ask-glass-shadow);
         backdrop-filter: blur(var(--effect-ask-glass-blur)) saturate(1.6);
+    }
+
+    /* Active state (20 November, softened on review): while you type in the bar or the follow-up field
+       the control lights up quietly: a 1px ring in the Ask glow at 55%, a soft red glow below (32px at
+       35%), the raised ask surface, the aura at full strength and the Orb a little larger. The ring is
+       also the keyboard focus indicator (the field is the only focusable part). After the docked glass
+       rule, so it wins over its border. */
+    .ask-glass.ask-bar:focus-within,
+    .ask-panel-composer:focus-within {
+        --_aura-op: 1;
+        background-color: var(--color-component-ask-surface-raised);
+        box-shadow:
+            inset 0 0 0 var(--shared-width-1)
+            color-mix(
+                in srgb,
+                var(--color-component-ask-glow-1) 55%,
+                transparent
+            ),
+            0 var(--spacing-xs) var(--spacing-2xl) calc(var(--spacing-sm) * -1)
+            color-mix(
+                in srgb,
+                var(--color-component-ask-glow-1) 35%,
+                transparent
+            );
+    }
+
+    /* Listening: the control breathes with the voice. --_level (0–1, eased, set per frame by the wave)
+       drives the ring strength, the size and strength of the glow around it and the Orb; and a soft band
+       of the Ask glow (red to blue) sweeps through the bar like a sound wave, brighter when you speak. */
+    .ask-glass.ask-bar[data-listening],
+    .ask-panel-composer[data-listening] {
+        --_aura-op: calc(0.7 + 0.3 * var(--_level, 0.4));
+        background-color: var(--color-component-ask-surface-raised);
+        box-shadow:
+            inset 0 0 0 var(--shared-width-1)
+            color-mix(
+                in srgb,
+                var(--color-component-ask-glow-1)
+                    calc(45% + 45% * var(--_level, 0.4)),
+                transparent
+            ),
+            0 0 calc(var(--spacing-xs) + var(--spacing-xl) * var(--_level, 0.4))
+            calc(var(--spacing-3xs) * var(--_level, 0.4))
+            color-mix(
+                in srgb,
+                var(--color-component-ask-glow-1)
+                    calc(12% + 33% * var(--_level, 0.4)),
+                transparent
+            );
+    }
+
+    @keyframes ask-sweep {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(250%);
+        }
+    }
+
+    .ask-bar[data-listening]::after,
+    .ask-panel-composer[data-listening]::after {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        width: 40%;
+        border-radius: inherit;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            color-mix(
+                in srgb,
+                var(--color-component-ask-glow-1) 22%,
+                transparent
+            ),
+            color-mix(
+                in srgb,
+                var(--color-component-ask-glow-2) 22%,
+                transparent
+            ),
+            transparent
+        );
+        opacity: calc(0.35 + 0.65 * var(--_level, 0.4));
+        pointer-events: none;
+        animation: ask-sweep 2.4s var(--motion-ease-standard) infinite; /* legacy-ok: wave sweep length */
+    }
+
+    .ask-panel-composer {
+        position: relative;
+        overflow: hidden;
+
+        & > * {
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    .ask-bar .ask-orb {
+        transition:
+            transform var(--motion-duration-base) var(--motion-ease-emphasized),
+            box-shadow var(--motion-duration-base) var(--motion-ease-standard);
+    }
+
+    .ask-bar:focus-within .ask-orb {
+        transform: scale(1.1);
+    }
+
+    .ask-bar[data-listening] .ask-orb {
+        transform: scale(calc(1.05 + 0.3 * var(--_level, 0.4)));
+        box-shadow:
+            inset 0 0 calc(var(--_orb, 1.25rem) / 4) rgb(255 255 255 / 0.35),
+            0 0 calc(var(--_orb, 1.25rem) * (0.5 + var(--_level, 0.4)))
+            var(--color-component-ask-glow-1); /* legacy-ok: Figma Orb inner highlight */
+        transition: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .ask-bar .ask-orb {
+            transition: none;
+        }
+
+        .ask-bar[data-listening]::after,
+        .ask-panel-composer[data-listening]::after {
+            animation: none;
+            opacity: 0;
+        }
     }
 
     /* Docked bar: fixed bottom centre, slides up after the hero, out of the way over the footer. */
