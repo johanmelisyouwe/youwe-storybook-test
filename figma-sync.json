@@ -5821,6 +5821,27 @@
         "src/templates/About.stories.tsx",
         "src/templates/shared.tsx"
       ]
+    },
+    {
+      "figma": {
+        "name": "Tech Partners detail",
+        "device": "Desktop",
+        "nodeId": "26906:10343",
+        "url": "https://www.figma.com/design/IP237ISXsaciooPrSykYMh/?node-id=26906-10343"
+      },
+      "storybook": {
+        "title": "Templates/Tech Partners detail",
+        "story": "Desktop"
+      },
+      "status": "complete",
+      "placeholders": [],
+      "lastSyncedSignature": null,
+      "lastSynced": "2026-11-20",
+      "code": [
+        "src/templates/TechPartnerDetail.stories.tsx",
+        "src/templates/tech-partner-detail.copy.tsx",
+        "src/templates/shared.tsx"
+      ]
     }
   ],
   "migrated": "not needed: fresh repo, no old Storybook",

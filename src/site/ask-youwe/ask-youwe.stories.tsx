@@ -75,6 +75,62 @@ export const Contextual: Story = { args: { State: 'Contextual' } }
 export const Docked: Story = { args: { State: 'Docked' } }
 export const Active: Story = { args: { State: 'Active' } }
 
+/**
+  Voice input (20 November): the mic button sits at the end of the bar and the follow-up field, where the
+  browser supports speech recognition (Chrome, Edge, Safari). Press it and talk: the wave moves with your
+  voice, your words appear in the field, and the question is asked when you stop. Press it again to stop.
+  This story shows the listening state with a demo wave; use "Voice (try it)" to talk for real.
+*/
+export const Listening: Story = {
+    parameters: { controls: { include: ['Device', 'Mode'] } },
+    render: ({ Device, Mode }) => (
+        <ModeFrame Mode={Mode} padding={48}>
+            <div
+                style={{
+                    width: W[Device],
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 32,
+                }}
+            >
+                <AskYouwe State="Docked" Device={Device} voiceDemo />
+                <AskYouwe
+                    State="Active"
+                    Device={Device}
+                    {...ACTIVE}
+                    voiceDemo
+                />
+            </div>
+        </ModeFrame>
+    ),
+}
+
+/** Talk to it: press the mic, allow the microphone, ask a question. The spoken question shows below. */
+export const VoiceTryIt: Story = {
+    name: 'Voice (try it)',
+    parameters: { controls: { include: ['Device', 'Mode'] } },
+    render: ({ Device, Mode }) => {
+        const [heard, setHeard] = useState<string>()
+        return (
+            <ModeFrame Mode={Mode} padding={48}>
+                <div style={{ width: W[Device] }}>
+                    <AskYouwe
+                        State="Docked"
+                        Device={Device}
+                        context={CONTEXT}
+                        onAsk={setHeard}
+                    />
+                    <p className="yw-body-sm-reg" style={{ marginTop: 16 }}>
+                        {heard
+                            ? `Asked: “${heard}”`
+                            : 'Press the mic and ask a question. (Chrome, Edge or Safari; the mic button does not show in Firefox.)'}
+                    </p>
+                </div>
+            </ModeFrame>
+        )
+    },
+}
+
 /** Click the bar's suggestion, type and press Enter to open the panel; Esc or close goes back to the bar. */
 export const Interactive: Story = {
     parameters: { controls: { include: ['Mode'] } },

@@ -8,6 +8,7 @@ import { askYouwe, useAskYouwe } from '../../shared/ask'
 import { Prose, type RichText } from '../../shared/prose'
 import ring from '../../shared/focus-ring/focus-ring.module.css'
 import styles from './ask-youwe.module.css'
+import { AskWave, useVoiceInput } from './voice'
 
 /*
   Ask Youwe — Figma 27019:3067; Ask Youwe/Snippet — 26692:106; parts _Ask Youwe/Orb, Aura, Button, Chip, Label.
@@ -84,7 +85,7 @@ export type AskButtonProps = {
     Variant?: 'Primary' | 'Glass' | 'Disabled'
     Size?: 'M' | 'S'
     label: string
-    icon?: 'arrow-forward' | 'close'
+    icon?: 'arrow-forward' | 'close' | 'mic'
     href?: string
     onClick?: () => void
     className?: string
@@ -206,6 +207,11 @@ export const ASK_YOUWE_LABELS = {
     sources: 'Sources',
     unavailable:
         'Ask Youwe can’t answer questions yet. Please contact us and we’ll help you right away.',
+    voice: 'Ask with your voice',
+    voiceStop: 'Stop listening',
+    listening: 'Listening…',
+    voiceDenied: 'Allow microphone access to ask with your voice',
+    voiceError: 'Couldn’t hear that. Try again',
 }
 
 export type AskYouweProps = {
@@ -239,6 +245,12 @@ export type AskYouweProps = {
     onRetry?: () => void
     onAsk?: (q: string) => void
     onClose?: () => void
+    /** Voice input: a mic button where the browser supports speech recognition (default true) */
+    Voice?: boolean
+    /** Speech recognition language from the page locale ('en', 'nl', 'sv'); default the document language */
+    locale?: string
+    /** Story/preview: show the listening state with a demo wave (no microphone) */
+    voiceDemo?: boolean
     className?: string
     /** UI text, for translations: { ...ASK_YOUWE_LABELS } */
     labels?: Partial<typeof ASK_YOUWE_LABELS>
@@ -263,6 +275,9 @@ export function AskYouwe({
     onRetry,
     onAsk,
     onClose,
+    Voice = true,
+    locale,
+    voiceDemo,
     className,
     labels,
 }: AskYouweProps) {
@@ -270,6 +285,41 @@ export function AskYouwe({
     const id = useId()
     const input = useRef<HTMLInputElement>(null)
     const [q, setQ] = useState('')
+    const voice = useVoiceInput({
+        locale,
+        onInterim: setQ,
+        onFinal: (text) => {
+            setQ('')
+            onAsk?.(text)
+        },
+    })
+    const listening = voice.state === 'listening' || !!voiceDemo
+    const showMic = Voice && (voice.supported || !!voiceDemo)
+    const micButton = showMic && (
+        <AskButton
+            Type="Icon"
+            Variant={listening ? 'Primary' : 'Glass'}
+            icon="mic"
+            label={listening ? L.voiceStop : L.voice}
+            onClick={voice.toggle}
+            className={listening ? styles['ask-mic-live'] : undefined}
+        />
+    )
+    const wave = listening && (
+        <AskWave
+            analyser={voice.analyser}
+            demo={!!voiceDemo}
+            label={L.listening}
+        />
+    )
+    const placeholder = (base: string) =>
+        listening
+            ? L.listening
+            : voice.state === 'denied'
+              ? L.voiceDenied
+              : voice.state === 'error'
+                ? L.voiceError
+                : base
 
     useEffect(() => {
         if (!shortcut || State === 'Active') return
@@ -448,11 +498,13 @@ export function AskYouwe({
                             styles['ask-bar-input'],
                             'yw-body-md-reg'
                         )}
-                        placeholder={L.followUpPlaceholder}
+                        placeholder={placeholder(L.followUpPlaceholder)}
                         aria-label={L.followUp}
                         value={q}
                         onChange={(e) => setQ(e.target.value)}
                     />
+                    {wave}
+                    {micButton}
                     <AskButton
                         Type="Icon"
                         Variant={q ? 'Primary' : 'Disabled'}
@@ -484,19 +536,29 @@ export function AskYouwe({
             <input
                 ref={input}
                 className={cx(styles['ask-bar-input'], 'yw-body-md-reg')}
-                placeholder={Prompt}
+                placeholder={placeholder(Prompt)}
                 aria-label={Prompt}
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
             />
-            {State !== 'Default' && context && (
-                <span className={styles['ask-bar-context']}>
-                    <AskChip label={context} onClick={() => onAsk?.(context)} />
-                </span>
+            {listening ? (
+                wave
+            ) : (
+                <>
+                    {State !== 'Default' && context && (
+                        <span className={styles['ask-bar-context']}>
+                            <AskChip
+                                label={context}
+                                onClick={() => onAsk?.(context)}
+                            />
+                        </span>
+                    )}
+                    {shortcut && Device === 'Desktop' && (
+                        <AskChip Type="Key" label="⌘K" />
+                    )}
+                </>
             )}
-            {shortcut && Device === 'Desktop' && (
-                <AskChip Type="Key" label="⌘K" />
-            )}
+            {micButton}
         </form>
     )
 }
@@ -785,6 +847,7 @@ export function AskDock({
                     key="panel"
                     State="Active"
                     Device={Device}
+                    locale={locale}
                     {...panel}
                     fallback={fallback}
                     Question={q}
@@ -799,6 +862,7 @@ export function AskDock({
                     key="bar"
                     State="Docked"
                     Device={Device}
+                    locale={locale}
                     context={context}
                     onAsk={ask}
                 />

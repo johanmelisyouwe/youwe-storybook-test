@@ -266,6 +266,72 @@
             var(--motion-ease-standard) 640ms both;
     }
 
+    /* Voice input (code, 20 November): live wave while listening — 24 bars, 3 wide with 3 gaps, up to 32
+       high, coloured from the Ask glow (red) to blue like the Orb; each bar scales with the microphone
+       level (set per frame in voice.tsx). The mic button pulses with a red ring while listening. */
+    .ask-wave {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        animation: fade-in var(--motion-duration-fast)
+            var(--motion-ease-standard) both;
+    }
+
+    .ask-wave-bars {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px; /* legacy-ok: wave bar rhythm, not a layout space */
+        height: var(--spacing-xl);
+
+        & i {
+            width: 3px; /* legacy-ok: wave bar width */
+            height: 100%;
+            border-radius: var(--shared-radius-circular);
+            background: linear-gradient(
+                to top,
+                var(--color-component-ask-glow-1),
+                var(--color-component-ask-glow-2)
+            );
+            transform: scaleY(0.12);
+            transform-origin: center;
+            transition: opacity var(--motion-duration-fast)
+                var(--motion-ease-standard);
+        }
+    }
+
+    @keyframes ask-mic-pulse {
+        from {
+            box-shadow: 0 0 0 0
+                color-mix(
+                    in srgb,
+                    var(--color-component-ask-glow-1) 55%,
+                    transparent
+                );
+        }
+        to {
+            box-shadow: 0 0 0 var(--spacing-xs) transparent;
+        }
+    }
+
+    .ask-mic-live {
+        animation: ask-mic-pulse 1.2s var(--motion-ease-standard) infinite; /* legacy-ok: pulse length */
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .ask-mic-live {
+            animation: none;
+        }
+    }
+
     /* Active panel */
     @keyframes ask-open {
         from {
