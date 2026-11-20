@@ -52,17 +52,21 @@ There is no Figma design for this, so it is built from the Ask Youwe parts.
   - "Voice (try it)" lets you talk to it for real; it shows what it heard.
 - **CMS integration doc:** has a voice input bullet under Ask Youwe.
 
-## Ask Youwe: clearer active state
+## Ask Youwe: active state and listening animation
 
-**The problem:** you couldn't see when the bar was active. Its focus style existed, but the docked bar's glass border overrode it, so the docked bar showed no focus at all.
+**The problem:** you couldn't see when the bar was active. Its focus style was overridden by the docked bar's glass border. A first fix (a 2px red ring with a halo) was too heavy, so this is a softer version.
 
-**Now, while typing in the bar or the follow-up field, or while talking to it:**
-- a 2px red ring (Ask glow), with a soft red halo and a glow below;
-- the raised Ask surface;
-- the aura at full strength;
-- the Orb slightly larger, with a stronger glow.
-
-The red ring is also the keyboard focus indicator. With reduced motion, the Orb doesn't animate.
+- **Typing (focus):**
+  - a thin red ring (Ask glow at 55%) and a soft red glow below;
+  - the raised Ask surface, and the aura at full strength;
+  - the Orb slightly larger.
+  - The ring is also the keyboard focus indicator.
+- **Listening (mic on):** the whole bar moves with your voice. The live wave sets a smoothed level (0–1) on the bar, and that level drives:
+  - the strength of the ring;
+  - the size and strength of the glow around the bar, which swells while you speak and settles when you pause;
+  - the size and glow of the Orb.
+  - A soft red-to-blue band also sweeps through the bar like a sound wave, brighter when you speak.
+- **Reduced motion:** there is no sweep and no Orb animation.
 
 ## Checks
 

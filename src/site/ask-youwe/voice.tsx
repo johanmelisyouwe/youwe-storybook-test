@@ -8,8 +8,9 @@ import styles from './ask-youwe.module.css'
     live interim text; and the microphone level from the same audio for the wave. Resolves with the
     final text when the speaker stops (or the mic button is pressed again).
   - AskWave: bars that move with the microphone level (one analyser frame per animation frame, written
-    straight to the bars, no React re-render). With reduced motion the bars stay still and fade with the
-    level instead.
+    straight to the bars, no React re-render). It also sets --_level (eased 0–1) on the surrounding bar
+    or field, so the whole control glows and ripples with the voice. With reduced motion the bars stay
+    still and fade with the level instead.
   The mic button is only shown where speech recognition exists (not in Firefox), after mount.
 */
 
@@ -183,6 +184,9 @@ export function AskWave({
             '(prefers-reduced-motion: reduce)'
         ).matches
         const data = analyser ? new Uint8Array(analyser.fftSize) : null
+        // The bar or follow-up field around the wave: it glows and ripples with the voice (--_level, 0–1)
+        const host = ref.current?.closest('form') as HTMLElement | null
+        let smooth = 0
         let raf = 0
         const t0 = performance.now()
         const draw = (t: number) => {
@@ -201,6 +205,12 @@ export function AskWave({
                 level =
                     0.6 + 0.35 * Math.sin(s * 2.3) * Math.abs(Math.sin(s * 0.9))
             }
+            // Eased, so the glow swells and settles instead of flickering
+            smooth += (level - smooth) * 0.18
+            host?.style.setProperty(
+                '--_level',
+                reduce ? '0.4' : smooth.toFixed(3)
+            )
             bars.forEach((b, i) => {
                 // A bell-shaped spread with a travelling ripple, so the bars read as a voice wave
                 const mid = 1 - Math.abs(i - (BARS - 1) / 2) / (BARS / 2)
@@ -217,7 +227,10 @@ export function AskWave({
             raf = requestAnimationFrame(draw)
         }
         raf = requestAnimationFrame(draw)
-        return () => cancelAnimationFrame(raf)
+        return () => {
+            cancelAnimationFrame(raf)
+            host?.style.removeProperty('--_level')
+        }
     }, [analyser, demo])
     return (
         <span className={styles['ask-wave']} role="status">
